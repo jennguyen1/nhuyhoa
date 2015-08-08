@@ -274,14 +274,18 @@ grade_query <- 12
 subject_query <- c("math", "read")
 
 # obtains pretest number corresponding to pretests of the ACT and SAT category
-pretest_numbers <- data %>% dplyr::select(matches("pretest_\\d+_name")) %>% apply(2, unique) %>% 
+pretest_numbers <- data %>% 
+  dplyr::select(matches("pretest_\\d+_name")) %>% 
+  apply(2, unique) %>% 
   jn.general::refine(function(x) x %>% str_detect("ACT|SAT") %>% any) %>% 
-  names %>% str_extract("\\d+") 
+  names %>% 
+  str_extract("\\d+") 
 
 # generates the names of the pretest information 
 ## matches doesn't allow multiple matches so we have to regenerate the names of the pretests information
 pretests_of_interest <- paste0("pretest_", pretest_numbers) %>% 
-  interaction(c("name", "score", "grade", "version"), sep = "_") %>% levels
+  interaction(c("name", "score", "grade", "version"), sep = "_") %>% 
+  levels
 
 # selects posttest, ACT/SAT pretests, demographics and subsets by the grade/subject of interest
 final <- data %>% 

@@ -1774,14 +1774,18 @@ grade_query <span class="o">&lt;-</span> <span class="m">12</span>
 subject_query <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;math&quot;</span><span class="p">,</span> <span class="s">&quot;read&quot;</span><span class="p">)</span>
 
 <span class="c1"># obtains pretest number corresponding to pretests of the ACT and SAT category</span>
-pretest_numbers <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_name&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">apply</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="kp">unique</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+pretest_numbers <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> 
+  dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_name&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+  <span class="kp">apply</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="kp">unique</span><span class="p">)</span> <span class="o">%&gt;%</span> 
   jn.general<span class="o">::</span>refine<span class="p">(</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s">&quot;ACT|SAT&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">any</span><span class="p">)</span> <span class="o">%&gt;%</span> 
-  names <span class="o">%&gt;%</span> str_extract<span class="p">(</span><span class="s">&quot;\\d+&quot;</span><span class="p">)</span> 
+  names <span class="o">%&gt;%</span> 
+  str_extract<span class="p">(</span><span class="s">&quot;\\d+&quot;</span><span class="p">)</span> 
 
 <span class="c1"># generates the names of the pretest information </span>
 <span class="c1">## matches doesn&#39;t allow multiple matches so we have to regenerate the names of the pretests information</span>
 pretests_of_interest <span class="o">&lt;-</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> pretest_numbers<span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="kp">interaction</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;score&quot;</span><span class="p">,</span> <span class="s">&quot;grade&quot;</span><span class="p">,</span> <span class="s">&quot;version&quot;</span><span class="p">),</span> sep <span class="o">=</span> <span class="s">&quot;_&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">levels</span>
+  <span class="kp">interaction</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;score&quot;</span><span class="p">,</span> <span class="s">&quot;grade&quot;</span><span class="p">,</span> <span class="s">&quot;version&quot;</span><span class="p">),</span> sep <span class="o">=</span> <span class="s">&quot;_&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="kp">levels</span>
 
 <span class="c1"># selects posttest, ACT/SAT pretests, demographics and subsets by the grade/subject of interest</span>
 final <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> 
@@ -1966,7 +1970,7 @@ final <span class="o">&lt;-</span> data <span class="o">%&gt;%</span>
     &copy; 2015 Jennifer Nguyen. Powered by Jekyll.<br>
     <a href="mailto:jennifernguyen1992@gmail.com">Email</a> | 
     <a href="https://www.linkedin.com/pub/jennifer-nguyen/b0/94/aa7" target="_blank">LinkedIn</a> | 
-    <a href="https://github.com/jnnguyen2" target="_blank">
+    <a href="https://github.com/jnguyen92" target="_blank">
       <span class="username">Github</span>
       <span class="icon  icon--github">
         <svg viewBox="0 0 16 16">
