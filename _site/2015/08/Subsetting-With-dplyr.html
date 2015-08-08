@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Subsetting With dplyr</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/nhuyhoa/css/main.css">
+  <link rel="canonical" href="http://yourdomain.com/nhuyhoa/2015/08/Subsetting-With-dplyr.html">
+  <link rel="alternate" type="application/rss+xml" title="Nhuy Hoa" href="http://yourdomain.com/nhuyhoa/feed.xml" />
+</head>
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/nhuyhoa/">Nhuy Hoa</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#ffffff" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#ffffff" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#ffffff" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/nhuyhoa/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/nhuyhoa/categories/">Categories</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/nhuyhoa/index.html">Posts</a>
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Subsetting With dplyr</h1>
+    <p class="post-meta">Aug 1, 2015 • Categories: r data_wrangling </p>
+  </header>
+
+  <article class="post-content"> 
+    <ul id="markdown-toc">
+  <li><a href="#example-data" id="markdown-toc-example-data">Example Data</a></li>
+  <li><a href="#dplyrslice-and-dplyrfilter" id="markdown-toc-dplyrslice-and-dplyrfilter">dplyr::slice() and dplyr::filter()</a>    <ul>
+      <li><a href="#subsetting-rows-by-conditional-expression" id="markdown-toc-subsetting-rows-by-conditional-expression">Subsetting rows by conditional expression</a></li>
+      <li><a href="#subsetting-rows-by-row-position" id="markdown-toc-subsetting-rows-by-row-position">Subsetting rows by row position</a></li>
+    </ul>
+  </li>
+  <li><a href="#dplyrselect" id="markdown-toc-dplyrselect">dplyr::select()</a>    <ul>
+      <li><a href="#select-columns-by-name" id="markdown-toc-select-columns-by-name">Select columns by name</a></li>
+      <li><a href="#select-columns-by-numeric-position-or-column-name" id="markdown-toc-select-columns-by-numeric-position-or-column-name">Select columns by numeric position or column name</a></li>
+      <li><a href="#select-columns-using-regex" id="markdown-toc-select-columns-using-regex">Select columns using regex</a></li>
+      <li><a href="#combining-selection-techniques" id="markdown-toc-combining-selection-techniques">Combining selection techniques</a></li>
+    </ul>
+  </li>
+  <li><a href="#challenge-round" id="markdown-toc-challenge-round">Challenge round</a></li>
+  <li><a href="#more-dplyr" id="markdown-toc-more-dplyr">More dplyr</a></li>
+</ul>
+
+<p>Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package, created by Hadley Wickham, provides some handy tools to subset and select with ease.   <br />
+In this post, I will outline the subsetting functions available through dplyr and explain how and when I use them. In addition, I make use of magrittr’s piping function, which can combine a complicated sequence of logic into a code chain that is easier to read. More information about magrittr can be found on the <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html" target="blank">magrittr vignette</a>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>magrittr<span class="p">)</span></code></pre></div>
+
+<h1 id="example-data">Example Data</h1>
+<p>Let’s generate some random data to use with dplyr. The random generator function is available via the <a href="https://github.com/jnnguyen2/jn.general" target="blank">jn.general package</a>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+data <span class="o">&lt;-</span> jn.general<span class="o">::</span>rdata<span class="p">(</span>n <span class="o">=</span> <span class="m">750</span><span class="p">,</span>
+              <span class="c1"># posttests</span>
+              gen_seq<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> length.out <span class="o">=</span> <span class="m">40</span><span class="p">,</span> name <span class="o">=</span> <span class="s">&quot;posttest_score&quot;</span><span class="p">),</span>
+              gen_subject<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;posttest_subject&quot;</span><span class="p">),</span>
+              gen_seq<span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> name <span class="o">=</span> <span class="s">&quot;posttest_grade&quot;</span><span class="p">),</span>
+              <span class="c1"># pretests</span>
+              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_7_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="s">&quot;ACT&quot;</span><span class="p">),</span>
+              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_8_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="s">&quot;Math222&quot;</span><span class="p">),</span>
+              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_9_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="s">&quot;SAT&quot;</span><span class="p">),</span>
+              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_10_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="s">&quot;CompSci367&quot;</span><span class="p">),</span>
+              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_11_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;ACT&quot;</span><span class="p">,</span> <span class="s">&quot;SAT&quot;</span><span class="p">)),</span>
+              gen_seq<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> length.out <span class="o">=</span> <span class="m">40</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">5</span><span class="p">,</span> name <span class="o">=</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span> <span class="s">&quot;_score&quot;</span><span class="p">),</span> add.na <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+              gen_seq<span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="m">11</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">5</span><span class="p">,</span> name <span class="o">=</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span> <span class="s">&quot;_grade&quot;</span><span class="p">)),</span>
+              gen_char<span class="p">(</span>ncol <span class="o">=</span> <span class="m">5</span><span class="p">,</span> name <span class="o">=</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span> <span class="s">&quot;_version&quot;</span><span class="p">),</span> values <span class="o">=</span> <span class="kc">LETTERS</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]),</span>
+              <span class="c1"># demographics</span>
+              gen_gender<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;d_gender&quot;</span><span class="p">),</span>
+              gen_bool<span class="p">(</span>ncol <span class="o">=</span> <span class="m">4</span><span class="p">,</span> name <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;d_black&quot;</span><span class="p">,</span> <span class="s">&quot;d_hispanic&quot;</span><span class="p">,</span> <span class="s">&quot;d_asian&quot;</span><span class="p">,</span> <span class="s">&quot;d_native&quot;</span><span class="p">),</span> add.na <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> probs <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.15</span><span class="p">,</span> <span class="m">0.8</span><span class="p">,</span> <span class="m">0.05</span><span class="p">)),</span>
+              gen_bool<span class="p">(</span>ncol <span class="o">=</span> <span class="m">1</span><span class="p">,</span> name <span class="o">=</span> <span class="s">&quot;d_gifted&quot;</span><span class="p">,</span> probs <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> add.na <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span> 
+              <span class="c1"># student id</span>
+              <span class="m">.i</span>d <span class="o">=</span> <span class="kc">FALSE</span>
+              <span class="p">)</span>
+data <span class="o">%&lt;&gt;%</span> group_by<span class="p">(</span>posttest_subject<span class="p">)</span> <span class="o">%&gt;%</span> mutate<span class="p">(</span>student_id <span class="o">=</span> <span class="m">1</span><span class="o">:</span>n<span class="p">())</span> <span class="o">%&gt;%</span> <span class="kt">data.frame</span>
+<span class="c1"># formatting</span>
+data <span class="o">%&lt;&gt;%</span> select<span class="p">(</span>student_id<span class="p">,</span> matches<span class="p">(</span><span class="s">&quot;posttest&quot;</span><span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;pretest&quot;</span><span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">))</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> posttest_subject </th>
+   <th style="text-align:center;"> posttest_grade </th>
+   <th style="text-align:center;"> pretest_7_name </th>
+   <th style="text-align:center;"> pretest_8_name </th>
+   <th style="text-align:center;"> pretest_9_name </th>
+   <th style="text-align:center;"> pretest_10_name </th>
+   <th style="text-align:center;"> pretest_11_name </th>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_8_score </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_10_score </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+   <th style="text-align:center;"> pretest_7_grade </th>
+   <th style="text-align:center;"> pretest_8_grade </th>
+   <th style="text-align:center;"> pretest_9_grade </th>
+   <th style="text-align:center;"> pretest_10_grade </th>
+   <th style="text-align:center;"> pretest_11_grade </th>
+   <th style="text-align:center;"> pretest_7_version </th>
+   <th style="text-align:center;"> pretest_8_version </th>
+   <th style="text-align:center;"> pretest_9_version </th>
+   <th style="text-align:center;"> pretest_10_version </th>
+   <th style="text-align:center;"> pretest_11_version </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+   <th style="text-align:center;"> d_gifted </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 82.05128 </td>
+   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 89.74359 </td>
+   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 35.89744 </td>
+   <td style="text-align:center;"> ss </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 48.71795 </td>
+   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 43.58974 </td>
+   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 56.41026 </td>
+   <td style="text-align:center;"> science </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 23.07692 </td>
+   <td style="text-align:center;"> 51.28205 </td>
+   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> 48.717949 </td>
+   <td style="text-align:center;"> 30.76923 </td>
+   <td style="text-align:center;"> 100.00000 </td>
+   <td style="text-align:center;"> 7.692308 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 84.61538 </td>
+   <td style="text-align:center;"> 5.128205 </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> 66.66667 </td>
+   <td style="text-align:center;"> 94.871795 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<h1 id="dplyrslice-and-dplyrfilter">dplyr::slice() and dplyr::filter()</h1>
+<p>There are a number of functions that allow for rowise manipulation in dplyr, two of which are <code>dplyr::filter()</code> and <code>dplyr::slice()</code>.</p>
+
+<h2 id="subsetting-rows-by-conditional-expression">Subsetting rows by conditional expression</h2>
+<p>The <code>dplyr::filter()</code> function takes logical conditions as arguments. If multiple conditions are supplied as arguments (via <code>','</code>), they are combined with <code>&amp;</code>. Thus <code>or</code> arguments should be supplied within one condition with <code>|</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># subset to students with posttest math scores over 75 and are in the 10th grade</span>
+data <span class="o">%&gt;%</span> filter<span class="p">(</span>posttest_grade <span class="o">==</span> <span class="m">10</span><span class="p">,</span> posttest_subject <span class="o">==</span> <span class="s">&quot;math&quot;</span><span class="p">,</span> posttest_score <span class="o">&gt;</span> <span class="m">75</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> posttest_subject </th>
+   <th style="text-align:center;"> posttest_grade </th>
+   <th style="text-align:center;"> pretest_7_name </th>
+   <th style="text-align:center;"> pretest_8_name </th>
+   <th style="text-align:center;"> pretest_9_name </th>
+   <th style="text-align:center;"> pretest_10_name </th>
+   <th style="text-align:center;"> pretest_11_name </th>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_8_score </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_10_score </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+   <th style="text-align:center;"> pretest_7_grade </th>
+   <th style="text-align:center;"> pretest_8_grade </th>
+   <th style="text-align:center;"> pretest_9_grade </th>
+   <th style="text-align:center;"> pretest_10_grade </th>
+   <th style="text-align:center;"> pretest_11_grade </th>
+   <th style="text-align:center;"> pretest_7_version </th>
+   <th style="text-align:center;"> pretest_8_version </th>
+   <th style="text-align:center;"> pretest_9_version </th>
+   <th style="text-align:center;"> pretest_10_version </th>
+   <th style="text-align:center;"> pretest_11_version </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+   <th style="text-align:center;"> d_gifted </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 16 </td>
+   <td style="text-align:center;"> 87.17949 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> 76.923077 </td>
+   <td style="text-align:center;"> 33.33333 </td>
+   <td style="text-align:center;"> 53.84615 </td>
+   <td style="text-align:center;"> 46.15385 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 28 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 82.05128 </td>
+   <td style="text-align:center;"> 10.256410 </td>
+   <td style="text-align:center;"> 71.79487 </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 55 </td>
+   <td style="text-align:center;"> 89.74359 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 2.564103 </td>
+   <td style="text-align:center;"> 84.61538 </td>
+   <td style="text-align:center;"> 33.33333 </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 62 </td>
+   <td style="text-align:center;"> 76.92308 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 64.10256 </td>
+   <td style="text-align:center;"> 7.692308 </td>
+   <td style="text-align:center;"> 30.76923 </td>
+   <td style="text-align:center;"> 51.28205 </td>
+   <td style="text-align:center;"> 53.84615 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 64 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 71.79487 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 94.87179 </td>
+   <td style="text-align:center;"> 12.82051 </td>
+   <td style="text-align:center;"> 71.79487 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<h2 id="subsetting-rows-by-row-position">Subsetting rows by row position</h2>
+<p>The <code>dplyr::slice()</code> function allows rows to be extracted by position.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract the 25th-30th students in the data set</span>
+data <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">25</span><span class="o">:</span><span class="m">30</span><span class="p">)</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> posttest_subject </th>
+   <th style="text-align:center;"> posttest_grade </th>
+   <th style="text-align:center;"> pretest_7_name </th>
+   <th style="text-align:center;"> pretest_8_name </th>
+   <th style="text-align:center;"> pretest_9_name </th>
+   <th style="text-align:center;"> pretest_10_name </th>
+   <th style="text-align:center;"> pretest_11_name </th>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_8_score </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_10_score </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+   <th style="text-align:center;"> pretest_7_grade </th>
+   <th style="text-align:center;"> pretest_8_grade </th>
+   <th style="text-align:center;"> pretest_9_grade </th>
+   <th style="text-align:center;"> pretest_10_grade </th>
+   <th style="text-align:center;"> pretest_11_grade </th>
+   <th style="text-align:center;"> pretest_7_version </th>
+   <th style="text-align:center;"> pretest_8_version </th>
+   <th style="text-align:center;"> pretest_9_version </th>
+   <th style="text-align:center;"> pretest_10_version </th>
+   <th style="text-align:center;"> pretest_11_version </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+   <th style="text-align:center;"> d_gifted </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> science </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 10.25641 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 97.435897 </td>
+   <td style="text-align:center;"> 35.89744 </td>
+   <td style="text-align:center;"> 10.25641 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 38.46154 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 28.20513 </td>
+   <td style="text-align:center;"> 15.38462 </td>
+   <td style="text-align:center;"> 5.128205 </td>
+   <td style="text-align:center;"> 43.58974 </td>
+   <td style="text-align:center;"> 0.00000 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 0.00000 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 58.97436 </td>
+   <td style="text-align:center;"> 82.05128 </td>
+   <td style="text-align:center;"> 82.051282 </td>
+   <td style="text-align:center;"> 28.20513 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 38.46154 </td>
+   <td style="text-align:center;"> ss </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 12.82051 </td>
+   <td style="text-align:center;"> 94.87179 </td>
+   <td style="text-align:center;"> 33.333333 </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 48.71795 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 87.17949 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 51.28205 </td>
+   <td style="text-align:center;"> 53.84615 </td>
+   <td style="text-align:center;"> 53.846154 </td>
+   <td style="text-align:center;"> 46.15385 </td>
+   <td style="text-align:center;"> 64.10256 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 33.33333 </td>
+   <td style="text-align:center;"> ss </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 35.89744 </td>
+   <td style="text-align:center;"> 0.00000 </td>
+   <td style="text-align:center;"> 87.179487 </td>
+   <td style="text-align:center;"> 61.53846 </td>
+   <td style="text-align:center;"> 94.87179 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>In terms of subsetting by rows, dplyr’s filter function is pretty equivalent to base R’s subset function. In my daily work, I prefer to use subset. Since subsetting rows by numeric position is not available via base R’s subsetting, slice can come in handy, especially when used in conjunction with <code>which()</code>, which returns the indices of an object with TRUE values.</p>
+
+<h1 id="dplyrselect">dplyr::select()</h1>
+<p>The <code>dplyr::select()</code> function selects columns from a data set. To deselect columns, simply place a <code>-</code> before the name or special function call.</p>
+
+<h2 id="select-columns-by-name">Select columns by name</h2>
+<p>Selecting columns by name is easy; just write out the name of the column(s), separated by commas - no need to wrap names with quotations or in a vector.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select multiple columns by name</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>posttest_score<span class="p">,</span> posttest_grade<span class="p">,</span> d_gender<span class="p">,</span> posttest_subject<span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> posttest_grade </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> posttest_subject </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> read </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 35.89744 </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> ss </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 56.41026 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> science </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> math </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> read </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># deselect multiple columns by name</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span><span class="o">-</span>posttest_score<span class="p">,</span> <span class="o">-</span>posttest_grade<span class="p">,</span> <span class="o">-</span>posttest_subject<span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> pretest_7_name </th>
+   <th style="text-align:center;"> pretest_8_name </th>
+   <th style="text-align:center;"> pretest_9_name </th>
+   <th style="text-align:center;"> pretest_10_name </th>
+   <th style="text-align:center;"> pretest_11_name </th>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_8_score </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_10_score </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+   <th style="text-align:center;"> pretest_7_grade </th>
+   <th style="text-align:center;"> pretest_8_grade </th>
+   <th style="text-align:center;"> pretest_9_grade </th>
+   <th style="text-align:center;"> pretest_10_grade </th>
+   <th style="text-align:center;"> pretest_11_grade </th>
+   <th style="text-align:center;"> pretest_7_version </th>
+   <th style="text-align:center;"> pretest_8_version </th>
+   <th style="text-align:center;"> pretest_9_version </th>
+   <th style="text-align:center;"> pretest_10_version </th>
+   <th style="text-align:center;"> pretest_11_version </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+   <th style="text-align:center;"> d_gifted </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 82.05128 </td>
+   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 89.74359 </td>
+   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 48.71795 </td>
+   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 43.58974 </td>
+   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 23.07692 </td>
+   <td style="text-align:center;"> 51.28205 </td>
+   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> 48.717949 </td>
+   <td style="text-align:center;"> 30.76923 </td>
+   <td style="text-align:center;"> 100.00000 </td>
+   <td style="text-align:center;"> 7.692308 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 84.61538 </td>
+   <td style="text-align:center;"> 5.128205 </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> 66.66667 </td>
+   <td style="text-align:center;"> 94.871795 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<h2 id="select-columns-by-numeric-position-or-column-name">Select columns by numeric position or column name</h2>
+
+<p>Say we want to extract columns from a data frame using a vector of column names or positions. For this example, let’s try to select the demographics columns corresponding to race.</p>
+
+<p>For numeric position values, just pass the vector as an argument to the select function.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select based on column position</span>
+var_pos <span class="o">&lt;-</span> <span class="m">25</span><span class="o">:</span><span class="m">29</span> 
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>var_pos<span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>For character names, wrap the helper function <code>one_of()</code> around the character vector and pass this to the select function.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select based on column name</span>
+var_names <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;d_black&quot;</span><span class="p">,</span> <span class="s">&quot;d_hispanic&quot;</span><span class="p">,</span> <span class="s">&quot;d_asian&quot;</span><span class="p">,</span> <span class="s">&quot;d_native&quot;</span><span class="p">)</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>one_of<span class="p">(</span>var_names<span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<h2 id="select-columns-using-regex">Select columns using regex</h2>
+
+<p>Helper functions such as <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> are perhaps the most powerful feature of the select function. Let’s start with extracting the pretest score columns.</p>
+
+<p>One thing we could do is write out all the names of the pretest columns by hand and use the <code>one_of</code> helper function.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract specific pretest column names using one_of()</span>
+vars <span class="o">&lt;-</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span> <span class="s">&quot;_score&quot;</span><span class="p">)</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>one_of<span class="p">(</span>vars<span class="p">))</span></code></pre></div>
+
+<p>However, this is not ideal since we may not always know what pretest numbers are available needed beforehand. Thus this code would not be reuseable and cannot be generalized to other data sets where pretest numbers may not necessarily be 7:11.</p>
+
+<p>Another option would be to use grep to match the column names and then grab the columns using those results.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># find col names using regex and extract using one_of()</span>
+vars <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> colnames <span class="o">%&gt;%</span> str_subset<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">)</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>one_of<span class="p">(</span>vars<span class="p">))</span></code></pre></div>
+
+<p>The <code>"\\d+"</code> here is a regex expression. The first portion <code>"\\d"</code> matches a digit character, ie 0123456789. The second portion <code>"+"</code> is a metacharacter with the meaning “match the previous character(s) one or more times”. So together, the pattern <code>"pretest_\\d+_score"</code> is matching all strings that starts with “pretest_”, followed by one or more digits, and ending with “_score”. See the <a href="http://jnnguyen2.github.io/nhuyhoa/r/data_wrangling/2015/07/25/Regular-Expressions/" target="blank">regular expression post</a> for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable.</p>
+
+<p>Great! This does exactly what we wanted, but is there a better, perhaps more concise, way to do the exact same thing?</p>
+
+<p>Yes! We can use <code>matches()</code>!</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># use matches to find all pretest score columns</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_8_score </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_10_score </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 82.05128 </td>
+   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 89.74359 </td>
+   <td style="text-align:center;"> 79.487179 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 48.71795 </td>
+   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 43.58974 </td>
+   <td style="text-align:center;"> 71.794872 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 23.07692 </td>
+   <td style="text-align:center;"> 51.28205 </td>
+   <td style="text-align:center;"> 66.666667 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> 48.717949 </td>
+   <td style="text-align:center;"> 30.76923 </td>
+   <td style="text-align:center;"> 100.00000 </td>
+   <td style="text-align:center;"> 7.692308 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 84.61538 </td>
+   <td style="text-align:center;"> 5.128205 </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> 66.66667 </td>
+   <td style="text-align:center;"> 94.871795 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>Awesome! In just one line of code, we were able to extract all columns corresponding to pretest scores! And not only is it short and sweet, it is a lot easier to read than using pattern matching on the column names.</p>
+
+<p>The helper functions <code>starts_with()</code> and <code>ends_with()</code> are similar to <code>matches()</code> but is specialized in that it only looks at the beginning or the end of the string for a pattern match.</p>
+
+<p>Let’s use <code>starts_with()</code> and <code>ends_with()</code> to extract (1) all posttest information and (2) all test score columns.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract all posttest information</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>starts_with<span class="p">(</span><span class="s">&quot;posttest&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> posttest_subject </th>
+   <th style="text-align:center;"> posttest_grade </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 35.89744 </td>
+   <td style="text-align:center;"> ss </td>
+   <td style="text-align:center;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 56.41026 </td>
+   <td style="text-align:center;"> science </td>
+   <td style="text-align:center;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 10 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract all test score columns</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>ends_with<span class="p">(</span><span class="s">&quot;_score&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_8_score </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_10_score </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> 82.05128 </td>
+   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 89.74359 </td>
+   <td style="text-align:center;"> 79.487179 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 35.89744 </td>
+   <td style="text-align:center;"> 48.71795 </td>
+   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 43.58974 </td>
+   <td style="text-align:center;"> 71.794872 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 56.41026 </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 23.07692 </td>
+   <td style="text-align:center;"> 51.28205 </td>
+   <td style="text-align:center;"> 66.666667 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> 48.717949 </td>
+   <td style="text-align:center;"> 30.76923 </td>
+   <td style="text-align:center;"> 100.00000 </td>
+   <td style="text-align:center;"> 7.692308 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 84.61538 </td>
+   <td style="text-align:center;"> 5.128205 </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> 66.66667 </td>
+   <td style="text-align:center;"> 94.871795 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>For added functionality, the <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> function works even when the regex string is stored as a variable. This tends to be useful when developing functions that runs on any data set, where the regex string can be passed as a parameter.</p>
+
+<h2 id="combining-selection-techniques">Combining selection techniques</h2>
+<p>Finally let’s select multiple columns using a variety of the select methods we just learned. Simply separate out each call with a comma; use <code>-</code> to deselect columns.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select multiple columns</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>student_id<span class="p">,</span> matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">),</span> d_gender<span class="p">,</span> starts_with<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_8_score </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_10_score </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+   <th style="text-align:center;"> d_gifted </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 82.05128 </td>
+   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 89.74359 </td>
+   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 48.71795 </td>
+   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 43.58974 </td>
+   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 23.07692 </td>
+   <td style="text-align:center;"> 51.28205 </td>
+   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> 48.717949 </td>
+   <td style="text-align:center;"> 30.76923 </td>
+   <td style="text-align:center;"> 100.00000 </td>
+   <td style="text-align:center;"> 7.692308 </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 84.61538 </td>
+   <td style="text-align:center;"> 5.128205 </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> 66.66667 </td>
+   <td style="text-align:center;"> 94.871795 </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select all pretest info and then deselect pretest 10 info</span>
+no_good <span class="o">&lt;-</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_10_&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;score&quot;</span><span class="p">,</span> <span class="s">&quot;version&quot;</span><span class="p">,</span> <span class="s">&quot;grade&quot;</span><span class="p">))</span>
+data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>student_id<span class="p">,</span> starts_with<span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">),</span> <span class="o">-</span>one_of<span class="p">(</span>no_good<span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> pretest_7_name </th>
+   <th style="text-align:center;"> pretest_8_name </th>
+   <th style="text-align:center;"> pretest_9_name </th>
+   <th style="text-align:center;"> pretest_10_name </th>
+   <th style="text-align:center;"> pretest_11_name </th>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_8_score </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+   <th style="text-align:center;"> pretest_7_grade </th>
+   <th style="text-align:center;"> pretest_8_grade </th>
+   <th style="text-align:center;"> pretest_9_grade </th>
+   <th style="text-align:center;"> pretest_11_grade </th>
+   <th style="text-align:center;"> pretest_7_version </th>
+   <th style="text-align:center;"> pretest_8_version </th>
+   <th style="text-align:center;"> pretest_9_version </th>
+   <th style="text-align:center;"> pretest_11_version </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 82.05128 </td>
+   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 48.71795 </td>
+   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 23.07692 </td>
+   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> 48.717949 </td>
+   <td style="text-align:center;"> 30.76923 </td>
+   <td style="text-align:center;"> 7.692308 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 84.61538 </td>
+   <td style="text-align:center;"> 5.128205 </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> 94.871795 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>Sometimes when I have very wide data, I use <code>dplyr::select()</code> to roughly reorganize columns. This is pretty handy, especially if I eventually have to save results in a csv file for review at a later time.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># shuffle up column positions</span>
+order <span class="o">&lt;-</span> <span class="kp">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="kp">ncol</span><span class="p">(</span>data<span class="p">))</span>
+unorganized_data <span class="o">&lt;-</span> dplyr<span class="o">::</span>select<span class="p">(</span>data<span class="p">,</span> <span class="kp">order</span><span class="p">)</span>
+
+<span class="c1"># organize columns: id, then posttest info, pretest info, demographics info, dosage info (&quot;t_&quot;)</span>
+unorganized_data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>student_id<span class="p">,</span> matches<span class="p">(</span><span class="s">&quot;posttest&quot;</span><span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;pretest&quot;</span><span class="p">),</span> starts_with<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> posttest_subject </th>
+   <th style="text-align:center;"> posttest_grade </th>
+   <th style="text-align:center;"> pretest_10_grade </th>
+   <th style="text-align:center;"> pretest_9_name </th>
+   <th style="text-align:center;"> pretest_7_grade </th>
+   <th style="text-align:center;"> pretest_10_score </th>
+   <th style="text-align:center;"> pretest_8_name </th>
+   <th style="text-align:center;"> pretest_11_version </th>
+   <th style="text-align:center;"> pretest_11_name </th>
+   <th style="text-align:center;"> pretest_7_version </th>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_10_version </th>
+   <th style="text-align:center;"> pretest_8_version </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_9_grade </th>
+   <th style="text-align:center;"> pretest_7_name </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+   <th style="text-align:center;"> pretest_10_name </th>
+   <th style="text-align:center;"> pretest_9_version </th>
+   <th style="text-align:center;"> pretest_8_grade </th>
+   <th style="text-align:center;"> pretest_11_grade </th>
+   <th style="text-align:center;"> pretest_8_score </th>
+   <th style="text-align:center;"> d_native </th>
+   <th style="text-align:center;"> d_gifted </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_hispanic </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 89.74359 </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> 82.05128 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 35.89744 </td>
+   <td style="text-align:center;"> ss </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 43.58974 </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> 48.71795 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 56.41026 </td>
+   <td style="text-align:center;"> science </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 51.28205 </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> 23.07692 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 92.30769 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 100.00000 </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> 30.76923 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 7.692308 </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 48.717949 </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 66.66667 </td>
+   <td style="text-align:center;"> Math222 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> 84.61538 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> 25.64103 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> 94.871795 </td>
+   <td style="text-align:center;"> CompSci367 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 5.128205 </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>Keep in mind that when doing this, if the selectors are too specific data may be lost. You should have a good idea of what your column names are and be sure that they are all accounted for in the selection.</p>
+
+<p>Overall, I think dplyr’s <code>select()</code> function is very useful when doing data work. Columns can be selected easily without having to wrap column names in quotations or <code>c()</code>, unlike base R’s subset function. Deselecting is more consistent with the simple <code>-</code> negation, and matching column groups are much simpler with the help of special functions.</p>
+
+<h1 id="challenge-round">Challenge round</h1>
+<p>Let’s do something a little more challenging to see the power of dplyr. We want to clean up this data set to remove all pretest information that does not correspond to the ACT or SAT. In addition, we only want information regarding to students who took the math or reading posttest in the 12th grade.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># grade and subject query of interest</span>
+grade_query <span class="o">&lt;-</span> <span class="m">12</span>
+subject_query <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;math&quot;</span><span class="p">,</span> <span class="s">&quot;read&quot;</span><span class="p">)</span>
+
+<span class="c1"># obtains pretest number corresponding to pretests of the ACT and SAT category</span>
+pretest_numbers <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_name&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">apply</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="kp">unique</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  jn.general<span class="o">::</span>refine<span class="p">(</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s">&quot;ACT|SAT&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">any</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  names <span class="o">%&gt;%</span> str_extract<span class="p">(</span><span class="s">&quot;\\d+&quot;</span><span class="p">)</span> 
+
+<span class="c1"># generates the names of the pretest information </span>
+<span class="c1">## matches doesn&#39;t allow multiple matches so we have to regenerate the names of the pretests information</span>
+pretests_of_interest <span class="o">&lt;-</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> pretest_numbers<span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="kp">interaction</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;score&quot;</span><span class="p">,</span> <span class="s">&quot;grade&quot;</span><span class="p">,</span> <span class="s">&quot;version&quot;</span><span class="p">),</span> sep <span class="o">=</span> <span class="s">&quot;_&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">levels</span>
+
+<span class="c1"># selects posttest, ACT/SAT pretests, demographics and subsets by the grade/subject of interest</span>
+final <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> 
+  dplyr<span class="o">::</span>select<span class="p">(</span>student_id<span class="p">,</span> starts_with<span class="p">(</span><span class="s">&quot;posttest_&quot;</span><span class="p">),</span> one_of<span class="p">(</span>pretests_of_interest<span class="p">),</span> starts_with<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+  dplyr<span class="o">::</span>filter<span class="p">(</span>posttest_grade <span class="o">%in%</span> grade_query<span class="p">,</span> posttest_subject <span class="o">%in%</span> subject_query<span class="p">)</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> posttest_subject </th>
+   <th style="text-align:center;"> posttest_grade </th>
+   <th style="text-align:center;"> pretest_11_grade </th>
+   <th style="text-align:center;"> pretest_7_grade </th>
+   <th style="text-align:center;"> pretest_9_grade </th>
+   <th style="text-align:center;"> pretest_11_name </th>
+   <th style="text-align:center;"> pretest_7_name </th>
+   <th style="text-align:center;"> pretest_9_name </th>
+   <th style="text-align:center;"> pretest_11_score </th>
+   <th style="text-align:center;"> pretest_7_score </th>
+   <th style="text-align:center;"> pretest_9_score </th>
+   <th style="text-align:center;"> pretest_11_version </th>
+   <th style="text-align:center;"> pretest_7_version </th>
+   <th style="text-align:center;"> pretest_9_version </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+   <th style="text-align:center;"> d_gifted </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 94.87179 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 20.51282 </td>
+   <td style="text-align:center;"> 17.94872 </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 66.66667 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 15.38462 </td>
+   <td style="text-align:center;"> 35.89744 </td>
+   <td style="text-align:center;"> 28.20513 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 38.46154 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 33.33333 </td>
+   <td style="text-align:center;"> 84.61538 </td>
+   <td style="text-align:center;"> 100.00000 </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 76.92308 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 48.71795 </td>
+   <td style="text-align:center;"> 94.87179 </td>
+   <td style="text-align:center;"> 53.84615 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> A </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 66.66667 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> ACT </td>
+   <td style="text-align:center;"> SAT </td>
+   <td style="text-align:center;"> 69.23077 </td>
+   <td style="text-align:center;"> 41.02564 </td>
+   <td style="text-align:center;"> 10.25641 </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> C </td>
+   <td style="text-align:center;"> B </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>Note: The <code>jn.general::refine()</code> function used here is a wrapper function for <code>Filter()</code>.</p>
+
+<h1 id="more-dplyr">More dplyr</h1>
+<p>Subsetting functions are only a fraction of what the dplyr package offers for data work. Here are a few links to the additional resources on the dplyr package:  <br />
+<a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html" target="blank">dplyr vignette</a>  <br />
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" target="blank">dplyr cheatsheet</a></p>
+
+
+  </article>
+
+</div>
+
+        <p><br></p>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+  <p class = "foot-text">
+    &copy; 2015 Jennifer Nguyen. Powered by Jekyll.<br>
+    <a href="mailto:jennifernguyen1992@gmail.com">Email</a> | 
+    <a href="https://www.linkedin.com/pub/jennifer-nguyen/b0/94/aa7" target="_blank">LinkedIn</a> | 
+    <a href="https://github.com/jnnguyen2" target="_blank">
+      <span class="username">Github</span>
+      <span class="icon  icon--github">
+        <svg viewBox="0 0 16 16">
+          <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+        </svg>
+      </span>
+
+    </a>
+  </p>
+
+  </div>
+</footer>
+
+
+  </body>
+
+
+</html>

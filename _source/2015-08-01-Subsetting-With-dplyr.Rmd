@@ -1,0 +1,311 @@
+---
+layout: post
+title: "Subsetting With dplyr"
+date: "August 1, 2015"
+categories: r data_wrangling
+---
+
+* TOC
+{:toc}
+
+```{r global_opts, echo = FALSE}
+library(jn.general)
+lib(data, viz)
+```
+
+Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package, created by Hadley Wickham, provides some handy tools to subset and select with ease.   
+In this post, I will outline the subsetting functions available through dplyr and explain how and when I use them. In addition, I make use of magrittr's piping function, which can combine a complicated sequence of logic into a code chain that is easier to read. More information about magrittr can be found on the [magrittr vignette][magrittr_link]{:target="blank"}.
+
+{% highlight r %}
+library(dplyr)
+library(magrittr)
+{% endhighlight %}
+
+# Example Data
+Let's generate some random data to use with dplyr. The random generator function is available via the [jn.general package][jn.general_link]{:target="blank"}.
+
+```{r generate random data}
+set.seed(1)
+data <- jn.general::rdata(n = 750,
+              # posttests
+              gen_seq(0, 100, length.out = 40, name = "posttest_score"),
+              gen_subject(name = "posttest_subject"),
+              gen_seq(10, 12, name = "posttest_grade"),
+              # pretests
+              gen_char(name = "pretest_7_name", values = "ACT"),
+              gen_char(name = "pretest_8_name", values = "Math222"),
+              gen_char(name = "pretest_9_name", values = "SAT"),
+              gen_char(name = "pretest_10_name", values = "CompSci367"),
+              gen_char(name = "pretest_11_name", values = c("ACT", "SAT")),
+              gen_seq(0, 100, length.out = 40, ncol = 5, name = paste0("pretest_", 7:11, "_score"), add.na = TRUE),
+              gen_seq(8, 11, ncol = 5, name = paste0("pretest_", 7:11, "_grade")),
+              gen_char(ncol = 5, name = paste0("pretest_", 7:11, "_version"), values = LETTERS[1:3]),
+              # demographics
+              gen_gender(name = "d_gender"),
+              gen_bool(ncol = 4, name = c("d_black", "d_hispanic", "d_asian", "d_native"), add.na = TRUE, probs = c(0.15, 0.8, 0.05)),
+              gen_bool(ncol = 1, name = "d_gifted", probs = c(0.25, 0.25, 0.5), add.na = TRUE), 
+              # student id
+              .id = FALSE
+              )
+data %<>% group_by(posttest_subject) %>% mutate(student_id = 1:n()) %>% data.frame
+# formatting
+data %<>% select(student_id, matches("posttest"), matches("pretest"), matches("d_"))
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+data %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+
+
+# dplyr::slice() and dplyr::filter()
+There are a number of functions that allow for rowise manipulation in dplyr, two of which are `dplyr::filter()` and `dplyr::slice()`. 
+
+## Subsetting rows by conditional expression
+The `dplyr::filter()` function takes logical conditions as arguments. If multiple conditions are supplied as arguments (via `','`), they are combined with `&`. Thus `or` arguments should be supplied within one condition with `|`. 
+
+{% highlight r %}
+# subset to students with posttest math scores over 75 and are in the 10th grade
+data %>% filter(posttest_grade == 10, posttest_subject == "math", posttest_score > 75) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr filter ex, echo = FALSE}
+data %>% filter(posttest_grade == 10, posttest_subject == "math", posttest_score > 75) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+## Subsetting rows by row position
+The `dplyr::slice()` function allows rows to be extracted by position.
+
+{% highlight r %}
+# extract the 25th-30th students in the data set
+data %>% slice(25:30)
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr slice ex, echo = FALSE}
+# extract the 25th-30th students in the data set
+data %>% slice(25:30) %>% nhuyhoa_df_print(head = 6)
+```
+</div><p></p>
+
+In terms of subsetting by rows, dplyr's filter function is pretty equivalent to base R's subset function. In my daily work, I prefer to use subset. Since subsetting rows by numeric position is not available via base R's subsetting, slice can come in handy, especially when used in conjunction with `which()`, which returns the indices of an object with TRUE values. 
+
+# dplyr::select()
+The `dplyr::select()` function selects columns from a data set. To deselect columns, simply place a `-` before the name or special function call. 
+
+## Select columns by name
+Selecting columns by name is easy; just write out the name of the column(s), separated by commas - no need to wrap names with quotations or in a vector.  
+
+{% highlight r %}
+# select multiple columns by name
+data %>% dplyr::select(posttest_score, posttest_grade, d_gender, posttest_subject) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex1, echo = FALSE}
+data %>% dplyr::select(posttest_score, posttest_grade, d_gender, posttest_subject) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+{% highlight r %}
+# deselect multiple columns by name
+data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex2, echo = FALSE}
+data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+## Select columns by numeric position or column name
+
+Say we want to extract columns from a data frame using a vector of column names or positions. For this example, let's try to select the demographics columns corresponding to race. 
+
+For numeric position values, just pass the vector as an argument to the select function.
+
+{% highlight r %}
+# select based on column position
+var_pos <- 25:29 
+data %>% dplyr::select(var_pos) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex3, echo = FALSE}
+var_pos <- 26:29 
+data %>% dplyr::select(var_pos) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+For character names, wrap the helper function `one_of()` around the character vector and pass this to the select function.
+
+{% highlight r %}
+# select based on column name
+var_names <- c("d_black", "d_hispanic", "d_asian", "d_native")
+data %>% dplyr::select(one_of(var_names)) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex4, echo = FALSE}
+var_names <- c("d_black", "d_hispanic", "d_asian", "d_native")
+data %>% dplyr::select(one_of(var_names)) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+## Select columns using regex
+
+Helper functions such as `matches()`, `starts_with()`, and `ends_with()` are perhaps the most powerful feature of the select function. Let's start with extracting the pretest score columns. 
+
+One thing we could do is write out all the names of the pretest columns by hand and use the `one_of` helper function. 
+
+{% highlight r %}
+# extract specific pretest column names using one_of()
+vars <- paste0("pretest_", 7:11, "_score")
+data %>% dplyr::select(one_of(vars))
+{% endhighlight %}
+
+However, this is not ideal since we may not always know what pretest numbers are available needed beforehand. Thus this code would not be reuseable and cannot be generalized to other data sets where pretest numbers may not necessarily be 7:11.
+
+Another option would be to use grep to match the column names and then grab the columns using those results. 
+
+{% highlight r %}
+# find col names using regex and extract using one_of()
+vars <- data %>% colnames %>% str_subset("pretest_\\d+_score")
+data %>% dplyr::select(one_of(vars)) 
+{% endhighlight %}
+
+The `"\\d+"` here is a regex expression. The first portion `"\\d"` matches a digit character, ie 0123456789. The second portion `"+"` is a metacharacter with the meaning "match the previous character(s) one or more times". So together, the pattern `"pretest_\\d+_score"` is matching all strings that starts with "pretest_", followed by one or more digits, and ending with "_score". See the [regular expression post][regex_link]{:target="blank"} for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable. 
+
+Great! This does exactly what we wanted, but is there a better, perhaps more concise, way to do the exact same thing?
+
+Yes! We can use `matches()`!
+
+{% highlight r %}
+# use matches to find all pretest score columns
+data %>% dplyr::select(matches("pretest_\\d+_score")) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex7, echo = FALSE}
+data %>% dplyr::select(matches("pretest_\\d+_score")) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+Awesome! In just one line of code, we were able to extract all columns corresponding to pretest scores! And not only is it short and sweet, it is a lot easier to read than using pattern matching on the column names. 
+
+The helper functions `starts_with()` and `ends_with()` are similar to `matches()` but is specialized in that it only looks at the beginning or the end of the string for a pattern match.
+
+Let's use `starts_with()` and `ends_with()` to extract (1) all posttest information and (2) all test score columns.
+
+{% highlight r %}
+# extract all posttest information
+data %>% dplyr::select(starts_with("posttest")) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex8, echo = FALSE}
+data %>% dplyr::select(starts_with("posttest")) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+{% highlight r %}
+# extract all test score columns
+data %>% dplyr::select(ends_with("_score")) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex9, echo = FALSE}
+data %>% dplyr::select(ends_with("_score")) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+For added functionality, the `matches()`, `starts_with()`, and `ends_with()` function works even when the regex string is stored as a variable. This tends to be useful when developing functions that runs on any data set, where the regex string can be passed as a parameter. 
+
+## Combining selection techniques
+Finally let's select multiple columns using a variety of the select methods we just learned. Simply separate out each call with a comma; use `-` to deselect columns.
+
+{% highlight r %}
+# select multiple columns
+data %>% dplyr::select(student_id, matches("pretest_\\d+_score"), d_gender, starts_with("d_")) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex10, echo = FALSE}
+data %>% dplyr::select(student_id, matches("pretest_\\d+_score"), d_gender, starts_with("d_")) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+{% highlight r %}
+# select all pretest info and then deselect pretest 10 info
+no_good <- paste0("pretest_10_", c("score", "version", "grade"))
+data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex11, echo = FALSE}
+no_good <- paste0("pretest_10_", c("score", "version", "grade"))
+data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+
+Sometimes when I have very wide data, I use `dplyr::select()` to roughly reorganize columns. This is pretty handy, especially if I eventually have to save results in a csv file for review at a later time.
+
+{% highlight r %}
+# shuffle up column positions
+order <- sample(1:ncol(data))
+unorganized_data <- dplyr::select(data, order)
+
+# organize columns: id, then posttest info, pretest info, demographics info, dosage info ("t_")
+unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pretest"), starts_with("d_")) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select ex12, echo = FALSE}
+order <- sample(1:ncol(data))
+unorganized_data <- dplyr::select(data, order)
+unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pretest"), starts_with("d_")) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+
+Keep in mind that when doing this, if the selectors are too specific data may be lost. You should have a good idea of what your column names are and be sure that they are all accounted for in the selection. 
+
+Overall, I think dplyr's `select()` function is very useful when doing data work. Columns can be selected easily without having to wrap column names in quotations or `c()`, unlike base R's subset function. Deselecting is more consistent with the simple `-` negation, and matching column groups are much simpler with the help of special functions. 
+
+# Challenge round
+Let's do something a little more challenging to see the power of dplyr. We want to clean up this data set to remove all pretest information that does not correspond to the ACT or SAT. In addition, we only want information regarding to students who took the math or reading posttest in the 12th grade. 
+
+```{r challenge, warning = FALSE}
+# grade and subject query of interest
+grade_query <- 12
+subject_query <- c("math", "read")
+
+# obtains pretest number corresponding to pretests of the ACT and SAT category
+pretest_numbers <- data %>% dplyr::select(matches("pretest_\\d+_name")) %>% apply(2, unique) %>% 
+  jn.general::refine(function(x) x %>% str_detect("ACT|SAT") %>% any) %>% 
+  names %>% str_extract("\\d+") 
+
+# generates the names of the pretest information 
+## matches doesn't allow multiple matches so we have to regenerate the names of the pretests information
+pretests_of_interest <- paste0("pretest_", pretest_numbers) %>% 
+  interaction(c("name", "score", "grade", "version"), sep = "_") %>% levels
+
+# selects posttest, ACT/SAT pretests, demographics and subsets by the grade/subject of interest
+final <- data %>% 
+  dplyr::select(student_id, starts_with("posttest_"), one_of(pretests_of_interest), starts_with("d_")) %>% 
+  dplyr::filter(posttest_grade %in% grade_query, posttest_subject %in% subject_query)
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+final %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+Note: The `jn.general::refine()` function used here is a wrapper function for `Filter()`. 
+
+
+
+# More dplyr
+Subsetting functions are only a fraction of what the dplyr package offers for data work. Here are a few links to the additional resources on the dplyr package:  
+[dplyr vignette][dplyr_vignette_link]{:target="blank"}  
+[dplyr cheatsheet][dplyr_cheatsheet_link]{:target="blank"}
+
+[magrittr_link]: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html
+[jn.general_link]: https://github.com/jnnguyen2/jn.general
+[regex_link]: http://jnnguyen2.github.io/nhuyhoa/r/data_wrangling/2015/07/25/Regular-Expressions/
+[dplyr_vignette_link]: https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
+[dplyr_cheatsheet_link]: https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf

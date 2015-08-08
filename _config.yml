@@ -1,0 +1,22 @@
+# Site settings
+title: Nhuy Hoa
+email: jennifernguyen1992@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Hi I'm Jenny.
+baseurl: "/nhuyhoa" # the subpath of your site, e.g. /blog/
+url: "http://yourdomain.com" # the base hostname & protocol for your site
+#url: "http://jnnguyen2.github.io/"
+github_username:  jnnguyen2
+
+# Build settings
+markdown: kramdown
+kramdown:
+  auto_ids:       true
+  footnote_nr:    1
+  entity_output:  as_char
+  toc_levels:     1..3
+  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+  input: GFM
+paginate: 10
+permalink: /:year/:month/:title.html

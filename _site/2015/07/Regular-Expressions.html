@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Regular Expressions</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/nhuyhoa/css/main.css">
+  <link rel="canonical" href="http://yourdomain.com/nhuyhoa/2015/07/Regular-Expressions.html">
+  <link rel="alternate" type="application/rss+xml" title="Nhuy Hoa" href="http://yourdomain.com/nhuyhoa/feed.xml" />
+</head>
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/nhuyhoa/">Nhuy Hoa</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#ffffff" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#ffffff" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#ffffff" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/nhuyhoa/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/nhuyhoa/categories/">Categories</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/nhuyhoa/index.html">Posts</a>
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Regular Expressions</h1>
+    <p class="post-meta">Jul 25, 2015 • Categories: r data_wrangling </p>
+  </header>
+
+  <article class="post-content"> 
+    <ul id="markdown-toc">
+  <li><a href="#example-data" id="markdown-toc-example-data">Example Data</a></li>
+  <li><a href="#basics" id="markdown-toc-basics">Basics</a></li>
+  <li><a href="#character-classes" id="markdown-toc-character-classes">Character Classes</a></li>
+  <li><a href="#metacharacters" id="markdown-toc-metacharacters">Metacharacters</a>    <ul>
+      <li><a href="#section" id="markdown-toc-section">|</a></li>
+      <li><a href="#section-1" id="markdown-toc-section-1">[…]</a></li>
+      <li><a href="#repetition" id="markdown-toc-repetition">Repetition</a></li>
+      <li><a href="#section-2" id="markdown-toc-section-2">(…)</a></li>
+      <li><a href="#and-" id="markdown-toc-and-">^ and $</a></li>
+      <li><a href="#using-metacharacters-as-normal-characters" id="markdown-toc-using-metacharacters-as-normal-characters">Using Metacharacters as Normal Characters</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Being able to manipulate text is very important when it comes to data wrangling. A lot of the data cleaning I do requires performing some sort of fuzzy match rather than exact matches. Regular expressions (regex) make pattern matching possible. Here, I will outline R’s regex symbols that I find useful.</p>
+
+<h1 id="example-data">Example Data</h1>
+<p>Let’s start by generating some sample text to play with.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;Brown, Charlie    *608-445-2392 cbrown@wisc.edu student&quot;</span><span class="p">,</span> 
+      <span class="s">&quot;Jetsons,Judy *842-419-5238 jjetsons@gmail.com sales associate&quot;</span><span class="p">,</span>
+      <span class="s">&quot;Flintstone,Fred  *111-222-3333 fflinstone@gmail.com crane operator&quot;</span><span class="p">,</span>
+      <span class="s">&quot;Sparrow,Jack *959-494-5943 jsparrow@blackpearl.com  pirate&quot;</span>
+      <span class="p">)</span></code></pre></div>
+
+<p>For this post, I will use the package stringr, developed by Hadley Wickham, to handle the  pattern matching operations. More information about the stringr package can be found <a href="https://cran.r-project.org/web/packages/stringr/index.html" target="_blank">here</a>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>stringr<span class="p">)</span></code></pre></div>
+
+<h1 id="basics">Basics</h1>
+
+<p>To search for an exact pattern, simply pass it to a stringr or grep function in R.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># detect the name Charlie</span>
+x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s">&quot;Charlie&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  TRUE FALSE FALSE FALSE</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract contact information of anybody who is a pirate</span>
+x <span class="o">%&gt;%</span> str_subset<span class="p">(</span><span class="s">&quot;pirate&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Sparrow,Jack *959-494-5943 jsparrow@blackpearl.com  pirate&quot;</code></pre></div>
+
+<h1 id="character-classes">Character Classes</h1>
+
+<p>Now let’s get a little more general. Rather than searching for a specific character, the regex engine can search for a class of characters. There are three classes or groups of characters in which there are special regex expressions for.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">pattern</th>
+      <th style="text-align: left">matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">\d</td>
+      <td style="text-align: left">digit character: 0123456789</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\w</td>
+      <td style="text-align: left">word character: letter, digit, or ‘_’</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\s</td>
+      <td style="text-align: left">space character: space, tab, or new line</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In order to match these special regex expressions in R, type the backslashes twice, like so:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># count the number of space characters in each string of x</span>
+x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s">&quot;\\s&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 7 4 5 4</code></pre></div>
+
+<h1 id="metacharacters">Metacharacters</h1>
+
+<p>To allow for greater flexibility, there are a number of metacharacters that convey special meaning in regex pattern matching.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">pattern</th>
+      <th style="text-align: left">matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">.</td>
+      <td style="text-align: left">any single character</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\</td>
+      <td style="text-align: left">escape character</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">|</td>
+      <td style="text-align: left">or</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">(…)</td>
+      <td style="text-align: left">used for backreference</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[…]</td>
+      <td style="text-align: left">customized group of characters</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">{…}</td>
+      <td style="text-align: left">repetition quantifier</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">*</td>
+      <td style="text-align: left">matches previous character 0 or more times</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">+</td>
+      <td style="text-align: left">matches previous character 1 or more times</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^</td>
+      <td style="text-align: left">matches at the beginning of a string</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$</td>
+      <td style="text-align: left">matches at the end of a string</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="section">|</h3>
+<p>The pipe character <code>|</code> is useful when for matching a variety of different patterns at once.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># find contact information for all Jack&#39;s or Judy&#39;s</span>
+x <span class="o">%&gt;%</span> str_subset<span class="p">(</span><span class="s">&quot;Jack|Judy&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Jetsons,Judy *842-419-5238 jjetsons@gmail.com sales associate&quot;
+## [2] &quot;Sparrow,Jack *959-494-5943 jsparrow@blackpearl.com  pirate&quot;</code></pre></div>
+
+<h3 id="section-1">[…]</h3>
+<p><code>[...]</code> can be used to select from a customized group of characters. To not match a customized group of characters, add a negation character like so: <code>[^...]</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract all digits, &#39;-&#39;, &#39;*&#39;, and &#39;+&#39; characters </span>
+x <span class="o">%&gt;%</span> str_extract_all<span class="p">(</span><span class="s">&quot;[\\d-*]&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
+##  [1] &quot;*&quot; &quot;6&quot; &quot;0&quot; &quot;8&quot; &quot;-&quot; &quot;4&quot; &quot;4&quot; &quot;5&quot; &quot;-&quot; &quot;2&quot; &quot;3&quot; &quot;9&quot; &quot;2&quot;
+## 
+## [[2]]
+##  [1] &quot;*&quot; &quot;8&quot; &quot;4&quot; &quot;2&quot; &quot;-&quot; &quot;4&quot; &quot;1&quot; &quot;9&quot; &quot;-&quot; &quot;5&quot; &quot;2&quot; &quot;3&quot; &quot;8&quot;
+## 
+## [[3]]
+##  [1] &quot;*&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;-&quot; &quot;2&quot; &quot;2&quot; &quot;2&quot; &quot;-&quot; &quot;3&quot; &quot;3&quot; &quot;3&quot; &quot;3&quot;
+## 
+## [[4]]
+##  [1] &quot;*&quot; &quot;9&quot; &quot;5&quot; &quot;9&quot; &quot;-&quot; &quot;4&quot; &quot;9&quot; &quot;4&quot; &quot;-&quot; &quot;5&quot; &quot;9&quot; &quot;4&quot; &quot;3&quot;</code></pre></div>
+
+<p>To specifically search for only uppercase letters, use <code>[A-Z]</code>; for lowercase letters <code>[a-z]</code>. To search for both uppercase and lowercase letters, use <code>[A-Za-z]</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extracts people&#39;s intials</span>
+x <span class="o">%&gt;%</span> str_extract_all<span class="p">(</span><span class="s">&quot;[A-Z]&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
+## [1] &quot;B&quot; &quot;C&quot;
+## 
+## [[2]]
+## [1] &quot;J&quot; &quot;J&quot;
+## 
+## [[3]]
+## [1] &quot;F&quot; &quot;F&quot;
+## 
+## [[4]]
+## [1] &quot;S&quot; &quot;J&quot;</code></pre></div>
+
+<h3 id="repetition">Repetition</h3>
+<p>The previous extraction for Fred Flinstone’s phone number returned a vector of single characters. But when we need to match a character (or a group of characters) multiple times, repetition quantifiers come in handy: <code>{...}</code>, <code>*</code>, or <code>+</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">pattern</th>
+      <th style="text-align: left">matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">{n}</td>
+      <td style="text-align: left">matches previous character exactly n times</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">{n, }</td>
+      <td style="text-align: left">matches previous character n or more times</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">{n,m}</td>
+      <td style="text-align: left">matches previous character n to m times</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">*</td>
+      <td style="text-align: left">matches previous character 0 or more times</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">+</td>
+      <td style="text-align: left">matches previous character 1 or more times</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extracts the telephone number (sequence of numbers &amp; dashes) from all people</span>
+x <span class="o">%&gt;%</span> str_extract<span class="p">(</span><span class="s">&quot;[\\d-*]+&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;*608-445-2392&quot; &quot;*842-419-5238&quot; &quot;*111-222-3333&quot; &quot;*959-494-5943&quot;</code></pre></div>
+
+<h3 id="section-2">(…)</h3>
+<p>The metacharacters <code>(...)</code> are very useful in replacing strings. When wrapped around a string, it “remembers” the matched pattern. Then when specifying the replacement, it allows us to refer to the matched pattern by using <code>"\\n"</code> where n refers to the nth wrapped expression.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># regex expression for the strings in x</span>
+pattern <span class="o">&lt;-</span> <span class="s">&quot;(\\w+)[, ]+(\\w+)\\s+([\\d-*]+)\\s+([\\w@.]+)\\s+(.+)&quot;</span>
+
+<span class="c1"># notice that:</span>
+<span class="c1">## 1st () references the last name</span>
+<span class="c1">## 2nd () references the first name</span>
+<span class="c1">## 3rd () references the phone number</span>
+<span class="c1">## 4th () references the email address</span>
+<span class="c1">## 5th () references the person&#39;s occupation</span>
+
+<span class="c1"># what does each person do?</span>
+x <span class="o">%&gt;%</span> str_replace<span class="p">(</span>pattern <span class="o">=</span> pattern<span class="p">,</span> replacement <span class="o">=</span> <span class="s">&quot;\\2 \\1 is a \\5&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Charlie Brown is a student&quot;         
+## [2] &quot;Judy Jetsons is a sales associate&quot;  
+## [3] &quot;Fred Flintstone is a crane operator&quot;
+## [4] &quot;Jack Sparrow is a pirate&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># email contact information</span>
+x <span class="o">%&gt;%</span> str_replace<span class="p">(</span>pattern <span class="o">=</span> pattern<span class="p">,</span> replacement <span class="o">=</span> <span class="s">&quot;Email \\1, \\2 at \\4&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Email Brown, Charlie at cbrown@wisc.edu&quot;       
+## [2] &quot;Email Jetsons, Judy at jjetsons@gmail.com&quot;     
+## [3] &quot;Email Flintstone, Fred at fflinstone@gmail.com&quot;
+## [4] &quot;Email Sparrow, Jack at jsparrow@blackpearl.com&quot;</code></pre></div>
+
+<h3 id="and-">^ and $</h3>
+<p>The metacharacters <code>^</code> and <code>$</code> are used to match patterns at specific positions of a string. Here are two examples illustrating why these two metacharacters can be useful.</p>
+
+<p>For this first example, let’s remove all leading 0’s.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># generate values</span>
+grade <span class="o">&lt;-</span> <span class="kp">sample</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;07&quot;</span><span class="p">,</span> <span class="s">&quot;08&quot;</span><span class="p">,</span> <span class="s">&quot;8&quot;</span><span class="p">,</span> <span class="s">&quot;HS&quot;</span><span class="p">),</span> <span class="m">10</span><span class="p">,</span> replace <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+grade</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;08&quot; &quot;08&quot; &quot;8&quot;  &quot;HS&quot; &quot;07&quot; &quot;HS&quot; &quot;HS&quot; &quot;8&quot;  &quot;8&quot;  &quot;07&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">grade <span class="o">%&gt;%</span> str_replace<span class="p">(</span><span class="s">&quot;^0(\\d)&quot;</span><span class="p">,</span> <span class="s">&quot;\\1&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;8&quot;  &quot;8&quot;  &quot;8&quot;  &quot;HS&quot; &quot;7&quot;  &quot;HS&quot; &quot;HS&quot; &quot;8&quot;  &quot;8&quot;  &quot;7&quot;</code></pre></div>
+
+<p>Now for the second example, let’s change all “pre” values to “pre1” to keep a consistent naming system.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># generate values</span>
+pre_name <span class="o">&lt;-</span> <span class="kp">sample</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;pre&quot;</span><span class="p">,</span> <span class="s">&quot;pre1&quot;</span><span class="p">,</span> <span class="s">&quot;pre2&quot;</span><span class="p">),</span> <span class="m">10</span><span class="p">,</span> replace <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+pre_name</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;pre&quot;  &quot;pre&quot;  &quot;pre2&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre2&quot; &quot;pre1&quot;
+## [10] &quot;pre2&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## try (1)</span>
+<span class="c1"># this command inadvertently changed &quot;pre1&quot; and &quot;pre2&quot; to &quot;pre11&quot; and &quot;pre12&quot; respectively</span>
+pre_name <span class="o">%&gt;%</span> str_replace<span class="p">(</span><span class="s">&quot;pre&quot;</span><span class="p">,</span> <span class="s">&quot;pre1&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;pre1&quot;  &quot;pre1&quot;  &quot;pre12&quot; &quot;pre11&quot; &quot;pre12&quot; &quot;pre11&quot; &quot;pre12&quot; &quot;pre12&quot;
+##  [9] &quot;pre11&quot; &quot;pre12&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## try (2)</span>
+pre_name <span class="o">%&gt;%</span> str_replace<span class="p">(</span><span class="s">&quot;pre$&quot;</span><span class="p">,</span> <span class="s">&quot;pre1&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;pre1&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre2&quot; &quot;pre1&quot;
+## [10] &quot;pre2&quot;</code></pre></div>
+
+<h3 id="using-metacharacters-as-normal-characters">Using Metacharacters as Normal Characters</h3>
+
+<p>To use these characters as regular characters, precede the character with double escape characters or wrap then in square brackets. For example, to search for the character <code>+</code>, type <code>\\+</code> or <code>[+]</code> into the search pattern string.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># split these two strings up into the individual numbers</span>
+add <span class="o">&lt;-</span> <span class="s">&quot;1+2&quot;</span>
+
+<span class="c1"># two different ways of splitting; same results</span>
+add <span class="o">%&gt;%</span> str_split<span class="p">(</span><span class="s">&quot;\\+&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
+## [1] &quot;1&quot; &quot;2&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">add <span class="o">%&gt;%</span> str_split<span class="p">(</span><span class="s">&quot;[+]&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
+## [1] &quot;1&quot; &quot;2&quot;</code></pre></div>
+
+<p>Whether it is subsetting, selecting or reshaping data, the versatility of regex characters can make most data cleaning tasks much simpler.</p>
+
+
+  </article>
+
+</div>
+
+        <p><br></p>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+  <p class = "foot-text">
+    &copy; 2015 Jennifer Nguyen. Powered by Jekyll.<br>
+    <a href="mailto:jennifernguyen1992@gmail.com">Email</a> | 
+    <a href="https://www.linkedin.com/pub/jennifer-nguyen/b0/94/aa7" target="_blank">LinkedIn</a> | 
+    <a href="https://github.com/jnnguyen2" target="_blank">
+      <span class="username">Github</span>
+      <span class="icon  icon--github">
+        <svg viewBox="0 0 16 16">
+          <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+        </svg>
+      </span>
+
+    </a>
+  </p>
+
+  </div>
+</footer>
+
+
+  </body>
+
+
+</html>
