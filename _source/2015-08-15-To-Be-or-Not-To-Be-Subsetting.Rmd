@@ -1,0 +1,205 @@
+---
+title: "To Be or Not To Be: Subsetting"
+layout: post
+categories: r data_wrangling
+---
+
+* TOC
+{:toc}
+
+```{r global_opts, echo = FALSE}
+library(jn.general)
+lib(viz)
+```
+
+# Subsetting Functions in R
+
+In a previous post, I dicussed the subsetting functions available via the dplyr package, including the `filter()`, `slice()`, and `select()` functions. There are a number of additional ways to subset data frames in R. 
+
+```{r subsetting functions, echo = FALSE}
+functions <- c("head()", "tail()", "magrittr::extract()", "dplyr::sample_frac()", "dplyr::sample_n()", "dplyr::distinct()", "jn.general::duplicated_data()")
+purpose <- c("grabs first n rows", "grabs last n rows", "wrapper for '['; takes numeric or character arguments and return corresponding rows/columns", "randomly selects a given fraction of rows", "randomly selects a given number of rows", "subsets to distinct values of a data frame, given a specific variable", "returns all duplicated rows by a given variable")
+data.frame(functions, purpose) %>% kable(format = "html")
+```
+<p></p>
+
+However what if rather than tossing the data that does not correspond to the subset, we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other. 
+
+One option would be run the subsetting function two times. Once with the conditions that's required, and then again with the converse argument. 
+```{r, eval = FALSE}
+mtcars %>% subset( gear != 4 )
+mtcars %>% subset( gear == 4 )
+
+mtcars %>% dplyr::select(one_of("mpg", "cyl", "hp"))
+mtcars %>% dplyr::select(-one_of("mpg", "cyl", "hp"))
+```
+
+This tends to work pretty well when the filtering condition is pretty simple. However, when we get into multiple arguments, negation can get pretty ugly fast. 
+
+In other cases, obtaining the "anti-subset" is not all that straight forward. For example, if a subset of the data was obtained randomly, as with `sample_n()` or `sample_frac()`, it's difficult to find the portion of the data that wasn't returned by the function. Another example of not being able to easily negate is with `duplicated_data()`, which returns all duplicated rows by a given variable. 
+
+Having faced this issue many times, I wrote the `to_be()` function as a way to obtain both the subsetted data and the "anti-subset". 
+
+# To Be or Not To Be
+
+The function`to_be()` is quite simple when broken down. It takes in a data frame, a subsetting function, and any additional arguments needed for the subset. After performing the needed operations, `to_be()` returns a list of two objects. The first object returned, "to_be", is the resulting data frame when the subset function is applied to the input data. The second object returned, "not_to_be" is the anti-subset, obtained by considering a total of three cases: subset by rows, subset by columns, and subset by rows and columns. 
+
+## Subset by Rows
+
+```{r subset by rows ex}
+by_row <- to_be(mtcars, dplyr::filter, cyl != 4, mpg > 20)
+```
+
+{% highlight r %}
+# data corresponding to cars where the cyl is not 4 and mpg is greater than 20
+by_row[["to_be"]]
+{% endhighlight %}
+<div class = "dftab">
+```{r, echo = FALSE}
+by_row[["to_be"]] %>% kable(format = "html")
+```
+</div><p></p>
+
+{% highlight r %}
+# data corresponding to cars where cyl is 4 or mpg is less than 20
+by_row[["not_to_be"]] %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r, echo = FALSE}
+by_row[["not_to_be"]] %>% nhuyhoa_df_print()
+```
+</div>
+
+## Subset by Columns
+
+```{r subset by col ex}
+by_col <- to_be(mtcars, dplyr::select, -one_of(c("gear", "vs")))
+```
+
+
+{% highlight r %}
+# data corresponding to all car information except gear & vs 
+by_col[["to_be"]] %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r, echo = FALSE}
+by_col[["to_be"]] %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+{% highlight r %}
+# data corresponding to gear and vs information of cars
+by_col[["not_to_be"]] %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r, echo = FALSE}
+by_col[["not_to_be"]] %>% nhuyhoa_df_print()
+```
+</div>
+
+
+## Subset by Rows and Columns
+
+```{r subset by both ex}
+by_both <- to_be(mtcars, subset, subset = mpg > 20, select = c(cyl, hp, wt))
+```
+
+When the function both subsets rows and selects columns, the anti-subset data frame will replace the extracted values with NAs. 
+
+{% highlight r %}
+# data corresponding to cyl, hp, wt of cars with an mpg greater than 20
+by_both[["to_be"]]
+{% endhighlight %}
+<div class = "dftab">
+```{r, echo = FALSE}
+by_both[["to_be"]] %>% kable(format = "html")
+```
+</div><p></p>
+
+{% highlight r %}
+# data corresponding to cyl, hp, wt of cars with an mpg greater than 20 are replaced with NAs
+by_both[["not_to_be"]] 
+{% endhighlight %}
+<div class = "dftab">
+```{r, echo = FALSE}
+by_both[["not_to_be"]] %>% kable(format = "html")
+```
+</div>
+
+# Challenge Round
+Let’s do something a little more challenging to see to_be in action. With this data set, we want to remove the duplicated id entries by hand and merge them back into the non-duplicates. 
+
+<div class = "dftab">
+```{r challenge data, echo = FALSE}
+set.seed(1)
+data <- rdata(10,
+  gen_seq(1, 10, name = "id"),
+  gen_age(),
+  gen_gender(),
+  gen_race(),
+  gen_state(),
+  .id = FALSE
+) %>% arrange(id)
+
+data %>% kable(format = "html")
+```
+</div><p></p>
+
+```{r find duplicates}
+result <- to_be(data, duplicated_data, id)
+```
+
+The duplicated id entries:
+
+{% highlight r %}
+result[["to_be"]]
+{% endhighlight %}
+<div class = "dftab">
+```{r to be, echo = FALSE}
+x <- result[["to_be"]]
+rownames(x) <- NULL
+x %>% kable(format = "html")
+```
+</div><p></p>
+
+The non-duplicated id entries:
+
+{% highlight r %}
+result[["not_to_be"]]
+{% endhighlight %}
+<div class = "dftab">
+```{r not to be, echo = FALSE}
+y <- result[["not_to_be"]] 
+rownames(y) <- NULL
+y %>% kable(format = "html")
+```
+</div><p></p>
+
+From the duplicated id's, I'll keep the id that corresponds to a female, or if none of the duplicated entries are female, an id corresponding to one greater than 50 years old. 
+
+{% highlight r %}
+result[["to_be"]] %>% group_by(id) %>% arrange(gender, desc(age)) %>% slice(1)
+{% endhighlight %}
+<div class = "dftab">
+```{r, echo = FALSE}
+z <- x %>% group_by(id) %>% arrange(gender, desc(age)) %>% slice(1) 
+z %>% kable(format = "html")
+```
+</div><p></p>
+
+Now combine the results back together.
+
+{% highlight r %}
+result[["to_be"]] %>% 
+  group_by(id) %>% 
+  arrange(gender, desc(age)) %>% 
+  slice(1) %>% 
+  rbind(result[["not_to_be"]])
+{% endhighlight %}
+<div class = "dftab">
+```{r, echo = FALSE}
+a <- result[["to_be"]] %>% group_by(id) %>% arrange(gender, desc(age)) %>% slice(1) %>% rbind(result[["not_to_be"]]) %>% arrange(id)
+rownames(a) <- NULL
+a %>% kable(format = "html")
+```
+</div>

@@ -231,12 +231,12 @@ data %>% dplyr::select(student_id, matches("pretest_\\d+_score"), d_gender, star
 
 {% highlight r %}
 # select all pretest info and then deselect pretest 10 info
-no_good <- paste0("pretest_10_", c("score", "version", "grade"))
+no_good <- paste0("pretest_10_", c("name", "score", "version", "grade"))
 data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>% head
 {% endhighlight %}
 <div class = "dftab">
 ```{r dplyr select ex11, echo = FALSE}
-no_good <- paste0("pretest_10_", c("score", "version", "grade"))
+no_good <- paste0("pretest_10_", c("name", "score", "version", "grade"))
 data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>% nhuyhoa_df_print()
 ```
 </div><p></p>
@@ -249,19 +249,30 @@ Sometimes when I have very wide data, I use `dplyr::select()` to roughly reorgan
 order <- sample(1:ncol(data))
 unorganized_data <- dplyr::select(data, order)
 
-# organize columns: id, then posttest info, pretest info, demographics info, dosage info ("t_")
-unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pretest"), starts_with("d_")) %>% head
+# organize columns: id, then posttest info, pretest info, demographics info
+unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pretest"), d_gender, d_gifted, everything()) %>% head
 {% endhighlight %}
 <div class = "dftab">
-```{r dplyr select ex12, echo = FALSE}
+```{r dplyr select reorder1, echo = FALSE}
+set.seed(1)
 order <- sample(1:ncol(data))
 unorganized_data <- dplyr::select(data, order)
-unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pretest"), starts_with("d_")) %>% nhuyhoa_df_print()
+unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pretest"), d_gender, d_gifted, everything()) %>% nhuyhoa_df_print()
 ```
 </div><p></p>
 
+When reorganizing columns, if the selectors are too specific, you run the risk of losing data. This is where the helper function `everything()` can be useful; `everything()` selects all variables. Including `everything()` at the end of the selection specifications ensures that columns that aren't accounted for in the ordering are included in the returned data frame. 
+To move columns to the end of the list, deselect the column and then include `everything()`. 
 
-Keep in mind that when doing this, if the selectors are too specific data may be lost. You should have a good idea of what your column names are and be sure that they are all accounted for in the selection. 
+{% highlight r %}
+# move demographic information to the furthest right
+unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% head
+{% endhighlight %}
+<div class = "dftab">
+```{r dplyr select reorder2, echo = FALSE}
+unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% nhuyhoa_df_print()
+```
+</div><p></p>
 
 Overall, I think dplyr's `select()` function is very useful when doing data work. Columns can be selected easily without having to wrap column names in quotations or `c()`, unlike base R's subset function. Deselecting is more consistent with the simple `-` negation, and matching column groups are much simpler with the help of special functions. 
 

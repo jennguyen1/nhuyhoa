@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>To Be or Not To Be: Subsetting</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/nhuyhoa/css/main.css">
+  <link rel="canonical" href="http://yourdomain.com/nhuyhoa/2015/08/To-Be-or-Not-To-Be-Subsetting.html">
+  <link rel="alternate" type="application/rss+xml" title="Nhuy Hoa" href="http://yourdomain.com/nhuyhoa/feed.xml" />
+</head>
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/nhuyhoa/">Nhuy Hoa</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#ffffff" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#ffffff" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#ffffff" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/nhuyhoa/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/nhuyhoa/categories/">Categories</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/nhuyhoa/index.html">Posts</a>
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">To Be or Not To Be: Subsetting</h1>
+    <p class="post-meta">Aug 6, 2015 • Categories: r data_wrangling </p>
+  </header>
+
+  <article class="post-content"> 
+    <ul id="markdown-toc">
+  <li><a href="#subsetting-functions-in-r" id="markdown-toc-subsetting-functions-in-r">Subsetting Functions in R</a></li>
+  <li><a href="#to-be-or-not-to-be" id="markdown-toc-to-be-or-not-to-be">To Be or Not To Be</a>    <ul>
+      <li><a href="#subset-by-rows" id="markdown-toc-subset-by-rows">Subset by Rows</a></li>
+      <li><a href="#subset-by-columns" id="markdown-toc-subset-by-columns">Subset by Columns</a></li>
+      <li><a href="#subset-by-rows-and-columns" id="markdown-toc-subset-by-rows-and-columns">Subset by Rows and Columns</a></li>
+    </ul>
+  </li>
+  <li><a href="#challenge-round" id="markdown-toc-challenge-round">Challenge Round</a></li>
+</ul>
+
+<h1 id="subsetting-functions-in-r">Subsetting Functions in R</h1>
+
+<p>In a previous post, I dicussed the subsetting functions available via the dplyr package, including the <code>filter()</code>, <code>slice()</code>, and <code>select()</code> functions. There are a number of additional ways to subset data frames in R.</p>
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> functions </th>
+   <th style="text-align:left;"> purpose </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> head() </td>
+   <td style="text-align:left;"> grabs first n rows </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> tail() </td>
+   <td style="text-align:left;"> grabs last n rows </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> magrittr::extract() </td>
+   <td style="text-align:left;"> wrapper for '['; takes numeric or character arguments and return corresponding rows/columns </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dplyr::sample_frac() </td>
+   <td style="text-align:left;"> randomly selects a given fraction of rows </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dplyr::sample_n() </td>
+   <td style="text-align:left;"> randomly selects a given number of rows </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dplyr::distinct() </td>
+   <td style="text-align:left;"> subsets to distinct values of a data frame, given a specific variable </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> jn.general::duplicated_data() </td>
+   <td style="text-align:left;"> returns all duplicated rows by a given variable </td>
+  </tr>
+</tbody>
+</table>
+<p></p>
+
+<p>However what if rather than tossing the data that does not correspond to the subset, we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other.</p>
+
+<p>One option would be run the subsetting function two times. Once with the conditions that’s required, and then again with the converse argument.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">mtcars <span class="o">%&gt;%</span> <span class="kp">subset</span><span class="p">(</span> gear <span class="o">!=</span> <span class="m">4</span> <span class="p">)</span>
+mtcars <span class="o">%&gt;%</span> <span class="kp">subset</span><span class="p">(</span> gear <span class="o">==</span> <span class="m">4</span> <span class="p">)</span>
+
+mtcars <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>one_of<span class="p">(</span><span class="s">&quot;mpg&quot;</span><span class="p">,</span> <span class="s">&quot;cyl&quot;</span><span class="p">,</span> <span class="s">&quot;hp&quot;</span><span class="p">))</span>
+mtcars <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span><span class="o">-</span>one_of<span class="p">(</span><span class="s">&quot;mpg&quot;</span><span class="p">,</span> <span class="s">&quot;cyl&quot;</span><span class="p">,</span> <span class="s">&quot;hp&quot;</span><span class="p">))</span></code></pre></div>
+
+<p>This tends to work pretty well when the filtering condition is pretty simple. However, when we get into multiple arguments, negation can get pretty ugly fast.</p>
+
+<p>In other cases, obtaining the “anti-subset” is not all that straight forward. For example, if a subset of the data was obtained randomly, as with <code>sample_n()</code> or <code>sample_frac()</code>, it’s difficult to find the portion of the data that wasn’t returned by the function. Another example of not being able to easily negate is with <code>duplicated_data()</code>, which returns all duplicated rows by a given variable.</p>
+
+<p>Having faced this issue many times, I wrote the <code>to_be()</code> function as a way to obtain both the subsetted data and the “anti-subset”.</p>
+
+<h1 id="to-be-or-not-to-be">To Be or Not To Be</h1>
+
+<p>The function<code>to_be()</code> is quite simple when broken down. It takes in a data frame, a subsetting function, and any additional arguments needed for the subset. After performing the needed operations, <code>to_be()</code> returns a list of two objects. The first object returned, “to_be”, is the resulting data frame when the subset function is applied to the input data. The second object returned, “not_to_be” is the anti-subset, obtained by considering a total of three cases: subset by rows, subset by columns, and subset by rows and columns.</p>
+
+<h2 id="subset-by-rows">Subset by Rows</h2>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">by_row <span class="o">&lt;-</span> to_be<span class="p">(</span>mtcars<span class="p">,</span> dplyr<span class="o">::</span>filter<span class="p">,</span> cyl <span class="o">!=</span> <span class="m">4</span><span class="p">,</span> mpg <span class="o">&gt;</span> <span class="m">20</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cars where the cyl is not 4 and mpg is greater than 20</span>
+by_row<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> mpg </th>
+   <th style="text-align:right;"> cyl </th>
+   <th style="text-align:right;"> disp </th>
+   <th style="text-align:right;"> hp </th>
+   <th style="text-align:right;"> drat </th>
+   <th style="text-align:right;"> wt </th>
+   <th style="text-align:right;"> qsec </th>
+   <th style="text-align:right;"> vs </th>
+   <th style="text-align:right;"> am </th>
+   <th style="text-align:right;"> gear </th>
+   <th style="text-align:right;"> carb </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 </td>
+   <td style="text-align:right;"> 21.0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 160 </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 3.90 </td>
+   <td style="text-align:right;"> 2.620 </td>
+   <td style="text-align:right;"> 16.46 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 Wag </td>
+   <td style="text-align:right;"> 21.0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 160 </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 3.90 </td>
+   <td style="text-align:right;"> 2.875 </td>
+   <td style="text-align:right;"> 17.02 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet 4 Drive </td>
+   <td style="text-align:right;"> 21.4 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 258 </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 3.08 </td>
+   <td style="text-align:right;"> 3.215 </td>
+   <td style="text-align:right;"> 19.44 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cars where cyl is 4 or mpg is less than 20</span>
+by_row<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> mpg </th>
+   <th style="text-align:center;"> cyl </th>
+   <th style="text-align:center;"> disp </th>
+   <th style="text-align:center;"> hp </th>
+   <th style="text-align:center;"> drat </th>
+   <th style="text-align:center;"> wt </th>
+   <th style="text-align:center;"> qsec </th>
+   <th style="text-align:center;"> vs </th>
+   <th style="text-align:center;"> am </th>
+   <th style="text-align:center;"> gear </th>
+   <th style="text-align:center;"> carb </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Volvo 142E </td>
+   <td style="text-align:center;"> 21.4 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 121.0 </td>
+   <td style="text-align:center;"> 109 </td>
+   <td style="text-align:center;"> 4.11 </td>
+   <td style="text-align:center;"> 2.780 </td>
+   <td style="text-align:center;"> 18.6 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maserati Bora </td>
+   <td style="text-align:center;"> 15.0 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 301.0 </td>
+   <td style="text-align:center;"> 335 </td>
+   <td style="text-align:center;"> 3.54 </td>
+   <td style="text-align:center;"> 3.570 </td>
+   <td style="text-align:center;"> 14.6 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ferrari Dino </td>
+   <td style="text-align:center;"> 19.7 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 145.0 </td>
+   <td style="text-align:center;"> 175 </td>
+   <td style="text-align:center;"> 3.62 </td>
+   <td style="text-align:center;"> 2.770 </td>
+   <td style="text-align:center;"> 15.5 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ford Pantera L </td>
+   <td style="text-align:center;"> 15.8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 351.0 </td>
+   <td style="text-align:center;"> 264 </td>
+   <td style="text-align:center;"> 4.22 </td>
+   <td style="text-align:center;"> 3.170 </td>
+   <td style="text-align:center;"> 14.5 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lotus Europa </td>
+   <td style="text-align:center;"> 30.4 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 95.1 </td>
+   <td style="text-align:center;"> 113 </td>
+   <td style="text-align:center;"> 3.77 </td>
+   <td style="text-align:center;"> 1.513 </td>
+   <td style="text-align:center;"> 16.9 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="subset-by-columns">Subset by Columns</h2>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">by_col <span class="o">&lt;-</span> to_be<span class="p">(</span>mtcars<span class="p">,</span> dplyr<span class="o">::</span>select<span class="p">,</span> <span class="o">-</span>one_of<span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;gear&quot;</span><span class="p">,</span> <span class="s">&quot;vs&quot;</span><span class="p">)))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to all car information except gear &amp; vs </span>
+by_col<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> mpg </th>
+   <th style="text-align:center;"> cyl </th>
+   <th style="text-align:center;"> disp </th>
+   <th style="text-align:center;"> hp </th>
+   <th style="text-align:center;"> drat </th>
+   <th style="text-align:center;"> wt </th>
+   <th style="text-align:center;"> qsec </th>
+   <th style="text-align:center;"> am </th>
+   <th style="text-align:center;"> carb </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 </td>
+   <td style="text-align:center;"> 21.0 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 160 </td>
+   <td style="text-align:center;"> 110 </td>
+   <td style="text-align:center;"> 3.90 </td>
+   <td style="text-align:center;"> 2.620 </td>
+   <td style="text-align:center;"> 16.46 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 Wag </td>
+   <td style="text-align:center;"> 21.0 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 160 </td>
+   <td style="text-align:center;"> 110 </td>
+   <td style="text-align:center;"> 3.90 </td>
+   <td style="text-align:center;"> 2.875 </td>
+   <td style="text-align:center;"> 17.02 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Datsun 710 </td>
+   <td style="text-align:center;"> 22.8 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 108 </td>
+   <td style="text-align:center;"> 93 </td>
+   <td style="text-align:center;"> 3.85 </td>
+   <td style="text-align:center;"> 2.320 </td>
+   <td style="text-align:center;"> 18.61 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet 4 Drive </td>
+   <td style="text-align:center;"> 21.4 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 258 </td>
+   <td style="text-align:center;"> 110 </td>
+   <td style="text-align:center;"> 3.08 </td>
+   <td style="text-align:center;"> 3.215 </td>
+   <td style="text-align:center;"> 19.44 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet Sportabout </td>
+   <td style="text-align:center;"> 18.7 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 360 </td>
+   <td style="text-align:center;"> 175 </td>
+   <td style="text-align:center;"> 3.15 </td>
+   <td style="text-align:center;"> 3.440 </td>
+   <td style="text-align:center;"> 17.02 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to gear and vs information of cars</span>
+by_col<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> vs </th>
+   <th style="text-align:center;"> gear </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 Wag </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Datsun 710 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet 4 Drive </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet Sportabout </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 3 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="subset-by-rows-and-columns">Subset by Rows and Columns</h2>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">by_both <span class="o">&lt;-</span> to_be<span class="p">(</span>mtcars<span class="p">,</span> <span class="kp">subset</span><span class="p">,</span> subset <span class="o">=</span> mpg <span class="o">&gt;</span> <span class="m">20</span><span class="p">,</span> select <span class="o">=</span> <span class="kt">c</span><span class="p">(</span>cyl<span class="p">,</span> hp<span class="p">,</span> wt<span class="p">))</span></code></pre></div>
+
+<p>When the function both subsets rows and selects columns, the anti-subset data frame will replace the extracted values with NAs.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cyl, hp, wt of cars with an mpg greater than 20</span>
+by_both<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> cyl </th>
+   <th style="text-align:right;"> hp </th>
+   <th style="text-align:right;"> wt </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 2.620 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 Wag </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 2.875 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Datsun 710 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 93 </td>
+   <td style="text-align:right;"> 2.320 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet 4 Drive </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 3.215 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Merc 240D </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 62 </td>
+   <td style="text-align:right;"> 3.190 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Merc 230 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 95 </td>
+   <td style="text-align:right;"> 3.150 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fiat 128 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 66 </td>
+   <td style="text-align:right;"> 2.200 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Honda Civic </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 52 </td>
+   <td style="text-align:right;"> 1.615 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Toyota Corolla </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 65 </td>
+   <td style="text-align:right;"> 1.835 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Toyota Corona </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 97 </td>
+   <td style="text-align:right;"> 2.465 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fiat X1-9 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 66 </td>
+   <td style="text-align:right;"> 1.935 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Porsche 914-2 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 91 </td>
+   <td style="text-align:right;"> 2.140 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lotus Europa </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 113 </td>
+   <td style="text-align:right;"> 1.513 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Volvo 142E </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 109 </td>
+   <td style="text-align:right;"> 2.780 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cyl, hp, wt of cars with an mpg greater than 20 are replaced with NAs</span>
+by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]]</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> mpg </th>
+   <th style="text-align:right;"> cyl </th>
+   <th style="text-align:right;"> disp </th>
+   <th style="text-align:right;"> hp </th>
+   <th style="text-align:right;"> drat </th>
+   <th style="text-align:right;"> wt </th>
+   <th style="text-align:right;"> qsec </th>
+   <th style="text-align:right;"> vs </th>
+   <th style="text-align:right;"> am </th>
+   <th style="text-align:right;"> gear </th>
+   <th style="text-align:right;"> carb </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 </td>
+   <td style="text-align:right;"> 21.0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 160.0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3.90 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 16.46 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 Wag </td>
+   <td style="text-align:right;"> 21.0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 160.0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3.90 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 17.02 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Datsun 710 </td>
+   <td style="text-align:right;"> 22.8 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 108.0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3.85 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 18.61 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet 4 Drive </td>
+   <td style="text-align:right;"> 21.4 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 258.0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3.08 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 19.44 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet Sportabout </td>
+   <td style="text-align:right;"> 18.7 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 360.0 </td>
+   <td style="text-align:right;"> 175 </td>
+   <td style="text-align:right;"> 3.15 </td>
+   <td style="text-align:right;"> 3.440 </td>
+   <td style="text-align:right;"> 17.02 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Valiant </td>
+   <td style="text-align:right;"> 18.1 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 225.0 </td>
+   <td style="text-align:right;"> 105 </td>
+   <td style="text-align:right;"> 2.76 </td>
+   <td style="text-align:right;"> 3.460 </td>
+   <td style="text-align:right;"> 20.22 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Duster 360 </td>
+   <td style="text-align:right;"> 14.3 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 360.0 </td>
+   <td style="text-align:right;"> 245 </td>
+   <td style="text-align:right;"> 3.21 </td>
+   <td style="text-align:right;"> 3.570 </td>
+   <td style="text-align:right;"> 15.84 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Merc 240D </td>
+   <td style="text-align:right;"> 24.4 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 146.7 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3.69 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 20.00 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Merc 230 </td>
+   <td style="text-align:right;"> 22.8 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 140.8 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3.92 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 22.90 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Merc 280 </td>
+   <td style="text-align:right;"> 19.2 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 167.6 </td>
+   <td style="text-align:right;"> 123 </td>
+   <td style="text-align:right;"> 3.92 </td>
+   <td style="text-align:right;"> 3.440 </td>
+   <td style="text-align:right;"> 18.30 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Merc 280C </td>
+   <td style="text-align:right;"> 17.8 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 167.6 </td>
+   <td style="text-align:right;"> 123 </td>
+   <td style="text-align:right;"> 3.92 </td>
+   <td style="text-align:right;"> 3.440 </td>
+   <td style="text-align:right;"> 18.90 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Merc 450SE </td>
+   <td style="text-align:right;"> 16.4 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 275.8 </td>
+   <td style="text-align:right;"> 180 </td>
+   <td style="text-align:right;"> 3.07 </td>
+   <td style="text-align:right;"> 4.070 </td>
+   <td style="text-align:right;"> 17.40 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Merc 450SL </td>
+   <td style="text-align:right;"> 17.3 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 275.8 </td>
+   <td style="text-align:right;"> 180 </td>
+   <td style="text-align:right;"> 3.07 </td>
+   <td style="text-align:right;"> 3.730 </td>
+   <td style="text-align:right;"> 17.60 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Merc 450SLC </td>
+   <td style="text-align:right;"> 15.2 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 275.8 </td>
+   <td style="text-align:right;"> 180 </td>
+   <td style="text-align:right;"> 3.07 </td>
+   <td style="text-align:right;"> 3.780 </td>
+   <td style="text-align:right;"> 18.00 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cadillac Fleetwood </td>
+   <td style="text-align:right;"> 10.4 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 472.0 </td>
+   <td style="text-align:right;"> 205 </td>
+   <td style="text-align:right;"> 2.93 </td>
+   <td style="text-align:right;"> 5.250 </td>
+   <td style="text-align:right;"> 17.98 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lincoln Continental </td>
+   <td style="text-align:right;"> 10.4 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 460.0 </td>
+   <td style="text-align:right;"> 215 </td>
+   <td style="text-align:right;"> 3.00 </td>
+   <td style="text-align:right;"> 5.424 </td>
+   <td style="text-align:right;"> 17.82 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chrysler Imperial </td>
+   <td style="text-align:right;"> 14.7 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 440.0 </td>
+   <td style="text-align:right;"> 230 </td>
+   <td style="text-align:right;"> 3.23 </td>
+   <td style="text-align:right;"> 5.345 </td>
+   <td style="text-align:right;"> 17.42 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fiat 128 </td>
+   <td style="text-align:right;"> 32.4 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 78.7 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 4.08 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 19.47 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Honda Civic </td>
+   <td style="text-align:right;"> 30.4 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 75.7 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 4.93 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 18.52 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Toyota Corolla </td>
+   <td style="text-align:right;"> 33.9 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 71.1 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 4.22 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 19.90 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Toyota Corona </td>
+   <td style="text-align:right;"> 21.5 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 120.1 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3.70 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 20.01 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dodge Challenger </td>
+   <td style="text-align:right;"> 15.5 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 318.0 </td>
+   <td style="text-align:right;"> 150 </td>
+   <td style="text-align:right;"> 2.76 </td>
+   <td style="text-align:right;"> 3.520 </td>
+   <td style="text-align:right;"> 16.87 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> AMC Javelin </td>
+   <td style="text-align:right;"> 15.2 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 304.0 </td>
+   <td style="text-align:right;"> 150 </td>
+   <td style="text-align:right;"> 3.15 </td>
+   <td style="text-align:right;"> 3.435 </td>
+   <td style="text-align:right;"> 17.30 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Camaro Z28 </td>
+   <td style="text-align:right;"> 13.3 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 350.0 </td>
+   <td style="text-align:right;"> 245 </td>
+   <td style="text-align:right;"> 3.73 </td>
+   <td style="text-align:right;"> 3.840 </td>
+   <td style="text-align:right;"> 15.41 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pontiac Firebird </td>
+   <td style="text-align:right;"> 19.2 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 400.0 </td>
+   <td style="text-align:right;"> 175 </td>
+   <td style="text-align:right;"> 3.08 </td>
+   <td style="text-align:right;"> 3.845 </td>
+   <td style="text-align:right;"> 17.05 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fiat X1-9 </td>
+   <td style="text-align:right;"> 27.3 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 79.0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 4.08 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 18.90 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Porsche 914-2 </td>
+   <td style="text-align:right;"> 26.0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 120.3 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 4.43 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 16.70 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lotus Europa </td>
+   <td style="text-align:right;"> 30.4 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 95.1 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3.77 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 16.90 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ford Pantera L </td>
+   <td style="text-align:right;"> 15.8 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 351.0 </td>
+   <td style="text-align:right;"> 264 </td>
+   <td style="text-align:right;"> 4.22 </td>
+   <td style="text-align:right;"> 3.170 </td>
+   <td style="text-align:right;"> 14.50 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ferrari Dino </td>
+   <td style="text-align:right;"> 19.7 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 145.0 </td>
+   <td style="text-align:right;"> 175 </td>
+   <td style="text-align:right;"> 3.62 </td>
+   <td style="text-align:right;"> 2.770 </td>
+   <td style="text-align:right;"> 15.50 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Maserati Bora </td>
+   <td style="text-align:right;"> 15.0 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 301.0 </td>
+   <td style="text-align:right;"> 335 </td>
+   <td style="text-align:right;"> 3.54 </td>
+   <td style="text-align:right;"> 3.570 </td>
+   <td style="text-align:right;"> 14.60 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Volvo 142E </td>
+   <td style="text-align:right;"> 21.4 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 121.0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 4.11 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 18.60 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<h1 id="challenge-round">Challenge Round</h1>
+<p>Let’s do something a little more challenging to see to_be in action. With this data set, we want to remove the duplicated id entries by hand and merge them back into the non-duplicates.</p>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 78 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Ohio </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Tennessee </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 77 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Nebraska </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> asian </td>
+   <td style="text-align:left;"> North Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 69 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> white </td>
+   <td style="text-align:left;"> Mississippi </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Oregon </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> black </td>
+   <td style="text-align:left;"> Nevada </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Alaska </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">result <span class="o">&lt;-</span> to_be<span class="p">(</span>data<span class="p">,</span> duplicated_data<span class="p">,</span> id<span class="p">)</span></code></pre></div>
+
+<p>The duplicated id entries:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Tennessee </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 77 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Nebraska </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> white </td>
+   <td style="text-align:left;"> Mississippi </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Oregon </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> black </td>
+   <td style="text-align:left;"> Nevada </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Alaska </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>The non-duplicated id entries:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]]</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 69 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> asian </td>
+   <td style="text-align:left;"> North Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 78 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Ohio </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>From the duplicated id’s, I’ll keep the id that corresponds to a female, or if none of the duplicated entries are female, an id corresponding to one greater than 50 years old.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">1</span><span class="p">)</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Tennessee </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Oregon </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Alaska </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p></p>
+
+<p>Now combine the results back together.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> 
+  group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> 
+  arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> 
+  slice<span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="kp">rbind</span><span class="p">(</span>result<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]])</span></code></pre></div>
+
+<div class="dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 78 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Ohio </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Tennessee </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> asian </td>
+   <td style="text-align:left;"> North Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 69 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Oregon </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Alaska </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+  </article>
+
+</div>
+
+        <p><br></p>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+  <p class = "foot-text">
+    &copy; 2015 Jennifer Nguyen. Powered by Jekyll.<br>
+    <a href="mailto:jennifernguyen1992@gmail.com">Email</a> | 
+    <a href="https://www.linkedin.com/pub/jennifer-nguyen/b0/94/aa7" target="_blank">LinkedIn</a> | 
+    <a href="https://github.com/jnguyen92" target="_blank">
+      <span class="username">Github</span>
+      <span class="icon  icon--github">
+        <svg viewBox="0 0 16 16">
+          <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+        </svg>
+      </span>
+
+    </a>
+  </p>
+
+  </div>
+</footer>
+
+
+  </body>
+
+
+</html>
