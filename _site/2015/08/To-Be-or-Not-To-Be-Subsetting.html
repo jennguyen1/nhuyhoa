@@ -43,8 +43,6 @@
           
         
           
-        
-          
           <a class="page-link" href="/nhuyhoa/index.html">Posts</a>
           
         
@@ -64,7 +62,7 @@
 
   <header class="post-header">
     <h1 class="post-title">To Be or Not To Be: Subsetting</h1>
-    <p class="post-meta">Aug 6, 2015 • Categories: r data_wrangling </p>
+    <p class="post-meta">Aug 15, 2015 • Categories: r data_wrangling </p>
   </header>
 
   <article class="post-content"> 
@@ -1230,7 +1228,7 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 </div>
 <p></p>
 
-<p>From the duplicated id’s, I’ll keep the id that corresponds to a female, or if none of the duplicated entries are female, an id corresponding to one greater than 50 years old.</p>
+<p>From the duplicated id’s, I’ll keep the id that corresponds to a female or, if none of the duplicated entries are female, an id corresponding to someone greater than 50 years old.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">1</span><span class="p">)</span></code></pre></div>
 

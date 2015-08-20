@@ -175,7 +175,7 @@ y %>% kable(format = "html")
 ```
 </div><p></p>
 
-From the duplicated id's, I'll keep the id that corresponds to a female, or if none of the duplicated entries are female, an id corresponding to one greater than 50 years old. 
+From the duplicated id's, I'll keep the id that corresponds to a female or, if none of the duplicated entries are female, an id corresponding to someone greater than 50 years old. 
 
 {% highlight r %}
 result[["to_be"]] %>% group_by(id) %>% arrange(gender, desc(age)) %>% slice(1)
