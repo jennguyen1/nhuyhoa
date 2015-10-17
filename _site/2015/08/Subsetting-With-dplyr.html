@@ -35,7 +35,7 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/nhuyhoa/about/">About</a>
+          <a class="page-link" href="/nhuyhoa/blog/">Blog</a>
           
         
           
@@ -43,7 +43,7 @@
           
         
           
-          <a class="page-link" href="/nhuyhoa/index.html">Posts</a>
+          <a class="page-link" href="/nhuyhoa/index.html">About</a>
           
         
           
@@ -81,7 +81,7 @@
     </ul>
   </li>
   <li><a href="#challenge-round" id="markdown-toc-challenge-round">Challenge round</a></li>
-  <li><a href="#more-dplyr" id="markdown-toc-more-dplyr">More dplyr</a></li>
+  <li><a href="#additional-resources" id="markdown-toc-additional-resources">Additional Resources</a></li>
 </ul>
 
 <p>Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package, created by Hadley Wickham, provides some handy tools to subset and select with ease.   <br />
@@ -772,7 +772,7 @@ data <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">
 </div>
 <p></p>
 
-<p>In terms of subsetting by rows, dplyr’s filter function is pretty equivalent to base R’s subset function. In my daily work, I prefer to use subset. Since subsetting rows by numeric position is not available via base R’s subsetting, slice can come in handy, especially when used in conjunction with <code>which()</code>, which returns the indices of an object with TRUE values.</p>
+<p>In terms of subsetting by rows, dplyr’s filter function is  equivalent to base R’s subset function.</p>
 
 <h1 id="dplyrselect">dplyr::select()</h1>
 <p>The <code>dplyr::select()</code> function selects columns from a data set. To deselect columns, simply place a <code>-</code> before the name or special function call.</p>
@@ -1126,27 +1126,9 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 
 <h2 id="select-columns-using-regex">Select columns using regex</h2>
 
-<p>Helper functions such as <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> are perhaps the most powerful feature of the select function. Let’s start with extracting the pretest score columns.</p>
+<p>Helper functions such as <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> are perhaps the most powerful feature of the select function. For example, let’s start with extracting the pretest score columns.</p>
 
-<p>One thing we could do is write out all the names of the pretest columns by hand and use the <code>one_of</code> helper function.</p>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract specific pretest column names using one_of()</span>
-vars <span class="o">&lt;-</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span> <span class="s">&quot;_score&quot;</span><span class="p">)</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>one_of<span class="p">(</span>vars<span class="p">))</span></code></pre></div>
-
-<p>However, this is not ideal since we may not always know what pretest numbers are available needed beforehand. Thus this code would not be reuseable and cannot be generalized to other data sets where pretest numbers may not necessarily be 7:11.</p>
-
-<p>Another option would be to use grep to match the column names and then grab the columns using those results.</p>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># find col names using regex and extract using one_of()</span>
-vars <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> colnames <span class="o">%&gt;%</span> str_subset<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">)</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>one_of<span class="p">(</span>vars<span class="p">))</span></code></pre></div>
-
-<p>The <code>"\\d+"</code> here is a regex expression. The first portion <code>"\\d"</code> matches a digit character, ie 0123456789. The second portion <code>"+"</code> is a metacharacter with the meaning “match the previous character(s) one or more times”. So together, the pattern <code>"pretest_\\d+_score"</code> is matching all strings that starts with “pretest_”, followed by one or more digits, and ending with “_score”. See the <a href="http://jnnguyen2.github.io/nhuyhoa/r/data_wrangling/2015/07/25/Regular-Expressions/" target="blank">regular expression post</a> for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable.</p>
-
-<p>Great! This does exactly what we wanted, but is there a better, perhaps more concise, way to do the exact same thing?</p>
-
-<p>Yes! We can use <code>matches()</code>!</p>
+<p>See the <a href="http://jnnguyen2.github.io/nhuyhoa/r/data_wrangling/2015/07/25/Regular-Expressions/" target="blank">regular expression post</a> for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># use matches to find all pretest score columns</span>
 data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
@@ -1202,8 +1184,6 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 </table>
 </div>
 <p></p>
-
-<p>Awesome! In just one line of code, we were able to extract all columns corresponding to pretest scores! And not only is it short and sweet, it is a lot easier to read than using pattern matching on the column names.</p>
 
 <p>The helper functions <code>starts_with()</code> and <code>ends_with()</code> are similar to <code>matches()</code> but is specialized in that it only looks at the beginning or the end of the string for a pattern match.</p>
 
@@ -1973,16 +1953,23 @@ subject_query <span class="o">&lt;-</span> <span class="kt">c</span><span class=
 
 <span class="c1"># obtains pretest number corresponding to pretests of the ACT and SAT category</span>
 pretest_numbers <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> 
+  <span class="c1"># select all pretest columns</span>
   dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_name&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+  <span class="c1"># obtain unique test names per column</span>
   <span class="kp">apply</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="kp">unique</span><span class="p">)</span> <span class="o">%&gt;%</span> 
-  jn.general<span class="o">::</span>refine<span class="p">(</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s">&quot;ACT|SAT&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">any</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="c1"># filter to elements that contain either ACT or SAT</span>
+  jn.general<span class="o">::</span>refine<span class="p">(</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">any</span><span class="p">(</span>str_detect<span class="p">(</span>x<span class="p">,</span> <span class="s">&quot;ACT|SAT&quot;</span><span class="p">)))</span> <span class="o">%&gt;%</span> 
+  <span class="c1"># obtain the names</span>
   names <span class="o">%&gt;%</span> 
+  <span class="c1"># extract the pretest number</span>
   str_extract<span class="p">(</span><span class="s">&quot;\\d+&quot;</span><span class="p">)</span> 
 
 <span class="c1"># generates the names of the pretest information </span>
 <span class="c1">## matches doesn&#39;t allow multiple matches so we have to regenerate the names of the pretests information</span>
 pretests_of_interest <span class="o">&lt;-</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> pretest_numbers<span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="c1"># interact the pretest names with the values name score and grade</span>
   <span class="kp">interaction</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;score&quot;</span><span class="p">,</span> <span class="s">&quot;grade&quot;</span><span class="p">,</span> <span class="s">&quot;version&quot;</span><span class="p">),</span> sep <span class="o">=</span> <span class="s">&quot;_&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="c1"># extract the unique names</span>
   <span class="kp">levels</span>
 
 <span class="c1"># selects posttest, ACT/SAT pretests, demographics and subsets by the grade/subject of interest</span>
@@ -2146,7 +2133,7 @@ final <span class="o">&lt;-</span> data <span class="o">%&gt;%</span>
 
 <p>Note: The <code>jn.general::refine()</code> function used here is a wrapper function for <code>Filter()</code>.</p>
 
-<h1 id="more-dplyr">More dplyr</h1>
+<h1 id="additional-resources">Additional Resources</h1>
 <p>Subsetting functions are only a fraction of what the dplyr package offers for data work. Here are a few links to the additional resources on the dplyr package:  <br />
 <a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html" target="blank">dplyr vignette</a>  <br />
 <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" target="blank">dplyr cheatsheet</a></p>

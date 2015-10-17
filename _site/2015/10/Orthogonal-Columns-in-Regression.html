@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>About</title>
-  <meta name="description" content="Hi I'm Jenny.
-">
+  <title>Orthogonal Columns in Regression</title>
+  <meta name="description" content="">
 
   <link rel="stylesheet" href="/nhuyhoa/css/main.css">
-  <link rel="canonical" href="http://yourdomain.com/nhuyhoa/about/">
+  <link rel="canonical" href="http://yourdomain.com/nhuyhoa/2015/10/Orthogonal-Columns-in-Regression.html">
   <link rel="alternate" type="application/rss+xml" title="Nhuy Hoa" href="http://yourdomain.com/nhuyhoa/feed.xml" />
 </head>
 
@@ -36,7 +35,7 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/nhuyhoa/about/">About</a>
+          <a class="page-link" href="/nhuyhoa/blog/">Blog</a>
           
         
           
@@ -44,7 +43,7 @@
           
         
           
-          <a class="page-link" href="/nhuyhoa/index.html">Posts</a>
+          <a class="page-link" href="/nhuyhoa/index.html">About</a>
           
         
           
@@ -62,11 +61,68 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title">Orthogonal Columns in Regression</h1>
+    <p class="post-meta">Oct 25, 2015 • Categories: statistics </p>
   </header>
 
-  <article class="post-content">
+  <article class="post-content"> 
     
+<p>Orthogonal design matrices in regression ensures that the <script type="math/tex">\beta</script> estimates do not depend on each ohter. In other words, because there is no collinearity between columns, the effect of one factor or interaction can be estimated separately from the effect of any other factor/interaction in the model.</p>
+
+<p>Let the design matrix be<br />
+<script type="math/tex">% <![CDATA[
+\mathbf{X} = \left[\begin{array}
+{rrr}
+x_0 & x_1 & x_2 & ... & x_p
+\end{array}\right] %]]></script></p>
+
+<p>where <script type="math/tex">x_i</script> are columns vectors and the columns are mutually independent.</p>
+
+<p>We know that<br />
+<script type="math/tex">\hat{\beta} = (X^TX)^{-1}X^TY</script></p>
+
+<p>Since the columns of <script type="math/tex">X</script> are mutually orthogonal, we have the diagonal matrix<br />
+<script type="math/tex">% <![CDATA[
+\mathbf{(X^TX)^{-1}} = \left[\begin{array}
+{rrr}
+\frac{1}{x^{T}_{0}x_0} & 0 & 0 & 0 & 0 \\
+0 & \frac{1}{x^{T}_{1}x_1} & 0 & 0 & 0 \\
+0 & 0 & \frac{1}{x^{T}_{2}x_2} & 0 & 0 \\
+0 & 0 & 0 & ... & 0 \\
+0 & 0 & 0 & 0 & \frac{1}{x^{T}_{p}x_p} 
+\end{array}\right] %]]></script></p>
+
+<p>Plug this in to compute <script type="math/tex">\hat{\beta}</script><br />
+<script type="math/tex">% <![CDATA[
+\hat{\beta} = \left[\begin{array}
+{cc}
+\frac{1}{x^{T}_{0}x_0} & 0 & 0 & 0 & 0 \\
+0 & \frac{1}{x^{T}_{1}x_1} & 0 & 0 & 0 \\
+0 & 0 & \frac{1}{x^{T}_{2}x_2} & 0 & 0 \\
+0 & 0 & 0 & ... & 0 \\
+0 & 0 & 0 & 0 & \frac{1}{x^{T}_{p}x_p} 
+\end{array}\right]
+\left[\begin{array}
+{cc}
+x^T_0Y \\
+x^T_1Y \\
+x^T_2Y \\
+... \\
+x^T_pY \\
+\end{array}\right] %]]></script></p>
+
+<p>Resulting in the final estimate<br />
+<script type="math/tex">\hat{\beta} = \left[\begin{array}
+{rrr}
+\frac{x^T_0Y}{x^{T}_{0}x_0}  \\
+\frac{x^T_1Y}{x^{T}_{1}x_1}  \\
+\frac{x^T_2Y}{x^{T}_{2}x_2} \\
+... \\
+\frac{x^T_pY}{x^{T}_{p}x_p} 
+\end{array}\right]</script></p>
+
+<p>Note that the <script type="math/tex">\beta_j</script> estimate depends only on the <script type="math/tex">j^{th}</script> column in the design matrix. Thus we conclude that the effect of one factor is estimated indepedently of other factors.</p>
+
 
   </article>
 

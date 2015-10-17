@@ -704,7 +704,7 @@ data %>% slice(25:30)
 </table>
 </div><p></p>
 
-In terms of subsetting by rows, dplyr's filter function is pretty equivalent to base R's subset function. In my daily work, I prefer to use subset. Since subsetting rows by numeric position is not available via base R's subsetting, slice can come in handy, especially when used in conjunction with `which()`, which returns the indices of an object with TRUE values. 
+In terms of subsetting by rows, dplyr's filter function is  equivalent to base R's subset function. 
 
 # dplyr::select()
 The `dplyr::select()` function selects columns from a data set. To deselect columns, simply place a `-` before the name or special function call. 
@@ -1058,31 +1058,9 @@ data %>% dplyr::select(one_of(var_names)) %>% head
 
 ## Select columns using regex
 
-Helper functions such as `matches()`, `starts_with()`, and `ends_with()` are perhaps the most powerful feature of the select function. Let's start with extracting the pretest score columns. 
+Helper functions such as `matches()`, `starts_with()`, and `ends_with()` are perhaps the most powerful feature of the select function. For example, let's start with extracting the pretest score columns. 
 
-One thing we could do is write out all the names of the pretest columns by hand and use the `one_of` helper function. 
-
-{% highlight r %}
-# extract specific pretest column names using one_of()
-vars <- paste0("pretest_", 7:11, "_score")
-data %>% dplyr::select(one_of(vars))
-{% endhighlight %}
-
-However, this is not ideal since we may not always know what pretest numbers are available needed beforehand. Thus this code would not be reuseable and cannot be generalized to other data sets where pretest numbers may not necessarily be 7:11.
-
-Another option would be to use grep to match the column names and then grab the columns using those results. 
-
-{% highlight r %}
-# find col names using regex and extract using one_of()
-vars <- data %>% colnames %>% str_subset("pretest_\\d+_score")
-data %>% dplyr::select(one_of(vars)) 
-{% endhighlight %}
-
-The `"\\d+"` here is a regex expression. The first portion `"\\d"` matches a digit character, ie 0123456789. The second portion `"+"` is a metacharacter with the meaning "match the previous character(s) one or more times". So together, the pattern `"pretest_\\d+_score"` is matching all strings that starts with "pretest_", followed by one or more digits, and ending with "_score". See the [regular expression post][regex_link]{:target="blank"} for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable. 
-
-Great! This does exactly what we wanted, but is there a better, perhaps more concise, way to do the exact same thing?
-
-Yes! We can use `matches()`!
+See the [regular expression post][regex_link]{:target="blank"} for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable. 
 
 {% highlight r %}
 # use matches to find all pretest score columns
@@ -1138,8 +1116,6 @@ data %>% dplyr::select(matches("pretest_\\d+_score")) %>% head
 </tbody>
 </table>
 </div><p></p>
-
-Awesome! In just one line of code, we were able to extract all columns corresponding to pretest scores! And not only is it short and sweet, it is a lot easier to read than using pattern matching on the column names. 
 
 The helper functions `starts_with()` and `ends_with()` are similar to `matches()` but is specialized in that it only looks at the beginning or the end of the string for a pattern match.
 
@@ -1912,16 +1888,23 @@ subject_query <- c("math", "read")
 
 # obtains pretest number corresponding to pretests of the ACT and SAT category
 pretest_numbers <- data %>% 
+  # select all pretest columns
   dplyr::select(matches("pretest_\\d+_name")) %>% 
+  # obtain unique test names per column
   apply(2, unique) %>% 
-  jn.general::refine(function(x) x %>% str_detect("ACT|SAT") %>% any) %>% 
+  # filter to elements that contain either ACT or SAT
+  jn.general::refine(function(x) any(str_detect(x, "ACT|SAT"))) %>% 
+  # obtain the names
   names %>% 
+  # extract the pretest number
   str_extract("\\d+") 
 
 # generates the names of the pretest information 
 ## matches doesn't allow multiple matches so we have to regenerate the names of the pretests information
 pretests_of_interest <- paste0("pretest_", pretest_numbers) %>% 
+  # interact the pretest names with the values name score and grade
   interaction(c("name", "score", "grade", "version"), sep = "_") %>% 
+  # extract the unique names
   levels
 
 # selects posttest, ACT/SAT pretests, demographics and subsets by the grade/subject of interest
@@ -2087,7 +2070,7 @@ Note: The `jn.general::refine()` function used here is a wrapper function for `F
 
 
 
-# More dplyr
+# Additional Resources
 Subsetting functions are only a fraction of what the dplyr package offers for data work. Here are a few links to the additional resources on the dplyr package:  
 [dplyr vignette][dplyr_vignette_link]{:target="blank"}  
 [dplyr cheatsheet][dplyr_cheatsheet_link]{:target="blank"}

@@ -13,63 +13,9 @@ categories: r data_wrangling
 
 In a previous post, I dicussed the subsetting functions available via the dplyr package, including the `filter()`, `slice()`, and `select()` functions. There are a number of additional ways to subset data frames in R. 
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> functions </th>
-   <th style="text-align:left;"> purpose </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> head() </td>
-   <td style="text-align:left;"> grabs first n rows </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> tail() </td>
-   <td style="text-align:left;"> grabs last n rows </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> magrittr::extract() </td>
-   <td style="text-align:left;"> wrapper for '['; takes numeric or character arguments and return corresponding rows/columns </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> dplyr::sample_frac() </td>
-   <td style="text-align:left;"> randomly selects a given fraction of rows </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> dplyr::sample_n() </td>
-   <td style="text-align:left;"> randomly selects a given number of rows </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> dplyr::distinct() </td>
-   <td style="text-align:left;"> subsets to distinct values of a data frame, given a specific variable </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> jn.general::duplicated_data() </td>
-   <td style="text-align:left;"> returns all duplicated rows by a given variable </td>
-  </tr>
-</tbody>
-</table>
-<p></p>
+However what if rather than tossing the data that does not correspond to the subset (call it the "anti-subset"), we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other. One could easily subset two times, once with the condition and again with the negation. However in some cases, obtaining the anti-subset isn't all that straight forward. For example what if the subset was obtained randomly, as with functions like `sample_n()` or `sample_frac()`, or when there is no clear negation, such as `duplicated_data()`?
 
-However what if rather than tossing the data that does not correspond to the subset, we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other. 
-
-One option would be run the subsetting function two times. Once with the conditions that's required, and then again with the converse argument. 
-
-{% highlight r %}
-mtcars %>% subset( gear != 4 )
-mtcars %>% subset( gear == 4 )
-
-mtcars %>% dplyr::select(one_of("mpg", "cyl", "hp"))
-mtcars %>% dplyr::select(-one_of("mpg", "cyl", "hp"))
-{% endhighlight %}
-
-This tends to work pretty well when the filtering condition is pretty simple. However, when we get into multiple arguments, negation can get pretty ugly fast. 
-
-In other cases, obtaining the "anti-subset" is not all that straight forward. For example, if a subset of the data was obtained randomly, as with `sample_n()` or `sample_frac()`, it's difficult to find the portion of the data that wasn't returned by the function. Another example of not being able to easily negate is with `duplicated_data()`, which returns all duplicated rows by a given variable. 
-
-Having faced this issue many times, I wrote the `to_be()` function as a way to obtain both the subsetted data and the "anti-subset". 
+Having faced this issue many times, I wrote the `to_be()` function as a way to obtain both the subsetted data and the "anti-subset". It is available in the [jn.general package][package_link]{:target="blank"}.
 
 # To Be or Not To Be
 
@@ -499,7 +445,7 @@ by_both[["to_be"]]
 
 {% highlight r %}
 # data corresponding to cyl, hp, wt of cars with an mpg greater than 20 are replaced with NAs
-by_both[["not_to_be"]] 
+by_both[["not_to_be"]] %>% head(10)
 {% endhighlight %}
 <div class = "dftab">
 <table>
@@ -583,7 +529,7 @@ by_both[["not_to_be"]]
    <td style="text-align:right;"> 360.0 </td>
    <td style="text-align:right;"> 175 </td>
    <td style="text-align:right;"> 3.15 </td>
-   <td style="text-align:right;"> 3.440 </td>
+   <td style="text-align:right;"> 3.44 </td>
    <td style="text-align:right;"> 17.02 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
@@ -597,7 +543,7 @@ by_both[["not_to_be"]]
    <td style="text-align:right;"> 225.0 </td>
    <td style="text-align:right;"> 105 </td>
    <td style="text-align:right;"> 2.76 </td>
-   <td style="text-align:right;"> 3.460 </td>
+   <td style="text-align:right;"> 3.46 </td>
    <td style="text-align:right;"> 20.22 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
@@ -611,7 +557,7 @@ by_both[["not_to_be"]]
    <td style="text-align:right;"> 360.0 </td>
    <td style="text-align:right;"> 245 </td>
    <td style="text-align:right;"> 3.21 </td>
-   <td style="text-align:right;"> 3.570 </td>
+   <td style="text-align:right;"> 3.57 </td>
    <td style="text-align:right;"> 15.84 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
@@ -653,320 +599,12 @@ by_both[["not_to_be"]]
    <td style="text-align:right;"> 167.6 </td>
    <td style="text-align:right;"> 123 </td>
    <td style="text-align:right;"> 3.92 </td>
-   <td style="text-align:right;"> 3.440 </td>
+   <td style="text-align:right;"> 3.44 </td>
    <td style="text-align:right;"> 18.30 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Merc 280C </td>
-   <td style="text-align:right;"> 17.8 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 167.6 </td>
-   <td style="text-align:right;"> 123 </td>
-   <td style="text-align:right;"> 3.92 </td>
-   <td style="text-align:right;"> 3.440 </td>
-   <td style="text-align:right;"> 18.90 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Merc 450SE </td>
-   <td style="text-align:right;"> 16.4 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 275.8 </td>
-   <td style="text-align:right;"> 180 </td>
-   <td style="text-align:right;"> 3.07 </td>
-   <td style="text-align:right;"> 4.070 </td>
-   <td style="text-align:right;"> 17.40 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Merc 450SL </td>
-   <td style="text-align:right;"> 17.3 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 275.8 </td>
-   <td style="text-align:right;"> 180 </td>
-   <td style="text-align:right;"> 3.07 </td>
-   <td style="text-align:right;"> 3.730 </td>
-   <td style="text-align:right;"> 17.60 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Merc 450SLC </td>
-   <td style="text-align:right;"> 15.2 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 275.8 </td>
-   <td style="text-align:right;"> 180 </td>
-   <td style="text-align:right;"> 3.07 </td>
-   <td style="text-align:right;"> 3.780 </td>
-   <td style="text-align:right;"> 18.00 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cadillac Fleetwood </td>
-   <td style="text-align:right;"> 10.4 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 472.0 </td>
-   <td style="text-align:right;"> 205 </td>
-   <td style="text-align:right;"> 2.93 </td>
-   <td style="text-align:right;"> 5.250 </td>
-   <td style="text-align:right;"> 17.98 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lincoln Continental </td>
-   <td style="text-align:right;"> 10.4 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 460.0 </td>
-   <td style="text-align:right;"> 215 </td>
-   <td style="text-align:right;"> 3.00 </td>
-   <td style="text-align:right;"> 5.424 </td>
-   <td style="text-align:right;"> 17.82 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chrysler Imperial </td>
-   <td style="text-align:right;"> 14.7 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 440.0 </td>
-   <td style="text-align:right;"> 230 </td>
-   <td style="text-align:right;"> 3.23 </td>
-   <td style="text-align:right;"> 5.345 </td>
-   <td style="text-align:right;"> 17.42 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Fiat 128 </td>
-   <td style="text-align:right;"> 32.4 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 78.7 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.08 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 19.47 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Honda Civic </td>
-   <td style="text-align:right;"> 30.4 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 75.7 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.93 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 18.52 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Toyota Corolla </td>
-   <td style="text-align:right;"> 33.9 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 71.1 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.22 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 19.90 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Toyota Corona </td>
-   <td style="text-align:right;"> 21.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 120.1 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 3.70 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 20.01 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Dodge Challenger </td>
-   <td style="text-align:right;"> 15.5 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 318.0 </td>
-   <td style="text-align:right;"> 150 </td>
-   <td style="text-align:right;"> 2.76 </td>
-   <td style="text-align:right;"> 3.520 </td>
-   <td style="text-align:right;"> 16.87 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> AMC Javelin </td>
-   <td style="text-align:right;"> 15.2 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 304.0 </td>
-   <td style="text-align:right;"> 150 </td>
-   <td style="text-align:right;"> 3.15 </td>
-   <td style="text-align:right;"> 3.435 </td>
-   <td style="text-align:right;"> 17.30 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Camaro Z28 </td>
-   <td style="text-align:right;"> 13.3 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 350.0 </td>
-   <td style="text-align:right;"> 245 </td>
-   <td style="text-align:right;"> 3.73 </td>
-   <td style="text-align:right;"> 3.840 </td>
-   <td style="text-align:right;"> 15.41 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Pontiac Firebird </td>
-   <td style="text-align:right;"> 19.2 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 400.0 </td>
-   <td style="text-align:right;"> 175 </td>
-   <td style="text-align:right;"> 3.08 </td>
-   <td style="text-align:right;"> 3.845 </td>
-   <td style="text-align:right;"> 17.05 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Fiat X1-9 </td>
-   <td style="text-align:right;"> 27.3 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 79.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.08 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 18.90 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Porsche 914-2 </td>
-   <td style="text-align:right;"> 26.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 120.3 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.43 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 16.70 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lotus Europa </td>
-   <td style="text-align:right;"> 30.4 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 95.1 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 3.77 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 16.90 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ford Pantera L </td>
-   <td style="text-align:right;"> 15.8 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 351.0 </td>
-   <td style="text-align:right;"> 264 </td>
-   <td style="text-align:right;"> 4.22 </td>
-   <td style="text-align:right;"> 3.170 </td>
-   <td style="text-align:right;"> 14.50 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ferrari Dino </td>
-   <td style="text-align:right;"> 19.7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 145.0 </td>
-   <td style="text-align:right;"> 175 </td>
-   <td style="text-align:right;"> 3.62 </td>
-   <td style="text-align:right;"> 2.770 </td>
-   <td style="text-align:right;"> 15.50 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Maserati Bora </td>
-   <td style="text-align:right;"> 15.0 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 301.0 </td>
-   <td style="text-align:right;"> 335 </td>
-   <td style="text-align:right;"> 3.54 </td>
-   <td style="text-align:right;"> 3.570 </td>
-   <td style="text-align:right;"> 14.60 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Volvo 142E </td>
-   <td style="text-align:right;"> 21.4 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 121.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.11 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 18.60 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2 </td>
   </tr>
 </tbody>
 </table>
@@ -1223,10 +861,15 @@ result[["to_be"]] %>% group_by(id) %>% arrange(gender, desc(age)) %>% slice(1)
 Now combine the results back together.
 
 {% highlight r %}
+# obtain the duplicated entries
 result[["to_be"]] %>% 
+  # group by unique id's
   group_by(id) %>% 
+  # order by gender (females first) and decreasing age
   arrange(gender, desc(age)) %>% 
+  # take the first entry in each group
   slice(1) %>% 
+  # combine results with non-duplicated data
   rbind(result[["not_to_be"]])
 {% endhighlight %}
 <div class = "dftab">
@@ -1293,3 +936,5 @@ result[["to_be"]] %>%
 </tbody>
 </table>
 </div>
+
+[package_link]: https://github.com/jnguyen92/jn.general
