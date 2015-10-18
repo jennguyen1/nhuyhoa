@@ -3,7 +3,7 @@ title: Nhuy Hoa
 email: jennifernguyen1992@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Hi I'm Jenny.
-baseurl: "/nhuyhoa" # the subpath of your site, e.g. /blog/
+baseurl: "/nhuyhoa/" # the subpath of your site, e.g. /blog/
 url: "http://yourdomain.com" # the base hostname & protocol for your site
 #url: "http://jnnguyen2.github.io/"
 github_username:  jnguyen92
