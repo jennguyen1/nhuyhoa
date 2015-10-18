@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Categories</title>
-  <meta name="description" content="Hi I'm Jenny.
-">
+  <title>Regression Confidence & Prediction Intervals</title>
+  <meta name="description" content="">
 
   <link rel="stylesheet" href="/nhuyhoa/css/main.css">
-  <link rel="canonical" href="http://yourdomain.com/nhuyhoa/categories/">
+  <link rel="canonical" href="http://yourdomain.com/nhuyhoa/2015/10/Reg-Conf-Pred-Intervals.html">
   <link rel="alternate" type="application/rss+xml" title="Nhuy Hoa" href="http://yourdomain.com/nhuyhoa/feed.xml" />
 </head>
 
@@ -62,136 +61,55 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Categories</h1>
+    <h1 class="post-title">Regression Confidence & Prediction Intervals</h1>
+    <p class="post-meta">Oct 21, 2015 • Categories: statistics </p>
   </header>
 
-  <article class="post-content">
-    <h1 style = "padding-top:0;">R</h1>
-<section>
-    <table>
-        
-        	
-	   
-        	
-	   
-        	
-	   
-        	
-        		<tr>
-        			<td class = "tbl-date"><span>Aug 15, 2015</span></td>
-        			<td class = "tbl-post"><a href="/nhuyhoa/2015/08/To-Be-or-Not-To-Be-Subsetting.html">To Be or Not To Be: Subsetting</a></td>
-        		</tr>
-        	
-	   
-        	
-        		<tr>
-        			<td class = "tbl-date"><span>Aug 01, 2015</span></td>
-        			<td class = "tbl-post"><a href="/nhuyhoa/2015/08/Subsetting-With-dplyr.html">Subsetting With dplyr</a></td>
-        		</tr>
-        	
-	   
-        	
-        		<tr>
-        			<td class = "tbl-date"><span>Jul 25, 2015</span></td>
-        			<td class = "tbl-post"><a href="/nhuyhoa/2015/07/Regular-Expressions.html">Regular Expressions</a></td>
-        		</tr>
-        	
-	   
-    </table>
-</section>
+  <article class="post-content"> 
+    <ul id="markdown-toc">
+  <li><a href="#confidence-intervals" id="markdown-toc-confidence-intervals">Confidence Intervals</a></li>
+  <li><a href="#prediction-intervals" id="markdown-toc-prediction-intervals">Prediction Intervals</a></li>
+  <li><a href="#example" id="markdown-toc-example">Example</a></li>
+</ul>
 
-<br />
+<h1 id="confidence-intervals">Confidence Intervals</h1>
+<p>Recall <script type="math/tex">Y_* = x_*\beta</script></p>
 
-<h1 style = "padding-top:0;">Data Wrangling</h1>
-<section>
-    <table>
-        
-            
-       
-            
-       
-            
-       
-            
-                <tr>
-                    <td class = "tbl-date"><span>Aug 15, 2015</span></td>
-                    <td class = "tbl-post"><a href="/nhuyhoa/2015/08/To-Be-or-Not-To-Be-Subsetting.html">To Be or Not To Be: Subsetting</a></td>
-                </tr>
-            
-       
-            
-                <tr>
-                    <td class = "tbl-date"><span>Aug 01, 2015</span></td>
-                    <td class = "tbl-post"><a href="/nhuyhoa/2015/08/Subsetting-With-dplyr.html">Subsetting With dplyr</a></td>
-                </tr>
-            
-       
-            
-                <tr>
-                    <td class = "tbl-date"><span>Jul 25, 2015</span></td>
-                    <td class = "tbl-post"><a href="/nhuyhoa/2015/07/Regular-Expressions.html">Regular Expressions</a></td>
-                </tr>
-            
-       
-    </table>
-</section>
+<p>Let <script type="math/tex">x'_* = (1, x_{0*}, ..., x_{*p})</script></p>
 
-<br />
+<p>The expected value of Y is <br />
+<script type="math/tex">E(Y) = \hat{Y}_* = x'_*\hat{\beta}</script></p>
 
-<h1 style = "padding-top:0;">Statistics</h1>
-<section>
-    <table>
-        
-            
-                <tr>
-                    <td class = "tbl-date"><span>Oct 25, 2015</span></td>
-                    <td class = "tbl-post"><a href="/nhuyhoa/2015/10/Orthogonal-Columns-in-Regression.html">Orthogonal Columns in Regression</a></td>
-                </tr>
-            
-       
-            
-                <tr>
-                    <td class = "tbl-date"><span>Oct 21, 2015</span></td>
-                    <td class = "tbl-post"><a href="/nhuyhoa/2015/10/Reg-Conf-Pred-Intervals.html">Regression Confidence & Prediction Intervals</a></td>
-                </tr>
-            
-       
-            
-                <tr>
-                    <td class = "tbl-date"><span>Oct 20, 2015</span></td>
-                    <td class = "tbl-post"><a href="/nhuyhoa/2015/10/Regression-Basics.html">Regression Basics</a></td>
-                </tr>
-            
-       
-            
-       
-            
-       
-            
-       
-    </table>
-</section>
+<p>The variance of our estimate is<br />
+<script type="math/tex">Var(\hat{Y}_*) = Var(x'_*\hat{\beta}) = x'_*Var(\hat{\beta})x_* = \sigma^2x'_*(X'X)^{-1}x_*</script></p>
 
-<br />
+<p>thus <script type="math/tex">\hat{Y}_*</script> ~ <script type="math/tex">N(x'_*\hat{\beta}, \sigma^2x'_*(X'X)^{-1}x_*)</script></p>
 
-<h1 style = "padding-top:0;">Uncategorized</h1>
-<section>
-    <table>
-        
-        	
-	   
-        	
-	   
-        	
-	   
-        	
-	   
-        	
-	   
-        	
-	   
-    </table>
-</section>
+<p>So the <script type="math/tex">100(1-\alpha)</script>% confidence interval is</p>
+
+<script type="math/tex; mode=display">\hat{Y}_* \pm t_{n-p, \alpha/2} \sqrt{MSE} \sqrt{x'_*(X'X)^{-1}x_*}</script>
+
+<h1 id="prediction-intervals">Prediction Intervals</h1>
+<p>If we want to predict new values, we incur additional error. <br />
+<script type="math/tex">Y_0 = x'_0\beta + \epsilon_0</script></p>
+
+<p>We assume that <script type="math/tex">e_0</script> ~ <script type="math/tex">N(0, \sigma^2)</script> and <script type="math/tex">e_0 \perp Y</script> <br />
+Let <script type="math/tex">x'_0 = (1, x_{00}, ..., x_{0p})</script></p>
+
+<p>The expected value of Y is<br />
+<script type="math/tex">E(Y) = \hat{Y}_0 + 0 = x'_0\hat{\beta}</script></p>
+
+<p>The variance of our estimate is<br />
+<script type="math/tex">Var(\hat{Y}_0) = Var(x'_0\hat{\beta} + \epsilon) = \sigma^2x'_0(X'X)^{-1}x_0 + \sigma^2 = \sigma^2 (x'_0(X'X)^{-1}x_0 + 1)</script></p>
+
+<p>Thus the <script type="math/tex">100(1-\alpha)</script>% confidence interval is</p>
+
+<script type="math/tex; mode=display">\hat{Y}_* \pm t_{n-p, \alpha/2} \sqrt{MSE} \sqrt{x'_*(X'X)^{-1}x_* + 1}</script>
+
+<h1 id="example">Example</h1>
+<p>The plot below displays the fitted line (black), 95% confidence interval (blue), and 95% prediction intervals (green) for the estimated Y. Notice that the prediction intervals are much wider than the confidence intervals to account for prediction error. Also note that the bands are tighter around the <script type="math/tex">\bar{x}</script> and wider at points farther away from <script type="math/tex">\bar{x}</script>.</p>
+
+<p><img src="/nhuyhoafigure/source/2015-10-21-Reg-Conf-Pred-Intervals/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2" /></p>
 
 
   </article>

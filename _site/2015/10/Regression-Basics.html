@@ -68,8 +68,9 @@
   <article class="post-content"> 
     <ul id="markdown-toc">
   <li><a href="#estimating-beta-coefficients" id="markdown-toc-estimating-beta-coefficients">Estimating Beta Coefficients</a></li>
-  <li><a href="#residual-sum-squares" id="markdown-toc-residual-sum-squares">Residual Sum Squares</a></li>
+  <li><a href="#estimating-variance-sum-square-errors" id="markdown-toc-estimating-variance-sum-square-errors">Estimating Variance: Sum Square Errors</a></li>
   <li><a href="#distribution-of-beta-estimates" id="markdown-toc-distribution-of-beta-estimates">Distribution of Beta Estimates</a></li>
+  <li><a href="#regression-assumptions" id="markdown-toc-regression-assumptions">Regression Assumptions</a></li>
 </ul>
 
 <p>The regression equation:</p>
@@ -89,12 +90,12 @@
 
 <script type="math/tex; mode=display">\hat{\beta} = (X^TX)^{-1}X^TY</script>
 
-<h1 id="residual-sum-squares">Residual Sum Squares</h1>
+<h1 id="estimating-variance-sum-square-errors">Estimating Variance: Sum Square Errors</h1>
 <p>The residual is <script type="math/tex">r = Y - \hat{Y} = Y - X\hat{\beta}</script>.</p>
 
-<p>In least squares, this the sum of the squared residuals are minimized.</p>
+<p>In least squares, the sum of the squared residuals are minimized.</p>
 
-<p><script type="math/tex">RSS = r^Tr</script><br />
+<p><script type="math/tex">SSE = r^Tr</script><br />
 <script type="math/tex">= (Y - X\hat{\beta})^T(Y - X\hat{\beta})</script><br />
 <script type="math/tex">= Y^TY - 2\hat{\beta}^TX^TY + \hat{\beta}^TX^TX\hat{\beta}</script><br />
 <script type="math/tex">= Y^TY - \hat{\beta}^TX^TY + \hat{\beta}^T[X^TX\hat{\beta} - X^TY]</script></p>
@@ -104,16 +105,15 @@
 
 <p>So…</p>
 
-<script type="math/tex; mode=display">RSS = Y^TY - \hat{\beta}^TX^TX\hat{\beta}</script>
+<script type="math/tex; mode=display">SSE = Y^TY - \hat{\beta}^TX^TX\hat{\beta}</script>
 
-<p>From this we can derive the mean square error:</p>
+<p>From this we can derive an unbiased estimate of <script type="math/tex">\sigma^2</script>, the mean square error:</p>
 
-<script type="math/tex; mode=display">MSE = \frac{RSS}{n - p}</script>
+<script type="math/tex; mode=display">MSE = \frac{SSE}{n - p}</script>
 
-<p>Note that in least squares, we always minimize the RSS. So the sum of the residuals is always equal to 0.</p>
+<p>Note that in least squares, we always minimize the SSE. So the sum of the residuals is always equal to 0.</p>
 
-<p><script type="math/tex">min( \Sigma (y - \hat{y})^2 )</script><br />
-<script type="math/tex">2 \Sigma (y - \hat{y}) = 0</script></p>
+<script type="math/tex; mode=display">min( \Sigma (y - \hat{y})^2 ) = 2 \Sigma (y - \hat{y}) = 0</script>
 
 <h1 id="distribution-of-beta-estimates">Distribution of Beta Estimates</h1>
 <p>We know that <br />
@@ -132,8 +132,22 @@
 
 <script type="math/tex; mode=display">Var[\beta] = \sigma^2 (X^TX)^{-1}</script>
 
-<p>Thus <script type="math/tex">\hat{\beta} ~ N(\beta, \sigma^2(X^TX)^{-1})</script>, and since we have to estimate <script type="math/tex">\sigma^2</script>, we use a t-distribution to determine the sigificance of the <script type="math/tex">\hat{\beta}</script> parameter.</p>
+<p>Thus <script type="math/tex">\hat{\beta}</script> ~ <script type="math/tex">N(\beta, \sigma^2(X^TX)^{-1})</script>, and since <script type="math/tex">\sigma^2</script> is estimated with <script type="math/tex">MSE</script>, we use a t-distribution to determine the sigificance of the <script type="math/tex">\hat{\beta}</script> parameter.</p>
 
+<h1 id="regression-assumptions">Regression Assumptions</h1>
+<p>Assumptions for OLS require that<br />
+* Linear relationship<br />
+* Independent, uncorrelated errors<br />
+* <script type="math/tex">e_i</script> ~ <script type="math/tex">N(0, \sigma^2)</script> - errors are normally distrbuted with constant variance.</p>
+
+<p>These assumptions fullfill the requirement of the Gauss-Markov theorem.</p>
+
+<p>The Gauss-Markov theorem states that if<br />
+* <script type="math/tex">E[e_i] = 0</script><br />
+* <script type="math/tex">Var[e_i] = \sigma^2</script> - homoskedasticity<br />
+* <script type="math/tex">cov[e_i, e_j] \forall i \ne j</script> - uncorrelated errors</p>
+
+<p>then the <script type="math/tex">\hat{\beta}</script> derived above is the best linear unbiased estimator (BLUE) in that it has the lowest variance of all unbiased linear estimators.</p>
 
   </article>
 

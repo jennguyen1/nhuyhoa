@@ -26,12 +26,12 @@ $$ X^TX\hat{\beta} = X^TY $$
 
 $$ \hat{\beta} = (X^TX)^{-1}X^TY $$
 
-# Residual Sum Squares
+# Estimating Variance: Sum Square Errors
 The residual is $$r = Y - \hat{Y} = Y - X\hat{\beta}$$.
 
-In least squares, this the sum of the squared residuals are minimized. 
+In least squares, the sum of the squared residuals are minimized. 
 
-$$ RSS = r^Tr $$
+$$ SSE = r^Tr $$
 $$ = (Y - X\hat{\beta})^T(Y - X\hat{\beta}) $$
 $$ = Y^TY - 2\hat{\beta}^TX^TY + \hat{\beta}^TX^TX\hat{\beta} $$
 $$ = Y^TY - \hat{\beta}^TX^TY + \hat{\beta}^T[X^TX\hat{\beta} - X^TY] $$
@@ -41,16 +41,15 @@ $$ = Y^TY - \hat{\beta}X^TY $$
 
 So...
 
-$$ RSS = Y^TY - \hat{\beta}^TX^TX\hat{\beta} $$
+$$ SSE = Y^TY - \hat{\beta}^TX^TX\hat{\beta} $$
 
-From this we can derive the mean square error:
+From this we can derive an unbiased estimate of $$\sigma^2$$, the mean square error:
 
-$$ MSE = \frac{RSS}{n - p} $$
+$$ MSE = \frac{SSE}{n - p} $$
 
-Note that in least squares, we always minimize the RSS. So the sum of the residuals is always equal to 0.
+Note that in least squares, we always minimize the SSE. So the sum of the residuals is always equal to 0.
 
-$$ min( \Sigma (y - \hat{y})^2 ) $$
-$$ 2 \Sigma (y - \hat{y}) = 0 $$
+$$ min( \Sigma (y - \hat{y})^2 ) = 2 \Sigma (y - \hat{y}) = 0 $$
 
 # Distribution of Beta Estimates
 We know that 
@@ -69,7 +68,19 @@ $$ = \sigma^2 (X^TX)^{-1}X^TX(X^TX)^{-1} $$
 
 $$ Var[\beta] = \sigma^2 (X^TX)^{-1} $$
 
-Thus $$ \hat{\beta} ~ N(\beta, \sigma^2(X^TX)^{-1}) $$, and since we have to estimate $$\sigma^2$$, we use a t-distribution to determine the sigificance of the $$\hat{\beta}$$ parameter.
+Thus $$ \hat{\beta} $$ ~ $$ N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma^2$$ is estimated with $$MSE$$, we use a t-distribution to determine the sigificance of the $$\hat{\beta}$$ parameter.
  
+# Regression Assumptions
+Assumptions for OLS require that
+* Linear relationship
+* Independent, uncorrelated errors
+* $$ e_i $$ ~ $$ N(0, \sigma^2) $$ - errors are normally distrbuted with constant variance.
 
+These assumptions fullfill the requirement of the Gauss-Markov theorem.
 
+The Gauss-Markov theorem states that if
+* $$ E[e_i] = 0 $$
+* $$ Var[e_i] = \sigma^2 $$ - homoskedasticity
+* $$ cov[e_i, e_j] \forall i \ne j $$ - uncorrelated errors
+
+then the $$\hat{\beta}$$ derived above is the best linear unbiased estimator (BLUE) in that it has the lowest variance of all unbiased linear estimators.
