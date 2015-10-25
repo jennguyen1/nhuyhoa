@@ -74,6 +74,11 @@ iris %>% # same as versicolor coefficient
 
 When the intercept term is excluded, the coefficients are no longer relative comparisons. Instead, they are the expected value of Y for that group. The test measures whether the mean is significant different from 0, doesn't portray much meaning. Because of this, there is no meaning in running a linear model without an intercept for categorical covariates.
 
+```{r}
+m2a <- lm(Petal.Length ~ Species - 1, data = iris)
+summary(m2a)$coefficients %>% round(3)
+```
+
 # Continuous and Categorical Variables
 ```{r}
 m3 <- lm(Sepal.Length ~ Petal.Length*Species, data = iris)
@@ -109,8 +114,8 @@ ggplot(data = iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
 We can perform hypothesis testing to determine whether the species have similar intercepts and/or similar slopes for Petal Length, thereby simplifying the model. 
 
 ```{r}
-m4 <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
-summary(m4)$coefficients %>% round(3)
+m3a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
+summary(m3a)$coefficients %>% round(3)
 ```
 
 If we were to remove the intercept, we have the following regression lines.

@@ -1,2 +1,2 @@
 # nhuyhoa
-My blog
+My notebook for statistics and data

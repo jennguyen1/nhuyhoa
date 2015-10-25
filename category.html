@@ -3,21 +3,23 @@ layout: page
 title: Categories
 permalink: /categories/
 ---
-<h1 style = "padding-top:0;">R</h1>
+
+<h1 style = "padding-top:0;">Statistics</h1>
 <section>
     <table>
         {% for post in site.posts %}
-        	{% if post.categories contains 'r' %}
-        		<tr>
-        			<td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-        			<td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        		</tr>
-        	{% endif %}
-	   {% endfor %}
+            {% if post.categories contains 'statistics' %}
+                <tr>
+                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+                </tr>
+            {% endif %}
+       {% endfor %}
     </table>
 </section>
 
 <br />
+
 
 <h1 style = "padding-top:0;">Data Wrangling</h1>
 <section>
@@ -35,17 +37,18 @@ permalink: /categories/
 
 <br />
 
-<h1 style = "padding-top:0;">Statistics</h1>
+
+<h1 style = "padding-top:0;">R</h1>
 <section>
     <table>
         {% for post in site.posts %}
-            {% if post.categories contains 'statistics' %}
-                <tr>
-                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-                </tr>
-            {% endif %}
-       {% endfor %}
+        	{% if post.categories contains 'r' %}
+        		<tr>
+        			<td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+        			<td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        		</tr>
+        	{% endif %}
+	   {% endfor %}
     </table>
 </section>
 

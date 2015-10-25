@@ -161,6 +161,21 @@ iris %>% # same as versicolor coefficient
 
 When the intercept term is excluded, the coefficients are no longer relative comparisons. Instead, they are the expected value of Y for that group. The test measures whether the mean is significant different from 0, doesn't portray much meaning. Because of this, there is no meaning in running a linear model without an intercept for categorical covariates.
 
+
+{% highlight r %}
+m2a <- lm(Petal.Length ~ Species - 1, data = iris)
+summary(m2a)$coefficients %>% round(3)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##                   Estimate Std. Error t value Pr(>|t|)
+## Speciessetosa        1.462      0.061  24.023        0
+## Speciesversicolor    4.260      0.061  69.998        0
+## Speciesvirginica     5.552      0.061  91.228        0
+{% endhighlight %}
+
 # Continuous and Categorical Variables
 
 {% highlight r %}
@@ -199,14 +214,14 @@ $$ Sepal.Length = (4.2 + -3.2) + (0.54 + 0.45) * Petal.Length $$
 
 Essentially what we have is 3 separate lines for each value of Species, the categorical variable. 
 
-![plot of chunk unnamed-chunk-9](/nhuyhoa/figure/source/2015-10-21-Interpret-Regression-Coef/unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-10](/nhuyhoa/figure/source/2015-10-21-Interpret-Regression-Coef/unnamed-chunk-10-1.png) 
 
 We can perform hypothesis testing to determine whether the species have similar intercepts and/or similar slopes for Petal Length, thereby simplifying the model. 
 
 
 {% highlight r %}
-m4 <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
-summary(m4)$coefficients %>% round(3)
+m3a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
+summary(m3a)$coefficients %>% round(3)
 {% endhighlight %}
 
 
