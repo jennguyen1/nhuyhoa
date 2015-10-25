@@ -1,0 +1,14 @@
+---
+layout: post
+title: "Quantile Quantile (QQ) Plots"
+date: "October 26, 2015"
+categories: statistics
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data, viz)
+```

@@ -71,16 +71,50 @@ $$ Var[\beta] = \sigma^2 (X^TX)^{-1} $$
 Thus $$ \hat{\beta} $$ ~ $$ N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma^2$$ is estimated with $$MSE$$, we use a t-distribution to determine the sigificance of the $$\hat{\beta}$$ parameter.
  
 # Regression Assumptions
-Assumptions for OLS require that
+Assumptions for OLS require $$ e_i $$ ~ $$ N(0, \sigma^2I) $$, in other words:
+* Normal distribution of errors
 * Linear relationship
+* Constant variance of the errors 
 * Independent, uncorrelated errors
-* $$ e_i $$ ~ $$ N(0, \sigma^2) $$ - errors are normally distrbuted with constant variance.
 
 These assumptions fullfill the requirement of the Gauss-Markov theorem.
 
 The Gauss-Markov theorem states that if
 * $$ E[e_i] = 0 $$
-* $$ Var[e_i] = \sigma^2 $$ - homoskedasticity
+* $$ Var[e_i] = \sigma^2I $$ - homoskedasticity
 * $$ cov[e_i, e_j] \forall i \ne j $$ - uncorrelated errors
 
 then the $$\hat{\beta}$$ derived above is the best linear unbiased estimator (BLUE) in that it has the lowest variance of all unbiased linear estimators.
+
+# Example
+
+{% highlight r %}
+y <- rnorm(100)
+x1 <- runif(100, 3, 7)
+x2 <- rexp(100, 2.2)
+x3 <- rpois(100, 1)
+X <- as.matrix(data.frame(1, x1, x2, x3))
+B <- solve(t(X) %*% X) %*% t(X) %*% y
+coef <- coef(lm(y ~ x1 + x2 + x3))
+c(B)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1]  0.43234086 -0.04314629 -0.19947222 -0.17239228
+{% endhighlight %}
+
+
+
+{% highlight r %}
+c(coef)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## (Intercept)          x1          x2          x3 
+##  0.43234086 -0.04314629 -0.19947222 -0.17239228
+{% endhighlight %}
+

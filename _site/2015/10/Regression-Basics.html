@@ -71,6 +71,7 @@
   <li><a href="#estimating-variance-sum-square-errors" id="markdown-toc-estimating-variance-sum-square-errors">Estimating Variance: Sum Square Errors</a></li>
   <li><a href="#distribution-of-beta-estimates" id="markdown-toc-distribution-of-beta-estimates">Distribution of Beta Estimates</a></li>
   <li><a href="#regression-assumptions" id="markdown-toc-regression-assumptions">Regression Assumptions</a></li>
+  <li><a href="#example" id="markdown-toc-example">Example</a></li>
 </ul>
 
 <p>The regression equation:</p>
@@ -135,19 +136,39 @@
 <p>Thus <script type="math/tex">\hat{\beta}</script> ~ <script type="math/tex">N(\beta, \sigma^2(X^TX)^{-1})</script>, and since <script type="math/tex">\sigma^2</script> is estimated with <script type="math/tex">MSE</script>, we use a t-distribution to determine the sigificance of the <script type="math/tex">\hat{\beta}</script> parameter.</p>
 
 <h1 id="regression-assumptions">Regression Assumptions</h1>
-<p>Assumptions for OLS require that<br />
+<p>Assumptions for OLS require <script type="math/tex">e_i</script> ~ <script type="math/tex">N(0, \sigma^2I)</script>, in other words:<br />
+* Normal distribution of errors<br />
 * Linear relationship<br />
-* Independent, uncorrelated errors<br />
-* <script type="math/tex">e_i</script> ~ <script type="math/tex">N(0, \sigma^2)</script> - errors are normally distrbuted with constant variance.</p>
+* Constant variance of the errors <br />
+* Independent, uncorrelated errors</p>
 
 <p>These assumptions fullfill the requirement of the Gauss-Markov theorem.</p>
 
 <p>The Gauss-Markov theorem states that if<br />
 * <script type="math/tex">E[e_i] = 0</script><br />
-* <script type="math/tex">Var[e_i] = \sigma^2</script> - homoskedasticity<br />
+* <script type="math/tex">Var[e_i] = \sigma^2I</script> - homoskedasticity<br />
 * <script type="math/tex">cov[e_i, e_j] \forall i \ne j</script> - uncorrelated errors</p>
 
 <p>then the <script type="math/tex">\hat{\beta}</script> derived above is the best linear unbiased estimator (BLUE) in that it has the lowest variance of all unbiased linear estimators.</p>
+
+<h1 id="example">Example</h1>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">y <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">100</span><span class="p">)</span>
+x1 <span class="o">&lt;-</span> runif<span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">7</span><span class="p">)</span>
+x2 <span class="o">&lt;-</span> rexp<span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">2.2</span><span class="p">)</span>
+x3 <span class="o">&lt;-</span> rpois<span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+X <span class="o">&lt;-</span> <span class="kp">as.matrix</span><span class="p">(</span><span class="kt">data.frame</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> x1<span class="p">,</span> x2<span class="p">,</span> x3<span class="p">))</span>
+B <span class="o">&lt;-</span> <span class="kp">solve</span><span class="p">(</span><span class="kp">t</span><span class="p">(</span>X<span class="p">)</span> <span class="o">%*%</span> X<span class="p">)</span> <span class="o">%*%</span> <span class="kp">t</span><span class="p">(</span>X<span class="p">)</span> <span class="o">%*%</span> y
+coef <span class="o">&lt;-</span> coef<span class="p">(</span>lm<span class="p">(</span>y <span class="o">~</span> x1 <span class="o">+</span> x2 <span class="o">+</span> x3<span class="p">))</span>
+<span class="kt">c</span><span class="p">(</span>B<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  0.43234086 -0.04314629 -0.19947222 -0.17239228</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kt">c</span><span class="p">(</span>coef<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## (Intercept)          x1          x2          x3 
+##  0.43234086 -0.04314629 -0.19947222 -0.17239228</code></pre></div>
+
 
   </article>
 

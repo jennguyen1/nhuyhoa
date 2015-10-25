@@ -1,0 +1,129 @@
+---
+layout: post
+title: "Interpretation of Regression Coefficients"
+date: "October 21, 2015"
+categories: statistics
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data, viz)
+```
+
+
+# Continuous Variables
+
+```{r}
+y <- mtcars$mpg
+x1 <- mtcars$wt
+x2 <- mtcars$drat
+m1 <- lm(y ~ x1 + x2)
+```
+
+With continuous variables, the $$ \beta $$ coefficient can be interpreted as the change in Y for a unit increase in X, holding all other x-values constant. The corresponding test measures whether this effect is significantly different from 0, after all other variables have been considered.
+
+
+```{r}
+summary(m1)$coefficients %>% round(3)
+b4 <- predict(m1, data.frame(x1 = 1, x2 = 0))
+after <- predict(m1, data.frame(x1 = 2, x2 = 0))
+after - b4 # same as x1 coefficient
+```
+
+When we fit a linear model, we generally include an intercept term. This intercept is interpreted as the expected value of Y when all x's are set to 0. The intercept is a nuisance parameter, we generally don't care about its significance. 
+
+```{r}
+summary(m1)$coefficients %>% round(3)
+predict(m1, data.frame(x1 = 0, x2 = 0)) # same as intercept term
+```
+
+If we were to remove the intercept term, we would have
+
+$$ Y = 0 + \beta_1 x_1 + \beta_2 x_2 $$ where $$ \beta_0 = 0 $$.
+
+Thus when we fit a regression without an intercept, we insist that the expected value of Y when all x's are 0 is 0. If we know that the intercept is 0, doing so will give us more residual degrees of freedom. However, care should be done in setting the intercept to 0, as this may lead to errors in estimating the other coefficients. 
+
+# Categorical Variables
+```{r}
+m2 <- lm(Petal.Length ~ Species, data = iris)
+```
+
+Linear models with categorical variables are converted into dummy variables. Coefficients rely some information about the expected value of Y for that category. 
+
+The intercept is interpreted as the expected value of Y for the baseline variable. 
+
+```{r}
+summary(m2)$coefficients %>% round(3)
+baseline <- iris %>% 
+  subset(Species == "setosa") %>% 
+  summarise(v1 = mean(Petal.Length))
+baseline # same as intercept term
+```
+
+The other coefficients represent the expected difference in Y between the X category and the baseline category. The corresponding test measures whether the expected value of Y for the X category and the baseline are significantly different from 0.
+
+```{r}
+summary(m2)$coefficients %>% round(3)
+iris %>% # same as versicolor coefficient
+  subset(Species == "versicolor") %>% 
+  summarise(d = mean(Petal.Length) - baseline) 
+```
+
+When the intercept term is excluded, the coefficients are no longer relative comparisons. Instead, they are the expected value of Y for that group. The test measures whether the mean is significant different from 0, doesn't portray much meaning. Because of this, there is no meaning in running a linear model without an intercept for categorical covariates.
+
+# Continuous and Categorical Variables
+```{r}
+m3 <- lm(Sepal.Length ~ Petal.Length*Species, data = iris)
+summary(m3)$coefficients %>% round(3)
+```
+
+This is a model fit with both continuous variables (Petal.Length) and categorical variables (Species). Let's break down the regression formulas.
+
+If Species == "setosa":
+$$ Sepal.Length = \beta_0 + \beta_1 * Petal.Length $$
+$$ Sepal.Length = 4.2 + 0.54 * Petal.Length $$
+
+
+If Species == "versicolor"
+$$ Sepal.Length = \beta_0 + \beta_1 * Petal.Length + \beta_2 + \beta_4 * Petal.Length $$
+$$ Sepal.Length = (\beta_0 + \beta_2) + (\beta_1 + \beta_4) * Petal.Length $$
+$$ Sepal.Length = (4.2 + -1.8) + (0.54 + 0.29) * Petal.Length $$
+
+If Species == "virginica"
+$$ Sepal.Length = \beta_0 + \beta_1 * Petal.Length + \beta_3 + \beta_5 * Petal.Length $$
+$$ Sepal.Length = (\beta_0 + \beta_3) + (\beta_1 + \beta_5) * Petal.Length $$
+$$ Sepal.Length = (4.2 + -3.2) + (0.54 + 0.45) * Petal.Length $$
+
+Essentially what we have is 3 separate lines for each value of Species, the categorical variable. 
+
+```{r, echo = FALSE}
+ggplot(data = iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") + 
+  ggtitle("Sepal Length vs Petal Length by Species")
+```
+
+We can perform hypothesis testing to determine whether the species have similar intercepts and/or similar slopes for Petal Length, thereby simplifying the model. 
+
+```{r}
+m4 <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
+summary(m4)$coefficients %>% round(3)
+```
+
+If we were to remove the intercept, we have the following regression lines.
+
+If Species == "setosa":
+$$ Sepal.Length = 4.2 + 0.54 * Petal.Length $$
+
+If Species == "versicolor"
+$$ Sepal.Length = 2.4 + (0.54 + 0.29) * Petal.Length $$
+
+If Species == "virginica"
+$$ Sepal.Length = 1.1 + (0.54 + 0.45) * Petal.Length $$
+
+This is essentially the same equations as the previous model.
+
+It is important to note even though both models generate similar regression lines, the overall model diagnostics ($$R^2$$, F statistic) will be different because the model is different.

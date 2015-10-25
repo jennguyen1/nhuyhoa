@@ -1,0 +1,14 @@
+---
+layout: post
+title: "Distribution Facts"
+date: "October 26, 2015"
+categories: statistics
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data, viz)
+```
