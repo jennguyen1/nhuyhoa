@@ -344,4 +344,27 @@ add %>% str_split("[+]")
 
 Whether it is subsetting, selecting or reshaping data, the versatility of regex characters can make most data cleaning tasks much simpler. 
 
+# Useful StringR Functions
+
+|function                                                  |description                                |
+|:---------------------------------------------------------|:------------------------------------------|
+|str_to_upper(s); str_to_lower(s); str_to_title(s)         |change string case                         |
+|str_dup(s, times)                                         |duplicate & concatenate char vector        |
+|str_c(s, sep=, collapse=)                                 |join multiple strings into a single string |
+|str_length()                                              |number of chars                            |
+|str_count(s, pattern=)                                    |count number of matches in a string        |
+|str_sub(s, start, end)                                    |extract & replace substrings               |
+|str_subset(s, pattern=)                                   |keep strings matching a pattern            |
+|str_detect(s, pattern=)                                   |detect presence of pattern                 |
+|str_locate(s, pattern=); str_locate_all()                 |locate positions of patterns               |
+|str_extract(s, pattern=); str_extract_all()               |extract piece(s) that match pattern        |
+|str_match(s, pattern=); str_match_all()                   |extract matched groups                     |
+|str_replace(s, pattern=, replacement=); str_replace_all() |replace matched patterns                   |
+|str_replace_na(s, replacement=)                           |replace NA with others                     |
+|str_split(s, pattern=)                                    |split by pattern                           |
+|str_trim(s, side=)                                        |trim white space                           |
+|str_pad(s, width, side=, pad=)                            |pad string                                 |
+|str_wrap()                                                |wrap strings into formatted paragraphs     |
+|word(s, start=, end=, sep=)                               |extract words from sentence                |
+
 [stringr_link]: https://cran.r-project.org/web/packages/stringr/index.html

@@ -48,6 +48,10 @@
         
           
         
+          
+          <a class="page-link" href="/nhuyhoa//page2/index.html">About</a>
+          
+        
       </div>
     </nav>
 
@@ -79,6 +83,7 @@
       <li><a href="#using-metacharacters-as-normal-characters" id="markdown-toc-using-metacharacters-as-normal-characters">Using Metacharacters as Normal Characters</a></li>
     </ul>
   </li>
+  <li><a href="#useful-stringr-functions" id="markdown-toc-useful-stringr-functions">Useful StringR Functions</a></li>
 </ul>
 
 <p>Being able to manipulate text is very important when it comes to data wrangling. A lot of the data cleaning I do requires performing some sort of fuzzy match rather than exact matches. Regular expressions (regex) make pattern matching possible. Here, I will outline R’s regex symbols that I find useful.</p>
@@ -367,6 +372,91 @@ add <span class="o">%&gt;%</span> str_split<span class="p">(</span><span class="
 ## [1] &quot;1&quot; &quot;2&quot;</code></pre></div>
 
 <p>Whether it is subsetting, selecting or reshaping data, the versatility of regex characters can make most data cleaning tasks much simpler.</p>
+
+<h1 id="useful-stringr-functions">Useful StringR Functions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">function</th>
+      <th style="text-align: left">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">str_to_upper(s); str_to_lower(s); str_to_title(s)</td>
+      <td style="text-align: left">change string case</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_dup(s, times)</td>
+      <td style="text-align: left">duplicate &amp; concatenate char vector</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_c(s, sep=, collapse=)</td>
+      <td style="text-align: left">join multiple strings into a single string</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_length()</td>
+      <td style="text-align: left">number of chars</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_count(s, pattern=)</td>
+      <td style="text-align: left">count number of matches in a string</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_sub(s, start, end)</td>
+      <td style="text-align: left">extract &amp; replace substrings</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_subset(s, pattern=)</td>
+      <td style="text-align: left">keep strings matching a pattern</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_detect(s, pattern=)</td>
+      <td style="text-align: left">detect presence of pattern</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_locate(s, pattern=); str_locate_all()</td>
+      <td style="text-align: left">locate positions of patterns</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_extract(s, pattern=); str_extract_all()</td>
+      <td style="text-align: left">extract piece(s) that match pattern</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_match(s, pattern=); str_match_all()</td>
+      <td style="text-align: left">extract matched groups</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_replace(s, pattern=, replacement=); str_replace_all()</td>
+      <td style="text-align: left">replace matched patterns</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_replace_na(s, replacement=)</td>
+      <td style="text-align: left">replace NA with others</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_split(s, pattern=)</td>
+      <td style="text-align: left">split by pattern</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_trim(s, side=)</td>
+      <td style="text-align: left">trim white space</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_pad(s, width, side=, pad=)</td>
+      <td style="text-align: left">pad string</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">str_wrap()</td>
+      <td style="text-align: left">wrap strings into formatted paragraphs</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">word(s, start=, end=, sep=)</td>
+      <td style="text-align: left">extract words from sentence</td>
+    </tr>
+  </tbody>
+</table>
 
 
   </article>

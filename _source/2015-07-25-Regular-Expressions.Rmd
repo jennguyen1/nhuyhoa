@@ -180,4 +180,50 @@ add %>% str_split("[+]")
 
 Whether it is subsetting, selecting or reshaping data, the versatility of regex characters can make most data cleaning tasks much simpler. 
 
+# Useful StringR Functions
+```{r stringr, echo = FALSE}
+func <- c("str_to_upper(s); str_to_lower(s); str_to_title(s)",
+          "str_dup(s, times)",
+          "str_c(s, sep=, collapse=)", 
+          "str_length()",
+          "str_count(s, pattern=)",
+          "str_sub(s, start, end)",
+          "str_subset(s, pattern=)",
+          "str_detect(s, pattern=)",
+          "str_locate(s, pattern=); str_locate_all()",
+          "str_extract(s, pattern=); str_extract_all()",
+          "str_match(s, pattern=); str_match_all()",
+          "str_replace(s, pattern=, replacement=); str_replace_all()",
+          "str_replace_na(s, replacement=)",
+          "str_split(s, pattern=)",
+          "str_trim(s, side=)",
+          "str_pad(s, width, side=, pad=)",
+          "str_wrap()",
+          "word(s, start=, end=, sep=)")
+
+descr <- c("change string case", 
+           "duplicate & concatenate char vector",
+           "join multiple strings into a single string", 
+           "number of chars",
+           "count number of matches in a string",
+           "extract & replace substrings",
+           "keep strings matching a pattern",
+           "detect presence of pattern", 
+           "locate positions of patterns",
+           "extract piece(s) that match pattern",
+           "extract matched groups",
+           "replace matched patterns",
+           "replace NA with others",
+           "split by pattern",
+           "trim white space",
+           "pad string",
+           "wrap strings into formatted paragraphs",
+           "extract words from sentence"
+           )
+
+data.frame(func, descr) %>% 
+  set_colnames(c("function", "description")) %>% 
+  kable()
+```
+
 [stringr_link]: https://cran.r-project.org/web/packages/stringr/index.html

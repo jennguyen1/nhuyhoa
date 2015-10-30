@@ -1,0 +1,45 @@
+---
+layout: post
+title: "Jacobian Theorem"
+date: "October 26, 2015"
+categories: statistics
+---
+
+* TOC
+{:toc}
+
+How do we compute the distribution function of a random variable?
+
+# Jacobian Theorem For 1 Variable
+Let $$X$$ be a random variable with a known pdf. Let $$ Y = f(X) $$ a random variable that is a function of X. To compute the distribution of $$Y$$,
+
+1. Find $$ g^{-1}(Y) = X $$
+2. Compute $$ \frac{dg^{-1}}{dY} $$
+
+Then 
+
+$$ f_y(y) = f_x( g^{-1}(y) ) * abs \left( \frac{dg^{-1}}{dY} \right) $$
+
+## Example
+
+Let $$B$$ ~ $$ beta(\frac{\alpha}{2}, \frac{\beta}{2}) $$ and $$ F = \frac{\beta B}{\alpha (1 - B)} $$. What is the distribution of F?
+
+We have $$ f_b(x)= x^{\alpha/2 - 1} (1 - x)^{\beta/2 - 1} \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)}{\Gamma\left(\frac{\alpha}{2}\right)\Gamma\left(\frac{\beta}{2}\right)} $$
+
+$$ Y = F = \frac{\beta B}{\alpha (1 - B)} $$
+$$ \alpha F - \alpha FB = \beta B$$
+$$ \alpha F = B (\beta + \alpha F) $$
+1. $$ g^{-1}(Y) = B = \frac{\alpha F}{\beta + \alpha F} $$
+2. $$ \frac{dg^{-1}}{dY} = \frac{\alpha\beta}{(\beta + \alpha F)^2} $$
+
+Now plug in $$ f_y(y) = f_b\left( \frac{\alpha F}{\beta + \alpha F}  \right) abs \left( \frac{\alpha\beta}{(\beta + \alpha F)^2} \right) $$
+$$ = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {\alpha/2 - 1} \left( 1 - \frac{\alpha F}{\beta + \alpha F} \right) ^ {\beta/2 - 1} \frac{\alpha\beta}{(\beta + \alpha F)^2} $$
+$$ = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {\alpha/2 - 1} \left( \frac{\alpha F}{\beta + \alpha F} \right) \left( \frac{1}{F} \right) \left( \frac{\beta}{\beta + \alpha F}  \right) \left( \frac{\beta}{\beta + \alpha F} \right) ^ {\beta/2 - 1} $$
+$$ = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {\alpha/2} \left( \frac{1}{F} \right) \left( \frac{\beta}{\beta + \alpha F} \right) ^ {\beta/2} $$
+
+$$ f_y(y) = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \alpha ^{\alpha/2} \beta ^{\beta/2} F^{\alpha/2 - 1} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {(\alpha + \beta) / 2}  $$
+
+Note that this is the pdf for the $$ F_{\alpha, \beta} $$
+
+# Jacobian Theorem for 2 Variables
+

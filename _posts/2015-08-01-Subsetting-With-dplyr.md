@@ -2072,11 +2072,9 @@ Note: The `jn.general::refine()` function used here is a wrapper function for `F
 
 # Additional Resources
 Subsetting functions are only a fraction of what the dplyr package offers for data work. Here are a few links to the additional resources on the dplyr package:  
-[dplyr vignette][dplyr_vignette_link]{:target="blank"}  
 [dplyr cheatsheet][dplyr_cheatsheet_link]{:target="blank"}
 
 [magrittr_link]: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html
 [jn.general_link]: https://github.com/jnnguyen2/jn.general
 [regex_link]: http://jnnguyen2.github.io/nhuyhoa/r/data_wrangling/2015/07/25/Regular-Expressions/
-[dplyr_vignette_link]: https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
 [dplyr_cheatsheet_link]: https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
