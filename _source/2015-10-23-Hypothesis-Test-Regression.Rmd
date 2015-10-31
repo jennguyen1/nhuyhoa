@@ -15,7 +15,7 @@ library(jn.general)
 # F Test
 Suppose we want to compare 2 models, where one is nested in the other. Let H correspond to the simplified model with p - q parameters. Let A correspond to the full model with p parameters. Then we can compare the two models with an F test.
 
-$$ F = \frac{(SSE_H - SSE_A)/ (DFA_A - DF_H)}{SSE_A/DF_A} $$
+$$ F = \frac{(SSE_H - SSE_A)/ (df_A - df_H)}{SSE_A/df_A} $$
 
 where $$ F $$ ~ $$ F_{q, n - p} $$ and SSE is the sum square errors and DF is the residual degrees of freedom corresponding to the specified model.
 
