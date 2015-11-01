@@ -1128,7 +1128,7 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 
 <p>Helper functions such as <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> are perhaps the most powerful feature of the select function. For example, let’s start with extracting the pretest score columns.</p>
 
-<p>See the <a href="http://jnnguyen2.github.io/nhuyhoa/r/data_wrangling/2015/07/25/Regular-Expressions/" target="blank">regular expression post</a> for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable.</p>
+<p>See the <a href="http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html" target="blank">regular expression post</a> for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># use matches to find all pretest score columns</span>
 data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>

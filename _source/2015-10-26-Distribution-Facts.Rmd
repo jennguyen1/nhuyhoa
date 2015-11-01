@@ -36,7 +36,7 @@ $$ t = \frac{Z}{\sqrt{V/k}} $$
 
 is the student's $$t$$-distribution with $$k$$ df. 
 
-Note that $$ t $$ converges in distribution to $$ N(0, 1) $$ as $$ n \rightarrow \infty $$
+The $$t$$-distribution is essentially the normal distribution with fatter tails. Note that $$ t $$ converges in distribution to $$ N(0, 1) $$ as $$ n \rightarrow \infty $$. 
 
 # F Distribution
 Let $$V$$ ~ $$ X^2_m $$ and $$W$$ ~ $$ X^2_k $$ and $$ V \perp W $$ then 

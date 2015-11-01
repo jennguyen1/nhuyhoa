@@ -303,5 +303,5 @@ Subsetting functions are only a fraction of what the dplyr package offers for da
 
 [magrittr_link]: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html
 [jn.general_link]: https://github.com/jnnguyen2/jn.general
-[regex_link]: http://jnnguyen2.github.io/nhuyhoa/r/data_wrangling/2015/07/25/Regular-Expressions/
+[regex_link]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 [dplyr_cheatsheet_link]: https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf

@@ -1,0 +1,54 @@
+---
+layout: post
+title: "R Cool Functions List"
+date: "July 24, 2015"
+categories: R
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data, viz)
+```
+
+
+# Numeric Types
+```{r, echo = FALSE}
+func <- c("seq(from, to, by)",
+          "range()",
+          "quantile(x, probs)",
+          "cut(x, breaks)",
+          "dist(x)"
+          )
+
+descr <- c("generate regular sequences",
+           "produces sample quantiles",
+           "computes min/max of all args",
+           "cuts up continuous values into factor intervals",
+           "computes pairwise distances for all points"
+           )
+
+data.frame(func, descr) %>% kable
+```
+
+# Logical Types
+```{r, echo = FALSE}
+func <- c("which()",
+          "%in%", 
+          "between(x, lower, upper)"
+          )
+
+descr <- c("gives the TRUE indices",
+           "finds matches", 
+           "whether x is between l and u"
+           )
+
+data.frame(func, descr) %>% kable
+```
+
+# Character Types
+
+# Any Type
+sample (takes a random sample of x), order, sort, table, str, summary, names, colnames, rownames, assign("name", obj), get("name"), expand.grid, save rdata, interaction, mapvalues

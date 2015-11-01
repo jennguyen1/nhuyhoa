@@ -9,7 +9,11 @@ date: "October 30, 2015"
 
 To navigate:
 {% highlight r %}
+# travel to the specified location
 cd filepath
+
+# travel back one directory
+cd ..
 {% endhighlight %}
 
 To upload to a folder:
