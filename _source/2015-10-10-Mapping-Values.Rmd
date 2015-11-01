@@ -1,0 +1,20 @@
+---
+layout: post
+title: "Mapping Values"
+date: "October 10, 2015"
+categories: R data_wrangling
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data)
+```
+
+# ifelse
+
+# mapvalues
+
+# setnames

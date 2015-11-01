@@ -49,6 +49,38 @@ data.frame(func, descr) %>% kable
 ```
 
 # Character Types
+```{r}
+func <- c(""
+          )
+
+descr <- c(""
+           )
+
+data.frame(func, descr) %>% kable
+```
+
+# Input/Output
+```{r}
+func <- c("list.files(dir)",
+          "save(list = ls(), file = '__.Rdata')"
+          )
+
+descr <- c("obtain a list of all files in given file path",
+           "save all vars for another session"
+           )
+
+data.frame(func, descr) %>% kable
+```
+
 
 # Any Type
-sample (takes a random sample of x), order, sort, table, str, summary, names, colnames, rownames, assign("name", obj), get("name"), expand.grid, save rdata, interaction, mapvalues
+```{r}
+func <- c(""
+          )
+
+descr <- c(""
+           )
+
+data.frame(func, descr) %>% kable
+```
+sample (takes a random sample of x), order, sort, table, str, summary, names, colnames, rownames, assign("name", obj), get("name"), expand.grid, interaction, mapvalues

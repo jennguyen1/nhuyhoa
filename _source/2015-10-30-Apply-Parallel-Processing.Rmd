@@ -87,6 +87,8 @@ y %>% unlist
 ```
 Here the first row is the column name, the second row is the count of even values
 
+Note that data frames of one type are technically arrays too. So they can be passed as the .data argument to `a*ply()`.
+
 ## r*ply
 The function `r*ply(.n, .expr, ...)` replicates an expression/function n times. This is great for running multiple iterations of random number generator.
 
@@ -103,6 +105,7 @@ rdply(5, runif(3)) %>% nhuyhoa_df_print()
 </div>
 
 # Foreach Functions
+Under Construction :)
 
 # Parallel Processing
 Parallel processing allows independent tasks to be dispatched to different cores. These cores compute them in parallel and combine the results. Running tasks in parallel can reduce the runtime in half or more! Parallel processing is only recommended for time-consuming tasks. With shorter tasks, it may take more time to set up the cores than to run the analysis iteratively!
@@ -135,7 +138,27 @@ Note that this is one of many ways to run parallel processing.
 
 # Cool Uses of Apply
 
+Say we have a number of files that we want to open. Rather than reading them in one by one, we could use an apply loop.
 
+{% highlight r %}
+# given a directory
+directory <- "~/Desktop/file_monster/"
+
+# get a list of all the files in the directory
+file_paths <- list.files(directory)
+
+# we only want to open the csv files
+file_paths <- file_paths %>% str_subset(".csv")
+
+# open all of our csv files using data.table::fread
+files <- llply(file_paths, data.table::fread, .progress = "time")
+{% endhighlight %}
+
+And there you have it, all the files you need in one compact list. The great thing about llply is that you aren't restricted to simple functions. So instead of just reading in the file, you could do even more data processing to fit your needs. The sky's the limit!
+
+
+- extract
+- rbindlist
 
 
 [sac_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/Split_Apply-Combine.html

@@ -8,8 +8,89 @@ categories: R data_wrangling
 * TOC
 {:toc}
 
+```{r, echo = FALSE}
+library(jn.general)
+lib(data)
+```
+
+Say we are given a data set where we want to group by a given category and compute summary statistics based on that category. This is the process for computing these statistics.
+
+1. Split: split by the variable
+2. Apply: apply the function to each split
+3. Combine: combine the results back into a single data structure
+
+Collectively this is known as split-apply-combine.
+
+# Example Data
+```{r generate random data, echo = FALSE}
+# generate random data
+set.seed(1)
+class <- rdata(n = 1000,
+               # teacher ids
+               gen_seq(1, 20, name = "teacher_id"),
+               
+               # student ids
+               gen_num(name = "student_id", values = 100:999),
+               
+               # student-teacher weight
+               gen_dist(runif, name = "weight"),
+               
+               # test scores
+               gen_dist(rnorm, ncol = 2, name = c("posttest_score", "pretest_score")),
+               
+               # grade & subject
+               gen_seq(11, 12, name = "grade"),
+               gen_char(values = c("math", "read"), name = "subject"),
+               
+               # student demographics
+               gen_gender(name = "d_gender"),
+               gen_bool(ncol = 4, name = c("d_black", "d_hispanic", "d_asian", "d_native"), probs = c(0.2, 0.8)),
+               
+               # remove student id
+               .id = FALSE
+               )
+
+# remove student duplicates
+fix_duplicates <- to_be(class, duplicated_data, teacher_id, student_id, grade, subject)
+# keep non-duplicates
+keep <- fix_duplicates[["not_to_be"]]
+# extract 1st of the duplicated & combine with keep
+class <- fix_duplicates[["to_be"]] %>% 
+  group_by(student_id) %>% 
+  do(extract(., 1,)) %>% 
+  rbind(keep) %>% 
+  data.table %>% 
+  dplyr::select(student_id, teacher_id, weight, subject, grade, everything())
+
+# order columns
+setkey(class, student_id, teacher_id)
+```
+
+This is the example data set we will use.
+
+<div class = "dftab">
+```{r, echo = FALSE}
+class %>% nhuyhoa_df_print()
+```
+</div>
+
 # Using Apply Functions
+
+split, llply
 
 # Using dplyr
 
+## mutate
+
+## summarise
+
+## mutate_each and summarise_each
+
+## do
+mutate, summarise, do, summarise each, mutate each
+weighted mean using summarise each
+do is in - given a data frame, how do we split it up? extract 1st row etc
+
 # Using data.table
+
+
