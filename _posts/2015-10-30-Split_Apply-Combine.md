@@ -118,9 +118,20 @@ This is the example data set we will use.
 
 # Using Apply Functions
 
+split, llply
+
 # Using dplyr
 
+## mutate
+
+## summarise
+
+## mutate_each and summarise_each
+
+## do
 mutate, summarise, do, summarise each, mutate each
+weighted mean using summarise each
+do is in - given a data frame, how do we split it up? extract 1st row etc
 
 # Using data.table
 

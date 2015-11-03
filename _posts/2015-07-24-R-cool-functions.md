@@ -31,5 +31,59 @@ categories: R
 
 # Character Types
 
+{% highlight r %}
+func <- c(""
+          )
+
+descr <- c(""
+           )
+
+data.frame(func, descr) %>% kable
+{% endhighlight %}
+
+
+
+|func |descr |
+|:----|:-----|
+|     |      |
+
+# Input/Output
+
+{% highlight r %}
+func <- c("list.files(dir)",
+          "save(list = ls(), file = '__.Rdata')"
+          )
+
+descr <- c("obtain a list of all files in given file path",
+           "save all vars for another session"
+           )
+
+data.frame(func, descr) %>% kable
+{% endhighlight %}
+
+
+
+|func                                 |descr                                         |
+|:------------------------------------|:---------------------------------------------|
+|list.files(dir)                      |obtain a list of all files in given file path |
+|save(list = ls(), file = '__.Rdata') |save all vars for another session             |
+
+
 # Any Type
-sample (takes a random sample of x), order, sort, table, str, summary, names, colnames, rownames, assign("name", obj), get("name"), expand.grid, save rdata, interaction, mapvalues
+
+{% highlight r %}
+func <- c(""
+          )
+
+descr <- c(""
+           )
+
+data.frame(func, descr) %>% kable
+{% endhighlight %}
+
+
+
+|func |descr |
+|:----|:-----|
+|     |      |
+sample (takes a random sample of x), order, sort, table, str, summary, names, colnames, rownames, assign("name", obj), get("name"), expand.grid, interaction, mapvalues

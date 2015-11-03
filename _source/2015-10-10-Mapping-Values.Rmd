@@ -11,10 +11,56 @@ categories: R data_wrangling
 ```{r, echo = FALSE}
 library(jn.general)
 lib(data)
+subjects <- c("reading", "writing", "language arts", "english", "algebra", "geometry", "calculus", "statistics", "science")
 ```
 
 # ifelse
+The function `ifelse()` provides an easy way to do this. The format is `ifelse(CONDITION, TRUE_VALUE, FALSE_VALUE)`.
+
+Here's an example:
+```{r}
+# change the vowels to "vowel" and non-vowels to "consonant"
+ifelse(letters %in% c("a", "e", "i", "o", "u"), "vowel", "consonant")
+
+# change the vowels to "vowel" and keep non-vowels as they are
+ifelse(letters %in% c("a", "e", "i", "o", "u"), "vowel", letters)
+```
 
 # mapvalues
+The function `plyr::mapvalues()` is a more versatile version of `ifelse()`. The format is `mapvalues(VECTOR, FROM_VALUES, TO_VALUES)`, where the $$i^{th}$$ value in FROM_VALUES is changed to the $$i^{th}$$ value in TO_VALUES.
+
+Here's an example:
+```{r}
+# start with this vector
+subjects
+
+# simplify subjects to reading and math
+mapvalues(subjects, 
+          c("reading", "writing", "language arts", "english",
+            "algebra", "geometry", "calculus", "statistics"),
+          c(rep("read", 4), rep("math", 4)))
+```
+
+Here the reading-related subjects were simplified to `"read"` and the mathematics-related subjects to were simplified to `"math"`. Notice how values not listed, such as `"science"`, was not affected. 
 
 # setnames
+The function `data.table::setnames()` is equivalent to `mapvalues()` but is used solely for renaming data frame columns.
+
+Here's an example:
+
+<div class = "dftab">
+```{r, echo = FALSE}
+iris %>% nhuyhoa_df_print()
+```
+</div> <p></p>
+
+```{r}
+# make the column names lower case
+setnames(iris, colnames(iris), tolower(colnames(iris)))
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+iris %>% nhuyhoa_df_print()
+```
+</div> <p></p>

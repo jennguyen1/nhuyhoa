@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Regression Confidence & Prediction Intervals"
-date: "October 21, 2015"
+date: "October 23, 2015"
 categories: statistics
 ---
 
@@ -57,5 +57,5 @@ Thus, we can conclude that $$ e_0 \perp \hat{Y}_0 $$ and the above prediction in
 # Example
 The plot below displays the fitted line (black), 95% confidence interval (blue), and 95% prediction intervals (green) for the estimated Y. Notice that the prediction intervals are much wider than the confidence intervals to account for prediction error. Also note that the bands are tighter around the $$\bar{x}$$ and wider at points farther away from $$\bar{x}$$. 
 
-![plot of chunk unnamed-chunk-2](/nhuyhoa/figure/source/2015-10-21-Regression-Intervals/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](/nhuyhoa/figure/source/2015-10-23-Regression-Intervals/unnamed-chunk-2-1.png) 
 

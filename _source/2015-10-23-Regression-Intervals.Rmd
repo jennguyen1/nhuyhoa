@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Regression Confidence & Prediction Intervals"
-date: "October 21, 2015"
+date: "October 23, 2015"
 categories: statistics
 ---
 
