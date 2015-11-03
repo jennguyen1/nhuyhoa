@@ -245,6 +245,7 @@ As an artificial example, let's standardize the posttest scores by grade and sub
 
 
 These are the means and standard deviations before standardizing.
+
 <div class = "dftab">
 <table>
  <thead>
@@ -295,6 +296,7 @@ class <- class %>%
 {% endhighlight %}
 
 These are the means and standard deviations after standardizing.
+
 <div class = "dftab">
 <table>
  <thead>

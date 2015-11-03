@@ -171,6 +171,7 @@ af <- class2 %>%
 ```
 
 These are the means and standard deviations before standardizing.
+
 <div class = "dftab">
 ```{r, echo = FALSE}
 b4 %>% nhuyhoa_df_print()
@@ -188,6 +189,7 @@ class <- class %>%
 {% endhighlight %}
 
 These are the means and standard deviations after standardizing.
+
 <div class = "dftab">
 ```{r, echo = FALSE}
 af %>% nhuyhoa_df_print()
