@@ -805,3 +805,12 @@ classDT[, list(mean = mean(z_post), sd = sd(post)), by = list(subject, grade)]
 </tbody>
 </table>
 </div>
+
+# Additional Resources
+See these additional resources for more information regarding the topics and packages mentioned in this post.
+
+[dplyr cheatsheet][dplyr_cheatsheet_link]{:target="blank"}
+[data.table cheatsheet][dt_cheatsheet_link]{:target="blank"}
+
+[dplyr_cheatsheet_link]: https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+[dt_cheatsheet_link]: https://s3.amazonaws.com/assets.datacamp.com/img/blog/data+table+cheat+sheet.pdf
