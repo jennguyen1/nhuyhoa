@@ -212,13 +212,15 @@ file_paths <- file_paths %>% str_subset(".csv")
 
 # open all of our csv files using data.table::fread
 files <- llply(file_paths, data.table::fread, .progress = "time")
+
+# if all the files are of the same format, combine them into one file
+super_set <- rbindlist(files)
 {% endhighlight %}
 
 And there you have it, all the files you need in one compact list. The great thing about llply is that you aren't restricted to simple functions. So instead of just reading in the file, you could do even more data processing to fit your needs. The sky's the limit!
 
 
 - extract
-- rbindlist
 
 
 [sac_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/Split_Apply-Combine.html

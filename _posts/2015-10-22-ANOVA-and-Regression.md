@@ -52,9 +52,9 @@ anova(m)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 {% endhighlight %}
 
-Here we see that the $$F$$ statistic, a ratio of the mean square errors, is too big to be due to chance with a p-value < 0.05. This means that the variability accounted for by the Species variable is significantly greater than the variability of the error. Another way to say this is that the variability between Species is significantly greater than the pooled variability within treatments, assuming all treatments have equal variance. 
+Here we see that the $$F$$ statistic, a ratio of the mean square errors, is too big to be due to chance with a p-value < 0.05. This means that the variability accounted for by the $$Species$$ variable is significantly greater than the variability of the error. Another way to say this is that the variability between $$Species$$ is significantly greater than the pooled variability within treatments, assuming all treatments have equal variance. 
 
-This basic case is known as single-factor ANOVA. The procedures here can apply to basically any model, with categorical or continuous variables. 
+This basic case is known as single-factor ANOVA. The procedures here can be extended to any model, with categorical or continuous variables. 
 
 Consider the follow model:
 
@@ -86,7 +86,7 @@ We had looked at the summary table for this model in a previous post. The result
 * 2nd row: after $$Petal.Length$$ has been taken into consideration, the variance accounted for by $$Species$$ is signficantly greater than the variance of the error
 * 3rd row: after $$Petal.Length$$ and $$Species$$ have been taken into consideration, the variance accounted for by the interaction of $$Petal.Length$$ and $$Species$$ is not significantly different than the variance of the error
 
-These extensions from the basic case are otherwise known as ANCOVA (analysis of covariance), MANOVA (multivariate analysis of variance), and MANCOVA (multivariate analysis of variance). They can all be assessed with linear models.
+These extensions from the basic case are known as ANCOVA (analysis of covariance), MANOVA (multivariate analysis of variance), and MANCOVA (multivariate analysis of variance). They can all be assessed with linear models using the summary table or anova table in R.
 
 # Comparing Models
 Suppose we want to compare 2 models, where one is nested in the other. Let H correspond to the simplified model with p - q parameters. Let A correspond to the full model with p parameters. Then we can compare the two models with a test statistic
@@ -136,4 +136,4 @@ anova(modh, moda)
 ## 2    144 16.301  2   0.38098 1.6828 0.1895
 {% endhighlight %}
 
-Thus we conclude that for this data set, the full and simplified model are not significantly different frome each other. We conclude that the interaction term is not significantly different from 0, meaning that the slope of Petal.Length on Sepal.Length is the same for all species. 
+Thus we conclude that for this data set, the full and simplified model are not significantly different from each other. The interaction term is not significantly different from 0, meaning that the slope of Petal.Length on Sepal.Length is the same for all species. 
