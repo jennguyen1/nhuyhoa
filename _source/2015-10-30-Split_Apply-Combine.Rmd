@@ -11,6 +11,7 @@ categories: R data_wrangling
 ```{r, echo = FALSE}
 library(jn.general)
 lib(data)
+options(digits = 4)
 ```
 
 Say we are given a data set where we want to group by a given category and compute summary statistics based on that category. This is the process for computing these statistics.
@@ -64,6 +65,8 @@ class <- fix_duplicates[["to_be"]] %>%
 
 # order columns
 setkey(class, student_id, teacher_id)
+# fix format
+class <- data.frame(class)
 ```
 
 This is the example data set we will use.
@@ -76,19 +79,187 @@ class %>% nhuyhoa_df_print()
 
 # Using Apply Functions
 
-split, llply
+The two main functions here are `split()` and `llply()`. 
+
+Let's compute the mean posttest & pretest score for males and females for each grade and subject.
+```{r}
+class %>% 
+  # split: by the subject, grade, and gender
+  split(interaction(class$d_gender, class$grade, class$subject)) %>% 
+  # apply: compute mean posttest & pretest score for each split
+  llply(function(x){
+    data.frame(descr = unique(paste(x$subject, x$grade, x$d_gender)), 
+               post = mean(x$posttest_score), 
+               pre = mean(x$pretest_score))
+  }) %>% 
+  # combine: rbind the results together as a vector
+  rbindlist()
+```
 
 # Using dplyr
-
-## mutate
+The dplyr package provides a easier framework to split data, apply functions, and combine results.
 
 ## summarise
+The `summarise()` function summarises data into a single row of values. 
 
-## mutate_each and summarise_each
+Let's count the number of males and females in each grade and subject.
+
+{% highlight r %}
+class %>% 
+  # split: by subject & grade
+  group_by(subject, grade) %>%
+  # apply: count functions
+  summarise(
+    n_students = n(),
+    n_male = sum(d_gender == "male"),
+    n_female = sum(d_gender == "female")
+  )
+  # combine: dplyr does this automatically
+{% endhighlight %}
+
+<div class = "dftab">
+```{r, echo = FALSE}
+df <- class %>% 
+  # split: by subject & grade
+  group_by(subject, grade) %>% 
+  # apply: count functions
+  summarise(
+    n_students = n(),
+    n_male = sum(d_gender == "male"),
+    n_female = sum(d_gender == "female")
+  ) 
+  # combine: dplyr does this automatically
+df %>% nhuyhoa_df_print(5)
+```
+</div>
+
+## mutate
+The `mutate()` function makes a new columns and appends them to the data frame. It can be used for SAC or just to generate new columns on the fly.
+
+```{r}
+# make new columns
+class %>% 
+  mutate(
+    # current year
+    year = 2015,
+    # gives a score of proficient if posttest score is in the top quantile
+    proficient = ifelse(posttest_score > quantile(posttest_score)[4], "proficient", "not_proficient")
+  ) %>% 
+  colnames
+```
+
+As an artificial example, let's standardize the posttest scores by grade and subject. 
+```{r, echo = FALSE}
+# means and standard deviations by grade and subject before standardizing
+b4 <- class %>% 
+  group_by(subject, grade) %>% 
+  summarise(mean = mean(posttest_score), sd = sd(posttest_score))
+
+# standardize by grade & subject
+class2 <- class %>% 
+  # split: by grade & subject
+  group_by(subject, grade) %>% 
+  # apply: standardize the posttest score
+  mutate(z_post = (posttest_score - mean(posttest_score)) / sd(posttest_score))
+  # combine: dplyr does this automatically
+
+# means and standard deviations by grade and subject after standardizing
+af <- class2 %>% 
+  group_by(subject, grade) %>% 
+  summarise(mean = mean(z_post) %>% round, sd = sd(z_post))
+
+```
+
+These are the means and standard deviations before standardizing.
+<div class = "dftab">
+```{r, echo = FALSE}
+b4 %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+{% highlight r %}
+# standardize by grade & subject
+class <- class %>% 
+  # split: by grade & subject
+  group_by(subject, grade) %>% 
+  # apply: standardize the posttest score
+  mutate(z_post = (posttest_score - mean(posttest_score)) / sd(posttest_score))
+  # combine: dplyr does this automatically
+{% endhighlight %}
+
+These are the means and standard deviations after standardizing.
+<div class = "dftab">
+```{r, echo = FALSE}
+af %>% nhuyhoa_df_print()
+```
+</div>
+
+## summarise_each and mutate_each 
+The `summarise_each()` and `mutate_each()` allows you to simultaneous apply a function to all columns at once. It is insanely convenient and efficient.
+
+A few notes:
+
+* wrap functions in `funs()`
+* for functions with additional arguments, do `funs(my_func(., addnl_args))`
+* to remove columns from being included in calculations, list column names after the `funs()` argument with a `-` in front of each name
+
+Let's convert all the boolean variables to numeric variables. 
+{% highlight r %}
+class %>% 
+  # select the boolean variables
+  dplyr::select(starts_with("d_"), -d_gender) %>% 
+  # convert all columns to numeric
+  mutate_each(funs(as.numeric)) %>% 
+  # print
+  head
+{% endhighlight %}
+
+```{r, echo = FALSE}
+df <- class %>% 
+  # select demographics
+  dplyr::select(starts_with("d_"), -d_gender) %>% 
+  # make numeric
+  mutate_each(funs(as.numeric))
+# print
+df %>% nhuyhoa_df_print()
+
+# reconfigure class
+class <- class %>% 
+  dplyr::select(-d_black, -d_hispanic, -d_asian, -d_native) %>% 
+  cbind(df) %>% 
+  mutate(
+    d_gender_f = ifelse(d_gender == "female", 1, 0),
+    d_gender_m = ifelse(d_gender == "male", 1, 0),
+    d_gender = NULL
+  ) 
+```
+
+Let's try something a little more complicated. Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights.
+
+{% highlight r %}
+class %>% 
+  # split: by teacher
+  group_by(teacher_id) %>% 
+  # apply: weighted mean using weights on numeric columns
+  summarise_each(funs(weighted.mean(., weight)), -student_id, -weight, -subject, -grade) %>% 
+  # combine: dplyr does this automatically
+  head()
+{% endhighlight %}
+
+<div class = "dftab">
+```{r, echo = FALSE}
+class %>% 
+  # split: by teacher
+  group_by(teacher_id) %>% 
+  # apply: weighted mean using weights on numeric columns
+  summarise_each(funs(weighted.mean(., weight)), -student_id, -weight, -subject, -grade) %>% 
+  # combine: dplyr does this automatically
+  nhuyhoa_df_print()
+```
+</div>
 
 ## do
-mutate, summarise, do, summarise each, mutate each
-weighted mean using summarise each
+do
 do is in - given a data frame, how do we split it up? extract 1st row etc
 
 # Using data.table
