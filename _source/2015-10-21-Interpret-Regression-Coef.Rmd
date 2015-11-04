@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Interpretation of Regression Coefficients"
+title: "Regression: Interpretation of Coefficients"
 date: "October 21, 2015"
 categories: statistics
 ---
