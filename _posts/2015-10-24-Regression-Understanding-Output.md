@@ -52,8 +52,8 @@ The summary table contains a lot of information regarding the linear model.
 * `Residuals`: summary statistics on the residuals
 * `Coefficients`: `Estimate`: the $$\hat{\beta}$$ coefficients
 * `Coefficients`: `Std. Error`: the standard errors for the $$\hat{\beta}$$ coefficients
-* `Coefficients`: `t value`: The $$t$$ statistic derived from the estimate and standard error of $$\hat{\beta}$$ and the null hypothesis that $$\hat{\beta} = 0$$
-* `Coefficients`: `Pr(>|t|)`:  The two-sided p-value of the $$t$$ statistic based off degrees of freedom of the error. 
+* `Coefficients`: `t value`: The $$t$$ statistic derived from the estimate and standard error of $$\hat{\beta}$$ and the null hypothesis that $$\hat{\beta} = 0$$. The $$t$$ value has the same degrees of freedom as the error
+* `Coefficients`: `Pr(>|t|)`:  The two-sided p-value of the $$t$$ statistic
 
 Note that the $$t$$ statistic and the p-value are interpreted as the effect of the variable after all other covariates have been accounted for. 
 
@@ -81,12 +81,12 @@ anova(m)
 ## Residuals            144 16.301   0.113
 {% endhighlight %}
 
-The ANOVA table presents the sums of square contributions of covariates to the model. The ANOVA table is dependent on the ordering of covariates in the model formula. So for example, to interpret the entry for Species, we say that  after $$Petal.Length$$ has been taken into consideration, the variance accounted for by $$Species$$ is signficantly greater than the variance of the error. If we were to formulate the model differently, we would see different values for our covariates. 
+The ANOVA table presents the sums of square contributions of covariates to the model. The ANOVA table is dependent on the ordering of covariates in the model formula. For example to interpret the entry for Species, we say that after $$Petal.Length$$ has been taken into consideration, the variance accounted for by $$Species$$ is signficantly greater than the variance of the error. If we were to order the covariates differently in the model formulation, we would see different values in the ANOVA table. 
 
 Note the similarities between the summary table and the ANOVA table. 
 
 * $$MSE = 0.113$$ in the ANOVA table. Take its square root and we see that it equals residual standard error = $$0.336$$ of the summary table. The degrees of freedom are the same. 
-* Compute $$F = \frac{\Sigma SS_R / \Sigma df_R}{SS_E/df_E} = \frac{85.867/5}{16.301/144} = 151.7 $$ on $$5, 144$$ degrees of freedom. This is equivalent to the $$F$$ statistic given in the summary table.
+* Compute $$F = \frac{\Sigma SS_R / \Sigma df_R}{SS_E/df_E} = \frac{85.867/5}{16.301/144} = 151.7 $$ on $$5$$ and $$144$$ degrees of freedom. This is equivalent to the $$F$$ statistic given in the summary table.
 * While it's not evident in this model (due to the factors being in the model), the $$F$$ value of the last covariate in the ANOVA table is equal to the $$t$$ value in summary table to the $$2^{nd}$$ power. 
 
 
@@ -122,7 +122,7 @@ anova(m2)
 ## Residuals    147 16.329   0.111
 {% endhighlight %}
 
-In this example, we see that the square of the $$t$$ value for $$Sepal.Width$$ = $$ 8.59^2 = 78.78 $$ which is equal to the $$F$$ value. The interpretatio of the $$t$$ value in the summary table is effect of the variable after all other covariates have been accounted for. This is reflected in the ANOVA table, where $$Sepal.Width$$ is the last variable accounted for. 
+In this example, we see that the square of the $$t$$ value for $$Sepal.Width$$ = $$ 8.59^2 = 78.78 $$ which is equal to the $$F$$ value. The interpretation of the $$t$$ value in the summary table is effect of the variable after all other covariates have been accounted for. This is reflected in the ANOVA table, where $$Sepal.Width$$ is the last variable. 
 
 # Prediction and Confidence Intervals
 
