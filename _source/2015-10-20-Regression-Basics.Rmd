@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Regression Basics"
+title: "Regression: Basics"
 date: "October 20, 2015"
 categories: statistics
 ---
