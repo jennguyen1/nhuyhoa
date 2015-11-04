@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Analysis of Variance and Regression"
+title: "Regression: Analysis of Variance"
 date: "October 22, 2015"
 categories: statistics
 ---
