@@ -10,7 +10,7 @@ categories: R data_wrangling
 
 
 
-Say we are given a data set where we want to group by a given category and compute summary statistics based on that category. This is the process for computing these statistics.
+Say we are given a data set where we want to group by a given category and compute summary statistics based on that category. The general process is
 
 1. Split: split by the variable
 2. Apply: apply the function to each split
@@ -702,7 +702,7 @@ class %>%
 {% endhighlight %}
 
 # Using data.table
-The data.table package have optimized data frames to be able to handle large amounts of data. 
+The data.table package has optimized data frames to be able to handle large amounts of data. 
 
 Let's split by grade and subject and count the number of males and females in each grade and subject. This is equivalent to using `summmarise()`.
 

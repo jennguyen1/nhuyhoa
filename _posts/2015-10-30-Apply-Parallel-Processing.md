@@ -168,7 +168,7 @@ rdply(5, runif(3))
 Under Construction :)
 
 # Parallel Processing
-Parallel processing allows independent tasks to be dispatched to different cores. These cores compute them in parallel and combine the results. Running tasks in parallel can reduce the runtime in half or more! Parallel processing is only recommended for time-consuming tasks. With shorter tasks, it may take more time to set up the cores than to run the analysis iteratively!
+Parallel processing allows independent tasks to be dispatched to different cores. These cores compute them in parallel and combine the results. Running tasks in parallel can reduce the runtime in half or more! However parallel processing is only recommended for time-consuming tasks. With shorter tasks, it may take more time to set up the cores than to run the analysis iteratively!
 
 Here's the general setup:
 {% highlight r %}
@@ -217,10 +217,221 @@ files <- llply(file_paths, data.table::fread, .progress = "time")
 super_set <- rbindlist(files)
 {% endhighlight %}
 
-And there you have it, all the files you need in one compact list. The great thing about llply is that you aren't restricted to simple functions. So instead of just reading in the file, you could do even more data processing to fit your needs. The sky's the limit!
+And there you have it, all the files you need in one compact list. The great thing about `llply()` is that you aren't restricted to simple functions. So instead of just reading in the file, you could do even more data processing to fit your needs. The sky's the limit!
+
+In some cases, we want to build any number of independent models and group common data outputs for simple extraction. So perhaps we want all the diagnostics in one data frame so we can compare them across multiple models. An easy way to do this is with the function `extract_list()`, which uses a recursive looping function to accumulate the data structures. 
+
+Here's an example of when `extract_list()` would come in handy.
+
+{% highlight r %}
+# function to generate some random data
+random_data <- function(run_number){
+  x <- list(
+    temp = list(
+      hot = list(red = data.frame(model = run_number, i = sample(c("M", "T", "W", "Th", "F"), 3)), 
+                 orange = data.frame(model = run_number, j = sample(month.name, 2))),
+      cold = data.frame(model = run_number, x = runif(7, 0, 25), y = sample(state.name, 7))
+    ),
+    CA = matrix(sample(-10:9, 16), nrow = 4),
+    WA = sample(LETTERS, 5)
+  )
+  return(x)
+}
+
+# look at our outputs
+output <- llply(paste0("#", 1:3), random_data)
+output[[1]]
+{% endhighlight %}
 
 
-- extract
+
+{% highlight text %}
+## $temp
+## $temp$hot
+## $temp$hot$red
+##   model  i
+## 1    #1  W
+## 2    #1 Th
+## 3    #1  T
+## 
+## $temp$hot$orange
+##   model       j
+## 1    #1 October
+## 2    #1    July
+## 
+## 
+## $temp$cold
+##   model          x          y
+## 1    #1 13.2429895       Utah
+## 2    #1 19.7339058   Michigan
+## 3    #1  0.5832801      Idaho
+## 4    #1 11.9307516   Arkansas
+## 5    #1 18.3078435 California
+## 6    #1 17.3182889       Iowa
+## 7    #1 11.9404906  Minnesota
+## 
+## 
+## $CA
+##      [,1] [,2] [,3] [,4]
+## [1,]    3    8   -5   -8
+## [2,]   -3    7   -2    1
+## [3,]    6   -1  -10    0
+## [4,]   -6   -7    5   -9
+## 
+## $WA
+## [1] "M" "W" "U" "I" "R"
+{% endhighlight %}
+
+
+
+{% highlight r %}
+output[[2]]
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## $temp
+## $temp$hot
+## $temp$hot$red
+##   model i
+## 1    #2 F
+## 2    #2 T
+## 3    #2 W
+## 
+## $temp$hot$orange
+##   model     j
+## 1    #2   May
+## 2    #2 April
+## 
+## 
+## $temp$cold
+##   model         x             y
+## 1    #2 18.927179       Arizona
+## 2    #2  5.067306      New York
+## 3    #2 17.778031         Texas
+## 4    #2  3.042298        Oregon
+## 5    #2  6.137213    Washington
+## 6    #2  3.582609 Massachusetts
+## 7    #2  5.990735         Maine
+## 
+## 
+## $CA
+##      [,1] [,2] [,3] [,4]
+## [1,]    6   -6   -9   -3
+## [2,]    1    4   -5    3
+## [3,]    8   -2   -1    2
+## [4,]   -4   -8    0    9
+## 
+## $WA
+## [1] "D" "A" "R" "C" "J"
+{% endhighlight %}
+And so on for the following iterations.
+
+So this is the result of our model builds. It isn't very useful broken up into so many pieces, so let's use `extract_list()` on our output. 
+
+{% highlight r %}
+# extract data
+extract <- extract_list(output)
+extract
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## $temp
+## $temp$hot
+## $temp$hot$red
+##    model  i
+## 1:    #1  W
+## 2:    #1 Th
+## 3:    #1  T
+## 4:    #2  F
+## 5:    #2  T
+## 6:    #2  W
+## 7:    #3 Th
+## 8:    #3  F
+## 9:    #3  T
+## 
+## $temp$hot$orange
+##    model        j
+## 1:    #1  October
+## 2:    #1     July
+## 3:    #2      May
+## 4:    #2    April
+## 5:    #3     June
+## 6:    #3 February
+## 
+## 
+## $temp$cold
+##     model          x             y
+##  1:    #1 13.2429895          Utah
+##  2:    #1 19.7339058      Michigan
+##  3:    #1  0.5832801         Idaho
+##  4:    #1 11.9307516      Arkansas
+##  5:    #1 18.3078435    California
+##  6:    #1 17.3182889          Iowa
+##  7:    #1 11.9404906     Minnesota
+##  8:    #2 18.9271787       Arizona
+##  9:    #2  5.0673064      New York
+## 10:    #2 17.7780306         Texas
+## 11:    #2  3.0422980        Oregon
+## 12:    #2  6.1372128    Washington
+## 13:    #2  3.5826095 Massachusetts
+## 14:    #2  5.9907354         Maine
+## 15:    #3 18.8705236      Arkansas
+## 16:    #3 11.3473872        Alaska
+## 17:    #3 12.7792446    New Mexico
+## 18:    #3  5.1886278          Utah
+## 19:    #3  5.7164536        Nevada
+## 20:    #3 14.8927999       Montana
+## 21:    #3 14.3718050   Mississippi
+##     model          x             y
+## 
+## 
+## $CA
+## $CA[[1]]
+##      [,1] [,2] [,3] [,4]
+## [1,]    3    8   -5   -8
+## [2,]   -3    7   -2    1
+## [3,]    6   -1  -10    0
+## [4,]   -6   -7    5   -9
+## 
+## $CA[[2]]
+##      [,1] [,2] [,3] [,4]
+## [1,]    6   -6   -9   -3
+## [2,]    1    4   -5    3
+## [3,]    8   -2   -1    2
+## [4,]   -4   -8    0    9
+## 
+## $CA[[3]]
+##      [,1] [,2] [,3] [,4]
+## [1,]    9   -7   -8   -6
+## [2,]   -1    5   -2    4
+## [3,]    2    6   -9    8
+## [4,]    0   -5   -3    1
+## 
+## 
+## $WA
+## $WA[[1]]
+## [1] "M" "W" "U" "I" "R"
+## 
+## $WA[[2]]
+## [1] "D" "A" "R" "C" "J"
+## 
+## $WA[[3]]
+## [1] "N" "E" "M" "B" "G"
+{% endhighlight %}
+
+Clean aggregated outputs, makes analysis and comparison much more simple!
+
+The separate files can be extracted quite simply with `$`. 
+
+{% highlight r %}
+# template for extraction
+random_letters <- extract$WA
+cold_states <- extract$temp$cold
+{% endhighlight %}
 
 
 [sac_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/Split_Apply-Combine.html

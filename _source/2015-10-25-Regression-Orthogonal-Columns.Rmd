@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Orthogonal Columns in Regression"
+title: "Regression: Orthogonal Columns"
 date: "October 25, 2015"
 categories: statistics
 ---

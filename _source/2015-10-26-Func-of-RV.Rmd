@@ -43,3 +43,4 @@ Note that this is the pdf for the $$ F_{\alpha, \beta} $$
 
 # Jacobian Theorem for 2 Variables
 
+# Moment Generating Functions

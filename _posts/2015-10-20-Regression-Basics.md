@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Regression Basics"
+title: "Regression: Basics"
 date: "October 20, 2015"
 categories: statistics
 ---
@@ -102,7 +102,7 @@ c(B)
 
 
 {% highlight text %}
-## [1]  0.074280039 -0.006598314 -0.141762686 -0.015003000
+## [1]  0.31699162 -0.05540698 -0.11329626  0.05794005
 {% endhighlight %}
 
 
@@ -114,7 +114,7 @@ c(coef)
 
 
 {% highlight text %}
-##  (Intercept)           x1           x2           x3 
-##  0.074280039 -0.006598314 -0.141762686 -0.015003000
+## (Intercept)          x1          x2          x3 
+##  0.31699162 -0.05540698 -0.11329626  0.05794005
 {% endhighlight %}
 

@@ -1,0 +1,56 @@
+---
+layout: post
+title: "Regression: Understanding Outputs"
+date: "October 24, 2015"
+categories: statistics
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data)
+options(show.signif.stars = FALSE) 
+```
+
+```{r}
+m <- lm(Sepal.Length ~ Petal.Length*Species, data = iris)
+```
+
+# Summary Table
+```{r}
+summary(m)
+```
+
+The summary table contains a lot of information regarding the linear model.
+
+* `Call`: the model formula
+* `Residuals`: summary statistics on the residuals
+* `Coefficients`: `Estimate`: the $$\hat{\beta}$$ coefficients
+* `Coefficients`: `Std. Error`: the standard errors for the $$\hat{\beta}$$ coefficients
+* `Coefficients`: `t value`: The $$t$$ statistic derived from the estimate and standard error of $$\hat{\beta}$$ and the null hypothesis that $$\hat{\beta} = 0$$
+* `Coefficients`: `Pr(>|t|)`:  The two-sided p-value of the $$t$$ statistic based off degrees of freedom of the error. 
+
+Note that the $$t$$ statistic and the p-value are interpreted as the effect of the variable after all other covariates have been accounted for. 
+
+* `Residual standard error`: the estimate of $$\sigma$$. In other words this is equal to $$ \sqrt{MSE} = \sqrt{\frac{SSE}{df_E}} =  \sqrt{\frac{SSE}{n - p}} $$
+* `R-squared`: This is the total variance of y that is explained by the covariates. In other words, $$ R^2 = 1 - \frac{SS_{err}}{SS_{tot}} $$
+* `Adjusted R-squared`: This is the total variance of y that is explained by the covariates, adjusted for by the number of covariates. The $$R^2$$ will increase as more parameters are introduced into the model. The adjusted $$R^2$$ value places a penalty on an excess of parameters.
+* `F-statistic`: The $$F$$ statistic and corresponding p-value comparing the full model to an intercept only model
+
+# ANOVA Table
+```{r}
+anova(m)
+```
+
+The ANOVA table presents the
+
+# Prediction and Confidence Intervals
+```{r}
+predict(m, interval = "confidence") %>% head
+```
+
+```{r}
+predict(m, interval = "prediction") %>% head
+```
