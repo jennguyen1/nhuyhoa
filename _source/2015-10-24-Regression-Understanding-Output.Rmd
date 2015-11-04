@@ -48,7 +48,7 @@ The ANOVA table presents the sums of square contributions of covariates to the m
 
 Note the similarities between the summary table and the ANOVA table. 
 
-* $$MSE = 0.113$$ in the ANOVA table. Take its square root and we see that it equals residual standard error = $$0.336$$ of the summary table. The degrees of freedom are the same. 
+* $$MSE = 0.113$$ in the ANOVA table. Take its square root and we see that it equals the residual standard error = $$0.336$$ of the summary table. The degrees of freedom are the same. 
 * Compute $$F = \frac{\Sigma SS_R / \Sigma df_R}{SS_E/df_E} = \frac{85.867/5}{16.301/144} = 151.7 $$ on $$5$$ and $$144$$ degrees of freedom. This is equivalent to the $$F$$ statistic given in the summary table.
 * While it's not evident in this model (due to the factors being in the model), the $$F$$ value of the last covariate in the ANOVA table is equal to the $$t$$ value in summary table to the $$2^{nd}$$ power. 
 
@@ -58,7 +58,7 @@ summary(m2)$coefficients %>% round(3)
 anova(m2)
 ```
 
-In this example, we see that the square of the $$t$$ value for $$Sepal.Width$$ = $$ 8.59^2 = 78.78 $$ which is equal to the $$F$$ value. The interpretation of the $$t$$ value in the summary table is effect of the variable after all other covariates have been accounted for. This is reflected in the ANOVA table, where $$Sepal.Width$$ is the last variable. 
+In this example, we see that the square of the $$t$$ value for $$Sepal.Width$$ = $$ 8.59^2 = 78.78 $$ which is equal to the $$F$$ value for $$Sepal.Width$$. The interpretation of the $$t$$ value in the summary table is effect of the variable after all other covariates have been accounted for. This is reflected in the ANOVA table, where $$Sepal.Width$$ is the last variable. 
 
 # Prediction and Confidence Intervals
 ```{r}
