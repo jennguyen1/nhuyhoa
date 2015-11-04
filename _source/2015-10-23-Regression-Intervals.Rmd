@@ -74,6 +74,6 @@ ggplot(data = NULL, aes(x = x, y = y)) +
   geom_line(aes(x = x, y = conf$upr), color = "blue", linetype = "dashed", size = 1.25, alpha = 0.8) + 
   geom_line(aes(x = x, y = pred$lwr), color = "green", linetype = "dashed", size = 1.25, alpha = 0.8) + 
   geom_line(aes(x = x, y = pred$upr), color = "green", linetype = "dashed", size = 1.25, alpha = 0.8) + 
-  ggtitle("95% Confidnce and Prediction Intervals for Simulated Data") + xlab("X") + ylab("Y")
+  ggtitle("95% Confidence and Prediction Intervals for Simulated Data") + xlab("X") + ylab("Y")
 ```
 
