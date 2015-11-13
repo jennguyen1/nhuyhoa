@@ -42,5 +42,21 @@ $$ f_y(y) = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\fra
 Note that this is the pdf for the $$ F_{\alpha, \beta} $$
 
 # Jacobian Theorem for 2 Variables
+Let $$(X_1, X_2)$$ have a joint distribution of $$f_{x_1 x_2}$$. Let $$Y_1 = f(X_1, X_2)$$ and $$Y_2 = g(X_1, X_2)$$. To compute the joint distribution of $$(Y_1, Y_2)$$,
+
+1. Find $$X_1 = h(Y_1, Y_2)$$ and $$X_2 = i(Y_1, Y_2)$$
+2. Let $$J = det\left[\begin{array}
+{cc}
+\frac{\partial x_1}{\partial y_1} \frac{\partial x_1}{\partial y_2} \\
+\frac{\partial x_2}{\partial y_2} \frac{\partial x_2}{\partial y_2}
+\end{array}\right]
+$$
+
+Then,
+
+$$ f_{y_1 y_2} = f_{x_1 x_2}[h(Y_1, Y_2), i(Y_1, Y_2)]*abs(J)$$
 
 # Moment Generating Functions
+
+
+
