@@ -84,8 +84,11 @@ $$
 
 Thus $$\forall$$ $$j$$, $$ Var[\hat{\beta}_j]= \frac{\sigma^2}{x^{T}_{j}x_j} $$.
 
-As a matter of fact, the variance of the $$\hat{\beta}$$ are minimized when $$X$$ has mutually exclusive columns. In other words, when $$x_i^Tx_j = 0$$ $$\forall$$ $$i \ne j$$, $$Var[\hat{\beta}_j] \ge \frac{\sigma^2}{c^2_j} $$ where $$c^2_j = x_j^Tx_j$$.
+As a matter of fact, the variance of the $$\hat{\beta}$$ are minimized when $$X$$ has mutually exclusive columns. 
 
+In other words for any design matrix $$X$$ where $$c^2_j = x_j^{*T}x_j^*$$,
+$$Var[\hat{\beta}_j] \ge \frac{\sigma^2}{c^2_j} $$. 
+and the minimum is attained when $$x_i^{*T}x^*_j = 0$$ $$\forall$$ $$i \ne j$$.
 
 # Orthogonal Columns in Experimental Design & Clinical Trials
 In experimental design, randomization ensures that our experimental groups are independent of baseline characteristics. Thus we ensure that there are no confounding effects. Furthermore, when we adjust for these baseline characteristics, the estimates of $$\hat{\beta}$$ do not change. On the other hand, precision of  estimation increases (smaller $$Var[\hat{\beta}]$$).
