@@ -45,12 +45,11 @@ The package plyr has a number of apply functions to that allow for proper contro
 Plyr functions have the form `__ply()`. 
 
 
-|title      |list____ |data.frame_ |array |
-|:----------|:--------|:-----------|:-----|
-|list       |llply    |dlply       |alply |
-|data.frame |ldply    |ddply       |adply |
-|array      |laply    |daply       |aaply |
-|empty      |l_ply    |d_ply       |a_ply |
+|input\output |list  |data.frame |array |empty |
+|:------------|:-----|:----------|:-----|:-----|
+|list         |llply |ldply      |laply |l_ply |
+|data.frame   |dlply |ddply      |daply |d_ply |
+|array        |alply |adply      |aaply |a_ply |
 
 <p></p>
 The first character (`l`, `d`, `a`) denotes the format of the incoming object. The second character (`l`, `d`, `a`, `_`) denotes the format of the outcoming object. 

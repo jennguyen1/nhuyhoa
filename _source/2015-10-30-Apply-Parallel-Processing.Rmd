@@ -49,10 +49,15 @@ Plyr functions have the form `__ply()`.
 
 ```{r, echo = FALSE}
 title <- c("list", "data.frame", "array", "empty")
-list____ <- c("llply", "ldply", "laply", "l_ply")
-data.frame_ <- c("dlply", "ddply", "daply", "d_ply")
+list <- c("llply", "ldply", "laply", "l_ply")
+data.frame <- c("dlply", "ddply", "daply", "d_ply")
 array <- c("alply", "adply", "aaply", "a_ply")
-data.frame(title, list____, data.frame_, array) %>% kable
+x <- rbind(title, list, data.frame, array) %>% data.frame 
+colnames(x) <- x[1,] %>% unlist
+x <- x[2:nrow(x),]
+x[,'input\\output'] <- rownames(x)
+rownames(x) <- NULL
+x %>% dplyr::select(one_of("input\\output"), everything()) %>% kable
 ```
 
 <p></p>
