@@ -11,6 +11,7 @@ categories: statistics
 ```{r global_opts, echo = FALSE}
 library(jn.general)
 lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
 # Why It's Needed

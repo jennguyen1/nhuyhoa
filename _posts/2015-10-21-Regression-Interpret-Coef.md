@@ -214,7 +214,7 @@ $$ Sepal.Length = (4.2 + -3.2) + (0.54 + 0.45) * Petal.Length $$
 
 Essentially what we have is 3 separate lines for each value of Species, the categorical variable. 
 
-![plot of chunk unnamed-chunk-10](/nhuyhoa/figure/source/2015-10-21-Regression-Interpret-Coef/unnamed-chunk-10-1.png) 
+<img src="/nhuyhoa/figure/source/2015-10-21-Regression-Interpret-Coef/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 We can perform hypothesis testing to determine whether the species have similar intercepts and/or similar slopes for Petal Length, thereby simplifying the model. 
 
