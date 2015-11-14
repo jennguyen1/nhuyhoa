@@ -48,6 +48,8 @@
         
           
         
+          
+        
       </div>
     </nav>
 
@@ -125,13 +127,13 @@
 <script type="math/tex">E[\beta] = (X^TX)^{-1}X^TE[Y]</script><br />
 <script type="math/tex">= (X^TX)^{-1}X^TX\beta</script></p>
 
-<script type="math/tex; mode=display">E[\beta] = \beta</script>
+<script type="math/tex; mode=display">E[\hat{\beta}] = \beta</script>
 
 <p>The variance of the beta parameters:<br />
-<script type="math/tex">Var[\beta] = (X^TX)^{-1}X^TVar[Y]X(X^TX)^{-1}</script><br />
+<script type="math/tex">Var[\hat{\beta}] = (X^TX)^{-1}X^TVar[Y]X(X^TX)^{-1}</script><br />
 <script type="math/tex">= \sigma^2 (X^TX)^{-1}X^TX(X^TX)^{-1}</script></p>
 
-<script type="math/tex; mode=display">Var[\beta] = \sigma^2 (X^TX)^{-1}</script>
+<script type="math/tex; mode=display">Var[\hat{\beta}] = \sigma^2 (X^TX)^{-1}</script>
 
 <p>Thus <script type="math/tex">\hat{\beta}</script> ~ <script type="math/tex">N(\beta, \sigma^2(X^TX)^{-1})</script>, and since <script type="math/tex">\sigma^2</script> is estimated with <script type="math/tex">MSE</script>, we use a t-distribution to determine the sigificance of the <script type="math/tex">\hat{\beta}</script> parameter.</p>
 
@@ -162,12 +164,12 @@ B <span class="o">&lt;-</span> <span class="kp">solve</span><span class="p">(</s
 coef <span class="o">&lt;-</span> coef<span class="p">(</span>lm<span class="p">(</span>y <span class="o">~</span> x1 <span class="o">+</span> x2 <span class="o">+</span> x3<span class="p">))</span>
 <span class="kt">c</span><span class="p">(</span>B<span class="p">)</span></code></pre></div>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  0.31699162 -0.05540698 -0.11329626  0.05794005</code></pre></div>
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  0.18452848 -0.03310654 -0.09032985 -0.03687134</code></pre></div>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kt">c</span><span class="p">(</span>coef<span class="p">)</span></code></pre></div>
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">## (Intercept)          x1          x2          x3 
-##  0.31699162 -0.05540698 -0.11329626  0.05794005</code></pre></div>
+##  0.18452848 -0.03310654 -0.09032985 -0.03687134</code></pre></div>
 
 
   </article>

@@ -60,13 +60,13 @@ The beta parameters are unbiased:
 $$ E[\beta] = (X^TX)^{-1}X^TE[Y] $$
 $$ = (X^TX)^{-1}X^TX\beta $$
 
-$$ E[\beta] = \beta $$
+$$ E[\hat{\beta}] = \beta $$
 
 The variance of the beta parameters:
-$$ Var[\beta] = (X^TX)^{-1}X^TVar[Y]X(X^TX)^{-1} $$
+$$ Var[\hat{\beta}] = (X^TX)^{-1}X^TVar[Y]X(X^TX)^{-1} $$
 $$ = \sigma^2 (X^TX)^{-1}X^TX(X^TX)^{-1} $$
 
-$$ Var[\beta] = \sigma^2 (X^TX)^{-1} $$
+$$ Var[\hat{\beta}] = \sigma^2 (X^TX)^{-1} $$
 
 Thus $$ \hat{\beta} $$ ~ $$ N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma^2$$ is estimated with $$MSE$$, we use a t-distribution to determine the sigificance of the $$\hat{\beta}$$ parameter.
  
@@ -102,7 +102,7 @@ c(B)
 
 
 {% highlight text %}
-## [1]  0.31699162 -0.05540698 -0.11329626  0.05794005
+## [1]  0.18452848 -0.03310654 -0.09032985 -0.03687134
 {% endhighlight %}
 
 
@@ -115,6 +115,6 @@ c(coef)
 
 {% highlight text %}
 ## (Intercept)          x1          x2          x3 
-##  0.31699162 -0.05540698 -0.11329626  0.05794005
+##  0.18452848 -0.03310654 -0.09032985 -0.03687134
 {% endhighlight %}
 
