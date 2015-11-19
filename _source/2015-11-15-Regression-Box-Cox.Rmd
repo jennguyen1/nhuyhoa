@@ -1,0 +1,16 @@
+---
+layout: post
+title: "Regression: Box-Cox Transformations"
+date: "November 15, 2015"
+categories: statistics
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+```
+

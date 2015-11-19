@@ -25,7 +25,8 @@ categories: statistics
 ## Underfitting
 Suppose the true model is $$ Y = X\beta + Z\gamma + \epsilon $$ and we fit the model $$ Y = X\beta + \epsilon $$. 
 
-When we underfit, our estimates for $$\hat{\beta}$$ and $$\hat{\sigma}^2$$ are both biased. Because of the bias variance trade off, the $$Var[\hat{\beta}]$$ gets smaller.
+When we underfit, our estimates for $$\hat{\beta}$$ and $$\hat{\sigma}^2$$ are both biased. 
+Because of the bias variance trade off, the $$Var[\hat{\beta}]$$ gets smaller.
 
 ## Overfitting
 Suppose the true model is $$ Y = \beta_1 X_1  + \epsilon $$ and we fit the model $$ Y = \beta_1 X_1 + \beta_2 X_2 + \epsilon $$.
@@ -40,11 +41,14 @@ Residuals are defined as
 $$ \hat{\epsilon}_i = y_i - \hat{y}_i $$
 
 Internally standardized residuals are defined as
-$$ r_i = \frac{\hat{\epsilon}_i }{\hat{\sigma \sqrt{1 - h_{ii}}}}$$
+$$ r_i = \frac{\hat{\epsilon}_i }{\hat{\sigma \sqrt{1 - h_{ii}}}}$$ 
+
 where $$\frac{r_i^2}{n - p}$$ ~ $$Beta(\frac{1}{2}, \frac{1}{2}(n - p - 1))$$
 
-Extenerally standardized residuals are definied as 
-$$ t_i = \frac{\hat{\epsilon}_i }{\hat{\sigma_{(i)} \sqrt{1 - h_{ii}}}}$$ where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted to stem the effect of outliers. Large residuals are $$|t_i| > 2$$.
+Extenerally standardized residuals are defined as 
+$$ t_i = \frac{\hat{\epsilon}_i }{\hat{\sigma_{(i)} \sqrt{1 - h_{ii}}}}$$ 
+
+where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted to stem the effect of outliers. If $$abs(t_i) > 2$$, we consider that a large residual.
 
 Notice that residuals refer to they $$y$$-values. 
 
@@ -52,7 +56,9 @@ Notice that residuals refer to they $$y$$-values.
 Recall the hat matrix $$ H = X(X'X)^{-1}X' $$. $$H$$ is invariate to scale and location transformations of the columns of X.
 
 Leverage is the diagonals of the hat matrix and defined as 
-$$ h_i = \frac{1}{n} + (n - 1)^{-1}(x_i - \bar{x})'S^{-1}(x_i - \bar{x}) $$ 
+
+.$$ h_i = \frac{1}{n} + (n - 1)^{-1}(x_i - \bar{x})'S^{-1}(x_i - \bar{x}) $$ 
+
 where $$x_i$$ is the column vector of the $$i^{th}$$ row of X and $$S = \frac{\Sigma (x_i - \bar{x})(x_i - \bar{x})'}{n - 1} $$ is the sample covariance matrix.
 
 Notice that leverage refers to the $$x$$-values. 
@@ -65,9 +71,15 @@ An outlier is an extreme point that does not fit in with the rest of the data.
 Influential points and outliers are closely related, and both are affected by residual and leverage values. However, they are not synonymous.
 
 ## Cook's Distance
-Cook's Distance measures the influence of the $$i^{th}$$ observation on the linear model. It is defined as
-$$ D_i = \Sigma \frac{(\hat{y}_j - \hat{y}_{j(i)})^2}{ps^2} $$
-where $$ \hat{y}_{j(i)} $$ represents the fitted value for the $$j^{th}$$ observation when the $$i^{th}$$ observation is left out. A Cook's distance of $$D_i > \frac{4}{n - p}$$ is considered abnormal.
+Cook's Distance measures the influence of the $$i^{th}$$ observation on the linear model, by deleting a given observation. 
+
+It is defined as
+
+.$$ D_i = \Sigma \frac{(\hat{y}_j - \hat{y}_{j(i)})^2}{ps^2} $$
+
+where $$ \hat{y}_{j(i)} $$ represents the fitted value for the $$j^{th}$$ observation when the $$i^{th}$$ observation is left out. 
+
+A Cook's distance of $$D_i > \frac{4}{n - p}$$ is considered abnormal.
 
 ## How to Obtain Values in R
 Residuals: `residuals(m)`
@@ -85,7 +97,7 @@ Independence is generally difficult to test for. Generally scientific knowledge 
 Residuals vs fitted values plots are useful for assessing linearity and homoskedaskticity.
 
 <img src="/nhuyhoa/figure/source/2015-11-13-Regression-Diagnostics/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
-Here we see that the plotted points are randomly distributed above and below 0. We can conclude that our assumptions of a linear relationship and equal variance were correct.
+Here we see that the plotted points are randomly distributed above and below 0. We can conclude that our assumptions of a linear relationship and equal variance were valid
 
 <img src="/nhuyhoa/figure/source/2015-11-13-Regression-Diagnostics/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 Here we see that our model does not have a linear relationship, indicated by the quadratic trend of our plot.
@@ -97,6 +109,7 @@ Here we see a funneling pattern as we increase fitted values. This indicates tha
 To assess whether our errors are normally distributed, we can use a QQ Normal plot. See more information on how to interpret [QQ plots][qq_link]{:target="blank"}.
 
 <img src="/nhuyhoa/figure/source/2015-11-13-Regression-Diagnostics/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+Given an approximately linear trend, we can conclude that our errors are normally distributed.
 
 ## Assess Outliers: Residuals Vs. Leverage Plot
 The residuals vs leverage plot can identify outliers in both x and y. In addition, these plots can incorporate Cook's distance to identify highly influential points. 
