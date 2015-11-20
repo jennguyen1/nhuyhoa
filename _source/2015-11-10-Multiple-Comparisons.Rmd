@@ -102,7 +102,7 @@ Procedure:
 
 * Fit an ANOVA: `a <- aov(Petal.Length ~ Species, data = iris)`
 * Compute pairwise tests: `TukeyHSD(a)`
-* The studentized range distribution quantiles in R: `qtukey(p, m, df)` (if you want to do them by hand)
+* The studentized range distribution quantiles in R: `qtukey(p, m, df)/sqrt(2)` (if you want to do them by hand)
 
 With unequal sample sizes, one can use the Tukey-Kramer Method (not discussed here).
 
