@@ -81,12 +81,32 @@ where $$ \hat{y}_{j(i)} $$ represents the fitted value for the $$j^{th}$$ observ
 
 A Cook's distance of $$D_i > \frac{4}{n - p}$$ is considered abnormal.
 
+## Variance Inflation Factor
+Severe multicollinearity in regression can result in difficult interpretation of coefficients. The variance inflation factor is a measure of how much the variance of an estimate is increased due to collinearity with other estimates.
+
+Recall,
+$$Var[\hat{\beta}] = \hat{\sigma}^2 (X'X)^{-1}$$
+
+The variance of $$\hat{\beta}_j$$ is 
+$$Var[\hat{\beta}_j] = \frac{\sigma^2}{\Sigma^n_{i = 1} (x_{ij} - \bar{x}_j)^2} * \frac{1}{1 - R_j^2} $$
+
+where $$R^2_j$$ is the $$R^2$$ value obtained by regressing the $$j^{th}$$ predictor on the remaining predictors. The greater the linear dependence of $$x_j$$ on the other predictors, the larger the $$R^2_j$$ and the $$var(\hat{\beta}_j)$$.
+
+The variance inflation factor (VIF) is defined as 
+
+$$VIF_j = \frac{1}{1 - R^2_j} $$
+
+where $$VIF_j$$ is a measure of how much variance of the estimated coefficient is inflated due to collinearity with other predictor variables. 
+
+A VIF of 1 indicates no correlation. VIFs greater than 5 are on the fence, further investigation should be done. A VIF exceeding 10 indicates serious multicollinearity and requires immediate intervention. 
+
 ## How to Obtain Values in R
 Residuals: `residuals(m)`
 Internally standardized residuals: `rstandard(m)`
 Externally standardized residuals: `rstudent(m)`
 Leveral values: `hatvalues(m)`
 Cook's Distance: `cooks.distance(m)`
+Variance Inflation Factor: `vif(m)`
 
 # Diagnostic Plots
 
