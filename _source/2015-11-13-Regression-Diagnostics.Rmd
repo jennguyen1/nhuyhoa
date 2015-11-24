@@ -23,6 +23,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 * Error terms are not normally distributed (check with QQ normal plot)
 * Error terms do not have the same variance $$\sigma^2$$ (check with resids vs fitted plot)
 * Influential points lead to generation of inaccurate model
+* Multicollinearity leads to generation of inaccurate model
 
 # Underfitting & Overfitting
 
@@ -52,7 +53,7 @@ where $$\frac{r_i^2}{n - p}$$ ~ $$Beta(\frac{1}{2}, \frac{1}{2}(n - p - 1))$$
 Extenerally standardized residuals are defined as 
 $$ t_i = \frac{\hat{\epsilon}_i }{\hat{\sigma_{(i)} \sqrt{1 - h_{ii}}}}$$ 
 
-where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted to stem the effect of outliers. If $$abs(t_i) > 2$$, we consider that a large residual.
+where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted to stem the effect of outliers. If $$ \vert t_i \vert > 2$$, we consider that a large residual.
 
 Notice that residuals refer to they $$y$$-values. 
 
@@ -74,18 +75,36 @@ An outlier is an extreme point that does not fit in with the rest of the data.
 
 Influential points and outliers are closely related, and both are affected by residual and leverage values. However, they are not synonymous.
 
-## Cook's Distance
-Cook's Distance measures the influence of the $$i^{th}$$ observation on the linear model, by deleting a given observation. 
+## Cook's Distance and DFFITS
+Cook's Distance measures the influence of the $$i^{th}$$ observation on all of the fitted values of a linear model, by deleting that observation. 
 
 It is defined as
-
-.$$ D_i = \Sigma \frac{(\hat{y}_j - \hat{y}_{j(i)})^2}{ps^2} $$
+$$ D_i = \Sigma \frac{(\hat{y}_j - \hat{y}_{j(i)})^2}{ps^2} $$
 
 where $$ \hat{y}_{j(i)} $$ represents the fitted value for the $$j^{th}$$ observation when the $$i^{th}$$ observation is left out. 
 
-A Cook's distance of $$D_i > \frac{4}{n - p}$$ is considered abnormal.
+For a general rule of thumb Cook's distance of $$D_i > 5$$ warrants further review, while $$D_i > 1$$ is more serious.
 
-## Variance Inflation Factor
+DFFITS is a measure of how much the $$i^{th}$$ fitted value changes when the $$i^{th}$$ observation is deleted. 
+
+It is defined as 
+$$ DFFITS_i = \frac{\hat{y}_i - \hat{y}_{i(i)}}{\hat{\sigma}_{(i)}\sqrt{H_{ii}}} $$
+
+where $$._{(i)}$$ indicates that $$i^{th}$$ observation was not used in fitting the model. 
+
+For small to medium data sets, a value greater than 1 warrants further review. For large data sets, a value greater than $$2 \sqrt{(p + 1) / n}$$ warrants further review. 
+
+## DFBETAS
+DFBETAS measures how much the coefficients change when the $$i^{th}$$ observation is deleted. 
+
+It is defined as
+$$ DFBETAS_{j(i)} = \frac{\hat{\beta}_j - \hat{\beta}_{j(i)}}{\sqrt{\hat{\sigma}^2_{(i)} (X'X)^{-1}_{jj}}} $$
+
+where $$._{(i)}$$ indicates that $$i^{th}$$ observation was not used in fitting the model.
+
+For small to medium data sets, a value greater than 1 warrants further review. For large data sets, a value greater than $$2 / \sqrt{n}$$ warrants further review. 
+
+# Multicollinearity
 Severe multicollinearity in regression can result in difficult interpretation of coefficients. The variance inflation factor is a measure of how much the variance of an estimate is increased due to collinearity with other estimates.
 
 Recall,
@@ -104,15 +123,18 @@ where $$VIF_j$$ is a measure of how much variance of the estimated coefficient i
 
 A VIF of 1 indicates no correlation. VIFs greater than 5 are on the fence, further investigation should be done. A VIF exceeding 10 indicates serious multicollinearity and requires immediate intervention. 
 
+# Diagnostic Plots
+
 ## How to Obtain Values in R
 Residuals: `residuals(m)`
 Internally standardized residuals: `rstandard(m)`
 Externally standardized residuals: `rstudent(m)`
-Leveral values: `hatvalues(m)`
+Leverage values: `hatvalues(m)`
 Cook's Distance: `cooks.distance(m)`
+DFFITS: `dffits(m)`
+DFBETAS: `dfbetas(m)`
+Influence statistics: `influence.measures(m)`
 Variance Inflation Factor: `vif(m)`
-
-# Diagnostic Plots
 
 ## Assess Independence:
 Independence is generally difficult to test for. Generally scientific knowledge regarding the problem at hand should be used to assess independence of observations.
@@ -199,5 +221,12 @@ ggplot(data = NULL, aes(x = m2$residuals, y = m3$residuals)) +
 ```
 
 Note that the slope of the plot and the coefficient for volume on the full model are the same. We interpret this plot to mean that the variable $$Volume$$ provides a meaningful contribution after already adjusting for $$Girth$$. Thus $$ Volume$$ should be added to the model.
+
+# Solutions to Violation of Assumptions
+
+* Underfitting/overfitting: use model selection techniques to fit better models
+* Error terms are not distributed $$N(0, \sigma^2)$$: perform transformations, such as the Box-Cox family of transformations
+* Influential points: look into potential reasons (data entry error, scientific reason), fit model with and without the influential point and see if there is a difference, remove point
+* Multicollinearity: remove variable(s)
 
 [qq_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/qqplots.html

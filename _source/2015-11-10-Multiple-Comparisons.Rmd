@@ -21,7 +21,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 * Power: $$1 -$$ $$Type$$ $$2$$ $$Error$$ $$Rate$$
 
 # Why It's Needed
-When we want to conduct multiple (independent) tests, we need account for the number of tests. Assume that each test has a type I error rate of \alpha = 0.05$$. 
+When we want to conduct multiple (independent) tests, we need account for the number of tests. Assume that each test has a type I error rate of $$\alpha = 0.05$$. 
 
 If we conduct $$p$$ number of tests, the probability that we don't make an error on any of those tests is $$(1 - \alpha)^p$$. 
 ```{r, echo = FALSE}
