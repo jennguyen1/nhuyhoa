@@ -118,7 +118,7 @@ The term $$\lambda \Sigma_j \beta^2_j$$ is a shrinkage penalty; it is small when
 
 Important Notes:
 
-* Ridge regression uses the $$l_2$$ norm, otherwise defined as $$\sqrt{\Sigma_{j = 1}^p \beta^2_j}$$
+* Ridge regression uses the $$l_2$$ norm, otherwise defined as $$\sqrt{\Sigma_{j = 1}^p \beta^2_j}$$ (euclidian distance)
 * While we shrink the $$\beta$$ coefficients, we do not shrink the intercept parameter
 * Ridge regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \beta^2_j$$ term), so we must standardize the covariates prior to applying ridge regression
 * Ridge regression works best when OLS has high variance
@@ -149,7 +149,7 @@ The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tu
 
 Important Notes: 
 
-* Ridge regression uses the $$l_1$$ norm, otherwise defined as $$\Sigma_{j = 1}^p \vert \beta_j \vert$$
+* Ridge regression uses the $$l_1$$ norm, otherwise defined as $$\Sigma_{j = 1}^p \vert \beta_j \vert$$ (manhattan distance)
 * While we shrink the $$\beta$$ coefficients, we do not shrink the intercept parameter
 * Lasso regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \vert \beta_j \vert$$ term), so we must standardize the covariates prior to applying lasso regression
 * Lasso regression works best when OLS has high variance and we want to perform variable selection
