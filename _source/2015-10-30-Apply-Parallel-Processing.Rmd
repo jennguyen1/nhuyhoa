@@ -143,6 +143,7 @@ Note that this is one of many ways to run parallel processing.
 
 # Cool Uses of Apply
 
+## Example 1
 Say we have a number of files that we want to open. Rather than reading them in one by one, we could use an apply loop.
 
 {% highlight r %}
@@ -164,6 +165,7 @@ super_set <- rbindlist(files)
 
 And there you have it, all the files you need in one compact list. The great thing about `llply()` is that you aren't restricted to simple functions. So instead of just reading in the file, you could do even more data processing to fit your needs. The sky's the limit!
 
+## Example 2
 In some cases, we want to build any number of independent models and group common data outputs for simple extraction. So perhaps we want all the diagnostics in one data frame so we can compare them across multiple models. An easy way to do this is with the function `extract_list()`, which uses a recursive looping function to accumulate the data structures. 
 
 Here's an example of when `extract_list()` would come in handy.

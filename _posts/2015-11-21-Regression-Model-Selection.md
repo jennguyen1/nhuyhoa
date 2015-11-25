@@ -79,6 +79,9 @@ $$\Sigma^n_{i = 1} (y_i - \beta_0 - \Sigma^p_{j = 1} \beta_j x_{ij})^2 + \lambda
 
 where $$\lambda \ge 0$$ is a tuning parameter, chosen via cross-validation. 
 
+Or equivalently we minimize
+$$ \Sigma^n_{i = 1} (y_i-\beta_0-\Sigma^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$\Sigma^p_{j = 1} \beta^2 \le s$$.
+
 Then we get
 $$ \hat{\beta}_{ridge} = (X'X + \lambda I_p)^{-1} X'Y $$
 
@@ -92,8 +95,16 @@ Important Notes:
 
 * Ridge regression uses the $$l_2$$ norm, otherwise defined as $$\sqrt{\Sigma_{j = 1}^p \beta^2_j}$$ (euclidian distance)
 * While we shrink the $$\beta$$ coefficients, we do not shrink the intercept parameter
-* Ridge regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \beta^2_j$$ term), so we must standardize the covariates prior to applying ridge regression
-* Ridge regression works best when OLS has high variance
+* Ridge regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \beta^2_j$$ term), so we must standardize the covariates prior to applying ridge regression (good to standardize y responses too)
+
+Advantages:
+
+* Ridge regression works best when OLS has high variance, $$p >> n$$, high multicollinearity
+* If a group of covariates are highly correlated, they will have similar estimated coefficients
+
+Disadvantages:
+
+* Ridge regression does not perform model selection
 
 Example:
 
@@ -145,14 +156,26 @@ $$\Sigma^n_{i = 1} (y_i - \beta_0 - \Sigma^p_{j = 1} \beta_j x_{ij})^2 + \lambda
 
 where $$\lambda \ge 0$$ is a tuning parameter, chosen via cross-validation. 
 
+Or equivalently we minimize
+$$ \Sigma^n_{i = 1} (y_i-\beta_0-\Sigma^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$\Sigma^p_{j = 1} \vert \beta \vert \le s$$.
+
 The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tuning parameter $$\lambda$$ controls the impact of shrinkage. Lasso is different from ridge because it can shrink the coefficient estimates to zero when $$\lambda$$ is large. Thus lasso regression can perform variable selection.
 
 Important Notes: 
 
 * Ridge regression uses the $$l_1$$ norm, otherwise defined as $$\Sigma_{j = 1}^p \vert \beta_j \vert$$ (manhattan distance)
 * While we shrink the $$\beta$$ coefficients, we do not shrink the intercept parameter
-* Lasso regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \vert \beta_j \vert$$ term), so we must standardize the covariates prior to applying lasso regression
-* Lasso regression works best when OLS has high variance and we want to perform variable selection
+* Lasso regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \vert \beta_j \vert$$ term), so we must standardize the covariates prior to applying lasso regression (good to standardize y responses too)
+
+Advantages:
+
+* Lasso regression works best when OLS has high variance
+* Can perform variable selection
+
+Disadvantages:
+
+* When there is high collinearity among covariates, LASSO selects one variable and ignores the others
+* When $$p > n$$, LASSO can only select at most $$n$$ variables
 
 Example:
 
@@ -199,9 +222,24 @@ plot(glmnet(X,Y,alpha=1),xvar="lambda",label=T)
 Notice how as $$\lambda$$ increases, the coefficients are shrunk directly towards 0.
 
 ## Elastic Net
+Elastic net is an approach that blends both the $$l_2$$ and $$l_1$$ norm. In elastic net, we minimize the equation
+$$ argmin_{\beta} \vert y - X \beta \vert^2 $$
+
+subject to $$(1 - \alpha) * \Sigma^p_{j = 1} \vert \beta_j \vert + \alpha * \Sigma^p_{j = 1} \beta^2_j \le t $$ for some $$t$$ (elastic net penalty) where $$ \alpha = \frac{\lambda_2}{\lambda_1 + \lambda_2}$$, chosen by cross-validation.
+
+* When $$\alpha = 1$$, we have ridge regression
+* When $$\alpha = 0$$, we have LASSO regression
+* When $$\alpha \in (0, 1)$$, we have a mix of ridge and LASSO
+
+Note that since elastic net is a hybrid of ridge and LASSO, the covariates should be scaled prior to fitting the model (good to standardize y responses too).
+
+## In R Software
+The package `glmnet` is a great resource on fitting regularization models in R. See the package [viginette][glmnet_vignette]{:target="blank"}. 
 
 # Dimension Reduction Techniques
 
 ## Principle Components
 
 ## Partial Least Squares Regression
+
+[glmnet_vignette]: https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html
