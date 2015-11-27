@@ -21,8 +21,12 @@ Suppose the response $$Y_i$$ ~ $$Bin(n_i, p_i)$$ and the $$Y_i$$ are independent
 $$ P(Y_i = y_i) = \left(\begin{array}
 {rrr}
   n \\
-  y
-\end{array}\right) \mu^y (1-\mu)^{n - y} $$
+  y_i
+\end{array}\right) p_i^{y_i} (1-p_i)^{n_i - y_i} $$
+
+From this we can compute the deviance. 
+$$ D = 2 log \left( \frac{L_L}{L_S} \right) $$
+$$ D = 2 \Sigma^n_{i = 1} \big[ y_i log \left( \frac{y_i}{\hat{y}_i} \right) + (n_i - y_i) log \left( \frac{n_i - y_i}{n_i - \hat{y}_i} \right) \big] $$
 
 We face a few problems when our response variable has a binomial distribution. 
 
@@ -40,7 +44,7 @@ All of these link functions differ mostly at the tails. We will use the logit be
 # Logistic Regression Model
 
 We fit the model
-$$log \left( \frac{p}{1 - p} \right) = \beta_0 + \beta_1 x_1 + ... \beta_p x_p$$
+$$log \left( \frac{p}{1 - p} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$
 
 We can fit this model in R like so
 ```{r}
@@ -63,9 +67,6 @@ ggplot(data = orings, aes(x = temp, y = (damage / 6))) +
   xlab("Temperature") + ylab("Prob of Damage") +
   geom_line(data = d, aes(x = x, y = y))
 ```
-
-# Model Evaluation
-Assessing model fit can be done using deviance. See [GLM: Hypothesis Testing & Diagnostics][glm_diagnostic_link]{:target="blank"}.
 
 # Understanding Output
 ```{r}
@@ -95,17 +96,20 @@ $$ p = \frac{o}{1 + o} $$
 where $$p$$ is the probability of success and $$o$$ is the odds. 
 
 Odds provide a simple interpretation of the $$\hat{\beta}$$ coefficients in logistic regression. 
-$$log(odds \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_p x_p$$
-$$log(odds \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_p x_p$$
+$$log(odds \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
+$$log(odds \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
 
 Then 
 $$ log(odds \vert x_1 = x + 1) - log(odds \vert x_1 = x) = \beta_1 $$
 $$ log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) = \beta_1 $$
+
 $$ \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} = e^{\beta_1} $$
 
 Thus we can interpret the $$\beta_1$$ coefficient as follows: holding all other covariates constant, a unit increase in $$x_1$$ increases the odds of success by a factor of exp $$\beta_1$$.
 
-# Prediction Confidence Intervals
+# Predicted Values
+
+## Prediction Confidence Intervals
 For a given set $$ x_0 $$, we can predict the reponse.
 
 Procedure:
@@ -120,7 +124,7 @@ We can also use built in R functions:
 * Predict $$\hat{\eta}$$: `predict(object, newdata, type = "link")`
 * Predict $$\hat{\mu}$$: `predict(object, newdata, type = "response")`
 
-# Effective Dose 
+## Effective Dose 
 We can find the $$x$$ value in which there is a $$50$$% chance of success. 
 
 One variable case:
@@ -129,15 +133,19 @@ $$ 0 = \beta_0 + \beta_1 x_1 $$
 $$ x_1 = -\frac{\beta_0}{\beta_1} $$
 
 Multiple variables:
-$$log \left( \frac{0.5}{1 - 0.5} \right) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p$$
-$$ 0 = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p $$
-$$ x_1 = -\frac{\beta_0 + \beta_2 x_2 + ... + \beta_p x_p}{\beta_1} $$
+$$log \left( \frac{0.5}{1 - 0.5} \right) = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
+$$ 0 = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
+$$ x_1 = -\frac{\beta_0 + \beta_2 x_2 + ... + \beta_k x_k}{\beta_1} $$
 
 To determine the standard error of this estimate, we can use the delta method. 
 
 $$ var[g(\hat{\theta})] = g'(\hat{\theta})' var[\hat{\theta}] g'(\hat{\theta}) $$
 
 We can also use the built in R function: `MASS::dose.p()`
+
+# Model Evaluation & Diagnostics
+See [GLM: Hypothesis Testing & Diagnostics][glm_diagnostic_link]{:target="blank"}.
+
 
 [glm_diagnostic_link]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html
 

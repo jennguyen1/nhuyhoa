@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "GLM: Hypothesis Testing & Diagnostics"
+title: "GLM: Testing & Diagnostics"
 date: "November 25, 2015"
 categories: statistics
 ---
@@ -24,18 +24,22 @@ g <- gala[, -2]
 * Saturated model: model with n obs and n parameters, each data point has its own parameter
 * Proposed model: model with p parameters, model that you fit
 
+## Deviance
 Deviance is defined as 
 $$ D(y) = -2 \left( L(y \vert \hat{\theta}_m)) - L(y \vert \hat{\theta}_s)) \right) $$
 
-where $$L$$ denotes the log likelihood, $$\hat{\theta}_m$$ denotes fitted values for the proposed model and $$\hat{\theta}_s$$ denotes fitted values for the saturated model. 
+where $$L$$ denotes the log likelihood, $$\hat{\theta}_m$$ denotes fitted values for the proposed model and $$\hat{\theta}_s$$ denotes fitted values for the saturated model.
+
 The deviance is asymptotically distributed $$X^2_p$$.
 
-There are two types of hypothesis tests that can be done with GLMs.
+## Pearson X2
+The Pearson $$X^2$$ statistic is
+$$X^2 = \Sigma_i \frac{(y_i - \hat{\mu}_i)^2}{var(\hat{\mu}_i)}$$
 
-* Goodness of fit: does the current model fit the data?
-* Compare two nested models, which one is better?
+The Pearson $$X^2$$ is asymptotically distributed $$X^2_p$$.
 
-Note that the goodness of fit is a comparison of two models (the proposed model and the saturated model).
+## Goodness of Fit Test
+Does the current model fit the data? The goodness of fit is a comparison of two models (the proposed model and the saturated model).
 
 We can fit a glm in R and assess goodness of fit.
 ```{r}
@@ -54,13 +58,15 @@ pchisq(mod1$deviance, mod1$df.residual, lower.tail = FALSE)
 With a $$p.value = 0.94$$, we can conclude that there is no evidence of lack of fit. 
 
 ```{r}
-# goodness of fit - using pearson
+# goodness of fit - using pearson X2
 pchisq(sum(residuals(mod1, "pearson")^2), mod1$df.residual, lower.tail = FALSE)
 ```
-Here we use the Pearson $$X^2$$ statistic
-$$X^2 = \Sigma_i \frac{(y_i - \hat{\mu}_i)^2}{var(\hat{\mu}_i)}$$
+We use the deviance residuals to compute the Pearson residuals $$X^2 = \Sigma r_{pearson}^2$$.
 
-which is computed via the Pearson residuals $$X^2 = \Sigma r_p^2$$
+We see that the result is comparable to the deviance.
+
+## Compare Two Models
+Compare two nested models, which one is better?
 
 ```{r}
 # test significance of conc by comparing to null mod1el
@@ -79,12 +85,21 @@ The results here indicate no need for a quadratic concentration term.
 
 # Diagnostics
 
+## What Can Go Wrong
+
+When we observe a deviance much larger than expected if the model was correct, we need to determine which aspects of the model specification is incorrect. 
+
+* Wrong structural form: didn't include the right predictors or predictors were not transformed or combined in correct way
+* Presence of outliers
+* Sparse data
+* Overdispersion: variance greater than assumed, which can arise when independent or identical assumptions are violated
+
 ## Residuals
 
 * Response residuals: $$y - \hat{\mu}$$ has non-constant variance
 * Pearson residuals: $$\frac{y - \hat{\mu}}{\sqrt{Var(\hat{\mu})}}$$  , where $$\Sigma r^2_p = X^2$$
 * Deviance residuals: $$sign(y - \hat{\mu}) \sqrt{d}_i$$, where $$\Sigma r^2_d = Deviance$$
-* Jackknife residuals: expensive to compute, but approximations are available
+* Jackknife residuals (studentized residuals): expensive to compute, but approximations are available
 
 ## Leverages
 Since GLMs use the IRWLS algorithm, the leverage values are affected by the weights. The hat matrix is defined by
@@ -148,9 +163,32 @@ When we plot using the response residuals, we will see variation patterns consis
 # response residuals vs fitted link
 qplot(y = residuals(mod, "response"), x = predict(mod, type = "link")) + 
   xlab(expression(hat(eta))) + 
-  ylab("Deviance Residuals")
+  ylab("Response Residuals")
 ```
 Here we see a pattern of increasing variation consistent with the Poisson distribution. 
+
+### Half-Normal Plot
+We can plot the sorted absolute residuals to the quantiles of the half normal distribution to identify outliers. We look for points off the trend. (The examples used here are different from the model above).
+
+```{r, echo = FALSE}
+modpl <- glm(Species ~ log(Area) + log(Elevation) + log(Nearest) + log(Scruz+0.1) + log(Adjacent), family=poisson, gala)
+```
+
+
+```{r, fig.width = 10}
+par(mfrow = c(1, 2))
+# half-normal of studentized residuals
+halfnorm(rstudent(modpl))
+# half-norm of leverages
+halfnorm(influence(modpl)$hat)
+```
+The half-norm plot of leverage seems to indicate that obs 25 may have high leverage. 
+
+```{r}
+# half-norm of cook's distance
+c <- halfnorm(cooks.distance(modpl))
+```
+The half-norm plot indicates that obs 25 has a big Cook's statistic. It might be useful to investigate this observation in closer detail. 
 
 ### Added Variable Plots
 Similar to regression, we can generate added variable plots. The interpretation is similar to linear models.

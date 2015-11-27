@@ -49,7 +49,7 @@ where $$\frac{r_i^2}{n - p}$$ ~ $$Beta(\frac{1}{2}, \frac{1}{2}(n - p - 1))$$
 Externally standardized residuals (jackknife residuals) are defined as 
 $$ t_i = \frac{\hat{\epsilon}_i }{\hat{\sigma}_{(i)} \sqrt{1 - h_{ii}}}$$ 
 
-where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted to stem the effect of outliers. If $$ \vert t_i \vert > 2$$, we consider that a large residual.
+where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted. If $$ \vert t_i \vert > 2$$, we consider that a large residual.
 
 Notice that residuals refer to extreme $$y$$-values. 
 
