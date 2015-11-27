@@ -46,12 +46,12 @@ $$ r_i = \frac{\hat{\epsilon}_i }{\hat{\sigma \sqrt{1 - h_{ii}}}}$$
 
 where $$\frac{r_i^2}{n - p}$$ ~ $$Beta(\frac{1}{2}, \frac{1}{2}(n - p - 1))$$
 
-Extenerally standardized residuals are defined as 
-$$ t_i = \frac{\hat{\epsilon}_i }{\hat{\sigma_{(i)} \sqrt{1 - h_{ii}}}}$$ 
+Externally standardized residuals (jackknife residuals) are defined as 
+$$ t_i = \frac{\hat{\epsilon}_i }{\hat{\sigma}_{(i)} \sqrt{1 - h_{ii}}}$$ 
 
 where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted to stem the effect of outliers. If $$ \vert t_i \vert > 2$$, we consider that a large residual.
 
-Notice that residuals refer to they $$y$$-values. 
+Notice that residuals refer to extreme $$y$$-values. 
 
 ## Observations with High Leverage Values
 Recall the hat matrix $$ H = X(X'X)^{-1}X' $$. $$H$$ is invariate to scale and location transformations of the columns of X.
@@ -62,7 +62,7 @@ Leverage is the diagonals of the hat matrix and defined as
 
 where $$x_i$$ is the column vector of the $$i^{th}$$ row of X and $$S = \frac{\Sigma (x_i - \bar{x})(x_i - \bar{x})'}{n - 1} $$ is the sample covariance matrix.
 
-Notice that leverage refers to the $$x$$-values. 
+Notice that leverage refers to extreme $$x$$-values. 
 
 ## Influential Points and Outliers
 An influental point is an observation that has substantial influence on regression, such that its removal would greatly affect the regression line.  
@@ -122,20 +122,20 @@ A VIF of 1 indicates no correlation. VIFs greater than 5 are on the fence, furth
 # Diagnostic Plots
 
 ## How to Obtain Values in R
-Residuals: `residuals(m)`
-Internally standardized residuals: `rstandard(m)`
-Externally standardized residuals: `rstudent(m)`
-Leverage values: `hatvalues(m)`
-Cook's Distance: `cooks.distance(m)`
-DFFITS: `dffits(m)`
-DFBETAS: `dfbetas(m)`
-Influence statistics: `influence.measures(m)`
-Variance Inflation Factor: `vif(m)`
+* Residuals: `residuals(m)`
+* Internally standardized residuals: `rstandard(m)`
+* Externally standardized residuals: `rstudent(m)`
+* Leverage values: `hatvalues(m)`
+* Cook's Distance: `cooks.distance(m)`
+* DFFITS: `dffits(m)`
+* DFBETAS: `dfbetas(m)`
+* Influence statistics: `influence.measures(m)`
+* Variance Inflation Factor: `vif(m)`
 
 ## Assess Independence:
 Independence is generally difficult to test for. Generally scientific knowledge regarding the problem at hand should be used to assess independence of observations.
 
-## Assess Linearity & Homoskedaskticity: Residuals Vs Fitted Plots
+## Assess Linearity & Homoscedasticity: Residuals Vs Fitted Plots
 Residuals vs fitted values plots are useful for assessing linearity and homoskedaskticity.
 
 <img src="/nhuyhoa/figure/source/2015-11-13-Regression-Diagnostics/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
@@ -206,6 +206,14 @@ coef(m1)
 <img src="/nhuyhoa/figure/source/2015-11-13-Regression-Diagnostics/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 Note that the slope of the plot and the coefficient for volume on the full model are the same. We interpret this plot to mean that the variable $$Volume$$ provides a meaningful contribution after already adjusting for $$Girth$$. Thus $$ Volume$$ should be added to the model.
+
+There is also a function in R: `car::avPlots()`
+
+{% highlight r %}
+car::avPlots(m1)
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-11-13-Regression-Diagnostics/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 # Solutions to Violation of Assumptions
 

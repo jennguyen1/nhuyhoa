@@ -8,6 +8,10 @@ categories: statistics
 * TOC
 {:toc}
 
+The linear probability model:
+
+$$ Y$$ ~ iid$$N(X\beta, \sigma^2 I)$$
+
 The regression equation:
 
 $$ Y = X\beta + \epsilon $$
@@ -102,7 +106,7 @@ c(B)
 
 
 {% highlight text %}
-## [1]  0.18452848 -0.03310654 -0.09032985 -0.03687134
+## [1] -0.31409479  0.09893853 -0.17768059  0.06523390
 {% endhighlight %}
 
 
@@ -115,6 +119,6 @@ c(coef)
 
 {% highlight text %}
 ## (Intercept)          x1          x2          x3 
-##  0.18452848 -0.03310654 -0.09032985 -0.03687134
+## -0.31409479  0.09893853 -0.17768059  0.06523390
 {% endhighlight %}
 

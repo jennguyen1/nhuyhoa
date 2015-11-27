@@ -1,0 +1,159 @@
+---
+layout: post
+title: "GLM: Hypothesis Testing & Diagnostics"
+date: "November 25, 2015"
+categories: statistics
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, message = FALSE}
+library(jn.general)
+lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+library(faraway)
+data(bliss)
+data(gala)
+g <- gala[, -2]
+```
+
+# Hypothesis Testing
+
+* Null model: intercept only model
+* Saturated model: model with n obs and n parameters, each data point has its own parameter
+* Proposed model: model with p parameters, model that you fit
+
+Deviance is defined as 
+$$ D(y) = -2 \left( L(y \vert \hat{\theta}_m)) - L(y \vert \hat{\theta}_s)) \right) $$
+
+where $$L$$ denotes the log likelihood, $$\hat{\theta}_m$$ denotes fitted values for the proposed model and $$\hat{\theta}_s$$ denotes fitted values for the saturated model. 
+The deviance is asymptotically distributed $$X^2_p$$.
+
+There are two types of hypothesis tests that can be done with GLMs.
+
+* Goodness of fit: does the current model fit the data?
+* Compare two nested models, which one is better?
+
+Note that the goodness of fit is a comparison of two models (the proposed model and the saturated model).
+
+We can fit a glm in R and assess goodness of fit.
+```{r}
+mod1 <- glm(cbind(dead, alive) ~ conc, family = binomial, data = bliss)
+summary(mod1)
+```
+
+* Null deviance: $$D_{sat} - D_{null}$$
+* Residual deviance: $$D_{sat} - D_{model}$$
+
+With these values we can conduct our hypothesis tests.
+```{r}
+# goodness of fit - using deviance
+pchisq(mod1$deviance, mod1$df.residual, lower.tail = FALSE)
+```
+With a $$p.value = 0.94$$, we can conclude that there is no evidence of lack of fit. 
+
+```{r}
+# goodness of fit - using pearson
+pchisq(sum(residuals(mod1, "pearson")^2), mod1$df.residual, lower.tail = FALSE)
+```
+Here we use the Pearson $$X^2$$ statistic
+$$X^2 = \Sigma_i \frac{(y_i - \hat{\mu}_i)^2}{var(\hat{\mu}_i)}$$
+
+which is computed via the Pearson residuals $$X^2 = \Sigma r_p^2$$
+
+```{r}
+# test significance of conc by comparing to null mod1el
+pchisq(mod1$null.deviance - mod1$deviance, mod1$df.null - mod1$df.residual, lower.tail = FALSE)
+anova(mod1, test = "Chi")
+```
+Here we see that the concentration term is significant. 
+
+We can also compare to more complex models.
+```{r}
+# compare to quadratic concentration term
+mod2 <- glm(cbind(dead, alive) ~ conc + I(conc^2), family = binomial, bliss)
+anova(mod1, mod2, test="Chi")
+```
+The results here indicate no need for a quadratic concentration term. 
+
+# Diagnostics
+
+## Residuals
+
+* Response residuals: $$y - \hat{\mu}$$ has non-constant variance
+* Pearson residuals: $$\frac{y - \hat{\mu}}{\sqrt{Var(\hat{\mu})}}$$  , where $$\Sigma r^2_p = X^2$$
+* Deviance residuals: $$sign(y - \hat{\mu}) \sqrt{d}_i$$, where $$\Sigma r^2_d = Deviance$$
+* Jackknife residuals: expensive to compute, but approximations are available
+
+## Leverages
+Since GLMs use the IRWLS algorithm, the leverage values are affected by the weights. The hat matrix is defined by
+$$ H = W^{1/2}X(X'WX)^{-1}X'W^{1/2} $$
+
+where $$W = diag(w)$$
+
+The diagonal elements of $$H$$ contain the leverages $$h_{i}$$.
+
+## Cook's Distance
+The Cook statistics:
+$$D_i = 
+\frac{(\hat{\beta}_{(i)} - \hat{\beta})' (X'WX) (\hat{\beta}_{(i)} - \hat{\beta})}{p\hat{\phi}}$$
+
+## DFBETAs
+Similar to to the linear model, DFBETAs can examine the change in fit (coefficients) from omitting an observation.
+
+# Diagnostics in R
+
+## How to Obtain Diagnostics in R
+
+* Response residuals: `residuals(m, "response")`
+* Pearson residuals: `residuals(m, "pearson")`
+* Deviance residuals: `residuals(m)`
+* Studentized residuals: `rstudent(m)`
+* Leverage values: `influence(m)$hat`
+* Cook statistics: `cooks.distance(m)`
+* DFBETAs: `influence(m)$coef`
+
+## Diagnostic Plots
+
+### Residual vs Fitted Plots
+```{r}
+# fit model
+mod <- glm(Species ~ ., family = poisson, data = g)
+```
+
+We can fit plots equivalent to the residuals vs fitted plots in linear regression. Since we use the deviance residuals (which are standardized), we should see constant variance. 
+```{r, fig.width=10}
+# deviance resids vs fitted response
+g1 <- qplot(y = residuals(mod), x = predict(mod, type = "response")) + 
+  xlab(expression(hat(mu))) + 
+  ylab("Deviance Residuals")
+# deviance residuals vs fitted link
+g2 <- qplot(y = residuals(mod), x = predict(mod, type = "link")) + 
+  xlab(expression(hat(eta))) + 
+  ylab("Deviance Residuals")
+
+# combine
+grid.arrange(g1, g2, nrow = 1)
+```
+Two different scales for the fitted values. We see that using $$\hat{eta}$$ is better than $$\hat{\mu}$$. Overall, we see that the residuals are evenly spaced across fitted values, and there are no violation of assumptions.
+
+What should we do if we see violations?
+
+* Nonlinear trend: consider transformation of covariates (generally better than changing the link function)
+* Non-constant variance: change the model
+
+When we plot using the response residuals, we will see variation patterns consistent with the response distribution.
+```{r}
+# response residuals vs fitted link
+qplot(y = residuals(mod, "response"), x = predict(mod, type = "link")) + 
+  xlab(expression(hat(eta))) + 
+  ylab("Deviance Residuals")
+```
+Here we see a pattern of increasing variation consistent with the Poisson distribution. 
+
+### Added Variable Plots
+Similar to regression, we can generate added variable plots. The interpretation is similar to linear models.
+
+In R: `car::avPlots()`
+

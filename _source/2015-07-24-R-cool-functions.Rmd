@@ -12,7 +12,9 @@ categories: R
 library(jn.general)
 lib(data, viz)
 ```
-
+R reference card: https://cran.r-project.org/doc/contrib/Short-refcard.pdf
+[dplyr_cheatsheet_link]: https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+[dt_cheatsheet_link]: https://s3.amazonaws.com/assets.datacamp.com/img/blog/data+table+cheat+sheet.pdf
 
 # Numeric Types
 ```{r, echo = FALSE}

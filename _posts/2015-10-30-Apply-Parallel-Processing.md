@@ -12,7 +12,7 @@ categories: R data_wrangling
 
 For loops in R are known to be quite slow as the number of iterations increase. Thus it is advised to use apply functions for looping operations. In cases when it is desirable to optimize code even more, parallel processing can be used alongside the apply functions.
 
-# Basic Setup - For Loop Replacement
+# Apply as a For Loop Replacement
 Lapply is a desireable replacement of for-loops when each iteration is independent of the others. 
 
 Recall the basic setup of the for loop: 
@@ -163,6 +163,39 @@ rdply(5, runif(3))
 </table>
 </div>
 
+# Multivariate Apply
+We can simultaneously loop over several vectors at once with `Map`.
+
+For example, we can compute multiple weighted means with two list, one with multiple vectors of observations and one with corresponding weights.
+
+{% highlight r %}
+# list of obs and weights
+obs <- replicate(5, runif(10), simplify = FALSE)
+weights <- replicate(5, rpois(10, 5) + 1, simplify = FALSE)
+
+# multivariate apply
+Map(function(x, w) weighted.mean(x, w, na.rm = TRUE), obs, weights) 
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [[1]]
+## [1] 0.5849222
+## 
+## [[2]]
+## [1] 0.433252
+## 
+## [[3]]
+## [1] 0.495873
+## 
+## [[4]]
+## [1] 0.5998531
+## 
+## [[5]]
+## [1] 0.4728041
+{% endhighlight %}
+
 # Foreach Functions
 Under Construction :)
 
@@ -250,37 +283,37 @@ output[[1]]
 ## $temp
 ## $temp$hot
 ## $temp$hot$red
-##   model  i
-## 1    #1  W
-## 2    #1 Th
-## 3    #1  T
+##   model i
+## 1    #1 W
+## 2    #1 F
+## 3    #1 T
 ## 
 ## $temp$hot$orange
-##   model       j
-## 1    #1 October
-## 2    #1    July
+##   model        j
+## 1    #1    March
+## 2    #1 December
 ## 
 ## 
 ## $temp$cold
-##   model          x          y
-## 1    #1 13.2429895       Utah
-## 2    #1 19.7339058   Michigan
-## 3    #1  0.5832801      Idaho
-## 4    #1 11.9307516   Arkansas
-## 5    #1 18.3078435 California
-## 6    #1 17.3182889       Iowa
-## 7    #1 11.9404906  Minnesota
+##   model         x           y
+## 1    #1 18.232741      Nevada
+## 2    #1 11.314271    Kentucky
+## 3    #1  4.378169    Michigan
+## 4    #1 18.667457 Mississippi
+## 5    #1  2.624691     Florida
+## 6    #1 21.613624  Washington
+## 7    #1 15.366124    Arkansas
 ## 
 ## 
 ## $CA
 ##      [,1] [,2] [,3] [,4]
-## [1,]    3    8   -5   -8
-## [2,]   -3    7   -2    1
-## [3,]    6   -1  -10    0
-## [4,]   -6   -7    5   -9
+## [1,]   -5   -3  -10    3
+## [2,]   -6    1   -7   -1
+## [3,]    9    2    6   -4
+## [4,]    5    7    0   -9
 ## 
 ## $WA
-## [1] "M" "W" "U" "I" "R"
+## [1] "J" "W" "P" "R" "N"
 {% endhighlight %}
 
 
@@ -298,34 +331,34 @@ output[[2]]
 ##   model i
 ## 1    #2 F
 ## 2    #2 T
-## 3    #2 W
+## 3    #2 M
 ## 
 ## $temp$hot$orange
-##   model     j
-## 1    #2   May
-## 2    #2 April
+##   model        j
+## 1    #2 November
+## 2    #2     June
 ## 
 ## 
 ## $temp$cold
-##   model         x             y
-## 1    #2 18.927179       Arizona
-## 2    #2  5.067306      New York
-## 3    #2 17.778031         Texas
-## 4    #2  3.042298        Oregon
-## 5    #2  6.137213    Washington
-## 6    #2  3.582609 Massachusetts
-## 7    #2  5.990735         Maine
+##   model         x          y
+## 1    #2 21.926439   Maryland
+## 2    #2  4.729841 California
+## 3    #2 18.952576    Vermont
+## 4    #2 18.112472    Indiana
+## 5    #2 23.593120     Nevada
+## 6    #2 13.691165  Wisconsin
+## 7    #2 17.793597     Oregon
 ## 
 ## 
 ## $CA
 ##      [,1] [,2] [,3] [,4]
-## [1,]    6   -6   -9   -3
-## [2,]    1    4   -5    3
-## [3,]    8   -2   -1    2
-## [4,]   -4   -8    0    9
+## [1,]   -4   -2    2   -3
+## [2,]    4    7   -9  -10
+## [3,]   -6   -8    3    8
+## [4,]   -7    9    1   -5
 ## 
 ## $WA
-## [1] "D" "A" "R" "C" "J"
+## [1] "V" "H" "P" "Z" "U"
 {% endhighlight %}
 And so on for the following iterations.
 
@@ -343,85 +376,85 @@ extract
 ## $temp
 ## $temp$hot
 ## $temp$hot$red
-##    model  i
-## 1:    #1  W
-## 2:    #1 Th
-## 3:    #1  T
-## 4:    #2  F
-## 5:    #2  T
-## 6:    #2  W
-## 7:    #3 Th
-## 8:    #3  F
-## 9:    #3  T
+##    model i
+## 1:    #1 W
+## 2:    #1 F
+## 3:    #1 T
+## 4:    #2 F
+## 5:    #2 T
+## 6:    #2 M
+## 7:    #3 T
+## 8:    #3 F
+## 9:    #3 M
 ## 
 ## $temp$hot$orange
 ##    model        j
-## 1:    #1  October
-## 2:    #1     July
-## 3:    #2      May
-## 4:    #2    April
-## 5:    #3     June
-## 6:    #3 February
+## 1:    #1    March
+## 2:    #1 December
+## 3:    #2 November
+## 4:    #2     June
+## 5:    #3    April
+## 6:    #3     June
 ## 
 ## 
 ## $temp$cold
-##     model          x             y
-##  1:    #1 13.2429895          Utah
-##  2:    #1 19.7339058      Michigan
-##  3:    #1  0.5832801         Idaho
-##  4:    #1 11.9307516      Arkansas
-##  5:    #1 18.3078435    California
-##  6:    #1 17.3182889          Iowa
-##  7:    #1 11.9404906     Minnesota
-##  8:    #2 18.9271787       Arizona
-##  9:    #2  5.0673064      New York
-## 10:    #2 17.7780306         Texas
-## 11:    #2  3.0422980        Oregon
-## 12:    #2  6.1372128    Washington
-## 13:    #2  3.5826095 Massachusetts
-## 14:    #2  5.9907354         Maine
-## 15:    #3 18.8705236      Arkansas
-## 16:    #3 11.3473872        Alaska
-## 17:    #3 12.7792446    New Mexico
-## 18:    #3  5.1886278          Utah
-## 19:    #3  5.7164536        Nevada
-## 20:    #3 14.8927999       Montana
-## 21:    #3 14.3718050   Mississippi
-##     model          x             y
+##     model         x           y
+##  1:    #1 18.232741      Nevada
+##  2:    #1 11.314271    Kentucky
+##  3:    #1  4.378169    Michigan
+##  4:    #1 18.667457 Mississippi
+##  5:    #1  2.624691     Florida
+##  6:    #1 21.613624  Washington
+##  7:    #1 15.366124    Arkansas
+##  8:    #2 21.926439    Maryland
+##  9:    #2  4.729841  California
+## 10:    #2 18.952576     Vermont
+## 11:    #2 18.112472     Indiana
+## 12:    #2 23.593120      Nevada
+## 13:    #2 13.691165   Wisconsin
+## 14:    #2 17.793597      Oregon
+## 15:    #3 23.099212 Connecticut
+## 16:    #3 12.773992       Maine
+## 17:    #3  6.440532  New Mexico
+## 18:    #3  1.161522   Wisconsin
+## 19:    #3 10.446406    New York
+## 20:    #3 21.350038    Virginia
+## 21:    #3  8.680767    Missouri
+##     model         x           y
 ## 
 ## 
 ## $CA
 ## $CA[[1]]
 ##      [,1] [,2] [,3] [,4]
-## [1,]    3    8   -5   -8
-## [2,]   -3    7   -2    1
-## [3,]    6   -1  -10    0
-## [4,]   -6   -7    5   -9
+## [1,]   -5   -3  -10    3
+## [2,]   -6    1   -7   -1
+## [3,]    9    2    6   -4
+## [4,]    5    7    0   -9
 ## 
 ## $CA[[2]]
 ##      [,1] [,2] [,3] [,4]
-## [1,]    6   -6   -9   -3
-## [2,]    1    4   -5    3
-## [3,]    8   -2   -1    2
-## [4,]   -4   -8    0    9
+## [1,]   -4   -2    2   -3
+## [2,]    4    7   -9  -10
+## [3,]   -6   -8    3    8
+## [4,]   -7    9    1   -5
 ## 
 ## $CA[[3]]
 ##      [,1] [,2] [,3] [,4]
-## [1,]    9   -7   -8   -6
-## [2,]   -1    5   -2    4
-## [3,]    2    6   -9    8
-## [4,]    0   -5   -3    1
+## [1,]   -2    4    3   -4
+## [2,]    9   -8   -9   -3
+## [3,]   -5    7   -6    2
+## [4,]   -1    5    8   -7
 ## 
 ## 
 ## $WA
 ## $WA[[1]]
-## [1] "M" "W" "U" "I" "R"
+## [1] "J" "W" "P" "R" "N"
 ## 
 ## $WA[[2]]
-## [1] "D" "A" "R" "C" "J"
+## [1] "V" "H" "P" "Z" "U"
 ## 
 ## $WA[[3]]
-## [1] "N" "E" "M" "B" "G"
+## [1] "M" "C" "F" "L" "I"
 {% endhighlight %}
 
 Clean aggregated outputs, makes analysis and comparison much more simple!

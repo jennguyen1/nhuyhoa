@@ -11,7 +11,7 @@ categories: statistics
 ```{r, echo = FALSE}
 library(jn.general)
 lib(data, viz)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
 ```
 
 
@@ -49,6 +49,8 @@ $$ Y = 0 + \beta_1 x_1 + \beta_2 x_2 $$ where $$ \beta_0 = 0 $$.
 Thus when we fit a regression without an intercept, we insist that the expected value of Y when all x's are 0 is 0. If we know that the intercept is 0, doing so will give us more residual degrees of freedom. However, care should be done in setting the intercept to 0, as this may lead to errors in estimating the other coefficients. 
 
 # Categorical Variables
+
+## Default Contrasts
 ```{r}
 m2 <- lm(Petal.Length ~ Species, data = iris)
 ```
@@ -81,10 +83,24 @@ m2a <- lm(Petal.Length ~ Species - 1, data = iris)
 summary(m2a)$coefficients %>% round(3)
 ```
 
+## Polynomial Contrasts
+When we have ordinal categorical variables, it is more useful to generate polynomial contrasts to assess linear, quadratic, and cubic trends among those ordered groups. The ordinal categorical variable should have levels that are equally spaced. 
+
+We can simulate ordinal categorical variables for our example.
+```{r}
+# make 3 equal sized ordered groups of Petal.Length
+ord.Petal.Length <- cut(iris$Petal.Length, 3, ordered_result = TRUE)
+
+# fit model
+m3 <- lm(Sepal.Length ~ ord.Petal.Length, data = iris)
+summary(m3)$coefficients %>% round(3)
+```
+Here we see that there is a strong linear effect of $$ord.Petal.Length$$ with $$Sepal.Length$$. There is not a strong quadratic effect of $$ord.Petal.Length$$ with $$Sepal.Length$$.
+
 # Continuous and Categorical Variables
 ```{r}
-m3 <- lm(Sepal.Length ~ Petal.Length*Species, data = iris)
-summary(m3)$coefficients %>% round(3)
+m4 <- lm(Sepal.Length ~ Petal.Length*Species, data = iris)
+summary(m4)$coefficients %>% round(3)
 ```
 
 This is a model fit with both continuous variables (Petal.Length) and categorical variables (Species). Let's break down the regression formulas.
@@ -116,8 +132,8 @@ ggplot(data = iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
 We can perform hypothesis testing to determine whether the species have similar intercepts and/or similar slopes for Petal Length, thereby simplifying the model. 
 
 ```{r}
-m3a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
-summary(m3a)$coefficients %>% round(3)
+m4a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
+summary(m4a)$coefficients %>% round(3)
 ```
 
 If we were to remove the intercept, we have the following regression lines.

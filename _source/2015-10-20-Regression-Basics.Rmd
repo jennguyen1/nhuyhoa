@@ -8,6 +8,10 @@ categories: statistics
 * TOC
 {:toc}
 
+The linear probability model:
+
+$$ Y$$ ~ iid$$N(X\beta, \sigma^2 I)$$
+
 The regression equation:
 
 $$ Y = X\beta + \epsilon $$

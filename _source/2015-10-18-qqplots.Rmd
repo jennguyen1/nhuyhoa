@@ -1,14 +1,18 @@
 ---
 layout: post
 title: "Quantile Quantile (QQ) Plots"
-date: "October 26, 2015"
+date: "October 18, 2015"
 categories: statistics
 ---
 
 * TOC
 {:toc}
 
-
+```{r, echo = FALSE}
+library(jn.general)
+lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+```
 
 # QQ Plot Generation
 QQ plots plot the quantiles of one distribution to the quantiles of another distribution. It can be used to assess exactly how the two data sets differ. When quantiles from a data set are compared with theoretical quantiles, we can conclude whether a data set follows a certain set of distributions. 
@@ -25,8 +29,7 @@ Note that with small sample sizes, slight deviations from the reference line is 
 
 # Examples 
 Let's generate data under the uniform distribution and see whether it follows a normal distribution (it shouldn't).
-
-{% highlight r %}
+```{r}
 # random data
 set.seed(1)
 x <- runif(500)
@@ -36,41 +39,32 @@ quantiles <- qnorm(1:length(x) / (length(x) + 1))
 data <- sort(x)
 # generate qqplot
 qplot(x = quantiles, y = data, geom = "point", main = "Is Our Data Normally Distributed?") + geom_abline(slope = 1)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2015-10-26-qqplots/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+```
 
 We see a curved line that is very far off from the identity line. Thus we conclude that our data does not follow the normal distribution.
 
 Now let's generate a QQ plot, with theoretical quantiles that are uniformly distributed.
 
-
-{% highlight r %}
+```{r}
 # theoretical quantiles
 quantiles <- qunif(1:length(x) / (length(x) + 1))
 # generate qqplot
 qplot(x = quantiles, y = data, geom = "point", main = "Is Our Data Uniformly Distributed?") + geom_abline(slope = 1)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2015-10-26-qqplots/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+```
 
 Here we have a linear pattern that falls along our reference line, so we can conclude that our data is uniformly distributed.
 
 Since normal data is so common, most statistical packages will have QQ-Normal plots built in. For example, in ggplot2 (R):
 
-
-{% highlight r %}
+```{r}
 qplot(sample = data, stat = "qq", main = "QQ-Normal Plot") + geom_abline(slope = 1)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2015-10-26-qqplots/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+```
 
 # Deriving More Information With QQ Plots
 QQ plots and the corresponding reference line can be used to assess the shape of one's data. In the following examples, I will compare the generated data with the standard normal data.
 
 ## Similar Distributions, Different Location
-
-{% highlight r %}
+```{r}
 # generate random data, centered at 2
 set.seed(1)
 x <- rnorm(100, 2)
@@ -80,15 +74,12 @@ quantiles <- qnorm(1:length(x) / (length(x) + 1), 0)
 data <- sort(x)
 # plot quantiles
 qplot(x = quantiles, y = data, geom = "point", main = "QQ Normal") + geom_abline(slope = 1)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2015-10-26-qqplots/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+```
 
 The linear trend of the points indicate that the data follows a normal distribution. The position of the points relative to the reference line indicates that the data is generally greater than standard normal, ie the location has been shifted.
 
 ## Similar Distributions, Different Spread
-
-{% highlight r %}
+```{r}
 # generate random data, centered at 2
 set.seed(1)
 x <- rnorm(100, 0, 2)
@@ -98,15 +89,12 @@ quantiles <- qnorm(1:length(x) / (length(x) + 1), 0, 1)
 data <- sort(x)
 # plot quantiles
 qplot(x = quantiles, y = data, geom = "point", main = "QQ Normal") + geom_abline(slope = 1)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2015-10-26-qqplots/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+```
 
 The linear trend of the points indicate that the data follows a normal distribution. For theoretical normal quantiles less than 0, the points fall below the reference line. Vice versa for quantiles greater than 0. This indicates that the distribution of the data are stretched out more at the ends, ie greater spread/variance.
 
 ## Right Skew
-
-{% highlight r %}
+```{r}
 # generate random data, centered at 2
 set.seed(1)
 x <- rchisq(100, 1)
@@ -116,22 +104,14 @@ quantiles <- qnorm(1:length(x) / (length(x) + 1), 0, 1)
 data <- sort(x)
 # plot actual data
 qplot(x = data, alpha = I(0.9), geom = "histogram", binwidth = 0.5)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2015-10-26-qqplots/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
-
-{% highlight r %}
 # plot quantiles
 qplot(x = quantiles, y = data, geom = "point", main = "QQ Normal") + geom_abline(slope = 1)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2015-10-26-qqplots/unnamed-chunk-7-2.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+```
 
 The non-linear trend indicates the data is not normally distributed. For all points, the empirical data is larger than the corresponding normal quantiles.
 
 ## Bigger Tails
-
-{% highlight r %}
+```{r}
 # generate random data, centered at 2
 set.seed(1)
 x <- rt(100, 3)
@@ -141,8 +121,6 @@ quantiles <- qnorm(1:length(x) / (length(x) + 1), 0, 1)
 data <- sort(x)
 # plot quantiles
 qplot(x = quantiles, y = data, geom = "point", main = "QQ Normal") + geom_abline(slope = 1)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2015-10-26-qqplots/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+```
 
 Deviation from the reference line at the ends indicate deviation from the normally-distributed tails. At the left tail (left side of graph), our data is much smaller than the normal quantiles, vice versa for the right tail. This indicates that distribution of our data has bigger tails. 

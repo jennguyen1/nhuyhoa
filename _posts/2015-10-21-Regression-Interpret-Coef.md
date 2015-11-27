@@ -91,6 +91,8 @@ Thus when we fit a regression without an intercept, we insist that the expected 
 
 # Categorical Variables
 
+## Default Contrasts
+
 {% highlight r %}
 m2 <- lm(Petal.Length ~ Species, data = iris)
 {% endhighlight %}
@@ -177,11 +179,35 @@ summary(m2a)$coefficients %>% round(3)
 ## Speciesvirginica     5.552      0.061  91.228        0
 {% endhighlight %}
 
+## Polynomial Contrasts
+When we have ordinal categorical variables, it is more useful to generate polynomial contrasts to assess linear, quadratic, and cubic trends among those ordered groups. The ordinal categorical variable should have levels that are equally spaced. 
+
+We can simulate ordinal categorical variables for our example.
+
+{% highlight r %}
+# make 3 equal sized ordered groups of Petal.Length
+ord.Petal.Length <- cut(iris$Petal.Length, 3, ordered_result = TRUE)
+
+# fit model
+m3 <- lm(Sepal.Length ~ ord.Petal.Length, data = iris)
+summary(m3)$coefficients %>% round(3)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##                    Estimate Std. Error t value Pr(>|t|)
+## (Intercept)           5.864      0.040 146.590    0.000
+## ord.Petal.Length.L    1.179      0.071  16.700    0.000
+## ord.Petal.Length.Q   -0.058      0.068  -0.855    0.394
+{% endhighlight %}
+Here we see that there is a strong linear effect of $$ord.Petal.Length$$ with $$Sepal.Length$$. There is not a strong quadratic effect of $$ord.Petal.Length$$ with $$Sepal.Length$$.
+
 # Continuous and Categorical Variables
 
 {% highlight r %}
-m3 <- lm(Sepal.Length ~ Petal.Length*Species, data = iris)
-summary(m3)$coefficients %>% round(3)
+m4 <- lm(Sepal.Length ~ Petal.Length*Species, data = iris)
+summary(m4)$coefficients %>% round(3)
 {% endhighlight %}
 
 
@@ -215,14 +241,14 @@ $$ Sepal.Length = (4.2 + -3.2) + (0.54 + 0.45) * Petal.Length $$
 
 Essentially what we have is 3 separate lines for each value of Species, the categorical variable. 
 
-<img src="/nhuyhoa/figure/source/2015-10-21-Regression-Interpret-Coef/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-10-21-Regression-Interpret-Coef/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 
 We can perform hypothesis testing to determine whether the species have similar intercepts and/or similar slopes for Petal Length, thereby simplifying the model. 
 
 
 {% highlight r %}
-m3a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
-summary(m3a)$coefficients %>% round(3)
+m4a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
+summary(m4a)$coefficients %>% round(3)
 {% endhighlight %}
 
 

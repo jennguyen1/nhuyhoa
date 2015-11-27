@@ -128,7 +128,7 @@ Important Notes:
 Advantages:
 
 * Ridge regression works best when OLS has high variance, $$p >> n$$, high multicollinearity
-* If a group of covariates are highly correlated, they will have similar estimated coefficients
+* If a group of covariates are highly correlated, they will have similar estimated coefficients (group selection)
 
 Disadvantages:
 
@@ -174,7 +174,7 @@ Advantages:
 
 Disadvantages:
 
-* When there is high collinearity among covariates, LASSO selects one variable and ignores the others
+* When there is a group of highly collinear covariates, LASSO selects one variable and ignores the others
 * When $$p > n$$, LASSO can only select at most $$n$$ variables
 
 Example:

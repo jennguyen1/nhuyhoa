@@ -15,7 +15,7 @@ lib(data, viz)
 
 For loops in R are known to be quite slow as the number of iterations increase. Thus it is advised to use apply functions for looping operations. In cases when it is desirable to optimize code even more, parallel processing can be used alongside the apply functions.
 
-# Basic Setup - For Loop Replacement
+# Apply as a For Loop Replacement
 Lapply is a desireable replacement of for-loops when each iteration is independent of the others. 
 
 Recall the basic setup of the for loop: 
@@ -108,6 +108,19 @@ rdply(5, runif(3))
 rdply(5, runif(3)) %>% nhuyhoa_df_print()
 ```
 </div>
+
+# Multivariate Apply
+We can simultaneously loop over several vectors at once with `Map`.
+
+For example, we can compute multiple weighted means with two list, one with multiple vectors of observations and one with corresponding weights.
+```{r}
+# list of obs and weights
+obs <- replicate(5, runif(10), simplify = FALSE)
+weights <- replicate(5, rpois(10, 5) + 1, simplify = FALSE)
+
+# multivariate apply
+Map(function(x, w) weighted.mean(x, w, na.rm = TRUE), obs, weights) 
+```
 
 # Foreach Functions
 Under Construction :)
