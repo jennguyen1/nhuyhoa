@@ -68,15 +68,6 @@ ggplot(data = orings, aes(x = temp, y = (damage / 6))) +
   geom_line(data = d, aes(x = x, y = y))
 ```
 
-# Understanding Output
-```{r}
-summary(mod)
-```
-
-* Coefficient table: $$\hat{\beta}$$ estimates and standard errors, $$\hat{\beta}$$ are normally distributed
-* Model Fit Statistics: deviances and AIC, deviances have $$X^2$$ distribution
-* Fischer Scoring iterations: number of iterations in the IRWLS algorithm
-
 # Beta Coefficients
 
 ## Confidence Intervals
@@ -142,10 +133,4 @@ To determine the standard error of this estimate, we can use the delta method.
 $$ var[g(\hat{\theta})] = g'(\hat{\theta})' var[\hat{\theta}] g'(\hat{\theta}) $$
 
 We can also use the built in R function: `MASS::dose.p()`
-
-# Model Evaluation & Diagnostics
-See [GLM: Hypothesis Testing & Diagnostics][glm_diagnostic_link]{:target="blank"}.
-
-
-[glm_diagnostic_link]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html
 

@@ -1,0 +1,28 @@
+---
+layout: post
+title: "GLM: Understanding Output"
+date: "November 25, 2015"
+categories: statistics
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, message = FALSE}
+library(jn.general)
+lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+library(faraway)
+data(orings)
+```
+
+The output from glms in R are basically the same regardless of the link. Here we will look at an example output. 
+
+```{r}
+mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = binomial)
+summary(mod)
+```
+
+* Coefficient table: $$\hat{\beta}$$ estimates and standard errors, $$\hat{\beta}$$ are normally distributed
+* Model Fit Statistics: deviances and AIC, deviances have $$X^2$$ distribution
+* Fischer Scoring iterations: number of iterations in the IRWLS algorithm

@@ -51,44 +51,6 @@ Here we provide two pieces of information regarding the response. The first colu
 Here we see a graphical representation of the data and how well it fits the data. 
 <img src="/nhuyhoa/figure/source/2015-11-26-GLM-Logistic-Regression/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
-# Understanding Output
-
-{% highlight r %}
-summary(mod)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## 
-## Call:
-## glm(formula = cbind(damage, 6 - damage) ~ temp, family = binomial, 
-##     data = orings)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -0.9529  -0.7345  -0.4393  -0.2079   1.9565  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(>|z|)    
-## (Intercept) 11.66299    3.29626   3.538 0.000403 ***
-## temp        -0.21623    0.05318  -4.066 4.78e-05 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 38.898  on 22  degrees of freedom
-## Residual deviance: 16.912  on 21  degrees of freedom
-## AIC: 33.675
-## 
-## Number of Fisher Scoring iterations: 6
-{% endhighlight %}
-
-* Coefficient table: $$\hat{\beta}$$ estimates and standard errors, $$\hat{\beta}$$ are normally distributed
-* Model Fit Statistics: deviances and AIC, deviances have $$X^2$$ distribution
-* Fischer Scoring iterations: number of iterations in the IRWLS algorithm
-
 # Beta Coefficients
 
 ## Confidence Intervals
@@ -154,10 +116,4 @@ To determine the standard error of this estimate, we can use the delta method.
 $$ var[g(\hat{\theta})] = g'(\hat{\theta})' var[\hat{\theta}] g'(\hat{\theta}) $$
 
 We can also use the built in R function: `MASS::dose.p()`
-
-# Model Evaluation & Diagnostics
-See [GLM: Hypothesis Testing & Diagnostics][glm_diagnostic_link]{:target="blank"}.
-
-
-[glm_diagnostic_link]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html
 
