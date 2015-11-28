@@ -175,7 +175,7 @@ When we observe a deviance much larger than expected if the model was correct, w
 ## Residuals
 
 * Response residuals: $$y - \hat{\mu}$$ has non-constant variance
-* Pearson residuals: $$\frac{y - \hat{\mu}}{\sqrt{V(\hat{\mu})}}$$, where $$V(\mu) = b''(\theta) = Var(\mu) / a(\phi)$$ and where $$\Sigma r^2_p = X^2$$
+* Pearson residuals: $$\frac{y - \hat{\mu}}{\sqrt{\hat{\phi}Var(\hat{\mu})}}$$, where $$\Sigma r^2_p = X^2$$
 * Deviance residuals: $$sign(y - \hat{\mu}) \sqrt{d}_i$$, where $$\Sigma r^2_d = Deviance$$
 * Jackknife residuals (studentized residuals): expensive to compute, but approximations are available
 
