@@ -131,7 +131,7 @@ baseline # same as intercept term
 ## 1 1.462
 {% endhighlight %}
 
-The other coefficients represent the expected difference in Y between the X category and the baseline category. The corresponding test measures whether the expected value of Y for the X category and the baseline are significantly different from 0.
+The other coefficients represent the expected difference in Y between the specified category and the baseline category. The corresponding test measures whether the expected value of Y for the specified category and the baseline are significantly different from 0.
 
 
 {% highlight r %}
@@ -243,7 +243,7 @@ Essentially what we have is 3 separate lines for each value of Species, the cate
 
 <img src="/nhuyhoa/figure/source/2015-10-21-Regression-Interpret-Coef/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 
-We can perform hypothesis testing to determine whether the species have similar intercepts and/or similar slopes for Petal Length, thereby simplifying the model. 
+We can perform hypothesis testing to determine whether the species have similar intercepts (no difference between the categories) and/or similar slopes (effect of continuous variable is the same for all categories) for Petal Length, thereby simplifying the model. 
 
 
 {% highlight r %}

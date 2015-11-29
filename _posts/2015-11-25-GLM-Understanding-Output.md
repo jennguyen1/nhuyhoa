@@ -8,6 +8,7 @@ categories: statistics
 * TOC
 {:toc}
 
+# Summary Table
 
 
 The output from glms in R are basically the same regardless of the link. Here we will look at an example output. 
@@ -49,3 +50,23 @@ summary(mod)
 * Coefficient table: $$\hat{\beta}$$ estimates and standard errors, $$\hat{\beta}$$ are normally distributed
 * Model Fit Statistics: deviances and AIC, deviances have $$X^2$$ distribution
 * Fischer Scoring iterations: number of iterations in the IRWLS algorithm
+
+# Beta Confidence Intervals
+The $$100(1 - \alpha)$$% confidence interval for $$\hat{\beta}_i$$ is 
+
+$$\hat{\beta}_i \pm z_{\alpha /2} se(\hat{\beta}_i)$$
+
+# Predicted Values and Prediction Confidence Intervals
+For a given set $$ x_0 $$, we can predict the reponse.
+
+Procedure:
+
+* Compute point estimate: $$ \hat{\eta} = x_0 \hat{\beta} $$
+* From R we can extract the variance matrix of the coefficients: `m$cov.unsealed`
+* Compute variance: $$ var(\hat{\eta}) = x'_0 (X'WX)^{-1} x_0$$
+* Compute confidence interval: $$ exp \left( \hat{\eta} \pm z_{\alpha/2} \sqrt{var(\hat{\eta})} \right)$$
+
+We can also use built in R functions:
+
+* Predict $$\hat{\eta}$$: `predict(object, newdata, type = "link")`
+* Predict $$\hat{\mu}$$: `predict(object, newdata, type = "response")`

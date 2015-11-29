@@ -67,7 +67,7 @@ baseline <- iris %>%
 baseline # same as intercept term
 ```
 
-The other coefficients represent the expected difference in Y between the X category and the baseline category. The corresponding test measures whether the expected value of Y for the X category and the baseline are significantly different from 0.
+The other coefficients represent the expected difference in Y between the specified category and the baseline category. The corresponding test measures whether the expected value of Y for the specified category and the baseline are significantly different from 0.
 
 ```{r}
 summary(m2)$coefficients %>% round(3)
@@ -129,7 +129,7 @@ ggplot(data = iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
   ggtitle("Sepal Length vs Petal Length by Species")
 ```
 
-We can perform hypothesis testing to determine whether the species have similar intercepts and/or similar slopes for Petal Length, thereby simplifying the model. 
+We can perform hypothesis testing to determine whether the species have similar intercepts (no difference between the categories) and/or similar slopes (effect of continuous variable is the same for all categories) for Petal Length, thereby simplifying the model. 
 
 ```{r}
 m4a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)

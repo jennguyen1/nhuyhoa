@@ -17,8 +17,8 @@ categories: statistics
 * Proposed model: model with p parameters, model that you fit
 
 ## Deviance
-Deviance is defined as 
-$$ D(y) = -2 \left( L(y \vert \hat{\theta}_m)) - L(y \vert \hat{\theta}_s)) \right) $$
+Derived from the likelihood ratio statistic, deviance is defined as 
+$$ D(y) = 2 \left( L(y \vert \hat{\theta}_s)) - L(y \vert \hat{\theta}_m)) \right) $$
 
 where $$L$$ denotes the log likelihood, $$\hat{\theta}_m$$ denotes fitted values for the proposed model and $$\hat{\theta}_s$$ denotes fitted values for the saturated model.
 
@@ -167,10 +167,13 @@ The results here indicate no need for a quadratic concentration term.
 
 When we observe a deviance much larger than expected if the model was correct, we need to determine which aspects of the model specification is incorrect. 
 
-* Wrong structural form: didn't include the right predictors or predictors were not transformed or combined in correct way
+* Observations are not independent
+* Non linearity between covariates and link function: wrong structural form, explore different fits, transformations of predictors, etc
 * Presence of outliers
-* Sparse data
+* Sparse data: large samples sizes are needed for MLE asymptotic convergence
 * Overdispersion: variance greater than assumed, which can arise when independent or identical assumptions are violated
+
+Note that unlike in linear regression, our errors do not need to be normally distributed with constant variance.
 
 ## Residuals
 
@@ -194,6 +197,13 @@ $$D_i =
 
 ## DFBETAs
 Similar to to the linear model, DFBETAs can examine the change in fit (coefficients) from omitting an observation.
+
+## DIFDEV and DIFCHISQ
+These statistics detect observations that heavily add to the lack of fit, when there is a large difference between the fitted and observed values.
+
+DIFDEV measures the change in deviance if an individual observation is deleted.
+
+DIFCHISQ measures the change in $$X^2$$ if an individual observation is deleted.
 
 # Diagnostics in R
 
@@ -283,4 +293,11 @@ The half-norm plot indicates that obs 25 has a big Cook's statistic. It might be
 Similar to regression, we can generate added variable plots. The interpretation is similar to linear models.
 
 In R: `car::avPlots()`
+
+# Solutions to Violation of Assumptions
+
+* Non-linearity between covariates and link function: explore different fits, transformations of predictors, additional predictors, model selection, etc
+* Presence of outliers: look into potential reasons (data entry error, scientific reason), fit model with and without the influential point and see if there is a difference, remove point
+* Sparse data: find more data, this is needed for MLE and goodness of fit tests
+* Overdispersion: adjust for dispersion using quasilikelihood
 

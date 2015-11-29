@@ -19,7 +19,6 @@ $$ P(Y_i = y_i) = \left(\begin{array}
 \end{array}\right) p_i^{y_i} (1-p_i)^{n_i - y_i} $$
 
 From this we can compute the deviance. 
-$$ D = 2 log \left( \frac{L_L}{L_S} \right) $$
 $$ D = 2 \Sigma^n_{i = 1} \big[ y_i log \left( \frac{y_i}{\hat{y}_i} \right) + (n_i - y_i) log \left( \frac{n_i - y_i}{n_i - \hat{y}_i} \right) \big] $$
 
 We face a few problems when our response variable has a binomial distribution. 
@@ -48,17 +47,12 @@ mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = binomial)
 
 Here we provide two pieces of information regarding the response. The first column of the matrix is the number of successes, $$y$$. The second column is the number of failures, $$n - y$$. 
 
-Here we see a graphical representation of the data and how well it fits the data. 
+Here we see a graphical representation of the data and how it fits the data. 
 <img src="/nhuyhoa/figure/source/2015-11-26-GLM-Logistic-Regression/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 # Beta Coefficients
 
-## Confidence Intervals
-The $$100(1 - \alpha)$$% confidence interval for $$\hat{\beta}_i$$ is 
-
-$$\hat{\beta}_i \pm z_{\alpha /2} se(\hat{\beta}_i)$$
-
-## Interpreting Using Odds
+## Odds
 The logit link function is otherwise known as log odds. Odds are often used to express the payoff for bets; it is a ratio of the probability for success vs the probability of failure. 
 
 We have the following relationships:
@@ -69,6 +63,7 @@ $$ p = \frac{o}{1 + o} $$
 
 where $$p$$ is the probability of success and $$o$$ is the odds. 
 
+## Interpretation of Coefficients
 Odds provide a simple interpretation of the $$\hat{\beta}$$ coefficients in logistic regression. 
 $$log(odds \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
 $$log(odds \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
@@ -79,24 +74,39 @@ $$ log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) = \beta_
 
 $$ \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} = e^{\beta_1} $$
 
-Thus we can interpret the $$\beta_1$$ coefficient as follows: holding all other covariates constant, a unit increase in $$x_1$$ increases the odds of success by a factor of exp $$\beta_1$$.
+Thus we can interpret the $$\hat{\beta}_1$$ coefficient as follows: holding all other predictors constant, a unit increase in $$x_1$$ increases the odds of success by a factor of $$exp(\hat{\beta}_1)$$.
 
-# Predicted Values
+### Continuous Variables
+The interpretation of coefficients for continuous variables are same as listed above. Holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i$$
 
-## Prediction Confidence Intervals
-For a given set $$ x_0 $$, we can predict the reponse.
+### Categorical Variables
+The interpretation of coefficients for categorical variables are similar to the definition above. 
 
-Procedure:
+Say we have the categorical variable with the labels "A", "B", "C". We set the baseline category to be "A". Then we have $$\beta_1$$ corresponding the relative comparison of "B" to "A" and $$\beta_2$$ corresponding to the relative comparison of "C" to "A".
 
-* Compute point estimate: $$ \hat{\eta} = x_0 \hat{\beta} $$
-* From R we can extract the variance matrix of the coefficients: `m$cov.unsealed`
-* Compute variance: $$ var(\hat{\eta}) = x'_0 (X'WX)^{-1} x_0$$
-* Compute confidence interval: $$ exp \left( \hat{\eta} \pm z_{\alpha/2} \sqrt{var(\hat{\eta})} \right)$$
+Then $$exp(\hat{\beta}_1)$$ is the odds ratio comparing those of category "B" to "A" and $$exp(\hat{\beta}_2)$$ is the odds ratio comparing those of category "C" to "A".
 
-We can also use built in R functions:
+Logistic regression models with only categorical variables are another way to model contingency tables. For example, consider the model 
+$$logit(Y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 (x_1*x_2) + \beta_5 (x_1*x_3)$$
 
-* Predict $$\hat{\eta}$$: `predict(object, newdata, type = "link")`
-* Predict $$\hat{\mu}$$: `predict(object, newdata, type = "response")`
+where we have two categorical variables $$J$$ and $$N$$,
+$$ x_1 = 1$$ if $$J = yes$$
+$$ x_1 = 0$$ otherwise
+
+$$ x_2 = 1$$ if $$N = medium$$
+$$ x_2 = 0$$ otherwise
+
+$$ x_3 = 1$$ if $$N = high$$
+$$ x_3 = 0$$ otherwise
+
+If all of the $$\hat{\beta}$$s were significantly different from 0, then we would have a three-way table where all tables had different odds ratios.
+
+If we conclude that $$\hat{\beta}_4$$, $$\hat{\beta}_5$$ were equal to 0, then we would have a model of three-way tables with homogeneous association (across $$N$$).
+
+If we conclude that $$\hat{\beta}_2$$, $$\hat{\beta}_3$$, $$\hat{\beta}_4$$, $$\hat{\beta}_5$$ were all equal to 0, then we would have a two-way table between the response and $$J$$. 
+
+### Continuous and Categorical Variables
+Similar to OLS, when there are a combination of continuous and categorical variables we can break down the overall model into smaller equations. Then we can do tests to determine whether there are significant differences between the categories and whether the effect of the continuous variable is the same for all categories. 
 
 ## Effective Dose 
 We can find the $$x$$ value in which there is a $$50$$% chance of success. 
