@@ -294,18 +294,12 @@ Similar to regression, we can generate added variable plots. The interpretation 
 
 In R: `car::avPlots()`
 
-# Solutions to Violation of Assumptions
-
-* Non-linearity between covariates and link function: explore different fits, transformations of predictors, additional predictors, model selection, etc
-* Presence of outliers: look into potential reasons (data entry error, scientific reason), fit model with and without the influential point and see if there is a difference, remove point
-* Sparse data: find more data, this is needed for MLE and goodness of fit tests
-* Overdispersion: adjust for dispersion using quasilikelihood
-
 # Overdispersion
 Overdispersion occurs when the $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i)$$ by the model. As a result of this, the model deviance could be inflated. To adjust for overdispersion, we can use quasilikelihood methods. 
 
 ## Estimate of Overdispersion Parameter
 To account for overdispersion, we multiply the variance by a factor of $$\sigma^2$$ to obtain 
+
 $$Var(Y_i)^* = \sigma^2 Var(Y_i)$$
 
 If $$\sigma^2 = 1$$, we have the original model. If $$\sigma^2 > 1$$, then we have overdispersion. 
@@ -351,3 +345,10 @@ o2 <- sum(residuals(mod, "pearson")) / (nrow(orings) - 1)
 summary(mod, dispersion = o2, correlation = TRUE, symbolic.cor = TRUE)
 {% endhighlight %}
 
+
+# Solutions to Violation of Assumptions
+
+* Non-linearity between covariates and link function: explore different fits, transformations of predictors, additional predictors, model selection, etc
+* Presence of outliers: look into potential reasons (data entry error, scientific reason), fit model with and without the influential point and see if there is a difference, remove point
+* Sparse data: find more data, this is needed for MLE and goodness of fit tests
+* Overdispersion: adjust for dispersion using quasilikelihood

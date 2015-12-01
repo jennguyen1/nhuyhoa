@@ -62,15 +62,25 @@ The function `offset()` means to not fit a coefficient to a term (or set the coe
 # Beta Coefficients
 
 ## Interpretation of Coefficients
-Interpretation of coefficients is similar to the logistic regression case. Holding all other predictors constant, a unit increase in $$x_i$$ increases the count by a factor of $$exp(\hat{\beta}_i)$$
+Interpretation of coefficients is similar to the logistic regression case. 
+$$log(y \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
+$$log(y \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
+
+Then 
+$$ log(y \vert x_1 = x + 1) - log(odds \vert x_1 = x) = \beta_1 $$
+$$ log \left( \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} \right) = \beta_1 $$
+$$ \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} = e^{\beta_1} $$
+$$ (y \vert x_1 = x + 1) = e^{\beta_1} * (y \vert x_1 = x)$$
+
+Holding all other predictors constant, a unit increase in $$x_i$$ increases the count by a factor of $$exp(\hat{\beta}_i)$$
 
 # Overdispersion
-Overdispersion occurs in poisson regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i $$. With Poisson models, One can visually assess whether there might be overdispersion by plotting $$(y - \hat{\mu})^2$$ vs $$\mu$$ with the identity line. Overdispersion would result in a plot where most points are above the identity line, indicating $$Var(Y) > E(Y)$$. 
+Overdispersion occurs in poisson regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i $$. With Poisson models, one can visually assess whether there might be overdispersion by plotting $$(y - \hat{\mu})^2$$ vs $$\mu$$ with the identity line. Overdispersion would result in a plot where the majority of points are above the identity line, indicating $$Var(Y) > E(Y)$$. 
 
 The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain 
 $$Var(Y_i)^* = \sigma^2 \mu_i $$
 
-The steps for assessing overdispersion are listed in the [GLM testing and diagnostics post][glm_diagnostics_post]{:target = "blank"}
+The steps for assessing overdispersion are listed in the [GLM testing and diagnostics post][glm_diagnostics_post]{:target = "blank"}.
 
 ## Negative Binomial Regression
 One alternative to the Poisson regression with overdispersion is negative binomial regression. The response $$Z$$ is assumed to follow a negative binomial distribution with $$Z$$ being the number of trials until the $$k^{th}$$ success
