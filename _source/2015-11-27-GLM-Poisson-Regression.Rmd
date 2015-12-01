@@ -13,19 +13,19 @@ library(jn.general)
 lib(data, viz)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 library(faraway)
-data(gala)
-g <- gala[,-2]
-data(dicentric)
-dicentric$dosef <- factor(dicentric$doseamt)
+data(solder)
+library(MASS)
 ```
 
 # Count Response
 Suppose the response $$Y_i$$ ~ $$Pois(\mu_i)$$ where $$\mu > 0$$ and the $$Y_i$$ are independent
-$$P(Y_i = y_i) = \frac{e^{\mu_i} \mu_i^{y_i}}{y_i!} \forall y_i = 0, 1, ... $$
+
+$$P(Y_i = y_i) = \frac{e^{\mu_i} \mu_i^{y_i}}{y_i!}$$
 
 We also have $$E(Y_i) = Var(Y_i) = \mu_i$$
 
 From this we can compute the deviance
+
 $$ D = 2 \Sigma^n_{i = 1} \big[ y_i log \left( \frac{y_i}{\hat{\mu}_i} \right)  - (y_i - \hat{\mu}_i) \big] $$
 
 We face a problem when our response variable has a Poisson distribution. 
@@ -45,11 +45,12 @@ Several instances can be classified as Poisson:
 
 ## Modeling Counts
 We fit the model
+
 $$ log(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
 
 We can fit this model in R like so
 ```{r, eval = FALSE}
-glm(Species ~ ., data = g, family = poisson)
+glm(counts ~ ., data = data, family = poisson)
 ```
 
 ## Modeling Ratios
@@ -59,7 +60,7 @@ $$ log(count) = log(total) + \beta_0 + \beta_1 x_1 + ... \beta_k x_k $$
 
 We can fit this model in R like so
 ```{r, eval = FALSE}
-glm(ca ~ offset(log(cells)) + log(doserate)*dosef, family = poisson, data = dicentric)
+glm(counts ~ offset(log(total)) + ., family = poisson, data = data)
 ```
 The function `offset()` means to not fit a coefficient to a term (or set the coefficient to 1). In this model $$total = cells$$.
 
@@ -68,3 +69,48 @@ The function `offset()` means to not fit a coefficient to a term (or set the coe
 ## Interpretation of Coefficients
 Interpretation of coefficients is similar to the logistic regression case. Holding all other predictors constant, a unit increase in $$x_i$$ increases the count by a factor of $$exp(\hat{\beta}_i)$$
 
+# Overdispersion
+Overdispersion occurs in poisson regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i $$. With Poisson models, One can visually assess whether there might be overdispersion by plotting $$(y - \hat{\mu})^2$$ vs $$\mu$$ with the identity line. Overdispersion would result in a plot where most points are above the identity line, indicating $$Var(Y) > E(Y)$$. 
+
+The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain 
+$$Var(Y_i)^* = \sigma^2 \mu_i $$
+
+The steps for assessing overdispersion are listed in the [GLM testing and diagnostics post][glm_diagnostics_post]{:target = "blank"}
+
+## Negative Binomial Regression
+One alternative to the Poisson regression with overdispersion is negative binomial regression. The response $$Z$$ is assumed to follow a negative binomial distribution with $$Z$$ being the number of trials until the $$k^{th}$$ success
+$$P(Z = z) = \left(\begin{array}
+{rrr}
+z - 1\\
+k - 1
+\end{array}\right)
+p^k (1 - p)^{z - k}
+$$
+
+where $$ z > k$$, $$p$$ is the probability of success.
+
+This equation can be rewritten if we let $$Y = Z - k$$ and $$p = (1 + \alpha)^{-1}$$
+
+$$P(Y = y) = \left(\begin{array}
+{rrr}
+y + k - 1\\
+k - 1
+\end{array}\right)
+\frac{\alpha^y}{(1 + \alpha)^{y + k}}$$
+
+where $$E(Y) = k\alpha = \mu$$ and $$Var(Y) = k\alpha + k\alpha^2 = \mu + D\mu^2$$. The parameter $$D = 1/k$$ is called the dispersion parameter.
+
+The negative binomial regression model is
+
+$$\eta = log \left( \frac{\mu}{\mu + k} \right) = x \beta$$
+
+Greater heterogeneity in Poisson resulting in overdispersion results in a larger value of $$D$$. As $$D \rightarrow 0$$, $$Var(Y) \rightarrow \mu$$ and the negative binomial and Poisson regression gives the same inference. 
+
+To fit a negative binomial function in R:
+```{r}
+mod <- glm.nb(skips ~ ., solder)
+summary(mod)
+```
+Here we see that $$\hat{k} = 4.4$$ with a standard error of 0.5. 
+
+[glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html

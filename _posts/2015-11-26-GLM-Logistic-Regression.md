@@ -12,6 +12,7 @@ categories: statistics
 
 # Binomial Response
 Suppose the response $$Y_i$$ ~ $$Bin(n_i, p_i)$$ and the $$Y_i$$ are independent.
+
 $$ P(Y_i = y_i) = \left(\begin{array}
 {rrr}
   n \\
@@ -19,6 +20,7 @@ $$ P(Y_i = y_i) = \left(\begin{array}
 \end{array}\right) p_i^{y_i} (1-p_i)^{n_i - y_i} $$
 
 From this we can compute the deviance. 
+
 $$ D = 2 \Sigma^n_{i = 1} \big[ y_i log \left( \frac{y_i}{\hat{y}_i} \right) + (n_i - y_i) log \left( \frac{n_i - y_i}{n_i - \hat{y}_i} \right) \big] $$
 
 We face a few problems when our response variable has a binomial distribution. 
@@ -37,6 +39,7 @@ All of these link functions differ mostly at the tails. We will use the logit be
 # Logistic Regression Model
 
 We fit the model
+
 $$log \left( \frac{p}{1 - p} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$
 
 We can fit this model in R like so
@@ -71,13 +74,13 @@ $$log(odds \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
 Then 
 $$ log(odds \vert x_1 = x + 1) - log(odds \vert x_1 = x) = \beta_1 $$
 $$ log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) = \beta_1 $$
-
 $$ \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} = e^{\beta_1} $$
+$$ (odds \vert x_1 = x + 1) = e^{\beta_1} * (odds \vert x_1 = x)$$
 
 Thus we can interpret the $$\hat{\beta}_1$$ coefficient as follows: holding all other predictors constant, a unit increase in $$x_1$$ increases the odds of success by a factor of $$exp(\hat{\beta}_1)$$.
 
 ### Continuous Variables
-The interpretation of coefficients for continuous variables are same as listed above. Holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i$$
+The interpretation of coefficients for continuous variables are same as listed above. Holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$
 
 ### Categorical Variables
 The interpretation of coefficients for categorical variables are similar to the definition above. 
@@ -127,3 +130,12 @@ $$ var[g(\hat{\theta})] = g'(\hat{\theta})' var[\hat{\theta}] g'(\hat{\theta}) $
 
 We can also use the built in R function: `MASS::dose.p()`
 
+# Overdispersion
+Overdispersion occurs in logistic regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i (1 - \mu_i) / n_i$$. Usually this occurs when the $$n_i$$ Bernuolli trials are not identically distributed or not independent. (Note that if $$n_i = 1$$, overdispersion is not possible - data is Bernuolli). 
+
+The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain 
+$$Var(Y_i)^* = \sigma^2 \mu_i (1 - \mu_i) / n_i$$
+
+The steps for assessing overdispersion are listed in the [GLM testing and diagnostics post][glm_diagnostics_post]{:target = "blank"}
+
+[glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html

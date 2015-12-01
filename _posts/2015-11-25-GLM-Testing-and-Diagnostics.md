@@ -18,6 +18,7 @@ categories: statistics
 
 ## Deviance
 Derived from the likelihood ratio statistic, deviance is defined as 
+
 $$ D(y) = 2 \left( L(y \vert \hat{\theta}_s)) - L(y \vert \hat{\theta}_m)) \right) $$
 
 where $$L$$ denotes the log likelihood, $$\hat{\theta}_m$$ denotes fitted values for the proposed model and $$\hat{\theta}_s$$ denotes fitted values for the saturated model.
@@ -26,6 +27,7 @@ The deviance is asymptotically distributed $$X^2_p$$.
 
 ## Pearson X2
 The Pearson $$X^2$$ statistic is
+
 $$X^2 = \Sigma_i \frac{(y_i - \hat{\mu}_i)^2}{var(\hat{\mu}_i)}$$
 
 The Pearson $$X^2$$ is asymptotically distributed $$X^2_p$$.
@@ -178,8 +180,8 @@ Note that unlike in linear regression, our errors do not need to be normally dis
 ## Residuals
 
 * Response residuals: $$y - \hat{\mu}$$ has non-constant variance
-* Pearson residuals: $$\frac{y - \hat{\mu}}{\sqrt{\hat{\phi}Var(\hat{\mu})}}$$, where $$\Sigma r^2_p = X^2$$
-* Deviance residuals: $$sign(y - \hat{\mu}) \sqrt{d}_i$$, where $$\Sigma r^2_d = Deviance$$
+* Pearson residuals: $$\frac{y - \hat{\mu}}{\sqrt{\hat{\phi}Var(\hat{\mu})}}$$, where $$\Sigma (r^p_i)^2 = X^2$$
+* Deviance residuals: $$sign(y - \hat{\mu}) \sqrt{d}_i$$, where $$\Sigma (r^d_i)^2 = Deviance$$
 * Jackknife residuals (studentized residuals): expensive to compute, but approximations are available
 
 ## Leverages
@@ -205,8 +207,6 @@ DIFDEV measures the change in deviance if an individual observation is deleted.
 
 DIFCHISQ measures the change in $$X^2$$ if an individual observation is deleted.
 
-# Diagnostics in R
-
 ## How to Obtain Diagnostics in R
 
 * Response residuals: `residuals(m, "response")`
@@ -217,7 +217,7 @@ DIFCHISQ measures the change in $$X^2$$ if an individual observation is deleted.
 * Cook statistics: `cooks.distance(m)`
 * DFBETAs: `influence(m)$coef`
 
-## Diagnostic Plots
+## Diagnostic Plots in R
 
 ### Residual vs Fitted Plots
 
@@ -300,4 +300,54 @@ In R: `car::avPlots()`
 * Presence of outliers: look into potential reasons (data entry error, scientific reason), fit model with and without the influential point and see if there is a difference, remove point
 * Sparse data: find more data, this is needed for MLE and goodness of fit tests
 * Overdispersion: adjust for dispersion using quasilikelihood
+
+# Overdispersion
+Overdispersion occurs when the $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i)$$ by the model. As a result of this, the model deviance could be inflated. To adjust for overdispersion, we can use quasilikelihood methods. 
+
+## Estimate of Overdispersion Parameter
+To account for overdispersion, we multiply the variance by a factor of $$\sigma^2$$ to obtain 
+$$Var(Y_i)^* = \sigma^2 Var(Y_i)$$
+
+If $$\sigma^2 = 1$$, we have the original model. If $$\sigma^2 > 1$$, then we have overdispersion. 
+
+We can estimate $$\sigma^2$$ with a Fisher scoring algorithm used to fit the model.
+
+When we apply overdispersion adjustment to modeling, the $$\hat{\beta}$$ coefficients is the same as the original model. The covariance matrix for $$\hat{\beta}$$ changes from $$Var(\hat{\beta}) = (X'WX)^{-1}$$ to $$Var(\hat{\beta}) = \sigma^2 (X'WX)^{-1}$$.
+
+We can estimate $$\sigma^2$$ with 
+
+$$\hat{\sigma}^2 = \frac{X^2}{n - p}$$
+
+where $$X^2$$ is the Pearson goodness of fit statistic, $$n$$ is the number of observations, and $$p$$ is the number of parameters.
+
+## Adjustment to Model
+
+Adjustment to model statistics:
+
+* $$SE(\hat{\beta})$$ adjusted to $$\sqrt{\hat{\sigma}^2} SE(\hat{\beta})$$
+* Pearson residuals adjusted to $$r_i^{p*} = \frac{r_i^p}{\sqrt{\hat{\sigma}^2}}$$
+* Pearson statistic adjusted to $$\frac{X^2}{\hat{\sigma}^2}$$
+* Deviance residuals adjusted to $$r_i^{d*} = \frac{r_i^d}{\sqrt{\hat{\sigma}^2}}$$
+* Deviance adjusted to $$\frac{deviance}{\hat{\sigma}^2}$$
+* When comparing two nested models with dispersion, compare the result to a $$F$$ distribution
+
+To fit a model with a dispersion parameter in R:
+
+* Fit the model
+
+{% highlight r %}
+mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = binomial)
+{% endhighlight %}
+
+* Compute the dispersion parameter
+
+{% highlight r %}
+o2 <- sum(residuals(mod, "pearson")) / (nrow(orings) - 1)
+{% endhighlight %}
+
+* Estimate the model with the dispersion parameter
+
+{% highlight r %}
+summary(mod, dispersion = o2, correlation = TRUE, symbolic.cor = TRUE)
+{% endhighlight %}
 
