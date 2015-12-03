@@ -14,7 +14,6 @@ lib(data, viz)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 library(faraway)
 data(solder)
-library(MASS)
 ```
 
 # Count Response
@@ -117,7 +116,11 @@ $$\eta = log \left( \frac{\mu}{\mu + k} \right) = x \beta$$
 Greater heterogeneity in Poisson resulting in overdispersion results in a larger value of $$D$$. As $$D \rightarrow 0$$, $$Var(Y) \rightarrow \mu$$ and the negative binomial and Poisson regression gives the same inference. 
 
 To fit a negative binomial function in R:
-```{r}
+```{r, message = FALSE}
+# load package
+library(MASS)
+
+# fit model
 mod <- glm.nb(skips ~ ., solder)
 summary(mod)
 ```

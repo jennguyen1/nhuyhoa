@@ -22,6 +22,7 @@ cheese$response <- factor(cheese$response, ordered = TRUE)
 
 # Nomial Regression
 Let {$$\pi_1, ... \pi_J$$} denote the response probabilities satisfying $$\Sigma_j\pi_j = 1$$. With $$n$$ independent observations the probability distribution for the number of outcomes of the $$J$$ types is the multinomial.
+
 $$P(Y_{i1} = y_{i1}, ..., Y_{iJ} = y_{iJ}) = \frac{n_i}{y_{i1}! ... y_{iJ}!} \pi^{y_{i1}}_{i1}...\pi^{y_{iJ}}_{iJ}$$
 
 where $$J$$ denotes the number of categories for $$Y$$.  Nomial regression is just an extension of binomial logistic regression. 
@@ -172,12 +173,6 @@ The slope parameter $$\beta_k$$ can be interpreted as so: holding all other cova
 
 We can also obtain $$P(Y = j)$$ with $$P(Y = j) = P(Y \le j) - P(Y \le j - 1)$$.
 
-When $$\beta > 0$$, we have cumulative probability plots similar to the one below. Note the parallel curves.
-
-![cumulative probabilities in proportional odds model][cum_prob_prop_odds_model]
-
-When $$\beta < 0$$, the curves in Figure 6.2 descend rather than ascend.
-
 ## Estimating Response Probabilities
 To obtain the response probabilities, we have
 
@@ -222,7 +217,12 @@ $$P(Y = 3) = P(Y \le 3) - P(Y \le 2) = ilogit(-3.3126) - ilogit(-4.4122) = 0.023
 For $$response = 9$$
 $$P(Y = 9) = 1 - P(Y \le 8) = 1 - ilogit(3.1058) = 0.0429$$
 
-# Model Testing and Diagnostics
-Similar to other glms, we can use deviance and the likelihood ratio test to compare two models. 
+## Other Topics
+The model discussed here assumed proportional odds. Thus it is important to assess whether this assumption is valid (along with other assumptions). If this assumption is wrong, then different models that don't make this assumption should be fit. 
 
-[cum_prob_prop_odds_model]: /figure/images/cum_probs_prop_odds_model.png
+The `VGAM` package is an additional resource that has functions for fitting multinomial models. 
+
+# Model Testing and Diagnostics
+Testing and diagnostics is similar to other glms. See [GLM testing and diagnostics post][glm_diagnostics_post]{:target = "blank"}
+
+[glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html

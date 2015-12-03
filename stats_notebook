@@ -1,0 +1,22 @@
+---
+layout: page
+title: Stats Notebook
+permalink: /stat_notes/
+---
+
+<h1 style = "padding-top:0;">Statistics</h1>
+<section>
+    <table>
+        {% for post in site.posts %}
+            {% if post.categories contains 'statistics' %}
+                <tr>
+                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+                </tr>
+            {% endif %}
+       {% endfor %}
+    </table>
+</section>
+
+<br />
+

@@ -94,7 +94,7 @@ When we observe a deviance much larger than expected if the model was correct, w
 * Observations are not independent
 * Non linearity between covariates and link function: wrong structural form, explore different fits, transformations of predictors, etc
 * Presence of outliers
-* Sparse data: large samples sizes are needed for MLE asymptotic convergence
+* Sparse data: large samples/group sizes are needed for MLE asymptotic convergence
 * Overdispersion: variance greater than assumed, which can arise when independent or identical assumptions are violated
 
 Note that unlike in linear regression, our errors do not need to be normally distributed with constant variance.
