@@ -161,23 +161,25 @@ $$ logit \big[ P(Y \le j) \big] = log \left( \frac{P(Y \le j)}{1 - P(Y \le j)} \
 ## Interpreting Models and Coefficients
 For ordinal categorical variables, we have the model
 
-$$ logit \big[ P(Y \le j ) \big] = \theta_j + x' \beta $$
+$$ logit \big[ P(Y \le j ) \big] = \theta_j - x' \beta $$
 
 where $$j = 1,...,J-1$$ and where $$\beta$$ describes the effect of $$x$$ on the log odds of response in category j or below. This model assumes that the effect of $$x$$ is identical for all $$J-1$$ cumulative logits. In other words, we would have parallel cumulative probability lines. 
 
+Because the covariate terms are subtracted, the $$\beta$$s are interpreted with respect to the $$log \left( \frac{P(Y > j)}{P(Y \le j)} \right)$$ instead of $$log \left( \frac{P(Y \le j)}{P(Y > j)} \right)$$.
+
 For example, assume we have 3 ordered categories and 2 predictors. Thus, we would have
 
-$$ logit \big[ P(Y \le 1 ) \big] = \alpha_1 + \beta_1 x_1 + \beta_2 x_2$$
-$$ logit \big[ P(Y \le 2 ) \big] = \alpha_2 + \beta_1 x_1 + \beta_2 x_2$$
+$$ logit \big[ P(Y \le 1 ) \big] = \alpha_1 - \beta_1 x_1 - \beta_2 x_2$$
+$$ logit \big[ P(Y \le 2 ) \big] = \alpha_2 - \beta_1 x_1 - \beta_2 x_2$$
 $$ logit \big[ P(Y \le 3 ) \big] = 1 $$
 
 The intercept $$\alpha_j$$ is the log-odds of falling into or below category $$j$$ for $$x_1 = x_2 = 0$$. 
 
-The slope parameter $$\beta_k$$ can be interpreted as so: holding all other covariates constant, a unit increase in $$x_k$$ increases the odds of falling into or below any category by a factor of $$exp(\beta_k)$$. 
+The slope parameter $$\beta_k$$ can be interpreted as so: holding all other covariates constant, a unit increase in $$x_k$$ increases the odds of above any category by a factor of $$exp(\beta_k)$$. Another way to interpret this is holding all other covariates constant, a unit increase in $$x_k$$ increases the odds of falling into or below any category by a factor of $$exp(-\beta_k)$$
 
 We can also obtain $$P(Y = j)$$ with $$P(Y = j) = P(Y \le j) - P(Y \le j - 1)$$.
 
-When $$\beta > 0$$, we have cumulative probability plots similar to the one below.
+When $$\beta > 0$$, we have cumulative probability plots similar to the one below. Note the parallel curves.
 
 ![cumulative probabilities in proportional odds model][cum_prob_prop_odds_model]
 
@@ -186,7 +188,7 @@ When $$\beta < 0$$, the curves in Figure 6.2 descend rather than ascend.
 ## Estimating Response Probabilities
 To obtain the response probabilities, we have
 
-$$ P(Y \le j) = \frac{exp(\theta + \beta' x_i)}{1 + exp(\theta_j + \beta' x_i)}$$ 
+$$ P(Y \le j) = \frac{exp(\theta - \beta' x_i)}{1 + exp(\theta_j - \beta' x_i)}$$ 
 
 ## Example
 
@@ -196,7 +198,7 @@ $$ P(Y \le j) = \frac{exp(\theta + \beta' x_i)}{1 + exp(\theta_j + \beta' x_i)}$
 library(MASS)
 
 # fit model
-mod2 <- polr(sPID ~ nincome, nes96)
+mod2 <- polr(response ~ cheese, weights = N, data = cheese)
 summary(mod2)
 {% endhighlight %}
 
@@ -204,50 +206,56 @@ summary(mod2)
 
 {% highlight text %}
 ## Call:
-## polr(formula = sPID ~ nincome, data = nes96)
+## polr(formula = response ~ cheese, data = cheese, weights = N)
 ## 
 ## Coefficients:
-##           Value Std. Error t value
-## nincome 0.01312   0.001971   6.657
+##          Value Std. Error t value
+## cheeseB -3.352     0.4287  -7.819
+## cheeseC -1.710     0.3715  -4.603
+## cheeseD  1.613     0.3805   4.238
 ## 
 ## Intercepts:
-##                        Value   Std. Error t value
-## Democrat|Independent    0.2091  0.1123     1.8627
-## Independent|Republican  1.2916  0.1201    10.7526
+##     Value    Std. Error t value 
+## 1|2  -5.4674   0.5236   -10.4413
+## 2|3  -4.4122   0.4278   -10.3148
+## 3|4  -3.3126   0.3700    -8.9522
+## 4|5  -2.2440   0.3267    -6.8680
+## 5|6  -0.9078   0.2833    -3.2037
+## 6|7   0.0443   0.2646     0.1673
+## 7|8   1.5459   0.3017     5.1244
+## 8|9   3.1058   0.4057     7.6547
 ## 
-## Residual Deviance: 1995.363 
-## AIC: 2001.363
+## Residual Deviance: 711.3479 
+## AIC: 733.3479
 {% endhighlight %}
+One thing to note is that R fits the model $$log \left( \frac{P(Y \le j)}{P(Y > j)} \right) = \theta_j - x' \beta$$. This affects how we interpret the coefficients on the $$\beta$$s.
 
-We have the models
+For the cheese variable, we have the baseline dummy as $$A$$. The coefficient for $$cheeseB = -3.352$$. The responses are ordered 1 - 9, with bigger numbers indicating better responses. Thus we can interpret the $$cheeseB$$ coefficient as so:
+$$\frac{odds.B.better}{odds.A.better} = exp(\beta_{cheeseB}) = exp(−3.352) = 0.035$$ 
 
-$$logit(P(Y \le Democrat)) = 0.2091 + 0.01323 x$$
-$$logit(P(Y \le Independent)) = 1.2916 + 0.01323 x$$
+The odds that cheese B is ranked "better" is $$0.035$$ times the odds that cheese A is ranked "better". Therefore cheese A is preferred over cheese B. The t-value is relatively big in magnitude so we can conclude that this difference in preference is significant. Also note that this ranking holds over all responses, due to the proportional odds assumption. That is, cheese A is preferred over cheese B regardless of whether "better" is a response cutoff of 3 or 7 (or any other value). We can do similar comparisons for other cheese types. 
 
-The interpretation of $$\beta$$ here is the same as in logistic regression. The odds of moving from Democrat to Independent/Republican (or from Democrat/Independent to Republican) increases by a factor of $$exp(0.01312) = 1.0132$$ as income increases by one unit. 
+We can use the results to generate our individual equations.
+$$ log \left( \frac{P(Y \le 1)}{P(Y > 1)} \right) = -5.4674 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
+$$ log \left( \frac{P(Y \le 2)}{P(Y > 2)} \right) = -4.4122 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
+$$...$$
+$$ log \left( \frac{P(Y \le 8)}{P(Y > 8)} \right) = 3.1058 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
 
-If we set $$income = 0$$, we can find the baseline probabilities of the classes. 
+Note that we add the intercept specified by the model, but subtract the $$\beta$$ coefficients.
 
-For the democrat class,
-$$P(Y \le Dem) = P(Y = Dem) = ilogit(0.209) =$$ 0.5520606
+We can also calculate individual probabilities at the baseline cheese (A):
 
-For the independent class,
-$$P(Y \le Ind) = P(Y \le Ind) - P(Y \le Dem) = ilogit(1.292) - ilogit(0.209) =$$ 0.2324249
+For $$response = 1$$
+$$P(Y = 1) = P(Y \le 1) = ilogit(-5.4674) = 0.0042$$
 
-And for the republican class, 
-$$P(Y = Rep) = 1 - P(Y \le Ind) = 1 - ilogit(1.292) =$$ 0.2155145
+For $$response = 2$$
+$$P(Y = 2) = P(Y \le 2) - P(Y \le 1) = ilogit(-4.4122) - ilogit(-5.4674) = 0.00778$$
 
-To test the proportional odds assumption, we can compute the observed odds proportions with respect to income levels. 
+For $$response = 3$$
+$$P(Y = 3) = P(Y \le 3) - P(Y \le 2) = ilogit(-3.3126) - ilogit(-4.4122) = 0.023$$
 
-{% highlight r %}
-# log-odds difference between P(Y <= 1) and P(Y <= 2)
-pim <- prop.table(table(nes96$nincome, nes96$sPID), 1)
-y <- logit(pim[,1]) - logit(pim[,1] + pim[,2]) 
-plot(y)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2015-11-26-GLM-Multinomial-Regression/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
-The assumption of constant proportions is questionable, but at least there is no noticable trends. 
+For $$response = 9$$
+$$P(Y = 9) = 1 - P(Y \le 8) = 1 - ilogit(3.1058) = 0.0429$$
 
 # Model Testing and Diagnostics
 Similar to other glms, we can use deviance and the likelihood ratio test to compare two models. 
