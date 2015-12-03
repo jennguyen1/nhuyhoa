@@ -42,6 +42,9 @@ Note that the keywords break and next cannot be used with lapply. In order to sk
 
 The output of an lapply is a list object. 
 
+This diagram displays the basic framework of `lapply`.
+![lapply diagram][lapply_img]
+
 # plyr Functions
 The package plyr has a number of apply functions to that allow for proper control of input and outputs types. 
 
@@ -222,3 +225,4 @@ cold_states <- extract$temp$cold
 
 
 [sac_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/Split_Apply-Combine.html
+[lapply_img]: /figure/images/lapply_diagram.png
