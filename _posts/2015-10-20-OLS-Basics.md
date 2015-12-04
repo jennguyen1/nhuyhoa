@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Regression: Basics"
+title: "OLS: Basics"
 date: "October 20, 2015"
-categories: statistics
+categories: statistics linear_models
 ---
 
 * TOC
@@ -91,7 +91,8 @@ The Gauss-Markov theorem states that if
 then the $$\hat{\beta}$$ derived above is the best linear unbiased estimator (BLUE) in that it has the lowest variance of all unbiased linear estimators.
 
 # Example
-```{r}
+
+{% highlight r %}
 y <- rnorm(100)
 x1 <- runif(100, 3, 7)
 x2 <- rexp(100, 2.2)
@@ -100,6 +101,24 @@ X <- as.matrix(data.frame(1, x1, x2, x3))
 B <- solve(t(X) %*% X) %*% t(X) %*% y
 coef <- coef(lm(y ~ x1 + x2 + x3))
 c(B)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] -0.43785667  0.08613301  0.10560107 -0.04768132
+{% endhighlight %}
+
+
+
+{% highlight r %}
 c(coef)
-```
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## (Intercept)          x1          x2          x3 
+## -0.43785667  0.08613301  0.10560107 -0.04768132
+{% endhighlight %}
 

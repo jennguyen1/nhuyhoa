@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Regression: Analysis of Variance"
+title: "OLS: Analysis of Variance"
 date: "October 22, 2015"
-categories: statistics
+categories: statistics linear_models
 ---
 
 * TOC

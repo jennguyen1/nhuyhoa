@@ -2,7 +2,7 @@
 layout: post
 title: "Two or More Sample Tests"
 date: "November 21, 2015"
-categories: statistics
+categories: statistics other
 ---
 
 * TOC

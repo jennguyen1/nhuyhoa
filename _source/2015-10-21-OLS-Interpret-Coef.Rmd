@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Regression: Interpretation of Coefficients"
+title: "OLS: Interpretation of Coefficients"
 date: "October 21, 2015"
-categories: statistics
+categories: statistics lienar_models
 ---
 
 * TOC

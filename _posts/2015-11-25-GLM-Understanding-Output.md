@@ -2,7 +2,7 @@
 layout: post
 title: "GLM: Understanding Output"
 date: "November 25, 2015"
-categories: statistics
+categories: statistics linear_models
 ---
 
 * TOC

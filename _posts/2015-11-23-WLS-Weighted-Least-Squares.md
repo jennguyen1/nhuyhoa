@@ -1,18 +1,14 @@
 ---
 layout: post
-title: "Weighted Least Squares (WLS)"
+title: "WLS: Weighted Least Squares"
 date: "November 23, 2015"
-categories: statistics
+categories: statistics linear_models
 ---
 
 * TOC
 {:toc}
 
-```{r, echo = FALSE, message = FALSE}
-library(jn.general)
-lib(data, viz)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
-```
+
 
 # Why It's Needed
 Linear regression assumes constant variance of the errors (homoskedasticity). In other words,

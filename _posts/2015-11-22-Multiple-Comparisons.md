@@ -2,7 +2,7 @@
 layout: post
 title: "Multiple Comparisons"
 date: "November 22, 2015"
-categories: statistics
+categories: statistics other
 ---
 
 * TOC

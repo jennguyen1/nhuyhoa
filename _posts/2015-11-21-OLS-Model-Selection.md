@@ -1,19 +1,14 @@
 ---
 layout: post
-title: "Regression: Model Selection"
+title: "OLS: Model Selection"
 date: "November 21, 2015"
-categories: statistics
+categories: statistics linear_models
 ---
 
 * TOC
 {:toc}
 
-```{r, echo = FALSE, message = FALSE}
-library(jn.general)
-lib(data, viz)
-library(glmnet)
-knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
-```
+
 
 # Bias Variance Tradeoff
 Recall from the diagnostics post underfitting (important variables are not included) and overfitting (unnecessary models are included). With all models, we want to minimize the error, which is a function of bias and variance of our model.
@@ -33,25 +28,7 @@ To understand the effectiveness of cross validation, we need to make a distincti
 Training error tends to decrease as we introduce more flexibility to the model (overfitting). Thus training data can severely underestimate the testing error. Thus testing error should always be used as the model selection metric.
 
 Consider the following plot of prediction error against model complexity. As the model gets increasingly complex, training error decreases, even beyond the baseline error. Testing error intially decreases due to reduction of bias, but then increases due to increased variability.
-```{r, echo = FALSE}
-set.seed(1)
-# make data
-train <- rexp(100) %>% sort(decreasing = TRUE)
-test <- 1.25 + seq(-2, 2, length.out = 100)^2
-plot_data <- data.frame(x = c(1:100, 1:100), y = c(train, test), type = rep(c("train", "test"), each = 100))
-
-# plot data
-ggplot(data = plot_data, aes(x = x, y = y, color = type)) + 
-  geom_point() + 
-  # irreducible error 
-  geom_abline(intercept = 1, slope = 0, size = 1.25, alpha = 0.75) + 
-  annotate("text", x = 85, y = 1.25, label = "irreducible error") + 
-  # fix scales
-  scale_x_continuous(breaks = c(0, 50, 100), label = c("low", "-->", "high")) +
-  # titles
-  xlab("Model Complexity") + ylab("MSE") +
-  ggtitle("Prediction Error vs Model Complexity")
-```
+<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 # Subset Selection
 
@@ -93,12 +70,7 @@ Procedure:
 # Shrinkage Methods, Regularization
 Shrinkage methods regularizes coefficient estimates and shrinks those coefficient estimates towards zero. Shrinking the estimates can significantly reduce variance and provide a better fit. 
 
-```{r, echo = FALSE}
-set.seed(19)
-# simulate data
-X <- matrix(rnorm(200*10),ncol=10)
-Y <- 3+2*X[,1]-4*X[,2]+rnorm(200,0,.5)
-```
+
 
 
 ## Ridge Regression
@@ -135,19 +107,47 @@ Disadvantages:
 * Ridge regression does not perform model selection
 
 Example:
-```{r}
+
+{% highlight r %}
 sim_ridge_cv <- cv.glmnet(X, Y, alpha = 0)
 
 # MSE vs log(lambda)
 plot(sim_ridge_cv)
+{% endhighlight %}
 
+<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+
+{% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
 m <- glmnet(X, Y, alpha = 0, lambda = sim_ridge_cv$lambda.min)
 m$beta
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## 10 x 1 sparse Matrix of class "dgCMatrix"
+##               s0
+## V1   1.825228643
+## V2  -3.706062022
+## V3  -0.054764815
+## V4   0.023413320
+## V5  -0.005635995
+## V6  -0.036991355
+## V7   0.109822472
+## V8   0.051801318
+## V9   0.035288399
+## V10 -0.055343783
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # coefficient plot
 plot(glmnet(X,Y,alpha=0),xvar="lambda",label=T)
-```
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-4-2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 Notice how as $$\lambda$$ increases, the coefficients are shrunk towards 0 (but not necessarily equal to 0).
 
 ## Lasso Regression
@@ -178,19 +178,47 @@ Disadvantages:
 * When $$p > n$$, LASSO can only select at most $$n$$ variables
 
 Example:
-```{r}
+
+{% highlight r %}
 sim_lasso_cv <- cv.glmnet(X, Y, alpha = 1)
 
 # MSE vs log(lambda)
 plot(sim_lasso_cv)
+{% endhighlight %}
 
+<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+
+{% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
 m <- glmnet(X, Y, alpha = 1, lambda = sim_lasso_cv$lambda.min)
 m$beta
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## 10 x 1 sparse Matrix of class "dgCMatrix"
+##               s0
+## V1   1.967695383
+## V2  -4.009847561
+## V3   .          
+## V4   .          
+## V5   .          
+## V6   .          
+## V7   0.050922575
+## V8   0.001028827
+## V9   .          
+## V10  .
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # coefficient plot
 plot(glmnet(X,Y,alpha=1),xvar="lambda",label=T)
-```
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-5-2.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 Notice how as $$\lambda$$ increases, the coefficients are shrunk directly towards 0.
 
 ## Elastic Net

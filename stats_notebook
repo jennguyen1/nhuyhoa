@@ -1,14 +1,14 @@
 ---
 layout: page
-title: Stats Notebook
+title: Statistics Notebook
 permalink: /stat_notes/
 ---
 
-<h1 style = "padding-top:0;">Statistics</h1>
+<h1 style = "padding-top:0;">Linear Models</h1>
 <section>
     <table>
         {% for post in site.posts %}
-            {% if post.categories contains 'statistics' %}
+            {% if post.categories contains 'statistics' and post.categories contains 'linear_models' %}
                 <tr>
                     <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
                     <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
@@ -18,5 +18,32 @@ permalink: /stat_notes/
     </table>
 </section>
 
+<h1 style = "padding-top:0;">Probability Theory</h1>
+<section>
+    <table>
+        {% for post in site.posts %}
+            {% if post.categories contains 'statistics' and post.categories contains 'probability_theory' %}
+                <tr>
+                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+                </tr>
+            {% endif %}
+       {% endfor %}
+    </table>
+</section>
+
+<h1 style = "padding-top:0;">Other</h1>
+<section>
+    <table>
+        {% for post in site.posts %}
+            {% if post.categories contains 'statistics' and post.categories contains 'other' %}
+                <tr>
+                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+                </tr>
+            {% endif %}
+       {% endfor %}
+    </table>
+</section>
 <br />
 

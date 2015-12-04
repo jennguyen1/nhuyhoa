@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Regression: Box-Cox Transformations"
+title: "OLS: Box-Cox Transformations"
 date: "November 15, 2015"
-categories: statistics
+categories: statistics linear_models
 ---
 
 * TOC
@@ -89,7 +89,7 @@ mod <- lm(survtimes ~ A*B, data = data)
 plot(mod$residuals ~ mod$fitted.values)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-15-Regression-Box-Cox/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-15-OLS-Box-Cox/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 There is funneling pattern given in the resids vs fitted plot that indicates heteroskedaskticity.
 
 
@@ -101,7 +101,7 @@ library(MASS)
 bcmod <- boxcox(mod)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-15-Regression-Box-Cox/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-15-OLS-Box-Cox/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 {% highlight r %}
 bcmod$x[bcmod$y == max(bcmod$y)]
@@ -121,5 +121,5 @@ transmod <- lm(log(survtimes) ~ A*B, data = data)
 plot(transmod$residuals ~ transmod$fitted.values)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-15-Regression-Box-Cox/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-15-OLS-Box-Cox/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 After the transformation, we see that the prior heterskedaskticity has been alleviated. 

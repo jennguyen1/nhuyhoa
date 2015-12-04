@@ -1,17 +1,14 @@
 ---
 layout: post
-title: "Regression: Orthogonal Columns"
+title: "OLS: Orthogonal Columns"
 date: "October 25, 2015"
-categories: statistics
+categories: statistics linear_models
 ---
 
 * TOC
 {:toc}
 
-```{r global_opts, echo = FALSE}
-library(jn.general)
-lib(data, viz)
-```
+
 
 # Beta Estimates
 

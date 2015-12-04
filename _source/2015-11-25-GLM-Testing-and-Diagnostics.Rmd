@@ -2,7 +2,7 @@
 layout: post
 title: "GLM: Testing & Diagnostics"
 date: "November 25, 2015"
-categories: statistics
+categories: statistics linear_models
 ---
 
 * TOC

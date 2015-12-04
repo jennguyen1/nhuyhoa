@@ -2,7 +2,7 @@
 layout: post
 title: "Distribution Facts"
 date: "October 18, 2015"
-categories: statistics
+categories: statistics probability_theory
 ---
 
 * TOC

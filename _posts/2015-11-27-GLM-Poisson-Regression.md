@@ -2,7 +2,7 @@
 layout: post
 title: "GLM: Poisson Regression"
 date: "November 27, 2015"
-categories: statistics
+categories: statistics linear_models
 ---
 
 * TOC
@@ -114,6 +114,10 @@ Greater heterogeneity in Poisson resulting in overdispersion results in a larger
 To fit a negative binomial function in R:
 
 {% highlight r %}
+# load package
+library(MASS)
+
+# fit model
 mod <- glm.nb(skips ~ ., solder)
 summary(mod)
 {% endhighlight %}

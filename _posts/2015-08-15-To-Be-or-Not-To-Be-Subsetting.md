@@ -873,68 +873,22 @@ result[["to_be"]] %>%
   rbind(result[["not_to_be"]])
 {% endhighlight %}
 <div class = "dftab">
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> id </th>
-   <th style="text-align:right;"> age </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:left;"> race </th>
-   <th style="text-align:left;"> state </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 78 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> Ohio </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> Tennessee </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 17 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> asian </td>
-   <td style="text-align:left;"> North Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 69 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> South Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 38 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Oregon </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> South Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 72 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Alaska </td>
-  </tr>
-</tbody>
-</table>
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): corrupt 'grouped_df', contains 7 rows, and 6 rows in groups
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in rownames(a) <- NULL: object 'a' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'a' not found
+{% endhighlight %}
 </div>
 
 [package_link]: https://github.com/jnguyen92/jn.general

@@ -695,6 +695,7 @@ class %>%
 ## Groups: <by row>
 ## 
 ##   subject grade           model
+##    (fctr) (int)           (chr)
 ## 1    math    11 <S3:summary.lm>
 ## 2    math    12 <S3:summary.lm>
 ## 3    read    11 <S3:summary.lm>

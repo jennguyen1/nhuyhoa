@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Regression: Interpretation of Coefficients"
+title: "OLS: Interpretation of Coefficients"
 date: "October 21, 2015"
-categories: statistics
+categories: statistics lienar_models
 ---
 
 * TOC
@@ -241,7 +241,7 @@ $$ Sepal.Length = (4.2 + -3.2) + (0.54 + 0.45) * Petal.Length $$
 
 Essentially what we have is 3 separate lines for each value of Species, the categorical variable. 
 
-<img src="/nhuyhoa/figure/source/2015-10-21-Regression-Interpret-Coef/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-10-21-OLS-Interpret-Coef/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 
 We can perform hypothesis testing to determine whether the species have similar intercepts (no difference between the categories) and/or similar slopes (effect of continuous variable is the same for all categories) for Petal Length, thereby simplifying the model. 
 
