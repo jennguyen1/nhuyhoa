@@ -52,7 +52,7 @@ class <- rdata(n = 1000,
                )
 
 # remove student duplicates
-fix_duplicates <- to_be(class, duplicated_data, teacher_id, student_id, grade, subject)
+fix_duplicates <- to_be(class, view_duplicated, teacher_id, student_id, grade, subject)
 # keep non-duplicates
 keep <- fix_duplicates[["not_to_be"]]
 # extract 1st of the duplicated & combine with keep
@@ -288,7 +288,7 @@ In our data set we have unique student-teacher linkages for each unique subject 
 ```{r}
 class %>%
   # subset to the duplicates
-  duplicated_data(student_id, teacher_id) %>% 
+  view_duplicated(student_id, teacher_id) %>% 
   # subset to the unique linkages that are duplicated
   distinct(student_id, teacher_id) %>% 
   # find the number of duplicated linkages
@@ -327,7 +327,7 @@ And here we see that those duplicates were indeed removed.
 ```{r}
 class_edit %>%
   # subset to the duplicates
-  duplicated_data(student_id, teacher_id) %>% 
+  view_duplicated(student_id, teacher_id) %>% 
   # subset to the unique linkages that are duplicated
   distinct(student_id, teacher_id) %>% 
   # find the number of duplicated linkages
