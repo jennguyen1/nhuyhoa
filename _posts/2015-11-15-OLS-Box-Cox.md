@@ -112,7 +112,7 @@ bcmod$x[bcmod$y == max(bcmod$y)]
 {% highlight text %}
 ## [1] -0.3030303
 {% endhighlight %}
-From the boxcox method we see that $$\lambda = -0.303$$. This corresponds to the $log(Y)$$ transformation. (Note that the inverse square root transformation is ok too).
+From the boxcox method we see that $$\lambda = -0.303$$. This corresponds to the $$log(Y)$$ transformation. (Note that the inverse square root transformation is ok too).
 
 
 {% highlight r %}

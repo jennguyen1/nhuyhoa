@@ -13,7 +13,7 @@ categories: r data_wrangling
 
 In a previous post, I dicussed the subsetting functions available via the dplyr package, including the `filter()`, `slice()`, and `select()` functions. There are a number of additional ways to subset data frames in R. 
 
-However what if rather than tossing the data that does not correspond to the subset (call it the "anti-subset"), we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other. One could easily subset two times, once with the condition and again with the negation. However in some cases, obtaining the anti-subset isn't all that straight forward. For example what if the subset was obtained randomly, as with functions like `sample_n()` or `sample_frac()`, or when there is no clear negation, such as `duplicated_data()`?
+However what if rather than tossing the data that does not correspond to the subset (call it the "anti-subset"), we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other. One could easily subset two times, once with the condition and again with the negation. However in some cases, obtaining the anti-subset isn't all that straight forward. For example what if the subset was obtained randomly, as with functions like `sample_n()` or `sample_frac()`, or when there is no clear negation, such as `view_duplicated()`?
 
 Having faced this issue many times, I wrote the `to_be()` function as a way to obtain both the subsetted data and the "anti-subset". It is available in the [jn.general package][package_link]{:target="blank"}.
 
@@ -701,7 +701,7 @@ Let’s do something a little more challenging to see to_be in action. With this
 
 
 {% highlight r %}
-result <- to_be(data, duplicated_data, id)
+result <- to_be(data, view_duplicated, id)
 {% endhighlight %}
 
 The duplicated id entries:

@@ -85,7 +85,7 @@
 
 <p>In a previous post, I dicussed the subsetting functions available via the dplyr package, including the <code>filter()</code>, <code>slice()</code>, and <code>select()</code> functions. There are a number of additional ways to subset data frames in R.</p>
 
-<p>However what if rather than tossing the data that does not correspond to the subset (call it the “anti-subset”), we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other. One could easily subset two times, once with the condition and again with the negation. However in some cases, obtaining the anti-subset isn’t all that straight forward. For example what if the subset was obtained randomly, as with functions like <code>sample_n()</code> or <code>sample_frac()</code>, or when there is no clear negation, such as <code>duplicated_data()</code>?</p>
+<p>However what if rather than tossing the data that does not correspond to the subset (call it the “anti-subset”), we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other. One could easily subset two times, once with the condition and again with the negation. However in some cases, obtaining the anti-subset isn’t all that straight forward. For example what if the subset was obtained randomly, as with functions like <code>sample_n()</code> or <code>sample_frac()</code>, or when there is no clear negation, such as <code>view_duplicated()</code>?</p>
 
 <p>Having faced this issue many times, I wrote the <code>to_be()</code> function as a way to obtain both the subsetted data and the “anti-subset”. It is available in the <a href="https://github.com/jnguyen92/jn.general" target="blank">jn.general package</a>.</p>
 
@@ -758,7 +758,7 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 </div>
 <p></p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">result <span class="o">&lt;-</span> to_be<span class="p">(</span>data<span class="p">,</span> duplicated_data<span class="p">,</span> id<span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-r" data-lang="r">result <span class="o">&lt;-</span> to_be<span class="p">(</span>data<span class="p">,</span> view_duplicated<span class="p">,</span> id<span class="p">)</span></code></pre></div>
 
 <p>The duplicated id entries:</p>
 

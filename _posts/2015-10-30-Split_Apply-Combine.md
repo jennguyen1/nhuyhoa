@@ -537,7 +537,7 @@ In our data set we have unique student-teacher linkages for each unique subject 
 {% highlight r %}
 class %>%
   # subset to the duplicates
-  duplicated_data(student_id, teacher_id) %>% 
+  view_duplicated(student_id, teacher_id) %>% 
   # subset to the unique linkages that are duplicated
   distinct(student_id, teacher_id) %>% 
   # find the number of duplicated linkages
@@ -662,7 +662,7 @@ And here we see that those duplicates were indeed removed.
 {% highlight r %}
 class_edit %>%
   # subset to the duplicates
-  duplicated_data(student_id, teacher_id) %>% 
+  view_duplicated(student_id, teacher_id) %>% 
   # subset to the unique linkages that are duplicated
   distinct(student_id, teacher_id) %>% 
   # find the number of duplicated linkages

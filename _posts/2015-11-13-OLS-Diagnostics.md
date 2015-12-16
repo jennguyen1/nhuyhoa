@@ -130,6 +130,7 @@ A VIF of 1 indicates no correlation. VIFs greater than 5 are on the fence, furth
 * DFFITS: `dffits(m)`
 * DFBETAS: `dfbetas(m)`
 * Influence statistics: `influence.measures(m)`
+* Influence plot: `influencePlot(m)`
 * Variance Inflation Factor: `vif(m)`
 
 ## Assess Independence:
@@ -207,7 +208,7 @@ coef(m1)
 
 Note that the slope of the plot and the coefficient for volume on the full model are the same. We interpret this plot to mean that the variable $$Volume$$ provides a meaningful contribution after already adjusting for $$Girth$$. Thus $$ Volume$$ should be added to the model.
 
-There is also a function in R: `car::avPlots()`
+There is also a function in R: `car::avPlots()` or `av.Plots()`
 
 {% highlight r %}
 car::avPlots(m1)
