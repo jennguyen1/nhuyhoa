@@ -2,7 +2,7 @@
 layout: post
 title: "GLM: Poisson Regression"
 date: "November 27, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

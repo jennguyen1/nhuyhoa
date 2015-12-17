@@ -2,7 +2,7 @@
 layout: post
 title: "WLS: Weighted Least Squares"
 date: "November 23, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

@@ -2,7 +2,7 @@
 layout: post
 title: "OLS: Model Selection"
 date: "November 21, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

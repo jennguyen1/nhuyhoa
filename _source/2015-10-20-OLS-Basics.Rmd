@@ -2,7 +2,7 @@
 layout: post
 title: "OLS: Basics"
 date: "October 20, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

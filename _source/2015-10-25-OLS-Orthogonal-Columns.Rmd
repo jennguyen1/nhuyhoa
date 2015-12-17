@@ -2,7 +2,7 @@
 layout: post
 title: "OLS: Orthogonal Columns"
 date: "October 25, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

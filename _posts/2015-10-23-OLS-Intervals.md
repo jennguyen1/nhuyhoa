@@ -2,7 +2,7 @@
 layout: post
 title: "OLS: Confidence & Prediction Intervals"
 date: "October 23, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

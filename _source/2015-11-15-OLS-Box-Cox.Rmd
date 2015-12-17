@@ -2,7 +2,7 @@
 layout: post
 title: "OLS: Box-Cox Transformations"
 date: "November 15, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

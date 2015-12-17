@@ -2,7 +2,7 @@
 layout: post
 title: "GLM: Basics"
 date: "November 25, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

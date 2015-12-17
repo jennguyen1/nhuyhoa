@@ -2,7 +2,7 @@
 layout: post
 title: "GLM: Logistic Regression"
 date: "November 26, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

@@ -2,7 +2,7 @@
 layout: post
 title: "OLS: Understanding Outputs"
 date: "October 24, 2015"
-categories: statistics linear_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC

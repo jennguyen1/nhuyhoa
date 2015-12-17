@@ -2,7 +2,7 @@
 layout: post
 title: "OLS: Interpretation of Coefficients"
 date: "October 21, 2015"
-categories: statistics lienar_models
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC
