@@ -38,9 +38,11 @@ lapply(SEQUENCE, function(i, ...){
 ...)
 {% endhighlight%}
 
-Note that the keywords break and next cannot be used with lapply. In order to skip an iteration, enact a conditional statment and return an empty object. 
+Note that the keywords break and next cannot be used with `lapply()`. In order to skip an iteration, enact a conditional statment and return an empty object. 
 
-The output of an lapply is a list object. 
+The output of an `lapply()` is a list object. 
+
+![lapply diagram](http://jnguyen92.github.io/nhuyhoa/figure/images/lapply_diagram.png)
 
 # plyr Functions
 The package plyr has a number of apply functions to that allow for proper control of input and outputs types. 
