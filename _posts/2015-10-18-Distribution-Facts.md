@@ -43,3 +43,8 @@ $$ F = \frac{V/m}{W/k} $$
 is the $$F$$ distribution with $$m$$, $$k$$ df.
 
 Note that $$ F_{1, k} = t^2_k $$
+
+# Other Distributions
+See the[Probability Overview post][prob_overview_post]{:target = "_blank"}.
+
+[prob_overview_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Probability-Overview.html
