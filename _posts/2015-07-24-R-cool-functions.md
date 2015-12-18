@@ -10,7 +10,7 @@ categories: R
 
 
 
-![My helpful screenshot]({{ site.url }}/figure/images/lapply_diagram.png)
+![My helpful screenshot](http://jnguyen92.github.io/nhuyhoa/figure/images/lapply_diagram.png)
 
 
 # Numeric Types
