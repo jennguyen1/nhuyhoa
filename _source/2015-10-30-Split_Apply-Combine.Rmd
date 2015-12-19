@@ -10,7 +10,7 @@ categories: ['data wrangling']
 
 ```{r, echo = FALSE}
 library(jn.general)
-lib(data)
+lib(data, model)
 options(digits = 4)
 ```
 
@@ -343,8 +343,29 @@ class %>%
   group_by(subject, grade) %>% 
   # apply: regression model on splits
   # combine: dplyr does this automatically
-  do(model = summary(lm(posttest_score ~ pretest_score, data = .)))
+  do(model = lm(posttest_score ~ pretest_score, data = .))
 ```
+
+This output isn't too meaningful, so we can use the `broom` package to extract more useful output.
+
+```{r, eval = FALSE}
+class %>% 
+  # split: by subject and grade
+  group_by(subject, grade) %>% 
+  # apply: regression model on splits
+  # combine: the model coefficients
+  do(tidy(lm(posttest_score ~ pretest_score, data = .)))
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+o <- class %>% 
+  group_by(subject, grade) %>% 
+  do(tidy(lm(posttest_score ~ pretest_score, data = .)))
+
+o %>% nhuyhoa_df_print(8)
+```
+</div><p></p>
 
 # Using data.table
 The data.table package has optimized data frames to be able to handle large amounts of data. 
@@ -386,12 +407,3 @@ classDT[, z_post := (posttest_score - mean(posttest_score)) / sd(posttest_score)
 classDT[, list(mean = mean(z_post), sd = sd(z_post)), by = list(subject, grade)] %>% nhuyhoa_df_print()
 ```
 </div>
-
-# Additional Resources
-See these additional resources for more information regarding the topics and packages mentioned in this post.
-
-[dplyr cheatsheet][dplyr_cheatsheet_link]{:target="blank"}
-[data.table cheatsheet][dt_cheatsheet_link]{:target="blank"}
-
-[dplyr_cheatsheet_link]: https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
-[dt_cheatsheet_link]: https://s3.amazonaws.com/assets.datacamp.com/img/blog/data+table+cheat+sheet.pdf

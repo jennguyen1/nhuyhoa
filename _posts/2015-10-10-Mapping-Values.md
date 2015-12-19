@@ -8,9 +8,10 @@ categories: ['data wrangling']
 * TOC
 {:toc}
 
+# In R
 
 
-# ifelse
+## ifelse
 The function `ifelse()` provides an easy way to do this. The format is `ifelse(CONDITION, TRUE_VALUE, FALSE_VALUE)`.
 
 Here's an example:
@@ -47,7 +48,7 @@ ifelse(letters %in% c("a", "e", "i", "o", "u"), "vowel", letters)
 ## [25] "y"     "z"
 {% endhighlight %}
 
-# mapvalues
+## mapvalues
 The function `plyr::mapvalues()` is a more versatile version of `ifelse()`. The format is `mapvalues(VECTOR, FROM_VALUES, TO_VALUES)`, where the $$i^{th}$$ value in FROM_VALUES is changed to the $$i^{th}$$ value in TO_VALUES.
 
 Here's an example:
@@ -84,7 +85,7 @@ mapvalues(subjects,
 
 Here the reading-related subjects were simplified to `"read"` and the mathematics-related subjects to were simplified to `"math"`. Notice how values not listed, such as `"science"`, was not affected. 
 
-# setnames
+## setnames
 The function `data.table::setnames()` is equivalent to `mapvalues()` but is used solely for renaming data frame columns.
 
 Here's an example:

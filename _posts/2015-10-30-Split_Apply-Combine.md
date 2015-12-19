@@ -685,7 +685,7 @@ class %>%
   group_by(subject, grade) %>% 
   # apply: regression model on splits
   # combine: dplyr does this automatically
-  do(model = summary(lm(posttest_score ~ pretest_score, data = .)))
+  do(model = lm(posttest_score ~ pretest_score, data = .))
 {% endhighlight %}
 
 
@@ -694,13 +694,115 @@ class %>%
 ## Source: local data frame [4 x 3]
 ## Groups: <by row>
 ## 
-##   subject grade           model
-##    (fctr) (int)           (chr)
-## 1    math    11 <S3:summary.lm>
-## 2    math    12 <S3:summary.lm>
-## 3    read    11 <S3:summary.lm>
-## 4    read    12 <S3:summary.lm>
+##   subject grade   model
+##    (fctr) (int)   (chr)
+## 1    math    11 <S3:lm>
+## 2    math    12 <S3:lm>
+## 3    read    11 <S3:lm>
+## 4    read    12 <S3:lm>
 {% endhighlight %}
+
+This output isn't too meaningful, so we can use the `broom` package to extract more useful output.
+
+
+{% highlight r %}
+class %>% 
+  # split: by subject and grade
+  group_by(subject, grade) %>% 
+  # apply: regression model on splits
+  # combine: the model coefficients
+  do(tidy(lm(posttest_score ~ pretest_score, data = .)))
+{% endhighlight %}
+
+<div class = "dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> term </th>
+   <th style="text-align:center;"> estimate </th>
+   <th style="text-align:center;"> std.error </th>
+   <th style="text-align:center;"> statistic </th>
+   <th style="text-align:center;"> p.value </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> (Intercept) </td>
+   <td style="text-align:center;"> -0.1128 </td>
+   <td style="text-align:center;"> 0.0628 </td>
+   <td style="text-align:center;"> -1.7965 </td>
+   <td style="text-align:center;"> 0.0736 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> pretest_score </td>
+   <td style="text-align:center;"> -0.0501 </td>
+   <td style="text-align:center;"> 0.0613 </td>
+   <td style="text-align:center;"> -0.8161 </td>
+   <td style="text-align:center;"> 0.4152 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> (Intercept) </td>
+   <td style="text-align:center;"> 0.0283 </td>
+   <td style="text-align:center;"> 0.0645 </td>
+   <td style="text-align:center;"> 0.4385 </td>
+   <td style="text-align:center;"> 0.6614 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> pretest_score </td>
+   <td style="text-align:center;"> 0.0176 </td>
+   <td style="text-align:center;"> 0.0580 </td>
+   <td style="text-align:center;"> 0.3032 </td>
+   <td style="text-align:center;"> 0.7620 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> (Intercept) </td>
+   <td style="text-align:center;"> 0.0204 </td>
+   <td style="text-align:center;"> 0.0677 </td>
+   <td style="text-align:center;"> 0.3016 </td>
+   <td style="text-align:center;"> 0.7632 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> pretest_score </td>
+   <td style="text-align:center;"> 0.0357 </td>
+   <td style="text-align:center;"> 0.0620 </td>
+   <td style="text-align:center;"> 0.5751 </td>
+   <td style="text-align:center;"> 0.5657 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> (Intercept) </td>
+   <td style="text-align:center;"> -0.0136 </td>
+   <td style="text-align:center;"> 0.0659 </td>
+   <td style="text-align:center;"> -0.2057 </td>
+   <td style="text-align:center;"> 0.8372 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> pretest_score </td>
+   <td style="text-align:center;"> -0.0763 </td>
+   <td style="text-align:center;"> 0.0635 </td>
+   <td style="text-align:center;"> -1.2001 </td>
+   <td style="text-align:center;"> 0.2313 </td>
+  </tr>
+</tbody>
+</table>
+</div><p></p>
 
 # Using data.table
 The data.table package has optimized data frames to be able to handle large amounts of data. 
@@ -806,12 +908,3 @@ classDT[, list(mean = mean(z_post), sd = sd(post)), by = list(subject, grade)]
 </tbody>
 </table>
 </div>
-
-# Additional Resources
-See these additional resources for more information regarding the topics and packages mentioned in this post.
-
-[dplyr cheatsheet][dplyr_cheatsheet_link]{:target="blank"}
-[data.table cheatsheet][dt_cheatsheet_link]{:target="blank"}
-
-[dplyr_cheatsheet_link]: https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
-[dt_cheatsheet_link]: https://s3.amazonaws.com/assets.datacamp.com/img/blog/data+table+cheat+sheet.pdf

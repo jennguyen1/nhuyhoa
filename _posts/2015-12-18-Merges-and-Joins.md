@@ -41,6 +41,8 @@ All merges in R can be done with a simple `merge()` function. The arguments for 
 
 To join multiple data frames in R, you can do successive joins. That is, join two and use the result to join with another data frame. To save time, the function `jn.general::mult_merge()` was created to make merging multiple data frames easier
 
+The `dplyr` package has some additional join functions that are useful depending on the situation. Examples of join types include `dplyr::anti_join()` and set operations such as `dplyr::intersect()`, `dplyr::union()`, and `dplyr::setdiff()`.
+
 ## In SQL
 Joins in SQL follow a simple format:
 

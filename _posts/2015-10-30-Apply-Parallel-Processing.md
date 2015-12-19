@@ -261,12 +261,12 @@ Here's an example of when `extract_list()` would come in handy.
 
 {% highlight r %}
 # function to generate some random data
-random_data <- function(run_number){
+random_data <- function(){
   x <- list(
     temp = list(
-      hot = list(red = data.frame(model = run_number, i = sample(c("M", "T", "W", "Th", "F"), 3)), 
-                 orange = data.frame(model = run_number, j = sample(month.name, 2))),
-      cold = data.frame(model = run_number, x = runif(7, 0, 25), y = sample(state.name, 7))
+      hot = list(red = data.frame(i = sample(c("M", "T", "W", "Th", "F"), 3)), 
+                 orange = data.frame(j = sample(month.name, 2))),
+      cold = data.frame(x = runif(7, 0, 25), y = sample(state.name, 7))
     ),
     CA = matrix(sample(-10:9, 16), nrow = 4),
     WA = sample(LETTERS, 5)
@@ -275,7 +275,7 @@ random_data <- function(run_number){
 }
 
 # look at our outputs
-output <- llply(paste0("#", 1:3), random_data)
+output <- llply(1:3, function(i) random_data())
 output[[1]]
 {% endhighlight %}
 
@@ -285,26 +285,26 @@ output[[1]]
 ## $temp
 ## $temp$hot
 ## $temp$hot$red
-##   model i
-## 1    #1 W
-## 2    #1 F
-## 3    #1 T
+##   i
+## 1 W
+## 2 F
+## 3 T
 ## 
 ## $temp$hot$orange
-##   model        j
-## 1    #1    March
-## 2    #1 December
+##          j
+## 1    March
+## 2 December
 ## 
 ## 
 ## $temp$cold
-##   model         x           y
-## 1    #1 18.232741      Nevada
-## 2    #1 11.314271    Kentucky
-## 3    #1  4.378169    Michigan
-## 4    #1 18.667457 Mississippi
-## 5    #1  2.624691     Florida
-## 6    #1 21.613624  Washington
-## 7    #1 15.366124    Arkansas
+##           x           y
+## 1 18.232741      Nevada
+## 2 11.314271    Kentucky
+## 3  4.378169    Michigan
+## 4 18.667457 Mississippi
+## 5  2.624691     Florida
+## 6 21.613624  Washington
+## 7 15.366124    Arkansas
 ## 
 ## 
 ## $CA
@@ -330,26 +330,26 @@ output[[2]]
 ## $temp
 ## $temp$hot
 ## $temp$hot$red
-##   model i
-## 1    #2 F
-## 2    #2 T
-## 3    #2 M
+##   i
+## 1 F
+## 2 T
+## 3 M
 ## 
 ## $temp$hot$orange
-##   model        j
-## 1    #2 November
-## 2    #2     June
+##          j
+## 1 November
+## 2     June
 ## 
 ## 
 ## $temp$cold
-##   model         x          y
-## 1    #2 21.926439   Maryland
-## 2    #2  4.729841 California
-## 3    #2 18.952576    Vermont
-## 4    #2 18.112472    Indiana
-## 5    #2 23.593120     Nevada
-## 6    #2 13.691165  Wisconsin
-## 7    #2 17.793597     Oregon
+##           x          y
+## 1 21.926439   Maryland
+## 2  4.729841 California
+## 3 18.952576    Vermont
+## 4 18.112472    Indiana
+## 5 23.593120     Nevada
+## 6 13.691165  Wisconsin
+## 7 17.793597     Oregon
 ## 
 ## 
 ## $CA
@@ -367,8 +367,10 @@ And so on for the following iterations.
 So this is the result of our model builds. It isn't very useful broken up into so many pieces, so let's use `extract_list()` on our output. 
 
 {% highlight r %}
+# rename the data frames
+renamed <- rename_list(output, names = paste0("m", 1:length(output)))
 # extract data
-extract <- extract_list(output)
+extract <- extract_list(renamed)
 extract
 {% endhighlight %}
 
@@ -378,51 +380,51 @@ extract
 ## $temp
 ## $temp$hot
 ## $temp$hot$red
-##    model i
-## 1:    #1 W
-## 2:    #1 F
-## 3:    #1 T
-## 4:    #2 F
-## 5:    #2 T
-## 6:    #2 M
-## 7:    #3 T
-## 8:    #3 F
-## 9:    #3 M
+##    file_id i
+## 1:      m1 W
+## 2:      m1 F
+## 3:      m1 T
+## 4:      m2 F
+## 5:      m2 T
+## 6:      m2 M
+## 7:      m3 T
+## 8:      m3 F
+## 9:      m3 M
 ## 
 ## $temp$hot$orange
-##    model        j
-## 1:    #1    March
-## 2:    #1 December
-## 3:    #2 November
-## 4:    #2     June
-## 5:    #3    April
-## 6:    #3     June
+##    file_id        j
+## 1:      m1    March
+## 2:      m1 December
+## 3:      m2 November
+## 4:      m2     June
+## 5:      m3    April
+## 6:      m3     June
 ## 
 ## 
 ## $temp$cold
-##     model         x           y
-##  1:    #1 18.232741      Nevada
-##  2:    #1 11.314271    Kentucky
-##  3:    #1  4.378169    Michigan
-##  4:    #1 18.667457 Mississippi
-##  5:    #1  2.624691     Florida
-##  6:    #1 21.613624  Washington
-##  7:    #1 15.366124    Arkansas
-##  8:    #2 21.926439    Maryland
-##  9:    #2  4.729841  California
-## 10:    #2 18.952576     Vermont
-## 11:    #2 18.112472     Indiana
-## 12:    #2 23.593120      Nevada
-## 13:    #2 13.691165   Wisconsin
-## 14:    #2 17.793597      Oregon
-## 15:    #3 23.099212 Connecticut
-## 16:    #3 12.773992       Maine
-## 17:    #3  6.440532  New Mexico
-## 18:    #3  1.161522   Wisconsin
-## 19:    #3 10.446406    New York
-## 20:    #3 21.350038    Virginia
-## 21:    #3  8.680767    Missouri
-##     model         x           y
+##     file_id         x           y
+##  1:      m1 18.232741      Nevada
+##  2:      m1 11.314271    Kentucky
+##  3:      m1  4.378169    Michigan
+##  4:      m1 18.667457 Mississippi
+##  5:      m1  2.624691     Florida
+##  6:      m1 21.613624  Washington
+##  7:      m1 15.366124    Arkansas
+##  8:      m2 21.926439    Maryland
+##  9:      m2  4.729841  California
+## 10:      m2 18.952576     Vermont
+## 11:      m2 18.112472     Indiana
+## 12:      m2 23.593120      Nevada
+## 13:      m2 13.691165   Wisconsin
+## 14:      m2 17.793597      Oregon
+## 15:      m3 23.099212 Connecticut
+## 16:      m3 12.773992       Maine
+## 17:      m3  6.440532  New Mexico
+## 18:      m3  1.161522   Wisconsin
+## 19:      m3 10.446406    New York
+## 20:      m3 21.350038    Virginia
+## 21:      m3  8.680767    Missouri
+##     file_id         x           y
 ## 
 ## 
 ## $CA
