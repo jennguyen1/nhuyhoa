@@ -242,7 +242,7 @@ g2 <- qplot(y = residuals(mod), x = predict(mod, type = "link")) +
 grid.arrange(g1, g2, nrow = 1)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 Two different scales for the fitted values. We see that using $$\hat{eta}$$ is better than $$\hat{\mu}$$. Overall, we see that the residuals are evenly spaced across fitted values, and there are no violation of assumptions.
 
 What should we do if we see violations?
@@ -259,7 +259,7 @@ qplot(y = residuals(mod, "response"), x = predict(mod, type = "link")) +
   ylab("Response Residuals")
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 Here we see a pattern of increasing variation consistent with the Poisson distribution. 
 
 ### Half-Normal Plot
@@ -277,7 +277,7 @@ halfnorm(rstudent(modpl))
 halfnorm(influence(modpl)$hat)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 The half-norm plot of leverage seems to indicate that obs 25 may have high leverage. 
 
 
@@ -286,7 +286,7 @@ The half-norm plot of leverage seems to indicate that obs 25 may have high lever
 c <- halfnorm(cooks.distance(modpl))
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" />
 The half-norm plot indicates that obs 25 has a big Cook's statistic. It might be useful to investigate this observation in closer detail. 
 
 ### Added Variable Plots

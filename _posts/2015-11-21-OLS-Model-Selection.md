@@ -28,7 +28,7 @@ To understand the effectiveness of cross validation, we need to make a distincti
 Training error tends to decrease as we introduce more flexibility to the model (overfitting). Thus training data can severely underestimate the testing error. Thus testing error should always be used as the model selection metric.
 
 Consider the following plot of prediction error against model complexity. As the model gets increasingly complex, training error decreases, even beyond the baseline error. Testing error intially decreases due to reduction of bias, but then increases due to increased variability.
-<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 # Subset Selection
 
@@ -115,7 +115,7 @@ sim_ridge_cv <- cv.glmnet(X, Y, alpha = 0)
 plot(sim_ridge_cv)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 {% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
@@ -147,7 +147,7 @@ m$beta
 plot(glmnet(X,Y,alpha=0),xvar="lambda",label=T)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-4-2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-4-2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 Notice how as $$\lambda$$ increases, the coefficients are shrunk towards 0 (but not necessarily equal to 0).
 
 ## Lasso Regression
@@ -186,7 +186,7 @@ sim_lasso_cv <- cv.glmnet(X, Y, alpha = 1)
 plot(sim_lasso_cv)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 {% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
@@ -218,7 +218,7 @@ m$beta
 plot(glmnet(X,Y,alpha=1),xvar="lambda",label=T)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-5-2.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-5-2.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 Notice how as $$\lambda$$ increases, the coefficients are shrunk directly towards 0.
 
 ## Elastic Net

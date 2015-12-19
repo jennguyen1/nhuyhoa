@@ -1,0 +1,26 @@
+---
+layout: post
+title: "Merges & Joins"
+date: "December 18, 2015"
+categories: ['data wrangling']
+---
+
+Often when you have data from multiple sources, you need to combine the data to effectively analyze the data. The most effective way to do this is with joins or merges. 
+
+# Types of Joins
+
+## Inner Join
+Keep only rows that match from the two data frames.
+![inner join](http://jnguyen92.github.io/nhuyhoa/figure/images/inner_join.png)
+
+## Outer Join
+Keep all rows from both data frames.
+![outer join](http://jnguyen92.github.io/nhuyhoa/figure/images/outer_join.png)
+
+## Left Join
+Keep all rows from x and all those from y that match
+![left join](http://jnguyen92.github.io/nhuyhoa/figure/images/left_join.png)
+
+## Right Join
+Keep all rows from y and all those from x that match
+![right join](http://jnguyen92.github.io/nhuyhoa/figure/images/right_join.png)

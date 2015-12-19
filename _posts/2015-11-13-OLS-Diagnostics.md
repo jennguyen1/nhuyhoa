@@ -139,25 +139,25 @@ Independence is generally difficult to test for. Generally scientific knowledge 
 ## Assess Linearity & Homoscedasticity: Residuals Vs Fitted Plots
 Residuals vs fitted values plots are useful for assessing linearity and homoskedaskticity.
 
-<img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 Here we see that the plotted points are randomly distributed above and below 0. We can conclude that our assumptions of a linear relationship and equal variance were valid
 
-<img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 Here we see that our model does not have a linear relationship, indicated by the quadratic trend of our plot.
 
-<img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 Here we see a funneling pattern as we increase fitted values. This indicates that we have heteroskedaskticity or unequal variance. A transformation may be necessary to make the variances equal.
 
 ## Assess Normality: QQ Normal
 To assess whether our errors are normally distributed, we can use a QQ Normal plot. See more information on how to interpret [QQ plots][qq_link]{:target="blank"}.
 
-<img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 Given an approximately linear trend, we can conclude that our errors are normally distributed.
 
 ## Assess Outliers: Residuals Vs. Leverage Plot
 The residuals vs leverage plot can identify outliers in both x and y. In addition, these plots can incorporate Cook's distance to identify highly influential points. 
 
-<img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 There are no observations beyond a Cook's Distance of 0.5 or 1, so there is no concern for influential points.
 
 ## Assess Individual X Variables: Added Variable Plots
@@ -204,7 +204,7 @@ coef(m1)
 ##  83.2957705  -1.8615109   0.5755946
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 Note that the slope of the plot and the coefficient for volume on the full model are the same. We interpret this plot to mean that the variable $$Volume$$ provides a meaningful contribution after already adjusting for $$Girth$$. Thus $$ Volume$$ should be added to the model.
 
@@ -214,7 +214,7 @@ There is also a function in R: `car::avPlots()` or `av.Plots()`
 car::avPlots(m1)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="/nhuyhoafigure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 # Solutions to Violation of Assumptions
 
