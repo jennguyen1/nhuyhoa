@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Apply and Parallel Processing"
+title: "Apply and Parallel Processing (R)"
 date: "October 30, 2015"
-categories: R data_wrangling
+categories: ['data wrangling']
 ---
 
 * TOC

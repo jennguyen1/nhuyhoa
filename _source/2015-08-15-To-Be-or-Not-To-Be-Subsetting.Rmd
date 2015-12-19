@@ -1,7 +1,7 @@
 ---
-title: "To Be or Not To Be: Subsetting"
+title: "To Be or Not To Be: Subsetting (R)"
 layout: post
-categories: r data_wrangling
+categories: ['data wrangling']
 ---
 
 * TOC

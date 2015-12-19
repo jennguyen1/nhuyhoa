@@ -2,7 +2,7 @@
 layout: post
 title: "Regular Expressions"
 date: "July 25, 2015"
-categories: r data_wrangling
+categories: ['data wrangling']
 ---
 
 * TOC

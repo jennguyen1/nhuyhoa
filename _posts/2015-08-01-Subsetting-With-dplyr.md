@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Subsetting With dplyr"
+title: "Subsetting With dplyr (R)"
 date: "August 1, 2015"
-categories: r data_wrangling
+categories: ['data wrangling']
 ---
 
 * TOC

@@ -2,7 +2,7 @@
 layout: post
 title: "Mapping Values"
 date: "October 10, 2015"
-categories: R data_wrangling
+categories: ['data wrangling']
 ---
 
 * TOC
