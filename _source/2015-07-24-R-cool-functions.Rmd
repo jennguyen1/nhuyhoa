@@ -10,7 +10,6 @@ categories: R
 
 ```{r, echo = FALSE}
 library(jn.general)
-lib(data, viz)
 ```
 
 # Links
@@ -21,7 +20,7 @@ lib(data, viz)
 
 [r_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMMWN5dmhaT05IRkk/view?usp=sharing
 [dplyr_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMblBxTjEwRWZXYjQ/view?usp=sharing
-[data.table_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMOTVOSnRVMkFHczQ/view?usp=sharing
+[data.table_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMYUtxVHVUVFVDbGc/view?usp=sharing
 
 The `broom` package has three main functions that deal with a variety of modeling functions
 
@@ -29,73 +28,17 @@ The `broom` package has three main functions that deal with a variety of modelin
 * `glance`: extracts the model statistics ($$R^2$$, etc)
 * `augment`: extracts the individual data point statistics (fitted values, residuals, leverages, etc)
 
-# Numeric Types
-```{r, echo = FALSE}
-func <- c("seq(from, to, by)",
-          "range()",
-          "quantile(x, probs)",
-          "cut(x, breaks)",
-          "dist(x)"
-          )
 
-descr <- c("generate regular sequences",
-           "produces sample quantiles",
-           "computes min/max of all args",
-           "cuts up continuous values into factor intervals",
-           "computes pairwise distances for all points"
-           )
-
-data.frame(func, descr) %>% kable
-```
-
-# Logical Types
-```{r, echo = FALSE}
-func <- c("which()",
-          "%in%", 
-          "between(x, lower, upper)"
-          )
-
-descr <- c("gives the TRUE indices",
-           "finds matches", 
-           "whether x is between l and u"
-           )
-
-data.frame(func, descr) %>% kable
-```
-
-# Character Types
-```{r}
-func <- c(""
-          )
-
-descr <- c(""
-           )
-
-data.frame(func, descr) %>% kable
-```
-
-# Input/Output
-```{r}
-func <- c("list.files(dir)",
-          "save(list = ls(), file = '__.Rdata')"
-          )
-
-descr <- c("obtain a list of all files in given file path",
-           "save all vars for another session"
-           )
-
-data.frame(func, descr) %>% kable
-```
+data.tables:
+with = FALSE: j is a vector of names or positions to select (similar to data frames)
+rbindlist: massive rbind of lists of df
+DT[, .SD[which.max(i)], by = j]: saves the row that corresponds to max i for each unique j
 
 
-# Any Type
-```{r}
-func <- c(""
-          )
+* assign
+* interaction
+* na.omit
+* complete.cases
+* model.matrix
 
-descr <- c(""
-           )
-
-data.frame(func, descr) %>% kable
-```
-sample (takes a random sample of x), order, sort, table, str, summary, names, colnames, rownames, assign("name", obj), get("name"), expand.grid, interaction, mapvalues
+* list of functions
