@@ -42,3 +42,29 @@ DT[, .SD[which.max(i)], by = j]: saves the row that corresponds to max i for eac
 * model.matrix
 
 * list of functions
+
+* partial(f, ..): changes the deafults of functions
+sf <- pryr::partial(sum, 1:5, na.rm = TRUE)
+sf()
+
+* magrittr
+%>%: then do this
+shortcut: cmd+shift+m
+use '.' to indicate the incoming value (LHS)
+%T>%: go off on a tangent:
+mtcars  %T>% {subset(cyl ==  4) %>% colMeans} %T>% {subset(cyl == 6) %>% colMeans} %>% subset(cyl == 8) %>% colMeans
+
+%<>%: compound assignment; similar to x++
+data <- data %>% transform
+equiv to:
+data %<>% tranform
+
+functions:
+add, subtract, multiply_by, raise_to_power, multiply_by_matrix, divide_by, divide_by_int, mod, is_in, and, or, equals, is_greater_than, is_weakly_greater_than, is_less_than, is_weakly_less_than, not
+set_colnames, set_rownames, set_names
+.[..., ...]: extract
+.[[...]]: extract:
+.$: inset?
+
+
+

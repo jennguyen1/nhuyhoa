@@ -61,5 +61,5 @@ We can also do this in R: `predict(object, newdata, interval = "prediction")`
 # Example
 The plot below displays the fitted line (black), 95% confidence interval (blue), and 95% prediction intervals (green) for the estimated Y. Notice that the prediction intervals are much wider than the confidence intervals to account for prediction error. Also note that the bands are tighter around the $$\bar{x}$$ and wider at points farther away from $$\bar{x}$$. 
 
-<img src="/nhuyhoafigure/source/2015-10-23-OLS-Intervals/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-10-23-OLS-Intervals/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 

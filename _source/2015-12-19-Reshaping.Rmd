@@ -1,0 +1,168 @@
+---
+layout: post
+title: "Reshaping"
+date: "December 19, 2015"
+categories: ['data wrangling']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data)
+```
+
+
+The format of your data is an important consideration. Data be formatted long or wide. Often times you will need to switch between the various formats to obtain the metrics you need. 
+
+* Long-format: contains a column for possible variable types and a column with the values for those variables; extremely useful for grouping and running separate operations on by groups
+* Wide-format: each variable contains its own columns, populated by values
+
+To switch between the two formats, transpose operations can be used. This is similar to using pivot tables in Excel. 
+
+# In R
+There are a few packages in R that can do transposing. The function names are different, but the idea is the same. 
+
+## Wide to Long
+
+Functions:
+
+* `melt()`
+* `gather()`
+
+Take a look at the `airquality` data. 
+
+<div class = "dftab">
+```{r, echo = FALSE}
+airquality %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+Convert it to long format:
+```{r, eval = FALSE}
+melt(airquality)
+```
+
+<div class = "dftab">
+```{r, echo = FALSE, message = FALSE}
+melt(airquality) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+Now perhaps we don't want to melt all variables, we can keep one (or more) as a column. This tells the function that we want to know the values of the variables for each unique combination of our specified columns.
+
+```{r, eval = FALSE}
+melt(airquality, id.vars = c("Month", "Day"))
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+ex <- melt(airquality, id.vars = c("Month", "Day"))
+ex %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+## Long to Wide
+
+Functions:
+
+* `dcast()`
+* `spread()`
+
+To specify the format of the data, we need three things. 
+
+1. The $$id$$ variables (similar to those used in the melt column)
+2. The name of the $$variable$$ column that will contain the new column names (swing it into the column names)
+3. The name of the $$value$$ column in which the data spaces are filled in
+
+Once we have these three things we can generate a casting formula:
+
+$$ id.vars $$ ~ $$ variable $$, $$ value.var = value $$
+
+We can use the melted data from above to shift it back into wide mode.
+```{r, eval = FALSE}
+melt(airquality, id.vars = c("Month", "Day")) %>% 
+  dcast(Month + Day ~ variable, value = "value")
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+melt(airquality, id.vars = c("Month", "Day")) %>% 
+  dcast(Month + Day ~ variable, value = "value") %>% 
+  nhuyhoa_df_print()
+```
+</div><p></p>
+
+One potentially annoying error might occur when you do this. If there are duplicated entries of the $$id$$ and $$variable$$, then the function will want to aggregate the duplicated values in each cell. 
+
+```{r, eval = FALSE}
+# first melt it
+melt(airquality, id.vars = c("Month", "Day")) %>% 
+  # then dcast with just the Month
+  dcast(Month ~ variable, value.var = "value")
+```
+
+```{r, echo = FALSE}
+temp <- melt(airquality, id.vars = c("Month", "Day")) %>% 
+  dcast(Month ~ variable, value.var = "value")
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+temp %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+If this is what you wanted, you can specify the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
+
+```{r, eval = FALSE}
+# first melt it
+melt(airquality, id.vars = c("Month", "Day")) %>% 
+  # then dcast with just the Month
+  dcast(Month ~ variable, value.var = "value", fun.aggregate = sum, na.rm = TRUE)
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+melt(airquality, id.vars = c("Month", "Day")) %>% 
+  dcast(Month ~ variable, value.var = "value", fun.aggregate = sum, na.rm = TRUE) %>% 
+  nhuyhoa_df_print()
+```
+</div><p></p>
+
+If this isn't what you wanted, you make have to be a little creative. One way to do this is to edit the variable values to make it unique across combinations.
+
+```{r, eval = FALSE}
+airquality %>% 
+  # Enough to run this on a select columns
+  dplyr::select(Month, Day, Ozone, Wind) %>% 
+  # melt as usual
+  melt(id.vars = c("Month", "Day")) %>% 
+  # step to add the uniqueness factor
+  group_by(Day, variable) %>% 
+  mutate(id = 1:length(value)) %>% 
+  na.omit %>% 
+  unite(variable.id, variable, id) %>% 
+  # now run dcast and observe the changes
+  dcast(Day ~ variable.id, value.var = "value")
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+airquality %>% 
+  dplyr::select(Month, Day, Ozone, Wind) %>% 
+  melt(id.vars = c("Month", "Day")) %>% 
+  group_by(Day, variable) %>% 
+  mutate(id = 1:length(value)) %>% 
+  na.omit %>% 
+  unite(variable.id, variable, id) %>% 
+  dcast(Day ~ variable.id, value.var = "value") %>% 
+  nhuyhoa_df_print()
+```
+</div><p></p>
+
+## Visual Diagram of Reshaping in R
+
+![reshaping in R](http://jnguyen92.github.io/nhuyhoa/figure/images/transpose.png)
+(By r-statistics)

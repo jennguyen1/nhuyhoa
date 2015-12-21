@@ -37,7 +37,7 @@ From this we can easily compute the probability of making an error if we conduct
 |...       |...           |
 |p         |1 - (1 - a)^p |
 
-<img src="/nhuyhoafigure/source/2015-11-22-Multiple-Comparisons/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-22-Multiple-Comparisons/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 Our error rates rapidly increases. The type 1 error rate is approximately $$50$$% when we conduct $$13$$ tests. Thus we have to find a way to correct for these multiple tests to ensure that our Type 1 error rate remains low.
 

@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/nhuyhoa//css/main.css">
-  <link rel="canonical" href="http://jnnguyen2.github.io//nhuyhoa//2015/08/Subsetting-With-dplyr.html">
-  <link rel="alternate" type="application/rss+xml" title="Nhuy Hoa" href="http://jnnguyen2.github.io//nhuyhoa//feed.xml" />
+  <link rel="canonical" href="http://yourdomain.com/nhuyhoa//2015/08/Subsetting-With-dplyr.html">
+  <link rel="alternate" type="application/rss+xml" title="Nhuy Hoa" href="http://yourdomain.com/nhuyhoa//feed.xml" />
 </head>
 
   <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -87,6 +87,12 @@
   <li><a href="#challenge-round" id="markdown-toc-challenge-round">Challenge round</a></li>
   <li><a href="#additional-resources" id="markdown-toc-additional-resources">Additional Resources</a></li>
 </ul>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Warning: replacing previous import by &#39;grid::arrow&#39; when loading
+## &#39;GGally&#39;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Warning: replacing previous import by &#39;grid::unit&#39; when loading
+## &#39;GGally&#39;</code></pre></div>
 
 <p>Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package, created by Hadley Wickham, provides some handy tools to subset and select with ease.   <br />
 In this post, I will outline the subsetting functions available through dplyr and explain how and when I use them. In addition, I make use of magrittr’s piping function, which can combine a complicated sequence of logic into a code chain that is easier to read. More information about magrittr can be found on the <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html" target="blank">magrittr vignette</a>.</p>

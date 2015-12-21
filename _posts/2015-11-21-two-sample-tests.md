@@ -9,6 +9,17 @@ categories: statistics other
 {:toc}
 
 
+{% highlight text %}
+## Warning: replacing previous import by 'grid::arrow' when loading
+## 'GGally'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning: replacing previous import by 'grid::unit' when loading
+## 'GGally'
+{% endhighlight %}
 
 # Parametric Tests
 

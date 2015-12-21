@@ -9,6 +9,17 @@ categories: ['data wrangling']
 {:toc}
 
 
+{% highlight text %}
+## Warning: replacing previous import by 'grid::arrow' when loading
+## 'GGally'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning: replacing previous import by 'grid::unit' when loading
+## 'GGally'
+{% endhighlight %}
 
 Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package, created by Hadley Wickham, provides some handy tools to subset and select with ease.   
 In this post, I will outline the subsetting functions available through dplyr and explain how and when I use them. In addition, I make use of magrittr's piping function, which can combine a complicated sequence of logic into a code chain that is easier to read. More information about magrittr can be found on the [magrittr vignette][magrittr_link]{:target="blank"}.

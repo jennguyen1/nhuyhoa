@@ -63,7 +63,7 @@ ggplot(data = gator, aes(x = choice, y = length)) +
   ggtitle("Gator Length vs Food Choice")
 {% endhighlight %}
 
-<img src="/nhuyhoafigure/source/2015-11-26-GLM-Multinomial-Regression/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-26-GLM-Multinomial-Regression/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 From the boxplot, we see a trend in food choice and gator length.
 
 So let's fit a multinomial model.
@@ -139,7 +139,7 @@ $$ \hat{\pi}_F = \frac{1}{1 + exp(-1.618 + 0.1101x) + exp(4.089 - 2.3553x)} $$
 
 These probabilities can be used to plot the probabilities of various food preferences in gators across lengths.
 
-<img src="/nhuyhoafigure/source/2015-11-26-GLM-Multinomial-Regression/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-26-GLM-Multinomial-Regression/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 
 # Ordinal Regression

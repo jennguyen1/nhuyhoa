@@ -9,10 +9,21 @@ categories: ['statistics', 'regression analysis']
 {:toc}
 
 
+{% highlight text %}
+## Warning: replacing previous import by 'grid::arrow' when loading
+## 'GGally'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning: replacing previous import by 'grid::unit' when loading
+## 'GGally'
+{% endhighlight %}
 
 # Beta Estimates
 
-Orthogonal design matrices in regression ensures that the $$\beta$$ estimates do not depend on each ohter. In other words, because there is no collinearity between columns, the effect of one factor or interaction can be estimated separately from the effect of any other factor/interaction in the model.
+Orthogonal design matrices in regression ensures that the $$\beta$$ estimates do not depend on each other. In other words, because there is no collinearity between columns, the effect of one factor or interaction can be estimated separately from the effect of any other factor/interaction in the model.
 
 Let the design matrix be
 $$\mathbf{X} = \left[\begin{array}
@@ -83,8 +94,8 @@ Thus $$\forall$$ $$j$$, $$ Var[\hat{\beta}_j]= \frac{\sigma^2}{x^{T}_{j}x_j} $$.
 
 As a matter of fact, the variance of the $$\hat{\beta}$$ are minimized when $$X$$ has mutually exclusive columns. 
 
-In other words for any design matrix $$X$$ where $$c^2_j = x_j^{*T}x_j^*$$,
-$$Var[\hat{\beta}_j] \ge \frac{\sigma^2}{c^2_j} $$. 
+In other words for any design matrix,
+$$Var[\hat{\beta}_j] \ge \frac{\sigma^2}{x_j^{*T}x_j^*} $$. 
 and the minimum is attained when $$x_i^{*T}x^*_j = 0$$ $$\forall$$ $$i \ne j$$.
 
 # Orthogonal Columns in Experimental Design & Clinical Trials

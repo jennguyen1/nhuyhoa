@@ -139,7 +139,7 @@ Here's an example:
   </tr>
 </tbody>
 </table>
-</div> <p></p>
+</div><p></p>
 
 
 {% highlight r %}
@@ -196,4 +196,20 @@ setnames(iris, colnames(iris), tolower(colnames(iris)))
   </tr>
 </tbody>
 </table>
-</div> <p></p>
+</div><p></p>
+
+## Vectorize
+Sometimes you may just want to write your function that uses conditionals to relate certain values. Your function inputs may just take one data structure (perhaps one value) and may throw an error if you pass in something along the lines of a vector. 
+
+For these instances, there is a function, called `Vectorize()` that can transform these types of functions so that it will work with vectors. 
+
+{% highlight r %}
+# create a function f
+f <- function(x){...}
+
+# vectorize the function so it can take a vector as input
+vf <- Vectorize(f)
+{% endhighlight %}
+
+
+
