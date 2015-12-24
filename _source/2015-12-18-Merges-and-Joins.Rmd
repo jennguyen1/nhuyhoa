@@ -55,4 +55,6 @@ on tab1.id = tab2.id and tab1.id2 = tab2.id2;
 
 To specify the join, simply replace the blank with `inner`, `full outer`, `left`, or `right`. 
 
-To join multiple data frames in SQL, you can also do successive joins. Simply append additional `___ join` statements after the previous join.
+To join multiple data frames in SQL, you can also do successive joins. Simply append additional `___ join ... on` statements after the previous join.
+
+SQL also has operations such as `union`, `intersect`, and `except`, which are quite similar to joins

@@ -161,7 +161,7 @@ g2 <- qplot(y = residuals(mod), x = predict(mod, type = "link")) +
 # combine
 grid.arrange(g1, g2, nrow = 1)
 ```
-Two different scales for the fitted values. We see that using $$\hat{eta}$$ is better than $$\hat{\mu}$$. Overall, we see that the residuals are evenly spaced across fitted values, and there are no violation of assumptions.
+Two different scales for the fitted values. We see that using $$\hat{\eta}$$ is better than $$\hat{\mu}$$. Overall, we see that the residuals are evenly spaced across fitted values, and there are no violation of assumptions.
 
 What should we do if we see violations?
 

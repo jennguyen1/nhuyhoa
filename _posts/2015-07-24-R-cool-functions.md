@@ -62,7 +62,8 @@ add, subtract, multiply_by, raise_to_power, multiply_by_matrix, divide_by, divid
 set_colnames, set_rownames, set_names
 .[..., ...]: extract
 .[[...]]: extract:
-.$: inset?
+.$: use series
+] <-,  ]]<-: inset (assignment)
 
 
 
