@@ -217,7 +217,7 @@ The package `glmnet` is a great resource on fitting regularization models in R. 
 
 ## Partial Least Squares Regression
 
+[bv_tradeoff_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.html#bias-variance-tradeoff
+[bv_tradeoff_train_test_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.html#training--testing-error
+[bv_tradeoff_cv_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.html#cross-validation
 [glmnet_vignette]: https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html
-[bv_tradeoff_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.thml#bias-variance-tradeoff
-[bv_tradeoff_train_test_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.thml#training--testing-error
-[bv_tradeoff_cv_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.thml#cross-validation

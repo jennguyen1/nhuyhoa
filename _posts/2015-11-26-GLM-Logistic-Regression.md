@@ -136,6 +136,6 @@ Overdispersion occurs in logistic regression when $$Var(Y_i)$$ is greater than t
 The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain 
 $$Var(Y_i)^* = \sigma^2 \mu_i (1 - \mu_i) / n_i$$
 
-The steps for assessing overdispersion are listed in the [GLM testing and diagnostics post][glm_diagnostics_post]{:target = "blank"}
+The steps for assessing overdispersion are listed in the [GLM Testing and Diagnostics: Overdispersion][glm_diagnostics_post]{:target = "blank"}
 
-[glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html
+[glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html#overdispersion

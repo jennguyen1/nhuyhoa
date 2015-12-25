@@ -10,7 +10,7 @@ categories: ['statistics', 'regression analysis']
 
 ```{r global_opts, echo = FALSE}
 library(jn.general)
-lib(data, viz)
+lib(data)
 ```
 
 # Beta Estimates

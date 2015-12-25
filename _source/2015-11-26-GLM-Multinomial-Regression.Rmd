@@ -12,10 +12,10 @@ categories: ['statistics', 'regression analysis']
 library(jn.general)
 lib(data, viz)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center', message = FALSE)
-gator <- fread("gator.csv")
+gator <- fread("data/gator.csv")
 setnames(gator, c("length", "choice"))
 library(faraway)
-cheese <- fread("cheese.dat")
+cheese <- fread("data/cheese.dat")
 setnames(cheese, c("cheese", "response", "N"))
 cheese$response <- factor(cheese$response, ordered = TRUE)
 ```
@@ -225,6 +225,6 @@ The model discussed here assumed proportional odds. Thus it is important to asse
 The `VGAM` package is an additional resource that has functions for fitting multinomial models. 
 
 # Model Testing and Diagnostics
-Testing and diagnostics is similar to other glms. See [GLM testing and diagnostics post][glm_diagnostics_post]{:target = "blank"}
+Testing and diagnostics is similar to other glms. See [GLM Testing and Diagnostics][glm_diagnostics_post]{:target = "blank"}
 
 [glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html

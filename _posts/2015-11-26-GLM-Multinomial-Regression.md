@@ -260,6 +260,6 @@ The model discussed here assumed proportional odds. Thus it is important to asse
 The `VGAM` package is an additional resource that has functions for fitting multinomial models. 
 
 # Model Testing and Diagnostics
-Testing and diagnostics is similar to other glms. See [GLM testing and diagnostics post][glm_diagnostics_post]{:target = "blank"}
+Testing and diagnostics is similar to other glms. See [GLM Testing and Diagnostics][glm_diagnostics_post]{:target = "blank"}
 
 [glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html
