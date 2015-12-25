@@ -1,0 +1,126 @@
+---
+layout: post
+title: "K Nearest Neighbors"
+date: "December 28, 2015"
+categories: ['statistics', 'machine learning']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(jn.general)
+lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+library(class)
+```
+
+# K Nearest Neighbors
+The k nearest neighbors method assigns a point based on its k nearest neighbors.
+
+* The distance metric is defined by the user (common methods include Euclidian distance, Manhattan distance, correlation metrics, etc)
+* Parameter k found via cross-validation
+* Technique becomes more flexible as k decreases
+
+## KNN Classification
+Algorithm:
+
+* Find the k nearest neighbors (based on distance)
+* Compute the class probabilities based on those neighbors
+
+$$ P(Y = j \vert X = x_0) = \frac{1}{K} \Sigma_{i \in N_0} I(y_i = j) $$
+
+* Assigns the test point to the class with the greatest probability
+
+## KNN Regression
+Algorithm:
+
+* Find the k nearest neighbors (based on distance)
+* Compute the predicted response
+
+$$ \hat{f}(x_0) = \frac{1}{K} \Sigma_{x_i \in N_0} y_i $$
+
+## Example
+
+Here we run a KNN on two dimensions where the response is binary. The true boundary is given by the black line. The shaded regions are the predicted assignments.
+
+Here we see that the smaller $$K$$ is, the more flexible the predicted boundary line. As we increase $$K$$, the predicted boundary is more linear. 
+```{r, echo = FALSE, fig.width = 15, fig.height = 5}
+sim_knn <- function(k, print_mse = FALSE){
+  # set the seed
+  set.seed(23)
+  
+  # create the training set
+  train <- data.table(
+    x1 = rnorm(250), x2 = rnorm(250), 
+    y = sample(c("red", "green"), 250, replace = TRUE)
+  )
+  train <- train %>% 
+    mutate(
+      sep = 0.15*x1^2 + 0.47*x2,
+      y = ifelse(sep > 0.25, "red", y),
+      y = ifelse(sep < -0.25, "green", y),
+      sep = NULL
+    ) 
+  
+  # create the test set grid
+  test <- expand.grid(
+    x1 = seq(min(train$x1)-.25, max(train$x2)+.25, length.out = 100), 
+    x2 = seq(min(train$x2)-.25, max(train$x2)+.25, length.out = 100) 
+  )
+  
+  # predict the test set grid
+  test$y <- knn(dplyr::select(train, -y), test, train$y, k = k)
+  
+  # compute mse
+  true_k <- ifelse(-0.31915 * test$x1^2 > 0, "red", "green")
+  if(print_mse) print(mean(test$y == true_k))
+  
+  # label the train and test and combine into one df
+  train$set <- "train"
+  test$set <- "test"
+  plot_data <- rbindlist(list(train, test))
+
+  # plot the data
+  p <- ggplot(plot_data, aes(x1, x2, color = y, alpha = set)) + 
+    geom_point() +
+    scale_x_continuous(breaks = NULL) +
+    scale_y_continuous(breaks = NULL) +
+    xlab("X1") + ylab("X2") + 
+    ggtitle(paste0("KNN: K = ", k)) +
+    theme(legend.position = "none")
+  
+  # add the true separator
+  f <- function(x) -0.31915 * x^2
+  p <- p + stat_function(fun = f, color = "black")
+  
+  return(p)
+}
+
+one <- sim_knn(1)
+two <- sim_knn(10)
+fifty <- sim_knn(50)
+
+grid.arrange(one, two, fifty, nrow = 1)
+```
+
+When $$K = 2$$, the test error is minimized and the predicted boundaries are quite similar to the true boundary.
+```{r, echo = FALSE, fig.width = 5, fig.height = 5}
+sim_knn(2)
+```
+
+## Strengths and Weaknesses
+
+Strengths:
+
+* Simple method
+* Can work well in some situations
+
+Weaknesses:
+
+* Fails when the number of features is large (curse of dimensionality) because nearest neighbors may be very far away
+
+# In R
+
+* KNN classification: `class::knn()` or `caret::knn3()`
+* KNN regression: `caret::knnreg()`
