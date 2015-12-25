@@ -243,7 +243,7 @@ grid.arrange(g1, g2, nrow = 1)
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
-Two different scales for the fitted values. We see that using $$\hat{eta}$$ is better than $$\hat{\mu}$$. Overall, we see that the residuals are evenly spaced across fitted values, and there are no violation of assumptions.
+Two different scales for the fitted values. We see that using $$\hat{\eta}$$ is better than $$\hat{\mu}$$. Overall, we see that the residuals are evenly spaced across fitted values, and there are no violation of assumptions.
 
 What should we do if we see violations?
 

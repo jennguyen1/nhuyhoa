@@ -20,6 +20,22 @@ permalink: /stat_notes/
 
 <br />
 
+<h1 style = "padding-top:0;">Machine Learning</h1>
+<section>
+    <table>
+        {% for post in site.posts %}
+            {% if post.categories contains 'statistics' and post.categories contains 'machine learning' %}
+                <tr>
+                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+                </tr>
+            {% endif %}
+       {% endfor %}
+    </table>
+</section>
+
+<br />
+
 <h1 style = "padding-top:0;">Probability Theory</h1>
 <section>
     <table>
