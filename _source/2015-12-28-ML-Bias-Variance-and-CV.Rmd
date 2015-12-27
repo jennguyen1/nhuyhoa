@@ -69,3 +69,13 @@ Procedure:
 * Combine the results from all partitions, usually with a weighted average
 * Compare the cross-validated metric across different models to find the best model parameters
 * Refit the model based on the best model parameters using all of the data
+
+
+![5-fold_CV](http://jnguyen92.github.io/nhuyhoa/figure/images/cross_validation.png)
+
+A schematic display of 5-fold CV. A set of $$N$$ observations is randomly split into 5 non-overlapping groups. Each of the groups acts as a validation set (red) and the remainder as a traing set. The 5-fold CV error is an average of the 5 resulting MSE estimates.
+
+The procedure where setting $$K = n$$ is called Leave One Out Cross-Validation (LOOCV). This method is sometimes useful but it doesn't shuffle the data enough. Thus the error estimates from each fold are correlated and the average can have high variance.
+
+# Error Metrics
+

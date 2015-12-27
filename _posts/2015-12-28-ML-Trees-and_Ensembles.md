@@ -10,6 +10,8 @@ categories: ['statistics', 'machine learning']
 
 
 
+![tree](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
+
 # Decision Trees
 Decision trees generate a tree using a top-down algorithm. The idea is to find a feature that "best" divides the data and then recur on each subset of the data that the feature divides. The goal is to predict the class labels, which is done at the leaves of the tree. 
 
@@ -69,7 +71,7 @@ $$ \Sigma^{\vert T \vert}_{m = 1} \Sigma_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^
 
 where $$\alpha >= 0$$, $$\vert T \vert$$ is the number of terminal nodes in subtree, $$R_m$$ is the subset of predictor space corresponding to the $$m^{th}$$ terminal node, and $$\hat{y}_{R_m} is the mean of the training observations in $$R_m$$.
 
-When $$\alha = 0$$, we have the original tree. As $$\alpha$$ increases, the tree incurs a price for having too many terminal nodes which forces the tree to become smaller. The value $$\hat{\alpha}$$ can be found via cross-validation.
+When $$\alpha = 0$$, we have the original tree. As $$\alpha$$ increases, the tree incurs a price for having too many terminal nodes which forces the tree to become smaller. The value $$\hat{\alpha}$$ can be found via cross-validation.
 
 ## Strengths & Weaknesses
 
@@ -77,6 +79,7 @@ Strengths:
 
 * Great technique for learning models noisy models
 * Results are easily interpretable
+* Robust to outliers and missing data
 * Fast, simple, and robust
 
 Weaknesses:
@@ -116,7 +119,7 @@ Algorithm:
 If there is one very strong predictor, most of the bagged trees will use the predictor as the top split. Thus, the predictions from the trees will be highly correlated and the average predictions will have high variance. To decorrelate the predictions, we could use a method called random forests.
 
 ### Out of Bag Error
-In each round of bootstrapping, about $$\frac{2}{3}$$ of the observations are sampled from the data to be used as the training set. That leaves about $$\frac{1}{3}$$ of the data that can be used as a testing set. So rather than using cross-validation, the out-of-bag (OOB) error can be utilized to select model parameters. 
+In each round of bootstrapping, about $$\frac{2}{3}$$ of the observations are sampled from the data to be used as the training set. That leaves about $$\frac{1}{3}$$ of the data that are not used to fit the data, which can be used as a testing set. So rather than using cross-validation, the out-of-bag (OOB) error can be utilized to select model parameters. 
 
 ## Random Forests
 
@@ -132,9 +135,27 @@ Let $$N$$ = n-size, $$F$$ = # of parameters, $$i << F$$.
   * Do not prune
 * Average all predictions (or take a majority vote for nominal responses)
 
-The tuning parameter $$i$$ can be chosen by cross-validation. Typically we choose $$i = \sqrt{F}$$. Increasing $$i$$ may increase correlation among individual trees in the forest, but it may also increase the accuracy of individual trees. This is the bias-variance tradeoff.
+The tuning parameter $$i$$ can be chosen by cross-validation. Typically we choose $$i = \sqrt{F}$$. Increasing $$i$$ may (bias-variance tradeoff)
+
+* increase correlation among individual trees in the forest (bad)
+* increase the accuracy of individual trees (good) 
 
 Because it samples from all possible features, random forests can handle a large number of features. It can also reduce overfitting drastically.
+
+### Variable Importance
+Interpreting random forests can be quite difficult. One way to get a sense of the variables is to look at important variables (features).
+
+Procedure:
+
+* Use OOB samples to predict values
+* Randomly permute values of one of the features and predict the values again
+* Measure decrease in accuracy
+
+Alternate Procedure:
+
+* Measure the split criterion improvement
+* Record improvements for each feature
+* Accumulate over the whole ensemble
 
 ## Boosting
 
@@ -154,9 +175,33 @@ The interaction depth $$d$$ is also chosen via cross validation. The tuning para
 
 The idea with boosting is to learn slowing. The algorithm reweights examples (if wrong, increase weight; else decrease weight). Decision trees are fitted to the residuals of the model and then added to the model to update the residuals. This allows the model to improve in the areas that it doesn't perform well. 
 
+An alternative boosting method (Adaboost) updates weights assigned to data points. 
+
 # In R
 rpart, prune
 randomForest
 gbm
 adaboost
 http://www.statmethods.net/advstats/cart.html
+
+
+Decision tree alternative in R:
+
+- fit tree
+library(rpart)
+tree = rpart(formula = , data = , method = “class” or etc, control = rpart.control())
+predict(model, dataset, method)
+
+- plot tree
+plot(tree)
+text(tree)
+
+- fancy plotting
+library(rattle)
+library(rpart.plot)
+library(RColorBrewer)
+fancyRpartPlot(tree)
+
+
+
+
