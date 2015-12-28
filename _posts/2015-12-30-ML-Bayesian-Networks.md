@@ -12,7 +12,7 @@ categories: ['statistics', 'machine learning']
 
 Bayesian networks are a type of probabilistic graphical model that represents a set of random variables and their conditional dependencies using a directed acyclic graph (DAG).
 
-![sample bayesian network](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
+![sample bayesian network](http://jnguyen92.github.io/nhuyhoa/figure/images/bayes_net.png)
 
 Each node is associated with a probability function that takes a particular set of values from the node's parent variables as inputs and gives the probability of the node's random variable as outputs.
 
@@ -24,10 +24,9 @@ Indpendence is nice property because we can certain variables without regard to 
 * Two nodes in a bayesian network are unconditionally independent if there is no undirected path between the nodes. 
 * If there is an undirected path between two nodes, then whether they are indpendent depends on what other evidence is known. 
   * A node is conditionally independent of its non-descendants, given its parents. 
-  * A node is conditionally independent of all other nodes, given its Markov blanket. A Markov blanket is a node's parents, children, and children's parent.
-  $$P(X \vert MB(X), Y) = P(X \vert MB(X))$$
+  * A node is conditionally independent of all other nodes, given its Markov blanket. A Markov blanket is a node's parents, children, and children's parent. $$P(X \vert MB(X), Y) = P(X \vert MB(X))$$
 
-![Markov blanket](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
+![Markov blanket](http://jnguyen92.github.io/nhuyhoa/figure/images/markov_blanket.png)
 
 # Parameter Learning
 This task is pretty straightforward. One can compute the joint probability tables from the training data (count things). From these, one could easily generate the conditional probability tables. 

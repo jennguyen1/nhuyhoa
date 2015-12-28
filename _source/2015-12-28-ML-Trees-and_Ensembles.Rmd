@@ -74,7 +74,7 @@ Another Algorithm:
 Let 
 $$ \Sigma^{\vert T \vert}_{m = 1} \Sigma_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + \alpha \vert T \vert$$
 
-where $$\alpha >= 0$$, $$\vert T \vert$$ is the number of terminal nodes in subtree, $$R_m$$ is the subset of predictor space corresponding to the $$m^{th}$$ terminal node, and $$\hat{y}_{R_m} is the mean of the training observations in $$R_m$$.
+where $$\alpha >= 0$$, $$\vert T \vert$$ is the number of terminal nodes in subtree, $$R_m$$ is the subset of predictor space corresponding to the $$m^{th}$$ terminal node, and $$\hat{y}_{R_m}$$ is the mean of the training observations in $$R_m$$.
 
 When $$\alpha = 0$$, we have the original tree. As $$\alpha$$ increases, the tree incurs a price for having too many terminal nodes which forces the tree to become smaller. The value $$\hat{\alpha}$$ can be found via cross-validation.
 

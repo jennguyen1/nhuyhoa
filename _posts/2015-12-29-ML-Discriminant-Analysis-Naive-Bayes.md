@@ -107,7 +107,7 @@ In some cases when we estimate the probabilities from the data, our estimates ar
 So the solution to this is to do Laplace estimates, where we add 1 to all counts. This smoothing step's effect is great when data sets are small and is irrelevant when data sets are large (doesn't affect your calculations in any way).
 
 This effect changes the probability calculations to 
-$$P(a) = \frac{n_a + 1}{Sigma_i (n_i + 1)}$$
+$$P(a) = \frac{n_a + 1}{\Sigma_i (n_i + 1)}$$
 
 ## Example
 Say we are given training data that looks like this.
