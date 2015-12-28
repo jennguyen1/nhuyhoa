@@ -15,6 +15,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
 ![tree](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
+A sample tree and how it cuts up the sample space. 
 
 # Decision Trees
 Decision trees generate a tree using a top-down algorithm. The idea is to find a feature that "best" divides the data and then recur on each subset of the data that the feature divides. The goal is to predict the class labels, which is done at the leaves of the tree. 

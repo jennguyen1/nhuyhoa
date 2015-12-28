@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bias Variance Tradeoff and Cross Validation"
+title: "Bias Variance Tradeoff: Cross Validation"
 date: "December 28, 2015"
 categories: ['statistics', 'machine learning']
 ---
@@ -16,6 +16,7 @@ categories: ['statistics', 'machine learning']
 * Underfitting: important variables are not included
 
 With all models, we want to minimize the error, which is a function of bias and variance of our model.
+
 $$ E[y_i - \hat{f}(x_i)]^2 = Var[\hat{f}(x_i)] + Bias[\hat{f}(x_i)]^2 + Var[\epsilon] $$
 
 * Variance: the amount by which $$\hat{f}(x_i)$$ would change if it was estimated with different testing data
