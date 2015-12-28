@@ -56,3 +56,21 @@ The procedure where setting $$K = n$$ is called Leave One Out Cross-Validation (
 
 # Error Metrics
 
+## Regression
+For continuous responses, the root mean square error is often used. This is defined as
+
+$$RMSE = \sqrt{E\left((x - \bar{x})^2\right)}$$
+
+## Classification
+For binary responses, ROC (Receiver Operating Characteristic) curve and AUC (Area Under the Curve) can be used. 
+
+<img src="/nhuyhoa/figure/source/2015-12-28-ML-Bias-Variance-and-CV/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+There are four possible outcomes:
+
+* True positive (I): (+) instance correctly classified as (+)
+* False positive (II): (-) instance incorrectly classified as (+)
+* False negative (III): (+) instance incorrectly classified as (-)
+* True negative (IV): (-) instance correctly classified as (-)
+
+The ROC curve plots the true positive rate $$\left( P(predict.T \vert actual.T) \right)$$ vs. the false positive rate $$\left( P(predict.T \vert actual.F) \right)$$ across a range of thresholds. Then the AUC is calculated as a measure of accuracy. A perfect model has a $$AUC = 1$$. A model with an $$AUC = 0.5$$ is no better than random guessing.

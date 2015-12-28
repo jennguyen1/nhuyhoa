@@ -111,6 +111,11 @@ If we conclude that $$\hat{\beta}_2$$, $$\hat{\beta}_3$$, $$\hat{\beta}_4$$, $$\
 ### Continuous and Categorical Variables
 Similar to OLS, when there are a combination of continuous and categorical variables we can break down the overall model into smaller equations. Then we can do tests to determine whether there are significant differences between the categories and whether the effect of the continuous variable is the same for all categories. 
 
+# Response Probabiltiies
+To estimate response probabilities from the $$x$$s, we have
+
+$$ \hat{\pi}_i = \frac{exp(\eta_{i})}{1 + exp(\eta_{i})}$$
+
 ## Effective Dose 
 We can find the $$x$$ value in which there is a $$50$$% chance of success. 
 
