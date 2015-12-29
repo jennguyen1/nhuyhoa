@@ -9,17 +9,6 @@ categories: ['data wrangling']
 {:toc}
 
 
-{% highlight text %}
-## Warning: replacing previous import by 'grid::arrow' when loading
-## 'GGally'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Warning: replacing previous import by 'grid::unit' when loading
-## 'GGally'
-{% endhighlight %}
 
 For loops in R are known to be quite slow as the number of iterations increase. Thus it is advised to use apply functions for looping operations. In cases when it is desirable to optimize code even more, parallel processing can be used alongside the apply functions.
 

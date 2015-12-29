@@ -134,10 +134,13 @@ Data tables are an alternative to data frames that allow for optimized operation
 ## Lists
 A list is the free-for-all data structure. It is like a data frame but is not limited by any length restrictions. Lists can hold any data structure, including other lists. To make a list use `list(...)`. 
 
-Lists can be indexed by number `l[[1]]` or by name `l$apple`, `l[["apple"]]`. Unfortunately lists cannot be sliced, so to subset a list, loops should be used. 
+Lists can be indexed by number `l[[1]]` or by name `l$apple`, `l[["apple"]]`. Unfortunately lists cannot be sliced, so to subset a list, loops should be used. See [Apply and Parallel Processing][apply_post]{:target = "_blank"} post.
 
 ## Special Values
 
 `NULL` is a null object. To test whether an object is `NULL`, use `is.null()`
 
 `NA` is a missing value. To test whether an object is `NA`, use `is.na()`
+
+
+[apply_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Apply-Parallel-Processing.html
