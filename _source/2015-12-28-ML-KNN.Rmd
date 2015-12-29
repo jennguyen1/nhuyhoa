@@ -19,8 +19,9 @@ library(class)
 The k nearest neighbors method assigns a point based on its k nearest neighbors.
 
 * The distance metric is defined by the user (common methods include Euclidian distance, Manhattan distance, correlation metrics, etc)
-* Parameter k found via cross-validation
+* Parameter $$k$$ found via cross-validation
 * Technique becomes more flexible as k decreases
+* Feature variables should be standardized prior to running KNN
 
 ## KNN Classification
 Algorithm:
