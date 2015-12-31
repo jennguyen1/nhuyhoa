@@ -105,7 +105,8 @@ Polynomial kernal (left) and radial kernal (right) (Hastie, et. al).
 Our hyperplane equation becomes 
 $$f(\overrightarrow{x}) = \overrightarrow{\alpha}^T K(x, x_i) + b$$
 
-where $$\alpha_i \ne 0$$ are the support vectors. 
+where $$\alpha_i \ne 0$$ are the weights vectors. 
+
 # Strengths and Weaknesses of SVM
 
 Strengths:
