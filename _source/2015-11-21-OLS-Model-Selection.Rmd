@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OLS: Model Selection"
+title: "OLS: Model Selection & Regularization"
 date: "November 21, 2015"
 categories: ['statistics', 'regression analysis']
 ---
@@ -166,12 +166,10 @@ Note that since elastic net is a hybrid of ridge and LASSO, the covariates shoul
 The package `glmnet` is a great resource on fitting regularization models in R. See the package [viginette][glmnet_vignette]{:target="blank"}. 
 
 # Dimension Reduction Techniques
-
-## Principle Components
-
-## Partial Least Squares Regression
+See [Dimension Reduction][dimension_reduction_post]{:target = "_blank"}.
 
 [bv_tradeoff_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.html#bias-variance-tradeoff
 [bv_tradeoff_train_test_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.html#training--testing-error
 [bv_tradeoff_cv_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.html#cross-validation
 [glmnet_vignette]: https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html
+[dimension_reduction_post]: http://jnguyen92.github.io/nhuyhoa//2016/01/ML-Dimension-Reduction.html
