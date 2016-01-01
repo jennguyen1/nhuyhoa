@@ -120,3 +120,18 @@ ggplot(data = NULL, aes(x = x, y = y)) +
 
 In this plot, we could potentially choose to use 5-7 principal components. 
 
+## What PCA Can Be Used For
+
+* Use for data visualization or data pre-processing
+* Use to simplify high-dimensional data; use PC as features in various other methods 
+
+PCA is great for providing a low-dimensional representation of high-dimensional data. Thus it works best when the first few PC are sufficient in capturing most of the variation in the predictors. (So it is generally not a good idea to use all of the PC).
+
+# Partial Least Squares
+Partial least squares (PLS) is a supervised learning modification of principal components regression (PCR). PLS generates the new low-dimensional features by making use of the response Y. It finds components that help explain both the response and the predictors. 
+
+Similar to PCR, PLS requires that the predictors are standardized. The first principal component is computed by setting the loading vector equal to the coefficients from OLS of $$Y$$ ~ $$X_j$$. These values are proportional to the correlation between $$Y$$ and $$X_j$$. Thus the scores from the first component is $$Z_1 = \Sigma^p_{j = 1} \phi_{1j}X_j$$. In other words, PLS places greater weight on predictors that are most strongly related to the response. The following components are found by taking residuals and then repeating the procedure above. 
+
+
+
+

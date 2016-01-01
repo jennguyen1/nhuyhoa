@@ -119,9 +119,6 @@ Algorithm:
 
 If there is one very strong predictor, most of the bagged trees will use the predictor as the top split. Thus, the predictions from the trees will be highly correlated and the average predictions will have high variance. To decorrelate the predictions, we could use a method called random forests.
 
-### Out of Bag Error
-In each round of bootstrapping, about $$\frac{2}{3}$$ of the observations are sampled from the data to be used as the training set. That leaves about $$\frac{1}{3}$$ of the data that are not used to fit the data, which can be used as a testing set. So rather than using cross-validation, the out-of-bag (OOB) error can be utilized to select model parameters. 
-
 ## Random Forests
 
 Algorithm:
@@ -143,6 +140,46 @@ The tuning parameter $$i$$ can be chosen by cross-validation. Typically we choos
 
 Because it samples from all possible features, random forests can handle a large number of features. It can also reduce overfitting drastically.
 
+## Boosting
+Boosting is a class of ensemble methods that sequentially produces multiple weak classifiers, where each classifier is dependent on the previous ones. Examples that are misclassfified by previous classifiers become more important in the next classifier. The classifiers can be combined to get
+$$C(x) = \theta (\Sigma_i w_i h_i(x) + b)$$
+
+where $$w_i$$ is the weight and $$h_i(x)$$ is the classifier. 
+
+There are many variants of boosting. All of them have the same idea. Here are two such algorithms.
+
+Regression Algorithm:
+
+* Set $$\hat{f}(x) = 0$$ and $$r_i = y_i \forall i$$ in the training set
+* Repeat B times
+  * Fit a tree with $$\hat{f}^b$$ with $$d$$ splits (d + 1 terminal nodes) to the training data (X, r)
+  * Update $$\hat{f}$$ by adding in a shrunken version of the new tree
+$$\hat{f}(x) \leftarrow \hat{f}(x) + \lambda \hat{f}^b(x)$$
+  * Update residuals
+$$ r_i \leftarrow r_i - \lambda \hat{f}^b(x_i)$$
+* Output boosted model
+$$\hat{f}(x) = \Sigma^B_{b = 1} \lambda \hat{f}^b(x)$$
+
+The interaction depth $$d$$ is also chosen via cross validation. The tuning parameter $$\lambda \ge 0$$ allows more trees to fit the residuals. This value is generally small (0.01 or 0.001). 
+
+The idea with boosting is to learn slowing. The algorithm reweights examples (if wrong, increase weight; else decrease weight). Decision trees are fitted to the residuals of the model and then added to the model to update the residuals. This allows the model to improve in the areas that it doesn't perform well. 
+
+Discrete Adaboost Algorithm:
+
+* Assign equal weights to each training example
+* Let $$E(f(x_i), y_i) = exp(-y_i f(x_i))$$
+* Repeat $$T$$ times:
+  * Choose $$f_t(x)$$
+    * Do a greedy search for a weak learner $$h_t(x)$$ ($$h: x \rightarrow [-1, 1]$$) that minimizes $$\epsilon_t = \Sigma_i w_i E(h_t(x_i), y_i)$$ the weighted sum error for misclassified points
+    * Choose weight $$a_t = \frac{1}{2} ln \left(\frac{1 - \epsilon_t}{\epsilon_t} \right)$$
+  * Add to ensemble: $$F_t(x) = F_{t - 1}(x) + a_t h_t(x)$$
+  * Update weights: $$w_{i, t+1} = w_{i, t} exp(-y_i a_t h_t(x_i))$$ and renormalize so that $$\Sigma_i w_{i, t+1} = 1$$
+
+## Additional Notes
+
+### Out of Bag Error
+In each round of bootstrapping, about $$\frac{2}{3}$$ of the observations are sampled from the data to be used as the training set. That leaves about $$\frac{1}{3}$$ of the data that are not used to fit the data, which can be used as a testing set. So rather than using cross-validation, the out-of-bag (OOB) error can be utilized to select model parameters. 
+
 ### Variable Importance
 Interpreting random forests can be quite difficult. One way to get a sense of the variables is to look at important variables (features).
 
@@ -157,26 +194,6 @@ Alternate Procedure:
 * Measure the split criterion improvement
 * Record improvements for each feature
 * Accumulate over the whole ensemble
-
-## Boosting
-
-Algorithm:
-
-* Set $$\hat{f}(x) = 0$$ and $$r_i = y_i \forall i$$ in the training set
-* Repeat B times
-  * Fit a tree with $$\hat{f}^b$$ with $$d$$ splits (d + 1 terminal nodes) to the training data (X, r)
-  * Update $$\hat{f}$$ by adding in a shrunken version of the new tree
-$$\hat{f}(x) \leftarrow \hat{f}(x) + \lambda \hat{f}^b(x)$$
-  * Update residuals
-$$ r_i \leftarrow r_i - \lambda \hat{f}^b(x_i)$$
-* Output boosted model
-$$\hat{f}(x) = \Sigma^B_{b = 1} \lambda \hat{f}^b(x)$$
-
-The interaction depth $$d$$ is also chosen via cross validation. The tuning parameter $$\lambda >= 0$$ allows more trees to fit the residuals. This value is generally small (0.01 or 0.001). 
-
-The idea with boosting is to learn slowing. The algorithm reweights examples (if wrong, increase weight; else decrease weight). Decision trees are fitted to the residuals of the model and then added to the model to update the residuals. This allows the model to improve in the areas that it doesn't perform well. 
-
-An alternative boosting method (Adaboost) updates weights assigned to data points. 
 
 # In R
 rpart, prune
