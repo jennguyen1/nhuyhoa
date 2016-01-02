@@ -61,5 +61,5 @@ The canonical link has $$g$$ such that $$\eta = g(\mu) = \theta$$
 * Gamma: $$\eta = 1/\mu$$, $$var.func = \mu^2$$
 
 # Fitting GLM
-The parameters $$\beta$$ of a GLM are computed via maximum likelihood. The procedure is equivalent to iteratively weighted least squares (IRWLS). (This method works just as it sounds). The weights are inversely proportional to the variance of the response (which depends on the mean and thus the parameters).
+The parameters $$\beta$$ of a GLM are computed via maximum likelihood using a method called the Newton-Raphson method. The procedure is equivalent to iteratively weighted least squares (IRWLS). (This method works just as it sounds). The weights are inversely proportional to the variance of the response (which depends on the mean and thus the parameters).
 

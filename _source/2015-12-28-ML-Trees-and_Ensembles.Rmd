@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Classification and Regression Trees and Ensembles"
+title: "Trees and Ensembles"
 date: "December 28, 2015"
 categories: ['statistics', 'machine learning']
 ---
