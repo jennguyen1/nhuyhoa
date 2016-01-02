@@ -1,2 +1,2 @@
 # nhuyhoa
-My notebook for statistics and data
+My notebook for school stuff
