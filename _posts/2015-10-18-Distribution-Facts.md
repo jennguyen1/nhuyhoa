@@ -9,17 +9,6 @@ categories: ['statistics', 'probability theory']
 {:toc}
 
 
-{% highlight text %}
-## Warning: replacing previous import by 'grid::arrow' when loading
-## 'GGally'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Warning: replacing previous import by 'grid::unit' when loading
-## 'GGally'
-{% endhighlight %}
 
 # Normal Distribution
 Let $$ X $$ ~ $$ N(\mu, \sigma^2) $$
@@ -29,6 +18,59 @@ $$ f_x(x) = \frac{1}{\sigma \sqrt{2\pi}} exp{\frac{-(x - \mu)^2}{2 \sigma^2}} $$
 $$ X = \mu + \sigma Z$$ where $$ Z $$ ~ $$ N(0, 1) $$
 
 If $$ X_i $$ ~ $$ iidN(\mu, \sigma^2) $$ then $$ \Sigma X_i $$ ~ $$ N(\Sigma \mu, \Sigma \sigma^2) $$
+
+## Multivariate Normal Distribution
+Let $$ \overrightarrow{X} $$ ~ $$ N(\overrightarrow{\mu}, \Sigma) $$
+
+$$ f(\overrightarrow{X}) = \frac{1}{(2\pi)^{n/2} \vert \Sigma \vert^{1/2}} exp \left( -\frac{1}{2} (x - \overrightarrow{\mu})^T \Sigma^{-1} (x - \overrightarrow{\mu}) \right)$$ 
+
+Properties:
+
+* Sum of independent Gaussians are Gaussian
+
+If $$X, Y$$ ~ $$MVN$$ (with its own parameters)
+
+Then $$X + Y$$ ~ $$N(\overrightarrow{\mu}_x + \overrightarrow{\mu}_y, \Sigma_x + \Sigma_y)$$
+
+* Marginal of a joint Gaussian is Gaussian
+
+If $$\left[\begin{array}
+{rrr}
+X \\
+Y
+\end{array}\right]$$ ~ $$N\left(\left[\begin{array}
+{rrr}
+\mu_x \\
+\mu_y
+\end{array}\right], \left[\begin{array}
+{rrr}
+\Sigma_{xx} \Sigma_{xy} \\
+\Sigma_{yx} \Sigma_{yy}
+\end{array}\right] \right)$$
+
+Then 
+$$X$$ ~ $$N(\mu_x, \Sigma_{xx})$$ and 
+$$Y$$ ~ $$N(\mu_y, \Sigma_{yy})$$
+
+* Conditional of a joint Gaussian is Gaussian
+
+If $$\left[\begin{array}
+{rrr}
+X \\
+Y
+\end{array}\right]$$ ~ $$N\left(\left[\begin{array}
+{rrr}
+\mu_x \\
+\mu_y
+\end{array}\right], \left[\begin{array}
+{rrr}
+\Sigma_{xx} \Sigma_{xy} \\
+\Sigma_{yx} \Sigma_{yy}
+\end{array}\right] \right)$$
+
+Then 
+$$X \vert Y$$ ~ $$N(\mu_x + \Sigma_{xy} \Sigma^{-1}_{yy} (x_y - \mu_y), \Sigma_{xx} - \Sigma_{xy} \Sigma_{yy}^{-1} \Sigma_{yx})$$
+$$Y \vert X$$ ~ $$N(\mu_y + \Sigma_{yx} \Sigma^{-1}_{xx} (x_x - \mu_x), \Sigma_{yy} - \Sigma_{yx} \Sigma_{xx}^{-1} \Sigma_{xy})$$
 
 # Chi-Square Distribution
 Let $$ V = X^2_1 = Z^2 $$
