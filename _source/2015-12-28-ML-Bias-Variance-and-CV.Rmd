@@ -64,9 +64,9 @@ The cross-validation procedure can be used to select the model parameters which 
 Procedure:
 
 * Randomly divide data into $$K$$ equal-sized, nonoverlapping parts, usually $$K = 5$$ or $$10$$
-* Leave part $$k$$ out and fit the model to the other $$k - 1$$ parts combined
-* Using the fitted model, obtain predictions for left out $$k$$ part and compute the error
 * Repeat for all $$k$$
+  * Leave part $$k$$ out and fit the model to the other $$k - 1$$ parts combined
+  * Using the fitted model, obtain predictions for left out $$k$$ part and compute the error
 * Combine the results from all partitions, usually with a weighted average
 * Compare the cross-validated metric across different models to find the best model parameters
 * Refit the model based on the best model parameters using all of the data

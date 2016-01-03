@@ -40,7 +40,7 @@ Values:
 ## Forward, Backwards, Stepwise Selection
 These model selection methods uses model statistics, such as AIC or overall F-statistic, to compare models. 
 
-* Best subsets selection: given a p, find best model with p parameters based on criteria 
+* Best subsets selection: given a $$p$$, find best model with $$p$$ parameters based on criteria 
 * Forward selection: start with the null model, add covariates one by one based on criteria until a stopping criteria is met
 * Backwards selection: start with the full model, remove covariates one by one based on criteria until a stopping criteria is met
 * Stepwise selection: combination of forward and stepwise selection based on criteria until a stopping criteria is met
