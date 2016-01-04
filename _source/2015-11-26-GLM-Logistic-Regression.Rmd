@@ -27,7 +27,7 @@ $$ P(Y_i = y_i) = \left(\begin{array}
 
 From this we can compute the deviance. 
 
-$$ D = 2 \Sigma^n_{i = 1} \big[ y_i log \left( \frac{y_i}{\hat{y}_i} \right) + (n_i - y_i) log \left( \frac{n_i - y_i}{n_i - \hat{y}_i} \right) \big] $$
+$$ D = 2 \sum^n_{i = 1} \big[ y_i \log \left( \frac{y_i}{\hat{y}_i} \right) + (n_i - y_i) \log \left( \frac{n_i - y_i}{n_i - \hat{y}_i} \right) \big] $$
 
 We face a few problems when our response variable has a binomial distribution. 
 
@@ -36,9 +36,9 @@ We face a few problems when our response variable has a binomial distribution.
 
 There are a number of common link functions for binomial data. We want a link function $$\eta_i = g(p_i)$$ such that $$0 \le g^{-1}(\eta) \le 1 \forall \eta$$. 
 
-* Logit: $$\eta = log \left( \frac{p}{1 - p} \right)$$
+* Logit: $$\eta = \log \left( \frac{p}{1 - p} \right)$$
 * Probit: $$\eta = \Phi^{-1}(p)$$
-* Complementary log-log: $$\eta = log(-log(1 - p))$$
+* Complementary log-log: $$\eta = \log(-\log(1 - p))$$
 
 All of these link functions differ mostly at the tails. We will use the logit because it is easure to intepret using odds.
 
@@ -46,7 +46,7 @@ All of these link functions differ mostly at the tails. We will use the logit be
 
 We fit the model
 
-$$log \left( \frac{p}{1 - p} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$
+$$\log \left( \frac{p}{1 - p} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$
 
 We can fit this model in R like so
 ```{r}
@@ -85,12 +85,12 @@ where $$p$$ is the probability of success and $$o$$ is the odds.
 
 ## Interpretation of Coefficients
 Odds provide a simple interpretation of the $$\hat{\beta}$$ coefficients in logistic regression. 
-$$log(odds \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
-$$log(odds \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
+$$\log(odds \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
+$$\log(odds \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
 
 Then 
-$$ log(odds \vert x_1 = x + 1) - log(odds \vert x_1 = x) = \beta_1 $$
-$$ log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) = \beta_1 $$
+$$ \log(odds \vert x_1 = x + 1) - \log(odds \vert x_1 = x) = \beta_1 $$
+$$ \log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) = \beta_1 $$
 $$ \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} = e^{\beta_1} $$
 $$ (odds \vert x_1 = x + 1) = e^{\beta_1} * (odds \vert x_1 = x)$$
 
@@ -137,18 +137,16 @@ $$ \hat{\pi}_i = \frac{exp(\eta_{i})}{1 + exp(\eta_{i})}$$
 We can find the $$x$$ value in which there is a $$50$$% chance of success. 
 
 One variable case:
-$$log \left( \frac{0.5}{1 - 0.5} \right) = \beta_0 + \beta_1 x_1 $$
+$$\log \left( \frac{0.5}{1 - 0.5} \right) = \beta_0 + \beta_1 x_1 $$
 $$ 0 = \beta_0 + \beta_1 x_1 $$
 $$ x_1 = -\frac{\beta_0}{\beta_1} $$
 
 Multiple variables:
-$$log \left( \frac{0.5}{1 - 0.5} \right) = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
+$$\log \left( \frac{0.5}{1 - 0.5} \right) = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
 $$ 0 = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 $$ x_1 = -\frac{\beta_0 + \beta_2 x_2 + ... + \beta_k x_k}{\beta_1} $$
 
-To determine the standard error of this estimate, we can use the delta method. 
-
-$$ var[g(\hat{\theta})] = g'(\hat{\theta})' var[\hat{\theta}] g'(\hat{\theta}) $$
+To determine the standard error of this estimate, we can use the [delta method][func_RV_delta_method_post]{:target = "_blank"}. 
 
 We can also use the built in R function: `MASS::dose.p()`
 
@@ -161,3 +159,4 @@ $$Var(Y_i)^* = \sigma^2 \mu_i (1 - \mu_i) / n_i$$
 The steps for assessing overdispersion are listed in the [GLM Testing and Diagnostics: Overdispersion][glm_diagnostics_post]{:target = "blank"}
 
 [glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html#overdispersion
+[func_RV_delta_method_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Func-of-RV.html#delta-method

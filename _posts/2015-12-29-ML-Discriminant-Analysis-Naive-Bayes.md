@@ -37,16 +37,16 @@ Recall the pdf for the Gaussian distribution:
 $$f_k(x) = \frac{1}{\sigma_k \sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x - \mu_k}{\sigma_k})^2}$$
 
 Then we get
-$$P(Y = k \vert X = x) = \frac{\pi_k \frac{1}{\sigma_k \sqrt{2\pi}} exp \left( -\frac{1}{2} (\frac{x - \mu_k}{\sigma})^2 \right)}{\Sigma^K_{l = 1}\pi_l\frac{1}{\sigma \sqrt{2\pi}}exp\left(-\frac{1}{2} (\frac{x - \mu_l}{\sigma})^2\right)}$$
+$$P(Y = k \vert X = x) = \frac{\pi_k \frac{1}{\sigma_k \sqrt{2\pi}} exp \left( -\frac{1}{2} (\frac{x - \mu_k}{\sigma})^2 \right)}{\sum_{l = 1}^K \pi_l\frac{1}{\sigma \sqrt{2\pi}}exp\left(-\frac{1}{2} (\frac{x - \mu_l}{\sigma})^2\right)}$$
 
 where $$\pi_k = P(Y = k)$$.
 
 We can simplify by taking logs and simplifying.
-$$log \left( P(Y = k \vert X = x) \right) = \frac{log \left( \frac{1}{ \sigma \sqrt{2\pi}}\right) + log(\pi_k) - \frac{x^2 - 2x\mu_k + \mu^2_k}{2\sigma^2}}{log \left( \Sigma^K_{l = 1}\pi_l\frac{1}{\sigma \sqrt{2\pi}}exp\left(-\frac{1}{2} (\frac{x - \mu_l}{\sigma})^2\right) \right)} $$
+$$\log \left( P(Y = k \vert X = x) \right) = \frac{\log \left( \frac{1}{ \sigma \sqrt{2\pi}}\right) + \log(\pi_k) - \frac{x^2 - 2x\mu_k + \mu^2_k}{2\sigma^2}}{\log \left( \sum_{l = 1}^K \pi_l\frac{1}{\sigma \sqrt{2\pi}}exp\left(-\frac{1}{2} (\frac{x - \mu_l}{\sigma})^2\right) \right)} $$
 
 Since we are concerned with maximizing, we can remove all constants (terms that do not depend on $$k$$) to obtain the discriminant score.
 
-$$\delta_k(x) = log \left( P(Y = k \vert X = x) \right) = x\frac{\mu_k}{\sigma^2} - \frac{\mu^2_k}{2\sigma^2} + log(\pi_k) $$
+$$\delta_k(x) = \log \left( P(Y = k \vert X = x) \right) = x\frac{\mu_k}{\sigma^2} - \frac{\mu^2_k}{2\sigma^2} + \log(\pi_k) $$
 
 We assign $$x$$ to the class with the largest discriminant score.
 
@@ -57,7 +57,7 @@ $$f(x) = \frac{1}{(2\pi)^{p/2} \vert \Sigma \vert^{1/2}} e^{-\frac{1}{2} (x - \m
 
 The discriminant function is
 
-$$\delta_k(x) = x^T \Sigma^{-1} \mu_k - \frac{1}{2} \mu_k^T \Sigma^{-1} \mu_k + log(\pi_k)$$ 
+$$\delta_k(x) = x^T \Sigma^{-1} \mu_k - \frac{1}{2} \mu_k^T \Sigma^{-1} \mu_k + \log(\pi_k)$$ 
 
 Note that here we assume that the covariance matrix $$\Sigma$$ is the same for each class.
 
@@ -69,32 +69,32 @@ We can estimate the model parameters using the training data.
 .$$ \hat{\mu}_k = \frac{1}{n_k}\Sigma_{i} x_i * I(y_i = k)$$
 
 
-.$$\Sigma = \frac{1}{n - 1} \Sigma^n_{i = 1} (x - \mu)(x - \mu)^T$$
+.$$\Sigma = \frac{1}{n - 1} \sum_{i = 1}^n (x - \mu)(x - \mu)^T$$
 
 ## Response Probabilities
 We can compute the class probabilities with our discriminant function
 
-$$ P(Y = k \vert X = x) = \frac{e^{\hat{\delta}_k}}{\Sigma^K_{l = 1} e^{\hat{\delta}_l}}$$
+$$ P(Y = k \vert X = x) = \frac{e^{\hat{\delta}_k}}{\sum_{l = 1}^K e^{\hat{\delta}_l}}$$
 
 ## Quadratic Discriminant Analysis
 In quadratic discriminant analysis, we don't make the assumption that the covariance marix $$\Sigma_k$$ is the same for each class. 
 
 This changes our discriminant function to 
 
-$$\delta_k(x) = -\frac{1}{2}(x - \mu_k)^T \Sigma^{-1}_k(x - \mu_k) + log(\pi_k)$$ 
+$$\delta_k(x) = -\frac{1}{2}(x - \mu_k)^T \Sigma^{-1}_k(x - \mu_k) + \log(\pi_k)$$ 
 
 # Naive Bayes
 Naive Bayes is a classification technique that uses Bayesian statistics. We make the assumption that all features ($$X_i$$) are conditionally independent of each other given its class ($$Y$$). That is, $$P(X_i \vert X_j, Y) = P(X_i \vert Y)$$ where $$i \ne j$$. The goal is to find the value of $$Y$$ that is most likely given $$X_i$$.
 $$ argmax_y P(Y = y \vert X_i) $$
-$$ argmax_y \frac{P(Y = y) \Pi_{i = 1}^p P(X_i \vert Y = y)}{P(X_i)} $$
+$$ argmax_y \frac{P(Y = y) \prod_{i = 1}^p P(X_i \vert Y = y)}{P(X_i)} $$
 
 Since the denominator is constant across all values of $$y$$, we can just focus on the numerator. Thus our goal is to find (our discriminant function)
 
-$$ argmax_y P(Y = y) \Pi_{i = 1}^p P(X_i = x_i \vert Y = y)$$
+$$ argmax_y P(Y = y) \prod^p_{i = 1} P(X_i = x_i \vert Y = y)$$
 
 Since we are dealing with probabilities, we may be multiplying very small values. So to prevent underflow, we can use logs.
 
-$$ argmax_y log( P(Y = y) ) \Sigma_{i = 1}^p log(P(X_i = x_i \vert Y = y))$$
+$$ argmax_y \log( P(Y = y) ) \sum_{i = 1}^p \log(P(X_i = x_i \vert Y = y))$$
 
 ## Numeric Features
 If our original input feature is continuous, we can convert it to a discrete value by binning. This way we can compute the probabilities. 
@@ -154,7 +154,7 @@ Based off the evidence, we assume that this sweet, long, and yellow fruit is a b
 ## Gaussian Naive Bayes
 Gaussian naive Bayes assumes that each $$\Sigma_k$$ is diagonal. Thus
 
-$$\delta_k(x) \propto log \left( \pi_k \Pi^p_{j = 1} f_{kj}(x_j) \right) = -\frac{1}{2} \Sigma^p_{j = 1} \frac{(x_j - \mu_{kj})^2}{\sigma^2_{kj}} + log(\pi_k) $$
+$$\delta_k(x) \propto \log \left( \pi_k \prod_{j = 1}^p f_{kj}(x_j) \right) = -\frac{1}{2} \sum_{j = 1}^p \frac{(x_j - \mu_{kj})^2}{\sigma^2_{kj}} + \log(\pi_k) $$
 
 # Logistic Regression vs. Discriminant Analysis vs. Naive Bayes 
 

@@ -19,14 +19,14 @@ We also have $$E(Y_i) = Var(Y_i) = \mu_i$$
 
 From this we can compute the deviance
 
-$$ D = 2 \Sigma^n_{i = 1} \big[ y_i log \left( \frac{y_i}{\hat{\mu}_i} \right)  - (y_i - \hat{\mu}_i) \big] $$
+$$ D = 2 \sum^n_{i = 1} \big[ y_i \log \left( \frac{y_i}{\hat{\mu}_i} \right)  - (y_i - \hat{\mu}_i) \big] $$
 
 We face a problem when our response variable has a Poisson distribution. 
 
 * $$Var(Y) = \mu$$, which is not constant
 * $$\mu > 0$$: but OLS may predict values less than zero
 
-To alleviate these concerns, we can use a link function $$\eta_i = g(\mu) = log(\mu)$$ such that $$g^{-1}(\eta) > 0$$ $$\forall \eta$$.
+To alleviate these concerns, we can use a link function $$\eta_i = g(\mu) = \log(\mu)$$ such that $$g^{-1}(\eta) > 0$$ $$\forall \eta$$.
 
 Several instances can be classified as Poisson:
 
@@ -39,7 +39,7 @@ Several instances can be classified as Poisson:
 ## Modeling Counts
 We fit the model
 
-$$ log(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
+$$ \log(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
 
 We can fit this model in R like so
 
@@ -49,8 +49,8 @@ glm(counts ~ ., data = data, family = poisson)
 
 ## Modeling Ratios
 If we have ratios and the proportions are small, we can use Poisson regression rather than logistic regression. We fit the model
-$$log \left( \frac{count}{total} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$
-$$ log(count) = log(total) + \beta_0 + \beta_1 x_1 + ... \beta_k x_k $$
+$$\log \left( \frac{count}{total} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$
+$$ \log(count) = \log(total) + \beta_0 + \beta_1 x_1 + ... \beta_k x_k $$
 
 We can fit this model in R like so
 
@@ -63,12 +63,12 @@ The function `offset()` means to not fit a coefficient to a term (or set the coe
 
 ## Interpretation of Coefficients
 Interpretation of coefficients is similar to the logistic regression case. 
-$$log(y \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
-$$log(y \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
+$$\log(y \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
+$$\log(y \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
 
 Then 
-$$ log(y \vert x_1 = x + 1) - log(odds \vert x_1 = x) = \beta_1 $$
-$$ log \left( \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} \right) = \beta_1 $$
+$$ \log(y \vert x_1 = x + 1) - \log(odds \vert x_1 = x) = \beta_1 $$
+$$ \log \left( \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} \right) = \beta_1 $$
 $$ \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} = e^{\beta_1} $$
 $$ (y \vert x_1 = x + 1) = e^{\beta_1} * (y \vert x_1 = x)$$
 
@@ -107,7 +107,7 @@ where $$E(Y) = k\alpha = \mu$$ and $$Var(Y) = k\alpha + k\alpha^2 = \mu + D\mu^2
 
 The negative binomial regression model is
 
-$$\eta = log \left( \frac{\mu}{\mu + k} \right) = x \beta$$
+$$\eta = \log \left( \frac{\mu}{\mu + k} \right) = x \beta$$
 
 Greater heterogeneity in Poisson resulting in overdispersion results in a larger value of $$D$$. As $$D \rightarrow 0$$, $$Var(Y) \rightarrow \mu$$ and the negative binomial and Poisson regression gives the same inference. 
 

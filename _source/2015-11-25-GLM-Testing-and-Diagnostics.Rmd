@@ -63,7 +63,7 @@ With a $$p.value = 0.94$$, we can conclude that there is no evidence of lack of 
 # goodness of fit - using pearson X2
 pchisq(sum(residuals(mod1, "pearson")^2), mod1$df.residual, lower.tail = FALSE)
 ```
-We use the deviance residuals to compute the Pearson residuals $$X^2 = \Sigma r_{pearson}^2$$.
+We use the deviance residuals to compute the Pearson residuals $$X^2 = \sum r_{pearson}^2$$.
 
 We see that the result is comparable to the deviance.
 
@@ -102,8 +102,8 @@ Note that unlike in linear regression, our errors do not need to be normally dis
 ## Residuals
 
 * Response residuals: $$y - \hat{\mu}$$ has non-constant variance
-* Pearson residuals: $$\frac{y - \hat{\mu}}{\sqrt{\hat{\phi}Var(\hat{\mu})}}$$, where $$\Sigma (r^p_i)^2 = X^2$$
-* Deviance residuals: $$sign(y - \hat{\mu}) \sqrt{d}_i$$, where $$\Sigma (r^d_i)^2 = Deviance$$
+* Pearson residuals: $$\frac{y - \hat{\mu}}{\sqrt{\hat{\phi}Var(\hat{\mu})}}$$, where $$\sum (r^p_i)^2 = X^2$$
+* Deviance residuals: $$sign(y - \hat{\mu}) \sqrt{d}_i$$, where $$\sum (r^d_i)^2 = Deviance$$
 * Jackknife residuals (studentized residuals): expensive to compute, but approximations are available
 
 ## Leverages

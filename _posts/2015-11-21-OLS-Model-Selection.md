@@ -29,13 +29,13 @@ Values:
 
 * .$$Adj.R^2 = 1 - \frac{SS_R/(n-p)}{SS_T/(n-1)}$$
 * .$$AIC = -2 l(\hat{\beta}, y) + 2p$$
-* .$$BIC = -2 l(\hat{\beta}, y) + log(n)p$$
+* .$$BIC = -2 l(\hat{\beta}, y) + \log(n)p$$
 * $$Cp = \frac{CSS}{s^2} + 2p - n$$ where $$s^2$$ is the MSE of the most complex model.
 
 ## Forward, Backwards, Stepwise Selection
 These model selection methods uses model statistics, such as AIC or overall F-statistic, to compare models. 
 
-* Best subsets selection: given a p, find best model with p parameters based on criteria 
+* Best subsets selection: given a $$p$$, find best model with $$p$$ parameters based on criteria 
 * Forward selection: start with the null model, add covariates one by one based on criteria until a stopping criteria is met
 * Backwards selection: start with the full model, remove covariates one by one based on criteria until a stopping criteria is met
 * Stepwise selection: combination of forward and stepwise selection based on criteria until a stopping criteria is met
@@ -50,12 +50,12 @@ Shrinkage methods regularizes coefficient estimates and shrinks those coefficien
 
 ## Ridge Regression
 In ridge regression, we find the values of $$\hat{\beta}_{ridge}$$ such that we minimize the equation
-$$\Sigma^n_{i = 1} (y_i - \beta_0 - \Sigma^p_{j = 1} \beta_j x_{ij})^2 + \lambda \Sigma^p_{j = 1} \beta_j^2 = RSS + \lambda \Sigma^p_{j = 1} \beta^2_j$$
+$$\sum^n_{i = 1} (y_i - \beta_0 - \sum^p_{j = 1} \beta_j x_{ij})^2 + \lambda \sum^p_{j = 1} \beta_j^2 = RSS + \lambda \sum^p_{j = 1} \beta^2_j$$
 
 where $$\lambda \ge 0$$ is a tuning parameter, chosen via cross-validation. 
 
 Or equivalently we minimize
-$$ \Sigma^n_{i = 1} (y_i-\beta_0-\Sigma^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$\Sigma^p_{j = 1} \beta^2 \le s$$.
+$$ \sum^n_{i = 1} (y_i-\beta_0-\sum^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$\sum^p_{j = 1} \beta^2 \le s$$.
 
 Then we get
 $$ \hat{\beta}_{ridge} = (X'X + \lambda I_p)^{-1} X'Y $$
@@ -127,12 +127,12 @@ Notice how as $$\lambda$$ increases, the coefficients are shrunk towards 0 (but 
 
 ## Lasso Regression
 In lasso regression, we find the values of $$\hat{\beta}_{lasso}$$ such that we minimize the equation
-$$\Sigma^n_{i = 1} (y_i - \beta_0 - \Sigma^p_{j = 1} \beta_j x_{ij})^2 + \lambda \Sigma^p_{j = 1} \vert\beta_j \vert = RSS + \lambda \Sigma^p_{j = 1} \vert\beta_j \vert$$
+$$\sum^n_{i = 1} (y_i - \beta_0 - \sum^p_{j = 1} \beta_j x_{ij})^2 + \lambda \sum^p_{j = 1} \vert\beta_j \vert = RSS + \lambda \sum^p_{j = 1} \vert\beta_j \vert$$
 
 where $$\lambda \ge 0$$ is a tuning parameter, chosen via cross-validation. 
 
 Or equivalently we minimize
-$$ \Sigma^n_{i = 1} (y_i-\beta_0-\Sigma^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$\Sigma^p_{j = 1} \vert \beta \vert \le s$$.
+$$ \sum^n_{i = 1} (y_i-\beta_0-\sum^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$\sum^p_{j = 1} \vert \beta \vert \le s$$.
 
 The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tuning parameter $$\lambda$$ controls the impact of shrinkage. Lasso is different from ridge because it can shrink the coefficient estimates to zero when $$\lambda$$ is large. Thus lasso regression can perform variable selection.
 
@@ -200,7 +200,7 @@ Notice how as $$\lambda$$ increases, the coefficients are shrunk directly toward
 Elastic net is an approach that blends both the $$l_2$$ and $$l_1$$ norm. In elastic net, we minimize the equation
 $$ argmin_{\beta} \vert y - X \beta \vert^2 $$
 
-subject to $$(1 - \alpha) * \Sigma^p_{j = 1} \vert \beta_j \vert + \alpha * \Sigma^p_{j = 1} \beta^2_j \le t $$ for some $$t$$ (elastic net penalty) where $$ \alpha = \frac{\lambda_2}{\lambda_1 + \lambda_2}$$, chosen by cross-validation.
+subject to $$(1 - \alpha) * \sum^p_{j = 1} \vert \beta_j \vert + \alpha * \sum^p_{j = 1} \beta^2_j \le t $$ for some $$t$$ (elastic net penalty) where $$ \alpha = \frac{\lambda_2}{\lambda_1 + \lambda_2}$$, chosen by cross-validation.
 
 * When $$\alpha = 1$$, we have ridge regression
 * When $$\alpha = 0$$, we have LASSO regression

@@ -32,10 +32,10 @@ $$ \hat{\beta} = (X^TX)^{-1}X^TY $$
 
 This method is equivalent to maximizing the likelihood.
 
-$$l(\theta) = log(L(\theta))$$
-$$ = \Sigma^n_{i = 1} log \left( \frac{1}{\sigma \sqrt{2\pi}} exp(- \frac{(y_i - \hat{y}_i^2}{2 \sigma^2}) \right)$$
-$$ = m log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \Sigma_i (y_i - \hat{y}_i)^2$$
-$$ = m log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$
+$$l(\theta) = \log(L(\theta))$$
+$$ = \Sigma^n_{i = 1} \log \left( \frac{1}{\sigma \sqrt{2\pi}} exp(- \frac{(y_i - \hat{y}_i^2}{2 \sigma^2}) \right)$$
+$$ = m \log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \Sigma_i (y_i - \hat{y}_i)^2$$
+$$ = m \log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$
 
 We can drop the constant so we get
 $$max - \frac{1}{2 \sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$$

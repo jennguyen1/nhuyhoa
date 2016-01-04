@@ -27,7 +27,7 @@ $$ f(y \vert \theta, \phi) = exp \big[ \frac{y \theta - b(\theta)}{a(\phi)} + c(
 * Normal or Gaussian
 $$ f(y \vert \theta, \phi) $$
 $$ = \frac{1}{\sigma \sqrt{2\pi}} exp \big[ \frac{(y - \mu)^2}{2\sigma^2} \big]$$
-$$ = exp \big[ \frac{y\mu - \mu^2/2}{\sigma^2} - \frac{1}{2}(\frac{y^2}{\sigma^2} + log(2\pi\sigma^2)) \big]$$ where $$\theta = \mu$$ and $$\phi = \sigma^2$$
+$$ = exp \big[ \frac{y\mu - \mu^2/2}{\sigma^2} - \frac{1}{2}(\frac{y^2}{\sigma^2} + \log(2\pi\sigma^2)) \big]$$ where $$\theta = \mu$$ and $$\phi = \sigma^2$$
 
 * Binomial
 $$ f(y \vert \theta, \phi) $$
@@ -36,16 +36,16 @@ $$ = \left(\begin{array}
   n \\
   y
 \end{array}\right) \mu^y (1-\mu)^{n - y} $$
-$$ = exp \big[ y log(\frac{\mu}{1 - \mu}) + n log(1 - \mu) + log \left(\begin{array}
+$$ = exp \big[ y \log(\frac{\mu}{1 - \mu}) + n \log(1 - \mu) + \log \left(\begin{array}
 {rrr}
   n \\
   y
-\end{array}\right) \big] $$ where $$\theta = log \left( \frac{\mu}{1 - \mu} \right)$$ and $$\phi = 1$$
+\end{array}\right) \big] $$ where $$\theta = \log \left( \frac{\mu}{1 - \mu} \right)$$ and $$\phi = 1$$
 
 * Poisson
 $$ f(y \vert \theta, \phi) $$
 $$ = e^{- \mu} \mu^y / y! $$
-$$ = exp \big[ ylog(\mu) - \mu - log(y!) \big] $$ where $$\theta = log(\mu)$$ and $$\phi = 1$$
+$$ = exp \big[ ylog(\mu) - \mu - \log(y!) \big] $$ where $$\theta = \log(\mu)$$ and $$\phi = 1$$
 
 * Gamma
 
@@ -58,9 +58,9 @@ The canonical link has $$g$$ such that $$\eta = g(\mu) = \theta$$
 
 * Normal: $$\eta = \mu$$, $$var.func = 1 $$
 
-* Binomial: $$\eta = log(\mu / (1 - \mu))$$, $$var.func = \mu(1 - \mu)$$
+* Binomial: $$\eta = \log(\mu / (1 - \mu))$$, $$var.func = \mu(1 - \mu)$$
 
-* Poisson: $$\eta = log(\mu)$$, $$var.func = \mu$$
+* Poisson: $$\eta = \log(\mu)$$, $$var.func = \mu$$
 
 * Gamma: $$\eta = 1/\mu$$, $$var.func = \mu^2$$
 

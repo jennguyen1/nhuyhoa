@@ -20,31 +20,31 @@ where $$J$$ denotes the number of categories for $$Y$$.  Nomial regression is ju
 ## Interpreting Models and Coefficients
 When the last category ($$J$$) is the baseline, the baseline-cateogry logits with predictor $$x$$ are
 
-$$ log(\pi_i/\pi_1) = \beta_{i0} + \beta_{i1} x_1 + ... + \beta_{ip} x_p$$
+$$ \log(\pi_i/\pi_1) = \beta_{i0} + \beta_{i1} x_1 + ... + \beta_{ip} x_p$$
 
 where $$i = 2,..., J$$. There are $$J-1$$ equations, with separate parameters for each. (When $$J = 2$$, model simplifies to the ordinary logistic regression for binary responses).  
 
 Another way to look at this is via the link function
 
-$$\eta_{ij} = x'_i \beta_j = log \left( \frac{\pi_{ij}}{\pi_{i1}} \right) $$
+$$\eta_{ij} = x'_i \beta_j = \log \left( \frac{\pi_{ij}}{\pi_{i1}} \right) $$
 
 To compare two categories where neither is the baseline, we can do some simple rearrangements.
 
-$$ log\left( \frac{\pi_a}{\pi_b} \right) = log\left( \frac{\pi_a/\pi_1}{\pi_b/\pi_1} \right) = log\left( \frac{\pi_a}{\pi_1} \right) - log\left( \frac{\pi_b}{\pi_1} \right)$$
+$$ \log\left( \frac{\pi_a}{\pi_b} \right) = \log\left( \frac{\pi_a/\pi_1}{\pi_b/\pi_1} \right) = \log\left( \frac{\pi_a}{\pi_1} \right) - \log\left( \frac{\pi_b}{\pi_1} \right)$$
 $$ = (\alpha_a + \beta_a * x) - (\alpha_b + \beta_b * x) $$
 $$ = (\alpha_a - \alpha_b) + (\beta_a - \beta_b)*x $$
 
 where $$(\alpha_a - \alpha_b)$$ is the intercept parameter with slope parameter $$(\beta_a - \beta_b)$$ for the new comparison. 
 
 Interpretation of coefficients is identical to logistic regression case. For example, the equation
-$$log\left( \frac{\pi_a}{\pi_b} \right) = \alpha + \beta_1 x_1 + ... + \beta_p + x_p$$
+$$\log\left( \frac{\pi_a}{\pi_b} \right) = \alpha + \beta_1 x_1 + ... + \beta_p + x_p$$
 
 Holding all other covariates constant, a unit increase in $$x_i$$ will lead to an increase in odds of falling into category $$a$$ over category $$b$$ by a factor of $$exp(\beta_i)$$.
 
 ## Estimating Response Probabilities
 Similar to logistic regression to estimate response probabilities, we have
 
-$$ \hat{\pi}_i = \frac{exp(\eta_{ij})}{1 + \Sigma^J_{j = 2} exp(\eta_{ij})}$$
+$$ \hat{\pi}_i = \frac{exp(\eta_{ij})}{1 + \sum^J_{j = 2} exp(\eta_{ij})}$$
 
 where $$\Sigma_i \pi_i = 1$$ and $$\eta_{i1} = 0$$. 
 
@@ -113,11 +113,11 @@ summary(mod1)
 {% endhighlight %}
 
 From this, we get the multinomial equations 
-$$ log(\pi_O/\pi_F) = -1.618 + 0.1101x $$
-$$ log(\pi_I/\pi_F) = 4.089 - 2.3553x $$
+$$ \log(\pi_O/\pi_F) = -1.618 + 0.1101x $$
+$$ \log(\pi_I/\pi_F) = 4.089 - 2.3553x $$
 
 Thus we can use both these equations to calculate  
-$$log(\pi_O/\pi_I) = log(\pi_O/\pi_F) - log(\pi_I/\pi_F) $$
+$$\log(\pi_O/\pi_I) = \log(\pi_O/\pi_F) - \log(\pi_I/\pi_F) $$
 $$ = (-1.618 + 0.1101x) - (4.089 - 2.3553x) $$
 $$ = -5.707 + 2.4654x$$
 
@@ -126,10 +126,10 @@ For the alligators of length $$x + 1$$ meters, the estimated odds that primary f
 Note: to switch the odds (go from $$\pi_1/\pi_2$$ to $$\pi_2/\pi_1$$) just switch the signs of the equation on the RHS.  
 
 Original equation:
-$$ log(\pi_1/\pi_2) = \alpha_1 + \beta_1x $$ 
+$$ \log(\pi_1/\pi_2) = \alpha_1 + \beta_1x $$ 
 
 Flipped equation:
-$$ log(\pi_2/\pi_1) = log( (\pi_1/\pi_2)^{-1} ) = -log(\pi_1/\pi_2) = -\alpha_1 + -\beta_1x $$ 
+$$ \log(\pi_2/\pi_1) = \log( (\pi_1/\pi_2)^{-1} ) = -\log(\pi_1/\pi_2) = -\alpha_1 + -\beta_1x $$ 
 
 
 We can also compute the response probabilities using the equation above. 
@@ -157,7 +157,7 @@ $$ P(Y \le 1) \le P(Y \le 2) \le ... \le P(Y \le J) = 1$$
 
 The logits of cumulative probabilities are
 
-$$ logit \big[ P(Y \le j) \big] = log \left( \frac{P(Y \le j)}{1 - P(Y \le j)} \right) = log \left( \frac{p_1 + ... p_j}{p_{j + 1} + ... + p_J} \right)$$
+$$ logit \big[ P(Y \le j) \big] = \log \left( \frac{P(Y \le j)}{1 - P(Y \le j)} \right) = \log \left( \frac{p_1 + ... p_j}{p_{j + 1} + ... + p_J} \right)$$
 
 ## Interpreting Models and Coefficients
 For ordinal categorical variables, we have the model
@@ -166,7 +166,7 @@ $$ logit \big[ P(Y \le j ) \big] = \theta_j - x' \beta $$
 
 where $$j = 1,...,J-1$$ and where $$\beta$$ describes the effect of $$x$$ on the log odds of response in category j or below. This model assumes that the effect of $$x$$ is identical for all $$J-1$$ cumulative logits. In other words, we would have parallel cumulative probability lines. 
 
-Because the covariate terms are subtracted, the $$\beta$$s are interpreted with respect to the $$log \left( \frac{P(Y > j)}{P(Y \le j)} \right)$$ instead of $$log \left( \frac{P(Y \le j)}{P(Y > j)} \right)$$.
+Because the covariate terms are subtracted, the $$\beta$$s are interpreted with respect to the $$\log \left( \frac{P(Y > j)}{P(Y \le j)} \right)$$ instead of $$\log \left( \frac{P(Y \le j)}{P(Y > j)} \right)$$.
 
 For example, assume we have 3 ordered categories and 2 predictors. Thus, we would have
 
@@ -225,7 +225,7 @@ summary(mod2)
 ## Residual Deviance: 711.3479 
 ## AIC: 733.3479
 {% endhighlight %}
-One thing to note is that R fits the model $$log \left( \frac{P(Y \le j)}{P(Y > j)} \right) = \theta_j - x' \beta$$. This affects how we interpret the coefficients on the $$\beta$$s.
+One thing to note is that R fits the model $$\log \left( \frac{P(Y \le j)}{P(Y > j)} \right) = \theta_j - x' \beta$$. This affects how we interpret the coefficients on the $$\beta$$s.
 
 For the cheese variable, we have the baseline dummy as $$A$$. The coefficient for $$cheeseB = -3.352$$. The responses are ordered 1 - 9, with bigger numbers indicating better responses. Thus we can interpret the $$cheeseB$$ coefficient as so:
 $$\frac{odds.B.better}{odds.A.better} = exp(\beta_{cheeseB}) = exp(−3.352) = 0.035$$ 
@@ -233,10 +233,10 @@ $$\frac{odds.B.better}{odds.A.better} = exp(\beta_{cheeseB}) = exp(−3.352) = 0
 The odds that cheese B is ranked "better" is $$0.035$$ times the odds that cheese A is ranked "better". Therefore cheese A is preferred over cheese B. The t-value is relatively big in magnitude so we can conclude that this difference in preference is significant. Also note that this ranking holds over all responses, due to the proportional odds assumption. That is, cheese A is preferred over cheese B regardless of whether "better" is a response cutoff of 3 or 7 (or any other value). We can do similar comparisons for other cheese types. 
 
 We can use the results to generate our individual equations.
-$$ log \left( \frac{P(Y \le 1)}{P(Y > 1)} \right) = -5.4674 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
-$$ log \left( \frac{P(Y \le 2)}{P(Y > 2)} \right) = -4.4122 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
+$$ \log \left( \frac{P(Y \le 1)}{P(Y > 1)} \right) = -5.4674 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
+$$ \log \left( \frac{P(Y \le 2)}{P(Y > 2)} \right) = -4.4122 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
 $$...$$
-$$ log \left( \frac{P(Y \le 8)}{P(Y > 8)} \right) = 3.1058 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
+$$ \log \left( \frac{P(Y \le 8)}{P(Y > 8)} \right) = 3.1058 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
 
 Note that we add the intercept specified by the model, but subtract the $$\beta$$ coefficients.
 

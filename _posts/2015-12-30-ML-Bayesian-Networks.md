@@ -41,23 +41,23 @@ There are 3 main structure search operators:
 * reverse an edge
 
 To compare network structures, we need to use a scoring function. One example is
-$$score(G:D) = log\left( P(G \vert D) \right)$$
-$$ = log \left( P(D \vert G) \right) + log \left( P(G) \right) + C$$
+$$score(G:D) = \log\left( P(G \vert D) \right)$$
+$$ = \log \left( P(D \vert G) \right) + \log \left( P(G) \right) + C$$
 
 which is derived from 
-$$log\left( P(G \vert D) \right) = \int P(D \vert G, \Theta) P(\Theta \vert G) d\Theta$$
+$$\log\left( P(G \vert D) \right) = \int P(D \vert G, \Theta) P(\Theta \vert G) d\Theta$$
 
 The scoring functions can be summed up to get
-$$score(G:D) = \Sigma_i Score(X_i, Parents(X_i):D)$$
+$$score(G:D) = \sum_i Score(X_i, Parents(X_i):D)$$
 
 ## Sparse Candidate Algorithm
 This algorithm uses Restrict and Maximize steps in an interation until convergence. The steps here only cover parts of the algorithm (until I learn a little bit more about it).
 
 One can intially identify candidate parents in by computing the mutual information between pairs of variables. The variable with the greatest information would be the better candidate parent. 
-$$I(X, Y) = \Sigma_{x, y} \hat{P}(x, y) log \frac{\hat(P)(x, y)}{\hat{P}(x)\hat{P}(y)}$$
+$$I(X, Y) = \sum_{x, y} \hat{P}(x, y) \log \frac{\hat(P)(x, y)}{\hat{P}(x)\hat{P}(y)}$$
 
 The Kullback-Leibler (KL) divergence can also be used. It provides a distance measure between two distributions P and Q.
-$$D_{KL}(P(X) \vert Q(X)) = \Sigma_x P(x) log \frac{P(x)}{Q(x)}$$
+$$D_{KL}(P(X) \vert Q(X)) = \sum_x P(x) \log \frac{P(x)}{Q(x)}$$
 
 KL can be used to assess the discrepancy between the network's estimate $$P_{net}(X, Y) $$and the empirical estiamte, with $$D_{KL}(\hat{P}(X, Y) \vert P_{net}(X, Y))$$.
 

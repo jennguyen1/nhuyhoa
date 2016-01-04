@@ -41,13 +41,13 @@ Candidate splits on numeric features requires a bit more thought. The numeric fe
 
 ### Information Gain
 Entropy (information) is defined as
-$$H(Y) = - \Sigma_{y \in values(Y)} P(y)log_2(P(y))$$
+$$H(Y) = - \sum_{y \in values(Y)} P(y)log_2(P(y))$$
 
 The conditional entropy is defined as 
-$$H(Y \vert X) = \Sigma_{x \in values(Y)} P(X = x)H(Y \vert X = x)$$
+$$H(Y \vert X) = \sum_{x \in values(Y)} P(X = x)H(Y \vert X = x)$$
 
 where
-$$H(Y \vert X = x) = - \Sigma_{y \in values(Y)} P(Y = y \vert X = x) log_2( P(Y = y \vert X = x) ) $$
+$$H(Y \vert X = x) = - \sum_{y \in values(Y)} P(Y = y \vert X = x) log_2( P(Y = y \vert X = x) ) $$
 
 Information gain is then defined as
 $$InfoGain(D, S) = H_D(Y) - H_D(Y \vert S)$$
@@ -68,7 +68,7 @@ Algorithm:
 
 Another Algorithm:
 Let 
-$$ \Sigma^{\vert T \vert}_{m = 1} \Sigma_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + \alpha \vert T \vert$$
+$$ \sum^{\vert T \vert}_{m = 1} \sum_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + \alpha \vert T \vert$$
 
 where $$\alpha >= 0$$, $$\vert T \vert$$ is the number of terminal nodes in subtree, $$R_m$$ is the subset of predictor space corresponding to the $$m^{th}$$ terminal node, and $$\hat{y}_{R_m}$$ is the mean of the training observations in $$R_m$$.
 
@@ -142,7 +142,7 @@ Because it samples from all possible features, random forests can handle a large
 
 ## Boosting
 Boosting is a class of ensemble methods that sequentially produces multiple weak classifiers, where each classifier is dependent on the previous ones. Examples that are misclassfified by previous classifiers become more important in the next classifier. The classifiers can be combined to get
-$$C(x) = \theta (\Sigma_i w_i h_i(x) + b)$$
+$$C(x) = \theta (\sum_i w_i h_i(x) + b)$$
 
 where $$w_i$$ is the weight and $$h_i(x)$$ is the classifier. 
 
@@ -158,7 +158,7 @@ $$\hat{f}(x) \leftarrow \hat{f}(x) + \lambda \hat{f}^b(x)$$
   * Update residuals
 $$ r_i \leftarrow r_i - \lambda \hat{f}^b(x_i)$$
 * Output boosted model
-$$\hat{f}(x) = \Sigma^B_{b = 1} \lambda \hat{f}^b(x)$$
+$$\hat{f}(x) = \sum^B_{b = 1} \lambda \hat{f}^b(x)$$
 
 The interaction depth $$d$$ is also chosen via cross validation. The tuning parameter $$\lambda \ge 0$$ allows more trees to fit the residuals. This value is generally small (0.01 or 0.001). 
 
@@ -170,10 +170,10 @@ Discrete Adaboost Algorithm:
 * Let $$E(f(x_i), y_i) = exp(-y_i f(x_i))$$
 * Repeat $$T$$ times:
   * Choose $$f_t(x)$$
-    * Do a greedy search for a weak learner $$h_t(x)$$ ($$h: x \rightarrow [-1, 1]$$) that minimizes $$\epsilon_t = \Sigma_i w_i E(h_t(x_i), y_i)$$ the weighted sum error for misclassified points
+    * Do a greedy search for a weak learner $$h_t(x)$$ ($$h: x \rightarrow [-1, 1]$$) that minimizes $$\epsilon_t = \sum_i w_i E(h_t(x_i), y_i)$$ the weighted sum error for misclassified points
     * Choose weight $$a_t = \frac{1}{2} ln \left(\frac{1 - \epsilon_t}{\epsilon_t} \right)$$
   * Add to ensemble: $$F_t(x) = F_{t - 1}(x) + a_t h_t(x)$$
-  * Update weights: $$w_{i, t+1} = w_{i, t} exp(-y_i a_t h_t(x_i))$$ and renormalize so that $$\Sigma_i w_{i, t+1} = 1$$
+  * Update weights: $$w_{i, t+1} = w_{i, t} exp(-y_i a_t h_t(x_i))$$ and renormalize so that $$\sum_i w_{i, t+1} = 1$$
 
 ## Additional Notes
 

@@ -60,7 +60,7 @@ Leverage is the diagonals of the hat matrix and defined as
 
 .$$ h_i = \frac{1}{n} + (n - 1)^{-1}(x_i - \bar{x})'S^{-1}(x_i - \bar{x}) $$ 
 
-where $$x_i$$ is the column vector of the $$i^{th}$$ row of X and $$S = \frac{\Sigma (x_i - \bar{x})(x_i - \bar{x})'}{n - 1} $$ is the sample covariance matrix.
+where $$x_i$$ is the column vector of the $$i^{th}$$ row of X and $$S = \frac{\sum (x_i - \bar{x})(x_i - \bar{x})'}{n - 1} $$ is the sample covariance matrix.
 
 Notice that leverage refers to extreme $$x$$-values. 
 
@@ -75,7 +75,7 @@ Influential points and outliers are closely related, and both are affected by re
 Cook's Distance measures the influence of the $$i^{th}$$ observation on all of the fitted values of a linear model, by deleting that observation. 
 
 It is defined as
-$$ D_i = \Sigma \frac{(\hat{y}_j - \hat{y}_{j(i)})^2}{ps^2} $$
+$$ D_i = \sum \frac{(\hat{y}_j - \hat{y}_{j(i)})^2}{ps^2} $$
 
 where $$ \hat{y}_{j(i)} $$ represents the fitted value for the $$j^{th}$$ observation when the $$i^{th}$$ observation is left out. 
 
@@ -107,7 +107,7 @@ Recall,
 $$Var[\hat{\beta}] = \hat{\sigma}^2 (X'X)^{-1}$$
 
 The variance of $$\hat{\beta}_j$$ is 
-$$Var[\hat{\beta}_j] = \frac{\sigma^2}{\Sigma^n_{i = 1} (x_{ij} - \bar{x}_j)^2} * \frac{1}{1 - R_j^2} $$
+$$Var[\hat{\beta}_j] = \frac{\sigma^2}{\sum^n_{i = 1} (x_{ij} - \bar{x}_j)^2} * \frac{1}{1 - R_j^2} $$
 
 where $$R^2_j$$ is the $$R^2$$ value obtained by regressing the $$j^{th}$$ predictor on the remaining predictors. The greater the linear dependence of $$x_j$$ on the other predictors, the larger the $$R^2_j$$ and the $$var(\hat{\beta}_j)$$.
 

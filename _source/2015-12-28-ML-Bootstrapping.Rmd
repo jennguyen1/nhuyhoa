@@ -26,7 +26,7 @@ Rather than obtaining new data sets we can sample from our original data set. Th
 3. Repeat step 1-2 $$B$$ (some large quantity) times
 4. Compute the variance of the point estimates 
 
-$$Var(\hat{x}) = \frac{1}{B - 1} \Sigma^B_{r = 1} (\hat{x} - \bar{\hat{x}})^2$$
+$$Var(\hat{x}) = \frac{1}{B - 1} \sum^B_{r = 1} (\hat{x} - \bar{\hat{x}})^2$$
 
 Note that in order for this process to be valid, all observations must be independent and identically distributed. 
 

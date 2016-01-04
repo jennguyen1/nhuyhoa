@@ -31,8 +31,8 @@ There are a variety of distance metrics that we can use. All metrics have the fo
 * $$dist(x_i, x_j) \le dist(x_i, x_k) + dist(x_k, x_j)$$
 
 Common distance metrics include
-* Euclidean distance: $$d(x_i, x_k) = \sqrt{\Sigma^p_{j = 1} (x_{ij} - x_{kj})^2}$$
-* Manhattan distance: $$d(x_i, x_k) = \sqrt{\Sigma^p_{j = 1} \vert x_{ij} - x_{kj} \vert}$$
+* Euclidean distance: $$d(x_i, x_k) = \sqrt{\sum^p_{j = 1} (x_{ij} - x_{kj})^2}$$
+* Manhattan distance: $$d(x_i, x_k) = \sqrt{\sum^p_{j = 1} \vert x_{ij} - x_{kj} \vert}$$
 * Correlation based distance
 
 # K-Means Clustering
@@ -45,18 +45,18 @@ With K-means clustering, the goal is to partition observations into a pre-specif
 ## Optimization Equation
 This is done by minimizing the within cluster variation.
 
-$$min_{C_1...C_K} \Sigma^K_{k = 1} WCV(C_k)$$
+$$min_{C_1...C_K} \sum^K_{k = 1} WCV(C_k)$$
 
 where $$WCV(C_k)$$ is the amount by which the observations within a cluster differs.
 
 The measurement of $$WCV(C_k)$$ is based on the distance metric defined by the user.
 
 If we were to use Euclidean distance, we would have
-$$ WCV(C_k) = \Sigma_{i \in C_k} \Sigma^p_{j = 1} (x_{ij} - \bar{x}_{kj})^2$$
+$$ WCV(C_k) = \sum_{i \in C_k} \sum^p_{j = 1} (x_{ij} - \bar{x}_{kj})^2$$
 
 with the optimization problem being
 
-$$ min_{C_1 ... C_K} \Sigma^K_{k = 1} \Sigma_{i \in C_k} \Sigma^p_{j = 1} (x_{ij} - \bar{x}_{kj})^2 $$
+$$ min_{C_1 ... C_K} \sum^K_{k = 1} \sum_{i \in C_k} \sum^p_{j = 1} (x_{ij} - \bar{x}_{kj})^2 $$
 
 ## Algorithm
 
@@ -85,10 +85,10 @@ $$f_j (\overrightarrow{x_i}) = \frac{1}{\sqrt{(2\pi)^p \vert \Sigma_j \vert}} ex
 ## EM Algorithm
 The EM algorithm sets the paramters of the Gaussians $$\Theta$$ to maximize the log likelihood of the data $$X$$.
 
-$$log(likelihood(X\vert \Theta))$$
-$$ = log\Pi^n_{i=1} P(\overrightarrow{x_i})$$
-$$ = log \Pi^n_{i = 1} \Sigma^K_{k = 1} P_k(f_k(\overrightarrow{x_i}))$$
-$$ = \Sigma^n_{i = 1} log \Sigma^K_{k = 1} P_k(f_k(\overrightarrow{x_i}))$$
+$$\log(likelihood(X\vert \Theta))$$
+$$ = \log\prod^n_{i=1} P(\overrightarrow{x_i})$$
+$$ = \log \prod^n_{i = 1} \sum^K_{k = 1} P_k(f_k(\overrightarrow{x_i}))$$
+$$ = \sum^n_{i = 1} \log \sum^K_{k = 1} P_k(f_k(\overrightarrow{x_i}))$$
 
 (We assume the covariance matrix is fixed and only adjust the means and weights) (Idk how to do the covariance matrix yet). 
 
@@ -100,14 +100,14 @@ The EM clustering algorithm involves
 ### Expectation Step
 Let the hidden variable $$Z_{ij}$$ be $$1$$ if $$f_j$$ generated $$\overrightarrow{x_j}$$ and $$0$$ otherwise. The expectation of the hidden variable is 
 
-$$h_{ij} = E(Z_{ij} = 1 \vert \overrightarrow{x_i}) = \frac{P_j(f_j(\overrightarrow{x_i}))}{\Sigma^K_{l = 1} P_l(f_l(\overrightarrow{x_i}))}$$
+$$h_{ij} = E(Z_{ij} = 1 \vert \overrightarrow{x_i}) = \frac{P_j(f_j(\overrightarrow{x_i}))}{\sum^K_{l = 1} P_l(f_l(\overrightarrow{x_i}))}$$
 
 ### Maximization Step
 Given the expected values, we can re-estimate the means of the Gaussians and the cluster probabilities.
 
-$$\overrightarrow{\mu_j} = \frac{\Sigma^n_{i = 1} h_{ij} \overrightarrow{x_i}}{\Sigma^n_{i = 1} h_{ij}} $$
+$$\overrightarrow{\mu_j} = \frac{\sum^n_{i = 1} h_{ij} \overrightarrow{x_i}}{\sum^n_{i = 1} h_{ij}} $$
 
-$$P_j = \frac{\Sigma^n_{i = 1} h_{ij}}{n}$$
+$$P_j = \frac{\sum^n_{i = 1} h_{ij}}{n}$$
 
 In this step, we may also re-estimate the covariance matrix if we were varying it (idk how yet).
 
@@ -170,7 +170,7 @@ Internal Validation:
 * Assess how well clustering optimizes the intracluster similarity and intercluster dissimilarity
 
 The Silhouette index:
-$$\frac{1}{K} \Sigma^K_{j = 1} \frac{1}{\vert C_j \vert} \Sigma_{x_i \in C_j} \frac{b(x_i) - a(x_i)}{max[b(x_i), a(x_i)]}$$
+$$\frac{1}{K} \sum^K_{j = 1} \frac{1}{\vert C_j \vert} \sum_{x_i \in C_j} \frac{b(x_i) - a(x_i)}{max[b(x_i), a(x_i)]}$$
 
 where $$b(x_i)$$ is the average distance of $$x_i$$ to instances in the next closest cluster and $$a(x_i)$$ is the average distance of $$x_i$$ is the average distance of $$x_i$$ to other instances in the same cluster. 
 

@@ -20,7 +20,7 @@ $$ f_x(x) = \frac{1}{\sigma \sqrt{2\pi}} exp{\frac{-(x - \mu)^2}{2 \sigma^2}} $$
 
 $$ X = \mu + \sigma Z$$ where $$ Z $$ ~ $$ N(0, 1) $$
 
-If $$ X_i $$ ~ $$ iidN(\mu, \sigma^2) $$ then $$ \Sigma X_i $$ ~ $$ N(\Sigma \mu, \Sigma \sigma^2) $$
+If $$ X_i $$ ~ $$ iidN(\mu, \sigma^2) $$ then $$ \sum X_i $$ ~ $$ N(\sum \mu, \sum \sigma^2) $$
 
 ## Multivariate Normal Distribution
 Let $$ \overrightarrow{X} $$ ~ $$ N(\overrightarrow{\mu}, \Sigma) $$
@@ -76,14 +76,14 @@ $$X \vert Y$$ ~ $$N(\mu_x + \Sigma_{xy} \Sigma^{-1}_{yy} (x_y - \mu_y), \Sigma_{
 $$Y \vert X$$ ~ $$N(\mu_y + \Sigma_{yx} \Sigma^{-1}_{xx} (x_x - \mu_x), \Sigma_{yy} - \Sigma_{yx} \Sigma_{xx}^{-1} \Sigma_{xy})$$
 
 # Chi-Square Distribution
-Let $$ V = X^2_1 = Z^2 $$
+Let $$ V = \chi^2_1 = Z^2 $$
 
-Note that $$ X^2_1 $$ ~ $$ Gamma(\frac{1}{2}, \frac{1}{2}) $$
+Note that $$ \chi^2_1 $$ ~ $$ Gamma(\frac{1}{2}, \frac{1}{2}) $$
 
-Also $$ X^2_k = \Sigma Z^2_i $$ ~ $$ Gamma(\frac{1}{2}, \frac{k}{2}) $$ where $$k$$ is the degrees of freedom. 
+Also $$ \chi^2_k = \sum Z^2_i $$ ~ $$ Gamma(\frac{1}{2}, \frac{k}{2}) $$ where $$k$$ is the degrees of freedom. 
 
 # t Distribution
-Let $$Z$$  ~ $$ N(0, 1) $$ and $$V$$ ~ $$ X^2_k$$ and $$ Z \perp V $$ then 
+Let $$Z$$  ~ $$ N(0, 1) $$ and $$V$$ ~ $$ \chi^2_k$$ and $$ Z \perp V $$ then 
 
 $$ t = \frac{Z}{\sqrt{V/k}} $$
 
@@ -92,7 +92,7 @@ is the student's $$t$$-distribution with $$k$$ df.
 The $$t$$-distribution is essentially the normal distribution with fatter tails. Note that $$ t $$ converges in distribution to $$ N(0, 1) $$ as $$ n \rightarrow \infty $$. 
 
 # F Distribution
-Let $$V$$ ~ $$ X^2_m $$ and $$W$$ ~ $$ X^2_k $$ and $$ V \perp W $$ then 
+Let $$V$$ ~ $$ \chi^2_m $$ and $$W$$ ~ $$ \chi^2_k $$ and $$ V \perp W $$ then 
 
 $$ F = \frac{V/m}{W/k} $$
 

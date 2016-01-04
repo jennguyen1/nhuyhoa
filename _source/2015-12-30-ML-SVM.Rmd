@@ -72,10 +72,10 @@ The new optimization problem becomes
 $$maximize_{\beta_0, \beta_1, ..., \beta_p, \epsilon_1, ..., \epsilon_n} M > 0$$ 
 w.r.t. $$\| \overrightarrow{\beta} \|= 1$$ 
 so that $$y_i (\overrightarrow{\beta}^T \overrightarrow{x}+b) \ge M(1 - \epsilon_i) \forall i$$
-where $$\epsilon_i \ge 0$$ and $$\Sigma^n_{i = 1} \epsilon_i \le C$$
+where $$\epsilon_i \ge 0$$ and $$\sum^n_{i = 1} \epsilon_i \le C$$
 
 This is equivalent to  
-$$min \| \overrightarrow{\beta} \| + C \Sigma^N_i \epsilon_i$$ with the constraints
+$$min \| \overrightarrow{\beta} \| + C \sum^N_i \epsilon_i$$ with the constraints
 $$\beta^T x_k + b \ge 1 + \epsilon_k$$ if $$y_k = 1$$
 $$\beta^T x_k + b \le -1 + \epsilon_k$$ if $$y_k = -1$$
 $$\epsilon_k \ge 0 \forall k$$
