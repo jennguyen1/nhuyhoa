@@ -198,6 +198,26 @@ setnames(iris, colnames(iris), tolower(colnames(iris)))
 </table>
 </div><p></p>
 
+## switch
+The function `switch()` will map one value to a variety of options. 
+
+
+{% highlight r %}
+switch(
+  letters[sample(1:4, 1)],
+  "a" = 100,
+  "b" = 200,
+  "c" = 300,
+  "d" = 400
+)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 200
+{% endhighlight %}
+
 ## Vectorize
 Sometimes you may just want to write your function that uses conditionals to relate certain values. Your function inputs may just take one data structure (perhaps one value) and may throw an error if you pass in something along the lines of a vector. 
 

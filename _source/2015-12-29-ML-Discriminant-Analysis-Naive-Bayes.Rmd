@@ -11,7 +11,6 @@ categories: ['statistics', 'machine learning']
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(jn.general)
 lib(data, viz)
-library(glmnet)
 knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
 ```
 
@@ -163,6 +162,16 @@ Gaussian naive Bayes assumes that each $$\Sigma_k$$ is diagonal. Thus
 
 $$\delta_k(x) \propto \log \left( \pi_k \prod_{j = 1}^p f_{kj}(x_j) \right) = -\frac{1}{2} \sum_{j = 1}^p \frac{(x_j - \mu_{kj})^2}{\sigma^2_{kj}} + \log(\pi_k) $$
 
+## EM Algorithm for Missing Labels
+Consider the scenario when we want to use Naive Bayes to evaluate a data set in which the labels are missing. This is a kind of unsupervised learning algorithm. 
+
+We can use the [EM algorithm][em_post]{:target = "_blank"}.
+
+* Initially guess the labels for each example
+* Repeat until convergence
+  * E-Step: train Naive Bayes using labeled examples
+  * M-Step: use model to predict the labels for originally unlabled examples
+
 # Logistic Regression vs. Discriminant Analysis vs. Naive Bayes 
 
 Best to use Logistic Regression:
@@ -180,3 +189,5 @@ Best to use Naive Bayes:
 
 * Can make the assumption that features are independent (conditional on response)
 * Despite strong assumptions, works well on many problems
+
+[em_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Generic-Algorithms.html#expectation-maximization

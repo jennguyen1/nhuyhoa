@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bootstrapping"
-date: "December 28, 2015"
+date: "December 27, 2015"
 categories: ['statistics', 'machine learning']
 ---
 
