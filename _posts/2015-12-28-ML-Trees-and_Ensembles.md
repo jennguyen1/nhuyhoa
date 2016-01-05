@@ -59,14 +59,14 @@ This is the method used in the ID3 tree method.
 ## Pruning
 In order to prevent overfitting, trees can be pruned (removal of internal nodes).
 
-Algorithm:
+**Algorithm:**
 
 * Fit tree for training data, measure accuracy on tuning set
 * Repeat until no progress on tuning set:
   * Consider all subtrees where 1 internal node is removed and replaced by a leaf
   * Remove the node that best improves tuning set accuracy
 
-Another Algorithm:
+**Another Algorithm:**
 Let 
 $$ \sum^{\vert T \vert}_{m = 1} \sum_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + \alpha \vert T \vert$$
 
@@ -76,14 +76,14 @@ When $$\alpha = 0$$, we have the original tree. As $$\alpha$$ increases, the tre
 
 ## Strengths & Weaknesses
 
-Strengths:
+**Strengths:**
 
 * Great technique for learning models noisy models
 * Results are easily interpretable
 * Robust to outliers and missing data
 * Fast, simple, and robust
 
-Weaknesses:
+**Weaknesses:**
 
 * Only makes univariate splits; unable to consider interactions at a given node
 * Greedy hill-climbing algorithm; early bad choice may doom the model
@@ -110,7 +110,7 @@ Unfortunately, the results are quite difficult to interpret.
 
 ## Bagging
 
-Algorithm:
+**Algorithm:**
 
 * Repeat B times
   * Choose with replacement $$N$$ examples from data set
@@ -121,7 +121,7 @@ If there is one very strong predictor, most of the bagged trees will use the pre
 
 ## Random Forests
 
-Algorithm:
+**Algorithm:**
 
 Let $$N$$ = n-size, $$F$$ = # of parameters, $$i << F$$.
 
@@ -148,7 +148,7 @@ where $$w_i$$ is the weight and $$h_i(x)$$ is the classifier.
 
 There are many variants of boosting. All of them have the same idea. Here are two such algorithms.
 
-Regression Algorithm:
+**Regression Algorithm:**
 
 * Set $$\hat{f}(x) = 0$$ and $$r_i = y_i \forall i$$ in the training set
 * Repeat B times
@@ -164,7 +164,7 @@ The interaction depth $$d$$ is also chosen via cross validation. The tuning para
 
 The idea with boosting is to learn slowing. The algorithm reweights examples (if wrong, increase weight; else decrease weight). Decision trees are fitted to the residuals of the model and then added to the model to update the residuals. This allows the model to improve in the areas that it doesn't perform well. 
 
-Discrete Adaboost Algorithm:
+**Discrete Adaboost Algorithm:**
 
 * Assign equal weights to each training example
 * Let $$E(f(x_i), y_i) = exp(-y_i f(x_i))$$
@@ -183,13 +183,13 @@ In each round of bootstrapping, about $$\frac{2}{3}$$ of the observations are sa
 ### Variable Importance
 Interpreting random forests can be quite difficult. One way to get a sense of the variables is to look at important variables (features).
 
-Procedure:
+**Procedure:**
 
 * Use OOB samples to predict values
 * Randomly permute values of one of the features and predict the values again
 * Measure decrease in accuracy
 
-Alternate Procedure:
+**Alternate Procedure:**
 
 * Measure the split criterion improvement
 * Record improvements for each feature

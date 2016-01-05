@@ -24,7 +24,8 @@ The k nearest neighbors method assigns a point based on its k nearest neighbors.
 * Feature variables should be standardized prior to running KNN
 
 ## KNN Classification
-Algorithm:
+
+**Algorithm:**
 
 * Find the k nearest neighbors (based on distance)
 * Compute the class probabilities based on those neighbors
@@ -34,7 +35,8 @@ $$ P(Y = j \vert X = x_0) = \frac{1}{K} \sum_{i \in N_0} I(y_i = j) $$
 * Assigns the test point to the class with the greatest probability
 
 ## KNN Regression
-Algorithm:
+
+**Algorithm:**
 
 * Find the k nearest neighbors (based on distance)
 * Compute the predicted response
@@ -112,12 +114,12 @@ sim_knn(2)
 
 ## Strengths and Weaknesses
 
-Strengths:
+**Strengths:**
 
 * Simple method
 * Can work well in some situations
 
-Weaknesses:
+**Weaknesses:**
 
 * Fails when the number of features is large (curse of dimensionality) because nearest neighbors may be very far away
 

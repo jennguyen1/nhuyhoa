@@ -174,18 +174,18 @@ We can use the [EM algorithm][em_post]{:target = "_blank"}.
 
 # Logistic Regression vs. Discriminant Analysis vs. Naive Bayes 
 
-Best to use Logistic Regression:
+**Best to use Logistic Regression:**
 
 * More robust to deviations from modeling assumptions (non-Gaussian features)
 
-Best to use Discriminant Analysis:
+**Best to use Discriminant Analysis:**
 
 * When we can make the assumption that the features are Gaussian
 * More efficient than logistic regression when the assumptions are correct
 * Works better than logistic regression when data is well-separated
 * Popular for multinomial responses since it provides a low-dimensional viewof data
 
-Best to use Naive Bayes:
+**Best to use Naive Bayes:**
 
 * Can make the assumption that features are independent (conditional on response)
 * Despite strong assumptions, works well on many problems
