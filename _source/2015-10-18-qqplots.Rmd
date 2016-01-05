@@ -2,7 +2,7 @@
 layout: post
 title: "Quantile Quantile (QQ) Plots"
 date: "October 18, 2015"
-categories: statistics other
+categories: ['statistics', 'probability theory']
 ---
 
 * TOC
