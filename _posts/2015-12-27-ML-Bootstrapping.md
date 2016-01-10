@@ -32,4 +32,9 @@ $$ lim_{N \rightarrow \infty} 1 - (1 - \frac{1}{N})^N = .63 $$
 where $$(1 - \frac{1}{N})^N$$ is the probability that an observation is not chosen out of any of the $$N$$ draws. Thus $$1 - (1 - \frac{1}{N})^N$$ is the probability that an observation is chosen to be a part of the bootstrap sample. 
 
 # In R
-The bootstrapping procedure can be parallelized easily. In R, one can use the function `boot::boot()` to implement bootstrapping.
+The bootstrapping procedure can be parallelized easily.
+
+In R, the following function (in the `boot` package) will generate the bootstrap replicates. 
+`boot(data, statistic, R, ...)`
+
+The `statistic` argument is a function which computes the desired test statistic. This function should have at least two arguments that takes the original data set and a vector of indices which define the bootstrap sample. The function can take other arguments as well, which can also be passed along in the `boot` function. 

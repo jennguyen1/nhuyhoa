@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bias Variance Tradeoff: Cross Validation"
+title: "Bias Variance Tradeoff"
 date: "December 27, 2015"
 categories: ['statistics', 'machine learning']
 ---
@@ -33,7 +33,7 @@ To understand the effectiveness of cross validation, we need to make a distincti
 It is easy to memorize, but harder to generalize. Training error tends to decrease as we introduce more flexibility to the model (overfitting). Thus training data can severely underestimate the testing error. Thus testing error should always be used as the model selection metric.
 
 Consider the following plot of prediction error against model complexity. As the model gets increasingly complex, training error decreases, even beyond the baseline error. Testing error intially decreases due to reduction of bias, but then increases due to increased variability.
-<img src="/nhuyhoa/figure/source/2015-12-27-ML-Bias-Variance-and-CV/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-12-27-ML-Bias-Variance/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 # Cross Validation
 The cross-validation procedure can be used to select the model parameters which minimizes error. (Thus it is commonly used on the training set). The CV error is compared across different models to select the one with the smallest CV error. 
@@ -47,7 +47,6 @@ Procedure:
 * Combine the results from all partitions, usually with a weighted average
 * Compare the cross-validated metric across different models to find the best model parameters
 * Refit the model based on the best model parameters using all of the data
-
 
 ![5-fold_CV](http://jnguyen92.github.io/nhuyhoa/figure/images/cross_validation.png)
 
@@ -65,7 +64,7 @@ $$RMSE = \sqrt{E\left((x - \bar{x})^2\right)}$$
 ## Classification
 For binary responses, ROC (Receiver Operating Characteristic) curve and AUC (Area Under the Curve) can be used. 
 
-<img src="/nhuyhoa/figure/source/2015-12-27-ML-Bias-Variance-and-CV/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-12-27-ML-Bias-Variance/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 There are four possible outcomes:
 

@@ -9,17 +9,6 @@ categories: ['data wrangling']
 {:toc}
 
 
-{% highlight text %}
-## Warning: replacing previous import by 'grid::arrow' when loading
-## 'GGally'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Warning: replacing previous import by 'grid::unit' when loading
-## 'GGally'
-{% endhighlight %}
 
 Being able to manipulate text is very important when it comes to data wrangling. A lot of the data cleaning I do requires performing some sort of fuzzy match rather than exact matches. Regular expressions (regex) make pattern matching possible. Here, I will outline R's regex symbols that I find useful.
 

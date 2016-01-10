@@ -8,7 +8,7 @@ categories: ['data wrangling']
 * TOC
 {:toc}
 
-```{r global_opts, echo = FALSE}
+```{r global_opts, echo = FALSE, message = FALSE, warning = FALSE}
 library(jn.general)
 lib(data, viz)
 ```
@@ -296,12 +296,7 @@ final %>% nhuyhoa_df_print()
 Note: The `jn.general::refine()` function used here is a wrapper function for `Filter()`. 
 
 
-
-# Additional Resources
-Subsetting functions are only a fraction of what the dplyr package offers for data work. Here are a few links to the additional resources on the dplyr package:  
-[dplyr cheatsheet][dplyr_cheatsheet_link]{:target="blank"}
-
 [magrittr_link]: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html
 [jn.general_link]: https://github.com/jnnguyen2/jn.general
 [regex_link]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
-[dplyr_cheatsheet_link]: https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+

@@ -10,7 +10,7 @@ categories: ['statistics', 'machine learning']
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(jn.general)
-lib(data, viz)
+lib(data, viz, model)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 library(class)
 ```
@@ -127,3 +127,47 @@ sim_knn(2)
 
 * KNN classification: `class::knn()` or `caret::knn3()`
 * KNN regression: `caret::knnreg()`
+
+We can use the iris data set for an example.
+```{r, eval = FALSE}
+set.seed(1)
+# obtain the indexes
+i <- sample(1:150, 100, replace = FALSE)
+
+# split data into train & test set
+train <- iris[i, ]
+test <- iris[i, ]
+
+# run KNN - randomly chosen k
+pred <- knn(train[, 1:4], test[, 1:4], train$Species, k = 3)
+
+# cross-tab results
+table(pred, test$Species)
+```
+
+```{r, echo = FALSE, fig.width = 4, fig.height = 2}
+set.seed(1)
+# obtain the indexes
+i <- sample(1:150, 100, replace = FALSE)
+
+# split data into train & test set
+train <- iris[i, ]
+test <- iris[i, ]
+
+# run KNN - randomly chosen k
+pred <- knn(train[, 1:4], test[, 1:4], train$Species, k = 3)
+
+# cross-tab results
+plot_table <- table(pred, test$Species) %>% 
+  data.frame %>% 
+  dcast(pred ~ Var2, value.var = "Freq") 
+
+rownames(plot_table) <- plot_table$pred
+plot_table$pred <- NULL
+
+plot_table %>% 
+  table_plot(title = "Predicted vs Actual") %>%
+  grid.arrange
+```
+
+The predictions did pretty well. Only 2 observations were misclassified. 

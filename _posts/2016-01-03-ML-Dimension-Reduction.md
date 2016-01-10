@@ -123,14 +123,59 @@ In this plot, we could potentially choose to use 5-7 principal components.
 ## What PCA Can Be Used For
 
 * Use for data visualization or data pre-processing
-* Use to simplify high-dimensional data; use PC as features in various other methods 
+* Simplify high-dimensional data and use as features in other methods
 
 PCA is great for providing a low-dimensional representation of high-dimensional data. Thus it works best when the first few PC are sufficient in capturing most of the variation in the predictors. (So it is generally not a good idea to use all of the PC).
+
+In R, one can do principal components regression with `pls::pcr()`. This package also has functions to view cross-validated results with the `validationplot()` function. 
+
+
+{% highlight r %}
+# fit PCR
+pcr.fit <- pcr(mpg ~ ., data = mtcars, scale = TRUE, validation = "CV")
+# results
+summary(pcr.fit)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Data: 	X dimension: 32 10 
+## 	Y dimension: 32 1
+## Fit method: svdpc
+## Number of components considered: 10
+## 
+## VALIDATION: RMSEP
+## Cross-validated using 10 random segments.
+##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
+## CV           6.123    2.684    2.698    2.550    2.610    2.637
+## adjCV        6.123    2.672    2.688    2.533    2.591    2.615
+##        6 comps  7 comps  8 comps  9 comps  10 comps
+## CV       2.760    3.038    3.145    3.660     3.925
+## adjCV    2.732    2.996    3.097    3.582     3.824
+## 
+## TRAINING: % variance explained
+##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
+## X      57.60    84.10    90.07    92.77    94.99    97.09    98.42
+## mpg    82.53    82.63    85.40    85.41    85.47    85.56    85.58
+##      8 comps  9 comps  10 comps
+## X      99.23    99.76     100.0
+## mpg    85.85    86.09      86.9
+{% endhighlight %}
+
+
+
+{% highlight r %}
+validationplot(pcr.fit, val.type = "MSEP")
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+So here we see that using 3 principal components is preferred. If we prefer to use a specified number of components, we can pass the argument `ncomps = n` instead of the `validation` argument. 
 
 # Partial Least Squares
 Partial least squares (PLS) is a supervised learning modification of principal components regression (PCR). PLS generates the new low-dimensional features by making use of the response Y. It finds components that help explain both the response and the predictors. 
 
-Similar to PCR, PLS requires that the predictors are standardized. The first principal component is computed by setting the loading vector equal to the coefficients from OLS of $$Y$$ ~ $$X_j$$. These values are proportional to the correlation between $$Y$$ and $$X_j$$. Thus the scores from the first component is $$Z_1 = \sum^p_{j = 1} \phi_{1j}X_j$$. In other words, PLS places greater weight on predictors that are most strongly related to the response. The following components are found by taking residuals and then repeating the procedure above. 
+Similar to PCR, PLS requires that the predictors are standardized. The first principal component is computed by setting the loading vector equal to the coefficients from OLS of $$Y$$ ~ $$X_j$$. These values are proportional to the correlation between $$Y$$ and $$X_j$$. Thus the scores from the first component is $$Z_1 = \sum^p_{j = 1} \phi_{1j}X_j$$. In other words, PLS places greater weight on predictors that are most strongly related to the response. The following components are found by taking residuals and then repeating the procedure above. In R, this can be done with `pls::plsr()`.
 
 
 

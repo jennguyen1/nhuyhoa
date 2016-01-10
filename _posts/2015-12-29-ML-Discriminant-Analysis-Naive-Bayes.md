@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Classification: Discriminant Analysis & Naive Bayes"
+title: "Discriminant Analysis & Naive Bayes"
 date: "December 29, 2015"
 categories: ['statistics', 'machine learning']
 ---
@@ -82,6 +82,55 @@ In quadratic discriminant analysis, we don't make the assumption that the covari
 This changes our discriminant function to 
 
 $$\delta_k(x) = -\frac{1}{2}(x - \mu_k)^T \Sigma^{-1}_k(x - \mu_k) + \log(\pi_k)$$ 
+
+## In R
+
+We can fit LDA in R as such
+
+{% highlight r %}
+lda.fit <- lda(Direction ~ Lag1 + Lag2, data = Smarket)
+lda.fit
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Call:
+## lda(Direction ~ Lag1 + Lag2, data = Smarket)
+## 
+## Prior probabilities of groups:
+##   Down     Up 
+## 0.4816 0.5184 
+## 
+## Group means:
+##             Lag1        Lag2
+## Down  0.05068605  0.03229734
+## Up   -0.03969136 -0.02244444
+## 
+## Coefficients of linear discriminants:
+##             LD1
+## Lag1 -0.7567605
+## Lag2 -0.4707872
+{% endhighlight %}
+The coefficients of linear discriminants are provide the linear combinations of covariates to form the decision rule.
+
+
+{% highlight r %}
+lda.pred <- predict(lda.fit, sample_frac(Smarket, .1))
+names(lda.pred)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] "class"     "posterior" "x"
+{% endhighlight %}
+
+* `class`: LDA's label prediction
+* `posterior`: matrix whose $$k^{th}$$ column corresponds $$P(Y = k \vert X)$$
+* `x`: linear discriminants $$\delta(x)$$
+
+Similarly, we can fit QDA in R using `qda()`.
 
 # Naive Bayes
 Naive Bayes is a classification technique that uses Bayesian statistics. We make the assumption that all features ($$X_i$$) are conditionally independent of each other given its class ($$Y$$). That is, $$P(X_i \vert X_j, Y) = P(X_i \vert Y)$$ where $$i \ne j$$. The goal is to find the value of $$Y$$ that is most likely given $$X_i$$.

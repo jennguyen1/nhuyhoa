@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OLS: Model Selection & Regularization"
+title: "Model Selection & Regularization"
 date: "November 21, 2015"
 categories: ['statistics', 'regression analysis']
 ---
@@ -11,10 +11,10 @@ categories: ['statistics', 'regression analysis']
 
 
 # Bias Variance Tradeoff
-See [Bias Variance Tradeoff and Cross Validation: Bias Variance Tradeoff][bv_tradeoff_post]{:target = "_blank"}.
+See [Bias Variance Tradeoff: Bias Variance Tradeoff][bv_tradeoff_post]{:target = "_blank"}.
 
 # Training & Testing Error
-See [Bias Variance Tradeoff and Cross Validation: Training & Testing Error][bv_tradeoff_train_test_post]{:target = "_blank"}.
+See [Bias Variance Tradeoff: Training & Testing Error][bv_tradeoff_train_test_post]{:target = "_blank"}.
 
 # Subset Selection
 
@@ -40,11 +40,15 @@ These model selection methods uses model statistics, such as AIC or overall F-st
 * Backwards selection: start with the full model, remove covariates one by one based on criteria until a stopping criteria is met
 * Stepwise selection: combination of forward and stepwise selection based on criteria until a stopping criteria is met
 
+These methods can be implemented in R with the `step()` or `regsubsets()` function (The latter provides more options).
+
 # Cross Validation
-See [Bias Variance Tradeoff and Cross Validation: Cross Validation][bv_tradeoff_cv_post]{:target = "_blank"}.
+See [Bias Variance Tradeoff: Cross Validation][bv_tradeoff_cv_post]{:target = "_blank"}.
 
 # Shrinkage Methods, Regularization
 Shrinkage methods regularizes coefficient estimates and shrinks those coefficient estimates towards zero. Shrinking the estimates can significantly reduce variance and provide a better fit. 
+
+The package `glmnet` is a great resource on fitting regularization models in R. See the package [viginette][glmnet_vignette]{:target="blank"}. 
 
 
 
@@ -90,7 +94,7 @@ sim_ridge_cv <- cv.glmnet(X, Y, alpha = 0)
 plot(sim_ridge_cv)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 {% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
@@ -122,7 +126,7 @@ m$beta
 plot(glmnet(X,Y,alpha=0),xvar="lambda",label=T)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 Notice how as $$\lambda$$ increases, the coefficients are shrunk towards 0 (but not necessarily equal to 0).
 
 ## Lasso Regression
@@ -161,7 +165,7 @@ sim_lasso_cv <- cv.glmnet(X, Y, alpha = 1)
 plot(sim_lasso_cv)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 {% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
@@ -193,7 +197,7 @@ m$beta
 plot(glmnet(X,Y,alpha=1),xvar="lambda",label=T)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-OLS-Model-Selection/unnamed-chunk-4-2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-4-2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 Notice how as $$\lambda$$ increases, the coefficients are shrunk directly towards 0.
 
 ## Elastic Net
@@ -208,14 +212,11 @@ subject to $$(1 - \alpha) * \sum^p_{j = 1} \vert \beta_j \vert + \alpha * \sum^p
 
 Note that since elastic net is a hybrid of ridge and LASSO, the covariates should be scaled prior to fitting the model (good to standardize y responses too).
 
-## In R Software
-The package `glmnet` is a great resource on fitting regularization models in R. See the package [viginette][glmnet_vignette]{:target="blank"}. 
-
 # Dimension Reduction Techniques
 See [Dimension Reduction][dimension_reduction_post]{:target = "_blank"}.
 
-[bv_tradeoff_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.html#bias-variance-tradeoff
-[bv_tradeoff_train_test_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.html#training--testing-error
-[bv_tradeoff_cv_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance-and-CV.html#cross-validation
+[bv_tradeoff_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance.html#bias-variance-tradeoff
+[bv_tradeoff_train_test_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance.html#training--testing-error
+[bv_tradeoff_cv_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance.html#cross-validation
 [glmnet_vignette]: https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html
 [dimension_reduction_post]: http://jnguyen92.github.io/nhuyhoa//2016/01/ML-Dimension-Reduction.html

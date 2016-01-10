@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bias Variance Tradeoff: Cross Validation"
+title: "Bias Variance Tradeoff"
 date: "December 27, 2015"
 categories: ['statistics', 'machine learning']
 ---
@@ -70,7 +70,6 @@ Procedure:
 * Combine the results from all partitions, usually with a weighted average
 * Compare the cross-validated metric across different models to find the best model parameters
 * Refit the model based on the best model parameters using all of the data
-
 
 ![5-fold_CV](http://jnguyen92.github.io/nhuyhoa/figure/images/cross_validation.png)
 

@@ -8,7 +8,7 @@ categories: R
 * TOC
 {:toc}
 
-# If and Else
+# Conditionals
 Setup:
 
 {% highlight r%}
@@ -25,6 +25,23 @@ Simplified & vectorized `ifelse()`
 {% highlight r%}
 ifelse(CONDITION, TRUE_ACTION, FALSE_ACTION)
 {% endhighlight%}
+
+Switch can also be used:
+{% highlight r%}
+switch(VAR,
+  opt_1 = {
+    EXECUTION
+  }, 
+  opt_2 = {
+    EXECUTION
+  },
+  opt_3 = {
+    EXECUTION
+  }
+)
+{% endhighlight%}
+
+The code will execute different things depending on the value of $$VAR$$.
 
 # Loops
 Setup:

@@ -8,7 +8,7 @@ categories: ['data wrangling']
 * TOC
 {:toc}
 
-```{r global_opts, echo = FALSE}
+```{r global_opts, echo = FALSE, message = FALSE, warning = FALSE}
 library(jn.general)
 lib(data, viz)
 ```

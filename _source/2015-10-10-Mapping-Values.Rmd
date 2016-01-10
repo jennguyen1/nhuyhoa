@@ -79,6 +79,8 @@ switch(
 )
 ```
 
+`switch()` can also be used to execute many lines of code. Simply use place these executions inside the brackets `{}`. 
+
 ## Vectorize
 Sometimes you may just want to write your function that uses conditionals to relate certain values. Your function inputs may just take one data structure (perhaps one value) and may throw an error if you pass in something along the lines of a vector. 
 
