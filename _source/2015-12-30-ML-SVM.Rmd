@@ -118,4 +118,63 @@ where $$\alpha_i \ne 0$$ are the weights vectors.
 
 * Unlike logistic regression and LDA/QDA, cannot estimate class probabiltiies
 
+# Example
+To perform SVM, one can use the package `e1071`
+```{r, message = FALSE, warning = FALSE}
+library(e1071)
+```
 
+```{r, echo = FALSE}
+set.seed(3)
+x <- matrix(rnorm(20*2), ncol=2)
+y <- c(rep(-1,10), rep(1,10))
+x[y==1,] = x[y==1,] + 1
+lin_dat <- data.frame(x = x, y = as.factor(y))
+
+set.seed(3)
+x <- matrix(rnorm(200*2), ncol=2)
+x[1:100,] = x[1:100,] + 2
+x[101:150,] = x[101:150,] - 2
+y <- c(rep(1,150),rep(2,50))
+nonlin_dat <- data.frame(x = x, y = as.factor(y))
+```
+
+First, we can look at a linear SVM example. 
+```{r, echo = FALSE}
+ggplot(data = lin_dat, aes(x = x.1, y = x.2, color = y)) +
+  geom_point(size = 1.5) +
+  theme(legend.position = "none")
+```
+
+```{r}
+# fit linear SVM
+lin.svm.fit <- svm(y ~ ., data = lin_dat, kernel = "linear", cost = 10, scale = TRUE)
+
+# look at fit
+summary(lin.svm.fit)
+
+# the support vectors
+lin.svm.fit$index
+
+# look at plot
+plot(lin.svm.fit, lin_dat)
+```
+This plot isn't too appealing. It wouldn't be too hard to write our own. 
+
+Next, we can take a look at the use of other kernals.
+```{r, echo = FALSE}
+ggplot(data = nonlin_dat, aes(x = x.1, y = x.2, color = y)) +
+  geom_point(size = 1.5) +
+  theme(legend.position = "none")
+```
+
+```{r}
+# fit nonlinear SVM
+nonlin.svm.fit <- svm(y ~ ., data = nonlin_dat, kernal = "radial", gamma = 10, cost = 1, scale = TRUE)
+
+# look at fit
+summary(nonlin.svm.fit)
+
+# look at plot
+plot(nonlin.svm.fit, nonlin_dat)
+```

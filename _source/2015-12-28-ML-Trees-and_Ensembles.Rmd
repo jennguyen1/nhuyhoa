@@ -11,6 +11,14 @@ categories: ['statistics', 'machine learning']
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(jn.general)
 lib(data, viz)
+library(ISLR)
+library(MASS)
+library(rpart)
+library(rpart.plot)
+library(tree)
+library(partykit)
+library(randomForest)
+library(gbm)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
@@ -200,30 +208,73 @@ Interpreting random forests can be quite difficult. One way to get a sense of th
 * Accumulate over the whole ensemble
 
 # In R
-rpart, prune
-randomForest
-gbm
-adaboost
-http://www.statmethods.net/advstats/cart.html
 
+**CART**
+```{r, echo = FALSE}
+high <- with(Carseats, ifelse(Sales <= 8, "no", "yes"))
+carseats <- data.frame(Carseats, high)
+colnames(carseats) <- tolower(colnames(carseats))
+```
 
-Decision tree alternative in R:
+We use the packages `rpart` and `rpart.plot`.
 
-- fit tree
-library(rpart)
-tree = rpart(formula = , data = , method = “class” or etc, control = rpart.control())
-predict(model, dataset, method)
+```{r}
+# fit decision tree
+c_tree <- rpart(high ~ . - sales, carseats, method = "class")
+# plot tree
+prp(c_tree)
 
-- plot tree
-plot(tree)
-text(tree)
+# prune tree using cross validation
+printcp(c_tree)
+c_tree2 <- prune(c_tree, cp = 0.0122)
+prp(c_tree2)
 
-- fancy plotting
-library(rattle)
-library(rpart.plot)
-library(RColorBrewer)
-fancyRpartPlot(tree)
+# fit regression tree
+r_tree <- rpart(medv ~ ., Boston, method = "anova")
+prp(r_tree)
 
+# CV results
+rsq.rpart(r_tree)
+```
 
+We can do another example with the iris data set.
+```{r, fig.width = 15}
+# fit model 
+iris_tree <- rpart(Species ~ Sepal.Width, Petal.Width, data = iris)
 
+# plot results
+iris_party <- as.party(iris_tree)
+plot(iris_party)
+```
+
+```{r}
+# fit model with tree
+iris_tree_2 <- tree(Species ~ Sepal.Width + Petal.Width, data = iris)
+
+# another way to view cut
+plot(iris$Petal.Width, iris$Sepal.Width, pch=19, col=as.numeric(iris$Species))
+partition.tree(iris_tree_2, label="Species", add=TRUE)
+legend("topright",legend=unique(iris$Species), col=unique(as.numeric(iris$Species)), pch=19)
+```
+
+**Random Forests**
+Random forests can be fit with the `randomForest` package. 
+
+```{r}
+# fit random forest
+forest <- randomForest(medv ~ ., data = Boston, mtry = 5,  importance = TRUE)
+forest
+
+# view importance
+importance(forest)
+```
+
+**Boosting**
+```{r}
+# fit gbm
+boost <- gbm(medv ~ ., data = Boston, distribution = "gaussian", n.trees = 10000, shrinkage = 0.01, interaction.depth = 4)
+
+# view results
+summary(boost)
+```
 

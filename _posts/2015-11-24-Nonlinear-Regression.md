@@ -10,6 +10,8 @@ categories: ['statistics', 'regression analysis']
 
 
 
+The methods described here apply to all types of GLMs. 
+
 # Polynomial Regresion
 Adding nonlinear terms such as interactions and powers to the original predictors is polynomial regression. This type of model follows the principals of  regression. The hierarchy principle requires that lower ordered terms must be included when higher ordered terms are used (unless there are good reasons not to include them). For example if $$X^2$$ is in the model, $$X$$ must also be in the model. 
 
@@ -59,13 +61,6 @@ Rather than specifying $$\lambda$$, one can specify the effective degrees of fre
 * natural splines: `splines::ns()`
 * smoothing splines: `smooth.spline()`
 
-# Generalized Additive Models
-Generalized additive models combines the nonlinear equations of several variables into one linear model. The idea is to fit a model to each variable separately. Any variety can be used (OLS, splines, loess, etc). Those models are then combined into a single general additive model. Even though GAMS are additive, lower order interactions can be included easily as well.
-
-In R:
-`lm(y ~ ns(x1, df = 5) + ns(x2, df = 9) + x3 + s(x4, df = 5) + lo(x5, span = 0.4))`
-`plot.gam`
-
 # Local Regression
 Local regression, otherwise known as loess, is a non-parametric techniquethat combines multiple regression and k-nearest neighbors. 
 
@@ -80,7 +75,7 @@ The idea is compute compute a fit at target point $$x_0$$ using only the nearby 
 
 One good resource is Wolfram Demonstrations Project on [how loess works][loess_link]{:target = "_blank"}.
 
-In R: `loess()`
+In R, one can fit a loess curve with the function `loess()` or `splines::lo()`.
 
 **Advantages:**
 
@@ -92,5 +87,13 @@ In R: `loess()`
 * Requires large, dense data sets
 * Does not reproduce a regression function easily represented by a mathematical formula
 * Computationally intensive
+
+# Generalized Additive Models
+Generalized additive models combines the nonlinear equations of several variables into one linear model. The idea is to fit a model to each variable separately. Any variety can be used (OLS, splines, loess, etc). Those models are then combined into a single general additive model. Even though GAMS are additive, lower order interactions can be included easily as well. 
+
+In R, one can fit this model in R by combining the other nonlinear methods. 
+
+* Fit with `gam(Y ~ s(X1, ...) + bs(X2, ...) + X3 + ns(X4) + lo(X5, ...) + ...)`
+* View the plots with `plot.gam()`
 
 [loess_link]: http://demonstrations.wolfram.com/HowLoessWorks/

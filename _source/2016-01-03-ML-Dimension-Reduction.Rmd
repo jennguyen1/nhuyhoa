@@ -12,6 +12,7 @@ categories: ['statistics', 'machine learning']
 library(jn.general)
 lib(data, viz)
 library(pls)
+library(ggfortify)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
@@ -103,7 +104,19 @@ pc$scores
 as.matrix(dat) %*% svd$v
 ```
 
-## Chosing How Many Principal Components
+We can also plot the first two principal components against each other with the loadings, to obtain some information regarding the components. This plot is called a biplot. This requires the `ggfortify` package. 
+```{r, echo = FALSE}
+dat <- iris[, 1:4]
+```
+
+```{r, fig.width = 7}
+autoplot(prcomp(dat), data = iris, colour = "Species", 
+         loadings = TRUE, loadings.label = TRUE,
+         loadings.label.size = 3)
+```
+
+
+## Choosing How Many Principal Components
 There is no best method to choose the number of components. However, one thing we could do is look at the "scree plot" and look for the point at which the trend converges. 
 
 ```{r}

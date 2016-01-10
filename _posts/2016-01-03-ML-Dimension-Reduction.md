@@ -102,7 +102,20 @@ pc$scores
 as.matrix(dat) %*% svd$v
 {% endhighlight %}
 
-## Chosing How Many Principal Components
+We can also plot the first two principal components against each other with the loadings, to obtain some information regarding the components. This plot is called a biplot. This requires the `ggfortify` package. 
+
+
+
+{% highlight r %}
+autoplot(prcomp(dat), data = iris, colour = "Species", 
+         loadings = TRUE, loadings.label = TRUE,
+         loadings.label.size = 3)
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+
+## Choosing How Many Principal Components
 There is no best method to choose the number of components. However, one thing we could do is look at the "scree plot" and look for the point at which the trend converges. 
 
 
@@ -116,7 +129,7 @@ ggplot(data = NULL, aes(x = x, y = y)) +
   xlab("Principal Component") + ylab("Prop. Variance Explained")
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 In this plot, we could potentially choose to use 5-7 principal components. 
 
@@ -148,11 +161,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.684    2.698    2.550    2.610    2.637
-## adjCV        6.123    2.672    2.688    2.533    2.591    2.615
+## CV           6.123    2.673    2.702    2.610    2.657    2.715
+## adjCV        6.123    2.661    2.690    2.592    2.637    2.690
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.760    3.038    3.145    3.660     3.925
-## adjCV    2.732    2.996    3.097    3.582     3.824
+## CV       2.823    2.940    2.995    3.506     3.625
+## adjCV    2.790    2.902    2.951    3.421     3.530
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
@@ -169,7 +182,7 @@ summary(pcr.fit)
 validationplot(pcr.fit, val.type = "MSEP")
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 So here we see that using 3 principal components is preferred. If we prefer to use a specified number of components, we can pass the argument `ncomps = n` instead of the `validation` argument. 
 
 # Partial Least Squares

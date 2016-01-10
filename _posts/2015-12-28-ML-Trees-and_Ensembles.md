@@ -196,30 +196,204 @@ Interpreting random forests can be quite difficult. One way to get a sense of th
 * Accumulate over the whole ensemble
 
 # In R
-rpart, prune
-randomForest
-gbm
-adaboost
-http://www.statmethods.net/advstats/cart.html
+
+**CART**
 
 
-Decision tree alternative in R:
+We use the packages `rpart` and `rpart.plot`.
 
-- fit tree
-library(rpart)
-tree = rpart(formula = , data = , method = “class” or etc, control = rpart.control())
-predict(model, dataset, method)
 
-- plot tree
-plot(tree)
-text(tree)
+{% highlight r %}
+# fit decision tree
+c_tree <- rpart(high ~ . - sales, carseats, method = "class")
+# plot tree
+prp(c_tree)
+{% endhighlight %}
 
-- fancy plotting
-library(rattle)
-library(rpart.plot)
-library(RColorBrewer)
-fancyRpartPlot(tree)
+<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+{% highlight r %}
+# prune tree using cross validation
+printcp(c_tree)
+{% endhighlight %}
 
 
 
+{% highlight text %}
+## 
+## Classification tree:
+## rpart(formula = high ~ . - sales, data = carseats, method = "class")
+## 
+## Variables actually used in tree construction:
+## [1] advertising age         compprice   income      price      
+## [6] shelveloc  
+## 
+## Root node error: 164/400 = 0.41
+## 
+## n= 400 
+## 
+##         CP nsplit rel error  xerror     xstd
+## 1 0.286585      0   1.00000 1.00000 0.059980
+## 2 0.109756      1   0.71341 0.71341 0.055477
+## 3 0.045732      2   0.60366 0.71951 0.055615
+## 4 0.036585      4   0.51220 0.71951 0.055615
+## 5 0.027439      5   0.47561 0.73780 0.056017
+## 6 0.024390      7   0.42073 0.71951 0.055615
+## 7 0.012195      8   0.39634 0.66463 0.054298
+## 8 0.010000     10   0.37195 0.64634 0.053821
+{% endhighlight %}
+
+
+
+{% highlight r %}
+c_tree2 <- prune(c_tree, cp = 0.0122)
+prp(c_tree2)
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+{% highlight r %}
+# fit regression tree
+r_tree <- rpart(medv ~ ., Boston, method = "anova")
+prp(r_tree)
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+{% highlight r %}
+# CV results
+rsq.rpart(r_tree)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## 
+## Regression tree:
+## rpart(formula = medv ~ ., data = Boston, method = "anova")
+## 
+## Variables actually used in tree construction:
+## [1] crim  dis   lstat rm   
+## 
+## Root node error: 42716/506 = 84.42
+## 
+## n= 506 
+## 
+##         CP nsplit rel error  xerror     xstd
+## 1 0.452744      0   1.00000 1.00312 0.083091
+## 2 0.171172      1   0.54726 0.64306 0.058531
+## 3 0.071658      2   0.37608 0.41965 0.046179
+## 4 0.036164      3   0.30443 0.34650 0.041608
+## 5 0.033369      4   0.26826 0.35190 0.042314
+## 6 0.026613      5   0.23489 0.34392 0.043532
+## 7 0.015851      6   0.20828 0.30780 0.042288
+## 8 0.010000      7   0.19243 0.30510 0.042599
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-4.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /><img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-5.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+We can do another example with the iris data set.
+
+{% highlight r %}
+# fit model 
+iris_tree <- rpart(Species ~ Sepal.Width, Petal.Width, data = iris)
+
+# plot results
+iris_party <- as.party(iris_tree)
+plot(iris_party)
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+
+
+{% highlight r %}
+# fit model with tree
+iris_tree_2 <- tree(Species ~ Sepal.Width + Petal.Width, data = iris)
+
+# another way to view cut
+plot(iris$Petal.Width, iris$Sepal.Width, pch=19, col=as.numeric(iris$Species))
+partition.tree(iris_tree_2, label="Species", add=TRUE)
+legend("topright",legend=unique(iris$Species), col=unique(as.numeric(iris$Species)), pch=19)
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+
+**Random Forests**
+Random forests can be fit with the `randomForest` package. 
+
+
+{% highlight r %}
+# fit random forest
+forest <- randomForest(medv ~ ., data = Boston, mtry = 5,  importance = TRUE)
+forest
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## 
+## Call:
+##  randomForest(formula = medv ~ ., data = Boston, mtry = 5, importance = TRUE) 
+##                Type of random forest: regression
+##                      Number of trees: 500
+## No. of variables tried at each split: 5
+## 
+##           Mean of squared residuals: 9.912383
+##                     % Var explained: 88.26
+{% endhighlight %}
+
+
+
+{% highlight r %}
+# view importance
+importance(forest)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##           %IncMSE IncNodePurity
+## crim    17.181189     2457.0926
+## zn       2.740325      186.5410
+## indus   10.850019     2416.2958
+## chas     3.764951      150.9747
+## nox     18.059678     2581.5122
+## rm      41.001366    13435.8859
+## age     13.305575     1010.5205
+## dis     17.328140     2472.3621
+## rad      5.027595      253.8563
+## tax     13.393890      993.8280
+## ptratio 14.989223     2448.8228
+## black    7.599927      701.5214
+## lstat   32.558837    12943.0280
+{% endhighlight %}
+
+**Boosting**
+
+{% highlight r %}
+# fit gbm
+boost <- gbm(medv ~ ., data = Boston, distribution = "gaussian", n.trees = 10000, shrinkage = 0.01, interaction.depth = 4)
+
+# view results
+summary(boost)
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+{% highlight text %}
+##             var    rel.inf
+## lstat     lstat 37.0559383
+## rm           rm 30.7266839
+## dis         dis  8.6985977
+## crim       crim  4.9047198
+## nox         nox  4.8788260
+## age         age  3.9729838
+## ptratio ptratio  2.9984237
+## black     black  2.8437262
+## tax         tax  1.8099648
+## indus     indus  0.7543425
+## rad         rad  0.6424044
+## chas       chas  0.5842021
+## zn           zn  0.1291868
+{% endhighlight %}
 
