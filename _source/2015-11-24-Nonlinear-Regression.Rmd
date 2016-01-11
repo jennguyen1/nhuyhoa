@@ -72,7 +72,7 @@ The idea is compute compute a fit at target point $$x_0$$ using only the nearby 
 
 **Algorithm:**
 
-* Gather the fraction $$s = k/n$$ of training points whose $$x_i$$ are closest to $$x_0$$
+* Gather the fraction $$s = k/n$$ of training points whose $$x_i$$ are closest to $$x_0$$. The parameter $$s$$ is a tuning parameter chosen via cross-validation. Smaller spans are more flexible. 
 * Assign weight $$K_{i0} = K(x_i, x_0)$$ to each point in the neighborhood so that the point furthest from $$x_0$$ has weight $$0$$ and the closest has the highest weight. All but these $$k$$ nearest neighbors get weight $$0$$
 * Fit a weighted least squares regression of the $$y_i$$ on the $$x_i$$ using the aforementioned weights
 * Fitted value at $$x_0$$ is given by $$\hat{f}(x_0) = \hat{\beta}_0 + \hat{\beta}_1 x_0$$

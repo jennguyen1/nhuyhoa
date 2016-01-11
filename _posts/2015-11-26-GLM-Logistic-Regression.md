@@ -131,7 +131,7 @@ $$ x_1 = -\frac{\beta_0 + \beta_2 x_2 + ... + \beta_k x_k}{\beta_1} $$
 
 To determine the standard error of this estimate, we can use the [delta method][func_RV_delta_method_post]{:target = "_blank"}. 
 
-We can also use the built in R function: `MASS::dose.p()`
+We can also use the built in R function: `MASS::dose.p()`.
 
 # Overdispersion
 Overdispersion occurs in logistic regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i (1 - \mu_i) / n_i$$. Usually this occurs when the $$n_i$$ Bernuolli trials are not identically distributed or not independent. (Note that if $$n_i = 1$$, overdispersion is not possible - data is Bernuolli). 
@@ -139,7 +139,26 @@ Overdispersion occurs in logistic regression when $$Var(Y_i)$$ is greater than t
 The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain 
 $$Var(Y_i)^* = \sigma^2 \mu_i (1 - \mu_i) / n_i$$
 
-The steps for assessing overdispersion are listed in the [GLM Testing and Diagnostics: Overdispersion][glm_diagnostics_post]{:target = "blank"}
+The steps for assessing overdispersion are listed in the [GLM Testing and Diagnostics: Overdispersion][glm_diagnostics_post]{:target = "blank"}.
+
+# Logistic Regression with Gradient Descent
+Another way to fit a logistic regression is to use [gradient descent][gradient_descent_post]{:target = "blank"}.
+
+Let $$h(x) = g(\theta^T x) = \frac{1}{1 + e^{-\theta^T x}}$$ be the function to model $$\hat{y}$$. 
+
+Then the log likelihood be
+$$l(\theta) = \sum^n_{i = 1} y_i \log{h(x_i)} + (1 - y_i) \log(1 - h(x_i))$$
+
+The partial derivative of $$l(\theta)$$ wrt $$\theta_j$$ is then
+$$\frac{\partial}{\partial \theta_j} l(\theta)$$
+$$ = \left( y \frac{1}{g(\theta^T x)} - (1 - y) \frac{1}{1 - g(\theta^T x)} \right) \frac{\partial}{\partial \theta_j} g(\theta^T x)$$
+$$ = \left( y * \frac{1}{g(\theta^T x)} - (1 - y) * \frac{1}{1 - g(\theta^T x)} \right) g(\theta^T x) (1 - g(\theta^T x)) \frac{\partial}{\partial \theta_j} \theta^T x$$
+$$ = \left( y* (1 - g(\theta^T x)) - (1 - y)* g(\theta^Tx) \right) x_j$$
+$$ = (y - h(x)) x_j$$
+
+So the gradient ascent rule is 
+$$ \theta_j := \theta_j + \alpha (y - h(x))x_j $$
 
 [glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html#overdispersion
 [func_RV_delta_method_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Func-of-RV.html#delta-method
+[gradient_descent_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Generic-Algorithms.html#gradient-descent

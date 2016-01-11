@@ -14,7 +14,7 @@ categories: ['statistics', 'machine learning']
 These topics cover generic algorithms that can be applied to a variety of different machine learning algorithms. 
 
 # Gradient Descent
-Assume that we start with some intial $$\theta$$. The algorithm repeatedly takes a step in the direction of the steepest decrease of J until it reaches a local minimum. 
+Assume that we start with some intial $$\theta$$. The algorithm repeatedly takes a step in the direction of the steepest decrease of $$J$$ until it reaches a local minimum. 
 
 
 There are two variants of the gradient descent algorithm
