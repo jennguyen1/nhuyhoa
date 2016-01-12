@@ -2,7 +2,7 @@
 layout: post
 title: "Probability Overview"
 date: "October 15, 2015"
-categories: ['statistics', 'probability theory']
+categories: ['statistics', 'probability and inference']
 ---
 
 * [Probability Cheatsheet][prob_cheatsheet]{:target="_blank"} by William Chen, et al.

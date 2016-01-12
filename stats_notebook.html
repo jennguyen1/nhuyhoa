@@ -39,7 +39,7 @@ permalink: /stat_notes/
 <section>
     <table>
         {% for post in site.posts %}
-            {% if post.categories contains 'statistics' and post.categories contains 'probability theory' %}
+            {% if post.categories contains 'statistics' and post.categories contains 'probability and inference' %}
                 <tr>
                     <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
                     <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>

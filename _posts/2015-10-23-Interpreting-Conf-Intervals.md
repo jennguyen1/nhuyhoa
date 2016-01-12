@@ -2,7 +2,7 @@
 layout: post
 title: "Interpreting Confidence Intervals"
 date: "October 23, 2015"
-categories: ['statistics', 'probability theory']
+categories: ['statistics', 'probability and inference']
 ---
 
 * TOC

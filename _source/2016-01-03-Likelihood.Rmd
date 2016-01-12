@@ -2,7 +2,7 @@
 layout: post
 title: "Likelihood"
 date: "January 3, 2016"
-categories: ['statistics', 'probability theory']
+categories: ['statistics', 'probability and inference']
 ---
 
 * TOC

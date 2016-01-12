@@ -2,7 +2,7 @@
 layout: post
 title: "Causal Inference"
 date: "January 04, 2016"
-categories: ['statistics', 'probability theory']
+categories: ['statistics', 'probability and inference']
 ---
 
 * TOC
