@@ -70,13 +70,13 @@ dat <- data.frame(scale(mtcars))
 svd <- svd(dat)
 
 # run principal components
-pc <- princomp(dat)
+pc <- prcomp(dat)
 ```
 
 **PC Loadings**
 ```{r, eval = FALSE}
 # Using PCA
-pc$loadings
+pc$rotation
 
 # Using SVD
 svd$v
@@ -91,14 +91,14 @@ pc$sdev^2
 svd$d^2
 
 # PC returns a scaled version of the SVD output, the following code should equal pc$sdev^2
-svd$d^2 / nrow(dat)
+svd$d^2 / (nrow(dat) - 1)
 ```
 The proportion of variance explained can be obtained by dividing each variance explained value by the sum of all variance explained values.
 
 **PC Scores**
 ```{r, eval = FALSE}
 # Using PCA
-pc$scores
+pc$x
 
 # Using SVD
 as.matrix(dat) %*% svd$v
@@ -137,6 +137,8 @@ In this plot, we could potentially choose to use 5-7 principal components.
 * Simplify high-dimensional data and use as features in other methods
 
 PCA is great for providing a low-dimensional representation of high-dimensional data. Thus it works best when the first few PC are sufficient in capturing most of the variation in the predictors. (So it is generally not a good idea to use all of the PC).
+
+For example if running an experiment, PCA can be used to assess whether there may be confounding effects due to improper randomization. 
 
 In R, one can do principal components regression with `pls::pcr()`. This package also has functions to view cross-validated results with the `validationplot()` function. 
 

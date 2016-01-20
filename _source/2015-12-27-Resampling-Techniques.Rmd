@@ -50,8 +50,8 @@ We have the following hypothesis
 
 **Algorithm:**
 
-* Repeat a large number of times:
-  * Shuffle the group assignments to each data point
+* Repeat a large number of times (idea is to obtain all possible permutations):
+  * Shuffle/scramble the group assignments to each data point
   * Calculate test statistic for new group assignments
 * Compare distribution of permuted test statistics with the observed test statistic
   * With histogram: where does observed test statistic fall on the distribution of permuted test statistics?

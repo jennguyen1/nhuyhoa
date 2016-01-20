@@ -113,6 +113,8 @@ $$ \frac{\hat{\beta}^2}{Var[\hat{\beta}]} $$ ~ $$\chi^2_1$$
 
 We see that for the score test, we do not need to compute the MLE for $$\beta$$. This makes it computationally easier and preferred.
 
+Example calculations are available [here][likelihood_calc]{:target = "_blank"}. 
+
 ## Likelihood Test for Stratified Data
 The score test is preferred when the data is stratified (split out across different categorical variables) because it doesn't require estimates of $$\theta$$.
 
@@ -123,4 +125,4 @@ For the score test:
 * global Fischer information is $$I(\theta) = \sum_k I(\theta)$$
 * global score test of $$H_0: \theta = 0$$ is $$\frac{U(0)^2}{I(0)} = \frac{(\sum_k U_k(0))^2}{\sum_k I_k(0)}$$
 
-
+[likelihood_calc]:https://drive.google.com/file/d/0B5VF_idvHAmMMlFrYUg5Q0ttVXM/view?usp=sharing

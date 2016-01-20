@@ -30,19 +30,19 @@ Let $$\theta$$ be the parameter of interest. From this, we have
 * score function $$U(\theta)$$
 * information $$I(\theta)$$
 
-In large samples, we have $$E[U(\theta)] = I(0) \theta$$. 
+In large samples, we have $$E_{\theta}[U(0)] = I(0) \theta$$. 
 
 The test statistic for $$H_0: \theta = 0$$ is 
 
-$$E[Z(0)] = E \left( \frac{U(0)}{\sqrt{I(0)}} \right) = \sqrt{I(0)} \theta$$
+$$E[Z(0)] = E_{\theta} \left( \frac{U(0)}{\sqrt{I(0)}} \right) = \sqrt{I(0)} \theta$$
 
 To obtain sample sizes, we have
 
-$$Z_{1 - \alpha/2} + Z_{1 - \beta} = \sqrt{E[I(0)]} \theta_1$$
+$$Z_{1 - \alpha/2} + Z_{1 - \beta} = \sqrt{E_{\theta}[I(0)]} \theta_1$$
 
 So the required Fischer information is
 
-$$f(n) = E[I(0)] = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2}{\theta_1^2}$$
+$$f(n) = E_{\theta}[I(0)] = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2}{\theta_1^2}$$
 
 From here we can calculate $$E[I(0)]$$, which is a function of required sample $$n$$ (required sample size), and solve for $$n$$. We can assume that $$E_{H_0}[I(0)] = E_{H_1}[I(0)]$$.
  
@@ -59,7 +59,7 @@ $$n = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2}{\epsilon_1 \epsilon_2 \bar{p} 
 
 * Two-sample binomial data where $$\theta$$ proportion difference
 
-$$n = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2 \bar{p} (1 - \bar{p})}{\epsilon_1 \epsilon_2  \theta_1^2}$$
+$$n = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2 \bar{p} (1 - \bar{p})}{\epsilon_1 \epsilon_2  (p_0 - p_1)^2}$$
  
 * Survival data assuming proportional hazards
 
@@ -67,7 +67,9 @@ $$n\bar{p} = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2}{\epsilon_1 \epsilon_2n 
 
 where $$\bar{p}$$ is the probability of an observed event.
 
+# In R
+R has several functions to calculate desired power and sample sizes. 
 
-The derivations for these calculations are available [here][sample_size_calc]{:target = "_blank"}.
-
-[sample_size_calc]:
+* `power.anova.test()`
+* `power.t.test()`
+* `power.prop.test()`

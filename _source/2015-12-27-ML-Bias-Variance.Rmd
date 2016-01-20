@@ -85,7 +85,7 @@ For continuous responses, the root mean square error is often used. This is defi
 $$RMSE = \sqrt{E\left((x - \bar{x})^2\right)}$$
 
 ## Classification
-For binary responses, ROC (Receiver Operating Characteristic) curve and AUC (Area Under the Curve) can be used. 
+The following is the confusion matrix we would get for a two-class classification problem. 
 
 ```{r, echo = FALSE, fig.width = 3, fig.height = 2}
 opts <- c("Predicted (+)", "Predicted (-)")
@@ -99,9 +99,26 @@ table_plot(d, title = "Classification Table") %>% grid.arrange
 
 There are four possible outcomes:
 
-* True positive (I): (+) instance correctly classified as (+)
-* False positive (II): (-) instance incorrectly classified as (+)
-* False negative (III): (+) instance incorrectly classified as (-)
-* True negative (IV): (-) instance correctly classified as (-)
+* **True positive (I)**: (+) instance correctly classified as (+)
+* **False positive (II)**: (-) instance incorrectly classified as (+)
+* **False negative (III)**: (+) instance incorrectly classified as (-)
+* **True negative (IV)**: (-) instance correctly classified as (-)
 
-The ROC curve plots the true positive rate $$\left( P(predict.T \vert actual.T) \right)$$ vs. the false positive rate $$\left( P(predict.T \vert actual.F) \right)$$ across a range of thresholds. Then the AUC is calculated as a measure of accuracy. A perfect model has a $$AUC = 1$$. A model with an $$AUC = 0.5$$ is no better than random guessing.
+### ROC
+For binary responses, ROC (Receiver Operating Characteristic) AUC (Area Under the Curve) can be used. 
+
+* **True positive rate** $$= \left( P(predict.T \vert actual.T) \right)$$
+* **False positive rate** $$= \left( P(predict.T \vert actual.F) \right)$$ 
+
+The ROC curve plots the true positive rate  vs. the false positive rate across a range of thresholds. Then the AUC is calculated as a measure of accuracy. A perfect model has a $$AUC = 1$$, the trends should hug the upper left corner of the curve. A model with an $$AUC = 0.5$$ is no better than random guessing.
+
+### Precision Recall Curves
+Precision recall curves are preferred over ROC when there are highly skewed classes. 
+
+* **Precision** $$= \frac{true.positive}{true.positive + false.positive}$$
+* **Recall** $$= \frac{true.positive}{true.positive + false.negative}$$ 
+
+For example, cancer cases may be skewed towards the negative cancer (more non-cancer cases than cancer). However, it is extremely important to detect cancer when it exists. So focusing on precision and recall is definitely preferred over true positive and false positive rates. 
+
+The PR curve plots the precision vs. recall. An ideal algorithm will hug the upper right hand side of the curve. 
+
