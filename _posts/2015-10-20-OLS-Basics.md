@@ -38,7 +38,7 @@ $$ = m \log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \S
 $$ = m \log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$
 
 We can drop the constant so we get
-$$max - \frac{1}{2 \sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$$
+$$max \frac{-1}{2 \sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$
 
 which is equivalent to minimizing the $$SSE$$ (proportional)
 $$min \Sigma_i (y_i - \theta^T x_i)^2$$
@@ -58,15 +58,17 @@ $$ = Y^TY - \hat{\beta}X^TY $$
 
 So...
 
-$$ SSE = Y^TY - \hat{\beta}^TX^TX\hat{\beta} $$
+$$ SSE = (Y - X\hat{\beta})^T(Y - X\hat{\beta}) = Y^TY - \hat{\beta}^TX^TX\hat{\beta} $$
 
 From this we can derive an unbiased estimate of $$\sigma^2$$, the mean square error:
 
-$$ MSE = \frac{SSE}{n - p} $$
+$$ MSE = \frac{SSE}{n - p - 1} $$
 
-Note that in least squares, we always minimize the $$SSE$$. So the sum of the residuals is always equal to 0.
+where $$p$$ is the number of features (so $$p + 1$$ is the total number of parameters).
 
-$$ min( \Sigma (y - \hat{y})^2 ) = 2 \Sigma (y - \hat{y}) = 0 $$
+Note that we always minimize the $$SSE$$. So the sum of the residuals is always equal to 0.
+
+$$ min( \Sigma (y - \hat{y})^2 ) \overrightarrow 2 \Sigma (y - \hat{y}) = 0 $$
 
 # Distribution of Beta Estimates
 We know that 
@@ -121,7 +123,7 @@ c(B)
 
 
 {% highlight text %}
-## [1]  0.49346216 -0.09599583 -0.10419034 -0.01469123
+## [1]  0.24715867 -0.07316415  0.03017137 -0.01064759
 {% endhighlight %}
 
 
@@ -136,6 +138,6 @@ c(coef)
 
 {% highlight text %}
 ## (Intercept)          x1          x2          x3 
-##  0.49346216 -0.09599583 -0.10419034 -0.01469123
+##  0.24715867 -0.07316415  0.03017137 -0.01064759
 {% endhighlight %}
 

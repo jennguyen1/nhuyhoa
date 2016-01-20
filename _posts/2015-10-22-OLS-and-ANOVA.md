@@ -89,7 +89,7 @@ We had looked at the summary table for this model in a previous post. The result
 These extensions from the basic case are known as ANCOVA (analysis of covariance), MANOVA (multivariate analysis of variance), and MANCOVA (multivariate analysis of variance). They can all be assessed with linear models using the summary table or anova table in R.
 
 # Comparing Models
-Suppose we want to compare 2 models, where one is nested in the other. Let H correspond to the simplified model with p - q parameters. Let A correspond to the full model with p parameters. Then we can compare the two models with a test statistic
+Suppose we want to compare 2 models, where one is nested in the other. Let $$H$$ correspond to the simplified model with $$p - q$$ parameters. Let $$A$$ correspond to the full model with $$p$$ parameters. Then we can compare the two models with a test statistic
 
 $$ F = \frac{(SSE_H - SSE_A)/ (df_A - df_H)}{SSE_A/df_A} $$
 

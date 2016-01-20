@@ -65,14 +65,14 @@ dat <- data.frame(scale(mtcars))
 svd <- svd(dat)
 
 # run principal components
-pc <- princomp(dat)
+pc <- prcomp(dat)
 {% endhighlight %}
 
 **PC Loadings**
 
 {% highlight r %}
 # Using PCA
-pc$loadings
+pc$rotation
 
 # Using SVD
 svd$v
@@ -88,7 +88,7 @@ pc$sdev^2
 svd$d^2
 
 # PC returns a scaled version of the SVD output, the following code should equal pc$sdev^2
-svd$d^2 / nrow(dat)
+svd$d^2 / (nrow(dat) - 1)
 {% endhighlight %}
 The proportion of variance explained can be obtained by dividing each variance explained value by the sum of all variance explained values.
 
@@ -96,7 +96,7 @@ The proportion of variance explained can be obtained by dividing each variance e
 
 {% highlight r %}
 # Using PCA
-pc$scores
+pc$x
 
 # Using SVD
 as.matrix(dat) %*% svd$v
@@ -140,6 +140,8 @@ In this plot, we could potentially choose to use 5-7 principal components.
 
 PCA is great for providing a low-dimensional representation of high-dimensional data. Thus it works best when the first few PC are sufficient in capturing most of the variation in the predictors. (So it is generally not a good idea to use all of the PC).
 
+For example if running an experiment, PCA can be used to assess whether there may be confounding effects due to improper randomization. 
+
 In R, one can do principal components regression with `pls::pcr()`. This package also has functions to view cross-validated results with the `validationplot()` function. 
 
 
@@ -161,11 +163,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.670    2.701    2.583    2.619    2.609
-## adjCV        6.123    2.659    2.689    2.565    2.600    2.592
+## CV           6.123    2.596    2.618    2.518    2.563    2.682
+## adjCV        6.123    2.588    2.610    2.504    2.548    2.661
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.671    2.781    3.040    3.654     3.525
-## adjCV    2.650    2.754    2.992    3.568     3.442
+## CV       2.734     2.99    2.990    3.265     3.440
+## adjCV    2.708     2.95    2.948    3.207     3.367
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
