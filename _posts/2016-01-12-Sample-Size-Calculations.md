@@ -19,7 +19,7 @@ $$\bar{Y} = \frac{1}{n} \sum_i y_i$$
 We would reject $$H_0: \mu \le 0$$ if $$\bar{Y} > C_n$$ for some $$C_n$$. In standardized form, we reject $$H_0$$ if $$Z = \sqrt{\frac{n}{\sigma^2}} \bar{Y} \ge Z_{1 - \alpha/2}$$. Therefore $$C_n = \sqrt{\frac{\sigma^2}{n}} Z_{1 - \alpha /2}$$. 
 
 ![Null and Alternative Distributions](http://jnguyen92.github.io/nhuyhoa/figure/images/null_and_alternative_dist.png)
-Diagrams of the null (left) and alternative (right) distributions
+Diagrams of the null (left) and alternative (right) distributions.
 
 ![Distribution for Sample Size](http://jnguyen92.github.io/nhuyhoa/figure/images/sample_size_calc_diagram.png)
 Distribution of null & alternative distribution for sample size calculations.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Unsupervised Learning: Clustering"
+title: "Clustering"
 date: "January 2, 2016"
 categories: ['statistics', 'machine learning']
 ---
@@ -10,7 +10,7 @@ categories: ['statistics', 'machine learning']
 
 
 
-Unsupervised learning methods are employed when we only observe features and not the associated response variable. In these cases, we are not interested in prediction. The goal of unsupervised learning methods, such as clustering, is to find an informative way of visualizing data or discover subgroups among the observations. Thus, it is more of an exploratory technique.
+Clustering is an unsupervised learning technique. Unsupervised learning methods are employed when we only observe features and not the associated response variable. In these cases, we are not interested in prediction. The goal is to find an informative way of visualizing data or discover subgroups among the observations. Thus, it is more of an exploratory technique.
 
 **Advantages:**
 
@@ -34,6 +34,8 @@ Common distance metrics include
 * Euclidean distance: $$d(x_i, x_k) = \sqrt{\sum^p_{j = 1} (x_{ij} - x_{kj})^2}$$
 * Manhattan distance: $$d(x_i, x_k) = \sqrt{\sum^p_{j = 1} \vert x_{ij} - x_{kj} \vert}$$
 * Correlation based distance
+
+Note that it is a good idea to standardize features prior to running algorithms. 
 
 # K-Means Clustering
 With K-means clustering, the goal is to partition observations into a pre-specified number of clusters. With K-means clustering
@@ -220,12 +222,29 @@ ir <- sample_frac(ir, 0.25)
 hc <- hclust(dist(ir), method = "average")
 
 # plot data
-ggdendrogram(hc)
+ggdendro::ggdendrogram(hc)
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2016-01-02-ML-Clustering/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 If we cut the dendrogram into 3 groups, we have pretty solid cluser for the $$setosa$$ group (homogeneous and small cluster size). The other two groups are have some misclassifications, potentially due to the hazy boundry line between the two groups. 
+
+
+{% highlight r %}
+hc2 <- as.dendrogram(hc)
+
+# color the labels
+plot(dendextend::color_labels(hc2, 3))
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2016-01-02-ML-Clustering/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+{% highlight r %}
+# color the brances
+plot(dendextend::color_branches(hc2, 3))
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2016-01-02-ML-Clustering/unnamed-chunk-7-2.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 # Evaluation of Clusters
 
