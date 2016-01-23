@@ -11,8 +11,6 @@ categories: ['statistics', 'machine learning']
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(jn.general)
 lib(data, viz)
-library(ggdendro)
-library(dendextend)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
@@ -227,7 +225,7 @@ ggdendro::ggdendrogram(hc)
 
 If we cut the dendrogram into 3 groups, we have pretty solid cluser for the $$setosa$$ group (homogeneous and small cluster size). The other two groups are have some misclassifications, potentially due to the hazy boundry line between the two groups. 
 
-```{r}
+```{r, warning = FALSE}
 hc2 <- as.dendrogram(hc)
 
 # color the labels

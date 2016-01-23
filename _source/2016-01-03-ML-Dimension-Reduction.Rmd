@@ -12,7 +12,6 @@ categories: ['statistics', 'machine learning']
 library(jn.general)
 lib(data, viz)
 library(pls)
-library(ggfortify)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
@@ -109,7 +108,10 @@ We can also plot the first two principal components against each other with the 
 dat <- iris[, 1:4]
 ```
 
-```{r, fig.width = 7}
+```{r, fig.width = 7, message = FALSE}
+library(ggfortify)
+
+# plot the biplot
 autoplot(prcomp(dat), data = iris, colour = "Species", 
          loadings = TRUE, loadings.label = TRUE,
          loadings.label.size = 3)
@@ -144,10 +146,10 @@ In R, one can do principal components regression with `pls::pcr()`. This package
 
 ```{r}
 # fit PCR
-pcr.fit <- pcr(mpg ~ ., data = mtcars, scale = TRUE, validation = "CV")
+pcr.fit <- pls::pcr(mpg ~ ., data = mtcars, scale = TRUE, validation = "CV")
 # results
 summary(pcr.fit)
-validationplot(pcr.fit, val.type = "MSEP")
+pls::validationplot(pcr.fit, val.type = "MSEP")
 ```
 So here we see that using 3 principal components is preferred. If we prefer to use a specified number of components, we can pass the argument `ncomps = n` instead of the `validation` argument. 
 

@@ -139,7 +139,7 @@ train <- iris[i, ]
 test <- iris[i, ]
 
 # run KNN - randomly chosen k
-pred <- knn(train[, 1:4], test[, 1:4], train$Species, k = 3)
+pred <- class::knn(train[, 1:4], test[, 1:4], train$Species, k = 3)
 
 # cross-tab results
 table(pred, test$Species)

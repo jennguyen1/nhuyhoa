@@ -107,6 +107,9 @@ We can also plot the first two principal components against each other with the 
 
 
 {% highlight r %}
+library(ggfortify)
+
+# plot the biplot
 autoplot(prcomp(dat), data = iris, colour = "Species", 
          loadings = TRUE, loadings.label = TRUE,
          loadings.label.size = 3)
@@ -147,7 +150,7 @@ In R, one can do principal components regression with `pls::pcr()`. This package
 
 {% highlight r %}
 # fit PCR
-pcr.fit <- pcr(mpg ~ ., data = mtcars, scale = TRUE, validation = "CV")
+pcr.fit <- pls::pcr(mpg ~ ., data = mtcars, scale = TRUE, validation = "CV")
 # results
 summary(pcr.fit)
 {% endhighlight %}
@@ -163,11 +166,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.596    2.618    2.518    2.563    2.682
-## adjCV        6.123    2.588    2.610    2.504    2.548    2.661
+## CV           6.123    2.702    2.721    2.610    2.678    2.738
+## adjCV        6.123    2.690    2.709    2.592    2.659    2.715
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.734     2.99    2.990    3.265     3.440
-## adjCV    2.708     2.95    2.948    3.207     3.367
+## CV       2.819    2.934    2.994    3.415     3.601
+## adjCV    2.789    2.897    2.952    3.338     3.510
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
@@ -181,7 +184,7 @@ summary(pcr.fit)
 
 
 {% highlight r %}
-validationplot(pcr.fit, val.type = "MSEP")
+pls::validationplot(pcr.fit, val.type = "MSEP")
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />

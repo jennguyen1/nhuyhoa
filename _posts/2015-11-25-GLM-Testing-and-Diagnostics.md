@@ -13,8 +13,8 @@ categories: ['statistics', 'regression analysis']
 # Hypothesis Testing
 
 * Null model: intercept only model
-* Saturated model: model with n obs and n parameters, each data point has its own parameter
-* Proposed model: model with p parameters, model that you fit
+* Saturated model: model with $$n$$ obs and $$n$$ parameters, each data point has its own parameter
+* Proposed model: model with $$p$$ parameters, model that you fit
 
 ## Deviance
 Derived from the likelihood ratio statistic, deviance is defined as 
@@ -254,13 +254,56 @@ When we plot using the response residuals, we will see variation patterns consis
 
 {% highlight r %}
 # response residuals vs fitted link
-qplot(y = residuals(mod, "response"), x = predict(mod, type = "link")) + 
-  xlab(expression(hat(eta))) + 
+qplot(y = residuals(mod, "response"), x = exp(predict(mod, type = "link"))) + 
+  xlab(expression(hat(mu))) + 
   ylab("Response Residuals")
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 Here we see a pattern of increasing variation consistent with the Poisson distribution. 
+
+Another way to spot outliers is to bin the response residuals into equal-sized groups by the fitted values. Within each group, we can compute the average residual and average fitted value. We can plot the lines $$0 \pm 2 * SE$$ (where $$SE$$ is a function of bin size) within which we expect $$95$$% of the binned residuals to fall if the model was true. 
+
+
+{% highlight r %}
+# we have groups of size n
+n <- 2
+
+# organize data
+df <- data.frame(resid = residuals(mod, "response"), fit = exp(predict(mod, type = "link")))
+
+# label/group the data based off the fitted value
+lab_df <- df %>% 
+  arrange(fit) %>% 
+  mutate(lab = rep(1:15, each = n)) 
+
+# bin the residuals
+bin_df <- lab_df %>% 
+  group_by(lab) %>% 
+  summarise(r = mean(resid), f = mean(fit))
+{% endhighlight %}
+
+
+{% highlight r %}
+# compute the standard error for each bin
+se <- exp(predict(mod, type = "link")) / n
+bounds <- data.frame(c = rep(exp(predict(mod, type = "link")), 2), bounds = c(0 - 2 * se, 0 + 2*se), group = rep(c("below", "above"), each = 30))
+bounds <- arrange(bounds, c)
+{% endhighlight %}
+
+
+{% highlight r %}
+# plot the data
+ggplot(data = bin_df, aes(f, r)) + 
+  geom_point() +
+  geom_line(data = bounds, aes(x = c, y = bounds, group = group), linetype = 2) + 
+  xlab(expression(hat(mu))) + 
+  ylab("Response Residuals")
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" />
+
+Here one out of the 15 bins fall outside of the bounds, with no concerning patterns. 
 
 ### Half-Normal Plot
 We can plot the sorted absolute residuals to the quantiles of the half normal distribution to identify outliers. We look for points off the trend. (The examples used here are different from the model above).
@@ -277,7 +320,7 @@ halfnorm(rstudent(modpl))
 halfnorm(influence(modpl)$hat)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
 The half-norm plot of leverage seems to indicate that obs 25 may have high leverage. 
 
 
@@ -286,7 +329,7 @@ The half-norm plot of leverage seems to indicate that obs 25 may have high lever
 c <- halfnorm(cooks.distance(modpl))
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
 The half-norm plot indicates that obs 25 has a big Cook's statistic. It might be useful to investigate this observation in closer detail. 
 
 ### Added Variable Plots
@@ -336,7 +379,7 @@ mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = binomial)
 * Compute the dispersion parameter
 
 {% highlight r %}
-o2 <- sum(residuals(mod, "pearson")) / (nrow(orings) - 1)
+o2 <- sum(residuals(mod, "pearson")^2) / (nrow(orings) - 2)
 {% endhighlight %}
 
 * Estimate the model with the dispersion parameter
@@ -345,6 +388,11 @@ o2 <- sum(residuals(mod, "pearson")) / (nrow(orings) - 1)
 summary(mod, dispersion = o2, correlation = TRUE, symbolic.cor = TRUE)
 {% endhighlight %}
 
+Another option is to fit using the quasi-families (quasibinomial, quasipoisson, etc):
+
+{% highlight r %}
+mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = quasibinomial)
+{% endhighlight %}
 
 # Solutions to Violation of Assumptions
 

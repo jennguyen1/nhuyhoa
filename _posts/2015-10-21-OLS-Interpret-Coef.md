@@ -21,7 +21,7 @@ x2 <- mtcars$drat
 m1 <- lm(y ~ x1 + x2)
 {% endhighlight %}
 
-With continuous variables, the $$ \beta $$ coefficient can be interpreted as the change in Y for a unit increase in X, holding all other x-values constant. The corresponding test measures whether this effect is significantly different from 0, after all other variables have been considered. 
+With continuous variables, the $$ \beta $$ coefficient can be interpreted as the change in $$Y$$ for a unit increase in X, holding all other x-values constant. The corresponding test measures whether this effect is significantly different from $$0$$, after all other variables have been considered. 
 
 Note that the interpretation of coefficients can be complicated with high collinearity. For example if $$x_1$$ is correlated with $$x_2$$, then increasing $$x_1$$ would lead to an increase of $$x_2$$ even when we are trying to hold $$x_2$$ fixed. Thus it is important to examine multicollinearity among the covariates (discussed in [diagnostics post][diagnostics_post]{:target="_blank"}).
 
@@ -54,7 +54,7 @@ after - b4 # same as x1 coefficient
 ## -4.78289
 {% endhighlight %}
 
-When we fit a linear model, we generally include an intercept term. This intercept is interpreted as the expected value of Y when all x's are set to 0. The intercept is a nuisance parameter, we generally don't care about its significance. 
+When we fit a linear model, we generally include an intercept term. This intercept is interpreted as the expected value of $$Y$$ when all x's are set to $$0$$. The intercept is a nuisance parameter, we generally don't care about its significance. 
 
 
 {% highlight r %}
@@ -83,11 +83,21 @@ predict(m1, data.frame(x1 = 0, x2 = 0)) # same as intercept term
 ## 30.29037
 {% endhighlight %}
 
+## Excluding the Intercept Term
 If we were to remove the intercept term, we would have
 
 $$ Y = 0 + \beta_1 x_1 + \beta_2 x_2 $$ where $$ \beta_0 = 0 $$.
 
-Thus when we fit a regression without an intercept, we insist that the expected value of Y when all x's are 0 is 0. If we know that the intercept is 0, doing so will give us more residual degrees of freedom. However, care should be done in setting the intercept to 0, as this may lead to errors in estimating the other coefficients. 
+Thus when we fit a regression without an intercept, we insist that the expected value of $$Y$$ when all x's are $$0$$ is $$0$$. If we know that the intercept is $$0$$, doing so will give us more residual degrees of freedom. However, care should be done in setting the intercept to $$0$$, as this may lead to errors in estimating the other coefficients. 
+
+## Center and Scaling Features
+Sometimes we may want to center and scale the data prior to fitting models. While interpretation of coefficients may change, the model is essentially the same model. 
+
+In some cases it may not make sense to interpret the intercept when the predictors are set to zero. For example, consider the model $$Y = \alpha + \beta_1 * height + \beta_2 * weight$$. The intercept is the expected value of $$Y$$ when $$height$$ and $$weight$$ are set to $$0$$, but that isn't terribly useful. 
+
+Now, consider the model where $$height$$ and $$weight$$ are centered around their respective means. Then the intercept is the expected value of $$Y$$ for the average $$height$$ and $$weight$$ (ie the average person). It is not always necessary to use the mean of the data. One can also center based on an understandable reference point. 
+
+Coefficients may be easier to interpret when all features are standardized to a similar scale. Following standardization, the coefficients are interpreted in units of standard deviations with respect to the corresponding predictor. The intercept is the expected value of $$Y$$ when the predictors are at their mean values. 
 
 # Categorical Variables
 
@@ -97,9 +107,9 @@ Thus when we fit a regression without an intercept, we insist that the expected 
 m2 <- lm(Petal.Length ~ Species, data = iris)
 {% endhighlight %}
 
-Linear models with categorical variables are converted into dummy variables. Coefficients rely some information about the expected value of Y for that category. 
+Linear models with categorical variables are converted into dummy variables. Coefficients rely some information about the expected value of $$Y$$ for that category. 
 
-The intercept is interpreted as the expected value of Y for the baseline variable. 
+The intercept is interpreted as the expected value of $$Y$$ for the baseline variable. 
 
 
 {% highlight r %}
@@ -131,7 +141,7 @@ baseline # same as intercept term
 ## 1 1.462
 {% endhighlight %}
 
-The other coefficients represent the expected difference in Y between the specified category and the baseline category. The corresponding test measures whether the expected value of Y for the specified category and the baseline are significantly different from 0.
+The other coefficients represent the expected difference in $$Y$$ between the specified category and the baseline category. The corresponding test measures whether the expected value of $$Y$$ for the specified category and the baseline are significantly different from $$0$$.
 
 
 {% highlight r %}
@@ -162,7 +172,8 @@ iris %>% # same as versicolor coefficient
 ## 1 2.798
 {% endhighlight %}
 
-When the intercept term is excluded, the coefficients are no longer relative comparisons. Instead, they are the expected value of Y for that group. The test measures whether the mean is significant different from 0, doesn't portray much meaning. Because of this, there is no meaning in running a linear model without an intercept for categorical covariates.
+### Excluding the Intercept
+When the intercept term is excluded, the coefficients are no longer relative comparisons. Instead, they are the expected value of $$Y$$ for that group. The test measures whether the mean is significant different from $$0$$, doesn't portray much meaning. Because of this, there is no meaning in running a linear model without an intercept for categorical covariates.
 
 
 {% highlight r %}
@@ -263,6 +274,7 @@ summary(m4a)$coefficients %>% round(3)
 ## Petal.Length:Speciesvirginica     0.453      0.290   1.563    0.120
 {% endhighlight %}
 
+## Excluding the Intercept
 If we were to remove the intercept, we have the following regression lines.
 
 If Species == "setosa":

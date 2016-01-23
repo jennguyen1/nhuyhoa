@@ -62,9 +62,9 @@ $$ SSE = (Y - X\hat{\beta})^T(Y - X\hat{\beta}) = Y^TY - \hat{\beta}^TX^TX\hat{\
 
 From this we can derive an unbiased estimate of $$\sigma^2$$, the mean square error:
 
-$$ MSE = \frac{SSE}{n - p - 1} $$
+$$ MSE = \frac{SSE}{n - p} $$
 
-where $$p$$ is the number of features (so $$p + 1$$ is the total number of parameters).
+where $$p$$ is the number of parameters (including the intercept).
 
 Note that we always minimize the $$SSE$$. So the sum of the residuals is always equal to 0.
 
@@ -91,10 +91,10 @@ Thus $$ \hat{\beta} $$ ~ $$ N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma
  
 # Regression Assumptions
 Assumptions for OLS require $$ e_i $$ ~ $$ N(0, \sigma^2I) $$, in other words:
-* Normal distribution of errors
 * Linear relationship
-* Constant variance of the errors 
 * Independent, uncorrelated errors
+* Constant variance of the errors 
+* Normal distribution of errors
 
 These assumptions fullfill the requirement of the Gauss-Markov theorem.
 
@@ -123,7 +123,7 @@ c(B)
 
 
 {% highlight text %}
-## [1]  0.24715867 -0.07316415  0.03017137 -0.01064759
+## [1]  0.23580360 -0.02930766 -0.09424126 -0.03981435
 {% endhighlight %}
 
 
@@ -138,6 +138,6 @@ c(coef)
 
 {% highlight text %}
 ## (Intercept)          x1          x2          x3 
-##  0.24715867 -0.07316415  0.03017137 -0.01064759
+##  0.23580360 -0.02930766 -0.09424126 -0.03981435
 {% endhighlight %}
 

@@ -9,10 +9,6 @@ categories: ['data wrangling']
 {:toc}
 
 
-{% highlight text %}
-## Warning: no function found corresponding to methods exports from
-## 'SparseM' for: 'coerce'
-{% endhighlight %}
 
 Say we are given a data set where we want to group by a given category and compute summary statistics based on that category. The general process is
 
@@ -396,7 +392,7 @@ A few notes:
 
 * wrap functions in `funs()`
 * for functions with additional arguments, do `funs(my_func(., addnl_args))`
-* to remove columns from being included in calculations, list column names after the `funs()` argument with a `-` in front of each name
+* by default these functions will be applied to all columns; to specify or despecify columns `dplyr::select` special functions can be used after the `funs()` argument
 
 Let's convert all the boolean variables to numeric variables. 
 {% highlight r %}
