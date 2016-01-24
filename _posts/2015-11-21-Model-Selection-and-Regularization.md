@@ -54,6 +54,7 @@ The package `glmnet` is a great resource on fitting regularization models in R. 
 
 ## Ridge Regression
 In ridge regression, we find the values of $$\hat{\beta}_{ridge}$$ such that we minimize the equation
+
 $$\sum^n_{i = 1} (y_i - \beta_0 - \sum^p_{j = 1} \beta_j x_{ij})^2 + \lambda \sum^p_{j = 1} \beta_j^2 = RSS + \lambda \sum^p_{j = 1} \beta^2_j$$
 
 where $$\lambda \ge 0$$ is a tuning parameter, chosen via cross-validation. 
@@ -62,6 +63,7 @@ Or equivalently we minimize
 $$ \sum^n_{i = 1} (y_i-\beta_0-\sum^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$\sum^p_{j = 1} \beta^2 \le s$$.
 
 Then we get
+
 $$ \hat{\beta}_{ridge} = (X'X + \lambda I_p)^{-1} X'Y $$
 
 The term $$\lambda \Sigma_j \beta^2_j$$ is a shrinkage penalty; it is small when the $$\beta$$ estimates are close to zero. The tuning parameter $$\lambda$$ controls the impact of shrinkage.
@@ -131,6 +133,7 @@ Notice how as $$\lambda$$ increases, the coefficients are shrunk towards 0 (but 
 
 ## Lasso Regression
 In lasso regression, we find the values of $$\hat{\beta}_{lasso}$$ such that we minimize the equation
+
 $$\sum^n_{i = 1} (y_i - \beta_0 - \sum^p_{j = 1} \beta_j x_{ij})^2 + \lambda \sum^p_{j = 1} \vert\beta_j \vert = RSS + \lambda \sum^p_{j = 1} \vert\beta_j \vert$$
 
 where $$\lambda \ge 0$$ is a tuning parameter, chosen via cross-validation. 

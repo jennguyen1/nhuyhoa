@@ -69,7 +69,7 @@ We can estimate the model parameters using the training data.
 .$$ \hat{\mu}_k = \frac{1}{n_k}\Sigma_{i} x_i * I(y_i = k)$$
 
 
-.$$\Sigma = \frac{1}{n - 1} \sum_{i = 1}^n (x - \mu)(x - \mu)^T$$
+.$$\Sigma = \frac{1}{n - k} \sum^K \sum_{i = 1}^n (x - \mu_k)(x - \mu-K)^T$$ where $$k$$ is the number of classes
 
 ## Response Probabilities
 We can compute the class probabilities with our discriminant function

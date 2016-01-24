@@ -49,6 +49,8 @@ So the required Fischer information is
 $$f(n) = E_{\theta}[I(0)] = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2}{\theta_1^2}$$
 
 From here we can calculate $$E[I(0)]$$, which is a function of required sample $$n$$ (required sample size), and solve for $$n$$. We can assume that $$E_{H_0}[I(0)] = E_{H_1}[I(0)]$$.
+
+For one-sided tests, change the $$Z_{1 - \alpha/2}$$ to $$Z_{1 - \alpha}$$.
  
 # Examples
 Let $$\epsilon_1 = n_1 / n$$ and $$\epsilon_2 = n_2 / n$$. 

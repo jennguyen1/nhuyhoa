@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dimension Reduction"
+title: "Dimension Reduction: Principal Components"
 date: "January 3, 2016"
 categories: ['statistics', 'machine learning']
 ---
@@ -14,7 +14,7 @@ categories: ['statistics', 'machine learning']
 PCA is a dimension-reduction tecnique that produces a low-dimensional representation of a high-dimensional dataset. It finds a sequence of linear combinations of the variables that have
 
 * Maximal variance
-* Mutually uncorrelated
+* Mutually uncorrelated (orthogonal)
 
 In doing so, PCA can reduce the number of features from $$p$$ to $$M$$, where $$M < p$$.
 It is often helpful in dealing with cases in which the curse of dimensionality is severe. 
@@ -31,9 +31,9 @@ $$ X = U \Sigma V^T$$
 
 where 
 
-* $$\Sigma_{pxp}$$ is diagonal  
-* $$V_{pxp}$$ is orthogonal ($$A$$ is orthogonal if $$A^TA = AA^T = I$$). 
-* $$U_{Nxp}$$ is orthogonal
+* $$\Sigma_{Nxp}$$ is diagonal matrix with nonzero elements along first $$p$$ diagonals
+* $$V_{pxp}$$ is an orthogonal matrix ($$A$$ is orthogonal if $$A^TA = AA^T = I$$) in which the columns form an orthonormal basis for the row vectors of $$X$$ 
+* $$U_{NxN}$$ is an orthogonal matrix in which the columns form an orthonormal basis for the space spanned by the column vectors of $$X$$
 
 We can regenerate the symmetric matrix with
 $$X^T X = (U \Sigma V^T)^T (U \Sigma V^T)$$
@@ -43,7 +43,7 @@ $$X^T X = (V \Sigma^2 V^T)^T$$
 The matrix $$X^T X$$ is symmetric and so it can be written in the form $$Q \Lambda Q^T$$ where $$Q$$ is the orthogonal matrix of eigenvectors and $$\Lambda$$ are is a diagonal matrix of eigenvalues. Thus
 
 * Columns of $$V$$ are eigenvectors (of $$X^TX$$), ie the principal components loadings
-* Diagonal entries of $$D$$ are the eigenvalues (of $$X^TX$$), ie the standard deviations (can derive the proportion of variance explained)
+* Diagonal entries of $$D$$ are the eigenvalues (of $$X^TX$$) ordered from largest to smallest, ie the standard deviations (can derive the proportion of variance explained)
 
 We can also rearrange the SVD formula $$X = UDV^T$$ to $$XV = UD$$. This vector contains the principal component scores. 
 
@@ -166,11 +166,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.702    2.721    2.610    2.678    2.738
-## adjCV        6.123    2.690    2.709    2.592    2.659    2.715
+## CV           6.123    2.633    2.646    2.468    2.500    2.507
+## adjCV        6.123    2.624    2.637    2.455    2.487    2.495
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.819    2.934    2.994    3.415     3.601
-## adjCV    2.789    2.897    2.952    3.338     3.510
+## CV       2.883    3.063    3.062    3.430     3.628
+## adjCV    2.850    3.021    3.019    3.363     3.545
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
