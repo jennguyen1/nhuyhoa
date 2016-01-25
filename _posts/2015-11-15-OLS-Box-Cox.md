@@ -27,15 +27,15 @@ $$ f(Y_i, X_i, i = 1...n$$ | $$ \lambda, \beta_0, \beta_1, \sigma^2) = \Pi^n_{i 
 
 # Implementation
 
-|lambda |transformation |
-|:------|:--------------|
-|-2     |Y^(-2)         |
-|-1     |Y^(-1)         |
-|-0.5   |Y^(-0.5)       |
-|0      |log(Y)         |
-|0.5    |Y^0.5          |
-|1      |Y              |
-|2      |Y^2            |
+lambda      | transformation  
+----------- |---------------- 
+$$-2$$      | $$Y^{-2}$$
+$$-1$$      | $$Y^{-1}$$
+$$-0.5$$    | $$Y^{-0.5}$$
+$$0$$       | $$\log(Y)$$
+$$0.5$$     | $$Y^{0.5}$$
+$$1$$       | $$Y$$
+$$2$$       | $$Y^2$$
 
 The $$\lambda$$ value corresponding to the best transformation can computed in R. 
 
@@ -89,7 +89,7 @@ mod <- lm(survtimes ~ A*B, data = data)
 plot(mod$residuals ~ mod$fitted.values)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-15-OLS-Box-Cox/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-15-OLS-Box-Cox/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 There is funneling pattern given in the resids vs fitted plot that indicates heteroskedaskticity.
 
 
@@ -101,7 +101,7 @@ library(MASS)
 bcmod <- boxcox(mod)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-15-OLS-Box-Cox/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-15-OLS-Box-Cox/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 {% highlight r %}
 bcmod$x[bcmod$y == max(bcmod$y)]
@@ -121,5 +121,5 @@ transmod <- lm(log(survtimes) ~ A*B, data = data)
 plot(transmod$residuals ~ transmod$fitted.values)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-15-OLS-Box-Cox/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-11-15-OLS-Box-Cox/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 After the transformation, we see that the prior heterskedaskticity has been alleviated. 

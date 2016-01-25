@@ -30,11 +30,16 @@ The value $$\lambda$$ is found through maximum likelihood.
 $$ f(Y_i, X_i, i = 1...n$$ | $$ \lambda, \beta_0, \beta_1, \sigma^2) = \Pi^n_{i = 1} \frac{1}{\sqrt{2 \pi \sigma^2}} exp[\frac{-1}{2\sigma^2} (Y_i(\lambda) - \beta_0 - \beta_1 X_i)] $$
 
 # Implementation
-```{r, echo = FALSE}
-lambda = c("-2", "-1", "-0.5", "0", "0.5", "1", "2")
-transformation = c("Y^(-2)", "Y^(-1)", "Y^(-0.5)", "log(Y)", "Y^0.5", "Y", "Y^2")
-data.frame(lambda, transformation) %>% kable
-```
+
+lambda      | transformation  
+----------- |---------------- 
+$$-2$$      | $$Y^{-2}$$
+$$-1$$      | $$Y^{-1}$$
+$$-0.5$$    | $$Y^{-0.5}$$
+$$0$$       | $$\log(Y)$$
+$$0.5$$     | $$Y^{0.5}$$
+$$1$$       | $$Y$$
+$$2$$       | $$Y^2$$
 
 The $$\lambda$$ value corresponding to the best transformation can computed in R. 
 
