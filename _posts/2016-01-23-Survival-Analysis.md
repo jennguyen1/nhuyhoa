@@ -45,7 +45,7 @@ Censoring may occur in several ways.
 ## Kaplan-Meier Estimate of S(t)
 Suppose we have data in the following form. First we assume that there is no censoring.
 
-IMAGE
+![Survival Times](http://jnguyen92.github.io/nhuyhoa/figure/images/survival_times.png)
 
 Since all failure times $$T_i$$ are observed, so
 $$\hat{F}(t) = \frac{1}{n}$$ and

@@ -25,11 +25,15 @@ The batch gradient descent algorithm updates the parameters after examining ever
   $$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta)$$
 **}**
 
-The stochastic gradient descent algorithm updates the parameters after examining a single training observation.
+Batch gradient descent can easily be parallelized for efficient computation. The summation related to the differentiation term could be split up across different sections and can be combined after computation.
+
+The stochastic gradient descent algorithm updates the parameters after examining a single training observation. The outer loop can be repeated generally $$1-10x$$.
 
 **Repeat{ for i = 1 to n: {**
       $$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta)$$
 **}}**
+
+A compromise between the two is mini-batch gradient descent. For this method rather than adjusting $$\theta_j$$ after looking at $$1$$ training observation, we look at $$m$$ training observations where $$m < n$$. The for loop iterations from $$1$$ to $$n$$ in steps of $$m$$. 
 
 The value $$\alpha$$ is the learning rate. Some care should be taken in choosing the value of $$\alpha$$. If $$\alpha$$ was too small, convergence may be slower. If $$\alpha$$ was too big, the algorithm may overshoot the minimum and fail to converge. 
 
