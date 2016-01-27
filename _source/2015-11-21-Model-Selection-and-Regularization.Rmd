@@ -30,7 +30,7 @@ We can use a variety of different statistics to compare models. Software will ha
 * Smaller values AIC and BIC are better
 * Values of Mallow's Cp closer to p is better
 
-Values:
+**Values:**
 
 * .$$Adj.R^2 = 1 - \frac{SS_R/(n-p)}{SS_T/(n-1)}$$
 * .$$AIC = -2 l(\hat{\beta}, y) + 2p$$
@@ -82,22 +82,22 @@ The term $$\lambda \Sigma_j \beta^2_j$$ is a shrinkage penalty; it is small when
 * $$\lambda \rightarrow \infty$$, coefficients approach 0, ie the null model
 * Increasing $$\lambda$$ decreases variance, but increases bias (bias variance tradeoff)
 
-Important Notes:
+**Important Notes:**
 
 * Ridge regression uses the $$l_2$$ norm, otherwise defined as $$\sqrt{\Sigma_{j = 1}^p \beta^2_j}$$ (euclidian distance)
 * While we shrink the $$\beta$$ coefficients, we do not shrink the intercept parameter
 * Ridge regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \beta^2_j$$ term), so we must standardize the covariates prior to applying ridge regression (good to standardize y responses too)
 
-Advantages:
+**Advantages:**
 
 * Ridge regression works best when OLS has high variance, $$p >> n$$, high multicollinearity
 * If a group of covariates are highly correlated, they will have similar estimated coefficients (group selection)
 
-Disadvantages:
+**Disadvantages:**
 
 * Ridge regression does not perform model selection
 
-Example:
+**Example:**
 ```{r}
 sim_ridge_cv <- cv.glmnet(X, Y, alpha = 0)
 
@@ -125,23 +125,23 @@ $$ \sum^n_{i = 1} (y_i-\beta_0-\sum^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$
 
 The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tuning parameter $$\lambda$$ controls the impact of shrinkage. Lasso is different from ridge because it can shrink the coefficient estimates to zero when $$\lambda$$ is large. Thus lasso regression can perform variable selection.
 
-Important Notes: 
+**Important Notes:**
 
 * Ridge regression uses the $$l_1$$ norm, otherwise defined as $$\Sigma_{j = 1}^p \vert \beta_j \vert$$ (manhattan distance)
 * While we shrink the $$\beta$$ coefficients, we do not shrink the intercept parameter
 * Lasso regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \vert \beta_j \vert$$ term), so we must standardize the covariates prior to applying lasso regression (good to standardize y responses too)
 
-Advantages:
+**Advantages:**
 
 * Lasso regression works best when OLS has high variance
 * Can perform variable selection
 
-Disadvantages:
+**Disadvantages:**
 
 * When there is a group of highly collinear covariates, LASSO selects one variable and ignores the others
 * When $$p > n$$, LASSO can only select at most $$n$$ variables
 
-Example:
+**Example:**
 ```{r}
 sim_lasso_cv <- cv.glmnet(X, Y, alpha = 1)
 

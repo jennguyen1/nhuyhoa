@@ -68,14 +68,18 @@ where $$p$$ is the probability of success and $$o$$ is the odds.
 
 ## Interpretation of Coefficients
 Odds provide a simple interpretation of the $$\hat{\beta}$$ coefficients in logistic regression. 
-$$\log(odds \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
-$$\log(odds \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
+
+-----------------------------------|---------------------
+$$\log(odds \vert x_1 = x + 1)$$   | $$ = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
+$$\log(odds \vert x_1 = x)$$       | $$ = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
 
 Then 
-$$ \log(odds \vert x_1 = x + 1) - \log(odds \vert x_1 = x) = \beta_1 $$
-$$ \log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) = \beta_1 $$
-$$ \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} = e^{\beta_1} $$
-$$ (odds \vert x_1 = x + 1) = e^{\beta_1} * (odds \vert x_1 = x)$$
+
+-------------------------------------------------------------|---------------------
+$$ \log(odds \vert x_1 = x + 1) - \log(odds \vert x_1 = x)$$ | $$= \beta_1 $$
+$$ \log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) $$ | $$= \beta_1 $$
+$$ \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} $$ | $$= e^{\beta_1} $$
+$$ (odds \vert x_1 = x + 1) $$ | $$= e^{\beta_1} * (odds \vert x_1 = x)$$
 
 Thus we can interpret the $$\hat{\beta}_i$$ coefficient as follows: holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$.
 
@@ -111,7 +115,7 @@ If we conclude that $$\hat{\beta}_2$$, $$\hat{\beta}_3$$, $$\hat{\beta}_4$$, $$\
 ### Continuous and Categorical Variables
 Similar to OLS, when there are a combination of continuous and categorical variables we can break down the overall model into smaller equations. Then we can do tests to determine whether there are significant differences between the categories and whether the effect of the continuous variable is the same for all categories. 
 
-# Response Probabiltiies
+# Response Probabilities
 To estimate response probabilities from the $$x$$s, we have
 
 $$ \hat{\pi}_i = \frac{exp(\eta_{i})}{1 + exp(\eta_{i})}$$
@@ -120,14 +124,18 @@ $$ \hat{\pi}_i = \frac{exp(\eta_{i})}{1 + exp(\eta_{i})}$$
 We can find the $$x$$ value in which there is a $$50$$% chance of success. 
 
 One variable case:
-$$\log \left( \frac{0.5}{1 - 0.5} \right) = \beta_0 + \beta_1 x_1 $$
-$$ 0 = \beta_0 + \beta_1 x_1 $$
-$$ x_1 = -\frac{\beta_0}{\beta_1} $$
+
+--------------------------------------------|-------------------------
+$$\log \left( \frac{0.5}{1 - 0.5} \right)$$ | $$ = \beta_0 + \beta_1 x_1 $$
+$$ 0 $$                                     | $$ = \beta_0 + \beta_1 x_1 $$
+$$ x_1 $$                                   | $$ = -\frac{\beta_0}{\beta_1} $$
 
 Multiple variables:
-$$\log \left( \frac{0.5}{1 - 0.5} \right) = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
-$$ 0 = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
-$$ x_1 = -\frac{\beta_0 + \beta_2 x_2 + ... + \beta_k x_k}{\beta_1} $$
+
+--------------------------------------------|-------------------------
+$$\log \left( \frac{0.5}{1 - 0.5} \right) $$| $$= \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
+$$ 0$$                                      | $$ = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
+$$ x_1 $$                                   | $$= -\frac{\beta_0 + \beta_2 x_2 + ... + \beta_k x_k}{\beta_1} $$
 
 To determine the standard error of this estimate, we can use the [delta method][func_RV_delta_method_post]{:target = "_blank"}. 
 
@@ -150,11 +158,12 @@ Then the log likelihood be
 $$l(\theta) = \sum^n_{i = 1} y_i \log{h(x_i)} + (1 - y_i) \log(1 - h(x_i))$$
 
 The partial derivative of $$l(\theta)$$ wrt $$\theta_j$$ is then
-$$\frac{\partial}{\partial \theta_j} l(\theta)$$
-$$ = \left( y \frac{1}{g(\theta^T x)} - (1 - y) \frac{1}{1 - g(\theta^T x)} \right) \frac{\partial}{\partial \theta_j} g(\theta^T x)$$
-$$ = \left( y * \frac{1}{g(\theta^T x)} - (1 - y) * \frac{1}{1 - g(\theta^T x)} \right) g(\theta^T x) (1 - g(\theta^T x)) \frac{\partial}{\partial \theta_j} \theta^T x$$
-$$ = \left( y* (1 - g(\theta^T x)) - (1 - y)* g(\theta^Tx) \right) x_j$$
-$$ = (y - h(x)) x_j$$
+
+-------------------------------------------------|-------------------------
+$$\frac{\partial}{\partial \theta_j} l(\theta)$$ | $$ = \left( y \frac{1}{g(\theta^T x)} - (1 - y) \frac{1}{1 - g(\theta^T x)} \right) \frac{\partial}{\partial \theta_j} g(\theta^T x)$$
+                                                 | $$ = \left( y * \frac{1}{g(\theta^T x)} - (1 - y) * \frac{1}{1 - g(\theta^T x)} \right) g(\theta^T x) (1 - g(\theta^T x)) \frac{\partial}{\partial \theta_j} \theta^T x$$
+                                                 | $$ = \left( y* (1 - g(\theta^T x)) - (1 - y)* g(\theta^Tx) \right) x_j$$
+                                                 | $$ = (y - h(x)) x_j$$
 
 So the gradient ascent rule is 
 $$ \theta_j := \theta_j + \alpha (y - h(x))x_j $$

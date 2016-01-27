@@ -36,9 +36,11 @@ where
 * $$U_{NxN}$$ is an orthogonal matrix in which the columns form an orthonormal basis for the space spanned by the column vectors of $$X$$
 
 We can regenerate the symmetric matrix with
-$$X^T X = (U \Sigma V^T)^T (U \Sigma V^T)$$
-$$X^T X = (V \Sigma U^T) (U \Sigma V^T)$$
-$$X^T X = (V \Sigma^2 V^T)^T$$
+
+---------|---------------------
+$$X^T X$$| $$ = (U \Sigma V^T)^T (U \Sigma V^T)$$
+         | $$ = (V \Sigma U^T) (U \Sigma V^T)$$
+         | $$= (V \Sigma^2 V^T)^T$$
 
 The matrix $$X^T X$$ is symmetric and so it can be written in the form $$Q \Lambda Q^T$$ where $$Q$$ is the orthogonal matrix of eigenvectors and $$\Lambda$$ are is a diagonal matrix of eigenvalues. Thus
 
@@ -166,11 +168,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.633    2.646    2.468    2.500    2.507
-## adjCV        6.123    2.624    2.637    2.455    2.487    2.495
+## CV           6.123    2.737    2.751    2.628    2.662    2.718
+## adjCV        6.123    2.723    2.737    2.609    2.642    2.695
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.883    3.063    3.062    3.430     3.628
-## adjCV    2.850    3.021    3.019    3.363     3.545
+## CV       2.777    2.954    3.055    3.520     3.864
+## adjCV    2.751    2.919    3.012    3.451     3.770
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps

@@ -63,14 +63,18 @@ The function `offset()` means to not fit a coefficient to a term (or set the coe
 
 ## Interpretation of Coefficients
 Interpretation of coefficients is similar to the logistic regression case. 
-$$\log(y \vert x_1 = x + 1) = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
-$$\log(y \vert x_1 = x) = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
+
+------------------------------|---------------------
+$$\log(y \vert x_1 = x + 1)$$ | $$ = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
+$$\log(y \vert x_1 = x) $$    | $$ = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
 
 Then 
-$$ \log(y \vert x_1 = x + 1) - \log(odds \vert x_1 = x) = \beta_1 $$
-$$ \log \left( \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} \right) = \beta_1 $$
-$$ \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} = e^{\beta_1} $$
-$$ (y \vert x_1 = x + 1) = e^{\beta_1} * (y \vert x_1 = x)$$
+
+-----------------------------------------------------------|---------------------
+$$ \log(y \vert x_1 = x + 1) - \log(odds \vert x_1 = x) $$ | $$ = \beta_1 $$
+$$ \log \left( \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} \right)$$ | $$ = \beta_1 $$
+$$ \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} $$          | $$ = e^{\beta_1} $$
+$$ (y \vert x_1 = x + 1) $$                                | $$= e^{\beta_1} * (y \vert x_1 = x)$$
 
 Holding all other predictors constant, a unit increase in $$x_i$$ increases the count by a factor of $$exp(\hat{\beta}_i)$$
 

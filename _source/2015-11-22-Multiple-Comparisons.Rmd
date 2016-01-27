@@ -23,19 +23,14 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 # Why It's Needed
 When we want to conduct multiple (independent) tests, we need account for the number of tests. Assume that each test has a type I error rate of $$\alpha = 0.05$$. 
 
-If we conduct $$p$$ number of tests, the probability that we don't make an error on any of those tests is $$(1 - \alpha)^p$$. 
-```{r, echo = FALSE}
-n <- c("1", "2", "...", "p")
-p <- c("(1 - a)^1", "(1 - a)^2", "...", "(1 - a)^p")
-data.frame(num_tests = n, prob_no_error = p) %>% kable
-```
+If we conduct $$p$$ number of tests, the probability that we don't make an error on any of those tests is $$(1 - \alpha)^p$$. From this we can easily compute the probability of making an error if we conducted $$p$$ tests. 
 
-From this we can easily compute the probability of making an error if we conducted $$p$$ tests. 
-```{r, echo = FALSE}
-n <- c("1", "2", "...", "p")
-p <- c("1 - (1 - a)^1", "1 - (1 - a)^2", "...", "1 - (1 - a)^p")
-data.frame(num_tests = n, prob_error = p) %>% kable
-```
+Number of Tests | P(Type 1 Error) = 1 - P(rejection)
+----------------|-----------------------------------
+    $$1$$       |   $$1 - (1 - \alpha)^1$$
+    $$2$$       |   $$1 - (1 - \alpha)^1$$
+    ...         |   ...
+    $$p$$       |   $$1 - (1 - \alpha)^p$$
 
 ```{r, echo = FALSE}
 # plot n vs probability of error

@@ -181,22 +181,20 @@ However, we see that there are $$0$$s in the data. This is concerning because mu
 
 Now say we are given information of a fruit that is long, sweet and yellow. Given this information we can predict what class this fruit belongs to.
 
-$$P(apple \vert long, sweet, yellow)$$
-$$ = P(long \vert apple)P(sweet \vert apple)P(yellow \vert apple)P(apple) $$
-$$ = 0.0037 * 0.81 * 0.19 * 0.18$$
-$$ = 0.0001$$
+---------------------------------------|---------------------
+$$P(apple \vert long, sweet, yellow)$$ | $$ = P(long \vert apple)P(sweet \vert apple)P(yellow \vert apple)P(apple) $$
+                                       | $$ = 0.0037 * 0.81 * 0.19 * 0.18$$
+                                       | $$ = 0.0001$$
 
+---------------------------------------|---------------------
+$$P(banana \vert long, sweet, yellow)$$| $$ = P(long \vert banana)P(sweet \vert banana)P(yellow \vert banana)P(banana)$$
+                                       | $$ = 0.39 * 0.21 * 0.39 * 0.67$$
+                                       | $$ = 0.021$$
 
-$$P(banana \vert long, sweet, yellow)$$
-$$ = P(long \vert banana)P(sweet \vert banana)P(yellow \vert banana)P(banana)$$
-$$ = 0.39 * 0.21 * 0.39 * 0.67$$
-$$ = 0.021$$
-
-
-$$P(other \vert long, sweet, yellow)$$
-$$ = P(long \vert other)P(sweet \vert other)P(yellow \vert other)P(other)$$
-$$ = 0.45 * 0.32 * 0.23 * 0.15$$
-$$ = 0.005$$
+---------------------------------------|---------------------
+$$P(other \vert long, sweet, yellow)$$ | $$ = P(long \vert other)P(sweet \vert other)P(yellow \vert other)P(other)$$
+                                       | $$ = 0.45 * 0.32 * 0.23 * 0.15$$
+                                       | $$ = 0.005$$
 
 Based off the evidence, we assume that this sweet, long, and yellow fruit is a banana. 
 

@@ -41,8 +41,8 @@ $$H_0: D = 0$$
 # Randomization
 Random assignments of subjects to treatment groups is important for causal experiments. Randomization ensures that
 
-* .$$E[Y(u) \vert T(u) = A] = E[Y_A(u)]
-* .$$E[Y(u) \vert T(u) = B] = E[Y_B(u)]
+* .$$E[Y(u) \vert T(u) = A] = E[Y_A(u)]$$
+* .$$E[Y(u) \vert T(u) = B] = E[Y_B(u)]$$
 
 so that 
 

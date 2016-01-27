@@ -25,12 +25,13 @@ Clustering is an unsupervised learning technique. Unsupervised learning methods 
 
 There are a variety of distance metrics that we can use. All metrics have the following properties
 
-* $$dist(x_i, x_j) \ge 0$$
-* $$dist(x_i, x_j) = 0$$ $$iff$$ $$x_i = x_j$$
-* $$dist(x_i, x_j) = dist(x_j, x_i)$$
-* $$dist(x_i, x_j) \le dist(x_i, x_k) + dist(x_k, x_j)$$
+* $$dist(x_i, x_j) \ge 0$$.
+* $$dist(x_i, x_j) = 0$$ $$iff$$ $$x_i = x_j$$.
+* $$dist(x_i, x_j) = dist(x_j, x_i)$$.
+* $$dist(x_i, x_j) \le dist(x_i, x_k) + dist(x_k, x_j)$$.
 
 Common distance metrics include
+
 * Euclidean distance: $$d(x_i, x_k) = \sqrt{\sum^p_{j = 1} (x_{ij} - x_{kj})^2}$$
 * Manhattan distance: $$d(x_i, x_k) = \sqrt{\sum^p_{j = 1} \vert x_{ij} - x_{kj} \vert}$$
 * Correlation based distance
@@ -134,10 +135,10 @@ $$f_j (\overrightarrow{x_i}) = \frac{1}{\sqrt{(2\pi)^p \vert \Sigma_j \vert}} ex
 ## EM Algorithm
 The EM algorithm sets the paramters of the Gaussians $$\Theta$$ to maximize the log likelihood of the data $$X$$.
 
-$$\log(likelihood(X\vert \Theta))$$
-$$ = \log\prod^n_{i=1} P(\overrightarrow{x_i})$$
-$$ = \log \prod^n_{i = 1} \sum^K_{k = 1} P_k(f_k(\overrightarrow{x_i}))$$
-$$ = \sum^n_{i = 1} \log \sum^K_{k = 1} P_k(f_k(\overrightarrow{x_i}))$$
+------------------------------------|--------------------
+$$\log(likelihood(X\vert \Theta))$$ | $$ = \log\prod^n_{i=1} P(\overrightarrow{x_i})$$
+                                    | $$ = \log \prod^n_{i = 1} \sum^K_{k = 1} P_k(f_k(\overrightarrow{x_i}))$$
+                                    | $$ = \sum^n_{i = 1} \log \sum^K_{k = 1} P_k(f_k(\overrightarrow{x_i}))$$
 
 (We assume the covariance matrix is fixed and only adjust the means and weights) (Idk how to do the covariance matrix yet). 
 

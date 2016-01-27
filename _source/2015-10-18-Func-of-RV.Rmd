@@ -20,22 +20,27 @@ Then
 
 $$ f_y(y) = f_x( g^{-1}(y) ) * \vert \frac{dg^{-1}}{dY} \vert $$
 
-Example:
+**Example:**
 
-Let $$B$$ ~ $$ beta(\frac{\alpha}{2}, \frac{\beta}{2}) $$ and $$ F = \frac{\beta B}{\alpha (1 - B)} $$. What is the distribution of F?
+Let $$B$$ ~ $$ beta(\frac{\alpha}{2}, \frac{\beta}{2}) $$ and $$ F = \frac{\beta B}{\alpha (1 - B)} $$. What is the distribution of $$F$$?
 
 We have $$ f_b(x)= x^{\alpha/2 - 1} (1 - x)^{\beta/2 - 1} \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)}{\Gamma\left(\frac{\alpha}{2}\right)\Gamma\left(\frac{\beta}{2}\right)} $$
 
-$$ Y = F = \frac{\beta B}{\alpha (1 - B)} $$
-$$ \alpha F - \alpha FB = \beta B$$
-$$ \alpha F = B (\beta + \alpha F) $$
-1. $$ g^{-1}(Y) = B = \frac{\alpha F}{\beta + \alpha F} $$
-2. $$ \frac{dg^{-1}}{dY} = \frac{\alpha\beta}{(\beta + \alpha F)^2} $$
+--------------------------|----------------
+$$ Y = F $$               | $$= \frac{\beta B}{\alpha (1 - B)} $$
+$$ \alpha F - \alpha FB$$ | $$ = \beta B$$
+$$ \alpha F $$            | $$= B (\beta + \alpha F) $$
 
-Now plug in $$ f_y(y) = f_b\left( \frac{\alpha F}{\beta + \alpha F}  \right) \vert \frac{\alpha\beta}{(\beta + \alpha F)^2} \vert $$
-$$ = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {\alpha/2 - 1} \left( 1 - \frac{\alpha F}{\beta + \alpha F} \right) ^ {\beta/2 - 1} \frac{\alpha\beta}{(\beta + \alpha F)^2} $$
-$$ = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {\alpha/2 - 1} \left( \frac{\alpha F}{\beta + \alpha F} \right) \left( \frac{1}{F} \right) \left( \frac{\beta}{\beta + \alpha F}  \right) \left( \frac{\beta}{\beta + \alpha F} \right) ^ {\beta/2 - 1} $$
-$$ = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {\alpha/2} \left( \frac{1}{F} \right) \left( \frac{\beta}{\beta + \alpha F} \right) ^ {\beta/2} $$
+1. $$ g^{-1}(Y) = B = \frac{\alpha F}{\beta + \alpha F} $$.
+2. $$ \frac{dg^{-1}}{dY} = \frac{\alpha\beta}{(\beta + \alpha F)^2} $$.
+
+Now plug in 
+
+------------------|----------------
+$$ f_y(y) $$      | $$ = f_b\left( \frac{\alpha F}{\beta + \alpha F}  \right) \vert \frac{\alpha\beta}{(\beta + \alpha F)^2} \vert $$
+                  | $$ = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {\alpha/2 - 1} \left( 1 - \frac{\alpha F}{\beta + \alpha F} \right) ^ {\beta/2 - 1} \frac{\alpha\beta}{(\beta + \alpha F)^2} $$
+                  | $$ = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {\alpha/2 - 1} \left( \frac{\alpha F}{\beta + \alpha F} \right) \left( \frac{1}{F} \right) \left( \frac{\beta}{\beta + \alpha F}  \right) \left( \frac{\beta}{\beta + \alpha F} \right) ^ {\beta/2 - 1} $$
+                  | $$ = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {\alpha/2} \left( \frac{1}{F} \right) \left( \frac{\beta}{\beta + \alpha F} \right) ^ {\beta/2} $$
 
 $$ f_y(y) = \frac{\Gamma\left(\frac{\alpha + \beta}{2}\right)} {\Gamma\left(\frac{\alpha}{2}\right) \Gamma\left(\frac{\beta}{2}\right)} \alpha ^{\alpha/2} \beta ^{\beta/2} F^{\alpha/2 - 1} \left( \frac{\alpha F}{\beta + \alpha F} \right) ^ {(\alpha + \beta) / 2}  $$
 
@@ -79,7 +84,7 @@ $$E(X) \approx g(\mu)$$
 
 $$Var(X) \approx [g'(\mu)]^2 Var(Y) = [g'(\mu)]^2 \sigma^2$$
 
-Example: 
+**Example:**
 
 Let $$Y$$ ~ $$Bin(n, p)$$ and $$\hat{\theta} = \log \left( \frac{Y}{n - Y} \right)$$
 

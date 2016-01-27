@@ -16,7 +16,7 @@ options(show.signif.stars=FALSE)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
-Survival analysis referrs to the analysis of the occurance and timing of discrete events or failures. Failures can vary depending on the application. 
+Survival analysis refers to the analysis of the occurance and timing of discrete events or failures. Failures can vary depending on the application. 
 
 One feature of survival analysis is censoring, which is when the event of interest is not obseved during the period of study for some subjects. We assume that the event will occur in all subjects given sufficient follow up. Subjects without events are those for whom the event will occur in the future, although the time of event is unknown. We also assume that censoring is independent of failure time.
 
@@ -90,10 +90,12 @@ We can use the relation $$\log (\hat{S}(t)) = - \hat{\Lambda}(t)$$ to obtain est
 $$\hat{\Lambda}(t) = -\sum_{k:t_k \le t} \log \left( 1 - \frac{d_k}{n_k} \right)$$
 
 We can assume $$d_k$$ ~ $$Bin(n_k, p_k)$$ and estimate $$p_k = \frac{d_k}{n_k}$$ and use the delta method on $$\log(1 - \frac{d_k}{n_k})$$
-$$Var(\log(1 - d_k/n_k)) = \frac{1}{(1 - d_k/n_k)^2} Var(1 - d_k/n_k)$$
-$$ = \frac{1}{(1 - d_k/n_k)^2n_k^2} Var(d_k)$$
-$$ = \frac{n_k}{(n_k - d_k)^2} \frac{d_k}{n_k} \frac{n_k - d_k}{n_k}$$
-$$ = \frac{d_k}{n_k(n_k - d_k)}$$
+
+--------------------------|-----------------------
+$$Var(\log(1 - d_k/n_k))$$| $$ = \frac{1}{(1 - d_k/n_k)^2} Var(1 - d_k/n_k)$$
+                          | $$ = \frac{1}{(1 - d_k/n_k)^2n_k^2} Var(d_k)$$
+                          | $$ = \frac{n_k}{(n_k - d_k)^2} \frac{d_k}{n_k} \frac{n_k - d_k}{n_k}$$
+                          | $$ = \frac{d_k}{n_k(n_k - d_k)}$$
 
 The terms $$\log(1 - d_1/n_1)$$, $$\log(1 - d_2/n_2)$$, ... are not independent but they are uncorrelated so the variance of of their sum is the sum of their variances
 

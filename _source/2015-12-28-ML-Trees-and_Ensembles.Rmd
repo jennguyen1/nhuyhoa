@@ -13,13 +13,7 @@ library(jn.general)
 lib(data, viz)
 library(ISLR)
 library(MASS)
-library(rpart)
-library(rpart.plot)
-library(tree)
-library(partykit)
-library(randomForest)
-library(gbm)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center', warning = FALSE, message = FALSE)
 ```
 
 ![tree](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
@@ -219,6 +213,9 @@ colnames(carseats) <- tolower(colnames(carseats))
 We use the packages `rpart` and `rpart.plot`.
 
 ```{r}
+library(rpart)
+library(rpart.plot)
+
 # fit decision tree
 c_tree <- rpart(high ~ . - sales, carseats, method = "class")
 # plot tree
@@ -239,6 +236,8 @@ rsq.rpart(r_tree)
 
 We can do another example with the iris data set.
 ```{r, fig.width = 15}
+library(partykit)
+
 # fit model 
 iris_tree <- rpart(Species ~ Sepal.Width, Petal.Width, data = iris)
 
@@ -248,19 +247,23 @@ plot(iris_party)
 ```
 
 ```{r}
+library(tree)
+
 # fit model with tree
 iris_tree_2 <- tree(Species ~ Sepal.Width + Petal.Width, data = iris)
 
 # another way to view cut
-plot(iris$Petal.Width, iris$Sepal.Width, pch=19, col=as.numeric(iris$Species))
-partition.tree(iris_tree_2, label="Species", add=TRUE)
-legend("topright",legend=unique(iris$Species), col=unique(as.numeric(iris$Species)), pch=19)
+plot(iris$Petal.Width, iris$Sepal.Width, pch = 19, col = as.numeric(iris$Species))
+partition.tree(iris_tree_2, label="Species", add = TRUE)
+legend("topright",legend = unique(iris$Species), col = unique(as.numeric(iris$Species)), pch = 19)
 ```
 
 **Random Forests**
 Random forests can be fit with the `randomForest` package. 
 
 ```{r}
+library(randomForest)
+
 # fit random forest
 forest <- randomForest(medv ~ ., data = Boston, mtry = 5,  importance = TRUE)
 forest
@@ -270,7 +273,10 @@ importance(forest)
 ```
 
 **Boosting**
+Boosted models can be fit using the `gbm` package
 ```{r}
+library(gbm)
+
 # fit gbm
 boost <- gbm(medv ~ ., data = Boston, distribution = "gaussian", n.trees = 10000, shrinkage = 0.01, interaction.depth = 4)
 

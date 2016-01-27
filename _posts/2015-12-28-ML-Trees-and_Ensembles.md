@@ -204,6 +204,9 @@ We use the packages `rpart` and `rpart.plot`.
 
 
 {% highlight r %}
+library(rpart)
+library(rpart.plot)
+
 # fit decision tree
 c_tree <- rpart(high ~ . - sales, carseats, method = "class")
 # plot tree
@@ -235,12 +238,12 @@ printcp(c_tree)
 ##         CP nsplit rel error  xerror     xstd
 ## 1 0.286585      0   1.00000 1.00000 0.059980
 ## 2 0.109756      1   0.71341 0.71341 0.055477
-## 3 0.045732      2   0.60366 0.71951 0.055615
-## 4 0.036585      4   0.51220 0.71951 0.055615
-## 5 0.027439      5   0.47561 0.73780 0.056017
-## 6 0.024390      7   0.42073 0.71951 0.055615
-## 7 0.012195      8   0.39634 0.66463 0.054298
-## 8 0.010000     10   0.37195 0.64634 0.053821
+## 3 0.045732      2   0.60366 0.63415 0.053492
+## 4 0.036585      4   0.51220 0.62805 0.053324
+## 5 0.027439      5   0.47561 0.59756 0.052450
+## 6 0.024390      7   0.42073 0.57927 0.051896
+## 7 0.012195      8   0.39634 0.60976 0.052806
+## 8 0.010000     10   0.37195 0.59146 0.052268
 {% endhighlight %}
 
 
@@ -280,14 +283,14 @@ rsq.rpart(r_tree)
 ## n= 506 
 ## 
 ##         CP nsplit rel error  xerror     xstd
-## 1 0.452744      0   1.00000 1.00312 0.083091
-## 2 0.171172      1   0.54726 0.64306 0.058531
-## 3 0.071658      2   0.37608 0.41965 0.046179
-## 4 0.036164      3   0.30443 0.34650 0.041608
-## 5 0.033369      4   0.26826 0.35190 0.042314
-## 6 0.026613      5   0.23489 0.34392 0.043532
-## 7 0.015851      6   0.20828 0.30780 0.042288
-## 8 0.010000      7   0.19243 0.30510 0.042599
+## 1 0.452744      0   1.00000 1.00380 0.082945
+## 2 0.171172      1   0.54726 0.62276 0.058202
+## 3 0.071658      2   0.37608 0.42854 0.048755
+## 4 0.036164      3   0.30443 0.34411 0.043741
+## 5 0.033369      4   0.26826 0.33732 0.045833
+## 6 0.026613      5   0.23489 0.32658 0.045741
+## 7 0.015851      6   0.20828 0.27449 0.040688
+## 8 0.010000      7   0.19243 0.27477 0.041881
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-4.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /><img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-5.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
@@ -295,6 +298,8 @@ rsq.rpart(r_tree)
 We can do another example with the iris data set.
 
 {% highlight r %}
+library(partykit)
+
 # fit model 
 iris_tree <- rpart(Species ~ Sepal.Width, Petal.Width, data = iris)
 
@@ -307,13 +312,15 @@ plot(iris_party)
 
 
 {% highlight r %}
+library(tree)
+
 # fit model with tree
 iris_tree_2 <- tree(Species ~ Sepal.Width + Petal.Width, data = iris)
 
 # another way to view cut
-plot(iris$Petal.Width, iris$Sepal.Width, pch=19, col=as.numeric(iris$Species))
-partition.tree(iris_tree_2, label="Species", add=TRUE)
-legend("topright",legend=unique(iris$Species), col=unique(as.numeric(iris$Species)), pch=19)
+plot(iris$Petal.Width, iris$Sepal.Width, pch = 19, col = as.numeric(iris$Species))
+partition.tree(iris_tree_2, label="Species", add = TRUE)
+legend("topright",legend = unique(iris$Species), col = unique(as.numeric(iris$Species)), pch = 19)
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
@@ -323,6 +330,8 @@ Random forests can be fit with the `randomForest` package.
 
 
 {% highlight r %}
+library(randomForest)
+
 # fit random forest
 forest <- randomForest(medv ~ ., data = Boston, mtry = 5,  importance = TRUE)
 forest
@@ -338,8 +347,8 @@ forest
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 5
 ## 
-##           Mean of squared residuals: 9.912383
-##                     % Var explained: 88.26
+##           Mean of squared residuals: 9.311503
+##                     % Var explained: 88.97
 {% endhighlight %}
 
 
@@ -353,24 +362,27 @@ importance(forest)
 
 {% highlight text %}
 ##           %IncMSE IncNodePurity
-## crim    17.181189     2457.0926
-## zn       2.740325      186.5410
-## indus   10.850019     2416.2958
-## chas     3.764951      150.9747
-## nox     18.059678     2581.5122
-## rm      41.001366    13435.8859
-## age     13.305575     1010.5205
-## dis     17.328140     2472.3621
-## rad      5.027595      253.8563
-## tax     13.393890      993.8280
-## ptratio 14.989223     2448.8228
-## black    7.599927      701.5214
-## lstat   32.558837    12943.0280
+## crim    16.663636     2332.7929
+## zn       5.534575      131.5279
+## indus   12.294884     2436.4736
+## chas     2.994216      182.7847
+## nox     20.586180     2683.9334
+## rm      41.329919    13640.7847
+## age     15.656856      897.0396
+## dis     19.034264     2376.2085
+## rad      6.976716      321.7457
+## tax     11.793306      903.5782
+## ptratio 14.923061     2145.3314
+## black    9.996944      646.6059
+## lstat   34.437887    13248.1401
 {% endhighlight %}
 
 **Boosting**
+Boosted models can be fit using the `gbm` package
 
 {% highlight r %}
+library(gbm)
+
 # fit gbm
 boost <- gbm(medv ~ ., data = Boston, distribution = "gaussian", n.trees = 10000, shrinkage = 0.01, interaction.depth = 4)
 
@@ -382,18 +394,18 @@ summary(boost)
 
 {% highlight text %}
 ##             var    rel.inf
-## lstat     lstat 37.0559383
-## rm           rm 30.7266839
-## dis         dis  8.6985977
-## crim       crim  4.9047198
-## nox         nox  4.8788260
-## age         age  3.9729838
-## ptratio ptratio  2.9984237
-## black     black  2.8437262
-## tax         tax  1.8099648
-## indus     indus  0.7543425
-## rad         rad  0.6424044
-## chas       chas  0.5842021
-## zn           zn  0.1291868
+## lstat     lstat 37.0209873
+## rm           rm 30.8037983
+## dis         dis  8.7023194
+## crim       crim  5.0293910
+## nox         nox  4.9244880
+## age         age  3.6293721
+## ptratio ptratio  3.2767474
+## black     black  2.7685598
+## tax         tax  1.6258279
+## indus     indus  0.8043772
+## chas       chas  0.6401067
+## rad         rad  0.6003316
+## zn           zn  0.1736932
 {% endhighlight %}
 

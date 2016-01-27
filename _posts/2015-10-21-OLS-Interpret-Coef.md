@@ -235,20 +235,26 @@ summary(m4)$coefficients %>% round(3)
 
 This is a model fit with both continuous variables (Petal.Length) and categorical variables (Species). Let's break down the regression formulas.
 
-If Species == "setosa":
-$$ Sepal.Length = \beta_0 + \beta_1 * Petal.Length $$
-$$ Sepal.Length = 4.2 + 0.54 * Petal.Length $$
+If $$Species == "setosa"$$:
+
+-------------------|-----------------------------
+$$ Sepal.Length $$ | $$ = \beta_0 + \beta_1 * Petal.Length $$
+                   | $$ = 4.2 + 0.54 * Petal.Length $$
 
 
-If Species == "versicolor"
-$$ Sepal.Length = \beta_0 + \beta_1 * Petal.Length + \beta_2 + \beta_4 * Petal.Length $$
-$$ Sepal.Length = (\beta_0 + \beta_2) + (\beta_1 + \beta_4) * Petal.Length $$
-$$ Sepal.Length = (4.2 + -1.8) + (0.54 + 0.29) * Petal.Length $$
+If $$Species == "versicolor"$$:
 
-If Species == "virginica"
-$$ Sepal.Length = \beta_0 + \beta_1 * Petal.Length + \beta_3 + \beta_5 * Petal.Length $$
-$$ Sepal.Length = (\beta_0 + \beta_3) + (\beta_1 + \beta_5) * Petal.Length $$
-$$ Sepal.Length = (4.2 + -3.2) + (0.54 + 0.45) * Petal.Length $$
+-------------------|-----------------------------
+$$ Sepal.Length $$ | $$ = \beta_0 + \beta_1 * Petal.Length + \beta_2 + \beta_4 * Petal.Length $$
+                   | $$ = (\beta_0 + \beta_2) + (\beta_1 + \beta_4) * Petal.Length $$
+                   | $$ = (4.2 + -1.8) + (0.54 + 0.29) * Petal.Length $$
+
+If $$Species == "virginica"$$:
+
+-------------------|-----------------------------
+$$ Sepal.Length $$ | $$ = \beta_0 + \beta_1 * Petal.Length + \beta_3 + \beta_5 * Petal.Length $$
+                   | $$ = (\beta_0 + \beta_3) + (\beta_1 + \beta_5) * Petal.Length $$
+                   | $$ = (4.2 + -3.2) + (0.54 + 0.45) * Petal.Length $$
 
 Essentially what we have is 3 separate lines for each value of Species, the categorical variable. 
 
@@ -277,13 +283,13 @@ summary(m4a)$coefficients %>% round(3)
 ## Excluding the Intercept
 If we were to remove the intercept, we have the following regression lines.
 
-If Species == "setosa":
+If $$Species == "setosa"$$:
 $$ Sepal.Length = 4.2 + 0.54 * Petal.Length $$
 
-If Species == "versicolor"
+If $$Species == "versicolor"$$:
 $$ Sepal.Length = 2.4 + (0.54 + 0.29) * Petal.Length $$
 
-If Species == "virginica"
+If $$Species == "virginica"$$:
 $$ Sepal.Length = 1.1 + (0.54 + 0.45) * Petal.Length $$
 
 This is essentially the same equations as the previous model.

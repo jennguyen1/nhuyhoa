@@ -30,9 +30,10 @@ $$\eta_{ij} = x'_i \beta_j = \log \left( \frac{\pi_{ij}}{\pi_{i1}} \right) $$
 
 To compare two categories where neither is the baseline, we can do some simple rearrangements.
 
-$$ \log\left( \frac{\pi_a}{\pi_b} \right) = \log\left( \frac{\pi_a/\pi_1}{\pi_b/\pi_1} \right) = \log\left( \frac{\pi_a}{\pi_1} \right) - \log\left( \frac{\pi_b}{\pi_1} \right)$$
-$$ = (\alpha_a + \beta_a * x) - (\alpha_b + \beta_b * x) $$
-$$ = (\alpha_a - \alpha_b) + (\beta_a - \beta_b)*x $$
+--------------------------------------------|-------------------------------------
+$$ \log\left( \frac{\pi_a}{\pi_b} \right)$$ | $$ = \log\left( \frac{\pi_a/\pi_1}{\pi_b/\pi_1} \right) = \log\left( \frac{\pi_a}{\pi_1} \right) - \log\left( \frac{\pi_b}{\pi_1} \right)$$
+                                            | $$ = (\alpha_a + \beta_a * x) - (\alpha_b + \beta_b * x) $$
+                                            | $$ = (\alpha_a - \alpha_b) + (\beta_a - \beta_b)*x $$
 
 where $$(\alpha_a - \alpha_b)$$ is the intercept parameter with slope parameter $$(\beta_a - \beta_b)$$ for the new comparison. 
 
@@ -117,9 +118,11 @@ $$ \log(\pi_O/\pi_F) = -1.618 + 0.1101x $$
 $$ \log(\pi_I/\pi_F) = 4.089 - 2.3553x $$
 
 Thus we can use both these equations to calculate  
-$$\log(\pi_O/\pi_I) = \log(\pi_O/\pi_F) - \log(\pi_I/\pi_F) $$
-$$ = (-1.618 + 0.1101x) - (4.089 - 2.3553x) $$
-$$ = -5.707 + 2.4654x$$
+
+----------------------|-----------------------------------
+$$\log(\pi_O/\pi_I)$$ | $$ = \log(\pi_O/\pi_F) - \log(\pi_I/\pi_F) $$
+                      | $$ = (-1.618 + 0.1101x) - (4.089 - 2.3553x) $$
+                      | $$ = -5.707 + 2.4654x$$
 
 For the alligators of length $$x + 1$$ meters, the estimated odds that primary food type is "invertebrate" rather than "fish" equal $$exp(-2.3553) = 0.0945$$ times the estimated odds at length $$x$$ meters.  
 

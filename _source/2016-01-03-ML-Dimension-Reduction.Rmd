@@ -41,9 +41,11 @@ where
 * $$U_{NxN}$$ is an orthogonal matrix in which the columns form an orthonormal basis for the space spanned by the column vectors of $$X$$
 
 We can regenerate the symmetric matrix with
-$$X^T X = (U \Sigma V^T)^T (U \Sigma V^T)$$
-$$X^T X = (V \Sigma U^T) (U \Sigma V^T)$$
-$$X^T X = (V \Sigma^2 V^T)^T$$
+
+---------|---------------------
+$$X^T X$$| $$ = (U \Sigma V^T)^T (U \Sigma V^T)$$
+         | $$ = (V \Sigma U^T) (U \Sigma V^T)$$
+         | $$= (V \Sigma^2 V^T)^T$$
 
 The matrix $$X^T X$$ is symmetric and so it can be written in the form $$Q \Lambda Q^T$$ where $$Q$$ is the orthogonal matrix of eigenvectors and $$\Lambda$$ are is a diagonal matrix of eigenvalues. Thus
 

@@ -168,4 +168,4 @@ predict(m, interval = "prediction") %>% head
 
 These are the confidence and prediction intervals for $$Y$$. Note that the fitted values are the same, but the interval widths for the confidence intervals are smaller compared to the prediction intervals. We know this from the derivation in the [Regression: Confidence & Prediction Intervals post][reg_int_post]{:target="blank"}. 
 
-[reg_int_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Regression-Intervals.html
+[reg_int_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/OLS-Intervals.html

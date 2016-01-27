@@ -35,13 +35,17 @@ Then the likelihood function is
 $$L(\mu) = \Pi^n_{i = 1} \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(Y_i - \mu)^2}{2\sigma^2}\right)$$
 
 It is easier to maximize the log likelihood
-$$l(\mu) = \sum^n_{i = 1} \log \big[ \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(Y_i - \mu)^2}{2\sigma^2}\right) \big]$$
-$$ = n * \log \left( \frac{1}{\sigma \sqrt{2\pi}}\right) - \frac{1}{2\sigma^2} \sum^n_{i = 1} (Y_i - \mu)^2$$
+
+-----------|--------------------------
+$$l(\mu)$$ | $$ = \sum^n_{i = 1} \log \big[ \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(Y_i - \mu)^2}{2\sigma^2}\right) \big]$$
+           | $$ = n * \log \left( \frac{1}{\sigma \sqrt{2\pi}}\right) - \frac{1}{2\sigma^2} \sum^n_{i = 1} (Y_i - \mu)^2$$
 
 To maximize we take the derivative with respect to $$\mu$$
-$$l'(\mu) = - \frac{2}{2 \sigma^2} \sum^n_{i = 1} (Y_i - \mu) = 0$$
-$$0 = - n \mu + \sum^n_{i = 1} Y_i$$
-$$n\mu = \sum^n_{i = 1} Y_i$$
+
+-----------|--------------------------
+$$l'(\mu)$$| $$ = - \frac{2}{2 \sigma^2} \sum^n_{i = 1} (Y_i - \mu) = 0$$
+$$0 $$     | $$= - n \mu + \sum^n_{i = 1} Y_i$$
+$$n\mu $$  | $$ = \sum^n_{i = 1} Y_i$$
 
 $$\hat{\mu} = \frac{1}{n} \sum^n_{i = 1} Y_i = \bar{Y}$$
 

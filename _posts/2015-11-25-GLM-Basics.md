@@ -21,27 +21,28 @@ The response variable should be a member of the exponential family distribution,
 $$ f(y \vert \theta, \phi) = exp \big[ \frac{y \theta - b(\theta)}{a(\phi)} + c(y, \phi) \big] $$
 
 * Normal or Gaussian
-$$ f(y \vert \theta, \phi) $$
-$$ = \frac{1}{\sigma \sqrt{2\pi}} exp \big[ \frac{(y - \mu)^2}{2\sigma^2} \big]$$
-$$ = exp \big[ \frac{y\mu - \mu^2/2}{\sigma^2} - \frac{1}{2}(\frac{y^2}{\sigma^2} + \log(2\pi\sigma^2)) \big]$$ where $$\theta = \mu$$ and $$\phi = \sigma^2$$
+
+------------------------------|-------------------
+$$ f(y \vert \theta, \phi) $$ | $$ = \frac{1}{\sigma \sqrt{2\pi}} exp \big[ \frac{(y - \mu)^2}{2\sigma^2} \big]$$
+                              | $$ = exp \big[ \frac{y\mu - \mu^2/2}{\sigma^2} - \frac{1}{2}(\frac{y^2}{\sigma^2} + \log(2\pi\sigma^2)) \big]$$ 
+
+where $$\theta = \mu$$ and $$\phi = \sigma^2$$
 
 * Binomial
-$$ f(y \vert \theta, \phi) $$
-$$ = \left(\begin{array}
-{rrr}
-  n \\
-  y
-\end{array}\right) \mu^y (1-\mu)^{n - y} $$
-$$ = exp \big[ y \log(\frac{\mu}{1 - \mu}) + n \log(1 - \mu) + \log \left(\begin{array}
-{rrr}
-  n \\
-  y
-\end{array}\right) \big] $$ where $$\theta = \log \left( \frac{\mu}{1 - \mu} \right)$$ and $$\phi = 1$$
+
+------------------------------|-------------------
+$$ f(y \vert \theta, \phi) $$ | $$ = \binom{n}{y} \mu^y (1-\mu)^{n - y} $$
+                              | $$ = exp \big[ y \log(\frac{\mu}{1 - \mu}) + n \log(1 - \mu) + \log \binom{n}{y} $$
+
+where $$\theta = \log \left( \frac{\mu}{1 - \mu} \right)$$ and $$\phi = 1$$
 
 * Poisson
-$$ f(y \vert \theta, \phi) $$
-$$ = e^{- \mu} \mu^y / y! $$
-$$ = exp \big[ ylog(\mu) - \mu - \log(y!) \big] $$ where $$\theta = \log(\mu)$$ and $$\phi = 1$$
+
+------------------------------|-------------------
+$$ f(y \vert \theta, \phi) $$ | $$ = e^{- \mu} \mu^y / y! $$
+                              | $$ = exp \big[ ylog(\mu) - \mu - \log(y!) \big] $$
+                              
+where $$\theta = \log(\mu)$$ and $$\phi = 1$$
 
 * Gamma
 
