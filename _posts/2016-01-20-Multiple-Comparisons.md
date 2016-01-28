@@ -1,18 +1,14 @@
 ---
 layout: post
 title: "Multiple Comparisons"
-date: "November 22, 2015"
-categories: statistics other
+date: "January 20, 2016"
+categories: ['statistics', 'experimental design']
 ---
 
 * TOC
 {:toc}
 
-```{r global_opts, echo = FALSE, warning = FALSE}
-library(jn.general)
-lib(data, viz)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
-```
+
 
 # Type 1 and Type 2 Error Rates
 
@@ -32,15 +28,7 @@ Number of Tests | P(Type 1 Error) = 1 - P(rejection)
     ...         |   ...
     $$p$$       |   $$1 - (1 - \alpha)^p$$
 
-```{r, echo = FALSE}
-# plot n vs probability of error
-n <- 1:50
-p <- (1 - (1 - 0.05)^n)
-qplot(x = n, y = p, size = I(1.5), geom = "line", main = "Type 1 Error Rate vs. Number of Tests") +
-  scale_y_continuous(breaks = seq(0, 1, by = 0.1)) +
-  xlab("Number of Tests") +
-  ylab("Probability of Type 1 Error") 
-```
+<img src="/nhuyhoa/figure/source/2016-01-20-Multiple-Comparisons/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
 
 Our error rates rapidly increases. The type 1 error rate is approximately $$50$$% when we conduct $$13$$ tests. Thus we have to find a way to correct for these multiple tests to ensure that our Type 1 error rate remains low.
 
@@ -86,6 +74,8 @@ Using bonferroni's correction, we are guaranteed a overall type 1 error rate of 
 
 Note that Bonferroni's correction is valid for equal and unequal sample sizes.
 
+In R, the bonferroni method can be implemented by passing the p-values into `p.adjust()`.
+
 ## Tukey Method
 Tukey's method is done post-ANOVA. It must be used to examine all pairwise comparisons, where each group must have equal sample sizes. With Tukey's method, the overall type 1 error is equal to $$\alpha$$.
 
@@ -118,12 +108,13 @@ $$ \hat{C} \pm \sqrt{(m - 1)F_{\alpha; m - 1, N - m}} * s_{\hat{C}} $$
 where $$m$$ is the number of groups and $$N$$ are the total number of observations.
 
 ## Summary
-```{r, echo = FALSE}
-methods <- c("Fischer's LSD", "Bonferroni", "Tukey", "Scheffe")
-valid_on <- c("NA", "pairwise comparisons", "pairwise comparisons", "all possible contrasts")
-sample_size <- c("NA", "equal & unequal sample sizes", "equal sample sizes", "equal & unequal sample sizes")
-data.frame(methods, valid_on, sample_size) %>% kable
-```
+
+|methods       |valid_on               |sample_size                  |
+|:-------------|:----------------------|:----------------------------|
+|Fischer's LSD |NA                     |NA                           |
+|Bonferroni    |pairwise comparisons   |equal & unequal sample sizes |
+|Tukey         |pairwise comparisons   |equal sample sizes           |
+|Scheffe       |all possible contrasts |equal & unequal sample sizes |
 
 <p></p>
 

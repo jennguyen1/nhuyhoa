@@ -89,11 +89,11 @@ We had looked at the summary table for this model in a previous post. The result
 These extensions from the basic case are known as ANCOVA (analysis of covariance), MANOVA (multivariate analysis of variance), and MANCOVA (multivariate analysis of variance). They can all be assessed with linear models using the summary table or anova table in R.
 
 # Comparing Models
-Suppose we want to compare 2 models, where one is nested in the other. Let $$H$$ correspond to the simplified model with $$p - q$$ parameters. Let $$A$$ correspond to the full model with $$p$$ parameters. Then we can compare the two models with a test statistic
+Suppose we want to compare 2 models, where one is nested in the other. Let $$R$$ correspond to the reduced model with $$p - q$$ parameters. Let $$F$$ correspond to the full model with $$p$$ parameters. Then we can compare the two models with a test statistic
 
-$$ F = \frac{(SSE_H - SSE_A)/ (df_A - df_H)}{SSE_A/df_A} $$
+$$ F = \frac{(SSE_R - SSE_F)/ (df_F - df_R)}{SSE_F/df_F} $$
 
-where $$ F $$ ~ $$ F_{q, n - p} $$ and SSE is the sum square errors and DF is the residual degrees of freedom corresponding to the specified model.
+where $$ F $$ ~ $$ F_{q, n - p} $$ and $$SSE$$ is the sum square errors and $$DF$$ is the residual degrees of freedom corresponding to the specified model.
 
 Let's look at an example:
 
@@ -136,4 +136,4 @@ anova(modh, moda)
 ## 2    144 16.301  2   0.38098 1.6828 0.1895
 {% endhighlight %}
 
-Thus we conclude that for this data set, the full and simplified model are not significantly different from each other. The interaction term is not significantly different from 0, meaning that the slope of Petal.Length on Sepal.Length is the same for all species. 
+Thus we conclude that for this data set, the full and simplified model are not significantly different from each other. The interaction term is not significantly different from $$0$$, meaning that the slope of $$Petal.Length$$ on $$Sepal.Length$$ is the same for all species. 

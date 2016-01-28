@@ -141,6 +141,7 @@ In this plot, we could potentially choose to use 5-7 principal components.
 ## What PCA Can Be Used For
 
 * Use for data visualization or data pre-processing
+* Evaluate whether there may be confounding effects (plot principal components grouped by a variable) to see if certain effects/variables capture the majority of the variance? 
 * Simplify high-dimensional data and use as features in other methods
 
 PCA is great for providing a low-dimensional representation of high-dimensional data. Thus it works best when the first few PC are sufficient in capturing most of the variation in the predictors. (So it is generally not a good idea to use all of the PC).
@@ -168,11 +169,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.737    2.751    2.628    2.662    2.718
-## adjCV        6.123    2.723    2.737    2.609    2.642    2.695
+## CV           6.123    2.689    2.710    2.524    2.546    2.568
+## adjCV        6.123    2.677    2.698    2.510    2.532    2.550
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.777    2.954    3.055    3.520     3.864
-## adjCV    2.751    2.919    3.012    3.451     3.770
+## CV       2.845    2.929    2.995    3.477     3.456
+## adjCV    2.813    2.894    2.951    3.407     3.383
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps

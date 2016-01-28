@@ -8,17 +8,6 @@ categories: ['data wrangling']
 {:toc}
 
 
-{% highlight text %}
-## Warning: replacing previous import by 'grid::arrow' when loading
-## 'GGally'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Warning: replacing previous import by 'grid::unit' when loading
-## 'GGally'
-{% endhighlight %}
 
 # Subsetting Functions in R
 

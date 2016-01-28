@@ -86,7 +86,8 @@ When $$\alpha = 0$$, we have the original tree. As $$\alpha$$ increases, the tre
 
 * Great technique for learning models noisy models
 * Results are easily interpretable
-* Robust to outliers and missing data
+* Can do automatic stepwise variable selection & complexity reduction
+* Robust to outliers and missing data by doing surrogate splits (that would approximate the best fit) using another variable
 * Fast, simple, and robust
 
 **Weaknesses:**

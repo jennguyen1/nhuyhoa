@@ -151,12 +151,6 @@ predict(m, interval = "prediction") %>% head
 
 
 {% highlight text %}
-## Warning in predict.lm(m, interval = "prediction"): predictions on current data refer to _future_ responses
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##        fit      lwr      upr
 ## 1 4.972378 4.299884 5.644871
 ## 2 4.972378 4.299884 5.644871

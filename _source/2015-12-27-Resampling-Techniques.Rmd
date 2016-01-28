@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Resampling Techniques"
-date: "December 27, 2015"
+date: "January 28, 2016"
 categories: ['statistics', 'probability and inference']
 ---
 

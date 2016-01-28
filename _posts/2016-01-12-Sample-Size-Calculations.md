@@ -2,7 +2,7 @@
 layout: post
 title: "Sample Size Calculations"
 date: "January 12, 2016"
-categories: ['statistics', 'probability and inference']
+categories: ['statistics', 'experimental design']
 ---
 
 * TOC

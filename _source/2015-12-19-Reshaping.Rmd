@@ -19,7 +19,7 @@ The format of your data is an important consideration. Data be formatted long or
 * Long-format: contains a column for possible variable types and a column with the values for those variables; extremely useful for grouping and running separate operations on by groups
 * Wide-format: each variable contains its own columns, populated by values
 
-To switch between the two formats, transpose operations can be used. This is similar to using pivot tables in Excel. 
+To switch between the two formats, transpose operations can be used. This is similar to using pivot tables in Excel. This can be useful in plotting.
 
 # In R
 There are a few packages in R that can do transposing. The function names are different, but the idea is the same. 

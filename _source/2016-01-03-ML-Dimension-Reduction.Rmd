@@ -138,6 +138,7 @@ In this plot, we could potentially choose to use 5-7 principal components.
 ## What PCA Can Be Used For
 
 * Use for data visualization or data pre-processing
+* Evaluate whether there may be confounding effects (plot principal components grouped by a variable) to see if certain effects/variables capture the majority of the variance? 
 * Simplify high-dimensional data and use as features in other methods
 
 PCA is great for providing a low-dimensional representation of high-dimensional data. Thus it works best when the first few PC are sufficient in capturing most of the variation in the predictors. (So it is generally not a good idea to use all of the PC).

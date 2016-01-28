@@ -38,18 +38,18 @@ When we over fit, our estimate of $$\hat{\beta}_1$$ is unbiased, but $$Var[\hat{
 # Outliers
 
 ## Observations with High Residuals
-Residuals are defined as 
+**Residuals** are defined as 
 $$ \hat{\epsilon}_i = y_i - \hat{y}_i $$
 
-Internally standardized residuals are defined as
+**Internally standardized residuals** are defined as
 $$ r_i = \frac{\hat{\epsilon}_i }{\hat{\sigma \sqrt{1 - h_{ii}}}}$$ 
 
 where $$\frac{r_i^2}{n - p}$$ ~ $$Beta(\frac{1}{2}, \frac{1}{2}(n - p - 1))$$
 
-Externally standardized residuals (jackknife residuals) are defined as 
+**Externally standardized residuals** are defined as 
 $$ t_i = \frac{\hat{\epsilon}_i }{\hat{\sigma}_{(i)} \sqrt{1 - h_{ii}}}$$ 
 
-where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted. If $$ \vert t_i \vert > 2$$, we consider that a large residual.
+where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted. The value $$t_i$$ ~ $$T_{n - p - 1}$$. It is common to apply a Bonferroni correction when testing for outliers.
 
 Notice that residuals refer to extreme $$y$$-values. 
 

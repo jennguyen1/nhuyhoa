@@ -80,7 +80,8 @@ When $$\alpha = 0$$, we have the original tree. As $$\alpha$$ increases, the tre
 
 * Great technique for learning models noisy models
 * Results are easily interpretable
-* Robust to outliers and missing data
+* Can do automatic stepwise variable selection & complexity reduction
+* Robust to outliers and missing data by doing surrogate splits (that would approximate the best fit) using another variable
 * Fast, simple, and robust
 
 **Weaknesses:**
@@ -238,12 +239,12 @@ printcp(c_tree)
 ##         CP nsplit rel error  xerror     xstd
 ## 1 0.286585      0   1.00000 1.00000 0.059980
 ## 2 0.109756      1   0.71341 0.71341 0.055477
-## 3 0.045732      2   0.60366 0.63415 0.053492
-## 4 0.036585      4   0.51220 0.62805 0.053324
-## 5 0.027439      5   0.47561 0.59756 0.052450
-## 6 0.024390      7   0.42073 0.57927 0.051896
-## 7 0.012195      8   0.39634 0.60976 0.052806
-## 8 0.010000     10   0.37195 0.59146 0.052268
+## 3 0.045732      2   0.60366 0.64634 0.053821
+## 4 0.036585      4   0.51220 0.62195 0.053154
+## 5 0.027439      5   0.47561 0.62195 0.053154
+## 6 0.024390      7   0.42073 0.62195 0.053154
+## 7 0.012195      8   0.39634 0.59756 0.052450
+## 8 0.010000     10   0.37195 0.55488 0.051124
 {% endhighlight %}
 
 
@@ -283,14 +284,14 @@ rsq.rpart(r_tree)
 ## n= 506 
 ## 
 ##         CP nsplit rel error  xerror     xstd
-## 1 0.452744      0   1.00000 1.00380 0.082945
-## 2 0.171172      1   0.54726 0.62276 0.058202
-## 3 0.071658      2   0.37608 0.42854 0.048755
-## 4 0.036164      3   0.30443 0.34411 0.043741
-## 5 0.033369      4   0.26826 0.33732 0.045833
-## 6 0.026613      5   0.23489 0.32658 0.045741
-## 7 0.015851      6   0.20828 0.27449 0.040688
-## 8 0.010000      7   0.19243 0.27477 0.041881
+## 1 0.452744      0   1.00000 1.00542 0.083153
+## 2 0.171172      1   0.54726 0.63985 0.058193
+## 3 0.071658      2   0.37608 0.42326 0.045309
+## 4 0.036164      3   0.30443 0.36903 0.042333
+## 5 0.033369      4   0.26826 0.33487 0.042696
+## 6 0.026613      5   0.23489 0.33237 0.041469
+## 7 0.015851      6   0.20828 0.30682 0.041963
+## 8 0.010000      7   0.19243 0.30529 0.043767
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-4.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /><img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-5.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
@@ -347,8 +348,8 @@ forest
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 5
 ## 
-##           Mean of squared residuals: 9.311503
-##                     % Var explained: 88.97
+##           Mean of squared residuals: 9.933859
+##                     % Var explained: 88.23
 {% endhighlight %}
 
 
@@ -362,19 +363,19 @@ importance(forest)
 
 {% highlight text %}
 ##           %IncMSE IncNodePurity
-## crim    16.663636     2332.7929
-## zn       5.534575      131.5279
-## indus   12.294884     2436.4736
-## chas     2.994216      182.7847
-## nox     20.586180     2683.9334
-## rm      41.329919    13640.7847
-## age     15.656856      897.0396
-## dis     19.034264     2376.2085
-## rad      6.976716      321.7457
-## tax     11.793306      903.5782
-## ptratio 14.923061     2145.3314
-## black    9.996944      646.6059
-## lstat   34.437887    13248.1401
+## crim    17.222189     2642.5362
+## zn       3.677003      116.6791
+## indus   12.282185     2220.6513
+## chas     3.517731      182.0074
+## nox     18.942292     2431.7877
+## rm      43.138567    14037.6172
+## age     16.135861     1089.3380
+## dis     20.278675     2380.9342
+## rad      6.645898      274.4524
+## tax     12.548169     1004.3807
+## ptratio 15.837824     2328.0034
+## black   11.193312      690.0722
+## lstat   30.269416    12739.1369
 {% endhighlight %}
 
 **Boosting**
@@ -394,18 +395,18 @@ summary(boost)
 
 {% highlight text %}
 ##             var    rel.inf
-## lstat     lstat 37.0209873
-## rm           rm 30.8037983
-## dis         dis  8.7023194
-## crim       crim  5.0293910
-## nox         nox  4.9244880
-## age         age  3.6293721
-## ptratio ptratio  3.2767474
-## black     black  2.7685598
-## tax         tax  1.6258279
-## indus     indus  0.8043772
-## chas       chas  0.6401067
-## rad         rad  0.6003316
-## zn           zn  0.1736932
+## lstat     lstat 38.4572041
+## rm           rm 29.4960047
+## dis         dis  9.0582355
+## crim       crim  4.6318144
+## nox         nox  4.6088081
+## age         age  3.5764484
+## ptratio ptratio  3.1971112
+## black     black  2.8592819
+## tax         tax  1.9013683
+## indus     indus  0.7940666
+## rad         rad  0.6703336
+## chas       chas  0.6232434
+## zn           zn  0.1260798
 {% endhighlight %}
 
