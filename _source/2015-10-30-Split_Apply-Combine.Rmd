@@ -58,7 +58,7 @@ keep <- fix_duplicates[["not_to_be"]]
 # extract 1st of the duplicated & combine with keep
 class <- fix_duplicates[["to_be"]] %>% 
   group_by(student_id) %>% 
-  do(extract(., 1,)) %>% 
+  do(magrittr::extract(., 1,)) %>% 
   rbind(keep) %>% 
   data.table %>% 
   dplyr::select(student_id, teacher_id, weight, subject, grade, everything())
@@ -304,7 +304,7 @@ class_edit <-  class %>%
   # split: by student teacher linkage
   group_by(student_id, teacher_id) %>%
   # apply: extract the first row from each split
-  do(extract(., 1, )) 
+  do(marittr::extract(., 1, )) 
   # combine: dplyr does this automatically
 class_edit %>% head
 {% endhighlight %}
@@ -317,7 +317,7 @@ class_edit <- class %>%
   # split: by student teacher linkage
   group_by(student_id, teacher_id) %>%
   # apply: extract the first row from each split
-  do(extract(., 1, )) 
+  do(magrittr::extract(., 1, )) 
   # combine: dplyr does this automatically
 class_edit %>% nhuyhoa_df_print()
 ```

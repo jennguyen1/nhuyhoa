@@ -878,7 +878,7 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 
 <p>From the duplicated id’s, I’ll keep the id that corresponds to a female or, if none of the duplicated entries are female, an id corresponding to someone greater than 50 years old.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">1</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">1</span><span class="p">)</span></code></pre></div>
 
 <div class="dftab">
 <table>
@@ -922,32 +922,78 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># obtain the duplicated entries</span>
 result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># group by unique id&#39;s</span>
-  group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> 
   <span class="c1"># order by gender (females first) and decreasing age</span>
   arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> 
+  <span class="c1"># group by unique id&#39;s</span>
+  group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> 
   <span class="c1"># take the first entry in each group</span>
-  slice<span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  do<span class="p">(</span>slice<span class="p">(</span><span class="m">.</span><span class="p">,</span><span class="m">1</span><span class="p">))</span> <span class="o">%&gt;%</span> 
   <span class="c1"># combine results with non-duplicated data</span>
   <span class="kp">rbind</span><span class="p">(</span>result<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]])</span></code></pre></div>
 
 <div class="dftab">
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): corrupt &#39;grouped_df&#39;, contains 7 rows, and 6 rows in groups</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in rownames(a) &lt;- NULL: object &#39;a&#39; not found</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object &#39;a&#39; not found</code></pre></div>
-
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 78 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Ohio </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Tennessee </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> asian </td>
+   <td style="text-align:left;"> North Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 69 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Oregon </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Alaska </td>
+  </tr>
+</tbody>
+</table>
 </div>
 
 

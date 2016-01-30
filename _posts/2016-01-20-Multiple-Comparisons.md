@@ -28,6 +28,8 @@ Number of Tests | P(Type 1 Error) = 1 - P(rejection)
     ...         |   ...
     $$p$$       |   $$1 - (1 - \alpha)^p$$
 
+<p></p>
+
 <img src="/nhuyhoa/figure/source/2016-01-20-Multiple-Comparisons/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
 
 Our error rates rapidly increases. The type 1 error rate is approximately $$50$$% when we conduct $$13$$ tests. Thus we have to find a way to correct for these multiple tests to ensure that our Type 1 error rate remains low.
@@ -108,13 +110,37 @@ $$ \hat{C} \pm \sqrt{(m - 1)F_{\alpha; m - 1, N - m}} * s_{\hat{C}} $$
 where $$m$$ is the number of groups and $$N$$ are the total number of observations.
 
 ## Summary
-
-|methods       |valid_on               |sample_size                  |
-|:-------------|:----------------------|:----------------------------|
-|Fischer's LSD |NA                     |NA                           |
-|Bonferroni    |pairwise comparisons   |equal & unequal sample sizes |
-|Tukey         |pairwise comparisons   |equal sample sizes           |
-|Scheffe       |all possible contrasts |equal & unequal sample sizes |
+<table class = "presenttab">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Method </th>
+   <th style="text-align:left;"> Valid On </th>
+   <th style="text-align:left;"> Sample Size </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fischer's LSD </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bonferroni </td>
+   <td style="text-align:left;"> pairwise comparisons </td>
+   <td style="text-align:left;"> equal &amp; unequal sample sizes </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Tukey </td>
+   <td style="text-align:left;"> pairwise comparisons </td>
+   <td style="text-align:left;"> equal sample sizes </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Scheffe </td>
+   <td style="text-align:left;"> all possible contrasts </td>
+   <td style="text-align:left;"> equal &amp; unequal sample sizes </td>
+  </tr>
+</tbody>
+</table>
 
 <p></p>
 

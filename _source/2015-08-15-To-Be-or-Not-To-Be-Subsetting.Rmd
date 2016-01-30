@@ -158,11 +158,14 @@ y %>% kable(format = "html")
 From the duplicated id's, I'll keep the id that corresponds to a female or, if none of the duplicated entries are female, an id corresponding to someone greater than 50 years old. 
 
 {% highlight r %}
-result[["to_be"]] %>% group_by(id) %>% arrange(gender, desc(age)) %>% slice(1)
+result[["to_be"]] %>% arrange(gender, desc(age)) %>% group_by(id) %>% slice(1)
 {% endhighlight %}
 <div class = "dftab">
 ```{r, echo = FALSE}
-z <- x %>% group_by(id) %>% arrange(gender, desc(age)) %>% slice(1) 
+z <- x %>%
+  arrange(gender, desc(age)) %>% 
+  group_by(id) %>% 
+  slice(1) 
 z %>% kable(format = "html")
 ```
 </div><p></p>
@@ -172,18 +175,25 @@ Now combine the results back together.
 {% highlight r %}
 # obtain the duplicated entries
 result[["to_be"]] %>% 
-  # group by unique id's
-  group_by(id) %>% 
   # order by gender (females first) and decreasing age
   arrange(gender, desc(age)) %>% 
+  # group by unique id's
+  group_by(id) %>% 
   # take the first entry in each group
-  slice(1) %>% 
+  do(slice(.,1)) %>% 
   # combine results with non-duplicated data
   rbind(result[["not_to_be"]])
 {% endhighlight %}
+
 <div class = "dftab">
 ```{r, echo = FALSE}
-a <- result[["to_be"]] %>% group_by(id) %>% arrange(gender, desc(age)) %>% slice(1) %>% rbind(result[["not_to_be"]]) %>% arrange(id)
+a <- result[["to_be"]] %>% 
+  arrange(gender, desc(age)) %>% 
+  group_by(id) %>% 
+  do(slice(.,1)) %>% 
+  rbind(result[["not_to_be"]]) %>% 
+  data.frame %>% 
+  arrange(id)
 rownames(a) <- NULL
 a %>% kable(format = "html")
 ```

@@ -99,8 +99,8 @@
     //position:fixed;
     //bottom:0;
     //width:100%;
-   // height: 10%;
-      background-color:$background-color;
+    //height: 10%;
+    background-color:$background-color;
 
     //background-color:$grey-color-dark;
 }
@@ -200,9 +200,31 @@
             font-size: 18px;
         }
     }
-
-    table {
-        padding-bottom: 5px;
+    
+    table{
+      padding-bottom: 5px;
+    }
+    
+    th {
+      text-align: left;
+    }
+    
+    .presenttab {
+      border-collapse:collapse;
+      margin:auto;
+      border: 1px solid black;
+      width: 75%;
+    }
+    
+    .presenttab th{
+      background-color:#E0E0E0 ;
+      border-bottom:1px solid black;
+      padding: 5px;
+    }
+  
+    .presenttab td{
+      border-bottom:1px dotted black;
+      padding: 5px;
     }
 
     .dftab {

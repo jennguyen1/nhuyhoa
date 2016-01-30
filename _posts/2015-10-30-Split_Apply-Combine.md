@@ -20,15 +20,6 @@ Collectively this is known as split-apply-combine.
 
 # Example Data
 
-{% highlight text %}
-## Error: Invalid column specification
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in setkeyv(x, cols, verbose = verbose, physical = physical): x is not a data.table
-{% endhighlight %}
 
 This is the example data set we will use.
 
@@ -36,13 +27,13 @@ This is the example data set we will use.
 <table>
  <thead>
   <tr>
-   <th style="text-align:center;"> teacher_id </th>
    <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> teacher_id </th>
    <th style="text-align:center;"> weight </th>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
    <th style="text-align:center;"> posttest_score </th>
    <th style="text-align:center;"> pretest_score </th>
-   <th style="text-align:center;"> grade </th>
-   <th style="text-align:center;"> subject </th>
    <th style="text-align:center;"> d_gender </th>
    <th style="text-align:center;"> d_black </th>
    <th style="text-align:center;"> d_hispanic </th>
@@ -52,73 +43,73 @@ This is the example data set we will use.
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:center;"> 573 </td>
-   <td style="text-align:center;"> 0.9293 </td>
-   <td style="text-align:center;"> -0.7559 </td>
-   <td style="text-align:center;"> -1.1649 </td>
-   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 100 </td>
+   <td style="text-align:center;"> 16 </td>
+   <td style="text-align:center;"> 0.9692 </td>
    <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> TRUE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> TRUE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 18 </td>
-   <td style="text-align:center;"> 166 </td>
-   <td style="text-align:center;"> 0.3118 </td>
-   <td style="text-align:center;"> 0.5962 </td>
-   <td style="text-align:center;"> 1.6599 </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -2.1143 </td>
+   <td style="text-align:center;"> -0.0226 </td>
    <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 101 </td>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 0.1913 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -0.4224 </td>
+   <td style="text-align:center;"> 0.8057 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
   </tr>
   <tr>
+   <td style="text-align:center;"> 102 </td>
+   <td style="text-align:center;"> 17 </td>
+   <td style="text-align:center;"> 0.7622 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> -0.7631 </td>
+   <td style="text-align:center;"> 0.1451 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 102 </td>
+   <td style="text-align:center;"> 20 </td>
+   <td style="text-align:center;"> 0.9347 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -1.4334 </td>
+   <td style="text-align:center;"> 0.9452 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 103 </td>
    <td style="text-align:center;"> 4 </td>
-   <td style="text-align:center;"> 864 </td>
-   <td style="text-align:center;"> 0.4707 </td>
-   <td style="text-align:center;"> -0.6355 </td>
-   <td style="text-align:center;"> -0.3411 </td>
-   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 0.7774 </td>
    <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> -0.7721 </td>
+   <td style="text-align:center;"> 0.5730 </td>
    <td style="text-align:center;"> male </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> TRUE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 480 </td>
-   <td style="text-align:center;"> 0.0622 </td>
-   <td style="text-align:center;"> -0.7151 </td>
-   <td style="text-align:center;"> -0.7435 </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> male </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> TRUE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 3 </td>
-   <td style="text-align:center;"> 989 </td>
-   <td style="text-align:center;"> 0.6870 </td>
-   <td style="text-align:center;"> 1.7636 </td>
-   <td style="text-align:center;"> -0.6811 </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> TRUE </td>
    <td style="text-align:center;"> TRUE </td>
   </tr>
 </tbody>
@@ -167,13 +158,13 @@ class %>%
   </tr>
   <tr>
    <td style="text-align:center;"> math 12 female </td>
-   <td style="text-align:center;"> 0.0673 </td>
-   <td style="text-align:center;"> -0.0867 </td>
+   <td style="text-align:center;"> 0.0755 </td>
+   <td style="text-align:center;"> -0.0939 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> math 12 male </td>
-   <td style="text-align:center;"> -0.0415 </td>
-   <td style="text-align:center;"> -0.0886 </td>
+   <td style="text-align:center;"> -0.0252 </td>
+   <td style="text-align:center;"> -0.0809 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read 11 female </td>
@@ -182,13 +173,13 @@ class %>%
   </tr>
   <tr>
    <td style="text-align:center;"> read 11 male </td>
-   <td style="text-align:center;"> 0.0000 </td>
-   <td style="text-align:center;"> 0.0473 </td>
+   <td style="text-align:center;"> 0.0074 </td>
+   <td style="text-align:center;"> 0.0572 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read 12 female </td>
-   <td style="text-align:center;"> -0.0614 </td>
-   <td style="text-align:center;"> 0.0253 </td>
+   <td style="text-align:center;"> -0.0535 </td>
+   <td style="text-align:center;"> 0.0426 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read 12 male </td>
@@ -242,23 +233,23 @@ class %>%
   <tr>
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 255 </td>
-   <td style="text-align:center;"> 124 </td>
-   <td style="text-align:center;"> 131 </td>
+   <td style="text-align:center;"> 252 </td>
+   <td style="text-align:center;"> 122 </td>
+   <td style="text-align:center;"> 130 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 246 </td>
-   <td style="text-align:center;"> 126 </td>
+   <td style="text-align:center;"> 245 </td>
+   <td style="text-align:center;"> 125 </td>
    <td style="text-align:center;"> 120 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 243 </td>
+   <td style="text-align:center;"> 241 </td>
    <td style="text-align:center;"> 116 </td>
-   <td style="text-align:center;"> 127 </td>
+   <td style="text-align:center;"> 125 </td>
   </tr>
 </tbody>
 </table>
@@ -283,9 +274,9 @@ class %>%
 
 
 {% highlight text %}
-##  [1] "teacher_id"     "student_id"     "weight"        
-##  [4] "posttest_score" "pretest_score"  "grade"         
-##  [7] "subject"        "d_gender"       "d_black"       
+##  [1] "student_id"     "teacher_id"     "weight"        
+##  [4] "subject"        "grade"          "posttest_score"
+##  [7] "pretest_score"  "d_gender"       "d_black"       
 ## [10] "d_hispanic"     "d_asian"        "d_native"      
 ## [13] "year"           "proficient"
 {% endhighlight %}
@@ -315,20 +306,20 @@ These are the means and standard deviations before standardizing.
   <tr>
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 0.0144 </td>
-   <td style="text-align:center;"> 1.024 </td>
+   <td style="text-align:center;"> 0.0267 </td>
+   <td style="text-align:center;"> 1.019 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 0.0184 </td>
+   <td style="text-align:center;"> 0.0223 </td>
    <td style="text-align:center;"> 1.057 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> -0.0154 </td>
-   <td style="text-align:center;"> 1.021 </td>
+   <td style="text-align:center;"> -0.0109 </td>
+   <td style="text-align:center;"> 1.024 </td>
   </tr>
 </tbody>
 </table>
@@ -417,24 +408,6 @@ class %>%
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> 0 </td>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> 0 </td>
-   <td style="text-align:center;"> 0 </td>
-   <td style="text-align:center;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 0 </td>
-   <td style="text-align:center;"> 0 </td>
-   <td style="text-align:center;"> 0 </td>
-   <td style="text-align:center;"> 1 </td>
-  </tr>
-  <tr>
    <td style="text-align:center;"> 0 </td>
    <td style="text-align:center;"> 1 </td>
    <td style="text-align:center;"> 0 </td>
@@ -443,7 +416,25 @@ class %>%
   <tr>
    <td style="text-align:center;"> 0 </td>
    <td style="text-align:center;"> 0 </td>
-   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
    <td style="text-align:center;"> 1 </td>
   </tr>
 </tbody>
@@ -480,14 +471,14 @@ class %>%
 <tbody>
   <tr>
    <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> 0.0939 </td>
-   <td style="text-align:center;"> -0.2635 </td>
-   <td style="text-align:center;"> 0.2028 </td>
-   <td style="text-align:center;"> 0.1550 </td>
-   <td style="text-align:center;"> 0.2102 </td>
-   <td style="text-align:center;"> 0.1535 </td>
-   <td style="text-align:center;"> 0.5230 </td>
-   <td style="text-align:center;"> 0.4770 </td>
+   <td style="text-align:center;"> 0.1472 </td>
+   <td style="text-align:center;"> -0.2464 </td>
+   <td style="text-align:center;"> 0.1813 </td>
+   <td style="text-align:center;"> 0.1517 </td>
+   <td style="text-align:center;"> 0.1929 </td>
+   <td style="text-align:center;"> 0.1584 </td>
+   <td style="text-align:center;"> 0.5275 </td>
+   <td style="text-align:center;"> 0.4725 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 2 </td>
@@ -556,7 +547,7 @@ class %>%
 
 
 {% highlight text %}
-## [1] 34
+## [1] 28
 {% endhighlight %}
 
 Ignoring the subject and grade, we want to remove the the linkage with the smallest weight. 
@@ -568,22 +559,102 @@ class_edit <-  class %>%
   # split: by student teacher linkage
   group_by(student_id, teacher_id) %>%
   # apply: extract the first row from each split
-  do(extract(., 1, )) 
+  do(marittr::extract(., 1, )) 
   # combine: dplyr does this automatically
 class_edit %>% head
 {% endhighlight %}
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error: Invalid column specification
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'class_edit' not found
-{% endhighlight %}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> teacher_id </th>
+   <th style="text-align:center;"> weight </th>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> pretest_score </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 100 </td>
+   <td style="text-align:center;"> 16 </td>
+   <td style="text-align:center;"> 0.9692 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -2.1143 </td>
+   <td style="text-align:center;"> -0.0226 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 101 </td>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 0.1913 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -0.4224 </td>
+   <td style="text-align:center;"> 0.8057 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 102 </td>
+   <td style="text-align:center;"> 17 </td>
+   <td style="text-align:center;"> 0.7622 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> -0.7631 </td>
+   <td style="text-align:center;"> 0.1451 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 102 </td>
+   <td style="text-align:center;"> 20 </td>
+   <td style="text-align:center;"> 0.9347 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -1.4334 </td>
+   <td style="text-align:center;"> 0.9452 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 103 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 0.7774 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> -0.7721 </td>
+   <td style="text-align:center;"> 0.5730 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+</tbody>
+</table>
 </div><p></p>
 
 And here we see that those duplicates were indeed removed.
@@ -601,7 +672,7 @@ class_edit %>%
 
 
 {% highlight text %}
-## Error in eval(expr, envir, enclos): object 'class_edit' not found
+## [1] 0
 {% endhighlight %}
 
 `do()` is versatile because it can handle a variety of different output types. 
@@ -679,55 +750,55 @@ class %>%
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> 0.0161 </td>
-   <td style="text-align:center;"> 0.0644 </td>
-   <td style="text-align:center;"> 0.2503 </td>
-   <td style="text-align:center;"> 0.8025 </td>
+   <td style="text-align:center;"> 0.0283 </td>
+   <td style="text-align:center;"> 0.0645 </td>
+   <td style="text-align:center;"> 0.4385 </td>
+   <td style="text-align:center;"> 0.6614 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> 0.0195 </td>
-   <td style="text-align:center;"> 0.0581 </td>
-   <td style="text-align:center;"> 0.3361 </td>
-   <td style="text-align:center;"> 0.7371 </td>
+   <td style="text-align:center;"> 0.0176 </td>
+   <td style="text-align:center;"> 0.0580 </td>
+   <td style="text-align:center;"> 0.3032 </td>
+   <td style="text-align:center;"> 0.7620 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 11 </td>
    <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> 0.0165 </td>
-   <td style="text-align:center;"> 0.0675 </td>
-   <td style="text-align:center;"> 0.2448 </td>
-   <td style="text-align:center;"> 0.8068 </td>
+   <td style="text-align:center;"> 0.0204 </td>
+   <td style="text-align:center;"> 0.0677 </td>
+   <td style="text-align:center;"> 0.3016 </td>
+   <td style="text-align:center;"> 0.7632 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 11 </td>
    <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> 0.0395 </td>
-   <td style="text-align:center;"> 0.0618 </td>
-   <td style="text-align:center;"> 0.6395 </td>
-   <td style="text-align:center;"> 0.5231 </td>
+   <td style="text-align:center;"> 0.0357 </td>
+   <td style="text-align:center;"> 0.0620 </td>
+   <td style="text-align:center;"> 0.5751 </td>
+   <td style="text-align:center;"> 0.5657 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> -0.0185 </td>
-   <td style="text-align:center;"> 0.0655 </td>
-   <td style="text-align:center;"> -0.2824 </td>
-   <td style="text-align:center;"> 0.7779 </td>
+   <td style="text-align:center;"> -0.0136 </td>
+   <td style="text-align:center;"> 0.0659 </td>
+   <td style="text-align:center;"> -0.2057 </td>
+   <td style="text-align:center;"> 0.8372 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> -0.0724 </td>
-   <td style="text-align:center;"> 0.0631 </td>
-   <td style="text-align:center;"> -1.1475 </td>
-   <td style="text-align:center;"> 0.2523 </td>
+   <td style="text-align:center;"> -0.0763 </td>
+   <td style="text-align:center;"> 0.0635 </td>
+   <td style="text-align:center;"> -1.2001 </td>
+   <td style="text-align:center;"> 0.2313 </td>
   </tr>
 </tbody>
 </table>
@@ -760,16 +831,16 @@ classDT[, list(total_students = .N), by = list(subject, grade)]
   <tr>
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 255 </td>
-   <td style="text-align:center;"> 124 </td>
-   <td style="text-align:center;"> 131 </td>
+   <td style="text-align:center;"> 252 </td>
+   <td style="text-align:center;"> 122 </td>
+   <td style="text-align:center;"> 130 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 246 </td>
-   <td style="text-align:center;"> 126 </td>
-   <td style="text-align:center;"> 120 </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 241 </td>
+   <td style="text-align:center;"> 116 </td>
+   <td style="text-align:center;"> 125 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> math </td>
@@ -780,10 +851,10 @@ classDT[, list(total_students = .N), by = list(subject, grade)]
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 243 </td>
-   <td style="text-align:center;"> 116 </td>
-   <td style="text-align:center;"> 127 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 245 </td>
+   <td style="text-align:center;"> 125 </td>
+   <td style="text-align:center;"> 120 </td>
   </tr>
 </tbody>
 </table>
@@ -818,7 +889,7 @@ classDT[, list(mean = mean(z_post), sd = sd(post)), by = list(subject, grade)]
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> 0 </td>
    <td style="text-align:center;"> 1 </td>
   </tr>
@@ -830,7 +901,7 @@ classDT[, list(mean = mean(z_post), sd = sd(post)), by = list(subject, grade)]
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 11 </td>
    <td style="text-align:center;"> 0 </td>
    <td style="text-align:center;"> 1 </td>
   </tr>
