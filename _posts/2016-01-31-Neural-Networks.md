@@ -11,7 +11,7 @@ categories: ['statistics', 'machine learning']
 
 
 # Schematic Model
-IMAGE
+![Neural Network Model](http://jnguyen92.github.io/nhuyhoa/figure/images/neural_network_model.png)
 One of many potential neural network models.
 
 The $$x$$s refer to input variables. Each layer has a bias or intercept term. Every node has an outgoing weight/arrow, we will call these $$\theta_{ii}$$. These weight determine the effect of the previous node to the target node. The output node gives the final function estimate. 
