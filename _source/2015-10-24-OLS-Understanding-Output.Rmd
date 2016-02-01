@@ -34,7 +34,7 @@ The summary table contains a lot of information regarding the linear model.
 
 Note that the $$t$$ statistic and the p-value are interpreted as the effect of the variable after all other covariates have been accounted for. 
 
-* `Residual standard error`: the estimate of $$\sigma$$. In other words this is equal to $$ \sqrt{MSE} = \sqrt{\frac{SSE}{df_E}} =  \sqrt{\frac{SSE}{n - p}} $$
+* `Residual standard error`: the estimate of $$\sigma$$ and how much we expect our fitted values to be off on average. In other words this is equal to $$ \sqrt{MSE} = \sqrt{\frac{SSE}{df_E}} =  \sqrt{\frac{SSE}{n - p}} $$
 * `R-squared`: This is the total variance of $$Y$$ that is explained by the covariates. In other words, $$ R^2 = 1 - \frac{SS_{err}}{SS_{tot}} $$
 * `Adjusted R-squared`: This is the total variance of $$Y$$ that is explained by the covariates, adjusted for by the number of covariates. The $$R^2$$ will increase as more parameters are introduced into the model. The adjusted $$R^2$$ value places a penalty on an excess of parameters.
 * `F-statistic`: The $$F$$ statistic and corresponding p-value comparing the full model to an intercept only model

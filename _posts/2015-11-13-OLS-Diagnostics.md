@@ -125,6 +125,7 @@ A VIF of 1 indicates no correlation. VIFs greater than 5 are on the fence, furth
 * Residuals: `residuals(m)`
 * Internally standardized residuals: `rstandard(m)`
 * Externally standardized residuals: `rstudent(m)`
+* Outlier test: `car::outlierTest(m)`
 * Leverage values: `hatvalues(m)`
 * Cook's Distance: `cooks.distance(m)`
 * DFFITS: `dffits(m)`
@@ -132,6 +133,7 @@ A VIF of 1 indicates no correlation. VIFs greater than 5 are on the fence, furth
 * Influence statistics: `influence.measures(m)`
 * Influence plot: `influencePlot(m)`
 * Variance Inflation Factor: `vif(m)`
+* various values: `broom::augment(m)`
 
 ## Assess Independence:
 Independence is generally difficult to test for. Generally scientific knowledge regarding the problem at hand should be used to assess independence of observations.

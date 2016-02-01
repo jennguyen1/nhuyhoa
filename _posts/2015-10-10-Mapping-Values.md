@@ -215,7 +215,7 @@ switch(
 
 
 {% highlight text %}
-## [1] 300
+## [1] 100
 {% endhighlight %}
 
 `switch()` can also be used to execute many lines of code. Simply use place these executions inside the brackets `{}`. 

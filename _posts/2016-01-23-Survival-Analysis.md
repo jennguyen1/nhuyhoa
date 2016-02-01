@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Survival Analysis"
+title: "Survival Analysis and Cox Regression"
 date: "January 23, 2016"
 categories: ['statistics', 'regression analysis']
 ---

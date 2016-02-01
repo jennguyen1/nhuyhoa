@@ -128,7 +128,7 @@ valid_on <- c("NA", "pairwise comparisons", "pairwise comparisons", "all possibl
 sample_size <- c("NA", "equal & unequal sample sizes", "equal sample sizes", "equal & unequal sample sizes")
 x <- data.frame(methods, valid_on, sample_size) 
 colnames(x) <- c("Method", "Valid On", "Sample Size") 
-x %>% kable(format = "html", table.attr = "class = \"presenttab\"") #%>% nhuyhoa_df_present()
+x %>% nhuyhoa_df_present(data = FALSE)
 ```
 
 <p></p>

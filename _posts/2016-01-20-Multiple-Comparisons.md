@@ -110,37 +110,10 @@ $$ \hat{C} \pm \sqrt{(m - 1)F_{\alpha; m - 1, N - m}} * s_{\hat{C}} $$
 where $$m$$ is the number of groups and $$N$$ are the total number of observations.
 
 ## Summary
-<table class = "presenttab">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Method </th>
-   <th style="text-align:left;"> Valid On </th>
-   <th style="text-align:left;"> Sample Size </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Fischer's LSD </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bonferroni </td>
-   <td style="text-align:left;"> pairwise comparisons </td>
-   <td style="text-align:left;"> equal &amp; unequal sample sizes </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tukey </td>
-   <td style="text-align:left;"> pairwise comparisons </td>
-   <td style="text-align:left;"> equal sample sizes </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Scheffe </td>
-   <td style="text-align:left;"> all possible contrasts </td>
-   <td style="text-align:left;"> equal &amp; unequal sample sizes </td>
-  </tr>
-</tbody>
-</table>
+
+{% highlight text %}
+## Error in function_list[[k]](value): could not find function "nhuyhoa_df_present"
+{% endhighlight %}
 
 <p></p>
 
