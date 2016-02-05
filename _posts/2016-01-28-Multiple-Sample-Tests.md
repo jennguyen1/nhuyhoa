@@ -10,8 +10,65 @@ categories: ['statistics', 'experimental design']
 
 
 
+# One Sample Tests
+
+## Parametric Test
+Suppose our sample is randomly drawn from a normally distributed population. We want to test the population mean against a known standard (say $$\mu_0$$). So our null hypothesis is
+
+$$H_0: \mu_1 = \mu_0$$
+
+$$H_1: \mu_1 \ne \mu_0$$
+
+There's two ways to do this. 
+
+**Assume $$\sigma^2$$ Known**
+We know that by the CLT $$\bar{X}$$ ~ $$N(\mu, \sigma^2)$$.  
+
+We can calculate the test statistic 
+
+$$Z = \frac{\bar{X} - \mu_0}{\sqrt{\sigma^2/n}}$$
+
+where $$Z$$ ~ $$N(0, 1)$$ under the null hypothesis. We can compute the p-value to test $$H_0$$.
+
+**Assume $$\sigma^2$$ Unknown**
+Suppose the population variance is not known. Since we don't know $$\sigma^2$$, we can estimate it with the sample variance $$s^2$$. We can derive our test statistic from [probability theory][stat_theory_link]{:target = "_blank"}. 
+
+Let $$Z$$ ~ $$N(0, 1)$$ and $$\frac{(n - 1)s^2}{\sigma^2}$$ ~ $$X^2_{n-1}$$
+
+$$T = \frac{\frac{\bar{X} - \mu_0}{\sqrt{\sigma^2/n}}}{\sqrt{\frac{(n - 1)s^2}{\sigma^2}/(n-1)}} = \frac{\bar{X} - \mu_0}{\sqrt{s/n}}$$
+
+where $$T$$ ~ $$t_{n - 1}$$ under the null hypothesis. We can compute the p-value to test $$H_0$$. 
+
+## Nonparametric Test
+
+If we have non-normality or outliers, parametric tests are not ideal. Nonparametric tests are more robust to violoations of these assumptions. 
+
+The wilcoxon signed rank test is a test that makes 2 assumptions. 
+
+1. RV $$X$$ is continuous
+2. The pdf of X is symmetric
+
+We wish to test the median
+
+$$H_0: m = m_0$$
+
+against the potential alternative hypotheses
+
+$$ H_1: m > m_0$$ or $$H_1: m < m_0$$ or $$H_1: m \ne m_0$$
+
+We can perform this test as follows:
+
+1. Calculate $$X_i - m_0$$
+2. Calculate $$\vert X_i - m_0 \vert$$
+3. Determine rank, $$R_i$$ of the absolute values in ascending order according to magnitude
+4. Determine the value of $$W = \sum^n_i Z_i R_i$$ where $$Z_i = I(X_i - m_0 > 0)$$
+5. Determine if the observed $$W$$ is extreme under $$H_0$$
+
+The distribution is available in software and in tables. We can also compute it for ourselves. For small sample sizes, the distribution of $$W$$ can be derived from the sample size. In large sample sizes, the value 
+$$W' = \frac{\sum^n_{i = 1} Z_iR_i - \frac{n(n + 1)}{4}}{\sqrt{\frac{n(n + 1)(2n + 1)}{24}}}$$ is approximately distributed $$N(0, 1)$$
+
 # Two Sample Tests
-Suppose we want to test two population means. Let $$\mu_1$$ and $$\mu_2$$ represent population mean responses for $$trt.1$$ and $$trt.2$$. 
+Suppose we want to test two population means where both populations are normally distributed. Let $$\mu_1$$ and $$\mu_2$$ represent population mean responses for $$trt.1$$ and $$trt.2$$. 
 
 We want to test
 
@@ -33,8 +90,9 @@ $$T = \frac{\bar{Y}_1 - \bar{Y}_2}{\sqrt{\hat{Var}(\hat{Y}_1 - \hat{Y}_2)}}$$
 where $$\hat{Var}(\hat{Y}_1 - \hat{Y}_2)$$ depends on the estimated variances of the two treatment groups.
 
 **Equal Variance**
+We have independence between $$Y_1$$ and $$Y_2$$. If the variances are equal
 
-$$\hat{Var}(\hat{Y}_1 - \hat{Y}_2) = \frac{\bar{Y}_1 - \bar{Y}_2}{\sqrt{s^2_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)}}$$
+$$\hat{Var}(\hat{Y}_1 - \hat{Y}_2) = s^2_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)$$
  
 where
 
@@ -42,13 +100,16 @@ $$s^2_p = \frac{(n_1 - 1)s^2_1 + (n_2 - 1) s^2_2}{n_1 - 1 + n_2 - 1}$$
 
 which is a weighted average of the sample means.
 
-**Unequal Variance**
-...
-
-
-
-
 The statistic $$T$$ ~ $$t_{n_1 + n_2 - 2}$$.
+
+**Unequal Variance**
+If the variances are not equal
+
+$$\hat{Var}(\hat{Y}_1 - \hat{Y}_2) = \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2}$$
+
+The statistic $$T$$ ~ $$t_{r}$$ where
+
+$$r = \frac{\left( \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2} \right)^2}{\frac{(s^2_x/n_1)^2}{n_1 - 1} + \frac{(s^2_y/n_2)^2}{n_2 - 1}}$$
 
 ## Paired T-Test
 Suppose that instead of randomly assigning treatments to each subject, we have some sort of pairing. (A "pair" can refer to one or two subjects). While pairs are independent, there is dependency within pairs. The more dependency there is within a pair, the more noise reduction.
@@ -161,6 +222,12 @@ $$dfErr$$ | $$ = N-k$$
  
 where $$F$$ ~ $$F_{dfTrt, dfErr}$$
 
+We can derive this distribution from [probability theory][stat_theory_link]{:target = "_blank"}. The value $$\frac{df * MS}{\sigma^2}$$ is distributed $$X^2$$. So 
+
+$$F = \frac{ \frac{df * MS}{\sigma^2} / df }{ \frac{dfErr * MSErr}{\sigma^2} / dfErr } = \frac{ MSTrt }{ MSErr }$$ 
+
+is distributed $$F_{df, dfErr}$$. 
+
 **Model Formulations**
 
 * $$Y_{ij} = \mu_i + \epsilon_{ij}$$ where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$
@@ -194,3 +261,4 @@ A nonparametric alternative to ANOVA requires a rank transformation. The procedu
 
 ### Hodges-Lehman
 
+[stat_theory_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/OLS-and-ANOVA.html

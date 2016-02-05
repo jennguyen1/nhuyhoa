@@ -1,0 +1,118 @@
+---
+layout: post
+title: "Contingency Tables"
+date: "February 4, 2016"
+categories: ['statistics', 'experimental design']
+---
+
+* TOC
+{:toc}
+
+
+
+# Goodness of Fit Tests
+
+## Chi-Square Test Statistic
+
+Let $$Y_1$$ ~ $$Bin(n, p_1)$$. Then $$E[Y_1] = np_1$$ and $$Var(Y_1) = np_1(1 - p_1)$$. For large samples ($$np_1 \ge 5$$ and $$n(1 - p_1) \ge 5$$), the CLT yields the normal distribution approxiation to the binomial distribution. 
+
+$$Z = \frac{Y_1 - np_1}{\sqrt{np_1(1 - p_1)}}$$
+
+where $$Z$$ ~ $$N(0, 1)$$. 
+
+Squaring $$Z$$ we get
+
+$$Z^2 = X^2 = \frac{(Y_1 - np_1)^2}{np_1(1 - p_1)}$$ 
+
+where $$X^2$$ ~ $$\chi^2_1$$. 
+
+We can rearrange to get
+
+--------|------------------
+$$X^2$$ | $$= \frac{(Y_1 - np_1)^2}{np_1(1 - p_1)} * ((1 - p_1) + p_1)$$
+        | $$= \frac{(Y_1 - np_1)^2 (1 - p_1)}{np_1(1 - p_1)} + \frac{(Y_1 - np_1)^2 p_1}{np_1(1 - p_1)}$$
+        | $$ = \frac{(Y_1 - np_1)^2}{np_1} + \frac{(Y_1 - np_1)^2}{n(1 - p_1)}$$
+        | $$= \frac{(Y_1 - np_1)^2}{np_1} + \frac{(n - Y_2 - n(1 - p_2))^2}{np_2}$$
+        | $$= \frac{(Y_1 - np_1)^2}{np_1} + \frac{(-(Y_2 - np_2))^2}{np_2}$$
+        | $$= \frac{(Y_1 - np_1)^2}{np_1} + \frac{((Y_2 - np_2))^2}{np_2}$$
+        | $$= \sum^2_{i = 1} \frac{(Y_i - np_i)^2}{np_i}$$
+        | $$= \sum^2_{i = 1} \frac{(Obs - Exp)^2}{Exp}$$
+
+Thus we obtain the $$X^2$$ goodness of fit statistic. 
+
+It is important to note that
+
+* We require CLT so that the expected number of each category is $$\ge 5$$
+* The degrees of freedom of $$X^2$$ depends on the number of independent counts
+* We reject the $$H_0$$ if the observed counts are very different from the expected counts (thus a greater $$X^2$$)
+
+Consider the following table
+
+Categories   | 1       | 2       | ... | |k - 1         | |k
+-------------|---------|---------|-----|-|--------------|-|------------
+**Observed** | $$Y_1$$ | $$Y_2$$ | ... | |$$Y_{k - 1}$$ | |$$n-Y_1-Y_2-...-Y_{k - 1}$$
+**Expected** | $$np_1$$| $$np_2$$| ... | |$$np_{k - 1}$$| |$$1 - np_k$$
+
+
+The chi-square statistic for a $$k$$ category table is
+
+$$X^2 = \sum^k_{i = 1} \frac{Y_i - np_i}{np_i}$$
+
+where $$X^2$$ ~ $$\chi^2_{k - 1}$$.
+
+How do we obtain the probabilities? One way is for it to be given to us. We might also be interested in testing whether a data set follows a specific probability distribution. Generally these probability distributions have parameters that are unspecified. In this case, to conduct chi-square goodness of fit tests, 
+
+1. Estimate the parameters using the maximum likelihood method
+2. Calculate the chi-square statistic using the obtained estimates
+3. Compare the chi-square statistic to a $$X^2_{k - 1 - d}$$ distribution where $$d = $$ number of parameters estimated
+
+# Two Way Contingency Tables
+
+**Homogeneity**
+The test for homogeneity tests whether two or more multinomial distributions are equal. 
+
+We want to test
+
+$$H_0: p_{11} = p_{21} and p_{12} = p_{22} ... p_{1k} = p_{2k}$$
+$$H_1: not H_0$$
+
+Category | c1                           | | ... | | cj                           | | Fixed Total
+---------|------------------------------|-|-----|-|-----------------------------|-|------------
+**Pop1**     | $$y_{11}$$ ($$\hat{p}_{11}$$)| |...  | | $$y_{1k}$$ ($$\hat{p}_{1J}$$)| |$$n_1 = \sum^k_j y_{1j}$$
+**Pop2**     | $$y_{21}$$ ($$\hat{p}_{21}$$)| |...  | | $$y_{2k}$$ ($$\hat{p}_{2J}$$)| |$$n_2 = \sum^k_j y_{2j}$$
+**Total**    | $$y_{11} + y_{21}$$ ($$\hat{p}_{1}$$) | |... | | $$y_{1k} + y_{2k}$$ ($$\hat{p}_{k}$$) | |$$n_1 + n_2$$
+
+Each cell denotes the number falling into the $$j^{th}$$ category of the $$i^{th}$$ sample. Under the null hypothesis, $$E[Y_{ij}] = n_i \hat{p}_j$$. The estimate $$\hat{p}_j$$ is the pooled estimate for each column (under $$H_0$$, $$p_{xi} = p_{yi}$$). 
+
+The test statistic is
+
+$$X^2 = \sum^I_{i = 1} \sum^J_{j = 1} \frac{(y_{ij} - n_i \hat{p}_j)^2}{n_i \hat{p}_j}$$
+
+We have $$I(J - 1)$$ df (each row is multinomial so $$n_i$$ is fixed) and estimate $$(J - 1)$$ parameters ($$\hat{p}_j$$). So $$df  = IJ - I - J + 1 = (I - 1)(J - 1)$$
+
+So the statistic $$X^2$$ ~ $$\chi^2_{(I - 1)(J - 1)}$$
+
+**Independence**
+Now consider that we hold the total sample size fixed (but not the marginal totals). Then we cross-classify each subject into one and only one of the mutually exclusive and exhaustive $$A_i \cap B_i$$. 
+
+We wish to test
+$$H_0: A \perp B; P(AB) = P(A)P(B)$$
+$$H_1: A not \perp B$$
+
+.       | |$$B_1$$                 | | ... | |$$B_J$$                 | **Total**
+--------|-|-----------------------|-|-----|-|------------------------|-------
+$$A_1$$ | |$$Y_{11}$$ ($$p_{11}$$) | | ... | |$$Y_{1J}$$ ($$p_{1J}$$) | ($$p_{1.}$$)
+...     | |                        | | ... | |                        |
+$$A_I$$ | |$$Y_{I1}$$ ($$p_{I1}$$) | | ... | |$$Y_{IJ}$$ ($$p_{IJ}$$) | ($$p_{I.}$$)
+**Total**| | ($$p_{.1}$$)           | | ... | | ($$p_{.J}$$)           | $$n$$
+
+Each cell $$Y_{ij}$$ denotes the frequency of $$A_i \cap B_j$$. Under the null hypothesis, $$E[Y_{ij}] = P(A_i)P(B_j)n = \frac{y_{i.}}{n} * \frac{y_{.j}}{n} * n = \frac{y_{i.} y_{.j}}{n} $$. 
+
+The test statistic is
+
+$$X^2 = \sum^I_{i = 1} \sum^J_{j = 1} \frac{(y_{ij} - \frac{y_{i.} y_{.j}}{n})^2}{\frac{y_{i.} y_{.j}}{n}}$$
+
+We have $$(IJ - 1)$$ df (only grand total $$n$$ is fixed) and estimate $$(I + J - 2)$$ parameters (marginal probabilities). So $$df  = IJ - 1 + - I - J + 2 = IJ - I - J + 1 = (I - 1)(J - 1)$$
+
+So the statistic $$X^2$$ ~ $$\chi^2_{(I - 1)(J - 1)}$$
+
