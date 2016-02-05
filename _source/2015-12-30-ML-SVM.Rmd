@@ -107,6 +107,8 @@ $$f(\overrightarrow{x}) = \overrightarrow{\alpha}^T K(x, x_i) + b$$
 
 where $$\alpha_i \ne 0$$ are the weights vectors. 
 
+See this [link][kernal_link]{:target = "_blank"} for an example of what a kernal does.
+
 # Strengths and Weaknesses of SVM
 
 **Strengths:**
@@ -178,3 +180,5 @@ summary(nonlin.svm.fit)
 # look at plot
 plot(nonlin.svm.fit, nonlin_dat)
 ```
+
+[kernal_link]: https://www.youtube.com/watch?v=3liCbRZPrZA

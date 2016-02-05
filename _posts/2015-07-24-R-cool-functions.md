@@ -19,11 +19,25 @@ categories: R
 * [shiny cheatsheet][shiny_ref]{:target = "_blank"}
 
 
+
+
 [r_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMMWN5dmhaT05IRkk/view?usp=sharing
 [dplyr_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMblBxTjEwRWZXYjQ/view?usp=sharing
 [data.table_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMYUtxVHVUVFVDbGc/view?usp=sharing
 [ggplot2_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMd1RDSlFYQ0lSZFE/view?usp=sharing
 [shiny_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMU0JWZmtWSXF0dHc/view?usp=sharing
+
+**Not Yet:**
+[rmarkdown_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMV2NBbWlSNHJvM2c/view?usp=sharing
+[rmarkdown_ref2]: https://drive.google.com/file/d/0B5VF_idvHAmMTHU4MFRDV1Z3NUE/view?usp=sharing
+GGally::ggpairs()
+[grid.arrange]: http://www.sthda.com/english/wiki/ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page-r-software-and-data-visualization
+color pallettes:
+> library(RColorBrewer)
+> display.brewer.all()
+locator function:
+ggmap::gglocator()
+heatmaps with dendrograms 2x2
 
 
 The `broom` package has three main functions that deal with a variety of modeling functions

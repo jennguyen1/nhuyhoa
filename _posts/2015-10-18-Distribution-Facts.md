@@ -100,4 +100,16 @@ Note that $$ F_{1, k} = t^2_k $$
 # Other Distributions
 See the [Probability Overview post][prob_overview_post]{:target = "_blank"}.
 
+# Distributions of Common Statistics
+Suppose
+
+* $$X_1, ..., X_n$$ are observations of a random sample from $$N$$ ~ $$N(\mu, \sigma^2)$$
+* $$\bar{X} = \frac{1}{n} \Sigma_i^n X_i $$ is the sample mean of the observations
+* $$ S^2 = \frac{1}{n - 1} \Sigma_i^n (X_i - \bar{X})^2 $$ is the sample variance of the observations
+
+Then:
+
+* $$\bar{X}$$ and $$S^2$$ are independent
+* $$\frac{(n-1)S^2}{\sigma^2} = \frac{\Sigma_i^n (X_i - \bar{X})^2}{\sigma^2} $$ ~ $$ X^2_{n - 1} $$
+
 [prob_overview_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Probability-Overview.html

@@ -7,31 +7,20 @@ date: "October 30, 2015"
 * TOC
 {:toc}
 
-**Obtain help:**
-{% highlight r %}
-man cmd
-{% endhighlight %}
+**Cheatsheet:**
+See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 
-**To navigate:**
-{% highlight r %}
-# print current directory
-pwd
+**Editing files:**
 
-# travel to the specified location
-cd filepath
-
-# travel back to parent directory
-cd ..
-{% endhighlight %}
-
-**To list file contents**
-{% highlight r %}
-# print everything
-ls -l
-
-# print everything of a given name using wildcards (*, ?, [], {})
-ls name.*
-{% endhighlight %}
+* `grep` for pattern matching
+  * `grep -c` counts matches
+  * special characters: `^`, `$`, `*`
+* `tr a b` translate a into b
+  * `tr a b < file` translate a to b in the file
+* `uniq` for unique values
+* `sort` sorting
+* `echo` repeat your own text, can pipe into files
+* `wc` word counts
 
 **To upload to a folder:**
 {% highlight r %}
@@ -43,45 +32,13 @@ rsync -a filename username@place:file_directory
 ssh username@place
 {% endhighlight %}
 
-**To copy/move files:**
-{% highlight r %}
-# copy directories
-cp -r folder1 folder2
-
-# copy files
-cp filename1 filename2 ... new_location
-
-# copy files with wildcards
-cp name.* new_location
-
-# move files
-mv filenames ... new_location
-{% endhighlight %}
-
-**To make files:**
-{% highlight r %}
-# for a directory(s)
-mkdir name1 name2
-{% endhighlight %}
-
-**To remove files:**
-{% highlight r %}
-# for an empty directory
-rmdir filepath
-
-# recursively delete
-rm -f -r filepath
-
-# for a file
-rm filename(s)
-{% endhighlight %}
-
 **Change permissions:**
 {% highlight r %}
 # make file readable by group
 chmod g+r filepath
 {% endhighlight %}
 
-Useful locations:
+**Useful locations:**
 desk22.stat.wisc.edu:public/html
 
+[linux_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMeXJRRWdFTFQzMEU/view?usp=sharing

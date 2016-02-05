@@ -64,7 +64,7 @@ Rather than specifying $$\lambda$$, one can specify the effective degrees of fre
 # Local Regression
 Local regression, otherwise known as loess, is a non-parametric techniquethat combines multiple regression and k-nearest neighbors. 
 
-The idea is compute compute a fit at target point $$x_0$$ using only the nearby training observations. 
+The idea is generate a linear model at target point $$x_0$$ using only the nearby training observations. 
 
 **Algorithm:**
 

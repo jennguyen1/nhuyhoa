@@ -14,14 +14,16 @@ Likelihood is a common staitstical approach for analyzing data and conducting in
 Suppose we observe iid responses $$Y_i$$ for $$i = 1, ...n$$. Let the density of $$Y_i$$ be $$f(y \vert \mu)$$. 
 
 Then the joint density for $$Y_1, ..., Y_n$$ is 
-$$f(y_1, ..., y_n \vert \mu) = \Pi^n_{i = 1} f(y_i \vert \mu)$$
+
+$$f(y_1, ..., y_n \vert \mu) = \prod^n_{i = 1} f(y_i \vert \mu)$$
 
 The likelihood function is then
-$$L(\mu) = \Pi^n_{i = 1} f(Y_i \vert \mu)$$
 
-The maximum likelihood estimate (MLE) of $$\mu$$ is the value of $$\mu$$ that maximizes $$L(\mu)$$. To calculate this we can take the first derivate and set it equal to 0. Often we maximize the \log likelihood $$\log(L(\mu))$$ for simpler calculations. 
+$$L(\mu) = \prod^n_{i = 1} f(Y_i \vert \mu)$$
 
-Example:
+The maximum likelihood estimate (MLE) of $$\mu$$ is the value of $$\mu$$ that maximizes $$L(\mu)$$. To calculate this we can take the first derivate and set it equal to 0. Often we maximize the log likelihood $$\log(L(\mu))$$ for simpler calculations. 
+
+**Example:**
 
 Consider the one-sample iid normal case: $$Y_i$$ ~ $$N(\mu, \sigma^2)$$ where we assume that $$\sigma^2$$ is known. We want to find the MLE of $$\mu$$.
 
@@ -29,10 +31,10 @@ The density for $$Y_i$$ is
 $$f(y \vert \mu) = \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(y - \mu)^2}{2\sigma^2}\right)$$
 
 The joint density for $$Y_1, ... Y_n$$ is
-$$f(y_1, ..., y_n \vert \mu) = \Pi^n_{i = 1} \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(y_i - \mu)^2}{2\sigma^2}\right)$$
+$$f(y_1, ..., y_n \vert \mu) = \prod^n_{i = 1} \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(y_i - \mu)^2}{2\sigma^2}\right)$$
 
 Then the likelihood function is
-$$L(\mu) = \Pi^n_{i = 1} \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(Y_i - \mu)^2}{2\sigma^2}\right)$$
+$$L(\mu) = \prod^n_{i = 1} \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(Y_i - \mu)^2}{2\sigma^2}\right)$$
 
 It is easier to maximize the log likelihood
 
