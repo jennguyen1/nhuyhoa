@@ -36,7 +36,7 @@ In R, the following function (in the `boot` package) will generate the bootstrap
 The `statistic` argument is a function which computes the desired test statistic. This function should have at least two arguments that takes the original data set and a vector of indices which define the bootstrap sample. The function can take other arguments as well, which can also be passed along in the `boot` function. 
 
 # Permutation Test
-A permutation test randomizes the labels assigned to data points to obtain a distribution under the null hypothesis. The observed test statistic is compared to this distribution to assess significance. 
+A permutation test randomizes the labels assigned to data points to obtain a distribution under the null hypothesis. The observed test statistic is compared to this distribution to assess significance. We can run this for any number of tests (t-test, F-test, other non-parametrics). 
 
 We have the following hypothesis
 
