@@ -12,7 +12,7 @@ categories: ['statistics', 'experimental design']
 
 # Goodness of Fit Tests
 
-## Two Statistics
+## Pearson Chi-Square and Deviance
 Let $$Y_1$$ ~ $$Bin(n, p_1)$$. Then $$E[Y_1] = np_1$$ and $$Var(Y_1) = np_1(1 - p_1)$$. For large samples ($$np_1 \ge 5$$ and $$n(1 - p_1) \ge 5$$), the CLT yields the normal distribution approxiation to the binomial distribution. 
 
 $$Z = \frac{Y_1 - np_1}{\sqrt{np_1(1 - p_1)}}$$
@@ -110,6 +110,7 @@ The test for homogeneity tests whether two or more multinomial distributions are
 We want to test
 
 $$H_0: p_{11} = p_{21} and p_{12} = p_{22} ... p_{1k} = p_{2k}$$
+
 $$H_1: not H_0$$
 
 Category | c1                           | | ... | | cj                           | | Fixed Total
@@ -118,21 +119,26 @@ Category | c1                           | | ... | | cj                          
 **Pop2**     | $$y_{21}$$ ($$\hat{p}_{21}$$)| |...  | | $$y_{2k}$$ ($$\hat{p}_{2J}$$)| |$$n_2 = \sum^k_j y_{2j}$$
 **Total**    | $$y_{11} + y_{21}$$ ($$\hat{p}_{1}$$) | |... | | $$y_{1k} + y_{2k}$$ ($$\hat{p}_{k}$$) | |$$n_1 + n_2$$
 
-Each cell denotes the number falling into the $$j^{th}$$ category of the $$i^{th}$$ sample. Under the null hypothesis, $$E[Y_{ij}] = n_i \hat{p}_j$$. The estimate $$\hat{p}_j$$ is the pooled estimate for each column (under $$H_0$$, $$p_{xi} = p_{yi}$$). 
+Each cell denotes the number falling into the $$j^{th}$$ category of the $$i^{th}$$ sample. Let the estimate $$\hat{p}_j$$ is the pooled estimate for each column (under $$H_0$$, $$p_{xi} = p_{yi}$$). Under the null hypothesis,
+
+$$E[Y_{ij}] = n_i \hat{p}_j$$
 
 The test statistic is
 
 $$X^2 = \sum^I_{i = 1} \sum^J_{j = 1} \frac{(y_{ij} - n_i \hat{p}_j)^2}{n_i \hat{p}_j}$$
 
-We have $$I(J - 1)$$ df (each row is multinomial so $$n_i$$ is fixed) and estimate $$(J - 1)$$ parameters ($$\hat{p}_j$$). So $$df  = IJ - I - J + 1 = (I - 1)(J - 1)$$
+We have $$I(J - 1)$$ df (each row is multinomial so $$n_i$$ is fixed) and estimate $$(J - 1)$$ parameters ($$\hat{p}_j$$). So 
+
+$$df  = IJ - I - J + 1 = (I - 1)(J - 1)$$
 
 So the statistic $$X^2$$ ~ $$\chi^2_{(I - 1)(J - 1)}$$
 
 ## Independence
-Now consider that we hold the total sample size fixed (but not the marginal totals). Then we cross-classify each subject into one and only one of the mutually exclusive and exhaustive $$A_i \cap B_i$$. 
+Now consider that we hold the total sample size fixed (but not the marginal totals). Each cell is a Poisson random variable with its own rate. Then we cross-classify each subject into one and only one of the mutually exclusive and exhaustive $$A_i \cap B_i$$. 
 
 We wish to test
 $$H_0: A \perp B; P(AB) = P(A)P(B)$$
+
 $$H_1: A not \perp B$$
 
 .       | |$$B_1$$                 | | ... | |$$B_J$$                 | **Total**
@@ -142,13 +148,17 @@ $$A_1$$ | |$$Y_{11}$$ ($$p_{11}$$) | | ... | |$$Y_{1J}$$ ($$p_{1J}$$) | ($$p_{1.
 $$A_I$$ | |$$Y_{I1}$$ ($$p_{I1}$$) | | ... | |$$Y_{IJ}$$ ($$p_{IJ}$$) | ($$p_{I.}$$)
 **Total**| | ($$p_{.1}$$)           | | ... | | ($$p_{.J}$$)           | $$n$$
 
-Each cell $$Y_{ij}$$ denotes the frequency of $$A_i \cap B_j$$. Under the null hypothesis, $$E[Y_{ij}] = P(A_i)P(B_j)n = \frac{y_{i.}}{n} * \frac{y_{.j}}{n} * n = \frac{y_{i.} y_{.j}}{n} $$. 
+Each cell $$Y_{ij}$$ denotes the frequency of $$A_i \cap B_j$$. Under the null hypothesis, 
+
+$$E[Y_{ij}] = P(A_i)P(B_j)n = \frac{y_{i.}}{n} * \frac{y_{.j}}{n} * n = \frac{y_{i.} y_{.j}}{n} $$
 
 The test statistic is
 
 $$X^2 = \sum^I_{i = 1} \sum^J_{j = 1} \frac{(y_{ij} - \frac{y_{i.} y_{.j}}{n})^2}{\frac{y_{i.} y_{.j}}{n}}$$
 
-We have $$(IJ - 1)$$ df (only grand total $$n$$ is fixed) and estimate $$(I + J - 2)$$ parameters (marginal probabilities). So $$df  = IJ - 1 + - I - J + 2 = IJ - I - J + 1 = (I - 1)(J - 1)$$
+We have $$(IJ - 1)$$ df (only grand total $$n$$ is fixed) and estimate $$(I + J - 2)$$ parameters (marginal probabilities). So 
+
+$$df  = IJ - 1 + - I - J + 2 = IJ - I - J + 1 = (I - 1)(J - 1)$$
 
 So the statistic $$X^2$$ ~ $$\chi^2_{(I - 1)(J - 1)}$$
 
@@ -347,4 +357,176 @@ $$\hat{d} \pm z_{\alpha/2} \sqrt{\hat{Var}(\hat{d})}$$
 
 # Three-Way Contingency Tables
 
+With $$k$$-way tables, we have a different sampling scheme. We can think if it as stratified sampling where we have a fixed sample size for each partial table. 
+
+For modeling independence and association in $$3##-way tables, we consider several types of relationships
+
+* Mutual independence: all variables are independent $$A \perp B \perp C$$ or $$(A, B, C)$$
+* Joint independence: two variables are jointly independent given the third $$AB \perp C$$ or $$(AB, C)$$
+* Marginal independence: two variables are indpendent while ignoring the third $$A \perp B$$ or $$(A, B)$$
+* Conditional independence: two variables independent given the third $$A \vert C \perp B \vert C$$ or $$(AC, BC)$$
+* Homogeneous association: conditional odds-ratios do not depend on the value of the third variable $$AB \perp AC \perp BC$$ or $$(AB, AC, BC)$$
+
+We also have these relationships
+
+* Mutual independence $$\Rightarrow$$ joint independence
+* Joint independence $$\Rightarrow$$ marginal indpependence
+
+## Mutual Independence
+Under the model of mutual independence
+
+$$P(A = i, B = j, C = k) = P(A = i)P(B = j)P(C = k)$$
+
+We can estimate the expected values
+
+$$E[Y_{ijk}] = np_{i++}p_{+j+}p_{++k} = \frac{n_{i++}n_{+j+}n_{++k}}{n^2}$$
+
+To calculate the degrees of freedom, we have
+
+$$df = (IJK - 1) - [(I - 1)+(J - 1)+(K - 1)]$$
+
+The test statistic
+
+$$X^2 = \sum_i \sum_j \sum_k \frac{(n_{ijk} - E_{ijk})^2}{E_{ijk}}$$
+
+is distributed $$\chi^2_{IJK - I - J - K + 2}$$.
+
+## Joint Independence
+Under the model of joint independence
+
+$$P(A = i, B = j, C = k) = P(A = i, B = j) P(C = k)$$
+
+Note that if mutual independence applies, then all three variants of joint independence also applies. 
+
+We can estimate the expected values
+
+$$E[Y_{ijk}] = n p_{ij+} p_{++k} = \frac{n_{ij+} n_{++k}}{n}$$
+
+To calculate the degrees of freedom, we have
+
+$$df = (IJK - 1) - [(IJ - 1)+(K - 1)] = (IJ - 1)(K - 1)$$
+
+If we combine $$AB$$ into one variable, we are essentially running a $$2$$-way analysis on $$AB$$ and $$C$$. 
+
+## Marginal Independence
+Under the model of marginal independence
+
+$$P(A = i, C = k) = P(A = i) P(C = k)$$
+
+where we completely ignore the $$B$$ variable. 
+
+If we combine collapse over the levels of $$B$$, we are essentially running a $$2$$-way analysis on $$A$$ and $$C$$. 
+
+## Conditional Independence
+Under the model of conditional independence
+
+$$P(A = i, B = j \vert C = k) = P(A = i \vert C = k) P(B = j \vert C = k)$$
+
+that is for each value of $$C$$, $$A \perp B$$.
+
+There are two ways we can test this hypothesis
+
+* Sum up $$X^2$$ or $$G^2$$ statistics from the levels of $$A$$. The total $$df = K(I - 1)(J - 1)$$. 
+* Cochran-Mantel-Haenszel test
+
+The Cochran-Mantel-Haenszel test for $$2x2xK$$ tables has
+
+$$H_0: \theta_{AB(1)} = ... = \theta_{AB(K)} = 1$$
+
+The test statistic is
+
+$$M^2 = \frac{[\sum_k (n_{11k} - \mu_{11k})]^2}{\sum_k Var(n_{11k})}$$
+
+where $$\mu_{11k} = E(n_{11}) = \frac{n_{1+k}n_{+1k}}{n_{++k}}$$ and $$Var(n_{11k}) = \frac{n_{1+k} n_{2+k} n_{+1k} n_{+2k}}{n_{++k}^2(n_{++k} - 1)}$$.
+
+The statistic $$M^2$$ ~ $$\chi^2_1$$.
+
+We can obtain an estimate of the common odds ratio
+
+$$\hat{\theta}_{MH} = \frac{\sum_k (n_{11k}n_{22k}) / n_{++k}}{\sum_k (n_{12k}n_{21k}) / n_{++k}}$$
+
+The test works well if the conditional odds ratios are in the same direction and are comparable in size. 
+
+The CMH can also be generalized to $$IxJxK$$ tables if needed. 
+
+**Homogeneous Association**
+
+Homogeneous association implies that the conditional relationship between $$AB$$ given $$C$$ is the same for each level of $$C$$. 
+
+The homogeneous association model requires that the $$AB$$ odds ratios at each level of $$C$$ be identical (but not necessarily equal to $$1$$). In other words, we test
+
+$$H_0: \theta_{AB(1)} = ... = \theta_{AB(k)}$$
+
+The Breslow-Day statistic is 
+
+$$X^2 = \sum_i \sum_j \sum_k \frac{(O_{ijk} - E_{ijk}) ^2}{E_{ijk}}$$
+
+where $$X^2$$ is approximately $$\chi^2_{K - 1}$$. 
+
+The Breslow-Day statistic does not work well with small smaple sizes nor can it be applied to $$IxJxK$$ tables. 
+
 # Log Linear Models
+Recall that for testing independence in tables, each cell is distributed Poisson. 
+
+Log linear models can be fit in R with the `glm()` function setting `family = poisson`.
+
+## Two Way Independence
+Consider the model of independence for two-way tables. Recall
+
+$$E[Y_{ij}] = \mu_{ij} = np_{ij} = n p_{i+} p_{+j}$$
+
+By taking $$\log$$s we get
+
+$$\log(\mu_{ij}) = \log(n) + \log(p_{i+}) + \log(p_{+j})$$
+
+$$\log(\mu_{ij}) = \lambda + \lambda^A_i + \lambda^B_j$$
+
+where $$A$$ and $$B$$ denote the two categorical variables. 
+
+We have the following notations
+
+* $$\lambda$$ represents the overall effect
+* $$\lambda^A_i$$ represents the main effect of variable $$A$$ or classification in row $$i$$
+* $$\lambda^B_j$$ represents the main effect of variable $$B$$ or classification in row $$j$$
+* $$\lambda^A_I = \lambda^B_J = 0$$ due to categorical variable coding
+* $$\lambda^{AB}_{ij}$$ represents the interaction effect of $$AB$$. Note that in this model $$\lambda^{AB}_{ij} = 0$$ implying independence
+
+This test is essentially the same as the one above. We are testing independence against non-independence.
+
+$$H_0: \mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j$$
+
+$$H_1: \mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j + \lambda^{AB}_{ij}$$
+
+**Relationship to Odds and Odds Ratio**
+
+---------------|--------------
+$$\log(odds)$$ | $$ = \log \left( \frac{\mu_{i1}}{\mu_{i2}} \right)$$
+               | $$ = \log(\mu_{i1}) - \log(\mu_{i2})$$
+               | $$ = (\lambda + \lambda^A_i + \lambda^B_1) - (\lambda + \lambda^A_i + \lambda^B_2)$$
+               | $$ = \lambda^B_1 - \lambda^B_2$$
+
+$$odds = exp(\lambda^B_1 - \lambda^B_2)$$
+
+---------------------|--------------------------------
+$$\log(odds.ratio)$$ | $$ = \log \left( \frac{\mu_{11} \mu_{22}}{\mu_{12} \mu_{21}} \right)$$
+                     | $$ = \log(\mu_{11}) + \log(\mu_{22}) - \log(\mu_{12}) - \log(\mu_{21})$$
+                     | $$ = (\lambda + \lambda^A_1 + \lambda^B_1) + (\lambda + \lambda^A_2 + \lambda^B_2) - (\lambda + \lambda^A_1 + \lambda^B_2) - (\lambda + \lambda^A_2 + \lambda^B_1)$$
+                     | $$ = 0$$
+                     
+So given that $$H_0$$ is true, $$odds.ratio = 1$$.
+
+If $$H_1$$ is true then $$odds.ratio = exp(\lambda^{AB}_{11} + \lambda^{AB}_{22} - \lambda^{AB}_{12} - \lambda^{AB}_{21})$$
+
+## Three Way Tables
+
+Recall the variants of independence in the $$3$$-way tables. We can summarise these into log linear models.
+
+Type | Model
+-------------------------|---------------------
+Mutual Independence      | $$\mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j + \lambda^C_k$$
+Joint Independence       | $$\mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j + \lambda^C_k + \lambda^{AB}_{ij}$$
+Condiitonal Independence | $$\mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j + \lambda^C_k + \lambda^{AC}_{ik} + \lambda^{BC}_{jk}$$
+Homogeneous Association  | $$\mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j + \lambda^C_k + \lambda^{AB}_{ij} + \lambda^{AC}_{ik} + \lambda^{BC}_{jk}$$
+Complete Dependence      | $$\mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j + \lambda^C_k + \lambda^{AB}_{ij} + \lambda^{AC}_{ik} + \lambda^{BC}_{jk} + \lambda^{ABC}_{ijk}$$
+
+We can apply the same model testing and diagnostic procedures as glms to log linear models. 

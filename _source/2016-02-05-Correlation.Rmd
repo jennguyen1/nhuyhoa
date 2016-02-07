@@ -50,6 +50,7 @@ We compute spearman's correlation by ranking the $$X$$ values, ranking the $$Y$$
 When we have large samples, under $$H_0$$ of no association
 
 $$E(r) = 0$$
+
 $$Var(r) = \frac{1}{n - 1}$$
 
 The statistic 
