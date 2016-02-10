@@ -102,7 +102,7 @@ where
 
 $$s^2_p = \frac{(n_1 - 1)s^2_1 + (n_2 - 1) s^2_2}{n_1 - 1 + n_2 - 1}$$
 
-which is a weighted average of the sample means.
+which is a weighted average of the sample variances.
 
 The statistic $$T$$ ~ $$t_{n_1 + n_2 - 2}$$.
 
@@ -116,7 +116,7 @@ The statistic $$T$$ ~ $$t_{r}$$ where
 $$r = \frac{\left( \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2} \right)^2}{\frac{(s^2_x/n_1)^2}{n_1 - 1} + \frac{(s^2_y/n_2)^2}{n_2 - 1}}$$
 
 ## Paired T-Test
-Suppose that instead of randomly assigning treatments to each subject, we have some sort of pairing. (A "pair" can refer to one or two subjects). While pairs are independent, there is dependency within pairs. The more dependency there is within a pair, the more noise reduction.
+Suppose that instead of randomly assigning treatments to each subject, we have some sort of pairing. (A "pair" can refer to one or two subjects). While pairs are independent, there is dependency or correlation within pairs. The more dependency there is within a pair, the more noise reduction.
 
 For example, suppose we want to compare two shoe types. We could conduct a paired experiment where one subject receives $$trt.1$$ on their left foot and $$trt.2$$ on their right foot. This is preferred over an unpaired study because a person's activity can vary widely across the population and unpaired designs would introduce unecessary noise to the data. 
 
@@ -190,7 +190,7 @@ Under $$H_0$$
 * .$$E[T_B] = n_B \frac{n_A + n_B + 1}{2}$$
 * .$$Var(T_B) = \frac{n_A n_B}{n_A + n_B - 1} \left( \frac{1}{n_A + n_B} \sum_{i, j} R^2_{ij} - \frac{(n_A + n_B + 1)^2}{4} \right)$$
 * $$Var(T_B) = \frac{n_A n_B(n_A+n_B+1)}{12}$$ when there are no ties
-* $$U = T_B - E[T_B]$$
+* .$$U = T_B - E[T_B]$$
 
 The statistic
 

@@ -430,7 +430,7 @@ that is for each value of $$C$$, $$A \perp B$$.
 
 There are two ways we can test this hypothesis
 
-* Sum up $$X^2$$ or $$G^2$$ statistics from the levels of $$A$$. The total $$df = K(I - 1)(J - 1)$$. 
+* Sum up $$X^2$$ or $$G^2$$ statistics from the levels of $$A$$ (sum of $$\chi^2$$ is $$\chi^2$$). The total $$df = K(I - 1)(J - 1)$$. 
 * Cochran-Mantel-Haenszel test
 
 The Cochran-Mantel-Haenszel test for $$2x2xK$$ tables has

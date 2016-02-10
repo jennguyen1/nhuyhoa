@@ -2,7 +2,7 @@
 layout: post
 title: "Resampling Techniques"
 date: "January 28, 2016"
-categories: ['statistics', 'probability and inference']
+categories: ['statistics', 'experimental design']
 ---
 
 * TOC
@@ -46,7 +46,7 @@ We have the following hypothesis
 **Algorithm:**
 
 * Repeat a large number of times (idea is to obtain all possible permutations):
-  * Shuffle/scramble the group assignments to each data point
+  * Shuffle/scramble the group assignments to each data point (if paired data, shuffle within the pair)
   * Calculate test statistic for new group assignments
 * Compare distribution of permuted test statistics with the observed test statistic
   * With histogram: where does observed test statistic fall on the distribution of permuted test statistics?
