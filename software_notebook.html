@@ -25,7 +25,7 @@ permalink: /software_notes/
 <section>
     <table>
         {% for post in site.posts %}
-        	{% if post.categories contains 'r' %}
+        	{% if post.categories contains 'r programming' %}
         		<tr>
         			<td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
         			<td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>

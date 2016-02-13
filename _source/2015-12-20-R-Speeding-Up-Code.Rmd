@@ -2,7 +2,7 @@
 layout: post
 title: "R Speeding Up Code"
 date: "December 20, 2015"
-categories: R
+categories: ['r programming']
 ---
 
 * TOC
