@@ -69,7 +69,7 @@ $$n = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2 \bar{p} (1 - \bar{p})}{\epsilon
  
 * Survival data assuming proportional hazards
 
-$$n\bar{p} = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2}{\epsilon_1 \epsilon_2n \theta_1^2}$$
+$$n\bar{p} = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2}{\epsilon_1 \epsilon_2 \theta_1^2}$$
 
 where $$\bar{p}$$ is the probability of an observed event.
 
