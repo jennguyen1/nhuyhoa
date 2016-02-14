@@ -1,19 +1,14 @@
 ---
 layout: post
 title: "Resampling Techniques"
-date: "January 28, 2016"
+date: "January 22, 2016"
 categories: ['statistics', 'experimental design']
 ---
 
 * TOC
 {:toc}
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
-library(jn.general)
-lib(data, viz)
-library(glmnet)
-knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
-```
+
 
 # Bootstrapping
 The bootstrap is a powerful statistical tool that can be used to quantify the uncertainty or variance of a given estimator. By doing this, we can easily obtain estimates of standard error or confidence intervals.

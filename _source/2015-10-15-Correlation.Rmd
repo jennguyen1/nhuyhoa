@@ -1,14 +1,18 @@
 ---
 layout: post
 title: "Correlation"
-date: "February 5, 2016"
-categories: ['statistics', 'experimental design']
+date: "October 15, 2015"
+categories: ['statistics', 'regression analysis']
 ---
 
 * TOC
 {:toc}
 
-
+```{r, echo = FALSE}
+library(jn.general)
+lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+```
 
 # Pearson
 

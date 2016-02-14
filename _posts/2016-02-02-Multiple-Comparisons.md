@@ -1,18 +1,14 @@
 ---
 layout: post
 title: "Multiple Comparisons"
-date: "January 20, 2016"
+date: "February 2, 2016"
 categories: ['statistics', 'experimental design']
 ---
 
 * TOC
 {:toc}
 
-```{r global_opts, echo = FALSE, warning = FALSE}
-library(jn.general)
-lib(data, viz)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
-```
+
 
 # Type 1 and Type 2 Error Rates
 
@@ -34,15 +30,7 @@ Number of Tests | P(Type 1 Error) = 1 - P(rejection)
 
 <p></p>
 
-```{r, echo = FALSE}
-# plot n vs probability of error
-n <- 1:50
-p <- (1 - (1 - 0.05)^n)
-qplot(x = n, y = p, size = I(1.5), geom = "line", main = "Type 1 Error Rate vs. Number of Tests") +
-  scale_y_continuous(breaks = seq(0, 1, by = 0.1)) +
-  xlab("Number of Tests") +
-  ylab("Probability of Type 1 Error") 
-```
+<img src="/nhuyhoa/figure/source/2016-02-02-Multiple-Comparisons/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
 
 Our error rates rapidly increases. The type 1 error rate is approximately $$50$$% when we conduct $$13$$ tests. Thus we have to find a way to correct for these multiple tests to ensure that our Type 1 error rate remains low.
 
@@ -122,14 +110,10 @@ $$ \hat{C} \pm \sqrt{(m - 1)F_{\alpha; m - 1, N - m}} * s_{\hat{C}} $$
 where $$m$$ is the number of groups and $$N$$ are the total number of observations.
 
 ## Summary
-```{r, echo = FALSE}
-methods <- c("Fischer's LSD", "Bonferroni", "Tukey", "Scheffe")
-valid_on <- c("NA", "pairwise comparisons", "pairwise comparisons", "all possible contrasts")
-sample_size <- c("NA", "equal & unequal sample sizes", "equal sample sizes", "equal & unequal sample sizes")
-x <- data.frame(methods, valid_on, sample_size) 
-colnames(x) <- c("Method", "Valid On", "Sample Size") 
-x %>% nhuyhoa_df_present(data = FALSE)
-```
+
+{% highlight text %}
+## Error in function_list[[k]](value): could not find function "nhuyhoa_df_present"
+{% endhighlight %}
 
 <p></p>
 

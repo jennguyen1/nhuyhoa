@@ -1,18 +1,14 @@
 ---
 layout: post
 title: "Hypothesis Testing and Confidence Intervals"
-date: "October 23, 2015"
+date: "January 7, 2016"
 categories: ['statistics', 'experimental design']
 ---
 
 * TOC
 {:toc}
 
-```{r global opts, echo = FALSE, warning = FALSE}
-library(jn.general)
-lib(data, viz)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
-```
+
 
 # Hypothesis Testing
 In hypothesis testing we attempt to test a whether a population parameter is significantly different than some predefined hypothesis value. 
@@ -27,12 +23,32 @@ The steps for conducting a hypothesis test is
 
 We have Type 1 and Type 2 errors with hypothesis testing. 
 
-```{r, echo=FALSE}
-c1 <- c("Decision", "Reject H0", "Accept H0")
-c2 <- c("H0 is true", "Type 1 error", "Correct")
-c3 <- c("H0 is false", "Correct", "Type 2 error")
-data.frame(c1, c2, c3) %>% nhuyhoa_df_print(data = FALSE, col.names = c("", "Reality", ""))
-```
+<table class = "presenttab">
+ <thead>
+  <tr>
+   <th style="text-align:left;">  </th>
+   <th style="text-align:left;"> Reality </th>
+   <th style="text-align:left;">  </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Decision </td>
+   <td style="text-align:left;"> H0 is true </td>
+   <td style="text-align:left;"> H0 is false </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Reject H0 </td>
+   <td style="text-align:left;"> Type 1 error </td>
+   <td style="text-align:left;"> Correct </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Accept H0 </td>
+   <td style="text-align:left;"> Correct </td>
+   <td style="text-align:left;"> Type 2 error </td>
+  </tr>
+</tbody>
+</table>
 <p></p>
 
 If we reject $$H_0$$ when $$H_0$$ is true, we commit a Type I error. The probability of a Type 1 error is denoted $$\alpha$$.
@@ -64,24 +80,7 @@ There are a lot of potentially dangerous ways to interpret p-values. Assumptions
 ## Derivation
 Confidence intervals are used to convey the amount of uncertainty associated with a sample estimate of a population parameter. In other words, we want to obtain the shaded region in the diagram below. (For this example, we want to find the two-sided confidence interval. We can adjust these for one sided tests easily by removing one of the sides.)
 
-```{r, echo = FALSE}
-x <- seq(-3, 3, length.out = 100)
-y <- dnorm(x)
-xshade <- seq(-1.96, 1.96, length.out = 100)
-shade <- data.frame(xs = c(-1.96, xshade, 1.96), ys = c(0, dnorm(xshade), 0))
-
-ggplot(data = NULL, aes(x, y)) + 
-  geom_line(size = 1.15) +
-  geom_hline(yintercept = 0) + 
-  geom_segment(aes(x = -1.96, xend = -1.96, y = 0, yend = dnorm(-1.96)), size = 1.15) +
-  geom_segment(aes(x = 1.96, xend = 1.96, y = 0, yend = dnorm(1.96)), size = 1.15) +
-  geom_polygon(data = shade, aes(x = xs, y = ys), alpha = 0.5, fill = "#0066ff", color = "black") +
-  annotate("text", x = 0, y = 0.2, label = "1 - a", size = 7) +
-  annotate("text", x = -2.25, y = 0.012, label = "a/2", size = 4.5) +
-  annotate("text", x = 2.25, y = 0.012, label = "a/2", size = 4.5) + 
-  ylab("") +
-  theme(axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks = element_blank())
-```
+<img src="/nhuyhoa/figure/source/2016-01-07-Hypothesis-Testing-Confidence-Intervals/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 To generate a $$(1-\alpha)100$$% confidence interval, we start with the test statistic. The test statistic may vary depending on its distribution, but the process is the same.
 
@@ -121,54 +120,11 @@ Confidence intervals are used to convey the amount of uncertainty associated wit
 
 Say we generated a $$(1 - \alpha) 100$$% confidence interval. This interval means that if we were to replicate the data collection and analysis process many times, $$(1 - \alpha) 100$$% of the generated intervals would contain the true value of the population parameter. 
 
-```{r, echo = FALSE}
-set.seed(22)
-btn <- Vectorize(between)
-# create the data
-x <- data.frame(id = factor(1:100), center = rnorm(100), width = runif(100, 0.25, 2))
-x <- x %>% 
-  mutate(
-    lower = center - width,
-    upper = center + width,
-    flag = ifelse( btn(0, lower, upper), "no_color", "color" )
-  )
 
-# edits to generate the 95%
-y <- to_be(x, subset, flag == "color")
-edit <- y$to_be
-no_edit <- y$not_to_be
-
-# only keep 5 outside of 0 bars
-n <- nrow(edit) - 5
-keep <- edit[1:5, ]
-more_keep <- sample_n(no_edit, n, replace = TRUE)
-
-# combine all data together
-final_data <- list(no_edit, keep, more_keep) %>% 
-  rbindlist %>% 
-  sample_n(., nrow(.)) %>% 
-  mutate(id = 1:nrow(.))
-```
 
 Say the true value of $$\mu = 0$$. Here we see, per the definition above, that $$95/100$$ intervals contain the true value of $$\mu$$. 
 
-```{r, echo = FALSE}
-# make the plot
-ggplot(data = final_data, aes(x = id, ymax = lower, ymin = upper, color = flag)) + 
-  geom_errorbar() + 
-  # add the baseline
-  geom_hline(yintercept = 0, linetype = 2, alpha = 0.75) + 
-  # color the bars
-  scale_colour_manual(limits = c("color", "no_color"), values = c("red", "grey50")) + 
-  # x scale
-  xlab("") + scale_x_discrete(breaks = NULL) +
-  # remove legend position
-  theme(legend.position = "none") +
-  # flip the coordinates
-  coord_flip() +
-  # title
-  ggtitle("95% Confidence Interval Simulation")
-```
+<img src="/nhuyhoa/figure/source/2016-01-07-Hypothesis-Testing-Confidence-Intervals/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 It is important to note that the true value of the population parameter is fixed, so any single confidence interval will either contain the population parameter or not. Thus we cannot interpret the confidence interval as the probability that the true value is in the interval. 
 
