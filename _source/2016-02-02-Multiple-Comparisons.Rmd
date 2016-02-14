@@ -64,21 +64,25 @@ In the non-parametric Kruskal-Wallis test, we reject if $$\vert \bar{R}_i - \bar
 
 ## Bonferroni Correction
 
-Say you want to do a select $$n$$ tests (don't have to compare all groups). Let $$A^c$$ be a type I error event. Then,
+Say you want to do a select $$r$$ tests (don't have to compare all groups). Let $$A^c$$ be a type I error event. Then,
 
-.$$P(\cap^n_{i=1} A_i) = 1 - P(\cup^n_{i=1} A^c_i) \ge 1 - \Sigma^n_{i = 1} P(A^c_i) $$
+.$$P(\cap^r_{i=1} A_i) = 1 - P(\cup^r_{i=1} A^c_i) \ge 1 - \Sigma^r_{i = 1} P(A^c_i) $$
 
-so if we were to set $$P(A^c_i) = \alpha / n$$, then our overall error rate would be $$ \alpha$$. 
+so if we were to set $$P(A^c_i) = \alpha / r$$, then our overall error rate (family wise error rate) would be $$ \alpha$$. 
 
 So Bonferroni's method for correcting for multiple tests states that if you want an overall type I error rate of $$\alpha$$, set 
 
-$$\alpha_i = \alpha / n$$ 
+$$\alpha_i = \alpha / r$$ 
 
-where $$n$$ is the number of tests and $$\alpha_i$$ is the type I error rate for each individual test. 
+where $$r$$ is the number of tests and $$\alpha_i$$ is the type I error rate for each individual test. 
 
 The boonferroni p-value is
 
-$$n * p_{obs}$$
+$$p_{bonf} = min(n * p, 1)$$
+
+Using bonferroni's correction, we are guaranteed a overall type 1 error rate of $$0.05$$. Unfortunately in doing so, the bonferroni method is very conservative, in which the type 2 error rate is very high and power is very low for each individual test.
+
+Note that Bonferroni's correction is valid for equal and unequal sample sizes.
 
 Example:
 
@@ -92,25 +96,22 @@ $$P($$overall type 1 error$$) = 1 - (1 - 0.0025)^{20} = 0.0488$$
 
 $$P($$overall type 1 error$$) = 1 - (1 - 0.05)^{20} = 0.64$$
 
-* In R, `pairwise.t.test(y, x, p.adjust.method = "bonferroni")`, `p.adjust()`, or use quantile derivation with bonferroni $$\alpha$$
-
-Using bonferroni's correction, we are guaranteed a overall type 1 error rate of $$0.05$$. Unfortunately in doing so, the bonferroni method is very conservative, in which the type 2 error rate is very high and power is very low for each individual test.
-
-Note that Bonferroni's correction is valid for equal and unequal sample sizes.
+In R, `pairwise.t.test(y, x, p.adjust.method = "bonferroni")`, `p.adjust()`, or use quantile derivation with bonferroni $$\alpha$$.
 
 ## Holm-Bonferroni
 
 The procedure for the Holm-Bonferroni method is as follows:
 
-* Put adjusted p-values in order from smallest to largest
+* Put adjusted p-values in order from smallest to largest: $$p_{(1)} \le p_{(2)} \le ... \le p_{(r)}$$
 * If $$p_{(1)} > \alpha / r$$ then accept all $$H_0$$
 * If $$p_{(1)} < \alpha / r$$ then reject corresponding $$H_0$$ then look at $$p_{(2)}$$
 * If $$p_{(2)} > \alpha / (r - 1)$$ then accept all remaining $$H_0$$ 
 * If $$p_{(2)} < \alpha / (r - 1)$$ then reject corresponding $$H_0$$ then look at $$p_{(3)}$$
 * In general at the $$i$$th stage, compare $$p_{(i)}$$ to $$\alpha / (r - i + 1)$$
 
-The value $$r$$ denotes the number of comparisons.
+The Holm-Bonferroni p-value is
 
+$$p_{H(i)} = min((r - i + 1)p_{(i)}, 1)$$
 
 ## Tukey Method
 Tukey's method is done post-ANOVA. It must be used to examine all pairwise comparisons, where each group must have equal sample sizes. With Tukey's method, the overall type 1 error is equal to $$\alpha$$.
@@ -150,3 +151,59 @@ Thus the $$(1-\alpha) 100$$% simultaneous confidence interval for all comparison
 $$ \hat{C} \pm \sqrt{(k - 1)F_{k - 1, dfE, \alpha}} * s_{\hat{C}} $$
 
 where $$k$$ is the number of groups.
+
+## False Discovery Rate (FDR)
+This method states that for large $$r$$, we do not expect all the null hypotheses to be true. Rather than focusing on the family-wise error rate, we wish to control 
+
+$$q = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 0 \right)$$
+
+the expected proportion of our discoveries that are false assuming we make at least one discovery.
+
+This method is the Benjamini and Hochberg method. This procedure requires the tests to be independent. The procedure may control FDR for certain types of correlation, but may fail for highly correlated data. 
+
+If $$q$$ is the FDR, then we reject if $$p_{(i)} \le \frac{qi}{r}$$.
+
+The p-value is
+
+$$p_{BH(i)} = min \left( \frac{rp_{(i)}}{i}, 1 \right)$$
+
+This procedure is more powerful the the Bonferroni-Holmes procedure. 
+
+**Obtaining an Estimate of $$r_0$$**
+If we knew the number of true $$H_0$$ tests, we could adjust for that ($$r_0$$) rather than $$r$$. Doing so will give us larger cut-off values. With many tests, we can estimate $$r_0$$ and use it to replace $$r$$. 
+
+Consider the histogram of p-values testing samples with a combination of the same means and different means. Under the null hypothesis, p-values are expected to be uniformly distributed between $$0$$ and $$1$$. Under the alternative hypothesis, p-values are skewed towards $$0$$. So combined
+
+```{r, echo = FALSE}
+set.seed(5)
+null <- raply(500, t.test(rnorm(100), rnorm(100))$p.value)
+non_null <- raply(250, t.test(rnorm(100), rnorm(100, 0.25))$p.value)
+
+ggplot(data = NULL, aes(x = c(null, non_null))) + 
+  geom_histogram(binwidth = .05, alpha = 0.75, fill = "#0066ff", color = "black") +
+  geom_vline(xintercept = 0.5, color = "navy", size = 1, linetype = 2) +
+  xlab("p-values")
+```
+
+We can obtain an estimate of $$r_0$$ from the histogram of p-values by 
+
+* Selecting some cut-off $$\lambda$$ from the null distribution
+* Expect $$r_0(1 - \lambda)$$ of p-values $$> \lambda$$ so we count the number of $$r_{\lambda}$$ p-values $$> \lambda$$
+* Estimate $$\hat{r}_0 = \frac{ r_{\lambda} }{1 - \lambda}$$
+
+Generally $$\lambda = 0.5$$ tends to work quite well. Notice that the region $$< \lambda$$ contain information regarding the true alternative hypotheses.
+
+If the distribution of p-values is not similar to one found above, then the test statistic does not have the assumed null distribution. The computed p-values are not valid. This would require another statistical analysis pipeline would need to be developed (perhaps assess whether assumptions were met).
+
+**Obtaining Value for $$q$$**
+We can use our estimate of $$\hat{r}_0$$ to obtain an estimate of $$q$$. If we reject at $$\alpha$$, we expect the number of type 1 errors to be $$\alpha r_0$$. So we can estimate $$q$$ 
+
+* Sort p-values from smallest to largest
+* Let $$R(\alpha)$$ be the number of rejections when we reject for all $$p \le \alpha$$
+* We define
+$$q_{(1)} = \frac{ p_{(1)} \hat{r_0} }{R(p_{(1)})}$$
+$$q_{(i + 1)} = max \left( q_{(i)}, \frac{p_{(i + 1)}\hat{r}_0}{R(p_{(i + 1)})} \right)$$
+
+Each test has a q-value, which is defined as the minimum FDR that can be attained when calling that test significant (and all other tests which are that significant and more). In other words it is the expected proportion of false positives (for the set of all tests) incurred when calling that test significant. For example, consider a study where gene X has a q-value of 0.05. This means that 5% of genes that show p-values at least as small as gene X are false positives. 
+
+We usually pick a cut-off q-value and reject the null hypothesis for all tests with q-values less than or equal to our cut-off. 
