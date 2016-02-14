@@ -261,8 +261,16 @@ In R, we can run this test with `wilcox.test()`.
 # K-Sample Tests
 
 ## ANOVA
+In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
+
+### Single Factor ANOVA
+
+**Model Formulations**
 
 Consider a design with $$k$$ groups where there are $$n_i$$ observations on the $$i^{th}$$ treatment. Let $$y_{ij}$$ denote the $$j^{th}$$ observation on the $$i^{th}$$ treatment. 
+
+* $$Y_{ij} = \mu_i + \epsilon_{ij}$$ where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$
+* $$Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$$ where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$ and $$\sum \alpha_i = 0$$
 
 We have the following terms
 
@@ -274,16 +282,20 @@ We have the following terms
 **Sum of Squares**
 
 ----------|-------------------
-$$SSTot$$ | $$= \sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}_{..})$$
 $$SSTrt$$ | $$ = \sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$
 $$SSErr$$ | $$ = \sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2 = \sum^k_{i = 1} (n_i - 1) s_i^2$$
+$$SSTot$$ | $$= \sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}_{..})$$
+
+<p></p>
 
 **Degrees of Freedom**
 
 ----------|-------------
-$$dfTot$$ | $$ = N-1$$
 $$dfTrt$$ | $$ = k-1$$
 $$dfErr$$ | $$ = N-k$$
+$$dfTot$$ | $$ = N-1$$
+
+<p></p>
 
 **ANOVA table**
 
@@ -321,7 +333,6 @@ $$dfErr$$ | $$ = N-k$$
   </tr>
 </tbody>
 </table>
-
 <p></p>
  
 where $$F$$ ~ $$F_{dfTrt, dfErr}$$
@@ -332,12 +343,17 @@ $$F = \frac{ \frac{df * MS}{\sigma^2} / df }{ \frac{dfErr * MSErr}{\sigma^2} / d
 
 is distributed $$F_{df, dfErr}$$. 
 
-**Model Formulations**
+Another way to look at this is to consider if $$H_0$$ is true
 
-* $$Y_{ij} = \mu_i + \epsilon_{ij}$$ where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$
-* $$Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$$ where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$ and $$\sum \alpha_i = 0$$
+* .$$\sum_i \alpha_i = 0$$
+* .$$E[MSTrt] = \sigma^2_{\epsilon} + \frac{n}{k - 1} \sum^k_i \alpha_i^2$$
+* .$$E[MSE] = \sigma^2_{\epsilon}$$
 
-In R, anovas can be fit with the `lm()` and `anova()` or `aov()` commands.
+Then 
+
+$$\frac{E[MSTrt]}{E[MSE]} = 1 + \frac{1}{k - 1} \frac{n \sum^k_i \alpha^2_i}{\sigma^2_{\epsilon}}$$ 
+
+Note that if $$\sum \alpha_i \approx 0$$, then this ratio $$\approx 1$$. The power of the $$F$$ test is a monotone function of $$\frac{n \sum^k_i \alpha^2_i}{\sigma^2_{\epsilon}}$$.
 
 **Assumptions**
 
@@ -345,13 +361,87 @@ In R, anovas can be fit with the `lm()` and `anova()` or `aov()` commands.
 2. Normality: $$Y_{ij}$$ ~ $$N(\mu_i, \sigma^2_i)$$
 3. Equal Variance: $$\sigma^2_1 = ... = \sigma^2_k$$
 
-**Levene's Test**
-Levene's test is a formal test to assess $$H_0: \sigma^2_1 = ... = \sigma^2_k$$. 
+### Two Factor ANOVA
+
+**Model Formulations**
+$$Y_{ijl} = \mu + \alpha_i + \beta_j + (\alpha \beta)_{ij} + \epsilon_{ijl}$$
+
+where
+
+* $$i = 1, ..., a$$ denotes the levels of factor A
+* $$j = 1, ..., b$$ denotes the levels of factor B
+* $$l = 1, ..., n$$ denotes plots of each factor combination
+* $$\epsilon_{ijl}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+
+
+**Sum of Squares**
+
+----------|-------------------
+$$SSA$$   | $$= bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$
+$$SSB$$   | $$= an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$
+$$SSAB$$  | $$= n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$
+$$SSE$$   | $$= \sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{ij.})^2$$
+$$SSTot$$ | $$= \sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})^2$$
+
+<p></p>
+
+**Degrees of Freedom**
+
+----------|-------------
+$$dfA$$   | $$ = a - 1$$
+$$dfB$$   | $$ = b - 1$$
+$$dfAB$$  | $$ = (a-1)(b-1)$$
+$$dfErr$$ | $$ = ab(n - 1)$$
+$$dfTot$$ | $$ = abn - 1$$
+
+<p></p>
+
+**ANOVA Table**
+
+The ANOVA table would be similar to the one-sample case. We would have three separate $$F$$ tests (similar to the single factor case) to assess the $$A_{main}$$, $$B_{main}$$, and $$AB_{int}$$ effects. 
+
+Assume $$H_0$$ is true so that
+
+* $$\sum_i \alpha_i = 0$$, $$\sum_j \beta_j = 0$$ and $$\sum_i (\alpha \beta)_{ij} = \sum_j (\alpha \beta)_{ij} = 0$$
+* .$$E[MSA] = \sigma^2_{\epsilon} + \frac{bn}{a - 1} \sum \alpha^2_i$$
+* .$$E[MSB] = \sigma^2_{\epsilon} + \frac{an}{b - 1} \sum \beta^2_j$$
+* .$$E[MSAB] = \sigma^2_{\epsilon} + \frac{n}{(a - 1)(b - 1)} \sum (\alpha \beta)^2_{ij}$$
+* .$$E[MSE] = \sigma^2_{\epsilon}$$
+
+We can test the main effects and interaction by comparing them to $$MSE$$ with an $$F$$ test.
+
+**Example**
+
+Consider the two factors each at 2 levels. Let $$\bar{ab}$$ denote the mean of the high-high group, $$\bar{a}$$ denote the mean of high-low group, $$\bar{b}$$ denote the mean of the low-high group, and $$\bar{1}$$ denote the mean of the low-low group. We have
+
+* .$$A_{main} = 1/2 [(\bar{ab} - \bar{b}) + (\bar{a} - \bar{1})]$$
+* .$$B_{main} = 1/2 [(\bar{ab} - \bar{a}) + (\bar{b} - \bar{1})]$$
+* .$$AB_{int} = 1/2 [(\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
+
+We can assess these effects by generating an interaction plot. By assessing the trends and parallelism of lines, we can determine whether there may be evidence of an interaction effect. 
+
+These effects are orthogonal contrasts and their SS will add up to $$SSTrt$$. 
+
+## Pairwise Comparisons and Contrasts
+After rejecting a test that the means of the groups are not equal, we want to know exactly which ones are different. 
+
+A contrast is a linear function of the group means. It can be used to compare two means or any set of groups of groups.
 
 Procedure:
-1. Let $$d_{ij} = \| y_{ij} - \tilde{y_i} \|$$ where $$\tilde{y_i}$$ is the median of group $$i$$
-2. Perform a one-way ANOVA on the $$d_{ij}$$
-3. Reject $$H_0: \sigma^2_1 = ... = \sigma^2_k$$ if the $$F$$-test is significant
+
+* An arbitrary contrast $$C = \Sigma^r_{i = 1} c_i \mu_i$$ where $$\Sigma^r_{i = 1} c_i = 0$$. There can be an infinite number of contrasts.
+* $$C$$ is estimated with $$\hat{C} = \Sigma^r_{i = 1} c_i \bar{Y}_i$$ 
+* The variance of the estimate $$\hat{C}$$ is $$s_{\hat{C}}^2 = \sigma^2_e \Sigma^r_{i = 1} \frac{c^2_i}{n_i}$$
+
+We can test $$H_0: \sum c_i = 0$$ with 
+
+$$T = \frac{\sum c_i \bar{y}_{i.}}{s_{\epsilon} \sqrt{\sum c_i^2 / n_i}}$$
+
+which is distributed $$t_{dfE}$$. Similarly a $$95$$% confidence interval can be created.
+
+Note that when we have an ANOVA with $$k$$ treatments and a set of $$k - 1$$ orthogonal contrasts (ie $$c_i c_j = 0$$), then the SS will add up to $$SSTrt$$. One example of a set of orthogonal contrasts are linear, quadratic, cubic, etc contrasts.
+
+When one is assessing multiple contrasts, it would be wise to control for [multiple comparisons][multiple_comp_link]{:target = "_blank"}. 
 
 ## Nonparametric Tests
 
@@ -380,4 +470,14 @@ $$KW = \frac{12}{N(N + 1)} \sum^k_{i = 1} \sum^k_{j = i + 1} \frac{n_i n_j}{N} \
 
 where $$KW$$ is approximately distributed $$X^2_{k - 1}$$. When sample sizes are small, we can compare to permutations or distribution tables. 
 
+# Tests of Equal Variance
+**Levene's Test**
+Levene's test is a formal test to assess $$H_0: \sigma^2_1 = ... = \sigma^2_k$$. 
+
+Procedure:
+1. Let $$d_{ij} = \| y_{ij} - \tilde{y_i} \|$$ where $$\tilde{y_i}$$ is the median of group $$i$$
+2. Perform a one-way ANOVA on the $$d_{ij}$$
+3. Reject $$H_0: \sigma^2_1 = ... = \sigma^2_k$$ if the $$F$$-test is significant
+
 [stat_theory_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/OLS-and-ANOVA.html
+[multiple_comp_link]: http://jnguyen92.github.io/nhuyhoa//2016/02/Multiple-Comparisons.html

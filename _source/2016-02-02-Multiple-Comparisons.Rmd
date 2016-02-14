@@ -52,9 +52,15 @@ Note that what number and what specific comparisons should be determined in adva
 Also note that the assumptions of the overall test (ex: ANOVA) also apply to these tests. 
 
 ## Fischer's Least Significant Difference (LSD)
-Fischer's LSD method ignores the problem and does not correct for multiple tests. It states to use the predetermined $$\alpha$$ value for all tests, even though it may result in high type 1 error rates.
+Fischer's LSD method first performs the ANOVA $$F$$ test and proceeds with pairwise comparisons if the $$F$$ test is significant. 
 
-In increasing the type 1 error rate, we decrease the type 2 error rate. Therefore, Fischer's LSD method results in maximizing power. 
+For balanced groups, the groups are significantly different if to comparing $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge T_{dfE, \alpha / 2} s_{\epsilon} \sqrt{2 / n}$$. 
+
+For unbalanced groups, this is a series of t-tests taking into account the sample sizes, where we are comparing $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge T_{dfE, \alpha / 2} s_{\epsilon} \sqrt{1 / n_i + 1/n_{i'}}$$. 
+
+Fischer's LSD method ignores the multiple comparisons problem and does not correct for multiple tests. It states to use the predetermined $$\alpha$$ value for all tests, even though it may result in high type 1 error rates. Therefore this test is quite liberal. In increasing the type 1 error rate, we decrease the type 2 error rate. Therefore, Fischer's LSD method results in maximizing power. 
+
+In the non-parametric Kruskal-Wallis test, we reject if $$\vert \bar{R}_i - \bar{R}_j \vert \ge z_{\alpha / 2} \sqrt{\frac{N(N + 1)}{12} (1 / n_i + 1/n_j)}$$.
 
 ## Bonferroni Correction
 
@@ -70,6 +76,10 @@ $$\alpha_i = \alpha / n$$
 
 where $$n$$ is the number of tests and $$\alpha_i$$ is the type I error rate for each individual test. 
 
+The boonferroni p-value is
+
+$$n * p_{obs}$$
+
 Example:
 
 * Want an overall error rate of $$ \alpha = 0.05 $$ with $$20$$ tests. 
@@ -82,18 +92,31 @@ $$P($$overall type 1 error$$) = 1 - (1 - 0.0025)^{20} = 0.0488$$
 
 $$P($$overall type 1 error$$) = 1 - (1 - 0.05)^{20} = 0.64$$
 
-* In R, `pairwise.t.test(y, x, p.adjust.method = "bonferroni")` or use quantile derivation with bonferroni $$\alpha$$
+* In R, `pairwise.t.test(y, x, p.adjust.method = "bonferroni")`, `p.adjust()`, or use quantile derivation with bonferroni $$\alpha$$
 
 Using bonferroni's correction, we are guaranteed a overall type 1 error rate of $$0.05$$. Unfortunately in doing so, the bonferroni method is very conservative, in which the type 2 error rate is very high and power is very low for each individual test.
 
 Note that Bonferroni's correction is valid for equal and unequal sample sizes.
 
-In R, the bonferroni method can be implemented by passing the p-values into `p.adjust()`.
+## Holm-Bonferroni
+
+The procedure for the Holm-Bonferroni method is as follows:
+
+* Put adjusted p-values in order from smallest to largest
+* If $$p_{(1)} > \alpha / r$$ then accept all $$H_0$$
+* If $$p_{(1)} < \alpha / r$$ then reject corresponding $$H_0$$ then look at $$p_{(2)}$$
+* If $$p_{(2)} > \alpha / (r - 1)$$ then accept all remaining $$H_0$$ 
+* If $$p_{(2)} < \alpha / (r - 1)$$ then reject corresponding $$H_0$$ then look at $$p_{(3)}$$
+* In general at the $$i$$th stage, compare $$p_{(i)}$$ to $$\alpha / (r - i + 1)$$
+
+The value $$r$$ denotes the number of comparisons.
+
 
 ## Tukey Method
 Tukey's method is done post-ANOVA. It must be used to examine all pairwise comparisons, where each group must have equal sample sizes. With Tukey's method, the overall type 1 error is equal to $$\alpha$$.
 
 Tukey's method is uses the studentized range distribution. The studentized range is defined as 
+
 $$q_{m, df} = \frac{w}{s}$$
 
 where the observations $$Y_i$$ ~ $$iidN(\mu, \sigma^2)$$, $$w$$ is the range of the observations, and $$s$$ is the estimated standard deviation. The distribution parameters are $$m = $$ number of groups and $$df = $$ degrees of freedom for $$s^2$$, the estimate of $$\sigma^2$$.
@@ -102,9 +125,16 @@ Procedure:
 
 * Fit an ANOVA: `a <- aov(Petal.Length ~ Species, data = iris)`
 * Compute pairwise tests: `TukeyHSD(a)`
-* The studentized range distribution quantiles in R: `qtukey(p, m, df)/sqrt(2)` (if you want to do them by hand)
 
-With unequal sample sizes, one can use the Tukey-Kramer Method (not discussed here).
+For balanced designs, compare $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert$$ to $$Q_{k, dfE, \alpha} s_{\epsilon} \sqrt{1/n}$$ where $$k$$ denotes the number of treatments.
+
+For unbalanced designs, we compare to $$Q_{k, dfE, \alpha} s_{\epsilon} \sqrt{1/2 (1/n_i + 1/n_{i'})}$$. This is known as the Tukey-Kramer method.
+
+In the non-parametric Kruskal-Wallis test, we reject if $$\vert \bar{R}_i - \bar{R}_j \vert \ge Q_{k, \infty, \alpha} \sqrt{\frac{N(N + 1)}{24} (1 / n_i + 1/n_j))}$$.
+
+Tukey's method can also be applied to contrasts. The $$(1-\alpha) 100$$% simultaneous confidence interval for all comparisons are
+
+$$ \hat{C} \pm Q \frac{s_{\epsilon}}{\sqrt{n}} \sum^k_1 \frac{\vert c_i \vert}{2}$$
 
 ## Scheffe's Method
 Scheffe's method applies to all possible contrasts (not just pairwise comparisons) and is the preferred method when many or all contrasts are of interest. A contrast is a linear function of the group means. Thus with Scheffe's test, one can measure whether a group of means is significantly different from another group of means.
@@ -117,25 +147,6 @@ Procedure:
 
 Thus the $$(1-\alpha) 100$$% simultaneous confidence interval for all comparisons are
 
-$$ \hat{C} \pm \sqrt{(m - 1)F_{\alpha; m - 1, N - m}} * s_{\hat{C}} $$
+$$ \hat{C} \pm \sqrt{(k - 1)F_{k - 1, dfE, \alpha}} * s_{\hat{C}} $$
 
-where $$m$$ is the number of groups and $$N$$ are the total number of observations.
-
-## Summary
-```{r, echo = FALSE}
-methods <- c("Fischer's LSD", "Bonferroni", "Tukey", "Scheffe")
-valid_on <- c("NA", "pairwise comparisons", "pairwise comparisons", "all possible contrasts")
-sample_size <- c("NA", "equal & unequal sample sizes", "equal sample sizes", "equal & unequal sample sizes")
-x <- data.frame(methods, valid_on, sample_size) 
-colnames(x) <- c("Method", "Valid On", "Sample Size") 
-x %>% nhuyhoa_df_present(data = FALSE)
-```
-
-<p></p>
-
-* The Scheffe method is preferred when many or all contrasts are of interest.
-* The Tukey method preferred (over Scheffe) when only (all) pairwise comparisons are to be considered.
-* If only a subset of pairwise comparisons are needed, one should contrast the Bonferroni and Tukey methods and choose the one that has greater power (smaller multiplier). 
-* If one does not care about type 1 error rate and would like to maximize power, then go with Fischer's LSD method.
-
-Note that here "best/preferred" refers to the method that gives the smallest confidence intervals.
+where $$k$$ is the number of groups.
