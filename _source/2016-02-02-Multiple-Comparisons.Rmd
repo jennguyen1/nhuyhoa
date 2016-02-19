@@ -62,6 +62,10 @@ Fischer's LSD method ignores the multiple comparisons problem and does not corre
 
 In the non-parametric Kruskal-Wallis test, we reject if $$\vert \bar{R}_i - \bar{R}_j \vert \ge z_{\alpha / 2} \sqrt{\frac{N(N + 1)}{12} (1 / n_i + 1/n_j)}$$.
 
+## Dunnett's Method
+
+When we only wish to compare treatment levels to a control, we can use Dunnett's mean comparison method. This test provides more power compared to a test using the full set of all pairwise comparisons.
+
 ## Bonferroni Correction
 
 Say you want to do a select $$r$$ tests (don't have to compare all groups). Let $$A^c$$ be a type I error event. Then,
@@ -170,6 +174,7 @@ $$p_{BH(i)} = min \left( \frac{rp_{(i)}}{i}, 1 \right)$$
 This procedure is more powerful the the Bonferroni-Holmes procedure. 
 
 **Obtaining an Estimate of $$r_0$$**
+
 If we knew the number of true $$H_0$$ tests, we could adjust for that ($$r_0$$) rather than $$r$$. Doing so will give us larger cut-off values. With many tests, we can estimate $$r_0$$ and use it to replace $$r$$. 
 
 Consider the histogram of p-values testing samples with a combination of the same means and different means. Under the null hypothesis, p-values are expected to be uniformly distributed between $$0$$ and $$1$$. Under the alternative hypothesis, p-values are skewed towards $$0$$. So combined
@@ -196,6 +201,7 @@ Generally $$\lambda = 0.5$$ tends to work quite well. Notice that the region $$<
 If the distribution of p-values is not similar to one found above, then the test statistic does not have the assumed null distribution. The computed p-values are not valid. This would require another statistical analysis pipeline would need to be developed (perhaps assess whether assumptions were met).
 
 **Obtaining Value for $$q$$**
+
 We can use our estimate of $$\hat{r}_0$$ to obtain an estimate of $$q$$. If we reject at $$\alpha$$, we expect the number of type 1 errors to be $$\alpha r_0$$. So we can estimate $$q$$ 
 
 * Sort p-values from smallest to largest
@@ -207,3 +213,12 @@ $$q_{(i + 1)} = max \left( q_{(i)}, \frac{p_{(i + 1)}\hat{r}_0}{R(p_{(i + 1)})} 
 Each test has a q-value, which is defined as the minimum FDR that can be attained when calling that test significant (and all other tests which are that significant and more). In other words it is the expected proportion of false positives (for the set of all tests) incurred when calling that test significant. For example, consider a study where gene X has a q-value of 0.05. This means that 5% of genes that show p-values at least as small as gene X are false positives. 
 
 We usually pick a cut-off q-value and reject the null hypothesis for all tests with q-values less than or equal to our cut-off. 
+
+# Summary
+In terms of ranking methods we have from most liberal to most conservative
+
+$$LSD < Dunnett < Tukey < Scheffe < Bonferroni$$
+
+The right method depends on the application. It's best to use conservative tests when the consequences are severe. A liberal test is more appropriate when you can accept that you may make Type 1 errors. When you have a large number of tests, FDR and q-values are best. 
+
+
