@@ -279,60 +279,14 @@ We have the following terms
 * overall sum: $$y_{..} = \sum^k_{i = 1} \sum^{n_i}_{j = 1} y_{ij}$$
 * overall mean: $$\bar{y}_{..} = y_{..} / N$$
 
-**Sum of Squares**
+**ANOVA Table**
 
-----------|-------------------
-$$SSTrt$$ | $$ = \sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$
-$$SSErr$$ | $$ = \sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2 = \sum^k_{i = 1} (n_i - 1) s_i^2$$
-$$SSTot$$ | $$= \sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}_{..})$$
+Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
+------|----------------|--------------------|-------------|---------
+Trt   | $$\sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$\frac{SSTrt}{dfTrt}$$ | $$\frac{MSTrt}{MSE}$$ 
+Error | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2 = \sum^k_{i = 1} (n_i - 1) s_i^2$$ | $$N-k$$ | $$\frac{SSE}{dfE}$$ |
+Total | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}_{..})$$ | $$N-1$$ | | 
 
-<p></p>
-
-**Degrees of Freedom**
-
-----------|-------------
-$$dfTrt$$ | $$ = k-1$$
-$$dfErr$$ | $$ = N-k$$
-$$dfTot$$ | $$ = N-1$$
-
-<p></p>
-
-**ANOVA table**
-
-<table class = "presenttab">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Source </th>
-   <th style="text-align:left;"> df </th>
-   <th style="text-align:left;"> SS </th>
-   <th style="text-align:left;"> MS </th>
-   <th style="text-align:left;"> F </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Treatment </td>
-   <td style="text-align:left;"> dfTrt </td>
-   <td style="text-align:left;"> SSTrt </td>
-   <td style="text-align:left;"> MSTrt </td>
-   <td style="text-align:left;"> MSTrt / MSErr </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Error </td>
-   <td style="text-align:left;"> dfErr </td>
-   <td style="text-align:left;"> SSErr </td>
-   <td style="text-align:left;"> MSErr </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Total </td>
-   <td style="text-align:left;"> dfTot </td>
-   <td style="text-align:left;"> SSTot </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-</tbody>
-</table>
 <p></p>
  
 where $$F$$ ~ $$F_{dfTrt, dfErr}$$. When $$F$$ is large, we say that the group effect is large so we reject the null hypothesis that the groups are the same.
@@ -374,31 +328,19 @@ where
 * $$\epsilon_{ijl}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
 
 
-**Sum of Squares**
-
-----------|-------------------
-$$SSA$$   | $$= bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$
-$$SSB$$   | $$= an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$
-$$SSAB$$  | $$= n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$
-$$SSE$$   | $$= \sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{ij.})^2$$
-$$SSTot$$ | $$= \sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})^2$$
-
-<p></p>
-
-**Degrees of Freedom**
-
-----------|-------------
-$$dfA$$   | $$ = a - 1$$
-$$dfB$$   | $$ = b - 1$$
-$$dfAB$$  | $$ = (a-1)(b-1)$$
-$$dfErr$$ | $$ = ab(n - 1)$$
-$$dfTot$$ | $$ = abn - 1$$
-
-<p></p>
-
 **ANOVA Table**
 
-The ANOVA table would be similar to the one-sample case. We would have three separate $$F$$ tests (similar to the single factor case) to assess the $$A_{main}$$, $$B_{main}$$, and $$AB_{int}$$ effects. 
+Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
+------|----------------|--------------------|-------------|---------
+A     | $$bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ | $$\frac{SSA}{dfA}$$ | $$\frac{MSA}{MSE}$$ 
+B     | $$an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$\frac{SSB}{dfB}$$ | $$\frac{MSB}{MSE}$$ 
+AB    | $$n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$ | $$(a-1)(b-1)$$ | $$\frac{SSAB}{dfAB}$$ | $$\frac{MSAB}{MSE}$$ 
+Error | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$ab(n - 1)$$ | $$\frac{SSE}{dfE}$$ | | 
+Total | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})^2$$ | $$abn - 1$$ | | 
+
+<p></p>
+
+Note that we have three separate $$F$$ tests (similar to the single factor case) to assess the $$A_{main}$$, $$B_{main}$$, and $$AB_{int}$$ effects. 
 
 Assume $$H_0$$ is true so that
 

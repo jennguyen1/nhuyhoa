@@ -21,6 +21,8 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 * `sort` sorting
 * `echo` repeat your own text, can pipe into files
 * `wc` word counts
+* `cut` cuts out selected portions of each line from each file and writes to standard output
+* `diff` compare files line by line
 
 **To upload to a folder:**
 {% highlight r %}
