@@ -73,6 +73,7 @@ In order to prevent overfitting, trees can be pruned (removal of internal nodes)
   * Remove the node that best improves tuning set accuracy
 
 **Another Algorithm:**
+
 Let 
 $$ \sum^{\vert T \vert}_{m = 1} \sum_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + \alpha \vert T \vert$$
 

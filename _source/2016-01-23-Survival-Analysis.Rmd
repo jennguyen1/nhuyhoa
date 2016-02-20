@@ -18,7 +18,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 
 Survival analysis refers to the analysis of the occurance and timing of discrete events or failures. Failures can vary depending on the application. 
 
-One feature of survival analysis is censoring, which is when the event of interest is not obseved during the period of study for some subjects. We assume that the event will occur in all subjects given sufficient follow up. Subjects without events are those for whom the event will occur in the future, although the time of event is unknown. We also assume that censoring is independent of failure time.
+One feature of survival analysis is censoring, which is when the event of interest is not observed during the period of study for some subjects. We assume that the event will occur in all subjects given sufficient follow up. Subjects without events are those for whom the event will occur in the future, although the time of event is unknown. We also assume that censoring is independent of failure time.
 
 # Goals of Survival Analysis
 We want to answer several questions.

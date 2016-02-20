@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reshaping"
+title: "Reshaping & Transposes"
 date: "December 19, 2015"
 categories: ['data wrangling']
 ---

@@ -55,6 +55,7 @@ The principal component scores can be used in place of the original features.
 The first principal component loading vector defines the line in $$p$$-dimensional space that is closest to the $$n$$ observations (Euclidean distance). The first 2 principal components of a dataset span the plane that is closest to the $$n$$ observations. 
 
 ![PCA Geometric Interpretation](http://jnguyen92.github.io/nhuyhoa/figure/images/principal_components.png)
+
 Green line is the $$1^{st}$$ principal component and the blue dashed line is the $$2^{nd}$$ principal component. (Hastie, et.al)
 
 ## Principal Components In R
@@ -141,7 +142,7 @@ In this plot, we could potentially choose to use 5-7 principal components.
 ## What PCA Can Be Used For
 
 * Use for data visualization or data pre-processing
-* Evaluate whether there may be confounding effects (plot principal components grouped by a variable) to see if certain effects/variables capture the majority of the variance? 
+* Evaluate whether there may be confounding effects (plot principal components grouped by a variable) to see if certain effects/variables capture the majority of the variance
 * Simplify high-dimensional data and use as features in other methods
 
 PCA is great for providing a low-dimensional representation of high-dimensional data. Thus it works best when the first few PC are sufficient in capturing most of the variation in the predictors. (So it is generally not a good idea to use all of the PC).
@@ -169,11 +170,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.663    2.670    2.636    2.678    2.696
-## adjCV        6.123    2.651    2.659    2.617    2.658    2.675
+## CV           6.123    2.553    2.579    2.473    2.533    2.532
+## adjCV        6.123    2.548    2.572    2.460    2.518    2.517
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.773    2.811    2.928    3.399     3.502
-## adjCV    2.746    2.783    2.888    3.327     3.416
+## CV       2.842    2.879    3.536    3.694     4.008
+## adjCV    2.802    2.838    3.444    3.596     3.877
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps

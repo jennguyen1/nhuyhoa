@@ -27,6 +27,7 @@ Indpendence is nice property because we can certain variables without regard to 
   * A node is conditionally independent of all other nodes, given its Markov blanket. A Markov blanket is a node's parents, children, and children's parent. $$P(X \vert MB(X), Y) = P(X \vert MB(X))$$
 
 ![Markov blanket](http://jnguyen92.github.io/nhuyhoa/figure/images/markov_blanket.png)
+
 The markov blanket of $$X$$. 
 
 # Parameter Learning
