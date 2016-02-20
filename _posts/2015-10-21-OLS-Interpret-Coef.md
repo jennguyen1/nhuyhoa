@@ -283,13 +283,13 @@ summary(m4a)$coefficients %>% round(3)
 ## Excluding the Intercept
 If we were to remove the intercept, we have the following regression lines.
 
-If $$Species == "setosa"$$:
+If $$Species == "setosa"$$: <br>
 $$ Sepal.Length = 4.2 + 0.54 * Petal.Length $$
 
-If $$Species == "versicolor"$$:
+If $$Species == "versicolor"$$: <br>
 $$ Sepal.Length = 2.4 + (0.54 + 0.29) * Petal.Length $$
 
-If $$Species == "virginica"$$:
+If $$Species == "virginica"$$: <br>
 $$ Sepal.Length = 1.1 + (0.54 + 0.45) * Petal.Length $$
 
 This is essentially the same equations as the previous model.

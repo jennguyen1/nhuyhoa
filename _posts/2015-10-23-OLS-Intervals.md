@@ -15,7 +15,7 @@ Recall $$ Y_* = x_*\beta $$
 
 Let $$ x'_* = (1, x_{0*}, ..., x_{*p}) $$ 
 
-The expected value of Y is 
+The expected value of Y is <br>
 $$ E(Y) = \hat{Y}_* = x'_*\hat{\beta} $$
 
 The variance of our estimate is
@@ -34,13 +34,13 @@ $$ \hat{Y}_* \pm t_{n-p, \alpha/2} \sqrt{MSE} \sqrt{x'_*(X'X)^{-1}x_*} $$
 We can also do this in R: `predict(object, newdata, interval = "confidence")`
 
 # Prediction Intervals
-If we want to predict new values, we incur additional error. 
+If we want to predict new values, we incur additional error. <br>
 $$ Y_0 = x'_0\beta + \epsilon_0 $$
 
 We assume that $$ e_0 $$ ~ $$ N(0, \sigma^2) $$ and $$ e_0 \perp \hat{Y}_0 $$ 
 Let $$ x'_0 = (1, x_{00}, ..., x_{0p}) $$
 
-The expected value of Y is
+The expected value of Y is <br>
 $$ E(Y) = \hat{Y}_0 + 0 = x'_0\hat{\beta} $$
 
 The variance of our estimate is
@@ -54,13 +54,10 @@ Thus the $$100(1-\alpha)$$% confidence interval is
 
 $$ \hat{Y}_* \pm t_{n-p, \alpha/2} \sqrt{MSE} \sqrt{x'_*(X'X)^{-1}x_* + 1} $$
 
-
 Let's assess our assumptions. We assume that $$ e_0 $$ ~ $$ N(0, \sigma^2) $$, which is an assumption we make with all linear regressions. We also assume $$ e_0 \perp \hat{Y}_0 $$. 
 
-$$ e_0 = Y_0 - \hat{Y}_0 $$.
-
-$$ cov(e_0, \hat{Y}_0) = cov(Y - \hat{Y}_0, \hat{Y}_0) = cov(Y_0 - HY_0, HY_0) $$.
-
+$$ e_0 = Y_0 - \hat{Y}_0 $$ <br>
+$$ cov(e_0, \hat{Y}_0) = cov(Y - \hat{Y}_0, \hat{Y}_0) = cov(Y_0 - HY_0, HY_0) $$ <br>
 where $$ H = X(X'X)^{-1}X' $$ or the projection matrix.
 
 ----------------------------|--------------------

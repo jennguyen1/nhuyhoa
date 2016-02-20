@@ -97,6 +97,7 @@ Thus $$ \hat{\beta} $$ ~ $$ N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma
  
 # Regression Assumptions
 Assumptions for OLS require $$ e_i $$ ~ $$ N(0, \sigma^2I) $$, in other words:
+
 * Linear relationship
 * Independent, uncorrelated errors
 * Constant variance of the errors 
@@ -105,6 +106,7 @@ Assumptions for OLS require $$ e_i $$ ~ $$ N(0, \sigma^2I) $$, in other words:
 These assumptions fullfill the requirement of the Gauss-Markov theorem.
 
 The Gauss-Markov theorem states that if
+
 * $$ E[e_i] = 0 $$
 * $$ Var[e_i] = \sigma^2I $$ - homoskedasticity
 * $$ cov[e_i, e_j] \forall i \ne j $$ - uncorrelated errors
