@@ -27,13 +27,13 @@ The maximum likelihood estimate (MLE) of $$\mu$$ is the value of $$\mu$$ that ma
 
 Consider the one-sample iid normal case: $$Y_i$$ ~ $$N(\mu, \sigma^2)$$ where we assume that $$\sigma^2$$ is known. We want to find the MLE of $$\mu$$.
 
-The density for $$Y_i$$ is 
+The density for $$Y_i$$ is <br>
 $$f(y \vert \mu) = \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(y - \mu)^2}{2\sigma^2}\right)$$
 
-The joint density for $$Y_1, ... Y_n$$ is
+The joint density for $$Y_1, ... Y_n$$ is <br>
 $$f(y_1, ..., y_n \vert \mu) = \prod^n_{i = 1} \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(y_i - \mu)^2}{2\sigma^2}\right)$$
 
-Then the likelihood function is
+Then the likelihood function is <br>
 $$L(\mu) = \prod^n_{i = 1} \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(Y_i - \mu)^2}{2\sigma^2}\right)$$
 
 It is easier to maximize the log likelihood
@@ -103,7 +103,7 @@ The score gradient vector has 2 components
 * .$$U_{\alpha}(\alpha, \beta) = \frac{\partial}{\partial \alpha} l(\alpha, \beta)$$
 * .$$U_{\beta}(\alpha, \beta) = \frac{\partial}{\partial \beta} l(\alpha, \beta)$$
 
-So we calculate $$\hat{\alpha}$$ with 
+So we calculate $$\hat{\alpha}$$ with <br>
 $$U_{\alpha}(\alpha, 0) = 0$$
 
 The likelihood ratio test is
