@@ -53,8 +53,8 @@ glm(counts ~ ., data = data, family = poisson)
 ```
 
 ## Modeling Ratios
-If we have ratios and the proportions are small, we can use Poisson regression rather than logistic regression. We fit the model
-$$\log \left( \frac{count}{total} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$
+If we have ratios and the proportions are small, we can use Poisson regression rather than logistic regression. We fit the model <br>
+$$\log \left( \frac{count}{total} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$ <br>
 $$ \log(count) = \log(total) + \beta_0 + \beta_1 x_1 + ... \beta_k x_k $$
 
 We can fit this model in R like so
@@ -85,13 +85,14 @@ Holding all other predictors constant, a unit increase in $$x_i$$ increases the 
 # Overdispersion
 Overdispersion occurs in poisson regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i $$. With Poisson models, one can visually assess whether there might be overdispersion by plotting $$(y - \hat{\mu})^2$$ vs $$\mu$$ with the identity line. Overdispersion would result in a plot where the majority of points are above the identity line, indicating $$Var(Y) > E(Y)$$. 
 
-The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain 
+The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain <br>
 $$Var(Y_i)^* = \sigma^2 \mu_i $$
 
 The steps for assessing overdispersion are listed in the [GLM Testing and Diagnostics: Overdispersion][glm_diagnostics_post]{:target = "blank"}.
 
 ## Negative Binomial Regression
-One alternative to the Poisson regression with overdispersion is negative binomial regression. The response $$Z$$ is assumed to follow a negative binomial distribution with $$Z$$ being the number of trials until the $$k^{th}$$ success
+One alternative to the Poisson regression with overdispersion is negative binomial regression. The response $$Z$$ is assumed to follow a negative binomial distribution with $$Z$$ being the number of trials until the $$k^{th}$$ success 
+
 $$P(Z = z) = \left(\begin{array}
 {rrr}
 z - 1\\

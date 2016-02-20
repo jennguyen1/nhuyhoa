@@ -88,22 +88,21 @@ The interpretation of coefficients for continuous variables are same as listed a
 
 ### Categorical Variables
 The interpretation of coefficients for categorical variables are similar to the definition above. 
-
 Say we have the categorical variable with the labels "A", "B", "C". We set the baseline category to be "A". Then we have $$\beta_1$$ corresponding the relative comparison of "B" to "A" and $$\beta_2$$ corresponding to the relative comparison of "C" to "A".
 
 Then $$\hat{\beta}_1$$ is the log-odds difference comparing those of category "B" to "A" and $$\hat{\beta}_2$$ is the log-odds difference comparing those of category "C" to "A".
 
-Logistic regression models with only categorical variables are another way to model contingency tables. For example, consider the model 
+Logistic regression models with only categorical variables are another way to model contingency tables. For example, consider the model <br>
 $$logit(Y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 (x_1*x_2) + \beta_5 (x_1*x_3)$$
 
-where we have two categorical variables $$J$$ and $$N$$,
-$$ x_1 = 1$$ if $$J = yes$$
+where we have two categorical variables $$J$$ and $$N$$, <br>
+$$ x_1 = 1$$ if $$J = yes$$ <br>
 $$ x_1 = 0$$ otherwise
 
-$$ x_2 = 1$$ if $$N = medium$$
+$$ x_2 = 1$$ if $$N = medium$$ <br>
 $$ x_2 = 0$$ otherwise
 
-$$ x_3 = 1$$ if $$N = high$$
+$$ x_3 = 1$$ if $$N = high$$ <br>
 $$ x_3 = 0$$ otherwise
 
 If all of the $$\hat{\beta}$$s were significantly different from 0, then we would have a three-way table where all tables had different odds ratios.

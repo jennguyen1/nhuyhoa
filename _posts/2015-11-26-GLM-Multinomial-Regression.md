@@ -37,7 +37,7 @@ $$ \log\left( \frac{\pi_a}{\pi_b} \right)$$ | $$ = \log\left( \frac{\pi_a/\pi_1}
 
 where $$(\alpha_a - \alpha_b)$$ is the intercept parameter with slope parameter $$(\beta_a - \beta_b)$$ for the new comparison. 
 
-Interpretation of coefficients is identical to logistic regression case. For example, the equation
+Interpretation of coefficients is identical to logistic regression case. For example, the equation <br>
 $$\log\left( \frac{\pi_a}{\pi_b} \right) = \alpha + \beta_1 x_1 + ... + \beta_p + x_p$$
 
 Holding all other covariates constant, a unit increase in $$x_i$$ will lead to an increase in odds of falling into category $$a$$ over category $$b$$ by a factor of $$exp(\beta_i)$$.
@@ -113,8 +113,8 @@ summary(mod1)
 ## AIC: 106.3412
 {% endhighlight %}
 
-From this, we get the multinomial equations 
-$$ \log(\pi_O/\pi_F) = -1.618 + 0.1101x $$
+From this, we get the multinomial equations <br>
+$$ \log(\pi_O/\pi_F) = -1.618 + 0.1101x $$ <br>
 $$ \log(\pi_I/\pi_F) = 4.089 - 2.3553x $$
 
 Thus we can use both these equations to calculate  
@@ -128,16 +128,16 @@ For the alligators of length $$x + 1$$ meters, the estimated odds that primary f
 
 Note: to switch the odds (go from $$\pi_1/\pi_2$$ to $$\pi_2/\pi_1$$) just switch the signs of the equation on the RHS.  
 
-Original equation:
+Original equation: <br>
 $$ \log(\pi_1/\pi_2) = \alpha_1 + \beta_1x $$ 
 
-Flipped equation:
+Flipped equation: <br>
 $$ \log(\pi_2/\pi_1) = \log( (\pi_1/\pi_2)^{-1} ) = -\log(\pi_1/\pi_2) = -\alpha_1 + -\beta_1x $$ 
 
 
 We can also compute the response probabilities using the equation above. 
-$$ \hat{\pi}_O = \frac{exp(-1.618 + 0.1101x)}{1 + exp(-1.618 + 0.1101x) + exp(4.089 - 2.3553x)} $$
-$$ \hat{\pi}_I = \frac{exp(4.089 - 2.3553x)}{1 + exp(-1.618 + 0.1101x) + exp(4.089 - 2.3553x)} $$
+$$ \hat{\pi}_O = \frac{exp(-1.618 + 0.1101x)}{1 + exp(-1.618 + 0.1101x) + exp(4.089 - 2.3553x)} $$ <br>
+$$ \hat{\pi}_I = \frac{exp(4.089 - 2.3553x)}{1 + exp(-1.618 + 0.1101x) + exp(4.089 - 2.3553x)} $$ <br>
 $$ \hat{\pi}_F = \frac{1}{1 + exp(-1.618 + 0.1101x) + exp(4.089 - 2.3553x)} $$
 
 These probabilities can be used to plot the probabilities of various food preferences in gators across lengths.
@@ -173,8 +173,8 @@ Because the covariate terms are subtracted, the $$\beta$$s are interpreted with 
 
 For example, assume we have 3 ordered categories and 2 predictors. Thus, we would have
 
-$$ logit \big[ P(Y \le 1 ) \big] = \alpha_1 - \beta_1 x_1 - \beta_2 x_2$$
-$$ logit \big[ P(Y \le 2 ) \big] = \alpha_2 - \beta_1 x_1 - \beta_2 x_2$$
+$$ logit \big[ P(Y \le 1 ) \big] = \alpha_1 - \beta_1 x_1 - \beta_2 x_2$$ <br>
+$$ logit \big[ P(Y \le 2 ) \big] = \alpha_2 - \beta_1 x_1 - \beta_2 x_2$$ <br>
 $$ logit \big[ P(Y \le 3 ) \big] = 1 $$
 
 The intercept $$\alpha_j$$ is the log-odds of falling into or below category $$j$$ for $$x_1 = x_2 = 0$$. 
@@ -230,31 +230,31 @@ summary(mod2)
 {% endhighlight %}
 One thing to note is that R fits the model $$\log \left( \frac{P(Y \le j)}{P(Y > j)} \right) = \theta_j - x' \beta$$. This affects how we interpret the coefficients on the $$\beta$$s.
 
-For the cheese variable, we have the baseline dummy as $$A$$. The coefficient for $$cheeseB = -3.352$$. The responses are ordered 1 - 9, with bigger numbers indicating better responses. Thus we can interpret the $$cheeseB$$ coefficient as so:
+For the cheese variable, we have the baseline dummy as $$A$$. The coefficient for $$cheeseB = -3.352$$. The responses are ordered 1 - 9, with bigger numbers indicating better responses. Thus we can interpret the $$cheeseB$$ coefficient as so: <br>
 $$\frac{odds.B.better}{odds.A.better} = exp(\beta_{cheeseB}) = exp(−3.352) = 0.035$$ 
 
 The odds that cheese B is ranked "better" is $$0.035$$ times the odds that cheese A is ranked "better". Therefore cheese A is preferred over cheese B. The t-value is relatively big in magnitude so we can conclude that this difference in preference is significant. Also note that this ranking holds over all responses, due to the proportional odds assumption. That is, cheese A is preferred over cheese B regardless of whether "better" is a response cutoff of 3 or 7 (or any other value). We can do similar comparisons for other cheese types. 
 
-We can use the results to generate our individual equations.
-$$ \log \left( \frac{P(Y \le 1)}{P(Y > 1)} \right) = -5.4674 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
-$$ \log \left( \frac{P(Y \le 2)}{P(Y > 2)} \right) = -4.4122 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
-$$...$$
+We can use the results to generate our individual equations. <br>
+$$ \log \left( \frac{P(Y \le 1)}{P(Y > 1)} \right) = -5.4674 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$ <br>
+$$ \log \left( \frac{P(Y \le 2)}{P(Y > 2)} \right) = -4.4122 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$ <br>
+$$...$$ <br>
 $$ \log \left( \frac{P(Y \le 8)}{P(Y > 8)} \right) = 3.1058 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
 
 Note that we add the intercept specified by the model, but subtract the $$\beta$$ coefficients.
 
 We can also calculate individual probabilities at the baseline cheese (A):
 
-For $$response = 1$$
+For $$response = 1$$ <br>
 $$P(Y = 1) = P(Y \le 1) = ilogit(-5.4674) = 0.0042$$
 
-For $$response = 2$$
+For $$response = 2$$ <br>
 $$P(Y = 2) = P(Y \le 2) - P(Y \le 1) = ilogit(-4.4122) - ilogit(-5.4674) = 0.00778$$
 
-For $$response = 3$$
+For $$response = 3$$ <br>
 $$P(Y = 3) = P(Y \le 3) - P(Y \le 2) = ilogit(-3.3126) - ilogit(-4.4122) = 0.023$$
 
-For $$response = 9$$
+For $$response = 9$$ <br>
 $$P(Y = 9) = 1 - P(Y \le 8) = 1 - ilogit(3.1058) = 0.0429$$
 
 ## Other Topics

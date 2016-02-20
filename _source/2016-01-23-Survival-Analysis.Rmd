@@ -52,30 +52,30 @@ Suppose we have data in the following form. First we assume that there is no cen
 
 ![Survival Times](http://jnguyen92.github.io/nhuyhoa/figure/images/survival_times.png)
 
-Since all failure times $$T_i$$ are observed, so
-$$\hat{F}(t) = \frac{1}{n}$$ and
+Since all failure times $$T_i$$ are observed, so <br>
+$$\hat{F}(t) = \frac{1}{n}$$ and <br>
 $$\hat{S}(t) = 1 - \hat{F}(t)$$
 
-The time axis can be broken into intervals of size $$\Delta t$$, $$0 = t_0 < t_1 < ... < t_K$$ and let
+The time axis can be broken into intervals of size $$\Delta t$$, $$0 = t_0 < t_1 < ... < t_K$$ and let <br>
 $$d_k = $$ # of subjects with $$T_i \in (t_{k - 1}, t_k)$$
 
-and then we can estimate
+and then we can estimate <br>
 $$\hat{f}(t_k) = \frac{d_k}{n \Delta t}$$
 
-then since $$S(t) = 1 - \int^t_0 f(u)du$$ we have
-$$\hat{S}(0) = 1$$
-$$\hat{S}(t_1) = \hat{S}(0) - \hat{f}(t_1)\Delta t = 1 - \frac{d_1}{n}$$
-...
+then since $$S(t) = 1 - \int^t_0 f(u)du$$ we have <br>
+$$\hat{S}(0) = 1$$ <br>
+$$\hat{S}(t_1) = \hat{S}(0) - \hat{f}(t_1)\Delta t = 1 - \frac{d_1}{n}$$ <br>
+... <br>
 $$\hat{S}(t_k) = \hat{S}(t_{k - 1}) - \hat{f}(t_k)\Delta t = 1 - \frac{d_1 + ... + d_k}{n}$$
 
-We can also replace $$f(t)$$ with $$\lambda(t)$$. We can estimate 
+We can also replace $$f(t)$$ with $$\lambda(t)$$. We can estimate <br>
 $$\hat{\lambda}(t_k) = \frac{d_k}{n_k \Delta T}$$
 
-since $$f(t) = S(t)\lambda(t)$$ and $$S(t) = 1 - \int^t_0 S(u)\lambda (u)du$$ so
-$$\hat{S}(0) = 1$$
-$$\hat{S}(t_1) = \hat{S}(0) - \hat{S}(0)\hat{\lambda}(t_1)\Delta t = 1 - \frac{d_1}{n_1}$$
-$$\hat{S}(t_2) = \hat{S}(t_1) - \hat{S}(t_1)\hat{\lambda}(t_2)\Delta t =\left( 1 - \frac{d_1}{n_1} \right) \left( 1 - \frac{d_2}{n_2} \right) $$
-...
+since $$f(t) = S(t)\lambda(t)$$ and $$S(t) = 1 - \int^t_0 S(u)\lambda (u)du$$ so <br>
+$$\hat{S}(0) = 1$$ <br>
+$$\hat{S}(t_1) = \hat{S}(0) - \hat{S}(0)\hat{\lambda}(t_1)\Delta t = 1 - \frac{d_1}{n_1}$$ <br>
+$$\hat{S}(t_2) = \hat{S}(t_1) - \hat{S}(t_1)\hat{\lambda}(t_2)\Delta t =\left( 1 - \frac{d_1}{n_1} \right) \left( 1 - \frac{d_2}{n_2} \right) $$ <br>
+... <br>
 $$\hat{S}(t_k) = \hat{S}(t_{k - 1}) - \hat{S}(t_{k - 1})\hat{\lambda}(t_k)\Delta t  = \left( 1 - \frac{d_1}{n_1} \right) \left( 1 -\frac{d_2}{n_2} \right) ... \left( 1 - \frac{d_k}{n_k} \right)$$
 
 Letting $$\Delta t  \rightarrow 0$$ gives the **Kaplan-Meier** estimate of $$S(t)$$

@@ -185,7 +185,8 @@ Note that unlike in linear regression, our errors do not need to be normally dis
 * Jackknife residuals (studentized residuals): expensive to compute, but approximations are available
 
 ## Leverages
-Since GLMs use the IRWLS algorithm, the leverage values are affected by the weights. The hat matrix is defined by
+Since GLMs use the IRWLS algorithm, the leverage values are affected by the weights. The hat matrix is defined by 
+
 $$ H = W^{1/2}X(X'WX)^{-1}X'W^{1/2} $$
 
 where $$W = diag(w)$$
@@ -193,7 +194,8 @@ where $$W = diag(w)$$
 The diagonal elements of $$H$$ contain the leverages $$h_{i}$$.
 
 ## Cook's Distance
-The Cook statistics:
+The Cook statistics: 
+
 $$D_i = 
 \frac{(\hat{\beta}_{(i)} - \hat{\beta})' (X'WX) (\hat{\beta}_{(i)} - \hat{\beta})}{p\hat{\phi}}$$
 
