@@ -27,6 +27,7 @@ $$\mathbf{y^{(\lambda})} = \left[\begin{array}
 where $$Y(\lambda) $$ ~ $$N(X\beta, \sigma^2 I)$$.
 
 The value $$\lambda$$ is found through maximum likelihood. 
+
 $$ f(Y_i, X_i, i = 1...n$$ | $$ \lambda, \beta_0, \beta_1, \sigma^2) = \Pi^n_{i = 1} \frac{1}{\sqrt{2 \pi \sigma^2}} exp[\frac{-1}{2\sigma^2} (Y_i(\lambda) - \beta_0 - \beta_1 X_i)] $$
 
 # Implementation

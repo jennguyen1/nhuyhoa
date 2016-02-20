@@ -60,8 +60,10 @@ $$ \hat{Y}_* \pm t_{n-p, \alpha/2} \sqrt{MSE} \sqrt{x'_*(X'X)^{-1}x_* + 1} $$
 
 Let's assess our assumptions. We assume that $$ e_0 $$ ~ $$ N(0, \sigma^2) $$, which is an assumption we make with all linear regressions. We also assume $$ e_0 \perp \hat{Y}_0 $$. 
 
-$$ e_0 = Y_0 - \hat{Y}_0 $$
-$$ cov(e_0, \hat{Y}_0) = cov(Y - \hat{Y}_0, \hat{Y}_0) = cov(Y_0 - HY_0, HY_0) $$
+$$ e_0 = Y_0 - \hat{Y}_0 $$.
+
+$$ cov(e_0, \hat{Y}_0) = cov(Y - \hat{Y}_0, \hat{Y}_0) = cov(Y_0 - HY_0, HY_0) $$.
+
 where $$ H = X(X'X)^{-1}X' $$ or the projection matrix.
 
 ----------------------------|--------------------
