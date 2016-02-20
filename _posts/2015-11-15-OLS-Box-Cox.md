@@ -13,7 +13,7 @@ categories: ['statistics', 'regression analysis']
 # Background
 When regression diagnostics display a violation of assumptions, one step we can take is to transform our variables. The Box-Cox family of transformations provide a procedure for finding the best transformation. This parameterized family of transformations is continuous at $$y>0$$ for a fixed $$\lambda$$ and it is continuous at $$\lambda$$ for a fixed $$y$$, even at $$\lambda = 0$$. 
 
-Let Y be the response variable. Then
+Let Y be the response variable. Then <br>
 $$\mathbf{y^{(\lambda})} = \left[\begin{array}
 {rrr}
   \frac{y^{\lambda} - 1}{\lambda} & \lambda \ne 0 \\

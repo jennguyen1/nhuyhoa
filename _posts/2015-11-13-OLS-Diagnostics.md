@@ -41,8 +41,6 @@ When we over fit, our estimate of $$\hat{\beta}_1$$ is unbiased, but $$Var[\hat{
 
 **Residuals** 
 
-are defined as 
-
 $$ \hat{\epsilon}_i = y_i - \hat{y}_i $$
 
 **Internally standardized residuals** 

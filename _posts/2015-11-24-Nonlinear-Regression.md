@@ -29,12 +29,14 @@ Often these types of functions provide more stable estimates and better results 
 Splines are piecewise polynomial functions that add constraints of continuity at the knots. Cubic splines are popular.
 
 ![Piecewise Polynomials](http://jnguyen92.github.io/nhuyhoa/figure/images/piecewise_and_splines.png)
+
 Various piecewise polynomials. (Hastie et. al)
 
 ## Natural Splines 
 Splines have the disadvantage of having high variance at the outer range of predictors. The natural spline adds additional boundary constraints, requiring that the function be linear at the outer ranges. Doing so generally produces more stable estimates at the boundaries. 
 
 ![Natural Spline](http://jnguyen92.github.io/nhuyhoa/figure/images/natural_spline.png)
+
 Comparisons of a cubic spline to a natural spline. The main differences are at the endpoints. (Hastie et. al)
 
 ## Knot Placement
@@ -43,7 +45,7 @@ The best places to place knots are in regions that seem to vary most rapidly.
 Often it is hard to choose, so one can specify the desired degrees of freedom and let software place the knots. Cross-validation can also be used to find the best value for degrees of freedom. 
 
 ## Smoothing Splines
-Smoothing splines attempt to
+Smoothing splines attempt to <br>
 $$minimize_{g \in S} \Sigma^n_{i = 1} (y_i - g(x_i))^2 + \lambda \int g''(t)^2dt$$
 
 The second term is a roughness penalty that controls how wiggly $$g(x)$$ is with the second derivative. (Large magnitudes of $$g''$$ means $$g$$ more wiggly).

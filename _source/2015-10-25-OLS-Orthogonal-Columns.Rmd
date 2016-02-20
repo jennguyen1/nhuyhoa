@@ -17,7 +17,7 @@ lib(data)
 
 Orthogonal design matrices in regression ensures that the $$\beta$$ estimates do not depend on each other. In other words, because there is no collinearity between columns, the effect of one factor or interaction can be estimated separately from the effect of any other factor/interaction in the model.
 
-Let the design matrix be
+Let the design matrix be <br>
 $$\mathbf{X} = \left[\begin{array}
 {rrr}
 x_0 & x_1 & x_2 & ... & x_p
@@ -26,10 +26,10 @@ $$
 
 where $$x_i$$ are columns vectors and the columns are mutually independent.
 
-We know that
+We know that <br>
 $$ \hat{\beta} = (X^TX)^{-1}X^TY $$
 
-Since the columns of $$X$$ are mutually orthogonal, we have the diagonal matrix
+Since the columns of $$X$$ are mutually orthogonal, we have the diagonal matrix <br>
 $$\mathbf{(X^TX)^{-1}} = \left[\begin{array}
 {rrr}
 \frac{1}{x^{T}_{0}x_0} & 0 & 0 & 0 \\
@@ -39,7 +39,7 @@ $$\mathbf{(X^TX)^{-1}} = \left[\begin{array}
 \end{array}\right]
 $$
 
-Plug this in to compute $$ \hat{\beta} $$
+Plug this in to compute $$ \hat{\beta} $$ <br>
 $$ \hat{\beta} = \left[\begin{array}
 {cc}
 \frac{1}{x^{T}_{0}x_0} & 0 & 0 & 0 \\
@@ -56,7 +56,7 @@ x^T_pY \\
 \end{array}\right]
 $$
 
-Resulting in the final estimate
+Resulting in the final estimate <br>
 $$ \hat{\beta} = \left[\begin{array}
 {rrr}
 \frac{x^T_0Y}{x^{T}_{0}x_0}  \\
@@ -72,7 +72,7 @@ Note that the $$\beta_j$$ estimate depends only on the $$j^{th}$$ column in the 
 # Covariance Matrix
 Recall that $$ Var[\beta] = \sigma^2 (X^TX)^{-1} $$.
 
-When our columns are orthogonal,
+When our columns are orthogonal, <br>
 $$\mathbf{(X^TX)^{-1}} = \left[\begin{array}
 {rrr}
 \frac{1}{x^{T}_{0}x_0} & 0 & 0 & 0 \\
@@ -86,8 +86,8 @@ Thus $$\forall$$ $$j$$, $$ Var[\hat{\beta}_j]= \frac{\sigma^2}{x^{T}_{j}x_j} $$.
 
 As a matter of fact, the variance of the $$\hat{\beta}$$ are minimized when $$X$$ has mutually exclusive columns. 
 
-In other words for any design matrix,
-$$Var[\hat{\beta}_j] \ge \frac{\sigma^2}{x_j^{*T}x_j^*} $$. 
+In other words for any design matrix, <br>
+$$Var[\hat{\beta}_j] \ge \frac{\sigma^2}{x_j^{*T}x_j^*} $$ <br>
 and the minimum is attained when $$x_i^{*T}x^*_j = 0$$ $$\forall$$ $$i \ne j$$.
 
 # Orthogonal Columns in Experimental Design & Clinical Trials

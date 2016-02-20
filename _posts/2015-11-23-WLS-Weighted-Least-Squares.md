@@ -17,7 +17,7 @@ $$ Y $$ ~ $$N(X\beta, \sigma^2 I)$$
 
 However, when this assumption of constance variance is violated (heteroskedasticity), we need to sufficiently adjust for the unequal variances in our modeling.
 
-Assumed $$\epsilon$$ (homoskedaskticity:
+Assumed $$\epsilon$$ (homoskedaskticity: <br>
 $$\left[\begin{array}
 {rrr}
 \sigma^2 & 0 & ... & 0 \\
@@ -27,7 +27,7 @@ $$\left[\begin{array}
 \end{array}\right]
 $$
 
-Actual $$\epsilon$$ (heterskedaskticity):
+Actual $$\epsilon$$ (heterskedaskticity): <br>
 $$\left[\begin{array}
 {rrr}
 \sigma^2_1 & 0 & ... & 0 \\
