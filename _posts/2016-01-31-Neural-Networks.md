@@ -17,9 +17,9 @@ One of many potential neural network models.
 
 The $$x$$s refer to input variables. Each layer has a bias or intercept term. Every node has an outgoing weight/arrow, we will call these $$\theta_{ii}$$. These weight determine the effect of the previous node to the target node. The output node gives the final function estimate. 
 
-The internal nodes are computed using the previous nodes. For instance  
-$$a_1^{(1)} = g(x^T\theta_1^{(1)})$$  
-$$a_2^{(1)} = g(x^T\theta_2^{(1)})$$  
+The internal nodes are computed using the previous nodes. For instance <br>
+$$a_1^{(1)} = g(x^T\theta_1^{(1)})$$ <br>
+$$a_2^{(1)} = g(x^T\theta_2^{(1)})$$ <br>
 $$h(x) = a_1^{(2)} = g((a^{(1)})^T\theta_1^{(2)})$$
 
 The matrix $$\theta^{(i)}$$ represent the weights controlling the function mapping for a given layer. The function $$g$$ here can vary (identity, sigmoid/logistic, etc).
@@ -29,16 +29,16 @@ Models can also have multiple output units. One situation in which this is usefu
 # Forward Propagation
 Forward propagation starts at the input layer and proceeds through the layers to obtain the final result. 
 
-For the example in the model above, we calculate  
-$$a_1^{(1)} = g(x^T\theta_1^{(1)})$$  
-$$a_2^{(1)} = g(x^T\theta_2^{(1)})$$  
+For the example in the model above, we calculate <br>
+$$a_1^{(1)} = g(x^T\theta_1^{(1)})$$ <br>
+$$a_2^{(1)} = g(x^T\theta_2^{(1)})$$<br>
 $$h(x) = a_1^{(2)} = g((a^{(1)})^T\theta_1^{(2)})$$
 
 # Backward Propagation
 The weights $$\theta_{ii}$$ can be learned via the backpropagation algorithm. 
 
-The error of each layer is expressed as  
-$$\delta_j^{(L)} = a_j^{(L)} - y_j$$  
+The error of each layer is expressed as <br>
+$$\delta_j^{(L)} = a_j^{(L)} - y_j$$ <br>
 $$\delta^{(l)} = (\theta^{(l)})^T \delta^{(l + 1)} *  g'((a^{(l-1)})^T\theta^{(l-1)})$$
 
 

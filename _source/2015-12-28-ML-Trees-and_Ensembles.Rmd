@@ -17,6 +17,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center', warni
 ```
 
 ![tree](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
+
 A sample tree and how it cuts up the feature space. 
 
 # Decision Trees
@@ -46,16 +47,16 @@ Candidate splits on nominal features is quite simple. Features can be grouped by
 Candidate splits on numeric features requires a bit more thought. The numeric feature can be converted into categories by cutting/binning. The cutpoints could be defined as the median numeric value or any other threshold (depends on the algorithm).
 
 ### Information Gain
-Entropy (information) is defined as
+Entropy (information) is defined as <br>
 $$H(Y) = - \sum_{y \in values(Y)} P(y)log_2(P(y))$$
 
-The conditional entropy is defined as 
+The conditional entropy is defined as <br>
 $$H(Y \vert X) = \sum_{x \in values(Y)} P(X = x)H(Y \vert X = x)$$
 
-where
+where <br>
 $$H(Y \vert X = x) = - \sum_{y \in values(Y)} P(Y = y \vert X = x) log_2( P(Y = y \vert X = x) ) $$
 
-Information gain is then defined as
+Information gain is then defined as <br>
 $$InfoGain(D, S) = H_D(Y) - H_D(Y \vert S)$$
 
 The split $$S$$ that most reduces the conditional entropy of $$Y$$ for training set $$D$$ is chosen as the split.
@@ -74,7 +75,7 @@ In order to prevent overfitting, trees can be pruned (removal of internal nodes)
 
 **Another Algorithm:**
 
-Let 
+Let <br>
 $$ \sum^{\vert T \vert}_{m = 1} \sum_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + \alpha \vert T \vert$$
 
 where $$\alpha >= 0$$, $$\vert T \vert$$ is the number of terminal nodes in subtree, $$R_m$$ is the subset of predictor space corresponding to the $$m^{th}$$ terminal node, and $$\hat{y}_{R_m}$$ is the mean of the training observations in $$R_m$$.
@@ -149,7 +150,7 @@ The tuning parameter $$i$$ can be chosen by cross-validation. Typically we choos
 Because it samples from all possible features, random forests can handle a large number of features. It can also reduce overfitting drastically.
 
 ## Boosting
-Boosting is a class of ensemble methods that sequentially produces multiple weak classifiers, where each classifier is dependent on the previous ones. Examples that are misclassfified by previous classifiers become more important in the next classifier. The classifiers can be combined to get
+Boosting is a class of ensemble methods that sequentially produces multiple weak classifiers, where each classifier is dependent on the previous ones. Examples that are misclassfified by previous classifiers become more important in the next classifier. The classifiers can be combined to get <br>
 $$C(x) = \theta (\sum_i w_i h_i(x) + b)$$
 
 where $$w_i$$ is the weight and $$h_i(x)$$ is the classifier. 

@@ -11,6 +11,7 @@ categories: ['statistics', 'machine learning']
 
 
 ![tree](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
+
 A sample tree and how it cuts up the feature space. 
 
 # Decision Trees
@@ -40,16 +41,16 @@ Candidate splits on nominal features is quite simple. Features can be grouped by
 Candidate splits on numeric features requires a bit more thought. The numeric feature can be converted into categories by cutting/binning. The cutpoints could be defined as the median numeric value or any other threshold (depends on the algorithm).
 
 ### Information Gain
-Entropy (information) is defined as
+Entropy (information) is defined as <br>
 $$H(Y) = - \sum_{y \in values(Y)} P(y)log_2(P(y))$$
 
-The conditional entropy is defined as 
+The conditional entropy is defined as <br>
 $$H(Y \vert X) = \sum_{x \in values(Y)} P(X = x)H(Y \vert X = x)$$
 
-where
+where <br>
 $$H(Y \vert X = x) = - \sum_{y \in values(Y)} P(Y = y \vert X = x) log_2( P(Y = y \vert X = x) ) $$
 
-Information gain is then defined as
+Information gain is then defined as <br>
 $$InfoGain(D, S) = H_D(Y) - H_D(Y \vert S)$$
 
 The split $$S$$ that most reduces the conditional entropy of $$Y$$ for training set $$D$$ is chosen as the split.
@@ -68,7 +69,7 @@ In order to prevent overfitting, trees can be pruned (removal of internal nodes)
 
 **Another Algorithm:**
 
-Let 
+Let <br>
 $$ \sum^{\vert T \vert}_{m = 1} \sum_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + \alpha \vert T \vert$$
 
 where $$\alpha >= 0$$, $$\vert T \vert$$ is the number of terminal nodes in subtree, $$R_m$$ is the subset of predictor space corresponding to the $$m^{th}$$ terminal node, and $$\hat{y}_{R_m}$$ is the mean of the training observations in $$R_m$$.
@@ -143,7 +144,7 @@ The tuning parameter $$i$$ can be chosen by cross-validation. Typically we choos
 Because it samples from all possible features, random forests can handle a large number of features. It can also reduce overfitting drastically.
 
 ## Boosting
-Boosting is a class of ensemble methods that sequentially produces multiple weak classifiers, where each classifier is dependent on the previous ones. Examples that are misclassfified by previous classifiers become more important in the next classifier. The classifiers can be combined to get
+Boosting is a class of ensemble methods that sequentially produces multiple weak classifiers, where each classifier is dependent on the previous ones. Examples that are misclassfified by previous classifiers become more important in the next classifier. The classifiers can be combined to get <br>
 $$C(x) = \theta (\sum_i w_i h_i(x) + b)$$
 
 where $$w_i$$ is the weight and $$h_i(x)$$ is the classifier. 
@@ -240,12 +241,12 @@ printcp(c_tree)
 ##         CP nsplit rel error  xerror     xstd
 ## 1 0.286585      0   1.00000 1.00000 0.059980
 ## 2 0.109756      1   0.71341 0.71341 0.055477
-## 3 0.045732      2   0.60366 0.67683 0.054606
-## 4 0.036585      4   0.51220 0.68293 0.054756
-## 5 0.027439      5   0.47561 0.67073 0.054453
-## 6 0.024390      7   0.42073 0.67683 0.054606
-## 7 0.012195      8   0.39634 0.62805 0.053324
-## 8 0.010000     10   0.37195 0.64024 0.053658
+## 3 0.045732      2   0.60366 0.60366 0.052629
+## 4 0.036585      4   0.51220 0.59756 0.052450
+## 5 0.027439      5   0.47561 0.63415 0.053492
+## 6 0.024390      7   0.42073 0.64634 0.053821
+## 7 0.012195      8   0.39634 0.61585 0.052981
+## 8 0.010000     10   0.37195 0.62805 0.053324
 {% endhighlight %}
 
 
@@ -285,14 +286,14 @@ rsq.rpart(r_tree)
 ## n= 506 
 ## 
 ##         CP nsplit rel error  xerror     xstd
-## 1 0.452744      0   1.00000 1.00192 0.082892
-## 2 0.171172      1   0.54726 0.60004 0.056477
-## 3 0.071658      2   0.37608 0.42819 0.047968
-## 4 0.036164      3   0.30443 0.34628 0.043375
-## 5 0.033369      4   0.26826 0.34240 0.045057
-## 6 0.026613      5   0.23489 0.33286 0.044706
-## 7 0.015851      6   0.20828 0.29471 0.041190
-## 8 0.010000      7   0.19243 0.29442 0.042684
+## 1 0.452744      0   1.00000 1.00118 0.082865
+## 2 0.171172      1   0.54726 0.63523 0.058211
+## 3 0.071658      2   0.37608 0.43839 0.047982
+## 4 0.036164      3   0.30443 0.34014 0.043407
+## 5 0.033369      4   0.26826 0.34015 0.043840
+## 6 0.026613      5   0.23489 0.32543 0.043135
+## 7 0.015851      6   0.20828 0.30294 0.041830
+## 8 0.010000      7   0.19243 0.30743 0.045759
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-4.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /><img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-5.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
@@ -349,8 +350,8 @@ forest
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 5
 ## 
-##           Mean of squared residuals: 9.885843
-##                     % Var explained: 88.29
+##           Mean of squared residuals: 9.614215
+##                     % Var explained: 88.61
 {% endhighlight %}
 
 
@@ -364,19 +365,19 @@ importance(forest)
 
 {% highlight text %}
 ##           %IncMSE IncNodePurity
-## crim    15.053831     2135.7979
-## zn       3.278734      166.2610
-## indus   11.014930     2462.4439
-## chas     2.367985      204.0354
-## nox     18.273655     2523.6270
-## rm      41.742035    13994.7454
-## age     13.472350      986.0788
-## dis     19.464800     2474.3558
-## rad      5.709023      254.8100
-## tax     11.690232     1087.6371
-## ptratio 13.367879     2398.9058
-## black   10.020223      679.5851
-## lstat   32.637009    12777.5813
+## crim    15.919896     2225.9648
+## zn       2.875458      194.2194
+## indus   11.628814     2294.4790
+## chas     4.070903      184.4996
+## nox     18.806482     2586.4704
+## rm      40.947421    13561.7846
+## age     11.390095      965.6755
+## dis     19.738172     2557.0158
+## rad      5.599781      259.1701
+## tax     13.184418      978.9941
+## ptratio 16.281618     2328.2015
+## black   11.070777      693.8544
+## lstat   31.791734    13400.6049
 {% endhighlight %}
 
 **Boosting**
@@ -396,18 +397,18 @@ summary(boost)
 
 {% highlight text %}
 ##             var    rel.inf
-## lstat     lstat 38.8798512
-## rm           rm 29.2957761
-## dis         dis  9.1713820
-## crim       crim  4.6805115
-## nox         nox  4.5816838
-## age         age  3.4429170
-## ptratio ptratio  3.2217680
-## black     black  2.9842227
-## tax         tax  1.6365654
-## indus     indus  0.7658244
-## rad         rad  0.6719766
-## chas       chas  0.5390857
-## zn           zn  0.1284357
+## lstat     lstat 38.4199786
+## rm           rm 30.3226189
+## dis         dis  8.6082907
+## crim       crim  4.6026800
+## nox         nox  4.2084560
+## age         age  3.8403144
+## ptratio ptratio  3.3673248
+## black     black  2.7298314
+## tax         tax  1.7629793
+## indus     indus  0.7435584
+## rad         rad  0.6652862
+## chas       chas  0.5833110
+## zn           zn  0.1453703
 {% endhighlight %}
 
