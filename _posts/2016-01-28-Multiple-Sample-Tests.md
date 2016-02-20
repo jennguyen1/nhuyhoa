@@ -263,14 +263,29 @@ In R, we can run this test with `wilcox.test()`.
 ## ANOVA
 In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
 
-### Single Factor ANOVA
+**Assumptions**
+
+Regardless of the type, ANOVAs have the same assumptions:
+
+1. Independence: within and across treatments
+2. Normality: $$Y_{ij}$$ ~ $$N(\mu_i, \sigma^2_i)$$
+3. Equal Variance: $$\sigma^2_1 = ... = \sigma^2_k$$
+
+### Single Factor ANOVA 
 
 **Model Formulations**
 
 Consider a design with $$k$$ groups where there are $$n_i$$ observations on the $$i^{th}$$ treatment. Let $$y_{ij}$$ denote the $$j^{th}$$ observation on the $$i^{th}$$ treatment. 
 
-* $$Y_{ij} = \mu_i + \epsilon_{ij}$$ where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$
-* $$Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$$ where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$ and $$\sum \alpha_i = 0$$
+$$Y_{ij} = \mu_i + \epsilon_{ij}$$ 
+
+where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$
+
+$$Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$$ 
+
+where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$. We assume $$\sum \alpha_i = 0$$ if $$H_0$$ is true.
+
+**ANOVA Table**
 
 We have the following terms
 
@@ -278,8 +293,6 @@ We have the following terms
 * treatment mean: $$\bar{y}_{i.} = y_{i.}/n_i$$
 * overall sum: $$y_{..} = \sum^k_{i = 1} \sum^{n_i}_{j = 1} y_{ij}$$
 * overall mean: $$\bar{y}_{..} = y_{..} / N$$
-
-**ANOVA Table**
 
 Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
 ------|----------------|--------------------|-------------|---------
@@ -309,22 +322,17 @@ $$\frac{E[MSTrt]}{E[MSE]} = 1 + \frac{1}{k - 1} \frac{n \sum^k_i \alpha^2_i}{\si
 
 Note that if $$\sum \alpha_i \approx 0$$, then this ratio $$\approx 1$$. The power of the $$F$$ test is a monotone function of $$\frac{n \sum^k_i \alpha^2_i}{\sigma^2_{\epsilon}}$$.
 
-**Assumptions**
-
-1. Independence: within and across treatments
-2. Normality: $$Y_{ij}$$ ~ $$N(\mu_i, \sigma^2_i)$$
-3. Equal Variance: $$\sigma^2_1 = ... = \sigma^2_k$$
-
 ### Two Factor ANOVA
 
 **Model Formulations**
+
 $$Y_{ijl} = \mu + \alpha_i + \beta_j + (\alpha \beta)_{ij} + \epsilon_{ijl}$$
 
 where
 
 * $$i = 1, ..., a$$ denotes the levels of factor A
 * $$j = 1, ..., b$$ denotes the levels of factor B
-* $$l = 1, ..., n$$ denotes plots of each factor combination
+* $$l = 1, ..., n$$ denotes replicates of each factor combination
 * $$\epsilon_{ijl}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
 
 
@@ -352,7 +360,104 @@ Assume $$H_0$$ is true so that
 
 We can test the main effects and interaction by comparing them to $$MSE$$ with an $$F$$ test.
 
+**Contrasts**
+
+Let $$\bar{ab}$$ denote the mean of the high-high group, $$\bar{a}$$ denote the mean of high-low group, $$\bar{b}$$ denote the mean of the low-high group, and $$\bar{1}$$ denote the mean of the low-low group. We have
+
+* .$$A_{main} = \frac{1}{2} [(\bar{ab} - \bar{b}) + (\bar{a} - \bar{1})]$$
+* .$$B_{main} = \frac{1}{2} [(\bar{ab} - \bar{a}) + (\bar{b} - \bar{1})]$$
+* .$$AB_{int} = \frac{1}{2} [(\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
+
+We can assess these effects by generating an interaction plot. By assessing the trends and parallelism of lines, we can determine whether there may be evidence of an interaction effect. We can also test these effects with a contrast test.
+
+### Randomized Complete Block Design ANOVA
+
+Block designs are very similar to regular ANOVAs. Blocking is similar to a paired analysis in t-tests. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
+
+A single block should be homogeneous. To ensure this homogeneity, we want to make sure blocks are small enough that
+
+* all treatments are contained with a block but
+* there are no duplicated treatments within a block
+
+**Model Formulations**
+
+$$Y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}$$
+
+where
+
+* $$i = 1, ..., k$$ denotes the levels of treatment
+* $$j = 1, ..., b$$ denotes the levels of blocks
+* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+
+**ANOVA Table**
+
+Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
+------|----------------|--------------------|-------------|---------
+Blokcs| $$k\sum^b_{j = 1} (\bar{y}_{.j} - \bar{y}_{..})^2$$ | $$b-1$$ | $$\frac{SSB}{dfB}$$ | $$\frac{MSB}{MSE}$$ 
+Trt   | $$b\sum^k_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$\frac{SSA}{dfA}$$ | $$\frac{MSA}{MSE}$$ 
+Error | $$\sum_{ij} (\bar{y}_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{..})^2$$ | $$(k-1)(b-1)$$ | $$\frac{SSE}{dfe}$$ | 
+Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2$$ | $$kb - 1$$ | | 
+
+<p></p>
+
+We can assess the effect of treatment with an $$F$$ test on $$k - 1$$ and $$(k - 1)(b - 1)$$ df. 
+
+Note that we can ignore the $$F$$ test for the effect of blocks. The blocks were used in order to account for variability. A significant test would indicate that we were right to block. If we did not find a significant block effect, we should not pool the block with error and analyze the data as a completely randomized design! We need to analyze the data as we have designed it, otherwise we would bias our tests. 
+
+We notice several things from this table. One is that this table is reminiscent of the ANOVA table for two-factor ANOVA where $$n = 1$$. Another similarity is that the SS for error is similar to the SS for the interaction term in the two-factor case. This is because we assume an additive model and so the error that is normally given to the interaction is transferred to the error.
+
+Thus RCBD with one factor is the same as a completely randomized two-factor ANOVA where $$n = 1$$.
+
+### Three Factor ANOVA
+
+**Model Formulations**
+
+$$Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\beta \gamma)_{jk} \epsilon_{ijkl}$$
+
+where
+
+* $$i = 1, ..., a$$ denotes the levels of factor A
+* $$j = 1, ..., b$$ denotes the levels of factor B
+* $$k = 1, ..., c$$ denotes the levels of factor C
+* $$l = 1, ..., n$$ denotes replicates of each factor combination
+* $$\epsilon_{ijkl}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+
+**ANOVA Table**
+
+Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
+------|----------------|--------------------|-------------|---------
+A     | $$bcn\sum^a_{i = 1} (\bar{y}_{i...} - \bar{y}_{....})^2$$ | $$a-1$$ | $$\frac{SSA}{dfA}$$ | $$\frac{MSA}{MSE}$$ 
+B     | $$acn\sum^b_{j = 1} (\bar{y}_{.j..} - \bar{y}_{....})^2$$ | $$b-1$$ | $$\frac{SSB}{dfB}$$ | $$\frac{MSB}{MSE}$$ 
+C     | $$abn\sum^b_{k = 1} (\bar{y}_{..k.} - \bar{y}_{....})^2$$ | $$c-1$$ | $$\frac{SSC}{dfC}$$ | $$\frac{MSC}{MSE}$$ 
+AB    | $$cn \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij..} - \bar{y}_{i...} - \bar{y}_{.j..} + \bar{y}_{....})^2$$ | $$(a-1)(b-1)$$ | $$\frac{SSAB}{dfAB}$$ | $$\frac{MSAB}{MSE}$$ 
+AC    | $$bn \sum^a_{i = 1} \sum^c_{k = 1} (\bar{y}_{i.k.} - \bar{y}_{i...} - \bar{y}_{..k.} + \bar{y}_{....})^2$$ | $$(a-1)(c-1)$$ | $$\frac{SSAC}{dfAC}$$ | $$\frac{MSAC}{MSE}$$ 
+BC    | $$an \sum^b_{j = 1} \sum^c_{k = 1} (\bar{y}_{.jk.} - \bar{y}_{.j..} - \bar{y}_{..k.} + \bar{y}_{....})^2$$ | $$(b-1)(c-1)$$ | $$\frac{SSBC}{dfBC}$$ | $$\frac{MSBC}{MSE}$$ 
+ABC   | $$n \sum_{ijkl} (y_{ijk.} - \bar{y}_{ij..} - \bar{y}_{i.k.} - \bar{y}_{.jk.} + \bar{y}_{i...} + \bar{y}_{.j..} + \bar{y}_{..k.} - \bar{y}_{....})^2$$ | $$(a-1)(b-1)(c-1)$$ | $$\frac{SSABC}{dfABC}$$ | $$\frac{MSABC}{MSE}$$
+Error | $$\sum_{ijkl} (y_{ijkl} - \bar{y}_{ijk.})^2$$ | $$abc(n - 1)$$ | $$\frac{SSE}{dfE}$$ | | 
+Total | $$\sum_{ijkl} (y_{ijk.} - \bar{y}_{...})^2$$ | $$abcn - 1$$ | | 
+
+<p></p>
+
+We need to consider the hierarchy principal when we consider these effects. If a higher order term is important, that means that a lower order term is important as well (and as in linear regression, should not be removed from the model). 
+
+**Contrasts**
+
+For contrasts, we have
+
+* .$$A_{main} = \frac{1}{4} [(\bar{abc} - \bar{bc}) + (\bar{ab} - \bar{b}) + (\bar{ac} - \bar{c}) + (\bar{a} - \bar{1})]$$
+* .$$B_{main} = \frac{1}{4} [(\bar{abc} - \bar{ac}) + (\bar{ab} - \bar{a}) + (\bar{bc} - \bar{c}) + (\bar{b} - \bar{1})]$$
+* .$$C_{main} = \frac{1}{4} [(\bar{abc} - \bar{ab}) + (\bar{ac} - \bar{a}) + (\bar{bc} - \bar{b}) + (\bar{c} - \bar{1})]$$
+
+* .$$AB_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ac} - \bar{c}) + (\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
+* .$$AC_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ab} - \bar{b}) + (\bar{ac} - \bar{c}) - (\bar{a} - \bar{1})]$$
+* .$$BC_{int} = \frac{1}{4} [(\bar{abc} - \bar{ac}) - (\bar{ab} - \bar{a}) + (\bar{bc} - \bar{c}) - (\bar{b} - \bar{1})]$$
+
+* .$$ABC_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ac} - \bar{c}) - (\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
+
+We can assess these effects by generating an interaction plot. We can also test these effects with a contrast test.
+
 ## Pairwise Comparisons and Contrasts
+
 After rejecting a test that the means of the groups are not equal, we want to know exactly which ones are different. 
 
 A contrast is a linear function of the group means. It can be used to compare two means or any set of groups of groups.
@@ -367,23 +472,19 @@ We can test $$H_0: \sum c_i = 0$$ with
 
 $$T = \frac{\sum c_i \bar{y}_{i.}}{s_{\epsilon} \sqrt{\sum c_i^2 / n_i}}$$
 
-which is distributed $$t_{dfE}$$. Similarly a $$95$$% confidence interval can be created.
+which is distributed $$t_{dfE}$$ (two-sided test). Similarly a $$95$$% confidence interval can be created.
 
 Note that when we have an ANOVA with $$k$$ treatments and a set of $$k - 1$$ orthogonal contrasts (ie $$c_i c_j = 0$$), then the SS will add up to $$SSTrt$$. One example of a set of orthogonal contrasts are linear, quadratic, cubic, etc contrasts.
 
 When one is assessing multiple contrasts, it would be wise to control for [multiple comparisons][multiple_comp_link]{:target = "_blank"}. 
 
-**Example**
+### Unbalanced ANOVAs
 
-Consider a two factor ANOVA each at 2 levels. Let $$\bar{ab}$$ denote the mean of the high-high group, $$\bar{a}$$ denote the mean of high-low group, $$\bar{b}$$ denote the mean of the low-high group, and $$\bar{1}$$ denote the mean of the low-low group. We have
+How do we assess effects when our designs are missing certain factor combinations? For this, contrasts can come in handy.
 
-* .$$A_{main} = 1/2 [(\bar{ab} - \bar{b}) + (\bar{a} - \bar{1})]$$
-* .$$B_{main} = 1/2 [(\bar{ab} - \bar{a}) + (\bar{b} - \bar{1})]$$
-* .$$AB_{int} = 1/2 [(\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
-
-We can assess these effects by generating an interaction plot. By assessing the trends and parallelism of lines, we can determine whether there may be evidence of an interaction effect. 
-
-These effects are orthogonal contrasts and their SS will add up to $$SSTrt$$. 
+* Fit a one-way ANOVA as a combination of the factors 
+* Fit a contrast to assess the effect you would like (perhaps the interaction)
+* Use a MSE from the one-way ANOVA as an estimate of $$s^2_{\epsilon}$$
 
 ## Nonparametric Tests
 
