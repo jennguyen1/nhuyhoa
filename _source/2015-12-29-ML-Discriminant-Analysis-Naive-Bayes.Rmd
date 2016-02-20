@@ -42,12 +42,12 @@ Recall the pdf for the Gaussian distribution:
 
 $$f_k(x) = \frac{1}{\sigma_k \sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x - \mu_k}{\sigma_k})^2}$$
 
-Then we get
+Then we get <br>
 $$P(Y = k \vert X = x) = \frac{\pi_k \frac{1}{\sigma_k \sqrt{2\pi}} exp \left( -\frac{1}{2} (\frac{x - \mu_k}{\sigma})^2 \right)}{\sum_{l = 1}^K \pi_l\frac{1}{\sigma \sqrt{2\pi}}exp\left(-\frac{1}{2} (\frac{x - \mu_l}{\sigma})^2\right)}$$
 
 where $$\pi_k = P(Y = k)$$.
 
-We can simplify by taking logs and simplifying.
+We can simplify by taking logs and simplifying. <br>
 $$\log \left( P(Y = k \vert X = x) \right) = \frac{\log \left( \frac{1}{ \sigma \sqrt{2\pi}}\right) + \log(\pi_k) - \frac{x^2 - 2x\mu_k + \mu^2_k}{2\sigma^2}}{\log \left( \sum_{l = 1}^K \pi_l\frac{1}{\sigma \sqrt{2\pi}}exp\left(-\frac{1}{2} (\frac{x - \mu_l}{\sigma})^2\right) \right)} $$
 
 Since we are concerned with maximizing, we can remove all constants (terms that do not depend on $$k$$) to obtain the discriminant score.
@@ -110,8 +110,8 @@ names(lda.pred)
 Similarly, we can fit QDA in R using `qda()`.
 
 # Naive Bayes
-Naive Bayes is a classification technique that uses Bayesian statistics. We make the assumption that all features ($$X_i$$) are conditionally independent of each other given its class ($$Y$$). That is, $$P(X_i \vert X_j, Y) = P(X_i \vert Y)$$ where $$i \ne j$$. The goal is to find the value of $$Y$$ that is most likely given $$X_i$$.
-$$ argmax_y P(Y = y \vert X_i) $$
+Naive Bayes is a classification technique that uses Bayesian statistics. We make the assumption that all features ($$X_i$$) are conditionally independent of each other given its class ($$Y$$). That is, $$P(X_i \vert X_j, Y) = P(X_i \vert Y)$$ where $$i \ne j$$. The goal is to find the value of $$Y$$ that is most likely given $$X_i$$. <br>
+$$ argmax_y P(Y = y \vert X_i) $$ <br>
 $$ argmax_y \frac{P(Y = y) \prod_{i = 1}^p P(X_i \vert Y = y)}{P(X_i)} $$
 
 Since the denominator is constant across all values of $$y$$, we can just focus on the numerator. Thus our goal is to find (our discriminant function)

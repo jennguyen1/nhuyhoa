@@ -17,10 +17,10 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 For binary classification problems, we can use support vector machines to find a plane that separates classes in the feature space. Note that we should standardize our features prior to running SVM. 
 
 # Separating Hyperplane
-Our separating hyperplane has the form
+Our separating hyperplane has the form <br>
 $$f(\overrightarrow{x}) =  b + \beta_1 X_1 + ... + \beta_p X_p = 0$$ 
 
-or in vector notation 
+or in vector notation <br>
 $$f(\overrightarrow{x}) = \overrightarrow{\beta}^T \overrightarrow{x} + b$$
 
 The vector $$\overrightarrow{\beta}$$ is the normal vector: it is orthogonal to the hyperplane. 
@@ -44,10 +44,9 @@ We can find the best separating hyperplane with the maximal margin classifier. I
 
 Schematic diagram of maximal margin classifier. The margin is defined as $$M = \frac{2}{\| \overrightarrow{\beta} \|}$$.
 
-This is an optimization problem:
-
-$$maximize_{\beta_0, \beta_1, ..., \beta_p} M > 0$$ 
-w.r.t. $$\| \overrightarrow{\beta} \|= 1$$ 
+This is an optimization problem: <br>
+$$maximize_{\beta_0, \beta_1, ..., \beta_p} M > 0$$ <br>
+w.r.t. $$\| \overrightarrow{\beta} \|= 1$$ <br>
 so that $$y_i (\overrightarrow{\beta}^T \overrightarrow{x_i}+b) \ge M \forall i$$
 
 This is equivalent to minimizing $$\| \overrightarrow{\beta} \|$$ or $$\| \overrightarrow{\beta} \|^2$$.
@@ -71,17 +70,16 @@ We introduce slack variables,  $$\epsilon_i$$, that tell us where the $$i^{th}$$
 
 ![slack variables](http://jnguyen92.github.io/nhuyhoa/figure/images/svm_slack_variables.png)
 
-The new optimization problem becomes
-
-$$maximize_{\beta_0, \beta_1, ..., \beta_p, \epsilon_1, ..., \epsilon_n} M > 0$$ 
-w.r.t. $$\| \overrightarrow{\beta} \|= 1$$ 
-so that $$y_i (\overrightarrow{\beta}^T \overrightarrow{x}+b) \ge M(1 - \epsilon_i) \forall i$$
+The new optimization problem becomes <br>
+$$maximize_{\beta_0, \beta_1, ..., \beta_p, \epsilon_1, ..., \epsilon_n} M > 0$$ <br>
+w.r.t. $$\| \overrightarrow{\beta} \|= 1$$ <br>
+so that $$y_i (\overrightarrow{\beta}^T \overrightarrow{x}+b) \ge M(1 - \epsilon_i) \forall i$$ <br>
 where $$\epsilon_i \ge 0$$ and $$\sum^n_{i = 1} \epsilon_i \le C$$
 
-This is equivalent to  
-$$min \| \overrightarrow{\beta} \| + C \sum^N_i \epsilon_i$$ with the constraints
-$$\beta^T x_k + b \ge 1 + \epsilon_k$$ if $$y_k = 1$$
-$$\beta^T x_k + b \le -1 + \epsilon_k$$ if $$y_k = -1$$
+This is equivalent to <br>
+$$min \| \overrightarrow{\beta} \| + C \sum^N_i \epsilon_i$$ with the constraints <br>
+$$\beta^T x_k + b \ge 1 + \epsilon_k$$ if $$y_k = 1$$ <br>
+$$\beta^T x_k + b \le -1 + \epsilon_k$$ if $$y_k = -1$$ <br>
 $$\epsilon_k \ge 0 \forall k$$
 
 
@@ -107,7 +105,7 @@ We can use kernals to map to a higher dimensional space. Kernals have the form $
 ![polynomial kernal](http://jnguyen92.github.io/nhuyhoa/figure/images/svm_nonlinear_kernal1.png)![radial kernal](http://jnguyen92.github.io/nhuyhoa/figure/images/svm_nonlinear_kernal2.png)
 Polynomial kernal (left) and radial kernal (right) (Hastie, et. al).
 
-Our hyperplane equation becomes 
+Our hyperplane equation becomes <br>
 $$f(\overrightarrow{x}) = \overrightarrow{\alpha}^T K(x, x_i) + b$$
 
 where $$\alpha_i \ne 0$$ are the weights vectors. 
