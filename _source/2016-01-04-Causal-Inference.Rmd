@@ -52,6 +52,11 @@ and we can conduct valid causal inference.
 
 Essentially we randomize so that the responses we see are independent of the treatment type. 
 
+## Analysis-Based Design
+For designs that require blocks, we can do a restricted randomization scheme. Blocking is often done to account for known sources of variation.
+
+Analyses should be analyzed based on how the data was designed. Failing to do so may lead to biased results. 
+
 ## Confounding
 If we do not randomize experiments, we may have confounding. Confounding occurs when additional (observed or unobserved) factors ($$Z$$) that are associated with both $$X$$ and $$Y$$ and induce misalignment between the observed association and the true causal relationship. 
 

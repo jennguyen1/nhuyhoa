@@ -22,7 +22,7 @@ Larger sample sizes increase power (the probability of rejecting when there is a
 # Basic Idea
 Consider the observations $$Y_i$$ ~ $$N(\mu, \sigma^2)$$ for $$i = 1, ..., n$$ and assume $$\sigma^2$$ is known. 
 
-Then 
+Then <br>
 $$\bar{Y} = \frac{1}{n} \sum_i y_i$$
 
 We would reject $$H_0: \mu \le 0$$ if $$\bar{Y} > C_n$$ for some $$C_n$$. In standardized form, we reject $$H_0$$ if $$Z = \sqrt{\frac{n}{\sigma^2}} \bar{Y} \ge Z_{1 - \alpha/2}$$. Therefore $$C_n = \sqrt{\frac{\sigma^2}{n}} Z_{1 - \alpha /2}$$. 
@@ -35,8 +35,8 @@ Diagrams of the null (left) and alternative (right) distributions.
 
 Distribution of null & alternative distribution for sample size calculations.
 
-So with this example, we see that to obtain the $$\alpha$$ and $$\beta$$ value we desire, we need 
-$$Z_{1 - \alpha/2} + Z_{1 - \beta} = \sqrt{\frac{n}{\sigma^2}} \mu_1$$
+So with this example, we see that to obtain the $$\alpha$$ and $$\beta$$ value we desire, we need <br>
+$$Z_{1 - \alpha/2} + Z_{1 - \beta} = \sqrt{\frac{n}{\sigma^2}} \mu_1$$ <br>
 $$n = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2 \sigma^2}{\mu_1^2}$$
 
 # Sample Size Calculations for Exponential Families

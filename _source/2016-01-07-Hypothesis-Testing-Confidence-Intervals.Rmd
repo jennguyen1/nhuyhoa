@@ -86,6 +86,7 @@ ggplot(data = NULL, aes(x, y)) +
 To generate a $$(1-\alpha)100$$% confidence interval, we start with the test statistic. The test statistic may vary depending on its distribution, but the process is the same.
 
 **Example 1:**
+
 For this example, I will use the t-statistic, which we know is distributed $$t$$. We wish to obtain an interval around $$\bar{X}$$ which satisifies
 
 $$P(-t_{\alpha/2} < \frac{\bar{X} - \mu}{SE} < t_{\alpha/2}) = 1 - \alpha$$
@@ -103,6 +104,7 @@ So finally we have
 $$\bar{X} \pm t_{\alpha/2} * SE$$
 
 **Example 2:**
+
 For this example, consider the confidence interval for the ratio of two variances $$\frac{\sigma^2_y}{\sigma^2_x}$$. We know that $$\frac{(n-1)s^2}{\sigma^2}$$ is distributed $$X^2_{n - 1}$$ and $$\frac{X^2_p / p}{X^2_q / q}$$ is distributed $$F_{p, q}$$. So we wish to compute
 
 $$P(F_{p, q, 1 - \alpha/2} < \frac{\frac{(n - 1) s^2_x}{\sigma_x^2} / (n - 1)}{\frac{(m - 1) s^2_y}{\sigma_y^2} / (m - 1)} < F_{p, q, \alpha/2}) = 1 - \alpha$$

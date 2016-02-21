@@ -73,6 +73,7 @@ How do we obtain the probabilities? One way is for it to be given to us. We migh
 3. Compare the chi-square statistic to a $$X^2_{k - 1 - d}$$ distribution where $$d = $$ number of parameters estimated
 
 **Example:**
+
 We want to know whether the data below is consistent with a Poisson model?
 
 **no. of calls** | 0 | 1 | 2 | 3 | 4 | 5
@@ -90,7 +91,7 @@ The Poisson pmf is $$P(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}$$, thus $$E[Y_
 
 We would have $$X^2 = 2.08$$ and $$G^2 = 2.09$$. This multinomial model has $$k - 1$$ parameters and we estimate $$1$$ parameter $$\lambda$$. Thus the degrees of freedom is $$k - 1 - 1 = 3$$
 
-We comnare these statistics to $$\chi^2_3$$ and obtain a p-value of $$0.56$$. Thus we conclude that the Poisson model fits well. 6
+We comnare these statistics to $$\chi^2_3$$ and obtain a p-value of $$0.56$$. Thus we conclude that the Poisson model fits well. 
 
 ## Residuals
 When results show that observed counts don't match expected counts, we may do additional analysis on the residuals to assess what could have gone wrong. 
@@ -137,6 +138,7 @@ So the statistic $$X^2$$ ~ $$\chi^2_{(I - 1)(J - 1)}$$
 Now consider that we hold the total sample size fixed (but not the marginal totals). Each cell is a Poisson random variable with its own rate. Then we cross-classify each subject into one and only one of the mutually exclusive and exhaustive $$A_i \cap B_i$$. 
 
 We wish to test
+
 $$H_0: A \perp B; P(AB) = P(A)P(B)$$
 
 $$H_1: A not \perp B$$

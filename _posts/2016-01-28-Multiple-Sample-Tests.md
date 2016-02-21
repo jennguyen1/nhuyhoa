@@ -22,6 +22,7 @@ $$H_1: \mu_1 \ne \mu_0$$
 There's two ways to do this. 
 
 **Assume $$\sigma^2$$ Known**
+
 We know that by the CLT $$\bar{X}$$ ~ $$N(\mu, \sigma^2)$$.  
 
 We can calculate the test statistic 
@@ -31,6 +32,7 @@ $$Z = \frac{\bar{X} - \mu_0}{\sqrt{\sigma^2/n}}$$
 where $$Z$$ ~ $$N(0, 1)$$ under the null hypothesis. We can compute the p-value to test $$H_0$$.
 
 **Assume $$\sigma^2$$ Unknown**
+
 Suppose the population variance is not known. Since we don't know $$\sigma^2$$, we can estimate it with the sample variance $$s^2$$. We can derive our test statistic from [probability theory][stat_theory_link]{:target = "_blank"}. 
 
 Let $$Z$$ ~ $$N(0, 1)$$ and $$\frac{(n - 1)s^2}{\sigma^2}$$ ~ $$X^2_{n-1}$$
@@ -94,6 +96,7 @@ $$T = \frac{\bar{Y}_1 - \bar{Y}_2}{\sqrt{\hat{Var}(\hat{Y}_1 - \hat{Y}_2)}}$$
 where $$\hat{Var}(\hat{Y}_1 - \hat{Y}_2)$$ depends on the estimated variances of the two treatment groups.
 
 **Equal Variance**
+
 We have independence between $$Y_1$$ and $$Y_2$$. If the variances are equal
 
 $$\hat{Var}(\hat{Y}_1 - \hat{Y}_2) = s^2_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)$$
@@ -107,6 +110,7 @@ which is a weighted average of the sample variances.
 The statistic $$T$$ ~ $$t_{n_1 + n_2 - 2}$$.
 
 **Unequal Variance**
+
 If the variances are not equal
 
 $$\hat{Var}(\hat{Y}_1 - \hat{Y}_2) = \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2}$$
@@ -142,12 +146,12 @@ For both these scenarios, suppose we analyze the data using a paired analysis.
 
 For the unpaired design, we know that "pairs" are indpendent (this is built in). So
 
-$$Var(D_i) = Var(Y_1) + Var(Y_2) = 2\sigma^2$$
+$$Var(D_i) = Var(Y_1) + Var(Y_2) = 2\sigma^2$$ <br>
 $$Var(\bar{D}) = \frac{2\sigma^2}{n}$$
 
 For the paired design, we don't necessarily know that the "pairs" are independent. So
 
-$$Var(D_i) = Var(Y_1) + Var(Y_2) - 2cov(Y_1, Y_2) = 2\sigma^2(1 - p)$$
+$$Var(D_i) = Var(Y_1) + Var(Y_2) - 2cov(Y_1, Y_2) = 2\sigma^2(1 - p)$$ <br>
 $$Var(\bar{D}) = \frac{2\sigma^2(1 - p)}{n}$$
 
 Thus this tells us that if the groups were positively correlated, the paired design will have smaller variance and greater power in a paired analysis. This difference may have lead to differing results when it comes to the p-value.
@@ -202,7 +206,7 @@ To conduct this test, we can use `wilcox.test()` in R.
 
 We can also define 
 
-$$U =$$ $ of pairs of $$(X_i, Y_j)$$ for which $$X_i < Y_j$$.
+$$U =$$ # of pairs of $$(X_i, Y_j)$$ for which $$X_i < Y_j$$.
 
 We can use this to computes a confidence interval based on the shift of the two distributions. This value is the difference between two means or medians. 
 
@@ -233,7 +237,7 @@ Note that we do not assume equal variance. So we want to compare two identically
 
 We test
 
-$$H_0:$$ the distributions are the same
+$$H_0:$$ the distributions are the same <br>
 $$H_1:$$ the distributions are not the same
 
 The Kolmogorov-Smirnov statistic is
