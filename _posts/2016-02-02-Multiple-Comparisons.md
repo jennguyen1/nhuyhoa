@@ -56,9 +56,8 @@ When we only wish to compare treatment levels to a control, we can use Dunnett's
 
 ## Bonferroni Correction
 
-Say you want to do a select $$r$$ tests (don't have to compare all groups). Let $$A^c$$ be a type I error event. Then,
-
-.$$P(\cap^r_{i=1} A_i) = 1 - P(\cup^r_{i=1} A^c_i) \ge 1 - \Sigma^r_{i = 1} P(A^c_i) $$
+Say you want to do a select $$r$$ tests (don't have to compare all groups). Let $$A^c$$ be a type I error event. Then, <br>
+$$P(\cap^r_{i=1} A_i) = 1 - P(\cup^r_{i=1} A^c_i) \ge 1 - \Sigma^r_{i = 1} P(A^c_i) $$
 
 so if we were to set $$P(A^c_i) = \alpha / r$$, then our overall error rate (family wise error rate) would be $$ \alpha$$. 
 
@@ -87,8 +86,6 @@ $$P($$overall type 1 error$$) = 1 - (1 - 0.0025)^{20} = 0.0488$$
 * Without bonferroni correction, overall type 1 error rate is $$0.64$$
 
 $$P($$overall type 1 error$$) = 1 - (1 - 0.05)^{20} = 0.64$$
-
-In R, `pairwise.t.test(y, x, p.adjust.method = "bonferroni")`, `p.adjust()`, or use quantile derivation with bonferroni $$\alpha$$.
 
 ## Holm-Bonferroni
 
@@ -200,4 +197,5 @@ $$LSD < Dunnett < Tukey < Scheffe < Bonferroni$$
 
 The right method depends on the application. It's best to use conservative tests when the consequences are severe. A liberal test is more appropriate when you can accept that you may make Type 1 errors. When you have a large number of tests, FDR and q-values are best. 
 
-
+# In R
+In R, we can use `pairwise.t.test(y, x)`, `p.adjust()`. We can also test contrasts using the `multcomp::glht()` function.

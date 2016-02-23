@@ -376,7 +376,7 @@ We can assess these effects by generating an interaction plot. By assessing the 
 
 ### Randomized Complete Block Design ANOVA
 
-Block designs are very similar to regular ANOVAs. Blocking is similar to a paired analysis in t-tests. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
+Block designs are very similar to regular ANOVAs. Blocking is similar to a paired analysis in t-tests. We expect block to block variability. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
 
 A single block should be homogeneous. To ensure this homogeneity, we want to make sure blocks are small enough that
 
@@ -482,6 +482,8 @@ Note that when we have an ANOVA with $$k$$ treatments and a set of $$k - 1$$ ort
 
 When one is assessing multiple contrasts, it would be wise to control for [multiple comparisons][multiple_comp_link]{:target = "_blank"}. 
 
+In R, we can use `pairwise.t.test(y, x)`, `p.adjust()`. We can also test contrasts using the `multcomp::glht()` function.
+
 ### Unbalanced ANOVAs
 
 How do we assess effects when our designs are missing certain factor combinations? For this, contrasts can come in handy.
@@ -540,5 +542,5 @@ Procedure:
 2. Perform a one-way ANOVA on the $$d_{ij}$$
 3. Reject $$H_0: \sigma^2_1 = ... = \sigma^2_k$$ if the $$F$$-test is significant
 
-[stat_theory_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/OLS-and-ANOVA.html
+[stat_theory_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/Distribution-Facts.html
 [multiple_comp_link]: http://jnguyen92.github.io/nhuyhoa//2016/02/Multiple-Comparisons.html
