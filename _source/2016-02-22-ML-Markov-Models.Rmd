@@ -29,6 +29,9 @@ $$P(X) = P(X_L, X_{L - 1}, ..., X_1) = P(X_L \vert X_{L - 1}, ..., X_1) P(X_{L -
 With first order Markov chains, the probability of each $$X_i$$ depends only on the value of $$X_{i - 1}$$ (ie $$P(X_i \vert X_1...X_{i - 1}) = P(X_i \vert X_{i - 1})$$). <br>
 $$P(X) = P(X_1) \prod^L_{i = 2} P(X_i \vert X_{i - 1})$$
 
+The following model is an example of a first order Markov chain.
+![Markov Model](http://jnguyen92.github.io/nhuyhoa/figure/images/markov_model.png)
+
 As we move on to higher order Markov chains, additional history is incorporated. For example, a second order Markov chain will have <br>
 $$P(X) = P(X_1 X_2) \prod^L_{i = 3} P(X_i \vert X_{i - 1} X_{i - 2})$$
 
@@ -51,6 +54,8 @@ An HMM is defined by
 
 In the example below consider an HMM for a dishonest casino, the observed state is the number on the die and the hidden state is which die is rolled. 
 
+![HMM Schematic](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_example.png)
+
 We define the following parameters for an HMM
 
 * Probability of a transition from state $$k$$ to $$l$$
@@ -62,8 +67,6 @@ where $$\pi$$ represents the path or sequence of states through the model.
 * Probability of emitting character $$b$$ in state $$k$$
 
 $$e_k(b) = P(X_i = b \vert \pi_i = k)$$
-
-![HMM Schematic](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_example.png)
 
 With HMMs, we have three important questions
 
