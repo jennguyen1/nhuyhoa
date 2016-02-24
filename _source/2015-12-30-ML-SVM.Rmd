@@ -184,4 +184,11 @@ summary(nonlin.svm.fit)
 plot(nonlin.svm.fit, nonlin_dat)
 ```
 
+If we don't know the best parameters, we can do some tuning to find the best parameters that minimize the error. 
+```{r}
+tuned_svm.fit <- tune.svm(Species~., data = iris, gamma = 10^(-6:-1), cost = 10^(1:4))
+summary(tuned_svm.fit)
+```
+
+
 [kernal_link]: https://www.youtube.com/watch?v=3liCbRZPrZA

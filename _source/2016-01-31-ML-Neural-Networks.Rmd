@@ -30,6 +30,8 @@ The matrix $$\theta^{(i)}$$ represent the weights controlling the function mappi
 
 Models can also have multiple output units. One situation in which this is useful is with multinomial responses. 
 
+In R, neural networks can be fit with the function `neuralnet::neuralnet()`.
+
 # Forward Propagation
 Forward propagation starts at the input layer and proceeds through the layers to obtain the final result. 
 

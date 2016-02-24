@@ -192,6 +192,21 @@ We can use the [EM algorithm][em_post]{:target = "_blank"}.
   * E-Step: train Naive Bayes using labeled examples
   * M-Step: use model to predict the labels for originally unlabled examples
 
+## In R
+We can run Naive Bayes in R with the following.
+```{r}
+library(e1071)
+
+# fit naive bayes
+nB.fit <- naiveBayes(Species ~ ., data = iris)
+nB.fit
+```
+
+Similar to other models, we can also predict for new data. 
+```{r}
+predict(nB.fit, iris[4:5,])
+```
+
 # Logistic Regression vs. Discriminant Analysis vs. Naive Bayes 
 
 **Best to use Logistic Regression:**
