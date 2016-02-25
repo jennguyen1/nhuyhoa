@@ -12,7 +12,7 @@ categories: ['statistics', 'machine learning']
 
 Markov models allow for modeling of dependencies between nearby positions. 
 
-# Markov Chain
+# Markov Chains
 A markov chain is defined by 
 
 * a set of states, where traversal through the states generates a sequence
