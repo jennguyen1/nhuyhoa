@@ -124,6 +124,27 @@ anova(m2)
 
 In this example, we see that the square of the $$t$$ value for $$Sepal.Width$$ = $$ 8.59^2 = 78.78 $$ which is equal to the $$F$$ value for $$Sepal.Width$$. The interpretation of the $$t$$ value in the summary table is effect of the variable after all other covariates have been accounted for. This is reflected in the ANOVA table, where $$Sepal.Width$$ is the last variable. 
 
+# Confidence Intervals for Betas
+
+We can obtain the confidence intervals for the $$\beta$$s using the following function
+
+{% highlight r %}
+confint(m)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##                                       2.5 %     97.5 %
+## (Intercept)                     3.407870308  5.0184661
+## Petal.Length                   -0.004757525  1.0893427
+## Speciesversicolor              -2.988483690 -0.6228065
+## Speciesvirginica               -4.406804100 -1.9002142
+## Petal.Length:Speciesversicolor -0.297224644  0.8692014
+## Petal.Length:Speciesvirginica  -0.120048393  1.0269405
+{% endhighlight %}
+
+
 # Prediction and Confidence Intervals
 
 {% highlight r %}

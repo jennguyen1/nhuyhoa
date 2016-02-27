@@ -122,7 +122,7 @@ We can assess these effects by generating an interaction plot. By assessing the 
 
 ## Randomized Complete Block Design ANOVA
 
-Block designs are very similar to regular ANOVAs. Blocking is similar to a paired analysis in t-tests. We expect block to block variability. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
+Blocking is a generalization of the paired analysis in t-tests. We expect there to be block to block variability. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
 
 A single block should be homogeneous. To ensure this homogeneity, we want to make sure blocks are small enough that
 
@@ -143,9 +143,9 @@ where
 
 Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
 ------|----------------|--------------------|-------------|---------
-Blokcs| $$k\sum^b_{j = 1} (\bar{y}_{.j} - \bar{y}_{..})^2$$ | $$b-1$$ | $$\frac{SSB}{dfB}$$ | $$\frac{MSB}{MSE}$$ 
-Trt   | $$b\sum^k_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$\frac{SSA}{dfA}$$ | $$\frac{MSA}{MSE}$$ 
-Error | $$\sum_{ij} (\bar{y}_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{..})^2$$ | $$(k-1)(b-1)$$ | $$\frac{SSE}{dfe}$$ | 
+Blocks| $$k\sum^b_{j = 1} (\bar{y}_{.j} - \bar{y}_{..})^2$$ | $$b-1$$ | $$\frac{SSB}{dfB}$$ | $$\frac{MSB}{MSE}$$ 
+Trt   | $$b\sum^k_{i = 1} (\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$\frac{SSA}{dfA}$$ | $$\frac{MSA}{MSE}$$ 
+Error | $$\sum_{ij} (y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{..})^2$$ | $$(k-1)(b-1)$$ | $$\frac{SSE}{dfe}$$ | 
 Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2$$ | $$kb - 1$$ | | 
 
 <p></p>

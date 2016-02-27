@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Likelihood"
+title: "Likelihood Estimation"
 date: "January 3, 2016"
 categories: ['statistics', 'probability and inference']
 ---
