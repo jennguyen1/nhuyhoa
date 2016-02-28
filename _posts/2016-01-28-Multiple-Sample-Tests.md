@@ -10,6 +10,12 @@ categories: ['statistics', 'experimental design']
 
 
 
+
+Some definitions:
+
+* experimental unit: that which receives the treatment
+* sampling unit: sub-units within an experimental unit; generally means of sampling units taken for each experimental unit prior to analysis; treating sampling units as experimentlal units inflates the error df
+
 # ANOVA
 In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
 
@@ -21,7 +27,9 @@ Regardless of the type, ANOVAs have the same assumptions:
 2. Normality: $$Y_{ij}$$ ~ $$N(\mu_i, \sigma^2_i)$$
 3. Equal Variance: $$\sigma^2_1 = ... = \sigma^2_k$$
 
-## Single Factor ANOVA 
+## Factorial Designs
+
+### Completely Randomized Single Factor ANOVA 
 
 **Model Formulations**
 
@@ -72,7 +80,7 @@ $$\frac{E[MSTrt]}{E[MSE]} = 1 + \frac{1}{k - 1} \frac{n \sum^k_i \alpha^2_i}{\si
 
 Note that if $$\sum \alpha_i \approx 0$$, then this ratio $$\approx 1$$. The power of the $$F$$ test is a monotone function of $$\frac{n \sum^k_i \alpha^2_i}{\sigma^2_{\epsilon}}$$.
 
-## Two Factor ANOVA
+### Completely Randomized Two Factor ANOVA
 
 **Model Formulations**
 
@@ -88,17 +96,17 @@ where
 
 **ANOVA Table**
 
-Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
-------|----------------|--------------------|-------------|---------
-A     | $$bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ | $$\frac{SSA}{dfA}$$ | $$\frac{MSA}{MSE}$$ 
-B     | $$an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$\frac{SSB}{dfB}$$ | $$\frac{MSB}{MSE}$$ 
-AB    | $$n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$ | $$(a-1)(b-1)$$ | $$\frac{SSAB}{dfAB}$$ | $$\frac{MSAB}{MSE}$$ 
-Error | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$ab(n - 1)$$ | $$\frac{SSE}{dfE}$$ | | 
-Total | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})^2$$ | $$abn - 1$$ | | 
+Source| Sum of Squares | Degrees of Freedom 
+------|----------------|--------------------
+A     | $$bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ 
+B     | $$an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ 
+AB    | $$n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$ | $$(a-1)(b-1)$$ 
+Error | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$ab(n - 1)$$ 
+Total | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})^2$$ | $$abn - 1$$ 
 
 <p></p>
 
-Note that we have three separate $$F$$ tests (similar to the single factor case) to assess the $$A_{main}$$, $$B_{main}$$, and $$AB_{int}$$ effects. 
+Note that we have three separate $$F$$ tests with the error as the demonimator (similar to the single factor case) to assess the $$A_{main}$$, $$B_{main}$$, and $$AB_{int}$$ effects. 
 
 Assume $$H_0$$ is true so that
 
@@ -120,7 +128,61 @@ Let $$\bar{ab}$$ denote the mean of the high-high group, $$\bar{a}$$ denote the 
 
 We can assess these effects by generating an interaction plot. By assessing the trends and parallelism of lines, we can determine whether there may be evidence of an interaction effect. We can also test these effects with a contrast test.
 
-## Randomized Complete Block Design ANOVA
+### Completely Randomized Three Factor ANOVA
+
+**Model Formulations**
+
+$$Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\beta \gamma)_{jk} \epsilon_{ijkl}$$
+
+where
+
+* $$i = 1, ..., a$$ denotes the levels of factor A
+* $$j = 1, ..., b$$ denotes the levels of factor B
+* $$k = 1, ..., c$$ denotes the levels of factor C
+* $$l = 1, ..., n$$ denotes replicates of each factor combination
+* $$\epsilon_{ijkl}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+
+**ANOVA Table**
+
+Source| Sum of Squares | Degrees of Freedom 
+------|----------------|--------------------
+A     | $$bcn\sum^a_{i = 1} (\bar{y}_{i...} - \bar{y}_{....})^2$$ | $$a-1$$ 
+B     | $$acn\sum^b_{j = 1} (\bar{y}_{.j..} - \bar{y}_{....})^2$$ | $$b-1$$ 
+C     | $$abn\sum^b_{k = 1} (\bar{y}_{..k.} - \bar{y}_{....})^2$$ | $$c-1$$
+AB    | $$cn \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij..} - \bar{y}_{i...} - \bar{y}_{.j..} + \bar{y}_{....})^2$$ | $$(a-1)(b-1)$$ 
+AC    | $$bn \sum^a_{i = 1} \sum^c_{k = 1} (\bar{y}_{i.k.} - \bar{y}_{i...} - \bar{y}_{..k.} + \bar{y}_{....})^2$$ | $$(a-1)(c-1)$$ 
+BC    | $$an \sum^b_{j = 1} \sum^c_{k = 1} (\bar{y}_{.jk.} - \bar{y}_{.j..} - \bar{y}_{..k.} + \bar{y}_{....})^2$$ | $$(b-1)(c-1)$$ 
+ABC   | $$n \sum_{ijkl} (y_{ijk.} - \bar{y}_{ij..} - \bar{y}_{i.k.} - \bar{y}_{.jk.} + \bar{y}_{i...} + \bar{y}_{.j..} + \bar{y}_{..k.} - \bar{y}_{....})^2$$ | $$(a-1)(b-1)(c-1)$$ 
+Error | $$\sum_{ijkl} (y_{ijkl} - \bar{y}_{ijk.})^2$$ | $$abc(n - 1)$$ 
+Total | $$\sum_{ijkl} (y_{ijk.} - \bar{y}_{...})^2$$ | $$abcn - 1$$ 
+
+<p></p>
+
+Note that we have many separate $$F$$ tests with the error as the demonimator (similar to the single factor case).
+
+We need to consider the hierarchy principal when we consider these effects. If a higher order term is important, that means that a lower order term is important as well (and as in linear regression, should not be removed from the model). 
+
+**Contrasts**
+
+For contrasts, we have
+
+* .$$A_{main} = \frac{1}{4} [(\bar{abc} - \bar{bc}) + (\bar{ab} - \bar{b}) + (\bar{ac} - \bar{c}) + (\bar{a} - \bar{1})]$$
+* .$$B_{main} = \frac{1}{4} [(\bar{abc} - \bar{ac}) + (\bar{ab} - \bar{a}) + (\bar{bc} - \bar{c}) + (\bar{b} - \bar{1})]$$
+* .$$C_{main} = \frac{1}{4} [(\bar{abc} - \bar{ab}) + (\bar{ac} - \bar{a}) + (\bar{bc} - \bar{b}) + (\bar{c} - \bar{1})]$$
+
+* .$$AB_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ac} - \bar{c}) + (\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
+* .$$AC_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ab} - \bar{b}) + (\bar{ac} - \bar{c}) - (\bar{a} - \bar{1})]$$
+* .$$BC_{int} = \frac{1}{4} [(\bar{abc} - \bar{ac}) - (\bar{ab} - \bar{a}) + (\bar{bc} - \bar{c}) - (\bar{b} - \bar{1})]$$
+
+* .$$ABC_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ac} - \bar{c}) - (\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
+
+We can assess these effects by generating an interaction plot. We can also test these effects with a contrast test.
+
+## ANOVAs with Random Effects
+
+## Blocked Designs
+
+### Randomized Complete Block Design Factorial ANOVA
 
 Blocking is a generalization of the paired analysis in t-tests. We expect there to be block to block variability. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
 
@@ -141,16 +203,16 @@ where
 
 **ANOVA Table**
 
-Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
-------|----------------|--------------------|-------------|---------
-Blocks| $$k\sum^b_{j = 1} (\bar{y}_{.j} - \bar{y}_{..})^2$$ | $$b-1$$ | $$\frac{SSB}{dfB}$$ | $$\frac{MSB}{MSE}$$ 
-Trt   | $$b\sum^k_{i = 1} (\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$\frac{SSA}{dfA}$$ | $$\frac{MSA}{MSE}$$ 
-Error | $$\sum_{ij} (y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{..})^2$$ | $$(k-1)(b-1)$$ | $$\frac{SSE}{dfe}$$ | 
-Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2$$ | $$kb - 1$$ | | 
+Source| Sum of Squares | Degrees of Freedom 
+------|----------------|--------------------
+Blocks| $$k\sum^b_{j = 1} (\bar{y}_{.j} - \bar{y}_{..})^2$$ | $$b-1$$ 
+Trt   | $$b\sum^k_{i = 1} (\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ 
+Error | $$\sum_{ij} (y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{..})^2$$ | $$(k-1)(b-1)$$ 
+Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2$$ | $$kb - 1$$ 
 
 <p></p>
 
-We can assess the effect of treatment with an $$F$$ test on $$k - 1$$ and $$(k - 1)(b - 1)$$ df. 
+We can assess the effect of treatment with an $$F$$ test with the error in the denominator. 
 
 Note that we can ignore the $$F$$ test for the effect of blocks. The blocks were used in order to account for variability. A significant test would indicate that we were right to block. If we did not find a significant block effect, we should not pool the block with error and analyze the data as a completely randomized design! We need to analyze the data as we have designed it, otherwise we would bias our tests. 
 
@@ -158,53 +220,36 @@ We notice several things from this table. One is that this table is reminiscent 
 
 Thus RCBD with one factor is the same as a completely randomized two-factor ANOVA where $$n = 1$$.
 
-## Three Factor ANOVA
+### Latin Squares
+
+Latin squars are experimental designs that block in two directions. These designs require the number of row blocks = number of column blocks = number of treatment levels. 
+
+In Latin Square designs, there are not values for every combination of $$i$$, $$j$$, $$k$$. The means include only the $$y_{ijl}$$ terms that exist. There will be $$k^2$$ of them. 
 
 **Model Formulations**
 
-$$Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\beta \gamma)_{jk} \epsilon_{ijkl}$$
+$$Y_{ijl} = \mu + \alpha_i + r_j + c_l + \epsilon_{ij}$$
 
 where
 
-* $$i = 1, ..., a$$ denotes the levels of factor A
-* $$j = 1, ..., b$$ denotes the levels of factor B
-* $$k = 1, ..., c$$ denotes the levels of factor C
-* $$l = 1, ..., n$$ denotes replicates of each factor combination
-* $$\epsilon_{ijkl}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+* $$i = 1, ..., k$$ denotes the levels of treatment
+* $$j = 1, ..., k$$ denotes the levels of row blocks
+* $$l = 1, ..., k$$ denotes the levels of column blocks
+* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
 
 **ANOVA Table**
 
-Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
-------|----------------|--------------------|-------------|---------
-A     | $$bcn\sum^a_{i = 1} (\bar{y}_{i...} - \bar{y}_{....})^2$$ | $$a-1$$ | $$\frac{SSA}{dfA}$$ | $$\frac{MSA}{MSE}$$ 
-B     | $$acn\sum^b_{j = 1} (\bar{y}_{.j..} - \bar{y}_{....})^2$$ | $$b-1$$ | $$\frac{SSB}{dfB}$$ | $$\frac{MSB}{MSE}$$ 
-C     | $$abn\sum^b_{k = 1} (\bar{y}_{..k.} - \bar{y}_{....})^2$$ | $$c-1$$ | $$\frac{SSC}{dfC}$$ | $$\frac{MSC}{MSE}$$ 
-AB    | $$cn \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij..} - \bar{y}_{i...} - \bar{y}_{.j..} + \bar{y}_{....})^2$$ | $$(a-1)(b-1)$$ | $$\frac{SSAB}{dfAB}$$ | $$\frac{MSAB}{MSE}$$ 
-AC    | $$bn \sum^a_{i = 1} \sum^c_{k = 1} (\bar{y}_{i.k.} - \bar{y}_{i...} - \bar{y}_{..k.} + \bar{y}_{....})^2$$ | $$(a-1)(c-1)$$ | $$\frac{SSAC}{dfAC}$$ | $$\frac{MSAC}{MSE}$$ 
-BC    | $$an \sum^b_{j = 1} \sum^c_{k = 1} (\bar{y}_{.jk.} - \bar{y}_{.j..} - \bar{y}_{..k.} + \bar{y}_{....})^2$$ | $$(b-1)(c-1)$$ | $$\frac{SSBC}{dfBC}$$ | $$\frac{MSBC}{MSE}$$ 
-ABC   | $$n \sum_{ijkl} (y_{ijk.} - \bar{y}_{ij..} - \bar{y}_{i.k.} - \bar{y}_{.jk.} + \bar{y}_{i...} + \bar{y}_{.j..} + \bar{y}_{..k.} - \bar{y}_{....})^2$$ | $$(a-1)(b-1)(c-1)$$ | $$\frac{SSABC}{dfABC}$$ | $$\frac{MSABC}{MSE}$$
-Error | $$\sum_{ijkl} (y_{ijkl} - \bar{y}_{ijk.})^2$$ | $$abc(n - 1)$$ | $$\frac{SSE}{dfE}$$ | | 
-Total | $$\sum_{ijkl} (y_{ijk.} - \bar{y}_{...})^2$$ | $$abcn - 1$$ | | 
+Source| Sum of Squares | Degrees of Freedom 
+------|----------------|--------------------
+Row   | $$k \sum^k_j (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$k-1$$ 
+Column| $$k \sum^k_l (\bar{y}_{..l} - \bar{y}_{...})^2$$ | $$k-1$$ 
+Trt   | $$k \sum^k_i (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ 
+Error | By subtraction | $$(k-1)(k-2)$$ 
+Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$k^2 - 1$$ 
 
 <p></p>
 
-We need to consider the hierarchy principal when we consider these effects. If a higher order term is important, that means that a lower order term is important as well (and as in linear regression, should not be removed from the model). 
-
-**Contrasts**
-
-For contrasts, we have
-
-* .$$A_{main} = \frac{1}{4} [(\bar{abc} - \bar{bc}) + (\bar{ab} - \bar{b}) + (\bar{ac} - \bar{c}) + (\bar{a} - \bar{1})]$$
-* .$$B_{main} = \frac{1}{4} [(\bar{abc} - \bar{ac}) + (\bar{ab} - \bar{a}) + (\bar{bc} - \bar{c}) + (\bar{b} - \bar{1})]$$
-* .$$C_{main} = \frac{1}{4} [(\bar{abc} - \bar{ab}) + (\bar{ac} - \bar{a}) + (\bar{bc} - \bar{b}) + (\bar{c} - \bar{1})]$$
-
-* .$$AB_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ac} - \bar{c}) + (\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
-* .$$AC_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ab} - \bar{b}) + (\bar{ac} - \bar{c}) - (\bar{a} - \bar{1})]$$
-* .$$BC_{int} = \frac{1}{4} [(\bar{abc} - \bar{ac}) - (\bar{ab} - \bar{a}) + (\bar{bc} - \bar{c}) - (\bar{b} - \bar{1})]$$
-
-* .$$ABC_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ac} - \bar{c}) - (\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
-
-We can assess these effects by generating an interaction plot. We can also test these effects with a contrast test.
+We can assess the effect of treatment with an $$F$$ test with the error in the denominator. 
 
 # Pairwise Comparisons and Contrasts
 
