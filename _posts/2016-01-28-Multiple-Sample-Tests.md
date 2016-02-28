@@ -10,11 +10,11 @@ categories: ['statistics', 'experimental design']
 
 
 
+# Note About Experimental Design
 
-Some definitions:
+An **experimental unit** is the group to which a treatment is applied in a single trial of the experiment. We may also call an experimental unit "a plot". 
 
-* experimental unit: that which receives the treatment
-* sampling unit: sub-units within an experimental unit; generally means of sampling units taken for each experimental unit prior to analysis; treating sampling units as experimentlal units inflates the error df
+A **sampling unit** is a subunit within an experimental unit. When analyzing experimental data, we either have to adjust for a sampling unit in the model or average sampling units for each experimental unit prior to analysis. Treating sampling units as experimental units can inflate the error df. 
 
 # ANOVA
 In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
@@ -178,11 +178,7 @@ For contrasts, we have
 
 We can assess these effects by generating an interaction plot. We can also test these effects with a contrast test.
 
-## ANOVAs with Random Effects
-
-## Blocked Designs
-
-### Randomized Complete Block Design Factorial ANOVA
+### Randomized Complete Block Design (One Factor) ANOVA
 
 Blocking is a generalization of the paired analysis in t-tests. We expect there to be block to block variability. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
 
@@ -220,6 +216,35 @@ We notice several things from this table. One is that this table is reminiscent 
 
 Thus RCBD with one factor is the same as a completely randomized two-factor ANOVA where $$n = 1$$.
 
+### Randomized Complete Block Design (Two Factor) ANOVA
+
+$$Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\beta \gamma)_{jk} \epsilon_{ijkl}$$
+
+
+**Model Formulations**
+
+$$Y_{ijk} = \mu + \alpha_i + \beta_k +  \gamma_j + (\alpha \gamma)_{ij} +
+\epsilon_{ij}$$
+
+where
+
+* $$i = 1, ..., a$$ denotes the levels of factor A
+* $$j = 1, ..., b$$ denotes the levels of blocks
+* $$k = 1, ..., c$$ denotes the levels of factor C
+* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+
+**ANOVA Table**
+
+Source| Degrees of Freedom 
+------|---------------------
+Blocks| $$b-1$$
+A     | $$a-1$$
+C     | $$c-1$$
+AC    | $$(a-1)(c-1)$$
+Error | $$(b-1)(ac-1)$$
+
+<p></p>
+
 ### Latin Squares
 
 Latin squars are experimental designs that block in two directions. These designs require the number of row blocks = number of column blocks = number of treatment levels. 
@@ -250,6 +275,121 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$k^2 - 1$$
 <p></p>
 
 We can assess the effect of treatment with an $$F$$ test with the error in the denominator. 
+
+## Random Effects and Mixed Models
+
+### Simple Random Effect Model
+
+**Model Formulations**
+
+$$Y_{ij} = \mu + A_i + \epsilon_{ij}$$
+
+where
+
+* $$i = 1, ..., k$$ denotes the levels of treatment
+* $$j = 1, ..., b$$ denotes the experimental units for each treatment
+* $$A_i$$ ~ $$N(0, \sigma^2_A)$$ corresponds to the random effect (group variation)
+* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the error within each group
+
+Note that this is quite similar to the fixed effects (previous models) that were covered. However, $$A_i$$ represents a sample from some population $$N(0, \sigma^2_A)$$ which we are interested in (rather than specific distinct group). 
+
+
+**ANOVA Table**
+
+Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
+------|----------------|--------------------|-------------|---------
+Trt   | $$\sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\epsilon} + n \sigma^2_A$$ 
+Error | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2 = \sum^k_{i = 1} (n_i - 1) s_i^2$$ | $$k(n-1)$$ | $$MSE$$ | $$\sigma^2_{\epsilon}$$
+Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}_{..})$$ | $$kn-1$$ | | 
+
+<p></p>
+
+We test $$H_0: \sigma^2_A = 0$$ vs. $$H_A: \sigma^2_A > 0$$ with $$F = \frac{MSTrt}{MSE}$$. 
+
+Based off this ANOVA table, we use $$MSE$$ to estimate $$\sigma^2_{\epsilon}$$ and $$\frac{MSTrt - MSE}{n}$$ to estimate $$\sigma^2_A$$. 
+
+Note that a confidence interval would be $$\bar{y}_{..} \pm t_{\alpha/2, k-1} \sqrt{MSTrt/(nk)}$$.
+
+We can use the expected MS to find the variance of $$Y$$.
+
+----------------|----------------
+$$Var(Y_{ij})$$ | $$= \sigma^2_A + \sigma^2_{\epsilon}$$
+$$Var(\bar{y}_{..})$$ | $$= Var(\mu + \hat{A}_. + \hat{\epsilon})$$
+                | $$=\frac{\sigma^2_A}{k} + \frac{\sigma^2_{\epsilon}}{nk}$$
+                | $$=\frac{n\sigma^2_A + \sigma^2_{\epsilon}}{nk}$$
+                
+Note that $$Var(\bar{y}_{..})$$ $$\rightarrow 0$$ as $$k \rightarrow \infty$$ and $$\rightarrow \sigma^2_{\epsilon} / k$$ as $$n \rightarrow \infty$$. 
+
+Another important quantity is the intraclass correlation coefficient
+
+$$ICC = \frac{s^2_{b/n trt}}{s^2_{b/n trt} + s^2_{within trt}}$$
+
+This value is the correlation between the observations within the group. Small values indicate large spared of values at each level of treatment. Large values indicate little spread at each level of treatment.
+
+As an aside, when we have a one-sample test with subsampling the model is written as $$Y_{ij} = \mu + \epsilon_i + \delta_{ij}$$ where $$\epsilon_i$$ ~ $$N(0, \sigma^2_{\epsilon})$$ and $$\delta_{ij}$$ ~ $$N(0, \sigma^2_{\delta})$$. In this setting $$\epsilon$$ represents the experimental units, while $$\delta$$ represents the subsamples.
+
+### Completely Randomized Design with Subsampling
+
+Consider an experiment where the treatments are fixed but we take subsamples which are random. This is an example of a mixed model.
+
+**Model Formulations**
+
+$$Y_{ij} = \mu + \alpha_i + \epsilon_{ij} + \delta_{ijl}$$
+
+where
+
+* $$i = 1, ..., k$$ denotes the levels of treatment
+* $$j = 1, ..., b$$ denotes the experimental units for each treatment
+* $$l = 1, ..., s$$ denotes the subsample within each experimental unit
+* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the error within experimental units
+* $$\delta{ijl}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subsample error
+
+**ANOVA Table**
+
+Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
+------|----------------|--------------------|-------------|---------
+Trt   | $$sn \sum^k_{i} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + ns \sum^k_i \frac{\alpha_i^2}{k - 1}$$ 
+Plot Error | $$s \sum^k_{i} \sum^{n}_{j} (\bar{y}_{ij.} - \bar{y}_{i..})^2$$ | $$k(n-1)$$ | $$MSPE$$ | $$\sigma^2_{\delta} + s\sigma^2_{\epsilon}$$
+Subsample Error | $$\sum_{ijl} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$kn(s-1)$$ | $$MSSSE$$ | $$\sigma^2_{\delta}$$
+Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kns-1$$ | | 
+
+<p></p>
+
+Notice that the expected MS are a little different. To conduct our $$F$$ test for treatment, we compute $$F = MSTrt / MSPE$$, where $$E[F] = 1 + 1 + ns \sum^k_i \alpha^2_i / (k - 1)$$. 
+
+The guideline here is that when testing any source of variability for significance, we look for a denominator for the $$F$$ test that contains all the elements of the $$E[MS]$$ except the source of interest.
+
+One interesting note is that this model will give equivalent results if one were to average the subsamples (technical replicates) and run a regular ANOVA. In other words, $$\bar{Y}_{ij.} = \mu + \alpha_i + \epsilon_{ij} + \hat{\delta}_{ijl} = \mu + \alpha_i + e_{ij}$$
+
+### Randomized Complete BLock Design with Subsampling
+
+**Model Formulations**
+
+$$Y_{ijl} = \mu + \alpha_i + \beta_j + \epsilon_{ij} + \delta_{ijl}$$
+
+where
+
+* $$i = 1, ..., k$$ denotes the levels of treatment
+* $$j = 1, ..., b$$ denotes the blocks
+* $$l = 1, ..., s$$ denotes the subsample within each plot
+* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the plot error
+* $$\delta{ijl}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subsample error
+
+**ANOVA Table**
+
+Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
+------|----------------|--------------------|-------------|---------
+Blocks| $$ks \sum_j (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$MSBlk$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + ks \sum^b_j \frac{\beta_j^2}{b - 1}$$ 
+Trt   | $$bs \sum^k_{i} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + bs \sum^k_i \frac{\alpha_i^2}{k - 1}$$ 
+Plot Error | $$s \sum_{ij} (\bar{y}_{ij.} - \bar{y}_{i..} + \bar{y}_{.j.} +\bar{y}_{...})^2$$ | $$(k-1)(b-1)$$ | $$MSPE$$ | $$\sigma^2_{\delta} + s\sigma^2_{\epsilon}$$
+Subsample Error | $$\sum_{ijl} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$kb(s-1)$$ | $$MSSSE$$ | $$\sigma^2_{\delta}$$
+Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kbs-1$$ | | 
+
+<p></p>
+
+### Many Options of Mixed Models
+
+We can have any number of designs (fixed, random, mixed, factorial, nested) with any number of factors. Different designs will lead to different $$F$$ tests. It is important to look at $$E[MS]$$ to determine the appropriate $$F$$ test construction. 
 
 # Pairwise Comparisons and Contrasts
 
