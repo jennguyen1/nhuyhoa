@@ -38,7 +38,7 @@ Essentially the best estimate of $$\theta$$ for explaining the observed data $$x
 
 The pros and cons of the Bayesian approach come from choosing the prior distribution. On one hand, chosing the prior may be subjective. On the other hand, it is a natural way to incorporate true prior information perhaps from scientists or experts. One can also choose a vague prior distribution that may have a very small impact on the final inference given informative data. 
 
-## Example
+**Example**
 
 Suppose $$X$$ ~ $$Bin(n, \theta)$$ and $$\theta$$ ~ $$Beta(\alpha, \beta)$$ (we would need to choose the parameters for $$\alpha$$ and $$\beta$$ but for this example, we keep it arbitrary).
 
