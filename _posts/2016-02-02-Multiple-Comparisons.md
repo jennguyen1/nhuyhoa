@@ -126,6 +126,12 @@ Tukey's method can also be applied to contrasts. The $$(1-\alpha) 100$$% simulta
 
 $$ \hat{C} \pm Q \frac{s_{\epsilon}}{\sqrt{n}} \sum^k_1 \frac{\vert c_i \vert}{2}$$
 
+## Hayter Method
+
+This method is similar to Fischer's LSD. Hayter's method first performs the ANOVA $$F$$ test and proceeds with pairwise comparisons if the $$F$$ test is significant. 
+
+For balanced groups, the groups are significantly different if to comparing $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge Q_{\alpha, k - 1, dfE} s_{\epsilon} \sqrt{1 / n}$$. 
+
 ## Scheffe's Method
 Scheffe's method applies to all possible contrasts (not just pairwise comparisons) and is the preferred method when many or all contrasts are of interest. A contrast is a linear function of the group means. Thus with Scheffe's test, one can measure whether a group of means is significantly different from another group of means.
 
