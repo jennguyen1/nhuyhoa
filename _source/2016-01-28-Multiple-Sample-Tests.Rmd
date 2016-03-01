@@ -26,6 +26,7 @@ Regardless of the type, ANOVAs have the same assumptions:
 3. Equal Variance: $$\sigma^2_1 = ... = \sigma^2_k$$
 
 ## Factorial Designs
+Factorial designs refer to designs in which all possible combinations of factors are applied to the experimental units.
 
 ### Completely Randomized Single Factor ANOVA 
 
@@ -196,7 +197,7 @@ We can assess the effect of treatment with an $$F$$ test with the error in the d
 
 Note that we can ignore the $$F$$ test for the effect of blocks. The blocks were used in order to account for variability. A significant test would indicate that we were right to block. If we did not find a significant block effect, we should not pool the block with error and analyze the data as a completely randomized design! We need to analyze the data as we have designed it, otherwise we would bias our tests. 
 
-We notice several things from this table. One is that this table is reminiscent of the ANOVA table for two-factor ANOVA where $$n = 1$$. Another similarity is that the SS for error is similar to the SS for the interaction term in the two-factor case. This is because we assume an additive model and so the error that is normally given to the interaction is transferred to the error.
+We notice several things from this table. One is that this table is reminiscent of the ANOVA table for two-factor ANOVA where $$n = 1$$. Another similarity is that the $$SS$$ and $$df$$ for error is similar to the $$SS$$ and $$df$$ for the interaction term in the two-factor case. This is because we assume an additive model and so the error that is normally given to the interaction is transferred to the error.
 
 Thus RCBD with one factor is the same as a completely randomized two-factor ANOVA where $$n = 1$$.
 
@@ -225,6 +226,8 @@ AC    | $$(a-1)(c-1)$$
 Error | $$(b-1)(ac-1)$$
 
 <p></p>
+
+Again, notice that the $$df$$ for the error can be rewritten as $$(b-1)(ac-1) = (a - 1)(b - 1)(c - 1) + (b - 1)(c - 1) + (a - 1)(b - 1)$$. This is the pooled $$df$$ from the $$AB$$, $$BC$$, and $$ABC$$ interaction; we assume there are no interactions with block and use those terms as the error. 
 
 ### Latin Squares
 
@@ -315,7 +318,7 @@ To understand models with subsampling, we define the following:
 
 An **experimental unit** is the group to which a treatment is applied in a single trial of the experiment. We may also call an experimental unit "a plot". 
 
-A **sampling unit** is a subunit within an experimental unit. When analyzing experimental data, we either have to adjust for a sampling unit in the model or average sampling units for each experimental unit prior to analysis. Treating sampling units as experimental units can inflate the error df. 
+A **sampling unit** is a subunit within an experimental unit. When analyzing experimental data, we either have to adjust for a sampling unit in the model or average sampling units for each experimental unit prior to analysis. Treating sampling units as experimental units can inflate the error $$df$$. 
 
 Consider a one-sample test with subsampling. The model is written as
 
@@ -386,6 +389,8 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kbs-1$$ | |
 
 <p></p>
 
+Notice that the degrees of freedom for the whole plot error can also be considered the interaction between $$A$$ and $$B$$. This is because we assume no interaction and those degrees of freedom are transferred to the error. 
+
 ## Many Options of Mixed Models
 
 We can have any number of designs (fixed, random, mixed, factorial, nested) with any number of factors. Different designs will lead to different $$F$$ tests. It is important to look at $$E[MS]$$ to determine the appropriate $$F$$ test construction. 
@@ -452,6 +457,8 @@ C      | $$c-1$$
 AC     | $$(a-1)(c-1)$$
 SP Error | $$a(b-1)(c-1)$$
 Total  | $$abc-1$$
+
+Notice that the $$df$$ for the wholeplot error is essentially the interaction between $$AB$$. The $$df$$ for the subplot error can be rewritten as $$a(b-1)(c-1) = (b-1)(c-1) + (a-1)(b-1)(c-1)$$. These are the pooled $$df$$ from the $$BC$$ and $$ABC$$ interaction. 
 
 # Pairwise Comparisons and Contrasts
 

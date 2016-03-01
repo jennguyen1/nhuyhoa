@@ -60,6 +60,33 @@ anova(m2)
 
 In this example, we see that the square of the $$t$$ value for $$Sepal.Width$$ = $$ 8.59^2 = 78.78 $$ which is equal to the $$F$$ value for $$Sepal.Width$$. The interpretation of the $$t$$ value in the summary table is effect of the variable after all other covariates have been accounted for. This is reflected in the ANOVA table, where $$Sepal.Width$$ is the last variable. 
 
+# Comparing Models
+Suppose we want to compare 2 models, where one is nested in the other. Let $$R$$ correspond to the reduced model with $$p - q$$ parameters. Let $$F$$ correspond to the full model with $$p$$ parameters. Then we can compare the two models with a test statistic
+
+$$ F = \frac{(SSE_R - SSE_F)/ (df_F - df_R)}{SSE_F/df_F} $$
+
+where $$ F $$ ~ $$ F_{q, n - p} $$ and $$SSE$$ is the sum square errors and $$DF$$ is the residual degrees of freedom corresponding to the specified model.
+
+Let's look at an example:
+```{r}
+# fit models
+modh <- lm(Sepal.Length ~ Petal.Length + Species, data = iris)
+moda <- lm(Sepal.Length ~ Petal.Length * Species, data = iris)
+
+# obtain the sum square error
+RSSh <- anova(modh)["Sum Sq"][3,1]
+RSSa <- anova(moda)["Sum Sq"][4,1]
+
+# compute the F statistic & p-value by hand
+F <- (RSSh - RSSa) / (2) / (RSSa/144)
+pf(F, 2, 144, lower.tail = FALSE)
+
+# using built in R
+anova(modh, moda)
+```
+
+Thus we conclude that for this data set, the full and simplified model are not significantly different from each other. The interaction term is not significantly different from $$0$$, meaning that the slope of $$Petal.Length$$ on $$Sepal.Length$$ is the same for all species. 
+
 # Confidence Intervals for Betas
 
 We can obtain the confidence intervals for the $$\beta$$s using the following function
