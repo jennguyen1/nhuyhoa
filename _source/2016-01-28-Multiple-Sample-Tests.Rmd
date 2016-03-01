@@ -14,12 +14,6 @@ lib(data, viz)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
-# Note About Experimental Design
-
-An **experimental unit** is the group to which a treatment is applied in a single trial of the experiment. We may also call an experimental unit "a plot". 
-
-A **sampling unit** is a subunit within an experimental unit. When analyzing experimental data, we either have to adjust for a sampling unit in the model or average sampling units for each experimental unit prior to analysis. Treating sampling units as experimental units can inflate the error df. 
-
 # ANOVA
 In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
 
@@ -330,7 +324,25 @@ $$ICC = \frac{s^2_{b/n trt}}{s^2_{b/n trt} + s^2_{within trt}}$$
 
 This value is the correlation between the observations within the group. Small values indicate large spared of values at each level of treatment. Large values indicate little spread at each level of treatment.
 
-As an aside, when we have a one-sample test with subsampling the model is written as $$Y_{ij} = \mu + \epsilon_i + \delta_{ij}$$ where $$\epsilon_i$$ ~ $$N(0, \sigma^2_{\epsilon})$$ and $$\delta_{ij}$$ ~ $$N(0, \sigma^2_{\delta})$$. In this setting $$\epsilon$$ represents the experimental units, while $$\delta$$ represents the subsamples.
+### Models with Subsampling
+
+To understand models with subsampling, we define the following:
+
+An **experimental unit** is the group to which a treatment is applied in a single trial of the experiment. We may also call an experimental unit "a plot". 
+
+A **sampling unit** is a subunit within an experimental unit. When analyzing experimental data, we either have to adjust for a sampling unit in the model or average sampling units for each experimental unit prior to analysis. Treating sampling units as experimental units can inflate the error df. 
+
+Consider a one-sample test with subsampling. The model is written as
+
+$$Y_{ij} = \mu + \epsilon_i + \delta_{ij}$$ 
+
+where $$\epsilon_i$$ ~ $$N(0, \sigma^2_{\epsilon})$$ and $$\delta_{ij}$$ ~ $$N(0, \sigma^2_{\delta})$$. In this setting $$\epsilon$$ represents the experimental units, while $$\delta$$ represents the subsamples.
+
+One interesting note is that this model will give equivalent results if one were to average the subsamples (technical replicates) and run a regular ANOVA. In other words,
+
+$$\bar{Y}_{ij.} = \mu + \alpha_i + \epsilon_{ij} + \bar{\delta}_{ij.} = \mu + \alpha_i + e_{ij}$$
+
+Models with subsampling are essentially the same as models that average those subsamples for each experimental unit. Thus even though the $$SS$$ and $$MS$$ for these models are different, the $$F$$ statistic, degrees of freedom, and p-value for effects are all the same. If we decide not to average subsamples, we need to appropriately account for them. 
 
 ### Completely Randomized Design with Subsampling
 
@@ -359,13 +371,11 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kns-1$$ | |
 
 <p></p>
 
-Notice that the expected MS are a little different. To conduct our $$F$$ test for treatment, we compute $$F = MSTrt / MSPE$$, where $$E[F] = 1 + 1 + ns \sum^k_i \alpha^2_i / (k - 1)$$. 
+Notice that the expected MS are a little different. To conduct our $$F$$ test for treatment, we compute $$F = \frac{MSTrt}{MSPE}$$, where $$E[F] = 1 + 1 + ns \sum^k_i \alpha^2_i / (k - 1)$$. 
 
 The guideline here is that when testing any source of variability for significance, we look for a denominator for the $$F$$ test that contains all the elements of the $$E[MS]$$ except the source of interest.
 
-One interesting note is that this model will give equivalent results if one were to average the subsamples (technical replicates) and run a regular ANOVA. In other words, $$\bar{Y}_{ij.} = \mu + \alpha_i + \epsilon_{ij} + \hat{\delta}_{ijl} = \mu + \alpha_i + e_{ij}$$
-
-### Randomized Complete BLock Design with Subsampling
+### Randomized Complete Block Design with Subsampling
 
 **Model Formulations**
 
