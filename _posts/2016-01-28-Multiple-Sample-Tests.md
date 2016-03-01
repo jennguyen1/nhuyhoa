@@ -49,8 +49,8 @@ We have the following terms
 Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
 ------|----------------|--------------------|-------------|---------
 Trt   | $$\sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$\frac{SSTrt}{dfTrt}$$ | $$\frac{MSTrt}{MSE}$$ 
-Error | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2 = \sum^k_{i = 1} (n_i - 1) s_i^2$$ | $$N-k$$ | $$\frac{SSE}{dfE}$$ |
-Total | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}_{..})$$ | $$N-1$$ | | 
+Error | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2$$ | $$k(n-1)$$ | $$\frac{SSE}{dfE}$$ |
+Total | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2$$ | $$kn-1$$ | | 
 
 <p></p>
  
@@ -391,7 +391,7 @@ Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
 ------|----------------|--------------------|-------------|---------
 Blocks| $$ks \sum_j (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$MSBlk$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + ks \sum^b_j \frac{\beta_j^2}{b - 1}$$ 
 Trt   | $$bs \sum^k_{i} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + bs \sum^k_i \frac{\alpha_i^2}{k - 1}$$ 
-Plot Error | $$s \sum_{ij} (\bar{y}_{ij.} - \bar{y}_{i..} + \bar{y}_{.j.} +\bar{y}_{...})^2$$ | $$(k-1)(b-1)$$ | $$MSPE$$ | $$\sigma^2_{\delta} + s\sigma^2_{\epsilon}$$
+Plot Error | $$s \sum_{ij} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} +\bar{y}_{...})^2$$ | $$(k-1)(b-1)$$ | $$MSPE$$ | $$\sigma^2_{\delta} + s\sigma^2_{\epsilon}$$
 Subsample Error | $$\sum_{ijl} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$kb(s-1)$$ | $$MSSSE$$ | $$\sigma^2_{\delta}$$
 Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kbs-1$$ | | 
 
