@@ -35,7 +35,9 @@ where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$
 
 $$Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$$ 
 
-where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$. We assume $$\sum \alpha_i = 0$$ if $$H_0$$ is true.
+where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$. 
+
+We assume $$\sum \alpha_i = 0$$ if $$H_0$$ is true.
 
 **ANOVA Table**
 
@@ -46,10 +48,10 @@ We have the following terms
 * overall sum: $$y_{..} = \sum^k_{i = 1} \sum^{n_i}_{j = 1} y_{ij}$$
 * overall mean: $$\bar{y}_{..} = y_{..} / N$$
 
-Source| Sum of Squares | Degrees of Freedom | Mean Square | F 
-------|----------------|--------------------|-------------|---------
-Trt   | $$\sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$\frac{SSTrt}{dfTrt}$$ | $$\frac{MSTrt}{MSE}$$ 
-Error | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2$$ | $$k(n-1)$$ | $$\frac{SSE}{dfE}$$ |
+Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS] | F 
+------|----------------|--------------------|-------------|-------|---
+Trt   | $$\sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$\frac{SSTrt}{dfTrt}$$ | $$\sigma^2_{\epsilon} + \frac{n}{k - 1} \sum^k_i \alpha_i^2$$ | $$\frac{MSTrt}{MSE}$$ 
+Error | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2$$ | $$k(n-1)$$ | $$\frac{SSE}{dfE}$$ | $$\sigma^2_{\epsilon}$$ |
 Total | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2$$ | $$kn-1$$ | | 
 
 <p></p>
@@ -62,13 +64,7 @@ $$F = \frac{ \frac{df * MS}{\sigma^2} / df }{ \frac{dfErr * MSErr}{\sigma^2} / d
 
 is distributed $$F_{df, dfErr}$$. 
 
-Another way to look at this is to consider if $$H_0$$ is true
-
-* .$$\sum_i \alpha_i = 0$$
-* .$$E[MSTrt] = \sigma^2_{\epsilon} + \frac{n}{k - 1} \sum^k_i \alpha_i^2$$
-* .$$E[MSE] = \sigma^2_{\epsilon}$$
-
-Then 
+Another way to look at this is to consider if $$H_0$$ is true. Then 
 
 $$\frac{E[MSTrt]}{E[MSE]} = 1 + \frac{1}{k - 1} \frac{n \sum^k_i \alpha^2_i}{\sigma^2_{\epsilon}}$$ 
 
@@ -90,27 +86,17 @@ where
 
 **ANOVA Table**
 
-Source| Sum of Squares | Degrees of Freedom 
-------|----------------|--------------------
-A     | $$bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ 
-B     | $$an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ 
-AB    | $$n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$ | $$(a-1)(b-1)$$ 
-Error | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$ab(n - 1)$$ 
+Source| Sum of Squares | Degrees of Freedom | MS | E[MS]
+------|----------------|--------------------|----|-------
+A     | $$bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ | $$MSA$$ | $$\sigma^2_{\epsilon} + \frac{bn}{a - 1} \sum \alpha^2_i$$
+B     | $$an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$MSB$$ | $$\sigma^2_{\epsilon} + \frac{an}{b - 1} \sum \beta^2_j$$
+AB    | $$n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$ | $$(a-1)(b-1)$$ | $$MSAB$$ | $$\sigma^2_{\epsilon} + \frac{n}{(a - 1)(b - 1)} \sum (\alpha \beta)^2_{ij}$$
+Error | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$ab(n - 1)$$ | $$MSE$$ | $$\sigma^2_{\epsilon}$$
 Total | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})^2$$ | $$abn - 1$$ 
 
 <p></p>
 
 Note that we have three separate $$F$$ tests with the error as the demonimator (similar to the single factor case) to assess the $$A_{main}$$, $$B_{main}$$, and $$AB_{int}$$ effects. 
-
-Assume $$H_0$$ is true so that
-
-* $$\sum_i \alpha_i = 0$$, $$\sum_j \beta_j = 0$$ and $$\sum_i (\alpha \beta)_{ij} = \sum_j (\alpha \beta)_{ij} = 0$$
-* .$$E[MSA] = \sigma^2_{\epsilon} + \frac{bn}{a - 1} \sum \alpha^2_i$$
-* .$$E[MSB] = \sigma^2_{\epsilon} + \frac{an}{b - 1} \sum \beta^2_j$$
-* .$$E[MSAB] = \sigma^2_{\epsilon} + \frac{n}{(a - 1)(b - 1)} \sum (\alpha \beta)^2_{ij}$$
-* .$$E[MSE] = \sigma^2_{\epsilon}$$
-
-We can test the main effects and interaction by comparing them to $$MSE$$ with an $$F$$ test.
 
 **Contrasts**
 
@@ -212,9 +198,6 @@ Thus RCBD with one factor is the same as a completely randomized two-factor ANOV
 
 ### Randomized Complete Block Design (Two Factor) ANOVA
 
-$$Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\beta \gamma)_{jk} \epsilon_{ijkl}$$
-
-
 **Model Formulations**
 
 $$Y_{ijk} = \mu + \alpha_i + \beta_k +  \gamma_j + (\alpha \gamma)_{ij} +
@@ -281,7 +264,7 @@ $$Y_{ij} = \mu + A_i + \epsilon_{ij}$$
 where
 
 * $$i = 1, ..., k$$ denotes the levels of treatment
-* $$j = 1, ..., b$$ denotes the experimental units for each treatment
+* $$j = 1, ..., n$$ denotes the experimental units for each treatment
 * $$A_i$$ ~ $$N(0, \sigma^2_A)$$ corresponds to the random effect (group variation)
 * $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the error within each group
 
@@ -300,8 +283,16 @@ Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}
 
 We test $$H_0: \sigma^2_A = 0$$ vs. $$H_A: \sigma^2_A > 0$$ with $$F = \frac{MSTrt}{MSE}$$. 
 
-Based off this ANOVA table, we use $$MSE$$ to estimate $$\sigma^2_{\epsilon}$$ and $$\frac{MSTrt - MSE}{n}$$ to estimate $$\sigma^2_A$$. 
+**Variance Components**
+Based off this ANOVA table, we use $$\hat{\sigma}^2_{\epsilon} = MSE$$ and $$\hat{\sigma}^2_A = \frac{MSTrt - MSE}{n}$$.
 
+Another important quantity is the intraclass correlation coefficient
+
+$$ICC = \frac{s^2_{b/n trt}}{s^2_{b/n trt} + s^2_{within trt}}$$
+
+This value is the correlation between the observations within the group. Small values indicate large spared of values at each level of treatment. Large values indicate little spread at each level of treatment.
+
+**Other**
 Note that a confidence interval would be $$\bar{y}_{..} \pm t_{\alpha/2, k-1} \sqrt{MSTrt/(nk)}$$.
 
 We can use the expected MS to find the variance of $$Y$$.
@@ -312,13 +303,7 @@ $$Var(\bar{y}_{..})$$ | $$= Var(\mu + \hat{A}_. + \hat{\epsilon})$$
                 | $$=\frac{\sigma^2_A}{k} + \frac{\sigma^2_{\epsilon}}{nk}$$
                 | $$=\frac{n\sigma^2_A + \sigma^2_{\epsilon}}{nk}$$
                 
-Note that $$Var(\bar{y}_{..})$$ $$\rightarrow 0$$ as $$k \rightarrow \infty$$ and $$\rightarrow \sigma^2_{\epsilon} / k$$ as $$n \rightarrow \infty$$. 
-
-Another important quantity is the intraclass correlation coefficient
-
-$$ICC = \frac{s^2_{b/n trt}}{s^2_{b/n trt} + s^2_{within trt}}$$
-
-This value is the correlation between the observations within the group. Small values indicate large spared of values at each level of treatment. Large values indicate little spread at each level of treatment.
+Note that $$Var(\bar{y}_{..})$$ $$\rightarrow 0$$ as $$k \rightarrow \infty$$ and $$\rightarrow \sigma^2_{\epsilon} / k$$ as $$n \rightarrow \infty$$. Thus it is better to increase the number of experimental units rather than the number of subsamples. 
 
 ### Models with Subsampling
 
@@ -346,15 +331,15 @@ Consider an experiment where the treatments are fixed but we take subsamples whi
 
 **Model Formulations**
 
-$$Y_{ij} = \mu + \alpha_i + \epsilon_{ij} + \delta_{ijl}$$
+$$Y_{ijl} = \mu + \alpha_i + \epsilon_{ij} + \delta_{ijl}$$
 
 where
 
 * $$i = 1, ..., k$$ denotes the levels of treatment
-* $$j = 1, ..., b$$ denotes the experimental units for each treatment
+* $$j = 1, ..., n$$ denotes the experimental units for each treatment
 * $$l = 1, ..., s$$ denotes the subsample within each experimental unit
 * $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the error within experimental units
-* $$\delta{ijl}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subsample error
+* $$\delta_{ijl}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subsample error
 
 **ANOVA Table**
 
@@ -383,7 +368,7 @@ where
 * $$j = 1, ..., b$$ denotes the blocks
 * $$l = 1, ..., s$$ denotes the subsample within each plot
 * $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the plot error
-* $$\delta{ijl}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subsample error
+* $$\delta_{ijl}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subsample error
 
 **ANOVA Table**
 
@@ -397,9 +382,72 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kbs-1$$ | |
 
 <p></p>
 
-### Many Options of Mixed Models
+## Many Options of Mixed Models
 
 We can have any number of designs (fixed, random, mixed, factorial, nested) with any number of factors. Different designs will lead to different $$F$$ tests. It is important to look at $$E[MS]$$ to determine the appropriate $$F$$ test construction. 
+
+For fixed effects $$\sum effect = 0$$ and for random effects ~ $$N(0, \sigma^2)$$.
+
+## Split Plot Designs
+
+Split plot designs refer to experiments where multiple treatments are applied in a sequence. The levels of the first factor are randomly applied to experimental units. Then the levels of the second factor are applied to subunits within the application of the first factor. Another way to look at this is that an experimental unit used in the first factor is split to generate experimental units for the second factor. 
+
+### Completely Randomized Split Plot Design
+
+**Model Formulations**
+
+$$Y_{ijk} = \mu + \alpha_i + \epsilon_{ij} + \gamma_{k} + (\alpha \gamma)_{ij} + \delta_{ijk}$$
+
+where
+
+* $$i = 1, ..., a$$ denotes the levels of factor A
+* $$k = 1, ..., c$$ denotes the levels of factor C
+* $$j = 1, ..., b$$ denotes experimental units (whole plot) for each factor of A
+* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the whole plot error 
+* $$\delta_{ijk}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subplot error
+* $$\epsilon_{ij}$$ is independent of $$\delta_{ijk}$$
+
+**ANOVA Table**
+
+Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
+------|----------------|--------------------|-------------|---------
+A     | $$bc \sum_i (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ | $$MSA$$ | $$\sigma^2_{\delta} + c\sigma^2_{\epsilon} + \frac{bc\sum_i \alpha_i^2}{a - 1}$$ 
+WP Error  | $$c \sum_{ij} (\bar{y}_{ij.} - \bar{y}_{i..})^2$$ | $$a(b-1)$$ | $$MSWP$$ | $$\sigma^2_{\delta} + c\sigma^2_{\epsilon}$$
+C     | $$ab\sum_k (\bar{y}_{..k} - \bar{y}_{...})^2$$ | $$c - 1$$ | $$MSC$$ | $$\sigma^2_{\delta} + \frac{ab\sum_k \gamma_k^2}{c - 1}$$
+AC    | $$b \sum_{ik} (\bar{y}_{i.k} - \bar{y}_{i..} - \bar{y}_{..k} + \bar{y}_{...})^2$$ | $$(a-1)(c-1)$$ | $$MSAC$$ | $$\sigma^2_{\delta} + \frac{b \sum_{ik} (\alpha \gamma)_{ik}^2}{(a - 1)(c - 1)}$$
+SP Error  | $$\sum_{ijk} (y_{ijk} - \bar{y}_{i..} - \bar{y}_{..k} + \bar{y}_{...})^2$$ | $$a(b-1)(c-1)$$ | $$MSSP$$ | $$\sigma^2_{\delta}$$
+Total | $$\sum_{ijk} (y_{ijk} - \bar{y}_{...})^2$$ | $$abc-1$$ | | 
+
+<p></p>
+
+Again as with mixed models, we look at $$E[MS]$$ to determine the appropriate $$F$$ test construction.
+
+### Randomized Complete Block Split Plot Designs
+
+**Model Formulations**
+
+$$Y_{ijk} = \mu + \alpha_i + \beta_j + \epsilon_{ij} + \gamma_{k} + (\alpha \gamma)_{ik} + \delta_{ijk}$$
+
+where
+
+* $$i = 1, ..., a$$ denotes the levels of factor A
+* $$k = 1, ..., c$$ denotes the levels of factor C
+* $$j = 1, ..., b$$ denotes blocks at the whole plot
+* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the whole plot error 
+* $$\delta_{ijk}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subplot error
+* $$\epsilon_{ij}$$ is independent of $$\delta_{ijk}$$
+
+**ANOVA Table**
+
+Source | Degrees of Fredom
+-------|-------------------
+Block  | $$b-1$$
+A      | $$a-1$$
+WP Error | $$(a-1)(b-1)$$
+C      | $$c-1$$
+AC     | $$(a-1)(c-1)$$
+SP Error | $$a(b-1)(c-1)$$
+Total  | $$abc-1$$
 
 # Pairwise Comparisons and Contrasts
 
