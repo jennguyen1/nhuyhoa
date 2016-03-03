@@ -359,6 +359,10 @@ Notice that the expected MS are a little different. To conduct our $$F$$ test fo
 
 The guideline here is that when testing any source of variability for significance, we look for a denominator for the $$F$$ test that contains all the elements of the $$E[MS]$$ except the source of interest.
 
+To calculate the differences of mean $$y$$ for different treatments, we can calculate
+
+$$Var(\bar{y}_{i..} - \bar{y}_{i'..}) = MSPE \left(\frac{1}{ns} + \frac{1}{ns} \right)$$
+
 ### Randomized Complete Block Design with Subsampling
 
 **Model Formulations**
@@ -444,15 +448,15 @@ where
 
 **ANOVA Table**
 
-Source | Degrees of Fredom
--------|-------------------
-Block  | $$b-1$$
-A      | $$a-1$$
-WP Error | $$(a-1)(b-1)$$
-C      | $$c-1$$
-AC     | $$(a-1)(c-1)$$
-SP Error | $$a(b-1)(c-1)$$
-Total  | $$abc-1$$
+Source | Degrees of Fredom | E[MS]
+-------|-------------------|------
+Block  | $$b-1$$ | $$\sigma^2_{\delta} + c \sigma^2_{\epsilon} + \frac{ab \sum_j \beta^2_j}{b - 1}$$
+A      | $$a-1$$ | $$\sigma^2_{\delta} + c \sigma^2_{\epsilon} + \frac{bc \sum_i \alpha^2_i}{a - 1}$$
+WP Error | $$(a-1)(b-1)$$ | $$\sigma^2_{\delta} + c \sigma^2_{\epsilon}$$
+C      | $$c-1$$ | $$\sigma^2_{\delta} + \frac{ab \sum_k \gamma^2_k}{c - 1}$$
+AC     | $$(a-1)(c-1)$$ | $$\sigma^2_{\delta} + \frac{b \sum_{ik} (\alpha \gamma)_{ik}}{(a-1)(c-1)}$$
+SP Error | $$a(b-1)(c-1)$$ | $$\sigma^2_{\delta}$$
+Total  | $$abc-1$$ |
 
 Notice that the $$df$$ for the wholeplot error is essentially the interaction between $$AB$$. The $$df$$ for the subplot error can be rewritten as $$a(b-1)(c-1) = (b-1)(c-1) + (a-1)(b-1)(c-1)$$. These are the pooled $$df$$ from the $$BC$$ and $$ABC$$ interaction. 
 

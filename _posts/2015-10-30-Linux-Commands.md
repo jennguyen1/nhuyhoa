@@ -68,7 +68,9 @@ alias
 
 **Finding files:**
 
-* `find directory -type (f/d) \(-name "." -(and/or/not) -name "."\)`
+{% highlight r %}
+find directory -type (f/d) \(-name "." -(and/or/not) -name "."\)
+{% endhighlight %}
 
 **To log in via ssh:**
 
