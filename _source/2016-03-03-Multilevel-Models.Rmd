@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Multilevel Models"
-date: "February 3, 2016"
+date: "March 3, 2016"
 categories: ['statistics', 'regression analysis']
 ---
 
@@ -23,7 +23,7 @@ Multilevel models are a compromise between two extremes
 * Models that fit separate fits for each group
 
 
-# Varying Intercept Model
+# Variants of Multilevel Models
 
 Consider three variants of models: 
 
@@ -96,31 +96,141 @@ This value tells us that the standard deviation of average $$y$$ between groups 
 
 We can fit variants of the varying intercept models in R with the following `lmer()` commands
 
-**Varying intercept, no predictors:**
+**Varying intercept; no predictors:**
 
-$$y$$ ~ $$N(\alpha_i, \sigma^2_y)$$ and $$\alpha$$ ~ $$N(\mu_a, \sigma^2_a)$$
+$$y_i$$ ~ $$N(\alpha_{j}, \sigma^2_y)$$ 
+
+$$\alpha_j$$ ~ $$N(\mu_a, \sigma^2_a)$$
 
 ```{r, eval = FALSE}
 lmer(y ~ 1 + (1 | group))
 ```
 
-**Varying intercept, individual level predictors:**
+**Varying intercept; individual level predictors:**
 
-$$y$$ ~ $$N(\alpha_i + \beta x, \sigma^2_y)$$ and $$\alpha$$ ~ $$N(\mu_a, \sigma^2_a)$$
+$$y_i$$ ~ $$N(\alpha_{j} + \beta x_i, \sigma^2_y)$$ 
+
+$$\alpha_j$$ ~ $$N(\mu_a, \sigma^2_a)$$
 
 ```{r, eval = FALSE}
 lmer(y ~ x + (1 | group))
 ```
 
-**Varying intercept, individual and group level predictors:**
+**Varying intercept; individual and group level predictors:**
 
-$$y$$ ~ $$N(\alpha_i + \beta x, \sigma^2_y)$$ and $$\alpha$$ ~ $$N(\mu_a + \tau grp.x, \sigma^2_a)$$
+$$y_i$$ ~ $$N(\alpha_{j} + \beta x_i, \sigma^2_y)$$ 
+
+$$\alpha_j$$ ~ $$N(\mu_a + \tau grp.x, \sigma^2_a)$$
 
 ```{r, eval = FALSE}
 lmer(y ~ x + grp.x + (1 | group))
 ```
 
-# Varying Intercept, Varying Slope Model
+**Varying intercept, varying slope:**
+
+$$y_i$$ ~ $$N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
+
+$$ \left(\begin{array}
+{rrr}
+\alpha_j \\
+\beta_j
+\end{array}\right)
+$$ ~ $$N\left( \left(\begin{array}
+{rrr}
+\mu_a \\
+\mu_b
+\end{array}\right) , 
+\left(\begin{array}
+{rrr}
+\sigma^2_a & p \sigma^2_a \sigma^2_b \\
+p \sigma^2_a \sigma^2_b & \sigma^2_b
+\end{array}\right)
+\right)$$
+
+```{r, eval = FALSE}
+lmer(y ~ x + (1 + x | group))
+```
+
+**Varying intercept, varying slope; group level predictors:**
+
+$$y_i$$ ~ $$N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
+
+$$ \left(\begin{array}
+{rrr}
+\alpha_j \\
+\beta_j
+\end{array}\right)
+$$ ~ $$N\left( \left(\begin{array}
+{rrr}
+\mu_a + \tau grp.x\\
+\mu_b + \gamma grp.x
+\end{array}\right) , 
+\left(\begin{array}
+{rrr}
+\sigma^2_a & p \sigma^2_a \sigma^2_b \\
+p \sigma^2_a \sigma^2_b & \sigma^2_b
+\end{array}\right)
+\right)$$
+
+```{r, eval = FALSE}
+lmer(y ~ x + grp.x + x:grp.x + (1 + x | group))
+```
+
+**Varying intercept, varying slope; individual level predictors:**
+
+$$y_i$$ ~ $$N(\alpha_{j} + \beta_{j} x_i + \beta_z z_i + \beta_{j, z} (x_i z_i), \sigma^2_y)$$
+
+$$ \left(\begin{array}
+{rrr}
+\alpha_j \\
+\beta_j \\
+\beta_{j, z}
+\end{array}\right)
+$$ ~ $$N\left( \left(\begin{array}
+{rrr}
+\mu_a \\
+\mu_b \\
+\mu_{bz}
+\end{array}\right) , 
+\left(\begin{array}
+{rrr}
+\sigma^2_a & p_1 \sigma^2_a \sigma^2_b & p_2 \sigma^2_a \sigma^2_{bz} \\
+p_1 \sigma^2_a \sigma^2_b & \sigma^2_b & p_3 \sigma^2_b \sigma^2_{bz} \\
+p_2 \sigma^2_a \sigma^2_{bz} & p_3 \sigma^2_b \sigma^2_{bz} & \sigma^2_{bz} \\
+\end{array}\right)
+\right)$$
+
+```{r, eval = FALSE}
+lmer(y ~ z + x + (x + x:z | group))
+```
+
+**Varying slope:**
+
+$$y_i$$ ~ $$N(\alpha + \beta_{j} x_i, \sigma^2_y)$$ 
+
+$$\beta_j$$ ~ $$N(\mu_b, \sigma^2_b)$$
+
+```{r, eval = FALSE}
+lmer(y ~ x + (x - 1 | group))
+```
+
+**Non-Nested Models:**
+
+$$y_i$$ ~ $$N(\mu + \alpha_j + \beta_k, \sigma^2_y)$$
+
+$$\alpha_j$$ ~ $$N(0, \sigma^2_a)$$
+
+$$\beta_k$$ ~ $$N(0, \sigma^2_b)$$
+
+```{r, eval = FALSE}
+lmer(y ~ 1 + (1 | group.a) + (1 | group.b))
+```
+
+**Transformations:**
+
+As with regular regression, we can perform transformations for more effective fitting and interpretation. For example, centering and scaling may allow for easier interpretation of coefficients, especially when they are correlated (as with varying intercept, varying slope type models). 
+
+Multilevel models may also be used creatively to assess a variety of effects. For example, consider a scenario where you have a number of variables that mostly measure the same thing. You can use all of the variables by combining them into a weighted average. The weighted average term would be something along the lines of $$\frac{1}{n} \sum^n_i \beta_{ij} * x_{j}$$. 
 
 # Generalized Linear Multilevel Models
 

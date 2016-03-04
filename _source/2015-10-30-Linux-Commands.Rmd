@@ -157,6 +157,22 @@ chmod g+r filepath
 chmod +x filepath
 {% endhighlight %}
 
+**Printing Things:**
+
+{% highlight r %}
+# obtain a list of available printers
+lpstat -p -d
+
+# print queue
+lpq -P printer_name
+
+# print file
+lpr -P printer_name filename
+
+# pass commands to printer: print two sides
+lpr -o sides=two-sided-long-edge -Pprinter_name file_name
+{% endhighlight %}
+
 **Useful locations:**
 
 desk22.stat.wisc.edu:public/html
