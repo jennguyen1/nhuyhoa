@@ -293,9 +293,10 @@ Another important quantity is the intraclass correlation coefficient
 
 $$ICC = \frac{s^2_{b/n trt}}{s^2_{b/n trt} + s^2_{within trt}}$$
 
-This value is the correlation between the observations within the group. Small values indicate large spared of values at each level of treatment. Large values indicate little spread at each level of treatment.
+This value is the correlation between the observations within the group. Small values indicate large spread of values at each level of treatment. Large values indicate little spread at each level of treatment.
 
 **Other**
+
 Note that a confidence interval would be $$\bar{y}_{..} \pm t_{\alpha/2, k-1} \sqrt{MSTrt/(nk)}$$.
 
 We can use the expected MS to find the variance of $$Y$$.

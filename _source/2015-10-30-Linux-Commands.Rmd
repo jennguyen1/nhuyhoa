@@ -91,6 +91,43 @@ scp original.file location.to.transfer
 scp -rp file location.to.transfer
 {% endhighlight %}
 
+**Zipping Files:**
+
+Some common action terms
+
+`tar` options:
+
+* `c` create an archive
+* `t` list the contents of an archive
+* `x` extract 
+* `v` verbose mode
+* `z` process through gzip
+* `f` specify name of the $$.tar$$ files you want to create
+
+{% highlight r %}
+# creating a tar file
+tar -cvf file_name.tar file1 file2 ... filen
+
+# create a gzip file
+tar -czvf file_name.tar.gz file1 file2 ... filen
+
+# unpack tar files
+tar -xvf file_name.tar
+
+# unpack tar.gz files
+tar -xzf file_name.tar.gz
+{% endhighlight %}
+
+`zip` options:
+
+{% highlight r %}
+# zip files
+zip file_name file1 file2 ... filen
+
+# unzip files
+unzip file_name.zip
+{% endhighlight %}
+
 **Change permissions:** 
 
 Syntax: `chmod (user)(+-=)(rwx) (filename)`
@@ -115,6 +152,9 @@ When listed via `ls`, the file access options from left to right are for owner, 
 {% highlight r %}
 # make file readable by group
 chmod g+r filepath
+
+# make file executable by all
+chmod +x filepath
 {% endhighlight %}
 
 **Useful locations:**
