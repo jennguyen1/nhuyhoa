@@ -234,6 +234,10 @@ Multilevel models may also be used creatively to assess a variety of effects. Fo
 
 # Generalized Linear Multilevel Models
 
+We can easily extend the fitting of multilevel models to glms.
+
+In R, we can fit these models with `lmer()` or `glmer()`. 
+
 # In R
 
 ## Viewing Results

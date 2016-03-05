@@ -38,7 +38,7 @@ where
 * $$f(x \vert \theta)$$ is the likelihood function
 * $$f(\theta \vert x)$$ is the posterior distribution
 
-Essentially the best estimate of $$\theta$$ for explaining the observed data $$x$$ can be found by combining information from the prior distribution and the likelihood. We can obtain an estimate of $$\theta$$ by finding $$E[\theta \vert x]$$. A $$(1 - \alpha)100$$% confidence interval can be obtained by finding the $$\alpha/2$$ and $$1 - \alpha/2$$ percentile cutoffs from the posterior distribution. 
+Essentially the best estimate of $$\theta$$ for explaining the observed data $$x$$ can be found by combining information from the prior distribution and the likelihood. The more data or information we have, the less impact the prior has. We can obtain an estimate of $$\theta$$ by finding $$E[\theta \vert x]$$. A $$(1 - \alpha)100$$% confidence interval can be obtained by finding the $$\alpha/2$$ and $$1 - \alpha/2$$ percentile cutoffs from the posterior distribution. 
 
 The pros and cons of the Bayesian approach come from choosing the prior distribution. On one hand, chosing the prior may be subjective. On the other hand, it is a natural way to incorporate true prior information perhaps from scientists or experts. One can also choose a vague prior distribution that may have a very small impact on the final inference given informative data. 
 

@@ -11,7 +11,36 @@ date: "October 30, 2015"
 
 See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 
-**Editing files:**
+# Generic Commands
+
+* `|` to chain commands
+* `echo` repeat your own text, can pipe into files
+* `printf` for formatting text
+
+
+{% highlight r %}
+# strings
+printf "Hello my name is %s.\n" Jenny
+
+# integers
+printf "I am %d years old" 2
+
+# floating point values
+printf "I am %f years old" 2.4
+
+# formatting: floating points
+printf "%.2f\n" 3
+
+# formatting: add 4 spaces before digit
+printf "%4d" 15
+
+# formatting: add a bunch of 0s
+printf "%04d" 15
+{% endhighlight %}
+
+# Working With Files
+
+## Editing Files
 
 * `grep` for pattern matching
   * `grep -c` counts matches
@@ -22,7 +51,6 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
   * `tr -d 'aeiou'` delete specific characters
 * `uniq` for unique values
 * `sort` sorting
-* `echo` repeat your own text, can pipe into files
 * `wc` word counts
 * `cut` cuts out selected portions of each line from each file and writes to standard output
 * `paste` merges lines of files together
@@ -33,65 +61,13 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 * `fold` prints out content in more readable format
 * `colrm` removes columns from being printed
 
-**Setting variables:**
-
-{% highlight r %}
-# set variable
-VAR='value'
-
-# view list of variables
-set
-
-# remove variable
-unset VAR
-
-# set environmental vars so child processes can inherit
-export VAR2='value2
-{% endhighlight %}
-
-**Aliasing:**
-
-Execute a series of commands
-{% highlight r %}
-# save the shortcut
-alias shortcut='cd ~Desktop; nano temp.txt`
-
-# run shortcut
-shortcut
-
-# remove alias
-unalias shortcut
-
-# view list of aliases
-alias
-{% endhighlight %}
-
-**Finding files:**
+## Finding Files
 
 {% highlight r %}
 find directory -type (f/d) \(-name "." -(and/or/not) -name "."\)
 {% endhighlight %}
 
-**To log in via ssh:**
-
-{% highlight r %}
-ssh username@place
-{% endhighlight %}
-
-**To upload to a folder:**
-
-{% highlight r %}
-# using rsync
-rsync -a filename username@place:file_directory
-
-# using scp (after ssh)
-scp original.file location.to.transfer
-
-# using scp with directories
-scp -rp file location.to.transfer
-{% endhighlight %}
-
-**Zipping Files:**
+## Zipping Files
 
 Some common action terms
 
@@ -103,6 +79,7 @@ Some common action terms
 * `v` verbose mode
 * `z` process through gzip
 * `f` specify name of the $$.tar$$ files you want to create
+
 
 {% highlight r %}
 # creating a tar file
@@ -120,6 +97,7 @@ tar -xzf file_name.tar.gz
 
 `zip` options:
 
+
 {% highlight r %}
 # zip files
 zip file_name file1 file2 ... filen
@@ -128,7 +106,7 @@ zip file_name file1 file2 ... filen
 unzip file_name.zip
 {% endhighlight %}
 
-**Change permissions:** 
+## Changing Permissions of Files
 
 Syntax: `chmod (user)(+-=)(rwx) (filename)`
 
@@ -149,6 +127,7 @@ File access options:
 
 When listed via `ls`, the file access options from left to right are for owner, group, then all. 
 
+
 {% highlight r %}
 # make file readable by group
 chmod g+r filepath
@@ -157,7 +136,8 @@ chmod g+r filepath
 chmod +x filepath
 {% endhighlight %}
 
-**Printing Things:**
+## Printing Files
+
 
 {% highlight r %}
 # obtain a list of available printers
@@ -173,7 +153,327 @@ lpr -P printer_name filename
 lpr -o sides=two-sided-long-edge -Pprinter_name file_name
 {% endhighlight %}
 
-**Useful locations:**
+# My Computer and Other Servers 
+
+**Log In Via ssh:**
+
+
+{% highlight r %}
+ssh username@place
+{% endhighlight %}
+
+**Upload to a Server:**
+
+
+{% highlight r %}
+# using rsync
+rsync -a filename username@place:file_directory
+
+# using scp (after ssh)
+scp original.file location.to.transfer
+
+# using scp with directories
+scp -rp file location.to.transfer
+{% endhighlight %}
+
+# Shell Scripting
+
+A shell script is a file containing lines for the shell to execute. Everything that you can do on the command line, you can put into a shell script. Shell scripts should be short. Longer scripts can be written using other languages and then run using a few lines of a shell script.
+
+**Start scripts with the statement:**
+
+
+{% highlight r %}
+#!/bin/sh
+{% endhighlight %}
+
+The rest of the script can be populated with a list of commands or comments (#). 
+
+**Execute script:**
+
+
+{% highlight r %}
+# using source
+source script_name
+
+# using bash
+bash script_name
+
+# using sh
+sh script_name
+{% endhighlight %}
+
+## Variables
+
+**Setting Variables:**
+
+
+{% highlight r %}
+# set variable, note no spaces
+VAR="value"
+VAR2=25
+
+# set environmental vars so child processes can inherit
+export VAR2="value2"
+{% endhighlight %}
+
+**Call Variables:**
+
+
+{% highlight r %}
+# call a variable (brackets are not required but convention)
+cmd ${VAR}
+
+# find the length of a variable
+cmd ${#VAR}
+{% endhighlight %}
+
+**View and Remove Variables:**
+
+
+{% highlight r %}
+# view list of variables
+set
+
+# remove variable
+unset VAR
+{% endhighlight %}
+
+**Substitution Operators:**
+
+If the variable is not set:
+
+
+{% highlight r %}
+# return another value
+echo "${TMP:-value}"
+
+# return another value and set to value
+echo "${TMP:=value}"
+
+# abort
+echo "${TMP:?value}"
+{% endhighlight %}
+
+## Passing Parameters to Scripts
+
+**Call a Script:**
+
+
+{% highlight r %}
+script_name param1 param2 param3
+{% endhighlight %}
+
+**Access Parameters in Script:**
+
+* The first argument is `${1}`, the second `${2}`, and so on
+* The name of the script is accessed with `${0}`
+* If the argument is not specified, the shell takes it in as `null`
+* The number of arguments: `$#`
+* Access all arguments at once: `#@`
+
+## Input/Output of Data
+
+
+{% highlight r %}
+# input data
+to_file < from_file
+
+# input user data
+read var1 var2 var3
+read -p "a message for you:" var1
+
+# input user data as passwords
+stty -echo
+read password1
+stty echo
+
+# output data
+from_file > to_file
+
+# append data
+from_file >> to_file
+
+# output error emssages
+program_with_error 2> to_file
+{% endhighlight %}
+
+## If/Else, Loops & Functions
+
+**If and Else:**
+
+Conditions
+
+{% highlight r %}
+# returns 0 for true; 1 for false
+
+# test for equality with strings
+[ 'hi' = 'hello' ]; echo $?
+
+# test for equality with numbers
+[ 1 -eq 1 ]; echo $?
+[ 1 -ne 1 ]; echo $?
+[ 1 -lt 1 ]; echo $?
+[ 1 -le 1 ]; echo $?
+[ 1 -gt 1 ]; echo $?
+[ 1 -ge 1 ]; echo $?
+
+# test multiple commands
+[ 'hi' != 'hello' ] && test [ 'hi' = 'hi' ]; echo $?
+[ ${var} = 'hello' ] || test[ 'hi' = 'hi' ]; echo $?
+
+# check empty argument: empty (z) and not empty (n)
+[ -z "" ]; echo $?
+[ -n "" ]; echo $?
+
+# test for existence (e) or non-emptiness (s)
+[ -e file.txt ]; echo $?
+[ -s file.txt ]; echo $?
+
+# test permissions: readable (r), writable (w), executable (x)
+[ -r file.txt ]; echo $?
+[ -w file.txt ]; echo $?
+[ -x file.txt ]; echo $?
+
+# test lifetime of files: newer (nt) and older (ot)
+[ oldfile.txt -nt newfile.txt ]; echo $?
+[ oldfile.txt -ot newfile.txt ]; echo $?
+{% endhighlight %}
+
+Format for if/else
+
+{% highlight r %}
+if cmd; then
+  # stuff
+elif cmd; then
+  # stuff
+else
+    # stuff
+fi
+{% endhighlight %}
+
+
+{% highlight r %}
+# example
+if [ ${value} -eq 1 ] || [ ${value} -eq 2 ]; then
+  echo "1 or 2"
+elif [ ${value} -gt 5 ]; then
+  echo "greater than 5"
+else
+  echo "something else"
+fi
+{% endhighlight %}
+
+Format for switch statments
+
+{% highlight r %}
+case ${var} in 
+  options)
+    # stuff
+    ;;
+  options)
+    # stuff
+    ;;
+esac
+{% endhighlight %}
+
+
+{% highlight r %}
+# example
+caste ${value} in 
+  [aeiouAEIOU]*)
+    echo "your name starts with a vowel!"
+  ;;
+  0|9)
+    echo "where does your name start with 0 or 9?"
+  ;;
+  [1-9]*) 
+    echo "actually why are there even numbers in a name?"
+  ;;
+  [a-zA-Z]*) 
+    echo "ok that's makes sense now"
+  ;;
+esac
+{% endhighlight %}
+
+**Loops:**
+
+For loops
+
+{% highlight r %}
+# loop through a list
+for var in list
+do
+  # stuff
+done
+
+# loop through numbers
+for (( i=1; i <=5; i++ ))
+do
+  # stuff
+done
+
+for i in $(seq 1 10)
+do
+  # stuff
+done
+{% endhighlight %}
+
+
+{% highlight r %}
+# example
+count=1
+for fruit in "apple" "orange" "banna"
+do
+  echo "I like to eat eat eat ${fruit}."
+  ((count=count+1))
+done
+
+# example: loop over arguments
+for i in $@
+do
+  # stuff
+done
+
+# example: loop over files
+for file in ./*
+do
+  # stuff
+done
+{% endhighlight %}
+
+While loops
+
+{% highlight r %}
+while [ condition ]
+do
+  # stuff
+# done
+{% endhighlight %}
+
+Control within loops
+
+* Skip to next iteration: `continue`
+* Exit loop: `break`
+
+**Functions and Aliasing:**
+
+
+{% highlight r %}
+# save the shortcut
+alias shortcut="cd ~Desktop; nano temp.txt"
+
+# run shortcut
+shortcut
+
+# remove alias
+unalias shortcut
+
+# view list of aliases
+alias
+{% endhighlight %}
+
+# Useful Locations
 
 desk22.stat.wisc.edu:public/html
 
