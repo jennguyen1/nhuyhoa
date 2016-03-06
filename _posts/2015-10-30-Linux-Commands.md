@@ -14,6 +14,17 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 # Generic Commands
 
 * `|` to chain commands
+* `xargs` reads items from standard input delimited by blanks and executes command multiple times
+
+
+{% highlight r %}
+# example: delete all *.txt files
+find . -name "*.txt" | xargs rm
+
+# example: package all *.jpg files 
+find . -name "*.jpg" | xargs tar -zcf jpg.tar.gz
+{% endhighlight %}
+
 * `echo` repeat your own text, can pipe into files
 * `printf` for formatting text
 
@@ -472,6 +483,97 @@ unalias shortcut
 # view list of aliases
 alias
 {% endhighlight %}
+
+## Sed
+
+Sed is a command line tool to conduct regular expressions commands.
+
+**Search and Replace Text:**
+
+`(address)s/(search)/(replacement)/(modifier)`
+
+* Addresses are specified: `start, end`
+* Both search and replacement are strings
+* Modifiers: 
+  * `g`: global, replace for all occurances on the line
+  * `p`: print only the lines where replacement occurs
+  * `w`: write to a file
+  * `I`: ignore case (only in Windows)
+
+
+{% highlight r %}
+# example: addresses
+sed '1,2s/heart/love/' test.txt
+
+# example: global modifier
+echo "hi, hi, hi" | sed 's/hi/hello/'
+echo "hi, hi, hi" | sed 's/hi/hello/g'
+
+# example: print modifier
+sed 's/heart/love/p' test.txt
+
+# example: regex and backreferences
+sed 's/\([1-9]*\) \(#\)/ \2 \1/' test.txt
+
+# example: & as the matched string
+sed 's/^[AEIOU][a-z]*/\*&\*/' test.txt
+
+# example: write results out
+sed 's/^[AEIOU][a-z]*/\*&\*/w output.txt' test.txt
+{% endhighlight %}
+
+* Apply a sequence of commands using a sed script
+
+{% highlight r %}
+# sed script
+s/blue/black/g
+s/windows/mac/g
+s/square/circle/g
+
+# call script
+sed -f sed_script test.txtou
+{% endhighlight %}
+
+## Awk
+Awk is a scripting language used for text extraction and processing. 
+
+**Format of .awk File:**
+
+
+{% highlight r %}
+BEGIN{
+  // initialize variables: executes only once
+}
+{
+  /pattern/ {action}
+  // runs every input line that matches optional pattern
+}
+END{
+  // cleanup: executed once after file is exhausted
+}
+{% endhighlight %}
+
+
+{% highlight r %}
+# example
+BEGIN{
+  printf "Just getting started\n";
+  n = 0;
+}
+
+{
+  print ${0} // prints the line
+  if(4 == 4) {++n} // increment n 
+}
+
+END{
+  printf "We are at the end:" n; 
+}
+
+# run awk script
+awk -f awk_script.awk test.txt
+{% endhighlight %}
+
 
 # Useful Locations
 
