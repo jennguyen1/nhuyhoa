@@ -479,7 +479,7 @@ Again as with mixed models, we look at $$E[MS]$$ to determine the appropriate $$
 We can obtain the following variance estimates for comparisons
 
 * Comparisons within the same whole plot treatment: $$Var(\bar{Y}_{1.1} - \bar{Y}_{1.2}) = \frac{2\sigma^2_{\delta}}{b}$$
-* Comparisons across whole plot treatments: $$Var(\bar{Y}_{1.1} - \bar{Y}_{2.1}) = \frac{2(\sigma^2_{\delta} + \sigma^2_{\epsilon})}{b}$$
+* Comparisons across whole plot treatments: $$Var(\bar{Y}_{1.1} - \bar{Y}_{2.1}) = \frac{2(\sigma^2_{\delta} + c\sigma^2_{\epsilon})}{b}$$
 * Comparisons of whole plot treatment means: $$Var(\bar{Y}_{1..} - \bar{Y}_{2..}) = \frac{2(\sigma^2_{\delta} + c\sigma^2_{\epsilon})}{bc}$$
 * Comparisons of subplot treatment means: $$Var(\bar{Y}_{..1} - \bar{Y}_{..1}) = \frac{2\sigma^2_{\delta}}{ab}$$
 
@@ -545,15 +545,17 @@ How do we assess effects when our designs are missing certain factor combination
 * Fit a contrast to assess the effect you would like (perhaps the interaction)
 * Use a MSE from the one-way ANOVA as an estimate of $$s^2_{\epsilon}$$
 
-# Nonparametric Tests
+# Other Topics
 
-## Ranked ANOVA
+## Nonparametric Tests
+
+### Ranked ANOVA
 A nonparametric alternative to ANOVA requires a rank transformation. The procedure for this method is listed below.
 
 1. Rank data set from largest to smallest
 2. Analyze rank values in standard ANOVA
 
-### Kruskal-Wallis Test
+#### Kruskal-Wallis Test
 For this test, we make the following assumptions
 
 * Independent samples
@@ -573,7 +575,7 @@ where $$KW$$ is approximately distributed $$X^2_{k - 1}$$. When sample sizes are
 
 In R, we fit with `kruskal.test()`.
 
-## Friedman's Test
+#### Friedman's Test
 The nonparametric equivalent for the two-factor ANOVA is Friedman's test. We test the null hypothesis that each rank within each block is equally likely. 
 
 The steps for this test is as follows
@@ -588,7 +590,7 @@ where $$Q$$ is approximately distributed $$X^2_{k - 1}$$. When sample sizes are 
 
 In R, we fit with `friedman.test()`.
 
-# Tests of Equal Variance
+## Tests of Equal Variance
 **Levene's Test**
 
 Levene's test is a formal test to assess $$H_0: \sigma^2_1 = ... = \sigma^2_k$$. 

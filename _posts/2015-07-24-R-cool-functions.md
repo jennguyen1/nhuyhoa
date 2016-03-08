@@ -20,6 +20,7 @@ categories: ['r programming']
 
 
 **Graphics in R**
+
 * [ggplot2 cheatsheet][ggplot2_ref]{:target = "_blank"}
 * [GGally::ggpairs()][grid.arrange]{:target = "_blank"}
 * RColorBrewer
