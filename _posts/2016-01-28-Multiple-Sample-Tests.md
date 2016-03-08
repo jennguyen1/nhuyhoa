@@ -13,6 +13,49 @@ categories: ['statistics', 'experimental design']
 # ANOVA
 In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
 
+In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands
+
+
+{% highlight r %}
+proc glm data = x;
+  class var1 var2;
+  model y = var1 var2 var1*var2;
+  test h = var1 e = var1*var2;
+  lsmeans var1 / tdiff pdiff cl;
+  lsmeans var2 / tdiff pdiff cl;
+  means var1 / lsd lines;
+  means grp / hovtest = bf;
+  contrast "name" var1 1 1 -1 -1 / e;
+  output out = outfile p = yhat r = resid rstudent = r1;
+run;
+
+proc mixed data = x method = type3;
+  class wholeplot subplot;
+  model y = wholeplot subplot(wholeplot);
+  random subplot(wholeplot);
+run;
+
+proc mixed data = x method = type3;
+  class A B Field;
+  model response = A B A*B;
+  random field(A);
+run;
+
+# completely randomized
+proc mixed data = x method = type3;
+  class soil variety pan;
+  model yield = soil variety soil*variety;
+  random pan(soil);
+run;
+
+# blocked
+proc mixed data = x method = type3;
+  class soil variety pan;
+  model yield = pan soil variety soil*variety;
+  random pan*soil;
+run;
+{% endhighlight %}
+
 **Assumptions**
 
 Regardless of the type, ANOVAs have the same assumptions:
@@ -400,7 +443,7 @@ For fixed effects $$\sum effect = 0$$ and for random effects ~ $$N(0, \sigma^2)$
 
 ## Split Plot Designs
 
-Split plot designs refer to experiments where multiple treatments are applied in a sequence. The levels of the first factor are randomly applied to experimental units. Then the levels of the second factor are applied to subunits within the application of the first factor. Another way to look at this is that an experimental unit used in the first factor is split to generate experimental units for the second factor. 
+Split plot designs refer to experiments where multiple treatments are applied in a sequence. The levels of the first factor are randomly applied to experimental units. Then the levels of the second factor are applied to subunits within the application of the first factor. Another way to look at this is that an experimental unit used in the first factor is split to generate experimental units for the second factor. Think of it as each plot level being its own experiment. 
 
 ### Completely Randomized Split Plot Design
 
@@ -431,6 +474,15 @@ Total | $$\sum_{ijk} (y_{ijk} - \bar{y}_{...})^2$$ | $$abc-1$$ | |
 <p></p>
 
 Again as with mixed models, we look at $$E[MS]$$ to determine the appropriate $$F$$ test construction.
+
+
+We can obtain the following variance estimates for comparisons
+
+* Comparisons within the same whole plot treatment: $$Var(\bar{Y}_{1.1} - \bar{Y}_{1.2}) = \frac{2\sigma^2_{\delta}}{b}$$
+* Comparisons across whole plot treatments: $$Var(\bar{Y}_{1.1} - \bar{Y}_{2.1}) = \frac{2(\sigma^2_{\delta} + \sigma^2_{\epsilon})}{b}$$
+* Comparisons of whole plot treatment means: $$Var(\bar{Y}_{1..} - \bar{Y}_{2..}) = \frac{2(\sigma^2_{\delta} + c\sigma^2_{\epsilon})}{bc}$$
+* Comparisons of subplot treatment means: $$Var(\bar{Y}_{..1} - \bar{Y}_{..1}) = \frac{2\sigma^2_{\delta}}{ab}$$
+
 
 ### Randomized Complete Block Split Plot Designs
 

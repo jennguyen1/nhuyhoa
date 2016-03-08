@@ -459,7 +459,7 @@ While loops
 while [ condition ]
 do
   # stuff
-# done
+done
 {% endhighlight %}
 
 Control within loops

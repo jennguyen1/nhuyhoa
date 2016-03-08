@@ -10,7 +10,7 @@ categories: ['statistics', 'probability and inference']
 
 
 
-# Frequentist vs Bayesian Statistics.
+# Frequentist vs Bayesian Statistics
 
 There is a distinction between frequentist and Bayesian statistics. 
 
@@ -86,6 +86,11 @@ The following distributions are often used as prior distributions.
 * Beta : used for priors for berneoulli, binomial, negative binomial, and geometric distributions
 * Dirchlet: used for priors for categorical and multinomial distributions
 * For other potential prior distributions see the [Wikipedia page][conjugate_priors_link]{:target = "_blank"}. 
+
+
+# Bayesian Modeling
+
+Bayesian modeling (for example, linear regression) is very similar to regular modeling. The main difference is that one can specify priors for the parameters ($$\alpha$$, $$\beta$$, $$\sigma^2$$).
 
 [conjugate_priors_link]: https://en.wikipedia.org/wiki/Conjugate_prior#Table_of_conjugate_distributions
 

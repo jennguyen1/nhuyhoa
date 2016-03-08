@@ -434,7 +434,7 @@ While loops
 while [ condition ]
 do
   # stuff
-# done
+done
 ```
 
 Control within loops
