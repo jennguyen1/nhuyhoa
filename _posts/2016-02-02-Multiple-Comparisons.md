@@ -34,7 +34,7 @@ Number of Tests | P(Type 1 Error) = 1 - P(rejection)
 
 Our error rates rapidly increases. The type 1 error rate is approximately $$50$$% when we conduct $$13$$ tests. Thus we have to find a way to correct for these multiple tests to ensure that our Type 1 error rate remains low.
 
-# How to Do It
+# Multiple Comparisons for Continuous Data
 Note that what number and what specific comparisons should be determined in advance (prior to receiving results) to eliminate experimenter bias.
 
 Also note that the assumptions of the overall test (ex: ANOVA) also apply to these tests. 
@@ -67,7 +67,7 @@ $$\alpha_i = \alpha / r$$
 
 where $$r$$ is the number of tests and $$\alpha_i$$ is the type I error rate for each individual test. 
 
-The boonferroni p-value is
+The bonferroni p-value is
 
 $$p_{bonf} = min(n * p, 1)$$
 
@@ -196,12 +196,19 @@ Each test has a q-value, which is defined as the minimum FDR that can be attaine
 
 We usually pick a cut-off q-value and reject the null hypothesis for all tests with q-values less than or equal to our cut-off. 
 
-# Summary
+## Summary
 In terms of ranking methods we have from most liberal to most conservative
 
 $$LSD < Dunnett < Tukey < Scheffe < Bonferroni$$
 
 The right method depends on the application. It's best to use conservative tests when the consequences are severe. A liberal test is more appropriate when you can accept that you may make Type 1 errors. When you have a large number of tests, FDR and q-values are best. 
 
-# In R
+## In R
 In R, we can use `pairwise.t.test(y, x)`, `p.adjust()`. We can also test contrasts using the `multcomp::glht()` function.
+
+# Multiple Corrections for Count Data
+
+Multiple testing assumptions assume that if a null hypothesis is true, then the p-values are uniform. This assumption is violated if you have small samples or low counts. When this occurs there are only a few possible p-values. If there is no true effect, p-values begin to pile up at very high values ($$p \approx 1$$). (When there are large samples or high counts, the CLT takes effect and the results look more continuous).
+
+Thus to satisfy assumptions, we filter out data with fewer than a certain number of samples (generally can use $$10$$). Following this adjustment, we can use the methods detailed above. 
+

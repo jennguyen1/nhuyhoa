@@ -2,7 +2,7 @@
 layout: post
 title: "Generic Machine Learning Algorithms"
 date: "December 28, 2015"
-categories: ['statistics', 'machine learning']
+categories: ['statistics', 'probability and inference']
 ---
 
 * TOC
@@ -35,7 +35,7 @@ The stochastic gradient descent algorithm updates the parameters after examining
 
 **Repeat{ for i = 1 to n: {**
       $$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta)$$
-**}}**
+**} }**
 
 A compromise between the two is mini-batch gradient descent. For this method rather than adjusting $$\theta_j$$ after looking at $$1$$ training observation, we look at $$m$$ training observations where $$m < n$$. The for loop iterations from $$1$$ to $$n$$ in steps of $$m$$. 
 
@@ -59,6 +59,14 @@ The expectation maximization algorithm is used to find the most likely values fo
 
 * Expectation step: given a model, predict the most likely parameter values
 * Maximization step: given parameters, learn a new model
+
+# Mutual Information
+
+The Kullback-Leibler (KL) divergence provides a distance measure between two distributions $$P$$ and $$Q$$. 
+
+$$D_{KL}(P(X) \vert Q(X)) = \sum_x P(x) \log \frac{P(x)}{Q(x)}$$
+
+KL can be used to assess the discrepancy between the network's estimate $$P_{net}(X, Y) $$ and the empirical estimate, with $$D_{KL}(\hat{P}(X, Y) \vert P_{net}(X, Y))$$.
 
 
 [glm_basics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Basics.html#fitting-glm

@@ -2,13 +2,18 @@
 layout: post
 title: "Bias Variance Tradeoff"
 date: "December 27, 2015"
-categories: ['statistics', 'machine learning']
+categories: ['statistics', 'probability and inference']
 ---
 
 * TOC
 {:toc}
 
-
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(jn.general)
+lib(data, viz)
+library(glmnet)
+knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
+```
 
 # Bias Variance Tradeoff
 
@@ -42,7 +47,25 @@ To understand the effectiveness of cross validation, we need to make a distincti
 It is easy to memorize, but harder to generalize. Training error tends to decrease as we introduce more flexibility to the model (overfitting). Thus training data can severely underestimate the testing error. Thus testing error should always be used as the model selection metric.
 
 Consider the following plot of prediction error against model complexity. As the model gets increasingly complex, training error decreases, even beyond the baseline error. Testing error intially decreases due to reduction of bias, but then increases due to increased variability.
-<img src="/nhuyhoa/figure/source/2015-12-27-ML-Bias-Variance/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+```{r, echo = FALSE}
+set.seed(1)
+# make data
+train <- rexp(100) %>% sort(decreasing = TRUE)
+test <- 1.25 + seq(-2, 2, length.out = 100)^2
+plot_data <- data.frame(x = c(1:100, 1:100), y = c(train, test), type = rep(c("train", "test"), each = 100))
+
+# plot data
+ggplot(data = plot_data, aes(x = x, y = y, color = type)) + 
+  geom_point() + 
+  # irreducible error 
+  geom_abline(intercept = 1, slope = 0, size = 1.25, alpha = 0.75) + 
+  annotate("text", x = 85, y = 1.25, label = "irreducible error") + 
+  # fix scales
+  scale_x_continuous(breaks = c(0, 50, 100), label = c("low", "-->", "high")) +
+  # titles
+  xlab("Model Complexity") + ylab("MSE") +
+  ggtitle("Prediction Error vs Model Complexity")
+```
 
 # Cross Validation
 The cross-validation procedure can be used to select the model parameters which minimizes error. (Thus it is commonly used on the training set). The CV error is compared across different models to select the one with the smallest CV error. 
@@ -73,7 +96,15 @@ $$RMSE = \sqrt{E\left((x - \bar{x})^2\right)}$$
 ## Classification
 The following is the confusion matrix we would get for a two-class classification problem. 
 
-<img src="/nhuyhoa/figure/source/2015-12-27-ML-Bias-Variance/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+```{r, echo = FALSE, fig.width = 3, fig.height = 2}
+opts <- c("Predicted (+)", "Predicted (-)")
+true.yes <- c("I", "III")
+true.no <- c("II", "IV")
+d <- data.frame(true.yes, true.no)
+rownames(d) <- opts
+colnames(d) <- c("True (+)", "True (-)")
+table_plot(d, title = "Classification Table") %>% grid.arrange
+```
 
 There are four possible outcomes:
 

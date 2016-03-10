@@ -60,7 +60,7 @@ $$I(X, Y) = \sum_{x, y} \hat{P}(x, y) \log \frac{\hat(P)(x, y)}{\hat{P}(x)\hat{P
 The Kullback-Leibler (KL) divergence can also be used. It provides a distance measure between two distributions P and Q. <br>
 $$D_{KL}(P(X) \vert Q(X)) = \sum_x P(x) \log \frac{P(x)}{Q(x)}$$
 
-KL can be used to assess the discrepancy between the network's estimate $$P_{net}(X, Y) $$and the empirical estiamte, with $$D_{KL}(\hat{P}(X, Y) \vert P_{net}(X, Y))$$.
+KL can be used to assess the discrepancy between the network's estimate $$P_{net}(X, Y) $$ and the empirical estimate, with $$D_{KL}(\hat{P}(X, Y) \vert P_{net}(X, Y))$$.
 
 ## Testing Structures
 Following the construction of a Bayesian network, we can do the following

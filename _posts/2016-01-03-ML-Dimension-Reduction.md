@@ -170,11 +170,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.553    2.579    2.473    2.533    2.532
-## adjCV        6.123    2.548    2.572    2.460    2.518    2.517
+## CV           6.123    2.598    2.627    2.489    2.574    2.615
+## adjCV        6.123    2.590    2.619    2.477    2.559    2.601
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.842    2.879    3.536    3.694     4.008
-## adjCV    2.802    2.838    3.444    3.596     3.877
+## CV       2.687    2.861    2.867    3.447     3.392
+## adjCV    2.666    2.831    2.834    3.380     3.324
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps

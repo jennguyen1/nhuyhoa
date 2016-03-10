@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Clustering"
+title: "Clustering Methods"
 date: "January 2, 2016"
 categories: ['statistics', 'machine learning']
 ---
@@ -255,9 +255,9 @@ The tuning parameters of this method includes
 
 Data point classifications:
 
-* Core point: a single data point $$p$$ is a core point if there are at least the minimimum specified number of points in its neighborhood. These points in the neighborhood are directly reachable
-* Reachable points: a data point $$q$$ is reachable from $$p$$ if there is a path from $$p$$ to $$q$$ where each preceding point is directly reachable from the suceding point
-* Outliers: all points not reachable from any other point
+* **Core point**: a single data point $$p$$ is a core point if there are at least the minimimum specified number of points in its neighborhood. These points in the neighborhood are directly reachable
+* **Reachable points**: a data point $$q$$ is reachable from $$p$$ if there is a path from $$p$$ to $$q$$ where each preceding point is directly reachable from the suceding point
+* **Outliers**: all points not reachable from any other point
 
 A cluster satisfies the following properties:
 

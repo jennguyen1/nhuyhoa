@@ -10,8 +10,6 @@ categories: ['r programming']
 
 
 
-# Links
-
 **General R**
 
 * [R reference][r_ref]{:target = "_blank"}
@@ -82,16 +80,49 @@ data.tables:
 sf()
 * translate_sql() in dplr r to sql
 
+plot multiple data frames: 
+
+{% highlight r %}
+ggplot() + 
+  geom_histogram(data=x, ...) +
+  geom_point(data = y, ...)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
+{% endhighlight %}
+
+
+
+{% highlight r %}
 iris %>%
      group_by(Species)  %>%
      do(mod = lm(Petal.Length~Petal.Width, data = .)) %>%
-     mutate(x = llply(mod, function(x) coef(x)[1])) %>%
+     mutate(x = llply(mod, function(x) coef(x)[1])) %>% # or use broom
      unnest(x)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "%>%"
+{% endhighlight %}
      
 nonstandard evaluation:
 
-* “1 == 2” %>% parse(text = .) %>% eval
-as.character(substitute(list(…))[-1]) # removes the list argument
+{% highlight r %}
+("1 == 2") %>% parse(text = .) %>% eval
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "%>%"
+{% endhighlight %}
+
+* as.character(substitute(list(…))[-1]) # removes the list argument
 * substitute(): generates an expression from input
 * deparse(): takes an expression & generate a string
 * quote(): like substitute, but always return input as is
@@ -106,8 +137,9 @@ as.character(substitute(list(…))[-1]) # removes the list argument
 * expression(): returns a list of expressions
 * get(): works by eval(deparse(text = ))
 
-function works!
 
+
+{% highlight r %}
 library(ggplot2)
 
 f <- function(data, x, y) {
@@ -129,6 +161,14 @@ f <- function(data, x, y) {
 }
 
 f(data.table(iris), Petal.Length, Petal.Width)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(varx, data): could not find function "data.table"
+{% endhighlight %}
+
 
 when called within a function the eval/subs won’t work
 make another one that takes a quoted expr (suffix _q for convention)
