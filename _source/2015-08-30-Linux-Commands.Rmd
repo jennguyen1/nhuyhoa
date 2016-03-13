@@ -178,8 +178,8 @@ ssh username@place
 # using rsync
 rsync -a filename username@place:file_directory
 
-# using scp (after ssh)
-scp original.file location.to.transfer
+# using scp 
+scp original.file user@location.to.transfer:file_path
 
 # using scp with directories
 scp -rp file location.to.transfer
