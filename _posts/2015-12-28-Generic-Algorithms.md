@@ -60,10 +60,30 @@ The expectation maximization algorithm is used to find the most likely values fo
 
 The Kullback-Leibler (KL) divergence provides a distance measure between two distributions $$P$$ and $$Q$$. 
 
-$$D_{KL}(P(X) \vert Q(X)) = \sum_x P(x) \log \frac{P(x)}{Q(x)}$$
+$$D_{KL}(P(X) \vert Q(X)) = \sum_x P(x) \log \frac{P(x)}{Q(x)} = \sum_i p_i [\log(p_i) - \log(q_i)]$$
 
-KL can be used to assess the discrepancy between the network's estimate $$P_{net}(X, Y) $$ and the empirical estimate, with $$D_{KL}(\hat{P}(X, Y) \vert P_{net}(X, Y))$$.
+If the two distributions are indpendent, then $$P$$ is non-informative about $$Q$$. The KL divergence will be small. 
 
+We can use KL divergence to understand comparing models with divergence. Deviance is an estimate of relative information divergence.
+
+
+-------------------------------|----------------
+$$D_{KL}(p,q) - D_{KL}(p, r)$$ | $$ = -sum_i p_i (\log q_i - \log r_i)$$ 
+                               | $$ \propto D(q) - D(r)$$
+                               
+Deviance is defined as $$-2\sum_i log(q_i)$$.
+
+Thus deviance can be thought of as comparing two distributions using KL divergence. 
+
+# Ensembles
+
+Ensembling means to combine multiple models. Ensembling often obtains better predictions than single models. Ensemble techniques include random forests and boosting. 
+
+Model ensemble procedure
+
+* Obtain predictions/prediction distributions for each model
+* Compute weights (may be based of CV, information criteria, linear model to predict on hold-out set, etc)
+* Combine predictions using model weights
 
 [glm_basics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Basics.html#fitting-glm
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "SQL Basics"
-date: "December 21, 2015"
+date: "December 17, 2015"
 categories: ['data wrangling']
 ---
 
@@ -63,7 +63,7 @@ Aggregate functions tend to be used along with the `group by` command. These fun
 * `count( * )`
 * `count( distinct A )`
 * `sum( distinct A )`
-* `avg( distinct A)`
+* `avg( distinct A )`
 * `max( A )`
 * `min( A )`
 

@@ -70,7 +70,7 @@ $$f(\theta \vert x)$$ | $$= \frac{\binom{n}{x} \frac{\Gamma(\alpha + \beta)}{\Ga
 
 <br>
 
-So we have the posterio distribution $$f(\theta \vert x)$$ ~ $$Beta(x + \alpha, n - x + \beta)$$
+So we have the posterior distribution $$f(\theta \vert x)$$ ~ $$Beta(x + \alpha, n - x + \beta)$$
 
 We obtain an estimate of $$\theta$$
 
@@ -82,6 +82,7 @@ $$E[f(\theta \vert x)] = \hat{\theta} = \left( \frac{\alpha + \beta}{\alpha + n 
 
 Thus the posterior mean is a weighted average between the prior mean and the maximum likelihood estimate.
 
+Often times we don't have to solve the marginal pdf of $$X$$. We can just compute the numerator, extract all terms involving the parameter, and match that result to a kernal of a known distribution. 
 
 # Probability Distributions
 

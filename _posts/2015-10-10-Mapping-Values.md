@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mapping Values"
+title: "Mapping Values (R)"
 date: "October 10, 2015"
 categories: ['data wrangling']
 ---
@@ -215,7 +215,7 @@ switch(
 
 
 {% highlight text %}
-## [1] 300
+## [1] 200
 {% endhighlight %}
 
 `switch()` can also be used to execute many lines of code. Simply use place these executions inside the brackets `{}`. 

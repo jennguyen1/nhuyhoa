@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Split Apply Combine"
+title: "Split Apply Combine (R)"
 date: "October 30, 2015"
 categories: ['data wrangling']
 ---
@@ -280,12 +280,12 @@ class3 %>%
 ```
 </div>
 
-## do
+## do and unnest
 Sometimes `summarise()` and `mutate()` just isn't enough. Luckily, there is a function `do()` that is perfect for these scenarios. 
 
 In our data set we have unique student-teacher linkages for each unique subject and grade combination. However, when we ignore subject and grade, we may have duplicated linkages. 
 
-```{r}
+```{r, echo = FALSE}
 class %>%
   # subset to the duplicates
   view_duplicated(student_id, teacher_id) %>% 
@@ -324,7 +324,7 @@ class_edit %>% nhuyhoa_df_print()
 </div><p></p>
 
 And here we see that those duplicates were indeed removed.
-```{r}
+```{r, echo = FALSE}
 class_edit %>%
   # subset to the duplicates
   view_duplicated(student_id, teacher_id) %>% 
@@ -336,7 +336,7 @@ class_edit %>%
 
 `do()` is versatile because it can handle a variety of different output types. 
 
-Here I create summary tables of posttest_score regressed against pretest_score for each unique combination of subject and grade. 
+Here I create summary tables of $$posttest.score$$ regressed against $$pretest.score$$ for each unique combination of subject and grade. 
 ```{r}
 class %>% 
   # split: by subject and grade
@@ -346,26 +346,19 @@ class %>%
   do(model = lm(posttest_score ~ pretest_score, data = .))
 ```
 
-This output isn't too meaningful, so we can use the `broom` package to extract more useful output.
+This output isn't too meaningful, so we can use the `broom` package along with `tidyr::unnest()` to extract the model coefficients. (Try on your own browser).
 
 ```{r, eval = FALSE}
 class %>% 
   # split: by subject and grade
   group_by(subject, grade) %>% 
   # apply: regression model on splits
-  # combine: the model coefficients
-  do(tidy(lm(posttest_score ~ pretest_score, data = .)))
+  do(model = lm(posttest_score ~ pretest_score, data = .)) %>% 
+  # apply: tidy up models into coefficient table
+  mutate(tidy_df = llply(model, tidy)) %>%
+  # combine coefficient tables across models
+  unnest(tidy_df)
 ```
-
-<div class = "dftab">
-```{r, echo = FALSE}
-o <- class %>% 
-  group_by(subject, grade) %>% 
-  do(tidy(lm(posttest_score ~ pretest_score, data = .)))
-
-o %>% nhuyhoa_df_print(8)
-```
-</div><p></p>
 
 # Using data.table
 The data.table package has optimized data frames to be able to handle large amounts of data. 

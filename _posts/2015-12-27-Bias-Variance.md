@@ -47,7 +47,7 @@ Consider the following plot of prediction error against model complexity. As the
 # Cross Validation
 The cross-validation procedure can be used to select the model parameters which minimizes error. (Thus it is commonly used on the training set). The CV error is compared across different models to select the one with the smallest CV error. 
 
-Procedure:
+**Procedure:**
 
 * Randomly divide data into $$K$$ equal-sized, nonoverlapping parts, usually $$K = 5$$ or $$10$$
 * Repeat for all $$k$$
@@ -99,4 +99,127 @@ Precision recall curves are preferred over ROC when there are highly skewed clas
 For example, cancer cases may be skewed towards the negative cancer (more non-cancer cases than cancer). However, it is extremely important to detect cancer when it exists. So focusing on precision and recall is definitely preferred over true positive and false positive rates. 
 
 The PR curve plots the precision vs. recall. An ideal algorithm will hug the upper right hand side of the curve. 
+
+In R, we can generate a confusion matrix with `caret::confusionMatrix(test$pred, test$obs)`. 
+
+
+# In R: Caret
+
+In R, we can use the `caret` package to conduct model searches with tuning. 
+
+**Preprocessing Functions:**
+
+{% highlight r %}
+# generates the design matrix
+mode.matrix(y ~ ., data = x)
+dummyVars(y ~ ., data = x)
+
+# identify correlated predictors
+x.cor <- cor(x)
+high.cor <- findCorrelation(x.cor, cutoff = 0.75)
+x[, -high.cor]
+
+# find linear dependencies
+findLinearCombos(x)
+
+# center and scale the data
+# make a function based off training data and apply to both train and test
+pre.proc.values <- preProcess(train.dat, method = c("center", "scale"))
+train.transformed <- predict(pre.proc.values, train.dat)
+test.transformed <- predict(pre.proc.values, test.dat)
+{% endhighlight %}
+
+**Data Partitions:**
+
+{% highlight r %}
+# create training and test set
+createDataPartition()
+
+# create folds for k-fold cross validation
+createFolds()
+
+# create multiple folds for k-fold cross validation
+createMultiFolds()
+
+# create bootstrap samples
+createResample()
+{% endhighlight %}
+
+**Model Training and Tuning:**
+
+{% highlight r %}
+# training controls
+trainControl(
+  method, # resampling method: boot, cv, loocv, repeatedcv, oob, none
+  number, # number of folds for cv methods
+  repeats, # number of repeats for repeated cv
+  classProbs, # classification: predicted class probabilities & labels 
+  summaryFunction, # function to compute performance metrics across resamples
+  selectionFunction, # function to select best tuning parameter
+  allowParallel # option to run tuning in parallel
+)
+{% endhighlight %}
+
+
+{% highlight r %}
+# model training
+train(x, y, formula, data, # model formula
+  method,  # model/method for fitting 
+  preProcess, # arguments for preprocessing
+  ..., # additional args for fitting method
+  metric, # metric to use for optimizing 
+  maximize, #   how to optimize, depends on metric
+  trControl, # trainControl() above
+  tuneGrid # data.frame of tuning parameters and values to try
+)
+{% endhighlight %}
+
+For more information about these options, see the available help pages provided by the package. 
+
+A few notes on parameters of `train` and `trainControl`
+
+* To tune models, pass in a data frame with the tuning parameters (as columns) and its potential values. To fit one model, pass in a data frame with one row of tuning parameters and set the `trainControl` option `method` to "none".
+* Several options for `summaryFunction` in `trainControl` are available in the help page. Can also pass in user-defined functions as long as it contains the same parameters and return types.
+* Several options for `selectionFunction` in `trainControl` are availabe in the help page. Can also pass in user-defined functions as long as it contains the same parameters and return types.
+
+**Visualize Training Performance:**
+
+{% highlight r %}
+# summary of results
+train.obj$results
+getTrainPerf(train.obj)
+
+# plot results (see plot.train for help)
+ggplot(train.obj, metric, plotType)
+{% endhighlight %}
+
+**Compare Training Performance Across Several Models:**
+
+{% highlight r %}
+# combine the files into one
+models <- resamples(list(GBM = gbm.fit, SVM = svm.fit, RF = rf.fit))
+
+# obtain summary statistics
+summary(models)
+
+# box plot and dotplot comparisons (see xyplot.resamples for help)
+bwplot(models, layout = c(3,1))
+dotplot(models)
+
+# differences between models
+diff.mods <- diff(models)
+summary(diff.mods)
+bwplot(diff.mods)
+{% endhighlight %}
+
+
+**Predictions:**
+
+{% highlight r %}
+# predict for continuous responses
+predict(train.obj, newdata)
+
+# predict for categorical responses
+predict(train.obj, newdata, type = c("class", "prob"))
+{% endhighlight %}
 

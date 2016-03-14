@@ -55,7 +55,8 @@ printf "%04d" 15
 
 * `grep` for pattern matching
   * `grep -c` counts matches
-  *`grep -i` ignores case
+  * `grep -i` ignores case
+  * `grep -e` expanded regular expression 
   * special characters: `^`, `$`, `*`
 * `tr 'abc' 'ABC'` translate lower case to upper case
   * `tr a b < file` translate a to b in the file
@@ -71,6 +72,13 @@ printf "%04d" 15
 * `unexpand` converts spaces to tabs
 * `fold` prints out content in more readable format
 * `colrm` removes columns from being printed
+
+
+{% highlight r %}
+# find the 10 most common words
+cat temp.txt | tr "[A-Z]" "[a-z]" | tr -c "[:alnum:]" "[\n*]" | sort | uniq -c | sort -nr | head -10
+{% endhighlight %}
+
 
 ## Finding Files
 
@@ -180,8 +188,8 @@ ssh username@place
 # using rsync
 rsync -a filename username@place:file_directory
 
-# using scp (after ssh)
-scp original.file location.to.transfer
+# using scp 
+scp original.file user@location.to.transfer:file_path
 
 # using scp with directories
 scp -rp file location.to.transfer

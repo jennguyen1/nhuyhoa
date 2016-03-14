@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Split Apply Combine"
+title: "Split Apply Combine (R)"
 date: "October 30, 2015"
 categories: ['data wrangling']
 ---
@@ -528,22 +528,10 @@ class %>%
 </table>
 </div>
 
-## do
+## do and unnest
 Sometimes `summarise()` and `mutate()` just isn't enough. Luckily, there is a function `do()` that is perfect for these scenarios. 
 
 In our data set we have unique student-teacher linkages for each unique subject and grade combination. However, when we ignore subject and grade, we may have duplicated linkages. 
-
-
-{% highlight r %}
-class %>%
-  # subset to the duplicates
-  view_duplicated(student_id, teacher_id) %>% 
-  # subset to the unique linkages that are duplicated
-  distinct(student_id, teacher_id) %>% 
-  # find the number of duplicated linkages
-  nrow
-{% endhighlight %}
-
 
 
 {% highlight text %}
@@ -659,25 +647,13 @@ class_edit %>% head
 
 And here we see that those duplicates were indeed removed.
 
-{% highlight r %}
-class_edit %>%
-  # subset to the duplicates
-  view_duplicated(student_id, teacher_id) %>% 
-  # subset to the unique linkages that are duplicated
-  distinct(student_id, teacher_id) %>% 
-  # find the number of duplicated linkages
-  nrow
-{% endhighlight %}
-
-
-
 {% highlight text %}
 ## [1] 0
 {% endhighlight %}
 
 `do()` is versatile because it can handle a variety of different output types. 
 
-Here I create summary tables of posttest_score regressed against pretest_score for each unique combination of subject and grade. 
+Here I create summary tables of $$posttest.score$$ regressed against $$pretest.score$$ for each unique combination of subject and grade. 
 
 {% highlight r %}
 class %>% 
@@ -702,7 +678,7 @@ class %>%
 ## 4    read    12 <S3:lm>
 {% endhighlight %}
 
-This output isn't too meaningful, so we can use the `broom` package to extract more useful output.
+This output isn't too meaningful, so we can use the `broom` package along with `tidyr::unnest()` to extract the model coefficients. (Try on your own browser).
 
 
 {% highlight r %}
@@ -710,99 +686,12 @@ class %>%
   # split: by subject and grade
   group_by(subject, grade) %>% 
   # apply: regression model on splits
-  # combine: the model coefficients
-  do(tidy(lm(posttest_score ~ pretest_score, data = .)))
+  do(model = lm(posttest_score ~ pretest_score, data = .)) %>% 
+  # apply: tidy up models into coefficient table
+  mutate(tidy_df = llply(model, tidy)) %>%
+  # combine coefficient tables across models
+  unnest(tidy_df)
 {% endhighlight %}
-
-<div class = "dftab">
-<table>
- <thead>
-  <tr>
-   <th style="text-align:center;"> subject </th>
-   <th style="text-align:center;"> grade </th>
-   <th style="text-align:center;"> term </th>
-   <th style="text-align:center;"> estimate </th>
-   <th style="text-align:center;"> std.error </th>
-   <th style="text-align:center;"> statistic </th>
-   <th style="text-align:center;"> p.value </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> -0.1128 </td>
-   <td style="text-align:center;"> 0.0628 </td>
-   <td style="text-align:center;"> -1.7965 </td>
-   <td style="text-align:center;"> 0.0736 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> -0.0501 </td>
-   <td style="text-align:center;"> 0.0613 </td>
-   <td style="text-align:center;"> -0.8161 </td>
-   <td style="text-align:center;"> 0.4152 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> 0.0283 </td>
-   <td style="text-align:center;"> 0.0645 </td>
-   <td style="text-align:center;"> 0.4385 </td>
-   <td style="text-align:center;"> 0.6614 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> 0.0176 </td>
-   <td style="text-align:center;"> 0.0580 </td>
-   <td style="text-align:center;"> 0.3032 </td>
-   <td style="text-align:center;"> 0.7620 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> 0.0204 </td>
-   <td style="text-align:center;"> 0.0677 </td>
-   <td style="text-align:center;"> 0.3016 </td>
-   <td style="text-align:center;"> 0.7632 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> 0.0357 </td>
-   <td style="text-align:center;"> 0.0620 </td>
-   <td style="text-align:center;"> 0.5751 </td>
-   <td style="text-align:center;"> 0.5657 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> -0.0136 </td>
-   <td style="text-align:center;"> 0.0659 </td>
-   <td style="text-align:center;"> -0.2057 </td>
-   <td style="text-align:center;"> 0.8372 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> -0.0763 </td>
-   <td style="text-align:center;"> 0.0635 </td>
-   <td style="text-align:center;"> -1.2001 </td>
-   <td style="text-align:center;"> 0.2313 </td>
-  </tr>
-</tbody>
-</table>
-</div><p></p>
 
 # Using data.table
 The data.table package has optimized data frames to be able to handle large amounts of data. 
