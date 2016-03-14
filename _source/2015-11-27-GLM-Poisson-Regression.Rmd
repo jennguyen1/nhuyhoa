@@ -17,7 +17,7 @@ data(solder)
 ```
 
 # Count Response
-Suppose the response $$Y_i$$ ~ $$Pois(\mu_i)$$ where $$\mu > 0$$ and the $$Y_i$$ are independent
+Suppose the response $$Y_i \sim Pois(\mu_i)$$ where $$\mu > 0$$ and the $$Y_i$$ are independent
 
 $$P(Y_i = y_i) = \frac{e^{\mu_i} \mu_i^{y_i}}{y_i!}$$
 

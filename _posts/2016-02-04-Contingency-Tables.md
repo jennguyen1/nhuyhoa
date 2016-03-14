@@ -13,17 +13,17 @@ categories: ['statistics', 'experimental design']
 # Goodness of Fit Tests
 
 ## Pearson Chi-Square and Deviance
-Let $$Y_1$$ ~ $$Bin(n, p_1)$$. Then $$E[Y_1] = np_1$$ and $$Var(Y_1) = np_1(1 - p_1)$$. For large samples ($$np_1 \ge 5$$ and $$n(1 - p_1) \ge 5$$), the CLT yields the normal distribution approxiation to the binomial distribution. 
+Let $$Y_1 \sim Bin(n, p_1)$$. Then $$E[Y_1] = np_1$$ and $$Var(Y_1) = np_1(1 - p_1)$$. For large samples ($$np_1 \ge 5$$ and $$n(1 - p_1) \ge 5$$), the CLT yields the normal distribution approxiation to the binomial distribution. 
 
 $$Z = \frac{Y_1 - np_1}{\sqrt{np_1(1 - p_1)}}$$
 
-where $$Z$$ ~ $$N(0, 1)$$. 
+where $$Z \sim N(0, 1)$$. 
 
 Squaring $$Z$$ we get
 
 $$Z^2 = X^2 = \frac{(Y_1 - np_1)^2}{np_1(1 - p_1)}$$ 
 
-where $$X^2$$ ~ $$\chi^2_1$$. 
+where $$X^2 \sim \chi^2_1$$. 
 
 We can rearrange to get
 
@@ -51,7 +51,7 @@ The chi-square statistic for a $$k$$ category table is
 
 $$X^2 = \sum^k_{i = 1} \frac{Y_i - np_i}{np_i}$$
 
-where $$X^2$$ ~ $$\chi^2_{k - 1}$$.
+where $$X^2 \sim \chi^2_{k - 1}$$.
 
 The deviance statistic is derived from the likelihood ratio test
 
@@ -132,7 +132,7 @@ We have $$I(J - 1)$$ df (each row is multinomial so $$n_i$$ is fixed) and estima
 
 $$df  = IJ - I - J + 1 = (I - 1)(J - 1)$$
 
-So the statistic $$X^2$$ ~ $$\chi^2_{(I - 1)(J - 1)}$$
+So the statistic $$X^2 \sim \chi^2_{(I - 1)(J - 1)}$$
 
 ## Independence
 Now consider that we hold the total sample size fixed (but not the marginal totals). Each cell is a Poisson random variable with its own rate. Then we cross-classify each subject into one and only one of the mutually exclusive and exhaustive $$A_i \cap B_i$$. 
@@ -162,7 +162,7 @@ We have $$(IJ - 1)$$ df (only grand total $$n$$ is fixed) and estimate $$(I + J 
 
 $$df  = IJ - 1 + - I - J + 2 = IJ - I - J + 1 = (I - 1)(J - 1)$$
 
-So the statistic $$X^2$$ ~ $$\chi^2_{(I - 1)(J - 1)}$$
+So the statistic $$X^2 \sim \chi^2_{(I - 1)(J - 1)}$$
 
 ## Sensitivity Analysis
 A test statistic or p-value is a measure of the evidence against $$H_0$$ that depends on the effect size. An effect size should not change if $$n$$ is arbitrarily increased. 
@@ -295,7 +295,7 @@ The Mantel-Haenszel statistic is
 
 $$ M^2 = (n - 1)r^2$$
 
-where $$M^2$$ ~ $$X^2_1$$. 
+where $$M^2 \sim X^2_1$$. 
 
 * If the two variables are independent, $$\rho = 0, M^2 = 0$$
 * If the two variables are perfectly associated, $$\rho = 1, M^2 = (n - 1)$$
@@ -320,7 +320,7 @@ $$H_0: p_{12} = p_{21}$$
 
 We can use McNemar's test to test for marginal homogeneity and symmetry. 
 
-Suppose that $$n_{12} + n_{21}$$ is fixed. Under the null hypothesis, we would expect the frequency of counts in $$n_{12}$$ as in $$n_{21}$$. Thus $$n_{12}$$ ~ $$Bin(n_{12} + n_{21}, 0.5)$$. 
+Suppose that $$n_{12} + n_{21}$$ is fixed. Under the null hypothesis, we would expect the frequency of counts in $$n_{12}$$ as in $$n_{21}$$. Thus $$n_{12} \sim Bin(n_{12} + n_{21}, 0.5)$$. 
 
 Assuming that $$n_{12} + n_{21}$$ is large, we would have the test statistic
 
@@ -332,7 +332,7 @@ We can square the above value to get
 
 $$X^2 = \frac{(n_{12} - n_{21})^2}{\sqrt{n_{12} + n_{21}}}$$
 
-where $$X^2$$ ~ $$\chi^2_1$$. This test is valid when $$n$$ is fixed (but not $$n_{12} + n_{21}$$). 
+where $$X^2 \sim \chi^2_1$$. This test is valid when $$n$$ is fixed (but not $$n_{12} + n_{21}$$). 
 
 We can obtain confidence intervals on the difference between the marginal proportions
 
@@ -361,7 +361,7 @@ $$\hat{d} \pm z_{\alpha/2} \sqrt{\hat{Var}(\hat{d})}$$
 
 With $$k$$-way tables, we have a different sampling scheme. We can think if it as stratified sampling where we have a fixed sample size for each partial table. 
 
-For modeling independence and association in $$3##-way tables, we consider several types of relationships
+For modeling independence and association in $$3$$-way tables, we consider several types of relationships
 
 * Mutual independence: all variables are independent $$A \perp B \perp C$$ or $$(A, B, C)$$
 * Joint independence: two variables are jointly independent given the third $$AB \perp C$$ or $$(AB, C)$$
@@ -441,7 +441,7 @@ $$M^2 = \frac{[\sum_k (n_{11k} - \mu_{11k})]^2}{\sum_k Var(n_{11k})}$$
 
 where $$\mu_{11k} = E(n_{11}) = \frac{n_{1+k}n_{+1k}}{n_{++k}}$$ and $$Var(n_{11k}) = \frac{n_{1+k} n_{2+k} n_{+1k} n_{+2k}}{n_{++k}^2(n_{++k} - 1)}$$.
 
-The statistic $$M^2$$ ~ $$\chi^2_1$$.
+The statistic $$M^2 \sim \chi^2_1$$.
 
 We can obtain an estimate of the common odds ratio
 

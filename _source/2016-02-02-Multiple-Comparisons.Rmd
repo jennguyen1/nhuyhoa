@@ -121,7 +121,7 @@ Tukey's method is uses the studentized range distribution. The studentized range
 
 $$q_{m, df} = \frac{w}{s}$$
 
-where the observations $$Y_i$$ ~ $$iidN(\mu, \sigma^2)$$, $$w$$ is the range of the observations, and $$s$$ is the estimated standard deviation. The distribution parameters are $$m = $$ number of groups and $$df = $$ degrees of freedom for $$s^2$$, the estimate of $$\sigma^2$$.
+where the observations $$Y_i \sim iidN(\mu, \sigma^2)$$, $$w$$ is the range of the observations, and $$s$$ is the estimated standard deviation. The distribution parameters are $$m = $$ number of groups and $$df = $$ degrees of freedom for $$s^2$$, the estimate of $$\sigma^2$$.
 
 Procedure:
 

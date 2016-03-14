@@ -24,23 +24,23 @@ There's two ways to do this.
 
 **Assume $$\sigma^2$$ Known**
 
-We know that by the CLT $$\bar{X}$$ ~ $$N(\mu, \sigma^2)$$.  
+We know that by the CLT $$\bar{X} \sim N(\mu, \sigma^2)$$.  
 
 We can calculate the test statistic 
 
 $$Z = \frac{\bar{X} - \mu_0}{\sqrt{\sigma^2/n}}$$
 
-where $$Z$$ ~ $$N(0, 1)$$ under the null hypothesis. We can compute the p-value to test $$H_0$$.
+where $$Z \sim N(0, 1)$$ under the null hypothesis. We can compute the p-value to test $$H_0$$.
 
 **Assume $$\sigma^2$$ Unknown**
 
 Suppose the population variance is not known. Since we don't know $$\sigma^2$$, we can estimate it with the sample variance $$s^2$$. We can derive our test statistic from [probability theory][stat_theory_link]{:target = "_blank"}. 
 
-Let $$Z$$ ~ $$N(0, 1)$$ and $$\frac{(n - 1)s^2}{\sigma^2}$$ ~ $$X^2_{n-1}$$
+Let $$Z \sim N(0, 1)$$ and $$\frac{(n - 1)s^2}{\sigma^2} \sim X^2_{n-1}$$
 
 $$T = \frac{\frac{\bar{X} - \mu_0}{\sqrt{\sigma^2/n}}}{\sqrt{\frac{(n - 1)s^2}{\sigma^2}/(n-1)}} = \frac{\bar{X} - \mu_0}{\sqrt{s/n}}$$
 
-where $$T$$ ~ $$t_{n - 1}$$ under the null hypothesis. We can compute the p-value to test $$H_0$$. 
+where $$T \sim t_{n - 1}$$ under the null hypothesis. We can compute the p-value to test $$H_0$$. 
 
 ## Nonparametric Test
 
@@ -110,7 +110,7 @@ $$s^2_p = \frac{(n_1 - 1)s^2_1 + (n_2 - 1) s^2_2}{n_1 - 1 + n_2 - 1}$$
 
 which is a weighted average of the sample variances.
 
-The statistic $$T$$ ~ $$t_{n_1 + n_2 - 2}$$.
+The statistic $$T \sim t_{n_1 + n_2 - 2}$$.
 
 **Unequal Variance**
 
@@ -118,7 +118,7 @@ If the variances are not equal
 
 $$\hat{Var}(\hat{Y}_1 - \hat{Y}_2) = \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2}$$
 
-The statistic $$T$$ ~ $$t_{r}$$ where
+The statistic $$T \sim t_{r}$$ where
 
 $$r = \frac{\left( \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2} \right)^2}{\frac{(s^2_x/n_1)^2}{n_1 - 1} + \frac{(s^2_y/n_2)^2}{n_2 - 1}}$$
 
@@ -137,7 +137,7 @@ where
 
 $$s^2_D = \sum (D_i - \bar{D})^2/(n - 1)$$ the sample variance of the differences and $$D$$ is the differences between the paired treatments.
 
-The statistic $$T$$ ~ $$t_{n - 1}$$.
+The statistic $$T \sim t_{n - 1}$$.
 
 ## Experimental Design vs Analysis
 Suppose two scenarios where we assume equal variance

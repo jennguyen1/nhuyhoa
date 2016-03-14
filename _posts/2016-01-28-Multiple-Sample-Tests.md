@@ -61,7 +61,7 @@ run;
 Regardless of the type, ANOVAs have the same assumptions:
 
 1. Independence: within and across treatments
-2. Normality: $$Y_{ij}$$ ~ $$N(\mu_i, \sigma^2_i)$$
+2. Normality: $$Y_{ij} \sim N(\mu_i, \sigma^2_i)$$
 3. Equal Variance: $$\sigma^2_1 = ... = \sigma^2_k$$
 
 ## Factorial Designs
@@ -100,7 +100,7 @@ Total | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2$$ | $$kn-1
 
 <p></p>
  
-where $$F$$ ~ $$F_{dfTrt, dfErr}$$. When $$F$$ is large, we say that the group effect is large so we reject the null hypothesis that the groups are the same.
+where $$F \sim F_{dfTrt, dfErr}$$. When $$F$$ is large, we say that the group effect is large so we reject the null hypothesis that the groups are the same.
 
 We can derive this distribution from [probability theory][stat_theory_link]{:target = "_blank"}. The value $$\frac{df * MS}{\sigma^2}$$ is distributed $$X^2$$. So 
 
@@ -125,7 +125,7 @@ where
 * $$i = 1, ..., a$$ denotes the levels of factor A
 * $$j = 1, ..., b$$ denotes the levels of factor B
 * $$l = 1, ..., n$$ denotes replicates of each factor combination
-* $$\epsilon_{ijl}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+* $$\epsilon_{ijl} \sim N(0, \sigma^2_{\epsilon})$$ represents the plot error
 
 
 **ANOVA Table**
@@ -164,7 +164,7 @@ where
 * $$j = 1, ..., b$$ denotes the levels of factor B
 * $$k = 1, ..., c$$ denotes the levels of factor C
 * $$l = 1, ..., n$$ denotes replicates of each factor combination
-* $$\epsilon_{ijkl}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+* $$\epsilon_{ijkl} \sim N(0, \sigma^2_{\epsilon})$$ represents the plot error
 
 **ANOVA Table**
 
@@ -219,7 +219,7 @@ where
 
 * $$i = 1, ..., k$$ denotes the levels of treatment
 * $$j = 1, ..., b$$ denotes the levels of blocks
-* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+* $$\epsilon_{ij} \sim N(0, \sigma^2_{\epsilon})$$ represents the plot error
 
 **ANOVA Table**
 
@@ -252,7 +252,7 @@ where
 * $$i = 1, ..., a$$ denotes the levels of factor A
 * $$j = 1, ..., b$$ denotes the levels of blocks
 * $$k = 1, ..., c$$ denotes the levels of factor C
-* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+* $$\epsilon_{ij} \sim N(0, \sigma^2_{\epsilon})$$ represents the plot error
 
 **ANOVA Table**
 
@@ -283,7 +283,7 @@ where
 * $$i = 1, ..., k$$ denotes the levels of treatment
 * $$j = 1, ..., k$$ denotes the levels of row blocks
 * $$l = 1, ..., k$$ denotes the levels of column blocks
-* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the plot error
+* $$\epsilon_{ij} \sim N(0, \sigma^2_{\epsilon})$$ represents the plot error
 
 **ANOVA Table**
 
@@ -311,8 +311,8 @@ where
 
 * $$i = 1, ..., k$$ denotes the levels of treatment
 * $$j = 1, ..., n$$ denotes the experimental units for each treatment
-* $$A_i$$ ~ $$N(0, \sigma^2_A)$$ corresponds to the random effect (group variation)
-* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ represents the error within each group
+* $$A_i \sim N(0, \sigma^2_A)$$ corresponds to the random effect (group variation)
+* $$\epsilon_{ij} \sim N(0, \sigma^2_{\epsilon})$$ represents the error within each group
 
 Note that this is quite similar to the fixed effects (previous models) that were covered. However, $$A_i$$ represents a sample from some population $$N(0, \sigma^2_A)$$ which we are interested in (rather than specific distinct group). 
 
@@ -364,7 +364,7 @@ Consider a one-sample test with subsampling. The model is written as
 
 $$Y_{ij} = \mu + \epsilon_i + \delta_{ij}$$ 
 
-where $$\epsilon_i$$ ~ $$N(0, \sigma^2_{\epsilon})$$ and $$\delta_{ij}$$ ~ $$N(0, \sigma^2_{\delta})$$. In this setting $$\epsilon$$ represents the experimental units, while $$\delta$$ represents the subsamples.
+where $$\epsilon_i \sim N(0, \sigma^2_{\epsilon})$$ and $$\delta_{ij} \sim N(0, \sigma^2_{\delta})$$. In this setting $$\epsilon$$ represents the experimental units, while $$\delta$$ represents the subsamples.
 
 One interesting note is that this model will give equivalent results if one were to average the subsamples (technical replicates) and run a regular ANOVA. In other words,
 
@@ -385,8 +385,8 @@ where
 * $$i = 1, ..., k$$ denotes the levels of treatment
 * $$j = 1, ..., n$$ denotes the experimental units for each treatment
 * $$l = 1, ..., s$$ denotes the subsample within each experimental unit
-* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the error within experimental units
-* $$\delta_{ijl}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subsample error
+* $$\epsilon_{ij} \sim N(0, \sigma^2_{\epsilon})$$ corresponds to the error within experimental units
+* $$\delta_{ijl} \sim N(0, \sigma^2_{\delta})$$ represents the subsample error
 
 **ANOVA Table**
 
@@ -418,8 +418,8 @@ where
 * $$i = 1, ..., k$$ denotes the levels of treatment
 * $$j = 1, ..., b$$ denotes the blocks
 * $$l = 1, ..., s$$ denotes the subsample within each plot
-* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the plot error
-* $$\delta_{ijl}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subsample error
+* $$\epsilon_{ij} \sim N(0, \sigma^2_{\epsilon})$$ corresponds to the plot error
+* $$\delta_{ijl} \sim N(0, \sigma^2_{\delta})$$ represents the subsample error
 
 **ANOVA Table**
 
@@ -456,8 +456,8 @@ where
 * $$i = 1, ..., a$$ denotes the levels of factor A
 * $$k = 1, ..., c$$ denotes the levels of factor C
 * $$j = 1, ..., b$$ denotes experimental units (whole plot) for each factor of A
-* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the whole plot error 
-* $$\delta_{ijk}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subplot error
+* $$\epsilon_{ij} \sim N(0, \sigma^2_{\epsilon})$$ corresponds to the whole plot error 
+* $$\delta_{ijk} \sim N(0, \sigma^2_{\delta})$$ represents the subplot error
 * $$\epsilon_{ij}$$ is independent of $$\delta_{ijk}$$
 
 **ANOVA Table**
@@ -495,8 +495,8 @@ where
 * $$i = 1, ..., a$$ denotes the levels of factor A
 * $$k = 1, ..., c$$ denotes the levels of factor C
 * $$j = 1, ..., b$$ denotes blocks at the whole plot
-* $$\epsilon_{ij}$$ ~ $$N(0, \sigma^2_{\epsilon})$$ corresponds to the whole plot error 
-* $$\delta_{ijk}$$ ~ $$N(0, \sigma^2_{\delta})$$ represents the subplot error
+* $$\epsilon_{ij} \sim N(0, \sigma^2_{\epsilon})$$ corresponds to the whole plot error 
+* $$\delta_{ijk} \sim N(0, \sigma^2_{\delta})$$ represents the subplot error
 * $$\epsilon_{ij}$$ is independent of $$\delta_{ijk}$$
 
 **ANOVA Table**

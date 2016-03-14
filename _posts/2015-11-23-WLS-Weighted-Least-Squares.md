@@ -13,7 +13,7 @@ categories: ['statistics', 'regression analysis']
 # Why It's Needed
 Linear regression assumes constant variance of the errors (homoskedasticity). In other words,
 
-$$ Y $$ ~ $$N(X\beta, \sigma^2 I)$$
+$$ Y  \sim N(X\beta, \sigma^2 I)$$
 
 However, when this assumption of constance variance is violated (heteroskedasticity), we need to sufficiently adjust for the unequal variances in our modeling.
 

@@ -21,6 +21,12 @@ categories: ['r programming']
 
 * [ggplot2 cheatsheet][ggplot2_ref]{:target = "_blank"}
 * [GGally::ggpairs()][grid.arrange]{:target = "_blank"}
+* Plotmath
+
+{% highlight r %}
+help(plotmath)
+{% endhighlight %}
+
 * RColorBrewer
 
 
@@ -29,7 +35,7 @@ library(RColorBrewer)
 display.brewer.all()
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-2](/nhuyhoa/figure/source/2015-07-24-R-cool-functions/unnamed-chunk-2-1.png)
+![plot of chunk unnamed-chunk-3](/nhuyhoa/figure/source/2015-07-24-R-cool-functions/unnamed-chunk-3-1.png)
 
 
 **Other R Apps**

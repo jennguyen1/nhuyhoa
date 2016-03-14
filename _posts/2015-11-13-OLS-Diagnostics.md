@@ -47,13 +47,13 @@ $$ \hat{\epsilon}_i = y_i - \hat{y}_i $$
 
 $$ r_i = \frac{\hat{\epsilon}_i }{\hat{\sigma \sqrt{1 - h_{ii}}}}$$ 
 
-where $$\frac{r_i^2}{n - p}$$ ~ $$Beta(\frac{1}{2}, \frac{1}{2}(n - p - 1))$$
+where $$\frac{r_i^2}{n - p} \sim Beta(\frac{1}{2}, \frac{1}{2}(n - p - 1))$$
 
 **Externally standardized residuals** 
 
 $$ t_i = \frac{\hat{\epsilon}_i }{\hat{\sigma}_{(i)} \sqrt{1 - h_{ii}}}$$ 
 
-where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted. The value $$t_i$$ ~ $$T_{n - p - 1}$$. It is common to apply a Bonferroni correction when testing for outliers.
+where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted. The value $$t_i \sim T_{n - p - 1}$$. It is common to apply a Bonferroni correction when testing for outliers.
 
 Notice that residuals refer to extreme $$y$$-values. 
 
@@ -167,7 +167,7 @@ There are no observations beyond a Cook's Distance of 0.5 or 1, so there is no c
 ## Assess Individual X Variables: Added Variable Plots
 Also known as partial regression plots, added-variable plots are refined residual plots that provide graphic information about the marginal importance of predictor $$X_j$$, given that other variables are already in the model. 
 
-To generate these plots, we graph the residual from the model $$Y$$ ~ $$X$$ (excluding $$X_j$$) vs. the residuals from the model $$X_j$$ ~ $$X$$. The y-axis is the y-variable after removing the effect of the x-variables (except $$X_j$$). The x-axis is $$X_j$$ after removing the effect of the other x-variables. Plotting these two residuals against each other gives us the effect of $$X_j$$ after other variables have been adjusted for, in other words, the coefficient of $$X_j$$ in the full model. 
+To generate these plots, we graph the residual from the model $$Y \sim X$$ (excluding $$X_j$$) vs. the residuals from the model $$X_j \sim X$$. The y-axis is the y-variable after removing the effect of the x-variables (except $$X_j$$). The x-axis is $$X_j$$ after removing the effect of the other x-variables. Plotting these two residuals against each other gives us the effect of $$X_j$$ after other variables have been adjusted for, in other words, the coefficient of $$X_j$$ in the full model. 
 
 We can use these plots to tell us whether we should to include $$X_j$$ in the model and whether a transformation of $$X_j$$ is necessary.
 
@@ -246,7 +246,7 @@ $$\mathbf{y^{(\lambda})} = \left[\begin{array}
   \log(y) & \lambda = 0
 \end{array}\right]$$
 
-where $$Y(\lambda) $$ ~ $$N(X\beta, \sigma^2 I)$$.
+where $$Y(\lambda)  \sim N(X\beta, \sigma^2 I)$$.
 
 The value $$\lambda$$ is found through maximum likelihood. 
 

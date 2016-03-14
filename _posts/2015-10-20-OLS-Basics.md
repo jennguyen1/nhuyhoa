@@ -10,7 +10,7 @@ categories: ['statistics', 'regression analysis']
 
 The linear probability model:
 
-$$ Y$$ ~ iid$$N(X\beta, \sigma^2 I)$$
+$$ Y \sim iidN(X\beta, \sigma^2 I)$$
 
 The regression equation:
 
@@ -93,10 +93,10 @@ $$ Var[\hat{\beta}] $$| $$ = (X^TX)^{-1}X^TVar[Y]X(X^TX)^{-1} $$
 
 $$ Var[\hat{\beta}] = \sigma^2 (X^TX)^{-1} $$
 
-Thus $$ \hat{\beta} $$ ~ $$ N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma^2$$ is estimated with $$MSE$$, we use a t-distribution to determine the sigificance of the $$\hat{\beta}$$ parameter.
+Thus $$ \hat{\beta}  \sim  N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma^2$$ is estimated with $$MSE$$, we use a t-distribution to determine the sigificance of the $$\hat{\beta}$$ parameter.
  
 # Regression Assumptions
-Assumptions for OLS require $$ e_i $$ ~ $$ N(0, \sigma^2I) $$, in other words:
+Assumptions for OLS require $$ e_i  \sim  N(0, \sigma^2I) $$, in other words:
 
 * Linear relationship
 * Independent, uncorrelated errors
@@ -131,7 +131,7 @@ c(B)
 
 
 {% highlight text %}
-## [1] -0.671166288  0.093817998  0.286822147  0.001178827
+## [1] -0.02834164 -0.05130331  0.09409391  0.11308045
 {% endhighlight %}
 
 
@@ -145,7 +145,7 @@ c(coef)
 
 
 {% highlight text %}
-##  (Intercept)           x1           x2           x3 
-## -0.671166288  0.093817998  0.286822147  0.001178827
+## (Intercept)          x1          x2          x3 
+## -0.02834164 -0.05130331  0.09409391  0.11308045
 {% endhighlight %}
 

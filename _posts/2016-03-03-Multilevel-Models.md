@@ -26,7 +26,7 @@ In the left plot, we fit two separate models. We fit one model with no group var
 
 In the right plot, we fit a multilevel model (with the same complete pooling estimate). Multilevel models attempt to compromise between the complete pooling and the no-pooling model. Essentially, the estimates in multilevel models are a weighted averages (based on the group $$n$$ size) of the complete pooling and the no-pooling estimates (variances). The weights are based on the group $$n$$ size; the smaller the group $$n$$ the closer the multilevel estimate is to overall average (pooling estimate), the larger the group $$n$$ the closer the multilevel estimate is to the county average (no-pooling estimate). Notice this trend in the multilevel plot above.
 
-With multilevel models of varying intercepts, the intercept terms are $$\alpha_i$$ ~ $$N(\mu_a, \sigma^2_a)$$. When $$\sigma^2_a \rightarrow 0$$, we have a no-pooling model. When $$\sigma^2_a \rightarrow \infty$$, we have a complete pooling model. The multilevel model is essentially a compromise between the two models. 
+With multilevel models of varying intercepts, the intercept terms are $$\alpha_i \sim N(\mu_a, \sigma^2_a)$$. When $$\sigma^2_a \rightarrow 0$$, we have a no-pooling model. When $$\sigma^2_a \rightarrow \infty$$, we have a complete pooling model. The multilevel model is essentially a compromise between the two models. 
 
 We can assess the group and individual level variation using intraclass correlation. 
 
@@ -46,9 +46,9 @@ We can fit variants of the varying intercept models in R with the following `lme
 
 **Varying intercept; no predictors:**
 
-$$y_i$$ ~ $$N(\alpha_{j}, \sigma^2_y)$$ 
+$$y_i \sim N(\alpha_{j}, \sigma^2_y)$$ 
 
-$$\alpha_j$$ ~ $$N(\mu_a, \sigma^2_a)$$
+$$\alpha_j \sim N(\mu_a, \sigma^2_a)$$
 
 
 {% highlight r %}
@@ -57,9 +57,9 @@ lmer(y ~ 1 + (1 | group))
 
 **Varying intercept; individual level predictors:**
 
-$$y_i$$ ~ $$N(\alpha_{j} + \beta x_i, \sigma^2_y)$$ 
+$$y_i \sim N(\alpha_{j} + \beta x_i, \sigma^2_y)$$ 
 
-$$\alpha_j$$ ~ $$N(\mu_a, \sigma^2_a)$$
+$$\alpha_j \sim N(\mu_a, \sigma^2_a)$$
 
 
 {% highlight r %}
@@ -68,9 +68,9 @@ lmer(y ~ x + (1 | group))
 
 **Varying intercept; individual and group level predictors:**
 
-$$y_i$$ ~ $$N(\alpha_{j} + \beta x_i, \sigma^2_y)$$ 
+$$y_i \sim N(\alpha_{j} + \beta x_i, \sigma^2_y)$$ 
 
-$$\alpha_j$$ ~ $$N(\mu_a + \tau grp.x, \sigma^2_a)$$
+$$\alpha_j \sim N(\mu_a + \tau grp.x, \sigma^2_a)$$
 
 
 {% highlight r %}
@@ -79,14 +79,14 @@ lmer(y ~ x + grp.x + (1 | group))
 
 **Varying intercept, varying slope:**
 
-$$y_i$$ ~ $$N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
+$$y_i \sim N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
 
 $$ \left(\begin{array}
 {rrr}
 \alpha_j \\
 \beta_j
 \end{array}\right)
-$$ ~ $$N\left( \left(\begin{array}
+ \sim N\left( \left(\begin{array}
 {rrr}
 \mu_a \\
 \mu_b
@@ -105,14 +105,14 @@ lmer(y ~ x + (1 + x | group))
 
 **Varying intercept, varying slope; group level predictors:**
 
-$$y_i$$ ~ $$N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
+$$y_i \sim N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
 
 $$ \left(\begin{array}
 {rrr}
 \alpha_j \\
 \beta_j
 \end{array}\right)
-$$ ~ $$N\left( \left(\begin{array}
+ \sim N\left( \left(\begin{array}
 {rrr}
 \mu_a + \tau grp.x\\
 \mu_b + \gamma grp.x
@@ -131,7 +131,7 @@ lmer(y ~ x + grp.x + x:grp.x + (1 + x | group))
 
 **Varying intercept, varying slope; individual level predictors:**
 
-$$y_i$$ ~ $$N(\alpha_{j} + \beta_{j} x_i + \beta_z z_i + \beta_{j, z} (x_i z_i), \sigma^2_y)$$
+$$y_i \sim N(\alpha_{j} + \beta_{j} x_i + \beta_z z_i + \beta_{j, z} (x_i z_i), \sigma^2_y)$$
 
 $$ \left(\begin{array}
 {rrr}
@@ -139,7 +139,7 @@ $$ \left(\begin{array}
 \beta_j \\
 \beta_{j, z}
 \end{array}\right)
-$$ ~ $$N\left( \left(\begin{array}
+ \sim N\left( \left(\begin{array}
 {rrr}
 \mu_a \\
 \mu_b \\
@@ -160,9 +160,9 @@ lmer(y ~ z + x + (x + x:z | group))
 
 **Varying slope:**
 
-$$y_i$$ ~ $$N(\alpha + \beta_{j} x_i, \sigma^2_y)$$ 
+$$y_i \sim N(\alpha + \beta_{j} x_i, \sigma^2_y)$$ 
 
-$$\beta_j$$ ~ $$N(\mu_b, \sigma^2_b)$$
+$$\beta_j \sim N(\mu_b, \sigma^2_b)$$
 
 
 {% highlight r %}
@@ -171,11 +171,11 @@ lmer(y ~ x + (x - 1 | group))
 
 **Non-Nested Models:**
 
-$$y_i$$ ~ $$N(\mu + \alpha_j + \beta_k, \sigma^2_y)$$
+$$y_i \sim N(\mu + \alpha_j + \beta_k, \sigma^2_y)$$
 
-$$\alpha_j$$ ~ $$N(0, \sigma^2_a)$$
+$$\alpha_j \sim N(0, \sigma^2_a)$$
 
-$$\beta_k$$ ~ $$N(0, \sigma^2_b)$$
+$$\beta_k \sim N(0, \sigma^2_b)$$
 
 
 {% highlight r %}

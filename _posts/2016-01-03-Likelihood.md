@@ -25,7 +25,7 @@ The maximum likelihood estimate (MLE) of $$\mu$$ is the value of $$\mu$$ that ma
 
 **Example:**
 
-Consider the one-sample iid normal case: $$Y_i$$ ~ $$N(\mu, \sigma^2)$$ where we assume that $$\sigma^2$$ is known. We want to find the MLE of $$\mu$$.
+Consider the one-sample iid normal case: $$Y_i \sim N(\mu, \sigma^2)$$ where we assume that $$\sigma^2$$ is known. We want to find the MLE of $$\mu$$.
 
 The density for $$Y_i$$ is <br>
 $$f(y \vert \mu) = \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(y - \mu)^2}{2\sigma^2}\right)$$
@@ -71,22 +71,22 @@ Generally the score test is preferred because it does not require that we find t
 
 ## Likelihood Test
 
-$$ G(\theta_0) = -2 \log \left( \frac{L(\theta_0)}{L(\hat{\theta})} \right) = -2[l(\theta_0) - l(\hat{\theta})]$$ ~ $$\chi^2_1$$
+$$ G(\theta_0) = -2 \log \left( \frac{L(\theta_0)}{L(\hat{\theta})} \right) = -2[l(\theta_0) - l(\hat{\theta})] \sim \chi^2_1$$
 
 ## Score Test
 
-$$ \frac{U(\theta_0)^2}{I(\theta_0)} $$ ~ $$\chi^2_1$$
+$$ \frac{U(\theta_0)^2}{I(\theta_0)}  \sim \chi^2_1$$
 
 ## Wald Test
 
-$$\frac{(\hat{\theta} - \theta_0)^2}{Var[\hat{\theta}]}$$ ~ $$\chi^2_1$$
+$$\frac{(\hat{\theta} - \theta_0)^2}{Var[\hat{\theta}]} \sim \chi^2_1$$
 
 # Beyond One-Sample Data
 
 ## Likelihood Tests for 2 Sample Tests
 The application of the 3 likelihood tests to one-sample tests is relatively straightforward. It involves a little bit more work for two samples. 
 
-Suppose $$Y_j$$ ~ $$f(Y \vert \theta_j)$$ and $$z = 0, 1$$ be the treatment groups.
+Suppose $$Y_j \sim f(Y \vert \theta_j)$$ and $$z = 0, 1$$ be the treatment groups.
 
 * For group 0: $$\theta_0 = \alpha$$
 * For group 1: $$\theta_1 = \alpha + \beta z$$
@@ -108,14 +108,15 @@ $$U_{\alpha}(\alpha, 0) = 0$$
 
 The likelihood ratio test is
 
-$$ -2[l(\hat{\alpha}_0, 0) - l(\hat{\alpha}, \hat{\beta})] $$ ~ $$\chi^2_1$$
+$$ -2[l(\hat{\alpha}_0, 0) - l(\hat{\alpha}, \hat{\beta})]  \sim \chi^2_1$$
 
 The score test is
 
-$$\frac{U_{\beta}(\hat{\alpha}_0, 0)^2}{Var[U_{\beta} (\hat{\alpha}_0, 0)]}$$ ~ $$\chi^2_1$$
+$$\frac{U_{\beta}(\hat{\alpha}_0, 0)^2}{Var[U_{\beta} (\hat{\alpha}_0, 0)]} \sim \chi^2_1$$
 
 The wald test is
-$$ \frac{\hat{\beta}^2}{Var[\hat{\beta}]} $$ ~ $$\chi^2_1$$
+
+$$ \frac{\hat{\beta}^2}{Var[\hat{\beta}]}  \sim \chi^2_1$$
 
 We see that for the score test, we do not need to compute the MLE for $$\beta$$. This makes it computationally easier and preferred.
 

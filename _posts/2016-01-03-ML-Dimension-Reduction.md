@@ -170,11 +170,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.598    2.627    2.489    2.574    2.615
-## adjCV        6.123    2.590    2.619    2.477    2.559    2.601
+## CV           6.123    2.803    2.848    2.721    2.745    2.797
+## adjCV        6.123    2.786    2.829    2.699    2.721    2.769
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.687    2.861    2.867    3.447     3.392
-## adjCV    2.666    2.831    2.834    3.380     3.324
+## CV       2.952    3.047    3.057    3.391     3.339
+## adjCV    2.917    3.009    3.016    3.331     3.276
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
@@ -197,7 +197,7 @@ So here we see that using 3 principal components is preferred. If we prefer to u
 # Partial Least Squares
 Partial least squares (PLS) is a supervised learning modification of principal components regression (PCR). PLS generates the new low-dimensional features by making use of the response Y. It finds components that help explain both the response and the predictors. 
 
-Similar to PCR, PLS requires that the predictors are standardized. The first principal component is computed by setting the loading vector equal to the coefficients from OLS of $$Y$$ ~ $$X_j$$. These values are proportional to the correlation between $$Y$$ and $$X_j$$. Thus the scores from the first component is $$Z_1 = \sum^p_{j = 1} \phi_{1j}X_j$$. In other words, PLS places greater weight on predictors that are most strongly related to the response. The following components are found by taking residuals and then repeating the procedure above. In R, this can be done with `pls::plsr()`.
+Similar to PCR, PLS requires that the predictors are standardized. The first principal component is computed by setting the loading vector equal to the coefficients from OLS of $$Y \sim X_j$$. These values are proportional to the correlation between $$Y$$ and $$X_j$$. Thus the scores from the first component is $$Z_1 = \sum^p_{j = 1} \phi_{1j}X_j$$. In other words, PLS places greater weight on predictors that are most strongly related to the response. The following components are found by taking residuals and then repeating the procedure above. In R, this can be done with `pls::plsr()`.
 
 
 

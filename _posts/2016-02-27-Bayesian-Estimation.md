@@ -40,7 +40,7 @@ The pros and cons of the Bayesian approach come from choosing the prior distribu
 
 **Example**
 
-Suppose $$X$$ ~ $$Bin(n, \theta)$$ and $$\theta$$ ~ $$Beta(\alpha, \beta)$$ (we would need to choose the parameters for $$\alpha$$ and $$\beta$$ but for this example, we keep it arbitrary).
+Suppose $$X \sim Bin(n, \theta)$$ and $$\theta \sim Beta(\alpha, \beta)$$ (we would need to choose the parameters for $$\alpha$$ and $$\beta$$ but for this example, we keep it arbitrary).
 
 $$f(x \vert \theta) = \binom{n, x} \theta^x (1 - \theta)^(n - x)$$
 
@@ -66,7 +66,9 @@ $$f(\theta \vert x)$$ | $$= \frac{\binom{n}{x} \frac{\Gamma(\alpha + \beta)}{\Ga
 
 <br>
 
-So we have the posterior distribution $$f(\theta \vert x)$$ ~ $$Beta(x + \alpha, n - x + \beta)$$
+So we have the posterior distribution 
+
+$$f(\theta \vert x) \sim Beta(x + \alpha, n - x + \beta)$$
 
 We obtain an estimate of $$\theta$$
 

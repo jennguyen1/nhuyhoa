@@ -129,7 +129,7 @@ Suppose we want to compare 2 models, where one is nested in the other. Let $$R$$
 
 $$ F = \frac{(SSE_R - SSE_F)/ (df_F - df_R)}{SSE_F/df_F} $$
 
-where $$ F $$ ~ $$ F_{q, n - p} $$ and $$SSE$$ is the sum square errors and $$DF$$ is the residual degrees of freedom corresponding to the specified model.
+where $$ F  \sim  F_{q, n - p} $$ and $$SSE$$ is the sum square errors and $$DF$$ is the residual degrees of freedom corresponding to the specified model.
 
 Let's look at an example:
 

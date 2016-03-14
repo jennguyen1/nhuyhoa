@@ -15,7 +15,7 @@ When we run experiments, we want to make sure that we gather enough samples to h
 Larger sample sizes increase power (the probability of rejecting when there is a true difference) and reduces the false discovery rate (Type 1 error). However, we cannot gather an unlimited number of samples because we may be restricted by limited resources. Maintaining this balance is why we need to carefully consider sample size calculations.
 
 # Basic Idea
-Consider the observations $$Y_i$$ ~ $$N(\mu, \sigma^2)$$ for $$i = 1, ..., n$$ and assume $$\sigma^2$$ is known. 
+Consider the observations $$Y_i \sim N(\mu, \sigma^2)$$ for $$i = 1, ..., n$$ and assume $$\sigma^2$$ is known. 
 
 Then <br>
 $$\bar{Y} = \frac{1}{n} \sum_i y_i$$

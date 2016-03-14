@@ -11,7 +11,7 @@ categories: ['statistics', 'regression analysis']
 
 
 # Binomial Response
-Suppose the response $$Y_i$$ ~ $$Bin(n_i, p_i)$$ and the $$Y_i$$ are independent.
+Suppose the response $$Y_i \sim Bin(n_i, p_i)$$ and the $$Y_i$$ are independent.
 
 $$ P(Y_i = y_i) = \left(\begin{array}
 {rrr}

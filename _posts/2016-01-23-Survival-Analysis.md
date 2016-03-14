@@ -84,7 +84,7 @@ We can use the relation $$\log (\hat{S}(t)) = - \hat{\Lambda}(t)$$ to obtain est
 
 $$\hat{\Lambda}(t) = -\sum_{k:t_k \le t} \log \left( 1 - \frac{d_k}{n_k} \right)$$
 
-We can assume $$d_k$$ ~ $$Bin(n_k, p_k)$$ and estimate $$p_k = \frac{d_k}{n_k}$$ and use the delta method on $$\log(1 - \frac{d_k}{n_k})$$
+We can assume $$d_k \sim Bin(n_k, p_k)$$ and estimate $$p_k = \frac{d_k}{n_k}$$ and use the delta method on $$\log(1 - \frac{d_k}{n_k})$$
 
 --------------------------|-----------------------
 $$Var(\log(1 - d_k/n_k))$$| $$ = \frac{1}{(1 - d_k/n_k)^2} Var(1 - d_k/n_k)$$
@@ -218,7 +218,7 @@ $$U(0) = \sum_k U_k(0)$$
 
 $$I(0) = \sum_k I_k(0)$$
 
-The test statistic is $$\frac{U(0)^2}{I(0)}$$ ~ $$X^2_1$$
+The test statistic is $$\frac{U(0)^2}{I(0)} \sim X^2_1$$
 
 ## Weighted Log Rank Test
 We can also weight failure times. Let $$w_k$$ be the weight for time $$t_k$$
@@ -227,7 +227,7 @@ $$U^w(0) = \sum_k w_k U_k(0)$$
 
 $$I^w(0) = \sum_k w_k^2 I_k(0)$$
 
-The test statistic is then $$\frac{U^w(0)^2}{I^w(0)}$$ ~ $$X^2_1$$
+The test statistic is then $$\frac{U^w(0)^2}{I^w(0)} \sim X^2_1$$
 
 One option for weights is the Gehan-Wilcoxon method, where
 $$w_k = (n_{k0} + n_{k1})$$
