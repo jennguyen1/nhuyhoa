@@ -204,7 +204,7 @@ We can assess these effects by generating an interaction plot. We can also test 
 
 ### Randomized Complete Block Design (One Factor) ANOVA
 
-Blocking is a generalization of the paired analysis in t-tests. We expect there to be block to block variability. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
+Blocking is a generalization of the paired analysis in t-tests. We expect there to be block to block variability, a nuisance factor. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
 
 A single block should be homogeneous. To ensure this homogeneity, we want to make sure blocks are small enough that
 
@@ -234,9 +234,9 @@ Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2$$ | $$kb - 1$$
 
 We can assess the effect of treatment with an $$F$$ test with the error in the denominator. 
 
-Note that we can ignore the $$F$$ test for the effect of blocks. The blocks were used in order to account for variability. A significant test would indicate that we were right to block. If we did not find a significant block effect, we should not pool the block with error and analyze the data as a completely randomized design! We need to analyze the data as we have designed it, otherwise we would bias our tests. 
+Note that we can ignore the $$F$$ test for the effect of blocks. The blocks were used in order to account for variability. (If we want to test for a specific effect, we should include it in the model as a factor and randomize its assignment). A significant test would indicate that we were right to block. If we did not find a significant block effect, we should not pool the block with error and analyze the data as a completely randomized design! We need to analyze the data as we have designed it, otherwise we would bias our tests. 
 
-We notice several things from this table. One is that this table is reminiscent of the ANOVA table for two-factor ANOVA where $$n = 1$$. Another similarity is that the $$SS$$ and $$df$$ for error is similar to the $$SS$$ and $$df$$ for the interaction term in the two-factor case. This is because we assume an additive model and so the error that is normally given to the interaction is transferred to the error.
+We notice several things from this table. One is that this table is reminiscent of the ANOVA table for two-factor ANOVA where $$n = 1$$. Another similarity is that the $$SS$$ and $$df$$ for error is similar to the $$SS$$ and $$df$$ for the interaction term in the two-factor case. This is because we assume an additive model and so the error that is normally given to the interaction is transferred to the error. We say that the interaction term is confounded with the error.
 
 Thus RCBD with one factor is the same as a completely randomized two-factor ANOVA where $$n = 1$$.
 
@@ -330,6 +330,7 @@ Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}
 We test $$H_0: \sigma^2_A = 0$$ vs. $$H_A: \sigma^2_A > 0$$ with $$F = \frac{MSTrt}{MSE}$$. 
 
 **Variance Components**
+
 Based off this ANOVA table, we use $$\hat{\sigma}^2_{\epsilon} = MSE$$ and $$\hat{\sigma}^2_A = \frac{MSTrt - MSE}{n}$$.
 
 Another important quantity is the intraclass correlation coefficient
@@ -513,7 +514,9 @@ Total  | $$abc-1$$ |
 
 Notice that the $$df$$ for the wholeplot error is essentially the interaction between $$AB$$. The $$df$$ for the subplot error can be rewritten as $$a(b-1)(c-1) = (b-1)(c-1) + (a-1)(b-1)(c-1)$$. These are the pooled $$df$$ from the $$BC$$ and $$ABC$$ interaction. 
 
-# Pairwise Comparisons and Contrasts
+# Other Topics
+
+## Pairwise Comparisons and Contrasts
 
 After rejecting a test that the means of the groups are not equal, we want to know exactly which ones are different. 
 
@@ -545,7 +548,18 @@ How do we assess effects when our designs are missing certain factor combination
 * Fit a contrast to assess the effect you would like (perhaps the interaction)
 * Use a MSE from the one-way ANOVA as an estimate of $$s^2_{\epsilon}$$
 
-# Other Topics
+## Unreplicated Studies
+
+If we need to run unreplicated studies, we would have to find another way to obtain an estimate of $$\sigma^2_{\epsilon}$$. 
+
+There are a number of ways to do this:
+
+* Use a known value of $$\sigma^2_{\epsilon}$$ from another study
+* Choose a central point of combinations and replicate it to obtain an estimate of $$\sigma^2_{\epsilon}$$ (would need to assume equal variance)
+* Assume that larger order interaction terms are insignificant and pools those into the error term $$\sigma^2_{\epsilon}$$
+* Assume that if non-effects are significant and raw data is normal, the estimated effects are $$\sim iidN(0, \frac{4\sigma^2_{\epsilon}}{2^k})$$. Make a QQ-plot of estimated effects and those effects not on the QQ-line are significant
+
+# Nonparametric Tests and Equal Variance Tests
 
 ## Nonparametric Tests
 

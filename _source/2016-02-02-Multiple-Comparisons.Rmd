@@ -64,7 +64,7 @@ In the non-parametric Kruskal-Wallis test, we reject if $$\vert \bar{R}_i - \bar
 
 ## Dunnett's Method
 
-When we only wish to compare treatment levels to a control, we can use Dunnett's mean comparison method. This test provides more power compared to a test using the full set of all pairwise comparisons.
+When we only wish to compare treatment levels to a control, we can use Dunnett's mean comparison method. There is a special table to obtain the critical values for the $$k-1$$ pairwise tests. This test provides more power compared to a test using the full set of all pairwise comparisons.
 
 ## Bonferroni Correction
 
@@ -164,7 +164,7 @@ This method states that for large $$r$$, we do not expect all the null hypothese
 
 $$q = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 0 \right)$$
 
-the expected proportion of our discoveries that are false assuming we make at least one discovery.
+the expected proportion of our discoveries that are false (false positives) assuming we make at least one discovery.
 
 This method is the Benjamini and Hochberg method. This procedure requires the tests to be independent. The procedure may control FDR for certain types of correlation, but may fail for highly correlated data. 
 

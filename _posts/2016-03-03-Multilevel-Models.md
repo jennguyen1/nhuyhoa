@@ -169,6 +169,20 @@ $$\beta_j \sim N(\mu_b, \sigma^2_b)$$
 lmer(y ~ x + (x - 1 | group))
 {% endhighlight %}
 
+**Nested Models:**
+
+$$y_i \sim N(\mu + \alpha_j + \beta_{k[j]}, \sigma^2_y)$$
+
+$$\alpha_j \sim N(0, \sigma^2_a)$$
+
+$$\beta_k \sim N(0, \sigma^2_b)$$
+
+
+{% highlight r %}
+lmer(y ~ 1 + (1 | group.b / group.a))
+{% endhighlight %}
+
+
 **Non-Nested Models:**
 
 $$y_i \sim N(\mu + \alpha_j + \beta_k, \sigma^2_y)$$
