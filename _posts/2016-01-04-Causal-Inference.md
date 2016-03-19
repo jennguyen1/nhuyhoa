@@ -38,7 +38,9 @@ We can then test the null hypothesis
 
 $$H_0: D = 0$$
 
-# Randomization
+# Design of Experiments
+
+## Randomization
 Random assignments of subjects to treatment groups is important for causal experiments. Randomization ensures that
 
 * .$$E[Y(u) \vert T(u) = A] = E[Y_A(u)]$$
@@ -48,14 +50,15 @@ so that
 
 $$E[Y(u) \vert T(u) = B] - E[Y(u) \vert T(u) = A] = E[Y_B(u)] - E[Y_A(u)] = D$$
 
-and we can conduct valid causal inference. 
+We eliminate potential biases and ensure that we can conduct valid causal inference. 
 
 Essentially we randomize so that the responses we see are independent of the treatment type. 
 
-## Analysis-Based Design
-For designs that require blocks, we can do a restricted randomization scheme. Blocking is often done to account for known sources of variation.
+## Replication
+Replication allows researchers to obtain precise (less variable) estimates of the mean. Increasing the number of replicates is one way of reducing the random error.
 
-Analyses should be analyzed based on how the data was designed. Failing to do so may lead to biased results. 
+## Blocking
+Blocking accounts for nuisance factors that may contribute to the random error. By accounting for block variability, we can decrease the unaccounted error variability and make tests more powerful. 
 
 ## Confounding
 If we do not randomize experiments, we may have confounding. Confounding occurs when additional (observed or unobserved) factors ($$Z$$) that are associated with both $$X$$ and $$Y$$ and induce misalignment between the observed association and the true causal relationship. 
@@ -65,4 +68,9 @@ If we do not randomize experiments, we may have confounding. Confounding occurs 
 Specifically, if $$X$$ has a causal effect on $$Y$$, but $$Z$$  has causal effects on both $$X$$ and $$Y$$, then the observed assiciation between $$X$$ and $$Y$$ wil reflect the net effect of $$X$$ and the effect of $$Z$$ on $$X$$ and $$Y$$. In some cases $$X$$ may not have a causal effect on $$Y$$, but the confounding variable may make it seem like there is. 
 
 To deal with confounding variables, we can either randomize or adjust for the variable. Generally, it is best to randomize and adjust for key variables (age, sex, etc). We cannot adjust for everything (expensive), which is why randomization is so important.
+
+Sometimes when building complex experiments, we may use confounding to our advantage. We may confound things that we are not interested in order to have more efficient experiments for the things we are interested in. For example, in fractional factorial experiments we may confound the interactions so that we can estimate the main effects while reducing sample size and cost. 
+
+## Analysis-Based Design
+Analyses should be analyzed based on how the data was designed. Failing to do so may lead to biased results. 
 

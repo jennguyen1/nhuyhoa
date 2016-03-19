@@ -1,0 +1,116 @@
+---
+layout: post
+title: "Bayesian Modeling"
+date: "March 19, 2016"
+categories: ['statistics', 'regression analysis']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(jn.general)
+lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+```
+
+# Bayesian Regression
+
+Recall that Bayes Theorem:
+
+$$P(\theta vert \overrightarrow{x}) \propto P(\overrightarrow{x} \vert \theta) P(\theta)$$
+
+Bayesian regression takes in prior information regarding the parameters and updates the prior knowledge with the likelihood observed from the data. This gives us the posterior probability of a given parameter given the data and the prior knowledge.
+
+In Bayesian regression, we pick the posterior distribution of the responses. We set prior distributions for our parameters ($$\beta$$s and $$\sigma^2$$) and obtain estimates of those parameters. 
+
+## Linear Regression
+
+$$y_i \sim N(\mu_i, \sigma^2_y)$$
+
+$$\mu_i = X \beta$$
+
+where we set priors on the $$\beta$$s and $$\sigma^2_y$$
+
+## Logistic Regression
+
+$$y_i \sim Binomial(n_i, p_i)$$
+
+$$inv.logit(p_i) = X \beta$$
+
+where we set priors on the $$\beta$$s.
+
+We can model overdispersed logistic regression as such
+
+$$y_i \sim Binomial(\overrightarrow{n}, \overrightarrow{p})$$
+
+$$inv.logit(\overrightarrow{p}) = X \beta + \overrightarrow{\epsilon}$$
+
+where the errors have a $$\epsilon_i \sim N(0, \sigma^2_e)$$. We set priors on the $$\beta$$s and $$\sigma^2_e$$. The errors reduces to a regular binomal distribution when $$\sigma^2_e = 0$$.
+
+## Poisson Regression
+
+$$y_i \sim Poisson(\lambda_i)$$
+
+$$\log(\lambda_i) = X \beta$$
+
+where we set priors on the $$\beta$$s.
+
+We can model overdispersed poisson regression as such
+
+$$y_i \sim Poisson(\lambda_i)$$
+
+$$\log(\overrightarrow{\lambda}) = X \beta + \overrightarrow{\epsilon}$$
+
+where the errors have a $$\epsilon_i \sim N(0, \sigma^2_e)$$. We set priors on the $$\beta$$s and $$\sigma^2_e$$. The errors reduces to a regular poisson distribution when $$\sigma^2_e = 0$$.
+
+As with non-Bayesian poisson regression, offset terms can be incorporated if needed.
+
+## Multilevel Regression
+
+## Regularized Models From a Bayesian Viewpoint
+We can regularize (reduce overfitting) models in Bayesian regression by setting strict prior distributions on the $$\beta$$ parameters. (Recall that we do not regularize the intercept term). 
+
+For example, rather than setting the priors to $$\beta \sim N(0, 100)$$ we can set them to $$\beta \sim N(0, 1)$$. This restricts the coefficients to very small values. If the effect is truely important, the data will overpower the prior and set the $$\beta$$ coefficient to a greater value. 
+
+Setting a Normal prior refers to the $$L^2$$ norm (ridge regression). We can also use a [Laplacian prior][laplace_link]{:target = "_blank"} to control the $$L^1$$ norm. 
+
+# Stan
+
+```{r, eval = FALSE}
+map(
+  alist(
+    pulled_left ~ dbinom(1, p),
+    logit(p) <- a + bp*prosoc_left + bpc*condition*prosoc_left,
+    a ~ dnorm(0, 10),
+    bp ~ dnorm(0, 10),
+    bpC ~ dnorm(0, 10)
+  ),
+  data = d
+)
+
+map2stan(
+  alist(
+    pulled_left ~ dbinom(applications, p),
+    logit(p) <- a[actor] + bp*prosoc_left,
+    a[actor] ~ dnorm(0, 10),
+    bp ~ dnorm(0, 10)
+  )
+)
+
+map2stan(
+  alist(
+    total_tools ~ dpois(lambda),
+    log(lambda) <- a + bp*x,
+    a ~ dnorm(0, 100),
+    bp ~ dnorm(0, 1)
+  ),
+  data = d
+)
+```
+
+beta-binomial: varying probabilties
+gamma-poisson: varying rates
+dirichlet-multinomial
+
+[laplace_link]: https://en.wikipedia.org/wiki/Laplace_distribution

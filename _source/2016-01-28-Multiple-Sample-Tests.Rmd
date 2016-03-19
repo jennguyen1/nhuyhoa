@@ -553,14 +553,17 @@ How do we assess effects when our designs are missing certain factor combination
 
 ## Unreplicated Studies
 
-If we need to run unreplicated studies, we would have to find another way to obtain an estimate of $$\sigma^2_{\epsilon}$$. 
+If we need to run unreplicated studies (perhaps for preliminary studies), we would have to find another way to obtain an estimate of $$\sigma^2_{\epsilon}$$. 
 
 There are a number of ways to do this:
 
 * Use a known value of $$\sigma^2_{\epsilon}$$ from another study
 * Choose a central point of combinations and replicate it to obtain an estimate of $$\sigma^2_{\epsilon}$$ (would need to assume equal variance)
 * Assume that larger order interaction terms are insignificant and pools those into the error term $$\sigma^2_{\epsilon}$$
-* Assume that if non-effects are significant and raw data is normal, the estimated effects are $$\sim iidN(0, \frac{4\sigma^2_{\epsilon}}{2^k})$$. Make a QQ-plot of estimated effects and those effects not on the QQ-line are significant
+* Assume that if none of the effects are significant, the estimated effects $$\sim iidN(0, \frac{4\sigma^2_{\epsilon}}{2^k})$$. Make a QQ-plot of estimated effects and those effects not on the QQ-line are significant
+
+## ANOVAs as Regression
+We can treat ANOVAs as regressions and analyze data that way. This lets us deal with issues such as unbalanced groups. We can assess effects by comparing full and reduced models. 
 
 # Nonparametric Tests and Equal Variance Tests
 

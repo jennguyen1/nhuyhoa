@@ -21,7 +21,9 @@ Suppose the response $$Y_i \sim Pois(\mu_i)$$ where $$\mu > 0$$ and the $$Y_i$$ 
 
 $$P(Y_i = y_i) = \frac{e^{\mu_i} \mu_i^{y_i}}{y_i!}$$
 
-We also have $$E(Y_i) = Var(Y_i) = \mu_i$$
+We also have 
+
+$$E(Y_i) = Var(Y_i) = \mu_i$$
 
 From this we can compute the deviance
 

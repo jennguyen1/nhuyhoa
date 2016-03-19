@@ -25,6 +25,12 @@ $$ P(Y_i = y_i) = \left(\begin{array}
   y_i
 \end{array}\right) p_i^{y_i} (1-p_i)^{n_i - y_i} $$
 
+We also have
+
+$$E(Y_i) = n_i p_i$$
+
+$$Var(Y_i) = n_i p_i (1-p_i)$$
+
 From this we can compute the deviance. 
 
 $$ D = 2 \sum^n_{i = 1} \big[ y_i \log \left( \frac{y_i}{\hat{y}_i} \right) + (n_i - y_i) \log \left( \frac{n_i - y_i}{n_i - \hat{y}_i} \right) \big] $$

@@ -84,9 +84,24 @@ $$n\bar{p} = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2}{\epsilon_1 \epsilon_2 \
 
 where $$\bar{p}$$ is the probability of an observed event.
 
+# A Different Approach
+
+In ANOVA, we can obtain
+
+$$\frac{E[MSA]}{E[MSE]} = 1 + \frac{1}{k - 1} \frac{n\sum_i a^2_i}{s^2_e}$$ <br>
+where $$\frac{n\sum_i a^2_i}{s^2_e} = \phi$$ is the non-centrality parameter. 
+
+The power for testing $$H_0: a_i = 0 \forall i$$ depends on the non-centrality parameter, which is a monotone function. 
+
+We can use simulations to calculate $$P(F > F_{\alpha, k-1, k(n-1)} \vert \phi)$$ (non-central F) for a wide range of $$n$$'s.
+
+Another option for calculating sample sizes in ANOVA would be to choose two groups and the maximum difference between them $$D$$. Then we can compute sample sizes based on a t-test approximation.
+
 # In R
+In general, one would not calculate sample sizes by hand. There are a number of software packages that will do sample size calculations for us. The challenge for us is to determine the parameters prior to conducting the experiment. We can obtain crude estimates of these from prior experiments or trying a range of likely parameters.
+
 R has several functions to calculate desired power and sample sizes. 
 
-* `power.anova.test()`
 * `power.t.test()`
+* `power.anova.test()`
 * `power.prop.test()`
