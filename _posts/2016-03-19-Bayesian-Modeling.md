@@ -8,12 +8,7 @@ categories: ['statistics', 'regression analysis']
 * TOC
 {:toc}
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
-library(jn.general)
-lib(data, viz)
-library(rstan)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
-```
+
 
 # Bayesian Regression
 
@@ -93,7 +88,8 @@ Setting Gaussian priors refers to the $$L_2$$ norm penalty (ridge regression). W
 
 # Fitting Models in Stan
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 map(
   alist(
     pulled_left ~ dbinom(1, p),
@@ -186,20 +182,22 @@ m_norm<-stan(file="normal_regression.stan",
 traceplot
 monitor
 extract
-```
+{% endhighlight %}
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 library(rstan)
 stan.mod <- stan(model_code = "", chains = 4, iter = 2000)
 traceplot(stan.mod)
 monitor(stan.mod)
 extract(stan.mod)
-```
+{% endhighlight %}
 
 ## Classical Regression in Stan
 These models do not place priors on the parameters. The assumed prior is noninformative uniform prior.
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # Linear Model
 data{ 
   int<lower=0> N; 
@@ -240,9 +238,10 @@ generated quantities{
   }
   e_y <- y - pred
 }
-```
+{% endhighlight %}
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # Logistic Model 1: passing in eta on the logit scale
 data {
   int<lower=0> N;
@@ -282,10 +281,11 @@ transformed parameters{
 model {
   y ~ bernoulli(p_hat); 
 }
-```
+{% endhighlight %}
 
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # Poisson Model
 data {
   int<lower=0> N; 
@@ -304,9 +304,10 @@ parameters {
 model {
   y ~ poisson_log(log_offset + beta[1] + beta[2] * x1);
 }
-```
+{% endhighlight %}
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # Overdispersed Poisson
 data {
   int<lower=0> N; 
@@ -330,11 +331,12 @@ model {
     y[i] ~ poisson_log(error[i] + log_offset[i] + beta[1] + beta[2] * x1[i]);
   }
 }
-```
+{% endhighlight %}
 
 ## Bayesian Regression in Stan
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # Mutlilevel Model: varying intercept
 data {
   int<lower=0> N; 
@@ -376,10 +378,10 @@ model {
   a ~ normal(a_hat, sigma_a);
   y ~ normal(y_hat, sigma_y);
 }
+{% endhighlight %}
 
-```
 
-```{r, eval = FALSE}
+{% highlight r %}
 # Multilevel Model: varying intercept and varying slope
 data {
   int<lower=0> N;
@@ -440,7 +442,7 @@ model {
 
   y ~ normal(y_hat, sigma);
 }
-```
+{% endhighlight %}
 
 # Markov Chain Monte Carlo
 When posterior distributions are complicated, MCMC uses simulations to find the best model fit. The algorithm draws random samples from the posterior distribution.
@@ -454,41 +456,30 @@ Variants of MCMC include
 The gist of the algorithm is this. Several Markov chains are run in parallel. Each start at some list of initial values and wander through a distribution of parameter estimates. The goal is to run the algorithm until the simulations from the separate initial values converge to a common distribution. Since each chain starts from a random start site, there is a warmup period which allows the chain to get a feel for the sample space. The warmup period is discarded to lose the influence of the starting values. 
 
 We can obtain diagnostics of the MCMC convergence from the stan models
-```{r, echo = FALSE, include = FALSE}
 
-code <- "
-data{ 
-  int<lower=0> N; 
-  vector[N] y;
-  vector[N] x1;
-  vector[N] species1;
-  vector[N] species2;
-}
-parameters{
-  vector[4] beta;
-  real<lower=0> sigma;
-}
-model{
-  y ~ normal(beta[1] + beta[2]*x1 + beta[3]*species1 + beta[4]*species2, sigma);
-}
-"
 
-X <- model.matrix(Petal.Length ~ Petal.Width + Species, data = iris) %>% as.data.frame
-
-stan.mod <- stan(model_code = code, data = list(N = nrow(iris), y = iris$Petal.Length, x1 = X$Petal.Width, species1 = X$Speciesversicolor, species2 = X$Speciesvirginica))
-```
-
-```{r, echo = FALSE, fig.width = 10}
-traceplot(stan.mod)
-```
+<img src="/nhuyhoa/figure/source/2016-03-19-Bayesian-Modeling/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 
 The plot above indicates that the four chains have converged well despite starting from different random points. 
 
 We should examine traceplots for chains that do not seem to mix in well with others. This would indicate poor convergence.
 
-```{r, echo = FALSE}
-monitor(stan.mod)
-```
+
+{% highlight text %}
+## Inference for the input samples (4 chains: each with iter=1000; warmup=500):
+## 
+##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
+## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   665    1
+## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   387    1
+## beta[3]  1.7     0.0 0.2  1.4  1.6  1.7  1.8   2.0   416    1
+## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.8   405    1
+## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   862    1
+## lp__    69.4     0.1 1.6 65.4 68.5 69.7 70.7  71.6   612    1
+## 
+## For each parameter, n_eff is a crude measure of effective sample size,
+## and Rhat is the potential scale reduction factor on split chains (at 
+## convergence, Rhat=1).
+{% endhighlight %}
 
 **Convergence diagnostics:**
 

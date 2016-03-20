@@ -22,11 +22,11 @@ Consider three variants of models:
 
 <img src="/nhuyhoa/figure/source/2016-03-03-Multilevel-Models/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
-In the left plot, we fit two separate models. We fit one model with no group variables, the intercept estimate is represented by dashed horizontal line. We fit another model with separate intercepts for each group These intercept estimates and standard error bars are represented by the individual points. Notice that the error bars are quite large at small $$n$$ sizes and and smaller at higher $$n$$ sizes. The complete pooling model ignores county variability while the no-pooling model overstates it (as groups with small $$n$$ sizes are inaccurately estimated). 
+In the left plot, we fit two separate models. We fit one model with no group variables, the intercept estimate is represented by dashed horizontal line. We fit another model with separate intercepts for each group These intercept estimates and standard error bars are represented by the individual points. Notice that the sample variability is larger at small $$n$$ sizes and smaller at higher $$n$$ sizes. The complete pooling model ignores group variability while the no-pooling model overstates it (as groups with small $$n$$ sizes are inaccurately estimated). 
 
-In the right plot, we fit a multilevel model (with the same complete pooling estimate). Multilevel models attempt to compromise between the complete pooling and the no-pooling model. Essentially, the estimates in multilevel models are a weighted averages (based on the group $$n$$ size) of the complete pooling and the no-pooling estimates (variances). The weights are based on the group $$n$$ size; the smaller the group $$n$$ the closer the multilevel estimate is to overall average (pooling estimate), the larger the group $$n$$ the closer the multilevel estimate is to the county average (no-pooling estimate). Notice this trend in the multilevel plot above.
+In the right plot, we fit a multilevel model (with the same complete pooling estimate). Multilevel models attempt to compromise between the complete pooling and the no-pooling model. Essentially, the estimates in multilevel models are a weighted averages (based on the group $$n$$ size) of the complete pooling and the no-pooling estimates (variances). The weights are based on the group $$n$$ size. The smaller the group $$n$$ the closer the multilevel estimate is to overall average (pooling estimate). The larger the group $$n$$ the closer the multilevel estimate is to the group average (no-pooling estimate). We refer to this as shrinkage towards the mean (of varying degrees).
 
-With multilevel models of varying intercepts, the intercept terms are $$\alpha_i \sim N(\mu_a, \sigma^2_a)$$. When $$\sigma^2_a \rightarrow 0$$, we have a no-pooling model. When $$\sigma^2_a \rightarrow \infty$$, we have a complete pooling model. The multilevel model is essentially a compromise between the two models. 
+With multilevel models of varying intercepts, the intercept terms are $$\alpha_i \sim N(\mu_a, \sigma^2_a)$$. When $$\sigma^2_a \rightarrow 0$$, we have a no-pooling model that may be underfitting. When $$\sigma^2_a \rightarrow \infty$$, we have a complete pooling model that may be overfitting. The multilevel model is essentially a compromise between the two models. It is an adaptive regularization technique.  
 
 We can assess the group and individual level variation using intraclass correlation. 
 
@@ -36,7 +36,13 @@ This value ranges from $$0$$ (for no information conveyed by group) and $$1$$ (f
 
 We can also look at the variance ratio
 
-$$r = \frac{\sigma^2_a}{\sigma^2_y}$$
+$$r = \frac{\sigma^2_y}{\sigma^2_a}$$
+
+The variance ratio is a measure of how much many observations are needed in a group for there to be a balance between the completely-pooled and non-pooled estimates. The standard deviation of the mean between groups is the same as the standard deviation within a group with $$r$$ observations.
+
+* If $$n_j < r$$ then $$\hat{a}_j$$ is closer to $$\mu_a$$
+* If $$n_j = r$$ then $$\hat{a}_j$$ is an average of $$\mu_a$$ and $$\bar{y}_j$$
+* If $$n_j > r$$ then $$\hat{a}_j$$ is closer to $$\bar{y}_j$$
 
 This value tells us that the standard deviation of average $$y$$ between groups is the same as the standard deviation of the average of $$1/r$$ measurements within a group. For a group with more than $$1/r$$ observations, within-group measurements are more informative. Otherwise, the across group measurements are more informative. 
 
@@ -241,8 +247,8 @@ We can use the following estimates to obtain confidence intervals for the estima
 
 We can obtain prediction estimates and its confidence intervals (from quantiles) by using simulation. The methods of how we do this may depend on what we want to predict. 
 
-For example, if we want to predict a data point for a given group, we use the estimated group coefficient to calculate the fitted value for $$y$$. We also need to add an error term (specified by $$\sigma_y$$). The variance for these predictions are $$\sigma^2_y$$.
+If we want to predict a data point for a given group, we use the estimated group coefficient to calculate the fitted value for $$y$$. We also need to add an error term (specified by $$\sigma_y$$). The variance for these predictions are $$\sigma^2_y$$.
 
 If we want to predict a data point for a new group, we conduct a two-step simulation. First we simulate the group estimate using its predictors and the error term $$\sigma^2_a$$. We then use these estimates to predict $$y$$ along with its own error terms $$\sigma^2_y$$. The variance of these predictions are $$\sigma^2_a + \sigma^2_y$$. The ability to obtain predictions for new groups is a great advantage for multilevel models.
 
-
+The simulation procedure detailed above is done on a Bayesian approach. We can also simulate data from a bootstrapping approach. Simulations are useful to obtain predictions, standard error estimates, etc.
