@@ -430,7 +430,7 @@ model {
 ```
 
 # Fitting Models with Markov Chain Monte Carlo
-When posterior distributions are complicated, MCMC uses simulations to find the best model fit. The algorithm draws random samples from the posterior distribution.
+When posterior distributions are complicated, MCMC uses simulations to find the best model fit. Markov chain Monte Carlo is a general method based on drawing values of $$\theta$$ from approximate distributions and then correcting those draws to better approximate the target posterior distribution, $$p(\theta \vert y)$$. The samples are drawn sequentially, with the distribution of sampled draws depending onthe last value drawn. 
 
 Variants of MCMC include
 
@@ -438,7 +438,7 @@ Variants of MCMC include
 * Gibbs sampling
 * Hamiltonian monte carlo
 
-The gist of the algorithm is this. Several Markov chains are run in parallel. Each start at some list of initial values and wander through a distribution of parameter estimates. The goal is to run the algorithm until the simulations from the separate initial values converge to a common distribution. Since each chain starts from a random start site, there is a warmup period which allows the chain to get a feel for the sample space. The warmup period is discarded to lose the influence of the starting values. 
+The gist of the algorithm is this. Several Markov chains are run in parallel. Each start at some list of initial values and wander through a distribution of parameter estimates. The goal is to run the algorithm until the simulations from the separate initial values converge to a common distribution. Since each chain starts from a random start site, there is a warmup period which allows the chain to get a feel for the parameter space. The warmup period is discarded to lose the influence of the starting values. 
 
 We can obtain diagnostics of the MCMC convergence from the stan models
 ```{r, echo = FALSE, include = FALSE}
@@ -482,8 +482,17 @@ monitor(stan.mod)
 * **n_eff**: effective number of simulation draws; would like to be $$>100$$ for good estimates and confidence intervals
 * **Rhat**: square root of the variance of mixture of all the chains divided by average within-chain variance; $$\approx 1$$ as chains converge; values $$>> 1$$ indicates poor convergence
 
-beta-binomial: varying probabilties
-gamma-poisson: varying rates
-dirichlet-multinomial
+# Summarising Models Fits
+
+Graphical summaries of model fits work well with the outputs generated from Stan. Potential plots include
+
+* Point estimates and 95% credible regions of estimated coefficients 
+* Distributions of varying slopes/intercepts
+* Other plots of simulated results
+
+We can compare models with
+
+* Simulate model and generate 95% credible regions for $$\hat{y}$$, compare to $$y_{obs}$$
+* Deviance statistics such as AIC, DIC, WAIC (smaller is better)
 
 [laplace_link]: https://en.wikipedia.org/wiki/Laplace_distribution

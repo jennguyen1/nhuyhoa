@@ -434,7 +434,7 @@ model {
 {% endhighlight %}
 
 # Fitting Models with Markov Chain Monte Carlo
-When posterior distributions are complicated, MCMC uses simulations to find the best model fit. The algorithm draws random samples from the posterior distribution.
+When posterior distributions are complicated, MCMC uses simulations to find the best model fit. Markov chain Monte Carlo is a general method based on drawing values of $$\theta$$ from approximate distributions and then correcting those draws to better approximate the target posterior distribution, $$p(\theta \vert y)$$. The samples are drawn sequentially, with the distribution of sampled draws depending onthe last value drawn. 
 
 Variants of MCMC include
 
@@ -442,7 +442,7 @@ Variants of MCMC include
 * Gibbs sampling
 * Hamiltonian monte carlo
 
-The gist of the algorithm is this. Several Markov chains are run in parallel. Each start at some list of initial values and wander through a distribution of parameter estimates. The goal is to run the algorithm until the simulations from the separate initial values converge to a common distribution. Since each chain starts from a random start site, there is a warmup period which allows the chain to get a feel for the sample space. The warmup period is discarded to lose the influence of the starting values. 
+The gist of the algorithm is this. Several Markov chains are run in parallel. Each start at some list of initial values and wander through a distribution of parameter estimates. The goal is to run the algorithm until the simulations from the separate initial values converge to a common distribution. Since each chain starts from a random start site, there is a warmup period which allows the chain to get a feel for the parameter space. The warmup period is discarded to lose the influence of the starting values. 
 
 We can obtain diagnostics of the MCMC convergence from the stan models
 
@@ -458,12 +458,12 @@ We should examine traceplots for chains that do not seem to mix in well with oth
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=500):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   609    1
-## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   372    1
-## beta[3]  1.7     0.0 0.2  1.4  1.6  1.7  1.8   2.1   395    1
-## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.8   385    1
-## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   951    1
-## lp__    69.7     0.1 1.6 65.7 68.9 70.0 70.8  71.7   534    1
+## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   680    1
+## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   381    1
+## beta[3]  1.7     0.0 0.2  1.3  1.6  1.7  1.8   2.0   409    1
+## beta[4]  2.3     0.0 0.3  1.7  2.1  2.2  2.4   2.8   386    1
+## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   907    1
+## lp__    69.6     0.1 1.5 65.8 68.8 69.9 70.7  71.7   608    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
@@ -475,8 +475,17 @@ We should examine traceplots for chains that do not seem to mix in well with oth
 * **n_eff**: effective number of simulation draws; would like to be $$>100$$ for good estimates and confidence intervals
 * **Rhat**: square root of the variance of mixture of all the chains divided by average within-chain variance; $$\approx 1$$ as chains converge; values $$>> 1$$ indicates poor convergence
 
-beta-binomial: varying probabilties
-gamma-poisson: varying rates
-dirichlet-multinomial
+# Summarising Models Fits
+
+Graphical summaries of model fits work well with the outputs generated from Stan. Potential plots include
+
+* Point estimates and 95% credible regions of estimated coefficients 
+* Distributions of varying slopes/intercepts
+* Other plots of simulated results
+
+We can compare models with
+
+* Simulate model and generate 95% credible regions for $$\hat{y}$$, compare to $$y_{obs}$$
+* Deviance statistics such as AIC, DIC, WAIC (smaller is better)
 
 [laplace_link]: https://en.wikipedia.org/wiki/Laplace_distribution
