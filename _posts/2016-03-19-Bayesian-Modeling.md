@@ -86,121 +86,70 @@ For example, rather than setting the priors to $$\beta \sim N(0, 100)$$ we can s
 
 Setting Gaussian priors refers to the $$L_2$$ norm penalty (ridge regression). We can also use a zero-centered [Laplacian prior][laplace_link]{:target = "_blank"} to the $$L_1$$ norm penalty (lasso regression). We penalize by a weighted $$L_1$$ and $$L_2$$ norms (elastic net) by using a complex prior $$\sim C(\lambda, \alpha) e^{\lambda \vert w \vert_1 + \alpha \vert w \vert_2}$$.  
 
-# Fitting Models in Stan
+# Stan for Fitting Bayesian Models
 
+We can fit models in R using Stan through the function `stan()`. This function takes a few arguments:
+
+* `model_code`: this is a string of the model code. Examples of model codes are listed below
+* `data`: a list of data arguments that are specified in the model code; generally it is better to do the preprocessing prior to passing it into the stan
+* `pars`: this is a vector of characters specifying the parameters and generated quantities that one wishes to be returned
+
+* `chains`: how many chains to run
+* `iter`: how many iterations of each chain (including warmup)
+
+Below is an example of data pre-processing and passing the data into stan
 
 {% highlight r %}
-map(
-  alist(
-    pulled_left ~ dbinom(1, p),
-    logit(p) <- a + bp*prosoc_left + bpc*condition*prosoc_left,
-    a ~ dnorm(0, 10),
-    bp ~ dnorm(0, 10),
-    bpC ~ dnorm(0, 10)
+# load stan
+library(stan)
+
+# data pre-processing
+X <- as.data.frame( model.matrix(mpg ~ drat + wt + qsec + cyl, data = mtcars) )
+new_x <- X
+
+# run the model in stan
+stan.mod <- stan(
+  model_code = stan_code, # stan model code
+  data = list( # data arguments, also specified in the stan model code
+    N = nrow(X),
+    K = ncol(X),
+    y = mtcars$mpg,
+    X = X
+    N2 = nrow(X2),
+    new_X = X
   ),
-  data = d
+  pars = c("beta","sigma","y_pred"), # parameters to be returned, also specified in stan model code
+  chains = 4, # number of chains to run
+  iter = 2000 # number of iterations for each chain
 )
-
-map2stan(
-  alist(
-    pulled_left ~ dbinom(applications, p),
-    logit(p) <- a[actor] + bp*prosoc_left,
-    a[actor] ~ dnorm(0, 10),
-    bp ~ dnorm(0, 10)
-  )
-)
-
-map2stan(
-  alist(
-    total_tools ~ dpois(lambda),
-    log(lambda) <- a + bp*x,
-    a ~ dnorm(0, 100),
-    bp ~ dnorm(0, 1)
-  ),
-  data = d
-)
-
-
-# multilevel model
-map2stan(
-  alist(
-    surv ~ dbinom(density, p),
-    logit(p) <- a_tank[tank],
-    a_tank[tank] ~ dnorm(a, sigma),
-    a ~ dnorm(0, 1),
-    sigma ~ dcauchy(0, 1) # t or cauchy to reduce shrinkage
-  )
-)
-
-map2stan(
-  alist(
-    pulled_left ~ dbinom(1, p),
-    logit(p) <- a + a_actor[actor] + a_block[block_num] + bp*prosac_left,
-    a_actor[actor] ~ dnorm(0, sigma_actor),
-    a_block[block_num] ~ dnorm(0, sigma_block)
-    bp ~ dnorm(0, 10),
-    sigma_actor ~ dcauchy(0, 1),
-    sigma_block ~ dcauchy(0, 1)
-  )
-)
-
-# plot the distribution of varying parameters sigmas to see how group varies
-
-
-
-data { 
-  int N; //the number of observations 
-  int N2; //the size of the new_X matrix 
-  int K; //the number of columns in the model matrix 
-  real y[N]; //the response matrix[N,K] 
-  X; //the model matrix matrix[N2,K] 
-  new_X; //the matrix for the predicted values 
-} 
-parameters { 
-  vector[K] beta; //the regression parameters 
-  real sigma; //the standard deviation 
-} 
-transformed parameters { 
-  vector[N] linpred; 
-  linpred <- X*beta; 
-} 
-model { 
-  beta[1] ~ cauchy(0,10); //prior for the intercept following Gelman 2008 
-  for(i in 2:K) 
-    beta[i] ~ cauchy(0,2.5);//prior for the slopes following Gelman 2008 
-  y ~ normal(linpred,sigma); 
-} 
-generated quantities { 
-  vector[N2] y_pred; 
-  y_pred <- new_X*beta; //the y values predicted by the model 
-}
-
-m_norm<-stan(file="normal_regression.stan",
-             data = list(N=100,N2=60,K=4,y=y_norm,X=X,new_X=new_X),
-             pars = c("beta","sigma","y_pred"))
-
-traceplot
-monitor
-extract
 {% endhighlight %}
 
+After running the model, we can extract useful information with the following functions
 
 {% highlight r %}
-library(rstan)
-stan.mod <- stan(model_code = "", chains = 4, iter = 2000)
+# assess model convergence
 traceplot(stan.mod)
+
+# model summaries
 monitor(stan.mod)
+
+# raw samples
 extract(stan.mod)
 {% endhighlight %}
 
-## Classical Regression in Stan
-These models do not place priors on the parameters. The assumed prior is noninformative uniform prior.
+We will talk more about some of these functions later.
 
+## Examples of Model Code
+
+When priors are not specified for parameters, the assumed prior is a noninformative uniform prior.
+
+### Linear Regression
 
 {% highlight r %}
-# Linear Model
+# Linear Model 1: individual notation
 data{ 
   int<lower=0> N; 
+  int<lower=0> K;
   vector[N] y;
   vector[N] x1;
   vector[N] x2;
@@ -223,7 +172,7 @@ transformed data{
   }
 }
 parameters{
-  vector[6] beta;
+  vector[K] beta;
   real<lower=0> sigma;
 }
 model{
@@ -242,14 +191,49 @@ generated quantities{
 
 
 {% highlight r %}
+# Linear Model 2: matrix notation
+data { 
+  int N; 
+  int K; 
+  real y[N];
+  matrix[N,K] X; 
+  
+  int N2; 
+  matrix[N2, K] new_X; 
+} 
+parameters { 
+  vector[K] beta; 
+  real sigma; 
+} 
+transformed parameters { 
+  vector[N] y_hat; 
+  y_hat <- X*beta; 
+} 
+model { 
+  for(i in 2:K) {
+    beta[i] ~ normal(0,5); # regularizing priors on all slopes
+  }
+  
+  y ~ normal(y_hat,sigma); 
+} 
+generated quantities { 
+  vector[N2] y_pred; 
+  y_pred <- new_X*beta; 
+}
+{% endhighlight %}
+
+### Logistic Regression
+
+{% highlight r %}
 # Logistic Model 1: passing in eta on the logit scale
 data {
   int<lower=0> N;
+  int<lower=0> K;
   int<lower=0,upper=1> y[N];
   vector[N] x1;
 }
 parameters {
-  vector[2] beta;
+  vector[K] beta;
 }
 model {
   y ~ bernoulli_logit(beta[1] + beta[2] * x1); 
@@ -261,15 +245,19 @@ generated_quantities{
     pred[i] <- fmax(0, fmin(1, inv_logit(beta[1] + beta[2] * x1[i])));
   }
 }
+{% endhighlight %}
 
+
+{% highlight r %}
 # Logistic Model 2: passing in p
 data {
   int<lower=0> N;
+  int<lower=0> K;
   int<lower=0,upper=1> y[N];
   vector[N] x1;
 }
 parameters {
-  vector[2] beta;
+  vector[K] beta;
 }
 transformed parameters{
   vector[N] p_hat;
@@ -283,12 +271,13 @@ model {
 }
 {% endhighlight %}
 
-
+### Poisson Regression
 
 {% highlight r %}
 # Poisson Model
 data {
   int<lower=0> N; 
+  int<lower=0> K;
   int y[N];
   vector[N] offset;
   vector[N] x1;
@@ -299,7 +288,7 @@ transformed data {
   log_offset <- log(offset);
 }
 parameters {
-  vector[2] beta;
+  vector[K] beta;
 } 
 model {
   y ~ poisson_log(log_offset + beta[1] + beta[2] * x1);
@@ -311,6 +300,7 @@ model {
 # Overdispersed Poisson
 data {
   int<lower=0> N; 
+  int<lower=0> K;
   int y[N];
   vector[N] offset;
   vector[N] x1;
@@ -321,7 +311,7 @@ transformed data {
   log_offset <- log(offset);
 }
 parameters {
-  vector[2] beta;
+  vector[K] beta;
   vector[N] lambda;
   real<lower=0> sigma;
 } 
@@ -333,8 +323,7 @@ model {
 }
 {% endhighlight %}
 
-## Bayesian Regression in Stan
-
+### Multilevel Models
 
 {% highlight r %}
 # Mutlilevel Model: varying intercept
@@ -444,7 +433,7 @@ model {
 }
 {% endhighlight %}
 
-# Markov Chain Monte Carlo
+# Fitting Models with Markov Chain Monte Carlo
 When posterior distributions are complicated, MCMC uses simulations to find the best model fit. The algorithm draws random samples from the posterior distribution.
 
 Variants of MCMC include
@@ -458,7 +447,7 @@ The gist of the algorithm is this. Several Markov chains are run in parallel. Ea
 We can obtain diagnostics of the MCMC convergence from the stan models
 
 
-<img src="/nhuyhoa/figure/source/2016-03-19-Bayesian-Modeling/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-03-19-Bayesian-Modeling/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" />
 
 The plot above indicates that the four chains have converged well despite starting from different random points. 
 
@@ -469,12 +458,12 @@ We should examine traceplots for chains that do not seem to mix in well with oth
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=500):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   665    1
-## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   387    1
-## beta[3]  1.7     0.0 0.2  1.4  1.6  1.7  1.8   2.0   416    1
-## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.8   405    1
-## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   862    1
-## lp__    69.4     0.1 1.6 65.4 68.5 69.7 70.7  71.6   612    1
+## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   609    1
+## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   372    1
+## beta[3]  1.7     0.0 0.2  1.4  1.6  1.7  1.8   2.1   395    1
+## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.8   385    1
+## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   951    1
+## lp__    69.7     0.1 1.6 65.7 68.9 70.0 70.8  71.7   534    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
