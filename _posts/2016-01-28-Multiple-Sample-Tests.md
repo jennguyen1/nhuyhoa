@@ -11,50 +11,6 @@ categories: ['statistics', 'experimental design']
 
 
 # ANOVA
-In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
-
-In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands
-
-
-{% highlight r %}
-proc glm data = x;
-  class var1 var2;
-  model y = var1 var2 var1*var2;
-  test h = var1 e = var1*var2;
-  lsmeans var1 / tdiff pdiff cl;
-  lsmeans var2 / tdiff pdiff cl;
-  means var1 / lsd lines;
-  means grp / hovtest = bf;
-  contrast "name" var1 1 1 -1 -1 / e;
-  output out = outfile p = yhat r = resid rstudent = r1;
-run;
-
-proc mixed data = x method = type3;
-  class wholeplot subplot;
-  model y = wholeplot subplot(wholeplot);
-  random subplot(wholeplot);
-run;
-
-proc mixed data = x method = type3;
-  class A B Field;
-  model response = A B A*B;
-  random field(A);
-run;
-
-# completely randomized
-proc mixed data = x method = type3;
-  class soil variety pan;
-  model yield = soil variety soil*variety;
-  random pan(soil);
-run;
-
-# blocked
-proc mixed data = x method = type3;
-  class soil variety pan;
-  model yield = pan soil variety soil*variety;
-  random pan*soil;
-run;
-{% endhighlight %}
 
 **Assumptions**
 
@@ -514,6 +470,53 @@ Total  | $$abc-1$$ |
 
 Notice that the $$df$$ for the wholeplot error is essentially the interaction between $$AB$$. The $$df$$ for the subplot error can be rewritten as $$a(b-1)(c-1) = (b-1)(c-1) + (a-1)(b-1)(c-1)$$. These are the pooled $$df$$ from the $$BC$$ and $$ABC$$ interaction. 
 
+## Statistical Software
+
+In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
+
+In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands
+
+
+{% highlight r %}
+proc glm data = x;
+  class var1 var2;
+  model y = var1 var2 var1*var2;
+  test h = var1 e = var1*var2;
+  lsmeans var1 / tdiff pdiff cl;
+  lsmeans var2 / tdiff pdiff cl;
+  means var1 / lsd lines;
+  means grp / hovtest = bf;
+  contrast "name" var1 1 1 -1 -1 / e;
+  output out = outfile p = yhat r = resid rstudent = r1;
+run;
+
+proc mixed data = x method = type3;
+  class wholeplot subplot;
+  model y = wholeplot subplot(wholeplot);
+  random subplot(wholeplot);
+run;
+
+proc mixed data = x method = type3;
+  class A B Field;
+  model response = A B A*B;
+  random field(A);
+run;
+
+# completely randomized
+proc mixed data = x method = type3;
+  class soil variety pan;
+  model yield = soil variety soil*variety;
+  random pan(soil);
+run;
+
+# blocked
+proc mixed data = x method = type3;
+  class soil variety pan;
+  model yield = pan soil variety soil*variety;
+  random pan*soil;
+run;
+{% endhighlight %}
+
 # Other Topics
 
 ## Pairwise Comparisons and Contrasts
@@ -558,6 +561,9 @@ There are a number of ways to do this:
 * Choose a central point of combinations and replicate it to obtain an estimate of $$\sigma^2_{\epsilon}$$ (would need to assume equal variance)
 * Assume that larger order interaction terms are insignificant and pools those into the error term $$\sigma^2_{\epsilon}$$
 * Assume that if none of the effects are significant, the estimated effects $$\sim iidN(0, \frac{4\sigma^2_{\epsilon}}{2^k})$$. Make a QQ-plot of estimated effects and those effects not on the QQ-line are significant
+
+## ANOVAs as Regression
+We can treat ANOVAs as regressions and analyze data that way. This lets us deal with issues such as unbalanced groups. We can assess effects by comparing full and reduced models. 
 
 # Nonparametric Tests and Equal Variance Tests
 

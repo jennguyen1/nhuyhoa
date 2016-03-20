@@ -15,49 +15,6 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
 # ANOVA
-In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
-
-In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands
-
-```{r, eval = FALSE}
-proc glm data = x;
-  class var1 var2;
-  model y = var1 var2 var1*var2;
-  test h = var1 e = var1*var2;
-  lsmeans var1 / tdiff pdiff cl;
-  lsmeans var2 / tdiff pdiff cl;
-  means var1 / lsd lines;
-  means grp / hovtest = bf;
-  contrast "name" var1 1 1 -1 -1 / e;
-  output out = outfile p = yhat r = resid rstudent = r1;
-run;
-
-proc mixed data = x method = type3;
-  class wholeplot subplot;
-  model y = wholeplot subplot(wholeplot);
-  random subplot(wholeplot);
-run;
-
-proc mixed data = x method = type3;
-  class A B Field;
-  model response = A B A*B;
-  random field(A);
-run;
-
-# completely randomized
-proc mixed data = x method = type3;
-  class soil variety pan;
-  model yield = soil variety soil*variety;
-  random pan(soil);
-run;
-
-# blocked
-proc mixed data = x method = type3;
-  class soil variety pan;
-  model yield = pan soil variety soil*variety;
-  random pan*soil;
-run;
-```
 
 **Assumptions**
 
@@ -516,6 +473,52 @@ SP Error | $$a(b-1)(c-1)$$ | $$\sigma^2_{\delta}$$
 Total  | $$abc-1$$ |
 
 Notice that the $$df$$ for the wholeplot error is essentially the interaction between $$AB$$. The $$df$$ for the subplot error can be rewritten as $$a(b-1)(c-1) = (b-1)(c-1) + (a-1)(b-1)(c-1)$$. These are the pooled $$df$$ from the $$BC$$ and $$ABC$$ interaction. 
+
+## Statistical Software
+
+In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands.
+
+In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands
+
+```{r, eval = FALSE}
+proc glm data = x;
+  class var1 var2;
+  model y = var1 var2 var1*var2;
+  test h = var1 e = var1*var2;
+  lsmeans var1 / tdiff pdiff cl;
+  lsmeans var2 / tdiff pdiff cl;
+  means var1 / lsd lines;
+  means grp / hovtest = bf;
+  contrast "name" var1 1 1 -1 -1 / e;
+  output out = outfile p = yhat r = resid rstudent = r1;
+run;
+
+proc mixed data = x method = type3;
+  class wholeplot subplot;
+  model y = wholeplot subplot(wholeplot);
+  random subplot(wholeplot);
+run;
+
+proc mixed data = x method = type3;
+  class A B Field;
+  model response = A B A*B;
+  random field(A);
+run;
+
+# completely randomized
+proc mixed data = x method = type3;
+  class soil variety pan;
+  model yield = soil variety soil*variety;
+  random pan(soil);
+run;
+
+# blocked
+proc mixed data = x method = type3;
+  class soil variety pan;
+  model yield = pan soil variety soil*variety;
+  random pan*soil;
+run;
+```
 
 # Other Topics
 
