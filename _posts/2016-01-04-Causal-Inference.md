@@ -75,3 +75,23 @@ Sometimes when building complex experiments, we may use confounding to our advan
 Analyses should be analyzed based on how the data was designed. Failing to do so may lead to biased results. 
 
 # Missing Data
+
+Missing data falls into a number of categories
+
+* **Missing completely at random**: probability of missingness same for all units
+* **Missingness at random**: pattern of missing data can be attributed to variables that are observed
+* **Missinginess that depends on unobserved predictors**: missing data are informative, will bias results
+* **Missingness that depends on missing value**: censoring
+
+It is generally impossible to know whether data is really missing at random or it is due to unobserved predictors. We generally make assumptions or check with other studies. 
+
+We cannot deal statistically with missing data. It is important to note that data is missing and interpret results with this taken into account. 
+
+With missing data, there are a number of things we can do to proceed with analysis
+
+* Complete-case analysis: drop all cases with missing data
+* Available-case analysis: study different subsets of data where data is fully available
+* Simple imputation: replace with mean, last available value, etc
+* Indicator variables for missing predictors: replace missing data with 0, include interactions with predictor
+* Regress other predictors on missing variable and predict missing data (either point estimate or incorporating error)
+* Bayesian imputation: model the missing data points (alongside the responses)
