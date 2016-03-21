@@ -270,6 +270,52 @@ model {
 }
 ```
 
+```{r, eval = FALSE}
+# Multinomial Model
+data{
+  int<lower=0> N; # N observations
+  int K; # K parameters
+  int<lower=2> J; # J possible outcomes for y
+  
+  int<lower=1, upper=J> y[N];
+  vector[K] x[N];
+}
+parameters{
+  matrix[J, K] beta; # set of betas for each category
+} 
+model{
+  for(j in 1:J){
+    beta[j] ~ normal(0, 10);
+  }
+  
+  for(i in 1:N){
+    y[i] ~ categorical_logit(beta*x[i]); # probability of y for each category
+  }
+}
+```
+
+```{r, eval = FALSE}
+# Ordered Logistic Model
+data{
+  int<lower=0> N; 
+  int K; 
+  int<lower=2> J; 
+  
+  int<lower=1, upper=J> y[N];
+  row_vector[K] x[N];
+}
+parameters{
+  vector[K] beta;
+  ordered[J-1] c;
+}
+model{
+  for(i in 1:N){
+    y[i] ~ ordered_logistic(x[n]*beta, c);
+  }
+}
+```
+
+
 ### Poisson Regression
 ```{r, eval = FALSE}
 # Poisson Model
@@ -488,7 +534,7 @@ Graphical summaries of model fits work well with the outputs generated from Stan
 
 * Point estimates and 95% credible regions of estimated coefficients 
 * Distributions of varying slopes/intercepts
-* Other plots of simulated results
+* Other plots of simulated results; simulated via bayesian method (simulate parameters and then the posterior) or bootstrap
 
 We can compare models with
 

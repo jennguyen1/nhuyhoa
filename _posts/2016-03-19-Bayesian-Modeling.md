@@ -271,6 +271,54 @@ model {
 }
 {% endhighlight %}
 
+
+{% highlight r %}
+# Multinomial Model
+data{
+  int<lower=0> N; # N observations
+  int K; # K parameters
+  int<lower=2> J; # J possible outcomes for y
+  
+  int<lower=1, upper=J> y[N];
+  vector[K] x[N];
+}
+parameters{
+  matrix[J, K] beta; # set of betas for each category
+} 
+model{
+  for(j in 1:J){
+    beta[j] ~ normal(0, 10);
+  }
+  
+  for(i in 1:N){
+    y[i] ~ categorical_logit(beta*x[i]); # probability of y for each category
+  }
+}
+{% endhighlight %}
+
+
+{% highlight r %}
+# Ordered Logistic Model
+data{
+  int<lower=0> N; 
+  int K; 
+  int<lower=2> J; 
+  
+  int<lower=1, upper=J> y[N];
+  row_vector[K] x[N];
+}
+parameters{
+  vector[K] beta;
+  ordered[J-1] c;
+}
+model{
+  for(i in 1:N){
+    y[i] ~ ordered_logistic(x[n]*beta, c);
+  }
+}
+{% endhighlight %}
+
+
 ### Poisson Regression
 
 {% highlight r %}
@@ -447,7 +495,7 @@ The gist of the algorithm is this. Several Markov chains are run in parallel. Ea
 We can obtain diagnostics of the MCMC convergence from the stan models
 
 
-<img src="/nhuyhoa/figure/source/2016-03-19-Bayesian-Modeling/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-03-19-Bayesian-Modeling/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
 
 The plot above indicates that the four chains have converged well despite starting from different random points. 
 
@@ -458,12 +506,12 @@ We should examine traceplots for chains that do not seem to mix in well with oth
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=500):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   680    1
-## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   381    1
-## beta[3]  1.7     0.0 0.2  1.3  1.6  1.7  1.8   2.0   409    1
-## beta[4]  2.3     0.0 0.3  1.7  2.1  2.2  2.4   2.8   386    1
-## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   907    1
-## lp__    69.6     0.1 1.5 65.8 68.8 69.9 70.7  71.7   608    1
+## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   730    1
+## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   509    1
+## beta[3]  1.7     0.0 0.2  1.3  1.6  1.7  1.8   2.0   531    1
+## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.8   537    1
+## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   733    1
+## lp__    69.5     0.1 1.7 65.2 68.7 69.8 70.7  71.6   413    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
@@ -481,7 +529,7 @@ Graphical summaries of model fits work well with the outputs generated from Stan
 
 * Point estimates and 95% credible regions of estimated coefficients 
 * Distributions of varying slopes/intercepts
-* Other plots of simulated results
+* Other plots of simulated results; simulated via bayesian method (simulate parameters and then the posterior) or bootstrap
 
 We can compare models with
 

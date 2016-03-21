@@ -57,6 +57,7 @@ printf "%04d" 15
   * `grep -c` counts matches
   * `grep -i` ignores case
   * `grep -e` expanded regular expression 
+  * `grep -v` opposite of the match
   * special characters: `^`, `$`, `*`
 * `tr 'abc' 'ABC'` translate lower case to upper case
   * `tr a b < file` translate a to b in the file
