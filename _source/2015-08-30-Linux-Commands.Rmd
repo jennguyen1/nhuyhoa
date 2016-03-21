@@ -22,6 +22,9 @@ find . -name "*.txt" | xargs rm
 
 # example: package all *.jpg files 
 find . -name "*.jpg" | xargs tar -zcf jpg.tar.gz
+
+# example: batch rename
+ls | grep \.jpg$ | sed 'p;s/\.jpg/\.png/' | xargs -n2 mv
 ```
 
 * `echo` repeat your own text, can pipe into files
@@ -56,27 +59,46 @@ printf "%04d" 15
   * `grep -i` ignores case
   * `grep -e` expanded regular expression 
   * `grep -v` opposite of the match
+  * `grep pattern --color=auto`: highlight the match
   * special characters: `^`, `$`, `*`
 * `tr 'abc' 'ABC'` translate lower case to upper case
   * `tr a b < file` translate a to b in the file
   * `tr -d 'aeiou'` delete specific characters
 * `uniq` for unique values
-* `sort` sorting
 * `wc` word counts
-* `cut` cuts out selected portions of each line from each file and writes to standard output
 * `paste` merges lines of files together
 * `join` merges tables of files together by a given column
 * `diff` compare files line by line
 * `expand` converts tabs to spaces
 * `unexpand` converts spaces to tabs
 * `fold` prints out content in more readable format
-* `colrm` removes columns from being printed
 
+* `sort` sorting
+```{r, eval = FALSE}
+# sort by 1st col, then 2nd, then 3rd ...
+sort input.txt
+
+# start sorting by 3rd column
+sort +2 input.txt
+
+# sort 2nd col as numbers, descending order; then sort 3rd col as strings ascending order
+sort -k2,2nr -k3,3 input.txt
+```
+
+* `cut` cuts out selected portions of each line from each file and writes to standard output
+```{r, eval = FALSE}
+# cut 1, 2, 3, 5, 7 columns
+cut -f1-3,5,7- input.txt
+
+# cut 3rd column w/ columns separated by a single space
+cut -d" " -f 3 input.txt
+```
+
+Examples
 ```{r, eval = FALSE}
 # find the 10 most common words
 cat temp.txt | tr "[A-Z]" "[a-z]" | tr -c "[:alnum:]" "[\n*]" | sort | uniq -c | sort -nr | head -10
 ```
-
 
 ## Finding Files
 ```{r, eval = FALSE}
@@ -300,6 +322,25 @@ from_file >> to_file
 program_with_error 2> to_file
 ```
 
+## Doing Math
+```{r, eval = FALSE}
+# using let
+let a = 5*3
+let "a = $a + 1"
+let a++
+
+# using expr
+expr 11 % 2
+expr "4 + 9"
+
+# using double parenthesis
+a = $$((4 + 5))
+a = $$(($a + 2))
+((a++))
+((a+=4))
+```
+
+
 ## If/Else, Loops & Functions
 
 **If and Else:**
@@ -451,7 +492,7 @@ Control within loops
 * Exit loop: `break`
 
 **Functions and Aliasing:**
-
+Aliasing
 ```{r, eval = FALSE}
 # save the shortcut
 alias shortcut="cd ~Desktop; nano temp.txt"
@@ -465,6 +506,28 @@ unalias shortcut
 # view list of aliases
 alias
 ```
+
+Functions
+```{r, eval = FALSE}
+# declare functions
+f() {
+  echo $1
+  local var1='local1'
+  # stuff
+  return 5
+}
+
+function f{
+  echo $1
+  local var1='local1'
+  # stuff
+  return 5
+}
+
+# call function
+f hello
+```
+
 
 ## Sed
 
@@ -490,8 +553,11 @@ sed '1,2s/heart/love/' test.txt
 echo "hi, hi, hi" | sed 's/hi/hello/'
 echo "hi, hi, hi" | sed 's/hi/hello/g'
 
-# example: print modifier
+# example: print modifier - not good
 sed 's/heart/love/p' test.txt
+
+# example: different print modifier, prints original and edit
+sed 'p;s/heart/love/'
 
 # example: regex and backreferences
 sed 's/\([1-9]*\) \(#\)/ \2 \1/' test.txt
@@ -501,6 +567,12 @@ sed 's/^[AEIOU][a-z]*/\*&\*/' test.txt
 
 # example: write results out
 sed 's/^[AEIOU][a-z]*/\*&\*/w output.txt' test.txt
+
+# example: delete blank lines
+sed '/^$/d' test.txt
+
+# example: trim lead & trailing whitespaces
+sed 's/^[ \t]*//;s/[ \t]*$//' test.txt
 ```
 
 * Apply a sequence of commands using a sed script
@@ -516,6 +588,50 @@ sed -f sed_script test.txtou
 
 ## Awk
 Awk is a scripting language used for text extraction and processing. 
+
+```{r, eval = FALSE}
+# choose rows where col 3 larger than col 5
+awk '$3>$5' input.txt > output.txt
+
+# extract col 2, 4, 5
+awk '{print $2, $4, $5}' input.txt
+awk 'BEGIN{OFS="\t"}{print $2, $4, $5}' input.txt
+
+# show rows between 20th and 80th rows
+awk 'NR>=20&&NR<=80' input.txt
+
+# print sum of col 2
+awk '{x+=$2}END{print x}' input.txt
+
+# calculate average of 2nd col
+awk '{x+=$2}END{print x/NR}' input.txt
+
+# print each line in 7th col that matches regular expression
+awk '$7 ~ /^[a-f]/' input.txt
+
+# print lines that do not match
+awk '$7 !~ /^[a-f]/' input.txt
+
+# calculate sum of col 2 & 3; put it at end of row or replace 1st col
+awk '{print $0,$2+$3}' input.txt
+awk '{$1=$2+$3;print}' input.txt
+
+# join two files on col 1
+awk 'BEGIN{while((getline<"file1.txt")>0)l[$1]=$0}$1 in l{print $0"\t"l[$1]}' file2.txt > output.txt
+
+# count number of occurrence of column 2 (uniq -c):
+awk '{l[$2]++}END{for (x in l) print x,l[x]}' input.txt
+
+# apply "uniq" on column 2, only printing the first occurrence (uniq):
+awk '!($2 in l){print;l[$2]=1}' input.txt
+
+# count different words
+awk '{for(i=1;i!=NF;++i)c[$i]++}END{for (x in c) print x,c[x]}' input.txt
+
+# process simple csv
+awk -F, '{print $1,$2}'
+```
+
 
 **Format of .awk File:**
 
