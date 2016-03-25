@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dimension Reduction: Principal Components"
+title: "Principal Components Analysis"
 date: "January 3, 2016"
 categories: ['statistics', 'machine learning']
 ---

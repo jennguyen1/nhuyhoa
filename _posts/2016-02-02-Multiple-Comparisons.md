@@ -150,19 +150,36 @@ where $$k$$ is the number of groups.
 ## False Discovery Rate (FDR)
 This method states that for large $$r$$, we do not expect all the null hypotheses to be true. Rather than focusing on the family-wise error rate, we wish to control 
 
-$$q = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 0 \right)$$
+$$\alpha = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 0 \right)$$
 
 the expected proportion of our discoveries that are false (false positives) assuming we make at least one discovery.
 
-This method is the Benjamini and Hochberg method. This procedure requires the tests to be independent. The procedure may control FDR for certain types of correlation, but may fail for highly correlated data. 
+This method is the Benjamini and Hochberg method. This procedure requires the tests to be independent. The procedure may control FDR for certain types of correlation, but may fail for highly correlated data. (This procedure is more powerful than the Bonferroni-Holmes procedure).
 
-If $$q$$ is the FDR, then we reject if $$p_{(i)} \le \frac{qi}{r}$$.
-
-The p-value is
+The p-value for an individual test is
 
 $$p_{BH(i)} = min \left( \frac{rp_{(i)}}{i}, 1 \right)$$
 
-This procedure is more powerful the the Bonferroni-Holmes procedure. 
+Let $$\alpha$$ be the FDR. Let $$k$$ be the largest $$i$$ for which $$p_{(i)} \le \frac{i}{r}\alpha$$. Then we reject tests with p-values smaller or equal to $$p_{(k)}$$. This is illustrated in the plot below ($$\alpha = 0.05$$)
+
+
+{% highlight text %}
+## Warning: Removed 710 rows containing missing values (geom_point).
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning: Removed 710 rows containing missing values (geom_path).
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2016-02-02-Multiple-Comparisons/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+
+We can compare these values with the q-values (FDR) generated from `p.adjust()` using the FDR method. The cutoffs for the two methods agree. 
+
+<img src="/nhuyhoa/figure/source/2016-02-02-Multiple-Comparisons/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+Using $$r$$ ensures that $$FDR < \alpha \forall r_0$$. This is a conservative estimate of $$r_0$$ where we are considering the extreme case where every hypothesis test is null, $$r = r_0$$. 
 
 **Obtaining an Estimate of $$r_0$$**
 
@@ -170,7 +187,7 @@ If we knew the number of true $$H_0$$ tests, we could adjust for that ($$r_0$$) 
 
 Consider the histogram of p-values testing samples with a combination of the same means and different means. Under the null hypothesis, p-values are expected to be uniformly distributed between $$0$$ and $$1$$. Under the alternative hypothesis, p-values are skewed towards $$0$$. So combined
 
-<img src="/nhuyhoa/figure/source/2016-02-02-Multiple-Comparisons/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-02-02-Multiple-Comparisons/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 We can obtain an estimate of $$r_0$$ from the histogram of p-values by 
 
@@ -178,7 +195,7 @@ We can obtain an estimate of $$r_0$$ from the histogram of p-values by
 * Expect $$r_0(1 - \lambda)$$ of p-values $$> \lambda$$ so we count the number of $$r_{\lambda}$$ p-values $$> \lambda$$
 * Estimate $$\hat{r}_0 = \frac{ r_{\lambda} }{1 - \lambda}$$
 
-Generally $$\lambda = 0.5$$ tends to work quite well. Notice that the region $$< \lambda$$ contain information regarding the true alternative hypotheses.
+Generally $$\lambda = 0.5$$ tends to work quite well. We assume that the region where p-values $$> \lambda$$ are mostly cases in which the null hypothesis is true. And the region where p-values $$< \lambda$$ contain information regarding the true alternative hypotheses. 
 
 If the distribution of p-values is not similar to one found above, then the test statistic does not have the assumed null distribution. The computed p-values are not valid. This would require another statistical analysis pipeline would need to be developed (perhaps assess whether assumptions were met).
 
@@ -204,7 +221,7 @@ $$LSD < Dunnett < Tukey < Scheffe < Bonferroni$$
 The right method depends on the application. It's best to use conservative tests when the consequences are severe. A liberal test is more appropriate when you can accept that you may make Type 1 errors. When you have a large number of tests, FDR and q-values are best. 
 
 ## In R
-In R, we can use `pairwise.t.test(y, x)`, `p.adjust()`. We can also test contrasts using the `multcomp::glht()` function.
+In R, we can use `pairwise.t.test(y, x)`, `p.adjust()`. Different methods can be specified as well. We can also test contrasts using the `multcomp::glht()` function.
 
 # Multiple Corrections for Count Data
 

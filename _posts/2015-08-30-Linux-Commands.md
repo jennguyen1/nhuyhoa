@@ -206,6 +206,13 @@ lpr -o sides=two-sided-long-edge -Pprinter_name file_name
 ssh username@place
 {% endhighlight %}
 
+**Download from a Server:**
+
+{% highlight r %}
+curl -o online_file_name
+{% endhighlight %}
+
+
 **Upload to a Server:**
 
 
@@ -256,6 +263,12 @@ sh script_name
 # set variable, note no spaces
 VAR="value"
 VAR2=25
+VAR3=$(echo ${statement} | sed 's/\(<\/*[a-z0-9]*>\)[A-Za-z0-9\t ]*/\1/g')
+
+# array variables
+declare -a NAME
+NAME=(val2 val2 ... valN)
+NAME[index]=value
 
 # set environmental vars so child processes can inherit
 export VAR2="value2"
@@ -267,6 +280,11 @@ export VAR2="value2"
 {% highlight r %}
 # call a variable (brackets are not required but convention)
 cmd ${VAR}
+
+# call arrays
+cmd ${NAME[0]}
+cmd ${NAME[*]}
+cmd ${NAME[@]}
 
 # find the length of a variable
 cmd ${#VAR}
@@ -281,6 +299,9 @@ set
 
 # remove variable
 unset VAR
+
+# remove array element
+unset NAME[3]
 {% endhighlight %}
 
 **Substitution Operators:**
@@ -297,6 +318,19 @@ echo "${TMP:=value}"
 
 # abort
 echo "${TMP:?value}"
+{% endhighlight %}
+
+Obtaining substrings
+
+{% highlight r %}
+# obtain everything after 4th char
+echo ${STR:4}
+
+# start at 6th char and obtain a string fo length 5
+echo ${STR:6:5}
+
+# obtain portion of string that isn't name
+echo ${STR%name}
 {% endhighlight %}
 
 ## Passing Parameters to Scripts
@@ -506,12 +540,17 @@ do
 done
 {% endhighlight %}
 
-While loops
+While and Until loops
 
 {% highlight r %}
 while [ condition ]
 do
   # stuff
+done
+
+until [ condition ]
+  do 
+    # stuff
 done
 {% endhighlight %}
 
@@ -616,7 +655,7 @@ s/windows/mac/g
 s/square/circle/g
 
 # call script
-sed -f sed_script test.txtou
+sed -f sed_script test.txt
 {% endhighlight %}
 
 ## Awk
@@ -624,12 +663,21 @@ Awk is a scripting language used for text extraction and processing.
 
 
 {% highlight r %}
+# form strings
+ls -l | awk '{print "my username is " $3}'
+
 # choose rows where col 3 larger than col 5
 awk '$3>$5' input.txt > output.txt
 
 # extract col 2, 4, 5
 awk '{print $2, $4, $5}' input.txt
+
+# extract columns into a tab-separated file (OFS = output field separator)
 awk 'BEGIN{OFS="\t"}{print $2, $4, $5}' input.txt
+
+# extract columns from a tab-separated file (FS = field separator)
+awk 'BEGIN{FS="\t"}{print $2, $4, $5}' input.txt
+
 
 # show rows between 20th and 80th rows
 awk 'NR>=20&&NR<=80' input.txt
