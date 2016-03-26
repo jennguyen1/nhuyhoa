@@ -77,6 +77,8 @@ The idea is generate a linear model at target point $$x_0$$ using only the nearb
 
 One good resource is Wolfram Demonstrations Project on [how loess works][loess_link]{:target = "_blank"}.
 
+Another good link is the [PH525 series][ph525_link]{:target = "_blank"}.
+
 In R, one can fit a loess curve with the function `loess()` or `splines::lo()`.
 
 **Advantages:**
@@ -99,3 +101,4 @@ In R, one can fit this model in R by combining the other nonlinear methods.
 * View the plots with `plot.gam()`
 
 [loess_link]: http://demonstrations.wolfram.com/HowLoessWorks/
+[ph525_link]: http://genomicsclass.github.io/book/pages/smoothing.html

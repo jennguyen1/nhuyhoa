@@ -286,7 +286,7 @@ In R, DBSCAN can be implemented with `fpc::dbscan()`
 
 **Internal Validation:**
 
-* Sensitivity analysis: resample or add noise. If the clusters are stable, you would not expect to see major changes in clusters from replications
+* Sensitivity analysis: resample (bootstrap) or add noise. If the clusters are stable, you would not expect to see major changes in clusters from replications
 * Assess how well clustering optimizes the intracluster similarity and intercluster dissimilarity
 
 The Silhouette index: <br>

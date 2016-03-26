@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dimension Reduction: Principal Components"
+title: "Principal Components Analysis"
 date: "January 3, 2016"
 categories: ['statistics', 'machine learning']
 ---
@@ -21,7 +21,7 @@ It is often helpful in dealing with cases in which the curse of dimensionality i
 
 The curse of dimensionality refers to the breakdown of modeling techniques when the number of parameters increase. For example in KNN, increasing the number of dimensions results in data points that are farther away which affects the algorithm efficiency.
 
-Prior to running the PCA algorithm, it is necessary to normalize the features. If the data is not normalized features with large values and large variances will dominate the principal components. Normalizing the features will ensure that all variables are on the same scale and have an equal opportunity to contribute to PCA. 
+Prior to running the PCA algorithm, it is necessary to **standardize** the features. If the data is not normalized features with large values and large variances will dominate the principal components. Normalizing the features will ensure that all variables are on the same scale and have an equal opportunity to contribute to PCA. 
 
 ## Singular Value Decomposition (SVD)
 PCA uses singular value decomposition (SVD).
@@ -105,6 +105,8 @@ pc$x
 as.matrix(dat) %*% svd$v
 {% endhighlight %}
 
+## Interpretation of the Principal Components
+
 We can also plot the first two principal components against each other with the loadings, to obtain some information regarding the components. This plot is called a biplot. This requires the `ggfortify` package. 
 
 
@@ -113,13 +115,16 @@ We can also plot the first two principal components against each other with the 
 library(ggfortify)
 
 # plot the biplot
-autoplot(prcomp(dat), data = iris, colour = "Species", 
+autoplot(prcomp(dat, center = TRUE, scale. = TRUE), data = iris, colour = "Species", 
          loadings = TRUE, loadings.label = TRUE,
          loadings.label.size = 3)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-01-03-ML-Principal-Components-Analysis/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
+From this plot, we see that the first principal components has large loadings for $$Petal.Length$$ and $$Petal.Width$$. This indicates that $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
+
+Each point on the plot refers to a single data point. For example, points with high values on the first principal component will have high values for $$Petal.Width$$ and $$Petal.Length$$. A point with low values of the second principal component will have high values of $$Sepal.Width$$ and $$Sepal.Length$$. 
 
 ## Choosing How Many Principal Components
 There is no best method to choose the number of components. However, one thing we could do is look at the "scree plot" and look for the point at which the trend converges. 
@@ -135,7 +140,7 @@ ggplot(data = NULL, aes(x = x, y = y)) +
   xlab("Principal Component") + ylab("Prop. Variance Explained")
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-01-03-ML-Principal-Components-Analysis/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 In this plot, we could potentially choose to use 5-7 principal components. 
 
@@ -143,7 +148,7 @@ In this plot, we could potentially choose to use 5-7 principal components.
 
 * Use for data visualization or data pre-processing
 * Evaluate whether there may be confounding effects (plot principal components grouped by a variable) to see if certain effects/variables capture the majority of the variance
-* Simplify high-dimensional data and use as features in other methods
+* Simplify high-dimensional data and use as features in other methods, like regression (however it may be harder to interpret variables)
 
 PCA is great for providing a low-dimensional representation of high-dimensional data. Thus it works best when the first few PC are sufficient in capturing most of the variation in the predictors. (So it is generally not a good idea to use all of the PC).
 
@@ -170,11 +175,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.803    2.848    2.721    2.745    2.797
-## adjCV        6.123    2.786    2.829    2.699    2.721    2.769
+## CV           6.123    2.671    2.698    2.555    2.593    2.617
+## adjCV        6.123    2.661    2.686    2.539    2.576    2.599
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.952    3.047    3.057    3.391     3.339
-## adjCV    2.917    3.009    3.016    3.331     3.276
+## CV       2.878    3.067    3.317    3.525     3.921
+## adjCV    2.843    3.021    3.259    3.454     3.820
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
@@ -191,7 +196,7 @@ summary(pcr.fit)
 pls::validationplot(pcr.fit, val.type = "MSEP")
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-03-ML-Dimension-Reduction/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-01-03-ML-Principal-Components-Analysis/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 So here we see that using 3 principal components is preferred. If we prefer to use a specified number of components, we can pass the argument `ncomps = n` instead of the `validation` argument. 
 
 # Partial Least Squares
