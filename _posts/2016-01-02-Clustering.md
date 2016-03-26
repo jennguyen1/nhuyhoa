@@ -2,17 +2,13 @@
 layout: post
 title: "Clustering Methods"
 date: "January 2, 2016"
-categories: ['statistics', 'machine learning']
+categories: ['statistics', 'multivariate analysis']
 ---
 
 * TOC
 {:toc}
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
-library(jn.general)
-lib(data, viz)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
-```
+
 
 Clustering is an unsupervised learning technique. Unsupervised learning methods are employed when we only observe features and not the associated response variable. In these cases, we are not interested in prediction. The goal is to find an informative way of visualizing data or discover subgroups among the observations. Thus, it is more of an exploratory technique.
 
@@ -86,40 +82,49 @@ To alleviate this problem, we can run the algorithm many times with random clust
 
 ## Example
 We can use the iris data set to take a look at K-means clustering. Here is the true data.
-```{r, echo = FALSE}
-ggplot(data = iris, aes(x = Petal.Length, y = Petal.Width, color = Species)) +
-  geom_point(size = 1.5) +
-  theme(legend.position = "none")
-set.seed(1)
-```
+<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 We will pretend that we don't know these groupings exist and run a K-means clustering algorithm. (Here we will set $$K = 3$$ but in real life we generally do not know how many groups there are).
-```{r}
+
+{% highlight r %}
 # generate the data
 ir <- iris %>% dplyr::select(Petal.Length, Petal.Width)
 # run K-means clustering
 kmeans(ir, 3, nstart = 20)
-```
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## K-means clustering with 3 clusters of sizes 48, 52, 50
+## 
+## Cluster means:
+##   Petal.Length Petal.Width
+## 1     5.595833    2.037500
+## 2     4.269231    1.342308
+## 3     1.462000    0.246000
+## 
+## Clustering vector:
+##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [33] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+##  [65] 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2
+##  [97] 2 2 2 2 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 1
+## [129] 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1
+## 
+## Within cluster sum of squares by cluster:
+## [1] 16.29167 13.05769  2.02200
+##  (between_SS / total_SS =  94.3 %)
+## 
+## Available components:
+## 
+## [1] "cluster"      "centers"      "totss"        "withinss"    
+## [5] "tot.withinss" "betweenss"    "size"         "iter"        
+## [9] "ifault"
+{% endhighlight %}
 
 Note that we run the algorithm 20 times to circumvent landing at a local minimum. 
 
-```{r, echo = FALSE, fig.height=5, fig.width = 10}
-set.seed(1)
-true <- iris %>% 
-  dplyr::select(-matches("Sepal")) %>% 
-  mutate(Species = factor(Species), kind = "1 True Clusters")
-
-comp <- ir %>% 
-  mutate(Species = factor(kmeans(ir, 3, nstart = 20)$cluster), kind = "2 K-Means Clusters") %>% 
-  rbind(true, .) %>% 
-  mutate(Species = factor(as.numeric(Species)))
-
-ggplot(data = comp, aes(x = Petal.Length, y = Petal.Width, color = Species)) +
-  geom_point(size = 1.5) +
-  theme(legend.position = "none") +
-  facet_grid(~kind) +
-  scale_colour_brewer(palette = "Set1")
-```
+<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 Note that there is a little discrepancy, mostly at the boundaries of the two clusters. 
 
 # K-Medoids Clustering
@@ -218,32 +223,38 @@ The type of linkage will affect the clustering results.
 
 ## Example
 In this example, we will use a subset of the iris data.
-```{r, echo = FALSE}
-ir <- iris %>% dplyr::select(Petal.Length, Petal.Width)
-rownames(ir) <- paste0(1:150, ": ", iris$Species)
-set.seed(1)
-```
 
-```{r, warning = FALSE}
+
+
+{% highlight r %}
 # run hierarchical cluster on a subset of iris data
 ir <- sample_frac(ir, 0.25)
 hc <- hclust(dist(ir), method = "average")
 
 # plot data
 ggdendro::ggdendrogram(hc)
-```
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 If we cut the dendrogram into 3 groups, we have pretty solid cluser for the $$setosa$$ group (homogeneous and small cluster size). The other two groups are have some misclassifications, potentially due to the hazy boundry line between the two groups. 
 
-```{r, warning = FALSE}
+
+{% highlight r %}
 hc2 <- as.dendrogram(hc)
 
 # color the labels
 plot(dendextend::color_labels(hc2, 3))
+{% endhighlight %}
 
+<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+{% highlight r %}
 # color the brances
 plot(dendextend::color_branches(hc2, 3))
-```
+{% endhighlight %}
+
+<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-7-2.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 # DBSCAN
 The DBSCAN algorithm is a density based clustering algorithm. It groups objects into one cluster if they are connected to one another by a densely populated area.

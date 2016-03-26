@@ -2,13 +2,19 @@
 layout: post
 title: "Discriminant Analysis & Naive Bayes"
 date: "December 29, 2015"
-categories: ['statistics', 'machine learning']
+categories: ['statistics', 'multivariate analysis']
 ---
 
 * TOC
 {:toc}
 
-
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(jn.general)
+lib(data, viz)
+library(MASS)
+library(ISLR)
+knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
+```
 
 
 # Classification Techniques
@@ -87,45 +93,16 @@ $$\delta_k(x) = -\frac{1}{2}(x - \mu_k)^T \Sigma^{-1}_k(x - \mu_k) + \log(\pi_k)
 ## In R
 
 We can fit LDA in R as such
-
-{% highlight r %}
+```{r}
 lda.fit <- lda(Direction ~ Lag1 + Lag2, data = Smarket)
 lda.fit
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Call:
-## lda(Direction ~ Lag1 + Lag2, data = Smarket)
-## 
-## Prior probabilities of groups:
-##   Down     Up 
-## 0.4816 0.5184 
-## 
-## Group means:
-##             Lag1        Lag2
-## Down  0.05068605  0.03229734
-## Up   -0.03969136 -0.02244444
-## 
-## Coefficients of linear discriminants:
-##             LD1
-## Lag1 -0.7567605
-## Lag2 -0.4707872
-{% endhighlight %}
+```
 The coefficients of linear discriminants are provide the linear combinations of covariates to form the decision rule.
 
-
-{% highlight r %}
+```{r}
 lda.pred <- predict(lda.fit, sample_frac(Smarket, .1))
 names(lda.pred)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "class"     "posterior" "x"
-{% endhighlight %}
+```
 
 * `class`: LDA's label prediction
 * `posterior`: matrix whose $$k^{th}$$ column corresponds $$P(Y = k \vert X)$$
@@ -160,25 +137,27 @@ $$P(a) = \frac{n_a + 1}{\Sigma_i (n_i + 1)}$$
 
 ## Example
 Say we are given training data that looks like this.
-
-|fruit  | long| sweet| yellow| total|
-|:------|----:|-----:|------:|-----:|
-|apple  |    0|   215|     50|   265|
-|banana |  400|   215|    400|  1015|
-|other  |  100|    70|     50|   220|
-|total  |  500|   500|    500|  1500|
+```{r, echo = FALSE}
+fruit <- c("apple", "banana", "other", "total")
+long <- c(0, 400, 100, 500)
+sweet <- c(215, 215, 70, 500)
+yellow <- c(50, 400, 50, 500)
+total <- c(0+215+50, 400+400+215, 100+70+50, 1500)
+data.frame(fruit, long, sweet, yellow, total) %>% kable
+```
 
 From this data, we have all the information we need to compute the conditional and marginal probabilities. 
 
 However, we see that there are $$0$$s in the data. This is concerning because multiplying anything by zero automatically cancels it out. We can use Laplace estimates to adjust the counts (add 1 to all counts). Thus we account for very rare occurances that may not occur in this training data set. 
 
-
-|fruit  | long| sweet| yellow| total|
-|:------|----:|-----:|------:|-----:|
-|apple  |    1|   216|     51|   268|
-|banana |  401|   216|    401|  1018|
-|other  |  101|    71|     51|   223|
-|total  |  503|   503|    503|  1509|
+```{r, echo = FALSE}
+fruit <- c("apple", "banana", "other", "total")
+long <- c(1, 401, 101, 503)
+sweet <- c(216, 216, 71, 503)
+yellow <- c(51, 401, 51, 503)
+total <- c(1+216+51, 401+401+216, 101+71+51, 1509)
+data.frame(fruit, long, sweet, yellow, total) %>% kable
+```
 
 Now say we are given information of a fruit that is long, sweet and yellow. Given this information we can predict what class this fruit belongs to.
 
@@ -216,67 +195,18 @@ We can use the [EM algorithm][em_post]{:target = "_blank"}.
 
 ## In R
 We can run Naive Bayes in R with the following.
-
-{% highlight r %}
+```{r}
 library(e1071)
 
 # fit naive bayes
 nB.fit <- naiveBayes(Species ~ ., data = iris)
 nB.fit
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## 
-## Naive Bayes Classifier for Discrete Predictors
-## 
-## Call:
-## naiveBayes.default(x = X, y = Y, laplace = laplace)
-## 
-## A-priori probabilities:
-## Y
-##     setosa versicolor  virginica 
-##  0.3333333  0.3333333  0.3333333 
-## 
-## Conditional probabilities:
-##             Sepal.Length
-## Y             [,1]      [,2]
-##   setosa     5.006 0.3524897
-##   versicolor 5.936 0.5161711
-##   virginica  6.588 0.6358796
-## 
-##             Sepal.Width
-## Y             [,1]      [,2]
-##   setosa     3.428 0.3790644
-##   versicolor 2.770 0.3137983
-##   virginica  2.974 0.3224966
-## 
-##             Petal.Length
-## Y             [,1]      [,2]
-##   setosa     1.462 0.1736640
-##   versicolor 4.260 0.4699110
-##   virginica  5.552 0.5518947
-## 
-##             Petal.Width
-## Y             [,1]      [,2]
-##   setosa     0.246 0.1053856
-##   versicolor 1.326 0.1977527
-##   virginica  2.026 0.2746501
-{% endhighlight %}
+```
 
 Similar to other models, we can also predict for new data. 
-
-{% highlight r %}
+```{r}
 predict(nB.fit, iris[4:5,])
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] setosa setosa
-## Levels: setosa versicolor virginica
-{% endhighlight %}
+```
 
 # Logistic Regression vs. Discriminant Analysis vs. Naive Bayes 
 
@@ -289,7 +219,7 @@ predict(nB.fit, iris[4:5,])
 * When we can make the assumption that the features are Gaussian
 * More efficient than logistic regression when the assumptions are correct
 * Works better than logistic regression when data is well-separated
-* Popular for multinomial responses since it provides a low-dimensional viewof data
+* Popular for multinomial responses since it provides a low-dimensional view of data
 
 **Best to use Naive Bayes:**
 

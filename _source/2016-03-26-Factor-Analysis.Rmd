@@ -1,0 +1,92 @@
+---
+layout: post
+title: "Factor Analysis"
+date: "March 26, 2016"
+categories: ['statistics', 'multivariate analysis']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(jn.general)
+lib(data, viz)
+library(MASS)
+library(RColorBrewer)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+```
+
+
+# Motivating Example
+Consider a data set of children test scores. There are $$N$$ children and test scores for $$6$$ subjects. Below we observe high correlation across the subjects. 
+
+```{r, echo = FALSE}
+n <- 250
+p <- 6
+set.seed(1)
+g <- mvrnorm(n, c(0,0), matrix(c(1,0.5,0.5,1), 2, 2))
+Ystem <- g[,1] + matrix(rnorm(n*p/2, 0, 0.65), n, p/2)
+Yhum <- g[,2] + matrix(rnorm(n*p/2, 0, 0.65), n, p/2)
+Y <- cbind(Ystem, Yhum)
+colnames(Y) <- c("Math", "Science", "CS", "Eng", "Hist", "Classics")
+```
+
+From the correlation matrix we see that there is a grouping of STEM and humanities subjects in correlation. The left plot is the actual data where there is high correlation among the subjects and within fields. The right plot is a hypothetical plot of what independent data would look like (shown for comparison).
+
+```{r, echo = FALSE, fig.width = 10}
+round(cor(Y),2)
+
+indp_data <- matrix(rnorm(n*p), n, p)
+colnames(indp_data) <- colnames(Y)
+rownames(indp_data) <- rownames(Y)
+
+y_plot <- melt(cor(Y))
+indp_plot <- melt(cor(indp_data))
+
+
+plot_heatmap <- function(d, title = ""){
+  ggplot(data = d, aes(Var1, Var2, fill = value)) +
+    geom_tile() + 
+    labs(x = "", y = "", fill = "correlation", title = title) + 
+    scale_fill_gradient(low = "white", high = "steelblue") +
+    theme(legend.position = "bottom")
+}
+g1 <- plot_heatmap(y_plot, "Original (Correlated) Data")
+g2 <- plot_heatmap(indp_plot, "Independent Data")
+grid.arrange(g1, g2, nrow = 1)
+```
+
+This figure shows that there is correlation across subjects, revealing a potential underlying hidden factor (academic ability). There is also higher correlation within STEM fields and within humanities fields. This reveals a potential hidden factor that of STEM/humanities ability.
+
+We can model these hidden factors with factor analysis.
+
+# Factor Model
+
+A general factor model can be written as such
+
+$$\overrightarrow{Y} = \overrightarrow{\mu} + W_{pxn} \overrightarrow{\alpha} + \overrightarrow{\epsilon}$$
+
+We can estimate $$W$$ (factor loadings) and $$\alpha$$ (common factors) using PCA. 
+
+For this example $$\alpha$$ is a two element vector. The element $$\alpha_{i1}$$ refers to the overall academic ability of student $$i$$ and $$\alpha_{i2}$$ is the difference in ability between STEM and humanities for student $$i$$. 
+
+The principal component loadings provide estimates for $$W_k$$. 
+
+```{r}
+s <- svd(Y)
+W.hat <- t(s$v[,1:2])
+```
+
+```{r, echo = FALSE}
+rownames(W.hat) <- c("W1", "W2")
+colnames(W.hat) <- colnames(Y)
+round(W.hat,2)
+```
+
+Notice that $$W_1$$ are constant and help explain the observed correlation across all subjects; $$W2$$ differs between STEM and humanities. 
+
+```{r}
+fit <- s$u[,1:2] %*% (s$d[1:2] * W.hat) #? are s$d alpha? then what is s$u?
+var(as.vector(fit)) / var(as.vector(Y))
+```
+

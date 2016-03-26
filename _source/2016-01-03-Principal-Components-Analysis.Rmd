@@ -2,13 +2,18 @@
 layout: post
 title: "Principal Components Analysis"
 date: "January 3, 2016"
-categories: ['statistics', 'machine learning']
+categories: ['statistics', 'multivariate analysis']
 ---
 
 * TOC
 {:toc}
 
-
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(jn.general)
+lib(data, viz)
+library(pls)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+```
 
 # Principal Components Analysis (PCA)
 PCA is a dimension-reduction tecnique that produces a low-dimensional representation of a high-dimensional dataset. It finds a sequence of linear combinations of the variables that have
@@ -59,8 +64,7 @@ The first principal component loading vector defines the line in $$p$$-dimension
 Green line is the $$1^{st}$$ principal component and the blue dashed line is the $$2^{nd}$$ principal component. (Hastie, et.al)
 
 ## Principal Components In R
-
-{% highlight r %}
+```{r}
 # grab some data
 dat <- data.frame(scale(mtcars))
 
@@ -69,21 +73,19 @@ svd <- svd(dat)
 
 # run principal components
 pc <- prcomp(dat)
-{% endhighlight %}
+```
 
 **PC Loadings**
-
-{% highlight r %}
+```{r, eval = FALSE}
 # Using PCA
 pc$rotation
 
 # Using SVD
 svd$v
-{% endhighlight %}
+```
 
 **Variance Explained**
-
-{% highlight r %}
+```{r, eval = FALSE}
 # Using PCA
 pc$sdev^2
 
@@ -92,35 +94,33 @@ svd$d^2
 
 # PC returns a scaled version of the SVD output, the following code should equal pc$sdev^2
 svd$d^2 / (nrow(dat) - 1)
-{% endhighlight %}
+```
 The proportion of variance explained can be obtained by dividing each variance explained value by the sum of all variance explained values.
 
 **PC Scores**
-
-{% highlight r %}
+```{r, eval = FALSE}
 # Using PCA
 pc$x
 
 # Using SVD
 as.matrix(dat) %*% svd$v
-{% endhighlight %}
+```
 
 ## Interpretation of the Principal Components
 
 We can also plot the first two principal components against each other with the loadings, to obtain some information regarding the components. This plot is called a biplot. This requires the `ggfortify` package. 
+```{r, echo = FALSE}
+dat <- iris[, 1:4]
+```
 
-
-
-{% highlight r %}
+```{r, fig.width = 7, message = FALSE}
 library(ggfortify)
 
 # plot the biplot
 autoplot(prcomp(dat, center = TRUE, scale. = TRUE), data = iris, colour = "Species", 
          loadings = TRUE, loadings.label = TRUE,
          loadings.label.size = 3)
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2016-01-03-ML-Principal-Components-Analysis/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+```
 
 From this plot, we see that the first principal components has large loadings for $$Petal.Length$$ and $$Petal.Width$$. This indicates that $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
 
@@ -129,8 +129,7 @@ Each point on the plot refers to a single data point. For example, points with h
 ## Choosing How Many Principal Components
 There is no best method to choose the number of components. However, one thing we could do is look at the "scree plot" and look for the point at which the trend converges. 
 
-
-{% highlight r %}
+```{r}
 x <- 1:length(pc$sdev)
 y <- pc$sdev^2 / sum(pc$sdev^2)
 ggplot(data = NULL, aes(x = x, y = y)) + 
@@ -138,9 +137,7 @@ ggplot(data = NULL, aes(x = x, y = y)) +
   geom_line() +
   scale_x_continuous(breaks = seq(1, length(pc$sdev), by = 2)) +
   xlab("Principal Component") + ylab("Prop. Variance Explained")
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2016-01-03-ML-Principal-Components-Analysis/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+```
 
 In this plot, we could potentially choose to use 5-7 principal components. 
 
@@ -156,47 +153,13 @@ For example if running an experiment, PCA can be used to assess whether there ma
 
 In R, one can do principal components regression with `pls::pcr()`. This package also has functions to view cross-validated results with the `validationplot()` function. 
 
-
-{% highlight r %}
+```{r}
 # fit PCR
 pcr.fit <- pls::pcr(mpg ~ ., data = mtcars, scale = TRUE, validation = "CV")
 # results
 summary(pcr.fit)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Data: 	X dimension: 32 10 
-## 	Y dimension: 32 1
-## Fit method: svdpc
-## Number of components considered: 10
-## 
-## VALIDATION: RMSEP
-## Cross-validated using 10 random segments.
-##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.671    2.698    2.555    2.593    2.617
-## adjCV        6.123    2.661    2.686    2.539    2.576    2.599
-##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.878    3.067    3.317    3.525     3.921
-## adjCV    2.843    3.021    3.259    3.454     3.820
-## 
-## TRAINING: % variance explained
-##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
-## X      57.60    84.10    90.07    92.77    94.99    97.09    98.42
-## mpg    82.53    82.63    85.40    85.41    85.47    85.56    85.58
-##      8 comps  9 comps  10 comps
-## X      99.23    99.76     100.0
-## mpg    85.85    86.09      86.9
-{% endhighlight %}
-
-
-
-{% highlight r %}
 pls::validationplot(pcr.fit, val.type = "MSEP")
-{% endhighlight %}
-
-<img src="/nhuyhoa/figure/source/2016-01-03-ML-Principal-Components-Analysis/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+```
 So here we see that using 3 principal components is preferred. If we prefer to use a specified number of components, we can pass the argument `ncomps = n` instead of the `validation` argument. 
 
 # Partial Least Squares
