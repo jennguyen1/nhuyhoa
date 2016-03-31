@@ -9,6 +9,9 @@ categories: ['statistics', 'regression analysis']
 {:toc}
 
 
+{% highlight text %}
+## Error: package or namespace load failed for 'GGally'
+{% endhighlight %}
 
 # Bayesian Regression
 
@@ -75,9 +78,29 @@ When setting the parameters of prior distributions, we should take care to consi
 ## Noninformative Uniform Priors
 Noninformative priors are intended to allow Bayesian inference for parameters about which not much is known beyond the data included in the analysis at hand. These noninformative uniform priors cover a wide range of values and places no structure on the parameters. For example, in classical regression can be seen as having the following priors $$\beta \sim Unif(-\infty, \infty)$$ and $$\sigma^2 \sim Unif(0, \infty)$$. 
 
-We don't always have to use the uniform distribution for noninformative priors. For a prior distribution to be noninformative, the range of uncertainty should be wider than the range of reasonable values of the parameters. For example, we may decide to use a Gaussian prior with large variances for the $$\beta$$ coefficients. 
+We don't always have to use the uniform distribution for noninformative priors. For a prior distribution to be noninformative, the range of uncertainty should be wider than the range of reasonable values of the parameters. For example, we may decide to use a Gaussian prior with large variances for the $$\beta$$ coefficients if the values are tend to be biased towards $$0$$. Another option could be to use an gamma distribution for values biased towards $$0$$ but are strictly negative. 
+
+Below are potential options for priors and good scenarios to use them:
+
+* Normal: continuous values, centered at a value
+* Gamma: positive continuous values, parameters allow for flexibility
+* Beta: values $$[0, 1]$$, parameters allow for flexibility
+* Wishart: distribution over all positive semi-definite matrices, like covariance matrices
 
 Models should be assessed after fitting with uninformative priors. If the posterior distribution does not make sense, this implies that additional prior information should be included from external knowledge.
+
+## Empirical Bayes
+
+Empirical Bayes is a method that combines frequentist and Bayesian inference. The prior distribution is set using a Bayes approach, but the parameters are specified using a frequentist approach. 
+
+For example, for setting a prior for the $$N(\mu, \sigma^2)$$ with $$\sigma^2$$ known
+
+* Empirical Bayes suggests setting $$\mu = \bar{X}$$, the observed empirical mean
+* Traditional Bayes suggests using prior knowledge or an objective prior ($$0$$ mean and fat tails)
+
+Empirical Bayes has some criticisms for double-counting the data: once in the prior and again through the likelihood. This understates the true uncertainty. 
+
+It is advised to only use Empirical Bayes when there are lots of observations, so that the prior does not have too strong of an influence. 
 
 ## Regularized Models From a Bayesian Viewpoint
 We can regularize (reduce overfitting) models in Bayesian regression by setting strict prior distributions on the $$\beta$$ parameters. (Recall that we do not regularize the intercept term). 
@@ -484,13 +507,16 @@ model {
 # Fitting Models with Markov Chain Monte Carlo
 When posterior distributions are complicated, MCMC uses simulations to find the best model fit. Markov chain Monte Carlo is a general method based on drawing values of $$\theta$$ from approximate distributions and then correcting those draws to better approximate the target posterior distribution, $$p(\theta \vert y)$$. The samples are drawn sequentially, with the distribution of sampled draws depending onthe last value drawn. 
 
-Variants of MCMC include
+The algorithms that perform MCMC are as follows
 
-* Metropolis
-* Gibbs sampling
-* Hamiltonian monte carlo
+1. Start at current position
+2. Propose moving to a new position
+3. Accept/reject new position based on position's adherence to data and prior distributions
+  * If accept: move to new positions. Return to Step 1
+  * Else: do not move to new position. Return to Step 1
+4. After large number of iterations, return all accepted positions
 
-The gist of the algorithm is this. Several Markov chains are run in parallel. Each start at some list of initial values and wander through a distribution of parameter estimates. The goal is to run the algorithm until the simulations from the separate initial values converge to a common distribution. Since each chain starts from a random start site, there is a warmup period which allows the chain to get a feel for the parameter space. The warmup period is discarded to lose the influence of the starting values. 
+The gist of the algorithm is this. Several Markov chains are run in parallel. Each start at some list of initial values and wander through a distribution of parameter estimates. The goal is to run the algorithm until the simulations from the separate initial values converge to a common distribution (the posterior distribution). Since each chain starts from a random start site, there is a warmup period which allows the chain to get a feel for the parameter space. The warmup period is discarded to lose the influence of the starting values. 
 
 We can obtain diagnostics of the MCMC convergence from the stan models
 
@@ -506,12 +532,12 @@ We should examine traceplots for chains that do not seem to mix in well with oth
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=500):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   730    1
-## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   509    1
-## beta[3]  1.7     0.0 0.2  1.3  1.6  1.7  1.8   2.0   531    1
-## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.8   537    1
-## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   733    1
-## lp__    69.5     0.1 1.7 65.2 68.7 69.8 70.7  71.6   413    1
+## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   769    1
+## beta[2]  1.0     0.0 0.1  0.7  0.9  1.0  1.1   1.3   527    1
+## beta[3]  1.7     0.0 0.2  1.4  1.6  1.7  1.8   2.0   576    1
+## beta[4]  2.3     0.0 0.3  1.8  2.1  2.3  2.5   2.8   546    1
+## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   792    1
+## lp__    69.6     0.1 1.5 65.8 68.9 70.0 70.7  71.6   673    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 

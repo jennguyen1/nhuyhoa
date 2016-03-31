@@ -76,6 +76,31 @@ ggplot(data = orings, aes(x = temp, y = (damage / 6))) +
   geom_line(data = d, aes(x = x, y = y))
 ```
 
+In SAS, we can fit a logistic model as such
+```{r, eval = FALSE}
+proc logistic;
+  # specify the category; dummy coding
+  class grp / param = ref;
+  # model definition
+  model y = x1 x2 grp;
+  # contrasts on logit scale
+  contrast 'rank 2 vs 3' grp 0 1 -1 / estimate=parm;
+  # contrasts for probability
+  contrast 'x1=200' intercept 1 x1 200 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=300' intercept 1 x1 300 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=400' intercept 1 x1 400 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=500' intercept 1 x1 500 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=600' intercept 1 x1 600 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=700' intercept 1 x1 700 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=800' intercept 1 x1 800 x2 3.3899 grp 0 1 0  / estimate=prob;
+run;
+
+proc genmod;
+  model y = x / type3 dist = bin link = logit;
+run;
+```
+
+
 # Beta Coefficients
 
 ## Odds

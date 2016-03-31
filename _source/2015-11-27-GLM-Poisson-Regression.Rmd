@@ -65,6 +65,14 @@ glm(counts ~ offset(log(total)) + ., family = poisson, data = data)
 ```
 The function `offset()` means to not fit a coefficient to a term (or set the coefficient to 1). In this model $$total = cells$$.
 
+In SAS, we can fit these models like so
+```{r, eval = FALSE}
+proc genmod;
+  model y = x1 x2 / type3 dist = poi link = log offset = total;
+run;
+```
+
+
 # Beta Coefficients
 
 ## Interpretation of Coefficients
@@ -132,5 +140,14 @@ mod <- glm.nb(skips ~ ., solder)
 summary(mod)
 ```
 Here we see that $$\hat{k} = 4.4$$ with a standard error of 0.5. 
+
+In SAS, we can fit models using
+```{r, eval = FALSE}
+proc genmod;
+  class x1 (param=ref ref=first);
+  model y = x1 x2 / type3 dist=negbin;
+run;
+```
+
 
 [glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html#overdispersion

@@ -9,6 +9,15 @@ categories: ['statistics', 'regression analysis']
 {:toc}
 
 
+{% highlight text %}
+## Error: package or namespace load failed for 'GGally'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in library(faraway): there is no package called 'faraway'
+{% endhighlight %}
 
 # Binomial Response
 Suppose the response $$Y_i \sim Bin(n_i, p_i)$$ and the $$Y_i$$ are independent.
@@ -54,10 +63,57 @@ We can fit this model in R like so
 mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = binomial)
 {% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in is.data.frame(data): object 'orings' not found
+{% endhighlight %}
+
 Here we provide two pieces of information regarding the response. The first column of the matrix is the number of successes, $$y$$. The second column is the number of failures, $$n - y$$. 
 
 Here we see a graphical representation of the data and how it fits the data. 
-<img src="/nhuyhoa/figure/source/2015-11-26-GLM-Logistic-Regression/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "ilogit"
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in data.frame(x, y): object 'y' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in ggplot(data = orings, aes(x = temp, y = (damage/6))): object 'orings' not found
+{% endhighlight %}
+
+In SAS, we can fit a logistic model as such
+
+{% highlight r %}
+proc logistic;
+  # specify the category; dummy coding
+  class grp / param = ref;
+  # model definition
+  model y = x1 x2 grp;
+  # contrasts on logit scale
+  contrast 'rank 2 vs 3' grp 0 1 -1 / estimate=parm;
+  # contrasts for probability
+  contrast 'x1=200' intercept 1 x1 200 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=300' intercept 1 x1 300 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=400' intercept 1 x1 400 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=500' intercept 1 x1 500 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=600' intercept 1 x1 600 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=700' intercept 1 x1 700 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=800' intercept 1 x1 800 x2 3.3899 grp 0 1 0  / estimate=prob;
+run;
+
+proc genmod;
+  model y = x / type3 dist = bin link = logit;
+run;
+{% endhighlight %}
+
 
 # Beta Coefficients
 

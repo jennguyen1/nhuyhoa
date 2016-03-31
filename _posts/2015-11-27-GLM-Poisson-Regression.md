@@ -9,6 +9,15 @@ categories: ['statistics', 'regression analysis']
 {:toc}
 
 
+{% highlight text %}
+## Error: package or namespace load failed for 'GGally'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in library(faraway): there is no package called 'faraway'
+{% endhighlight %}
 
 # Count Response
 Suppose the response $$Y_i \sim Pois(\mu_i)$$ where $$\mu > 0$$ and the $$Y_i$$ are independent
@@ -60,6 +69,15 @@ We can fit this model in R like so
 glm(counts ~ offset(log(total)) + ., family = poisson, data = data)
 {% endhighlight %}
 The function `offset()` means to not fit a coefficient to a term (or set the coefficient to 1). In this model $$total = cells$$.
+
+In SAS, we can fit these models like so
+
+{% highlight r %}
+proc genmod;
+  model y = x1 x2 / type3 dist = poi link = log offset = total;
+run;
+{% endhighlight %}
+
 
 # Beta Coefficients
 
@@ -126,58 +144,35 @@ library(MASS)
 
 # fit model
 mod <- glm.nb(skips ~ ., solder)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in is.data.frame(data): object 'solder' not found
+{% endhighlight %}
+
+
+
+{% highlight r %}
 summary(mod)
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## 
-## Call:
-## glm.nb(formula = skips ~ ., data = solder, init.theta = 4.397157245, 
-##     link = log)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -2.7376  -1.0068  -0.3834   0.4460   2.7829  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(>|z|)    
-## (Intercept) -1.42245    0.14274  -9.965  < 2e-16 ***
-## OpeningM     0.50294    0.07976   6.306 2.87e-10 ***
-## OpeningS     1.91317    0.07152  26.750  < 2e-16 ***
-## SolderThin   0.93932    0.05362  17.517  < 2e-16 ***
-## MaskA3       0.58981    0.09651   6.112 9.87e-10 ***
-## MaskA6       2.26734    0.10182  22.269  < 2e-16 ***
-## MaskB3       1.21101    0.09637  12.566  < 2e-16 ***
-## MaskB6       1.99037    0.09223  21.580  < 2e-16 ***
-## PadTypeD6   -0.46592    0.11238  -4.146 3.38e-05 ***
-## PadTypeD7   -0.03315    0.10673  -0.311 0.756114    
-## PadTypeL4    0.38268    0.10265   3.728 0.000193 ***
-## PadTypeL6   -0.57844    0.11413  -5.068 4.01e-07 ***
-## PadTypeL7   -0.36656    0.11094  -3.304 0.000953 ***
-## PadTypeL8   -0.15890    0.10821  -1.468 0.141986    
-## PadTypeL9   -0.56600    0.11393  -4.968 6.77e-07 ***
-## PadTypeW4   -0.20044    0.10873  -1.844 0.065255 .  
-## PadTypeW9   -1.56460    0.13621 -11.486  < 2e-16 ***
-## Panel        0.16369    0.03139   5.214 1.85e-07 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for Negative Binomial(4.3972) family taken to be 1)
-## 
-##     Null deviance: 4043.3  on 899  degrees of freedom
-## Residual deviance: 1008.3  on 882  degrees of freedom
-## AIC: 3683.3
-## 
-## Number of Fisher Scoring iterations: 1
-## 
-## 
-##               Theta:  4.397 
-##           Std. Err.:  0.495 
-## 
-##  2 x log-likelihood:  -3645.309
+## Error in object[[i]]: object of type 'builtin' is not subsettable
 {% endhighlight %}
 Here we see that $$\hat{k} = 4.4$$ with a standard error of 0.5. 
+
+In SAS, we can fit models using
+
+{% highlight r %}
+proc genmod;
+  class x1 (param=ref ref=first);
+  model y = x1 x2 / type3 dist=negbin;
+run;
+{% endhighlight %}
+
 
 [glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html#overdispersion

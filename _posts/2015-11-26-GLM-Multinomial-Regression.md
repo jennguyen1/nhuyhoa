@@ -9,6 +9,15 @@ categories: ['statistics', 'regression analysis']
 {:toc}
 
 
+{% highlight text %}
+## Error: package or namespace load failed for 'GGally'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in library(faraway): there is no package called 'faraway'
+{% endhighlight %}
 
 # Nomial Regression
 Let {$$\pi_1, ... \pi_J$$} denote the response probabilities satisfying $$\Sigma_j\pi_j = 1$$. With $$n$$ independent observations the probability distribution for the number of outcomes of the $$J$$ types is the multinomial.
@@ -144,6 +153,21 @@ These probabilities can be used to plot the probabilities of various food prefer
 
 <img src="/nhuyhoa/figure/source/2015-11-26-GLM-Multinomial-Regression/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
+In SAS, multinomial models can be fit like so
+
+{% highlight r %}
+proc logistic;
+  # reset the baseline categories
+  class color (ref = "F") / param = ref;
+  # set the model 
+  model choice = length color / link = glogit;
+run;
+
+proc catmod; response logits; direct length;
+  model choice = length / pred = freq;
+run;
+{% endhighlight %}
+
 
 # Ordinal Regression
 With ordinal categorical variables, we will discuss the proportional odds logistic regression model, which can account for ordering using cumulative probabilities.
@@ -256,6 +280,20 @@ $$P(Y = 3) = P(Y \le 3) - P(Y \le 2) = ilogit(-3.3126) - ilogit(-4.4122) = 0.023
 
 For $$response = 9$$ <br>
 $$P(Y = 9) = 1 - P(Y \le 8) = 1 - ilogit(3.1058) = 0.0429$$
+
+In SAS, ordinal logistic models are fit as so
+
+{% highlight r %}
+proc logistic;
+  class cheese(ref = '0') / param = reference;
+  model response = cheese;
+run;
+
+proc catmod; weight count; response clogits;
+  model response = _response_ cheese / p = freq;
+run;
+{% endhighlight %}
+
 
 ## Other Topics
 The model discussed here assumed proportional odds. Thus it is important to assess whether this assumption is valid (along with other assumptions). If this assumption is wrong, then different models that don't make this assumption should be fit. 

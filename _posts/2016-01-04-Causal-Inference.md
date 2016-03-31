@@ -57,6 +57,8 @@ Essentially we randomize so that the responses we see are independent of the tre
 ## Replication
 Replication allows researchers to obtain precise (less variable) estimates of the mean. Increasing the number of replicates is one way of reducing the random error.
 
+There is a difference between technical replicates (subsamples) and biological replicates (experimental units or EU). Technical replicates can reduce measurement error by averaging within a single EU. Biological replication reduces the standard error of parameter estimates of the biological population. Technical replication tells us a lot about a single unit, while biological replication tells us a lot about the population. Thus, it is better to increase the number of EUs than the technical replicates.  
+
 ## Blocking
 Blocking accounts for nuisance factors that may contribute to the random error. By accounting for block variability, we can decrease the unaccounted error variability and make tests more powerful. 
 
@@ -95,3 +97,25 @@ With missing data, there are a number of things we can do to proceed with analys
 * Indicator variables for missing predictors: replace missing data with 0, include interactions with predictor
 * Regress other predictors on missing variable and predict missing data (either point estimate or incorporating error)
 * Bayesian imputation: model the missing data points (alongside the responses)
+
+Imputation methods assume that missing data is missing at random. 
+
+## Modling Imputation
+
+**KNN**
+
+1. Replace every missing data point with the mean of the non-missing points for each feature
+2. Replace missing values with mean of K nearest neighbors
+
+**SVD**
+
+1. Replace every missing data point with the mean of the non-missing points for each feature
+2. Replace the missing values with the J (found via cross-validation) SVD approximation of X
+3. Repeat until convergence
+
+**Regression**
+
+1. Remove rows of X that have missing values for column j
+2. Fit regression on column of j using other columns of X; if other columns of X are missing, initally impute with mean
+3. Using model, predict the missing values of column j
+4. Repeat for other columns until convergence

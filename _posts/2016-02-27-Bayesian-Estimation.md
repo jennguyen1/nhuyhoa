@@ -9,6 +9,9 @@ categories: ['statistics', 'probability and inference']
 {:toc}
 
 
+{% highlight text %}
+## Error: package or namespace load failed for 'GGally'
+{% endhighlight %}
 
 # Frequentist vs Bayesian Statistics
 
@@ -78,7 +81,7 @@ Note that
 
 $$E[f(\theta \vert x)] = \hat{\theta} = \left( \frac{\alpha + \beta}{\alpha + n + \beta} \right) \left( \frac{\alpha}{\alpha + \beta} \right) + \left( \frac{n}{\alpha + n + \beta} \right) \left( \frac{x}{n} \right)$$
 
-Thus the posterior mean is a weighted average between the prior mean and the maximum likelihood estimate.
+Thus the posterior mean is a weighted average between the prior mean and the maximum likelihood estimate, where the weight depends on the sample size. As the sample size increases, the prior has less influence. 
 
 Often times we don't have to solve the marginal pdf of $$X$$. We can just compute the numerator, extract all terms involving the parameter, and match that result to a kernal of a known distribution. 
 

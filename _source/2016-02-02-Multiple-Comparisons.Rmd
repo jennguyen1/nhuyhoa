@@ -262,7 +262,7 @@ $$LSD < Dunnett < Tukey < Scheffe < Bonferroni$$
 The right method depends on the application. It's best to use conservative tests when the consequences are severe. A liberal test is more appropriate when you can accept that you may make Type 1 errors. When you have a large number of tests, FDR and q-values are best. 
 
 ## In R
-In R, we can use `pairwise.t.test(y, x)`, `p.adjust()`. Different methods can be specified as well. We can also test contrasts using the `multcomp::glht()` function.
+In R, we can use `pairwise.t.test(y, x)`, `p.adjust()`. There is also a FDR method in `qvalue::qvalue()`. Different methods can be specified as well. We can also test contrasts using the `multcomp::glht()` function.
 
 # Multiple Corrections for Count Data
 

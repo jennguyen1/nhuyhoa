@@ -18,7 +18,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 
 
 # Motivating Example
-Consider a data set of children test scores. There are $$N$$ children and test scores for $$6$$ subjects. Below we observe high correlation across the subjects. 
+Consider a data set of children test scores. There are $$n$$ children and test scores for $$6$$ subjects. Below we observe high correlation across the subjects. 
 
 ```{r, echo = FALSE}
 n <- 250
@@ -60,33 +60,28 @@ This figure shows that there is correlation across subjects, revealing a potenti
 
 We can model these hidden factors with factor analysis.
 
+# Difference Between Factor Analysis and PCA
+
+**Principal Components Analysis:**
+
+* Components are calculated as linear combinations of original variables
+* Goal is to explain as much of the total variance in the variables as possible
+* Used to reduce the data into a smaller number of components
+
+**Factor Analysis:**
+
+* Original variables are defined as linear combination of the factors
+* Goal is to explain the covariances/corelations between the variables
+* Used to understand what constructs underlie the data
+
 # Factor Model
 
-A general factor model can be written as such
+Suppose there are $$p$$ variables ($$X_1$$, $$X_2$$, ..., $$X_p$$) measured on a sample of $$n$$ subjects, then the variable $$i$$ can be written as a linear combination of $$m$$ factors ($$f_1$$, $$f_2$$, ... $$f_m$$) where $$m < p$$.
 
-$$\overrightarrow{Y} = \overrightarrow{\mu} + W_{pxn} \overrightarrow{\alpha} + \overrightarrow{\epsilon}$$
+$$\overrightarrow{X}_i = L_{pxm} \overrightarrow{f} + \overrrightarrow{\epsilon}$$
 
-We can estimate $$W$$ (factor loadings) and $$\alpha$$ (common factors) using PCA. 
+where $$X_i$$ is a $$nx1$$ vector and $$L$$ is the matrix of factor loadings for variable $$i$$ and $$\overrrightarrow{\epsilon}$$ is the portion of $$X_i$$ that cannot be explained by the factors.
 
-For this example $$\alpha$$ is a two element vector. The element $$\alpha_{i1}$$ refers to the overall academic ability of student $$i$$ and $$\alpha_{i2}$$ is the difference in ability between STEM and humanities for student $$i$$. 
+For the example above $$\overrightarrow{f}$$ is a two element vector. The first element $$f_{1}$$ refers to the overall academic ability of that student and the second element $$f_{2}$$ is the difference in ability between STEM and humanities for that student. 
 
-The principal component loadings provide estimates for $$W_k$$. 
-
-```{r}
-s <- svd(Y)
-W.hat <- t(s$v[,1:2])
-```
-
-```{r, echo = FALSE}
-rownames(W.hat) <- c("W1", "W2")
-colnames(W.hat) <- colnames(Y)
-round(W.hat,2)
-```
-
-Notice that $$W_1$$ are constant and help explain the observed correlation across all subjects; $$W2$$ differs between STEM and humanities. 
-
-```{r}
-fit <- s$u[,1:2] %*% (s$d[1:2] * W.hat) #? are s$d alpha? then what is s$u?
-var(as.vector(fit)) / var(as.vector(Y))
-```
 
