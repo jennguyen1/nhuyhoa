@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "R Speeding Up Code"
+title: "Speeding Up Code (R)"
 date: "December 20, 2015"
 categories: ['r programming']
 ---
@@ -8,9 +8,7 @@ categories: ['r programming']
 * TOC
 {:toc}
 
-```{r, echo = FALSE}
-library(jn.general)
-```
+
 
 In some cases we may want/need to speed up code. There are a variety of ways to do this.
 

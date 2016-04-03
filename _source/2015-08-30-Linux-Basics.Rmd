@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linux Commands"
+title: "Linux Basics"
 date: "October 30, 2015"
 categories: ['basics']
 ---
