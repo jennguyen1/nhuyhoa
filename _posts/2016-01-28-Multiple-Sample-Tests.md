@@ -83,6 +83,7 @@ where
 * $$l = 1, ..., n$$ denotes replicates of each factor combination
 * $$\epsilon_{ijl} \sim N(0, \sigma^2_{\epsilon})$$ represents the plot error
 
+If $$H_0$$ is true, then $$\sum \alpha_i = 0$$, $$\sum \beta_j = 0$$, $$\sum_i (\alpha \beta)_{ij} = 0$$, and $$\sum_j (\alpha \beta)_{ij} = 0$$.
 
 **ANOVA Table**
 

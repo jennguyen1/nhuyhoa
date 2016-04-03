@@ -2,6 +2,7 @@
 layout: post
 title: "Linux Commands"
 date: "October 30, 2015"
+categories: ['r programming']
 ---
 
 * TOC

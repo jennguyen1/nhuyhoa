@@ -2,7 +2,7 @@
 layout: post
 title: "SQL Basics"
 date: "December 17, 2015"
-categories: ['data wrangling']
+categories: ['r programming']
 ---
 
 * TOC
