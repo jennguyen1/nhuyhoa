@@ -69,9 +69,9 @@ pattern | matches
 
 **(...)**
 
-The metacharacters `(...)` are very useful in replacing strings. When wrapped around a string, it "remembers" the matched pattern. Then when specifying the replacement, it allows us to refer to the matched pattern by using `"\n"` where n refers to the nth wrapped expression. 
+The metacharacters `(...)` are very useful in replacing strings. When wrapped around a string, it "remembers" the matched pattern. Then when specifying the replacement, it allows us to refer to the matched pattern by using `\n` where n refers to the nth wrapped expression. 
 
-We can look at this example in R
+We can look at this example in R:
 
 {% highlight r %}
 x <- "Flintstone,Fred  *111-222-3333 fflinstone@gmail.com crane operator"
@@ -92,7 +92,12 @@ x %>% str_replace(pattern = pattern, replacement = "\\2 \\1 is a \\5")
 
 **^ and $**
 
-The metacharacters `^` and `$` are used to match patterns at specific positions of a string. Here are two examples illustrating why these two metacharacters can be useful.
+The metacharacters `^` and `$` are used to match patterns at specific positions of a string. 
+
+{% highlight r %}
+grep "^\d"
+grep "\w$"
+{% endhighlight %}
 
 **Using Metacharacters as Normal Characters**
 

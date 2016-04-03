@@ -213,9 +213,9 @@ x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s
 
 <p><strong>(…)</strong></p>
 
-<p>The metacharacters <code>(...)</code> are very useful in replacing strings. When wrapped around a string, it “remembers” the matched pattern. Then when specifying the replacement, it allows us to refer to the matched pattern by using <code>"\n"</code> where n refers to the nth wrapped expression.</p>
+<p>The metacharacters <code>(...)</code> are very useful in replacing strings. When wrapped around a string, it “remembers” the matched pattern. Then when specifying the replacement, it allows us to refer to the matched pattern by using <code>\n</code> where n refers to the nth wrapped expression.</p>
 
-<p>We can look at this example in R</p>
+<p>We can look at this example in R:</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">&lt;-</span> <span class="s">&quot;Flintstone,Fred  *111-222-3333 fflinstone@gmail.com crane operator&quot;</span>
 pattern <span class="o">&lt;-</span> <span class="s">&quot;(\\w+)[, ]+(\\w+)\\s+([\\d-*]+)\\s+([\\w@.]+)\\s+(.+)&quot;</span>
@@ -230,7 +230,10 @@ x <span class="o">%&gt;%</span> str_replace<span class="p">(</span>pattern <span
 
 <p><strong>^ and $</strong></p>
 
-<p>The metacharacters <code>^</code> and <code>$</code> are used to match patterns at specific positions of a string. Here are two examples illustrating why these two metacharacters can be useful.</p>
+<p>The metacharacters <code>^</code> and <code>$</code> are used to match patterns at specific positions of a string.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">grep <span class="s">&quot;^\d&quot;</span>
+grep <span class="s">&quot;\w$&quot;</span></code></pre></div>
 
 <p><strong>Using Metacharacters as Normal Characters</strong></p>
 
