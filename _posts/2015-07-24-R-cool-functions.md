@@ -2,7 +2,7 @@
 layout: post
 title: "R Cool Functions List"
 date: "July 24, 2015"
-categories: ['basics']
+categories: ['r programming']
 ---
 
 * TOC

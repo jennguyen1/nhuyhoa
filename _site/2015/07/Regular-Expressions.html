@@ -75,85 +75,49 @@
 
   <article class="post-content"> 
     <ul id="markdown-toc">
-  <li><a href="#example-data" id="markdown-toc-example-data">Example Data</a></li>
-  <li><a href="#basics" id="markdown-toc-basics">Basics</a></li>
-  <li><a href="#character-classes" id="markdown-toc-character-classes">Character Classes</a></li>
-  <li><a href="#metacharacters" id="markdown-toc-metacharacters">Metacharacters</a>    <ul>
-      <li><a href="#section" id="markdown-toc-section">|</a></li>
-      <li><a href="#section-1" id="markdown-toc-section-1">[…]</a></li>
-      <li><a href="#repetition" id="markdown-toc-repetition">Repetition</a></li>
-      <li><a href="#section-2" id="markdown-toc-section-2">(…)</a></li>
-      <li><a href="#and-" id="markdown-toc-and-">^ and $</a></li>
-      <li><a href="#using-metacharacters-as-normal-characters" id="markdown-toc-using-metacharacters-as-normal-characters">Using Metacharacters as Normal Characters</a></li>
+  <li><a href="#regex" id="markdown-toc-regex">Regex</a>    <ul>
+      <li><a href="#character-classes" id="markdown-toc-character-classes">Character Classes</a></li>
+      <li><a href="#metacharacters" id="markdown-toc-metacharacters">Metacharacters</a></li>
     </ul>
   </li>
-  <li><a href="#useful-stringr-functions" id="markdown-toc-useful-stringr-functions">Useful StringR Functions</a></li>
+  <li><a href="#in-r" id="markdown-toc-in-r">In R</a></li>
 </ul>
 
-<p>Being able to manipulate text is very important when it comes to data wrangling. A lot of the data cleaning I do requires performing some sort of fuzzy match rather than exact matches. Regular expressions (regex) make pattern matching possible. Here, I will outline R’s regex symbols that I find useful.</p>
+<h1 id="regex">Regex</h1>
 
-<h1 id="example-data">Example Data</h1>
-<p>Let’s start by generating some sample text to play with.</p>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;Brown, Charlie    *608-445-2392 cbrown@wisc.edu student&quot;</span><span class="p">,</span> 
-      <span class="s">&quot;Jetsons,Judy *842-419-5238 jjetsons@gmail.com sales associate&quot;</span><span class="p">,</span>
-      <span class="s">&quot;Flintstone,Fred  *111-222-3333 fflinstone@gmail.com crane operator&quot;</span><span class="p">,</span>
-      <span class="s">&quot;Sparrow,Jack *959-494-5943 jsparrow@blackpearl.com  pirate&quot;</span>
-      <span class="p">)</span></code></pre></div>
-
-<p>For this post, I will use the package stringr, developed by Hadley Wickham, to handle the  pattern matching operations. More information about the stringr package can be found <a href="https://cran.r-project.org/web/packages/stringr/index.html" target="_blank">here</a>.</p>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>stringr<span class="p">)</span></code></pre></div>
-
-<h1 id="basics">Basics</h1>
-
-<p>To search for an exact pattern, simply pass it to a stringr or grep function in R.</p>
+<p>To search for an exact pattern, simply search for the pattern.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># detect the name Charlie</span>
 x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s">&quot;Charlie&quot;</span><span class="p">)</span></code></pre></div>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  TRUE FALSE FALSE FALSE</code></pre></div>
+<h2 id="character-classes">Character Classes</h2>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract contact information of anybody who is a pirate</span>
-x <span class="o">%&gt;%</span> str_subset<span class="p">(</span><span class="s">&quot;pirate&quot;</span><span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Sparrow,Jack *959-494-5943 jsparrow@blackpearl.com  pirate&quot;</code></pre></div>
-
-<h1 id="character-classes">Character Classes</h1>
-
-<p>Now let’s get a little more general. Rather than searching for a specific character, the regex engine can search for a class of characters. There are three classes or groups of characters in which there are special regex expressions for.</p>
+<p>Rather than searching for a specific character, the regex engine can search for a class of characters. There are three classes or groups of characters in which there are special regex expressions for.</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">pattern</th>
-      <th style="text-align: left">matches</th>
+      <th>pattern</th>
+      <th>matches</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">\d</td>
-      <td style="text-align: left">digit character: 0123456789</td>
+      <td>\d</td>
+      <td>digit character</td>
     </tr>
     <tr>
-      <td style="text-align: left">\w</td>
-      <td style="text-align: left">word character: letter, digit, or ‘_’</td>
+      <td>\w</td>
+      <td>word character (letter, digit, ‘_’)</td>
     </tr>
     <tr>
-      <td style="text-align: left">\s</td>
-      <td style="text-align: left">space character: space, tab, or new line</td>
+      <td>\s</td>
+      <td>space character (space, tab, new line)</td>
     </tr>
   </tbody>
 </table>
 
-<p>In order to match these special regex expressions in R, type the backslashes twice, like so:</p>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># count the number of space characters in each string of x</span>
-x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s">&quot;\\s&quot;</span><span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 7 4 5 4</code></pre></div>
-
-<h1 id="metacharacters">Metacharacters</h1>
+<h2 id="metacharacters">Metacharacters</h2>
 
 <p>To allow for greater flexibility, there are a number of metacharacters that convey special meaning in regex pattern matching.</p>
 
@@ -170,12 +134,8 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
       <td style="text-align: left">any single character</td>
     </tr>
     <tr>
-      <td style="text-align: left">\</td>
-      <td style="text-align: left">escape character</td>
-    </tr>
-    <tr>
       <td style="text-align: left">|</td>
-      <td style="text-align: left">or</td>
+      <td style="text-align: left">or (matches preceding or succeding string)</td>
     </tr>
     <tr>
       <td style="text-align: left">(…)</td>
@@ -208,256 +168,160 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
   </tbody>
 </table>
 
-<h3 id="section">|</h3>
-<p>The pipe character <code>|</code> is useful when for matching a variety of different patterns at once.</p>
+<p>Here are further specifications on several of the characters listed above.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># find contact information for all Jack&#39;s or Judy&#39;s</span>
-x <span class="o">%&gt;%</span> str_subset<span class="p">(</span><span class="s">&quot;Jack|Judy&quot;</span><span class="p">)</span></code></pre></div>
+<p><strong>[…]</strong></p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Jetsons,Judy *842-419-5238 jjetsons@gmail.com sales associate&quot;
-## [2] &quot;Sparrow,Jack *959-494-5943 jsparrow@blackpearl.com  pirate&quot;</code></pre></div>
-
-<h3 id="section-1">[…]</h3>
-<p><code>[...]</code> can be used to select from a customized group of characters. To not match a customized group of characters, add a negation character like so: <code>[^...]</code>.</p>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract all digits, &#39;-&#39;, &#39;*&#39;, and &#39;+&#39; characters </span>
-x <span class="o">%&gt;%</span> str_extract_all<span class="p">(</span><span class="s">&quot;[\\d-*]&quot;</span><span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
-##  [1] &quot;*&quot; &quot;6&quot; &quot;0&quot; &quot;8&quot; &quot;-&quot; &quot;4&quot; &quot;4&quot; &quot;5&quot; &quot;-&quot; &quot;2&quot; &quot;3&quot; &quot;9&quot; &quot;2&quot;
-## 
-## [[2]]
-##  [1] &quot;*&quot; &quot;8&quot; &quot;4&quot; &quot;2&quot; &quot;-&quot; &quot;4&quot; &quot;1&quot; &quot;9&quot; &quot;-&quot; &quot;5&quot; &quot;2&quot; &quot;3&quot; &quot;8&quot;
-## 
-## [[3]]
-##  [1] &quot;*&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;-&quot; &quot;2&quot; &quot;2&quot; &quot;2&quot; &quot;-&quot; &quot;3&quot; &quot;3&quot; &quot;3&quot; &quot;3&quot;
-## 
-## [[4]]
-##  [1] &quot;*&quot; &quot;9&quot; &quot;5&quot; &quot;9&quot; &quot;-&quot; &quot;4&quot; &quot;9&quot; &quot;4&quot; &quot;-&quot; &quot;5&quot; &quot;9&quot; &quot;4&quot; &quot;3&quot;</code></pre></div>
+<p><code>[...]</code> can be used to select from a customized group of characters. To specify characters, list them out inside the brackets. To not match a customized group of characters, add a negation character like so: <code>[^...]</code>.</p>
 
 <p>To specifically search for only uppercase letters, use <code>[A-Z]</code>; for lowercase letters <code>[a-z]</code>. To search for both uppercase and lowercase letters, use <code>[A-Za-z]</code>.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extracts people&#39;s intials</span>
-x <span class="o">%&gt;%</span> str_extract_all<span class="p">(</span><span class="s">&quot;[A-Z]&quot;</span><span class="p">)</span></code></pre></div>
+<p><strong>{…}</strong></p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
-## [1] &quot;B&quot; &quot;C&quot;
-## 
-## [[2]]
-## [1] &quot;J&quot; &quot;J&quot;
-## 
-## [[3]]
-## [1] &quot;F&quot; &quot;F&quot;
-## 
-## [[4]]
-## [1] &quot;S&quot; &quot;J&quot;</code></pre></div>
-
-<h3 id="repetition">Repetition</h3>
-<p>The previous extraction for Fred Flinstone’s phone number returned a vector of single characters. But when we need to match a character (or a group of characters) multiple times, repetition quantifiers come in handy: <code>{...}</code>, <code>*</code>, or <code>+</code>.</p>
+<p>To match a character (or a group of characters) multiple times, repetition quantifiers come in handy: <code>{...}</code>, <code>*</code>, or <code>+</code>.</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">pattern</th>
-      <th style="text-align: left">matches</th>
+      <th>pattern</th>
+      <th>matches</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">{n}</td>
-      <td style="text-align: left">matches previous character exactly n times</td>
+      <td>{n}</td>
+      <td>matches previous character exactly n times</td>
     </tr>
     <tr>
-      <td style="text-align: left">{n, }</td>
-      <td style="text-align: left">matches previous character n or more times</td>
+      <td>{n,}</td>
+      <td>matches previous character n or more times</td>
     </tr>
     <tr>
-      <td style="text-align: left">{n,m}</td>
-      <td style="text-align: left">matches previous character n to m times</td>
+      <td>{n, m}</td>
+      <td>matches previous character n to m times</td>
     </tr>
     <tr>
-      <td style="text-align: left">*</td>
-      <td style="text-align: left">matches previous character 0 or more times</td>
+      <td>*</td>
+      <td>matches previous character 0 or more times</td>
     </tr>
     <tr>
-      <td style="text-align: left">+</td>
-      <td style="text-align: left">matches previous character 1 or more times</td>
+      <td>+</td>
+      <td>matches previous character 1 or more times</td>
     </tr>
   </tbody>
 </table>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extracts the telephone number (sequence of numbers &amp; dashes) from all people</span>
-x <span class="o">%&gt;%</span> str_extract<span class="p">(</span><span class="s">&quot;[\\d-*]+&quot;</span><span class="p">)</span></code></pre></div>
+<p><strong>(…)</strong></p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;*608-445-2392&quot; &quot;*842-419-5238&quot; &quot;*111-222-3333&quot; &quot;*959-494-5943&quot;</code></pre></div>
+<p>The metacharacters <code>(...)</code> are very useful in replacing strings. When wrapped around a string, it “remembers” the matched pattern. Then when specifying the replacement, it allows us to refer to the matched pattern by using <code>"\n"</code> where n refers to the nth wrapped expression.</p>
 
-<h3 id="section-2">(…)</h3>
-<p>The metacharacters <code>(...)</code> are very useful in replacing strings. When wrapped around a string, it “remembers” the matched pattern. Then when specifying the replacement, it allows us to refer to the matched pattern by using <code>"\\n"</code> where n refers to the nth wrapped expression.</p>
+<p>We can look at this example in R</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># regex expression for the strings in x</span>
+<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">&lt;-</span> <span class="s">&quot;Flintstone,Fred  *111-222-3333 fflinstone@gmail.com crane operator&quot;</span>
 pattern <span class="o">&lt;-</span> <span class="s">&quot;(\\w+)[, ]+(\\w+)\\s+([\\d-*]+)\\s+([\\w@.]+)\\s+(.+)&quot;</span>
-
-<span class="c1"># notice that:</span>
 <span class="c1">## 1st () references the last name</span>
 <span class="c1">## 2nd () references the first name</span>
 <span class="c1">## 3rd () references the phone number</span>
 <span class="c1">## 4th () references the email address</span>
 <span class="c1">## 5th () references the person&#39;s occupation</span>
-
-<span class="c1"># what does each person do?</span>
 x <span class="o">%&gt;%</span> str_replace<span class="p">(</span>pattern <span class="o">=</span> pattern<span class="p">,</span> replacement <span class="o">=</span> <span class="s">&quot;\\2 \\1 is a \\5&quot;</span><span class="p">)</span></code></pre></div>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Charlie Brown is a student&quot;         
-## [2] &quot;Judy Jetsons is a sales associate&quot;  
-## [3] &quot;Fred Flintstone is a crane operator&quot;
-## [4] &quot;Jack Sparrow is a pirate&quot;</code></pre></div>
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Fred Flintstone is a crane operator&quot;</code></pre></div>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># email contact information</span>
-x <span class="o">%&gt;%</span> str_replace<span class="p">(</span>pattern <span class="o">=</span> pattern<span class="p">,</span> replacement <span class="o">=</span> <span class="s">&quot;Email \\1, \\2 at \\4&quot;</span><span class="p">)</span></code></pre></div>
+<p><strong>^ and $</strong></p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Email Brown, Charlie at cbrown@wisc.edu&quot;       
-## [2] &quot;Email Jetsons, Judy at jjetsons@gmail.com&quot;     
-## [3] &quot;Email Flintstone, Fred at fflinstone@gmail.com&quot;
-## [4] &quot;Email Sparrow, Jack at jsparrow@blackpearl.com&quot;</code></pre></div>
-
-<h3 id="and-">^ and $</h3>
 <p>The metacharacters <code>^</code> and <code>$</code> are used to match patterns at specific positions of a string. Here are two examples illustrating why these two metacharacters can be useful.</p>
 
-<p>For this first example, let’s remove all leading 0’s.</p>
+<p><strong>Using Metacharacters as Normal Characters</strong></p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># generate values</span>
-grade <span class="o">&lt;-</span> <span class="kp">sample</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;07&quot;</span><span class="p">,</span> <span class="s">&quot;08&quot;</span><span class="p">,</span> <span class="s">&quot;8&quot;</span><span class="p">,</span> <span class="s">&quot;HS&quot;</span><span class="p">),</span> <span class="m">10</span><span class="p">,</span> replace <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-grade</code></pre></div>
+<p>To use these characters as regular characters, precede the character with escape characters or wrap then in square brackets. For example, to search for the character <code>+</code>, type <code>\+</code> or <code>[+]</code> into the search pattern string.</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;08&quot; &quot;08&quot; &quot;8&quot;  &quot;HS&quot; &quot;07&quot; &quot;HS&quot; &quot;HS&quot; &quot;8&quot;  &quot;8&quot;  &quot;07&quot;</code></pre></div>
+<h1 id="in-r">In R</h1>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">grade <span class="o">%&gt;%</span> str_replace<span class="p">(</span><span class="s">&quot;^0(\\d)&quot;</span><span class="p">,</span> <span class="s">&quot;\\1&quot;</span><span class="p">)</span></code></pre></div>
+<p>In order to match these special regex expressions in R, type the backslashes twice, like so:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;8&quot;  &quot;8&quot;  &quot;8&quot;  &quot;HS&quot; &quot;7&quot;  &quot;HS&quot; &quot;HS&quot; &quot;8&quot;  &quot;8&quot;  &quot;7&quot;</code></pre></div>
-
-<p>Now for the second example, let’s change all “pre” values to “pre1” to keep a consistent naming system.</p>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># generate values</span>
-pre_name <span class="o">&lt;-</span> <span class="kp">sample</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;pre&quot;</span><span class="p">,</span> <span class="s">&quot;pre1&quot;</span><span class="p">,</span> <span class="s">&quot;pre2&quot;</span><span class="p">),</span> <span class="m">10</span><span class="p">,</span> replace <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-pre_name</code></pre></div>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;pre&quot;  &quot;pre&quot;  &quot;pre2&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre2&quot; &quot;pre1&quot;
-## [10] &quot;pre2&quot;</code></pre></div>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## try (1)</span>
-<span class="c1"># this command inadvertently changed &quot;pre1&quot; and &quot;pre2&quot; to &quot;pre11&quot; and &quot;pre12&quot; respectively</span>
-pre_name <span class="o">%&gt;%</span> str_replace<span class="p">(</span><span class="s">&quot;pre&quot;</span><span class="p">,</span> <span class="s">&quot;pre1&quot;</span><span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;pre1&quot;  &quot;pre1&quot;  &quot;pre12&quot; &quot;pre11&quot; &quot;pre12&quot; &quot;pre11&quot; &quot;pre12&quot; &quot;pre12&quot;
-##  [9] &quot;pre11&quot; &quot;pre12&quot;</code></pre></div>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## try (2)</span>
-pre_name <span class="o">%&gt;%</span> str_replace<span class="p">(</span><span class="s">&quot;pre$&quot;</span><span class="p">,</span> <span class="s">&quot;pre1&quot;</span><span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">##  [1] &quot;pre1&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre1&quot; &quot;pre2&quot; &quot;pre2&quot; &quot;pre1&quot;
-## [10] &quot;pre2&quot;</code></pre></div>
-
-<h3 id="using-metacharacters-as-normal-characters">Using Metacharacters as Normal Characters</h3>
-
-<p>To use these characters as regular characters, precede the character with double escape characters or wrap then in square brackets. For example, to search for the character <code>+</code>, type <code>\\+</code> or <code>[+]</code> into the search pattern string.</p>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># split these two strings up into the individual numbers</span>
-add <span class="o">&lt;-</span> <span class="s">&quot;1+2&quot;</span>
-
-<span class="c1"># two different ways of splitting; same results</span>
-add <span class="o">%&gt;%</span> str_split<span class="p">(</span><span class="s">&quot;\\+&quot;</span><span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
-## [1] &quot;1&quot; &quot;2&quot;</code></pre></div>
-
-<div class="highlight"><pre><code class="language-r" data-lang="r">add <span class="o">%&gt;%</span> str_split<span class="p">(</span><span class="s">&quot;[+]&quot;</span><span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
-## [1] &quot;1&quot; &quot;2&quot;</code></pre></div>
-
-<p>Whether it is subsetting, selecting or reshaping data, the versatility of regex characters can make most data cleaning tasks much simpler.</p>
-
-<h1 id="useful-stringr-functions">Useful StringR Functions</h1>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># count the number of space characters in each string of x</span>
+x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s">&quot;\\s&quot;</span><span class="p">)</span></code></pre></div>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">function</th>
-      <th style="text-align: left">description</th>
+      <th>function</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">str_to_upper(s); str_to_lower(s); str_to_title(s)</td>
-      <td style="text-align: left">change string case</td>
+      <td><code>str_to_upper()</code>, <code>str_to_lower()</code>, <code>str_to_title()</code></td>
+      <td>change string case</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_dup(s, times)</td>
-      <td style="text-align: left">duplicate &amp; concatenate char vector</td>
+      <td><code>str_dup()</code></td>
+      <td>duplicate and concatenate character vector</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_c(s, sep=, collapse=)</td>
-      <td style="text-align: left">join multiple strings into a single string</td>
+      <td><code>paste()</code></td>
+      <td>join multiple strings into single string</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_length()</td>
-      <td style="text-align: left">number of chars</td>
+      <td><code>nchar()</code></td>
+      <td>number of characters</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_count(s, pattern=)</td>
-      <td style="text-align: left">count number of matches in a string</td>
+      <td><code>str_count()</code></td>
+      <td>count number of matches in string</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_sub(s, start, end)</td>
-      <td style="text-align: left">extract &amp; replace substrings</td>
+      <td><code>str_sub()</code></td>
+      <td>extract and replace substrings</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_subset(s, pattern=)</td>
-      <td style="text-align: left">keep strings matching a pattern</td>
+      <td><code>str_subset()</code></td>
+      <td>keep strings matching a pattern</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_detect(s, pattern=)</td>
-      <td style="text-align: left">detect presence of pattern</td>
+      <td><code>str_detect()</code></td>
+      <td>detect presence of a pattern</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_locate(s, pattern=); str_locate_all()</td>
-      <td style="text-align: left">locate positions of patterns</td>
+      <td><code>str_locate()</code>, <code>str_locate_all()</code></td>
+      <td>locate positions of patterns</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_extract(s, pattern=); str_extract_all()</td>
-      <td style="text-align: left">extract piece(s) that match pattern</td>
+      <td><code>str_extract()</code>, <code>str_extract_all()</code></td>
+      <td>extract pieces that match pattern</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_match(s, pattern=); str_match_all()</td>
-      <td style="text-align: left">extract matched groups</td>
+      <td><code>str_match()</code>, <code>str_match_all()</code></td>
+      <td>extract matched groups</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_replace(s, pattern=, replacement=); str_replace_all()</td>
-      <td style="text-align: left">replace matched patterns</td>
+      <td><code>str_replace()</code>, <code>str_replace_all()</code></td>
+      <td>replace matched patterns</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_replace_na(s, replacement=)</td>
-      <td style="text-align: left">replace NA with others</td>
+      <td><code>str_replace_na()</code></td>
+      <td>replace NA</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_split(s, pattern=)</td>
-      <td style="text-align: left">split by pattern</td>
+      <td><code>str_split()</code></td>
+      <td>split by pattern</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_trim(s, side=)</td>
-      <td style="text-align: left">trim white space</td>
+      <td><code>str_trim()</code></td>
+      <td>trim white space</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_pad(s, width, side=, pad=)</td>
-      <td style="text-align: left">pad string</td>
+      <td><code>str_pad()</code></td>
+      <td>pad string</td>
     </tr>
     <tr>
-      <td style="text-align: left">str_wrap()</td>
-      <td style="text-align: left">wrap strings into formatted paragraphs</td>
+      <td><code>str_wrap()</code></td>
+      <td>wrap strings into formatted paragraphs</td>
     </tr>
     <tr>
-      <td style="text-align: left">word(s, start=, end=, sep=)</td>
-      <td style="text-align: left">extract words from sentence</td>
+      <td><code>word()</code></td>
+      <td>extract words from sentence</td>
     </tr>
   </tbody>
 </table>
