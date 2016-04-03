@@ -2,7 +2,7 @@
 layout: post
 title: "Subsetting With dplyr (R)"
 date: "August 1, 2015"
-categories: ['data wrangling']
+categories: ['r programming']
 ---
 
 * TOC

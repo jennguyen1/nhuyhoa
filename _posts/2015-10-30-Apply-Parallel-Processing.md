@@ -2,7 +2,7 @@
 layout: post
 title: "Apply and Parallel Processing (R)"
 date: "October 30, 2015"
-categories: ['data wrangling']
+categories: ['r programming']
 ---
 
 * TOC

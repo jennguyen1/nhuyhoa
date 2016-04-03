@@ -1,7 +1,7 @@
 ---
 title: "To Be or Not To Be: Subsetting (R)"
 layout: post
-categories: ['data wrangling']
+categories: ['r programming']
 ---
 
 * TOC

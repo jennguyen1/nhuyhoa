@@ -2,7 +2,7 @@
 layout: post
 title: "Mapping Values (R)"
 date: "October 10, 2015"
-categories: ['data wrangling']
+categories: ['r programming']
 ---
 
 * TOC

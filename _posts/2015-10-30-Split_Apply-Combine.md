@@ -2,13 +2,16 @@
 layout: post
 title: "Split Apply Combine (R)"
 date: "October 30, 2015"
-categories: ['data wrangling']
+categories: ['r programming']
 ---
 
 * TOC
 {:toc}
 
 
+{% highlight text %}
+## Note: the specification for S3 class "family" in package 'MatrixModels' seems equivalent to one from package 'lme4': not turning on duplicate class definitions for this class.
+{% endhighlight %}
 
 Say we are given a data set where we want to group by a given category and compute summary statistics based on that category. The general process is
 
