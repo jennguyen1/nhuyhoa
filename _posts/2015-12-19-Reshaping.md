@@ -405,93 +405,35 @@ airquality %>%
 {% endhighlight %}
 
 <div class = "dftab">
-<table>
- <thead>
-  <tr>
-   <th style="text-align:center;"> Day </th>
-   <th style="text-align:center;"> Ozone_1 </th>
-   <th style="text-align:center;"> Ozone_2 </th>
-   <th style="text-align:center;"> Ozone_3 </th>
-   <th style="text-align:center;"> Ozone_4 </th>
-   <th style="text-align:center;"> Ozone_5 </th>
-   <th style="text-align:center;"> Wind_1 </th>
-   <th style="text-align:center;"> Wind_2 </th>
-   <th style="text-align:center;"> Wind_3 </th>
-   <th style="text-align:center;"> Wind_4 </th>
-   <th style="text-align:center;"> Wind_5 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> 41 </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 135 </td>
-   <td style="text-align:center;"> 39 </td>
-   <td style="text-align:center;"> 96 </td>
-   <td style="text-align:center;"> 7.4 </td>
-   <td style="text-align:center;"> 8.6 </td>
-   <td style="text-align:center;"> 4.1 </td>
-   <td style="text-align:center;"> 6.9 </td>
-   <td style="text-align:center;"> 6.9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:center;"> 36 </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 49 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 78 </td>
-   <td style="text-align:center;"> 8.0 </td>
-   <td style="text-align:center;"> 9.7 </td>
-   <td style="text-align:center;"> 9.2 </td>
-   <td style="text-align:center;"> 13.8 </td>
-   <td style="text-align:center;"> 5.1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 3 </td>
-   <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 32 </td>
-   <td style="text-align:center;"> 16 </td>
-   <td style="text-align:center;"> 73 </td>
-   <td style="text-align:center;"> 12.6 </td>
-   <td style="text-align:center;"> 16.1 </td>
-   <td style="text-align:center;"> 9.2 </td>
-   <td style="text-align:center;"> 7.4 </td>
-   <td style="text-align:center;"> 2.8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 4 </td>
-   <td style="text-align:center;"> 18 </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 78 </td>
-   <td style="text-align:center;"> 91 </td>
-   <td style="text-align:center;"> 11.5 </td>
-   <td style="text-align:center;"> 9.2 </td>
-   <td style="text-align:center;"> 10.9 </td>
-   <td style="text-align:center;"> 6.9 </td>
-   <td style="text-align:center;"> 4.6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 5 </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 64 </td>
-   <td style="text-align:center;"> 35 </td>
-   <td style="text-align:center;"> 47 </td>
-   <td style="text-align:center;"> 14.3 </td>
-   <td style="text-align:center;"> 8.6 </td>
-   <td style="text-align:center;"> 4.6 </td>
-   <td style="text-align:center;"> 7.4 </td>
-   <td style="text-align:center;"> 7.4 </td>
-  </tr>
-</tbody>
-</table>
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): unknown column 'variable'
+{% endhighlight %}
 </div><p></p>
 
 ## Visual Diagram of Reshaping in R
 
 ![reshaping in R](http://jnguyen92.github.io/nhuyhoa/figure/images/transpose.png)
 (By r-statistics)
+
+# In SQL
+
+Reshaping in SQL can be done with the `pivot` command. See below for an example of transforming the data from long to wide. 
+
+
+{% highlight r %}
+SELECT *
+FROM (
+    SELECT
+        year(invoiceDate) as [year], left(datename(month,invoicedate), 3) as [month],
+        InvoiceAmount as Amount
+    FROM Invoice
+) as s
+PIVOT
+(
+    SUM(Amount)
+    FOR [month] IN (jan, feb, mar, apr,
+    may, jun, jul, aug, sep, oct, nov, dec)
+)AS pvt
+{% endhighlight %}
+

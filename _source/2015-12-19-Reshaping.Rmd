@@ -166,3 +166,24 @@ airquality %>%
 
 ![reshaping in R](http://jnguyen92.github.io/nhuyhoa/figure/images/transpose.png)
 (By r-statistics)
+
+# In SQL
+
+Reshaping in SQL can be done with the `pivot` command. See below for an example of transforming the data from long to wide. 
+
+```{r, eval = FALSE}
+SELECT *
+FROM (
+    SELECT
+        year(invoiceDate) as [year], left(datename(month,invoicedate), 3) as [month],
+        InvoiceAmount as Amount
+    FROM Invoice
+) as s
+PIVOT
+(
+    SUM(Amount)
+    FOR [month] IN (jan, feb, mar, apr,
+    may, jun, jul, aug, sep, oct, nov, dec)
+)AS pvt
+```
+

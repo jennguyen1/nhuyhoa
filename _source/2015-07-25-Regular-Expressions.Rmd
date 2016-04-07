@@ -91,7 +91,9 @@ grep "\w$"
 
 To use these characters as regular characters, precede the character with escape characters or wrap then in square brackets. For example, to search for the character `+`, type `\+` or `[+]` into the search pattern string. 
 
-# In R
+# Implementation
+
+## In R
 
 In order to match these special regex expressions in R, type the backslashes twice, like so:
 
@@ -121,4 +123,19 @@ function | description
 `str_wrap()` | wrap strings into formatted paragraphs
 `word()` | extract words from sentence
 
+## In SQL
+
+Regular expressions can be specified in SQL using the `where` clause. 
+
+Here is an example of selecting names that start with vowels. 
+```{r, eval = FALSE}
+select * from table
+where name like '[aeiou]%'
+;
+```
+
+The metacharacters that can be used with SQL are a little different than those listed above. 
+* `[...]` brackets, same as above (including negation)
+* `%` substitute for 0 or more characters
+* `_` substitute for a single character
 

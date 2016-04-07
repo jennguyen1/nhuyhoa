@@ -385,15 +385,12 @@ let a = 5*3
 let "a = $a + 1"
 let a++
 
-# using expr
-expr 11 % 2
-expr "4 + 9"
-
 # using double parenthesis
-a = $$((4 + 5))
-a = $$(($a + 2))
+a=$((4 + 5))
+c=$(($a + 2))
 ((a++))
 ((a+=4))
+echo $((5+3))
 {% endhighlight %}
 
 
@@ -479,7 +476,7 @@ esac
 
 {% highlight r %}
 # example
-caste ${value} in 
+case ${value} in 
   [aeiouAEIOU]*)
     echo "your name starts with a vowel!"
   ;;
@@ -678,7 +675,6 @@ awk 'BEGIN{OFS="\t"}{print $2, $4, $5}' input.txt
 
 # extract columns from a tab-separated file (FS = field separator)
 awk 'BEGIN{FS="\t"}{print $2, $4, $5}' input.txt
-
 
 # show rows between 20th and 80th rows
 awk 'NR>=20&&NR<=80' input.txt

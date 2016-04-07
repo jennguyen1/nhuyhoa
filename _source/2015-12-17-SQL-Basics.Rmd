@@ -57,7 +57,19 @@ select t1.COL1 as C1, t2.COL1 as C2
 from TAB1 as t1, TAB2 as t2
 {% endhighlight %}
 
-## Aggregate Functions
+## Functions
+
+Selected can be wrapped in functions to allow flexibility
+
+* `len( A )`
+* `round( A, decimal )`
+* `ucase( A )`
+* `lcase( A )`
+* `substring( A, start, end )`
+* `concat( A, ',' , B )` or `( A + ', ' + B)`
+
+**Aggregate Functions**
+
 Aggregate functions tend to be used along with the `group by` command. These functions include
 
 * `count( * )`
@@ -66,6 +78,8 @@ Aggregate functions tend to be used along with the `group by` command. These fun
 * `avg( distinct A )`
 * `max( A )`
 * `min( A )`
+* `first( A )`
+* `last( A )`
 
 ## Conditional Statements
 These `case` statements are similar to `if/else` statements.

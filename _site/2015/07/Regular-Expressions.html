@@ -80,7 +80,11 @@
       <li><a href="#metacharacters" id="markdown-toc-metacharacters">Metacharacters</a></li>
     </ul>
   </li>
-  <li><a href="#in-r" id="markdown-toc-in-r">In R</a></li>
+  <li><a href="#implementation" id="markdown-toc-implementation">Implementation</a>    <ul>
+      <li><a href="#in-r" id="markdown-toc-in-r">In R</a></li>
+      <li><a href="#in-sql" id="markdown-toc-in-sql">In SQL</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h1 id="regex">Regex</h1>
@@ -239,7 +243,9 @@ grep <span class="s">&quot;\w$&quot;</span></code></pre></div>
 
 <p>To use these characters as regular characters, precede the character with escape characters or wrap then in square brackets. For example, to search for the character <code>+</code>, type <code>\+</code> or <code>[+]</code> into the search pattern string.</p>
 
-<h1 id="in-r">In R</h1>
+<h1 id="implementation">Implementation</h1>
+
+<h2 id="in-r">In R</h2>
 
 <p>In order to match these special regex expressions in R, type the backslashes twice, like so:</p>
 
@@ -328,6 +334,21 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
     </tr>
   </tbody>
 </table>
+
+<h2 id="in-sql">In SQL</h2>
+
+<p>Regular expressions can be specified in SQL using the <code>where</code> clause.</p>
+
+<p>Here is an example of selecting names that start with vowels.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">select <span class="o">*</span> from <span class="kp">table</span>
+where name like <span class="s">&#39;[aeiou]%&#39;</span>
+<span class="p">;</span></code></pre></div>
+
+<p>The metacharacters that can be used with SQL are a little different than those listed above. <br />
+* <code>[...]</code> brackets, same as above (including negation)<br />
+* <code>%</code> substitute for 0 or more characters<br />
+* <code>_</code> substitute for a single character</p>
 
 
   </article>
