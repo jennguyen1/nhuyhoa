@@ -93,3 +93,50 @@ end as NEWVARNAME
 from TAB
 {% endhighlight %}
 
+# Editing Tables
+
+## Creating Tables
+{% highlight sql %}
+create table NAME
+(
+COLNAME TYPE CONSTRAINT,
+primary key(COLNAME)
+...
+)
+{% endhighlight %}
+
+## Updating Tables
+{% highlight sql %}
+update TABLE
+set COL1 = VAL1, COL2 = VAL2, ...
+where some_col = some_value
+{% endhighlight %}
+
+{% highlight sql %}
+insert into TABLE (COL1, COL2, ...) 
+values (VAL1, VAL2, ...)
+{% endhighlight %}
+
+{% highlight sql %}
+delete COLNAMES from TABLE
+{% endhighlight %}
+
+{% highlight sql %}
+alter TABLE
+add COLNAME TYPE
+alter/modify column COLNAME TYPE
+drop column COLNAME
+{% endhighlight %}
+
+{% highlight sql %}
+insert into TABLE2
+select COLNAMES
+from TABLE1
+{% endhighlight %}
+
+## Create Indexes
+{% highlight sql %}
+create (unique) index NAME
+on TABLE (COL1, COL2, ...)
+{% endhighlight %}
+

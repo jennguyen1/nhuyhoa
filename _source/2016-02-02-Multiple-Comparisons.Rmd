@@ -71,7 +71,11 @@ When we only wish to compare treatment levels to a control, we can use Dunnett's
 Say you want to do a select $$r$$ tests (don't have to compare all groups). Let $$A^c$$ be a type I error event. Then, <br>
 $$P(\cap^r_{i=1} A_i) = 1 - P(\cup^r_{i=1} A^c_i) \ge 1 - \Sigma^r_{i = 1} P(A^c_i) $$
 
-so if we were to set $$P(A^c_i) = \alpha / r$$, then our overall error rate (family wise error rate) would be $$ \alpha$$. 
+We wish to control the family-wise Type 1 error rate, the probability of making one or more Type 1 errors in a family/set of tests. We can set 
+
+$$\alpha = FWER$$ 
+
+by setting $$P(A^c_i) = \alpha / r$$.
 
 So Bonferroni's method for correcting for multiple tests states that if you want an overall type I error rate of $$\alpha$$, set 
 
@@ -164,7 +168,7 @@ This method states that for large $$r$$, we do not expect all the null hypothese
 
 $$\alpha = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 0 \right)$$
 
-the expected proportion of our discoveries that are false (false positives) assuming we make at least one discovery.
+the expected proportion of Type 1 errors (false positives) among the rejected hypotheses.
 
 This method is the Benjamini and Hochberg method. This procedure requires the tests to be independent. The procedure may control FDR for certain types of correlation, but may fail for highly correlated data. (This procedure is more powerful than the Bonferroni-Holmes procedure).
 

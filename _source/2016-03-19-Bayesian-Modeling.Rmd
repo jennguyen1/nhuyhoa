@@ -109,7 +109,7 @@ We can regularize (reduce overfitting) models in Bayesian regression by setting 
 
 For example, rather than setting the priors to $$\beta \sim N(0, 100)$$ we can set them to $$\beta \sim N(0, 1)$$. This restricts the coefficients to very small values. If the effect is truely important, the data will overpower the prior and set the $$\beta$$ coefficient to a greater value. 
 
-Setting Gaussian priors refers to the $$L_2$$ norm penalty (ridge regression). We can also use a zero-centered [Laplacian prior][laplace_link]{:target = "_blank"} to the $$L_1$$ norm penalty (lasso regression). We penalize by a weighted $$L_1$$ and $$L_2$$ norms (elastic net) by using a complex prior $$\sim C(\lambda, \alpha) e^{\lambda \vert w \vert_1 + \alpha \vert w \vert_2}$$.  
+Setting Gaussian priors refers to the $$L_2$$ norm penalty (ridge regression). We can also use a zero-centered Laplacian prior to the $$L_1$$ norm penalty (lasso regression). We penalize by a weighted $$L_1$$ and $$L_2$$ norms (elastic net) by using a complex prior $$\sim C(\lambda, \alpha) e^{\lambda \vert w \vert_1 + \alpha \vert w \vert_2}$$.  
 
 # Stan for Fitting Bayesian Models
 
@@ -509,7 +509,7 @@ The algorithms that perform MCMC are as follows
 
 The gist of the algorithm is this. Several Markov chains are run in parallel. Each start at some list of initial values and wander through a distribution of parameter estimates. The goal is to run the algorithm until the simulations from the separate initial values converge to a common distribution (the posterior distribution). Since each chain starts from a random start site, there is a warmup period which allows the chain to get a feel for the parameter space. The warmup period is discarded to lose the influence of the starting values. 
 
-We can obtain diagnostics of the MCMC convergence from the stan models
+We can obtain diagnostics of the MCMC convergence from the stan models.
 ```{r, echo = FALSE, include = FALSE}
 
 code <- "
@@ -564,4 +564,3 @@ We can compare models with
 * Simulate model and generate 95% credible regions for $$\hat{y}$$, compare to $$y_{obs}$$
 * Deviance statistics such as AIC, DIC, WAIC (smaller is better)
 
-[laplace_link]: https://en.wikipedia.org/wiki/Laplace_distribution

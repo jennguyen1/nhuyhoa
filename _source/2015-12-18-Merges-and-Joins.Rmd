@@ -50,7 +50,7 @@ The `dplyr` package has some additional join functions that are useful depending
 ## In SQL
 Joins in SQL follow a simple format:
 
-{% highlight r %}
+{% highlight sql %}
 select tab1.COLNAMES tab2.COLNAMES
 from tab1
 ___ join tab2
@@ -61,4 +61,8 @@ To specify the join, simply replace the blank with `inner`, `full outer`, `left`
 
 To join multiple data frames in SQL, you can also do successive joins. Simply append an additional `___ join ... on` statements after the previous join.
 
-SQL also has operations such as `union`, `intersect`, and `except` which are quite similar to joins.
+Other operations
+
+* `union`
+* `intersect`
+* `except`

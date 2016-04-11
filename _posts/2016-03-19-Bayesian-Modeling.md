@@ -9,9 +9,6 @@ categories: ['statistics', 'regression analysis']
 {:toc}
 
 
-{% highlight text %}
-## Error: package or namespace load failed for 'GGally'
-{% endhighlight %}
 
 # Bayesian Regression
 
@@ -107,7 +104,7 @@ We can regularize (reduce overfitting) models in Bayesian regression by setting 
 
 For example, rather than setting the priors to $$\beta \sim N(0, 100)$$ we can set them to $$\beta \sim N(0, 1)$$. This restricts the coefficients to very small values. If the effect is truely important, the data will overpower the prior and set the $$\beta$$ coefficient to a greater value. 
 
-Setting Gaussian priors refers to the $$L_2$$ norm penalty (ridge regression). We can also use a zero-centered [Laplacian prior][laplace_link]{:target = "_blank"} to the $$L_1$$ norm penalty (lasso regression). We penalize by a weighted $$L_1$$ and $$L_2$$ norms (elastic net) by using a complex prior $$\sim C(\lambda, \alpha) e^{\lambda \vert w \vert_1 + \alpha \vert w \vert_2}$$.  
+Setting Gaussian priors refers to the $$L_2$$ norm penalty (ridge regression). We can also use a zero-centered Laplacian prior to the $$L_1$$ norm penalty (lasso regression). We penalize by a weighted $$L_1$$ and $$L_2$$ norms (elastic net) by using a complex prior $$\sim C(\lambda, \alpha) e^{\lambda \vert w \vert_1 + \alpha \vert w \vert_2}$$.  
 
 # Stan for Fitting Bayesian Models
 
@@ -518,7 +515,7 @@ The algorithms that perform MCMC are as follows
 
 The gist of the algorithm is this. Several Markov chains are run in parallel. Each start at some list of initial values and wander through a distribution of parameter estimates. The goal is to run the algorithm until the simulations from the separate initial values converge to a common distribution (the posterior distribution). Since each chain starts from a random start site, there is a warmup period which allows the chain to get a feel for the parameter space. The warmup period is discarded to lose the influence of the starting values. 
 
-We can obtain diagnostics of the MCMC convergence from the stan models
+We can obtain diagnostics of the MCMC convergence from the stan models.
 
 
 <img src="/nhuyhoa/figure/source/2016-03-19-Bayesian-Modeling/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
@@ -532,12 +529,12 @@ We should examine traceplots for chains that do not seem to mix in well with oth
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=500):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   769    1
-## beta[2]  1.0     0.0 0.1  0.7  0.9  1.0  1.1   1.3   527    1
-## beta[3]  1.7     0.0 0.2  1.4  1.6  1.7  1.8   2.0   576    1
-## beta[4]  2.3     0.0 0.3  1.8  2.1  2.3  2.5   2.8   546    1
-## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   792    1
-## lp__    69.6     0.1 1.5 65.8 68.9 70.0 70.7  71.6   673    1
+## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   990    1
+## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   497    1
+## beta[3]  1.7     0.0 0.2  1.3  1.6  1.7  1.8   2.1   409    1
+## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.9   503    1
+## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   996    1
+## lp__    69.5     0.1 1.6 65.7 68.6 69.8 70.7  71.7   487    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
@@ -562,4 +559,3 @@ We can compare models with
 * Simulate model and generate 95% credible regions for $$\hat{y}$$, compare to $$y_{obs}$$
 * Deviance statistics such as AIC, DIC, WAIC (smaller is better)
 
-[laplace_link]: https://en.wikipedia.org/wiki/Laplace_distribution

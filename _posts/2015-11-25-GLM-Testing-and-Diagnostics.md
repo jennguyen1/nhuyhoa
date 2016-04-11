@@ -97,7 +97,7 @@ pchisq(sum(residuals(mod1, "pearson")^2), mod1$df.residual, lower.tail = FALSE)
 {% highlight text %}
 ## [1] 0.9469181
 {% endhighlight %}
-We use the deviance residuals to compute the Pearson residuals $$X^2 = \sum r_{pearson}^2$$.
+We use the Pearson residuals to compute the Pearson $$X^2 = \sum r_{pearson}^2$$.
 
 We see that the result is comparable to the deviance.
 

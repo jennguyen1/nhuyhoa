@@ -58,7 +58,7 @@ From here we can calculate $$E[I(0)]$$, which is a function of required sample $
 
 For one-sided tests, change the $$Z_{1 - \alpha/2}$$ to $$Z_{1 - \alpha}$$.
  
-# Examples
+## Examples
 Let $$\epsilon_1 = n_1 / n$$ and $$\epsilon_2 = n_2 / n$$. 
 
 * Two-sample normal data:
@@ -81,16 +81,31 @@ where $$\bar{p}$$ is the probability of an observed event.
 
 # A Different Approach
 
-In ANOVA, we can obtain
+The power relationship is
+
+$$Power \propto \frac{\alpha \sqrt{n} effect.size}{\sigma}$$
+
+For example in ANOVA, we can obtain
 
 $$\frac{E[MSA]}{E[MSE]} = 1 + \frac{1}{k - 1} \frac{n\sum_i a^2_i}{s^2_e}$$ <br>
 where $$\frac{n\sum_i a^2_i}{s^2_e} = \phi$$ is the non-centrality parameter. 
 
-The power for testing $$H_0: a_i = 0 \forall i$$ depends on the non-centrality parameter, which is a monotone function. 
+When $$H_0: a_i = 0 \forall i$$ is true, the $$F$$-statistic has a central $$F$$ distribution. When $$H_0$$ is false, the $$F$$-statistic has a non-central $$F$$ statistic. 
 
-We can use simulations to calculate $$P(F > F_{\alpha, k-1, k(n-1)} \vert \phi)$$ (non-central F) for a wide range of $$n$$'s.
+We can use simulations to calculate the power, $$P(F > F_{\alpha, k-1, k(n-1)} \vert \phi)$$ (non-central F), for a wide range of $$n$$'s (and other specified parameters). 
 
-Another option for calculating sample sizes in ANOVA would be to choose two groups and the maximum difference between them $$D$$. Then we can compute sample sizes based on a t-test approximation.
+Another option for calculating sample sizes in ANOVA would be to choose two groups and the maximum difference between them $$D$$. Then we can compute sample sizes based on a t-test approximation. This tends to work if the number of groups is not too large. 
+
+## Selecting Parameters
+Prior to conducting a study, we don't usually have estimates of the parameters (effect size, variability, etc). We can obtain estimates of these in a number of ways
+
+* Conduct pilot studies or review literature for an estimate of variation; crucial that the estimate is based on same context as final data
+* Specify effect size based on how large a change is of interest; can refer to previous studies, literature, etc
+* Use a variety of estimates to cover possible scenarios
+
+Power calculations after the experiment (using the observed effect size) are flawed because the observed effect size is unlikely to match the pre-specified effect size of interest. 
+
+Being able to show that one has good power and pre-specified effect size is important because it shows that we are focusing attention on what is biologically important rather than looking for statistical significance. 
 
 # In R
 In general, one would not calculate sample sizes by hand. There are a number of software packages that will do sample size calculations for us. The challenge for us is to determine the parameters prior to conducting the experiment. We can obtain crude estimates of these from prior experiments or trying a range of likely parameters.
