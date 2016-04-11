@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Split Apply Combine (R)"
+title: "Split Apply Combine"
 date: "October 30, 2015"
-categories: ['r programming']
+categories: ['data wrangling']
 ---
 
 * TOC
@@ -21,7 +21,8 @@ Say we are given a data set where we want to group by a given category and compu
 
 Collectively this is known as split-apply-combine.
 
-# Example Data
+# In R
+
 
 
 This is the example data set we will use.
@@ -119,7 +120,7 @@ This is the example data set we will use.
 </table>
 </div>
 
-# Using Apply Functions
+## Using Apply Functions
 
 The two main functions here are `split()` and `llply()`. 
 
@@ -193,10 +194,9 @@ class %>%
 </table>
 </div>
 
-# Using dplyr
-The dplyr package provides a easier framework to split data, apply functions, and combine results.
+## Using dplyr
 
-## summarise
+### summarise
 The `summarise()` function summarises data into a single row of values. 
 
 Let's count the number of males and females in each grade and subject.
@@ -258,7 +258,7 @@ class %>%
 </table>
 </div>
 
-## mutate
+### mutate
 The `mutate()` function makes a new columns and appends them to the data frame. It can be used for SAC or just to generate new columns on the fly.
 
 
@@ -269,19 +269,17 @@ class %>%
     # current year
     year = 2015,
     # gives a score of proficient if posttest score is in the top quantile
-    proficient = ifelse(posttest_score > quantile(posttest_score)[4], "proficient", "not_proficient")
+    proficient = ifelse(posttest_score > quantile(posttest_score, 0.75), "proficient", "not_proficient")
   ) %>% 
-  colnames
+  colnames %>% 
+  tail
 {% endhighlight %}
 
 
 
 {% highlight text %}
-##  [1] "student_id"     "teacher_id"     "weight"        
-##  [4] "subject"        "grade"          "posttest_score"
-##  [7] "pretest_score"  "d_gender"       "d_black"       
-## [10] "d_hispanic"     "d_asian"        "d_native"      
-## [13] "year"           "proficient"
+## [1] "d_black"    "d_hispanic" "d_asian"    "d_native"   "year"      
+## [6] "proficient"
 {% endhighlight %}
 
 As an artificial example, let's standardize the posttest scores by grade and subject. 
@@ -379,7 +377,7 @@ These are the means and standard deviations after standardizing.
 </table>
 </div>
 
-## summarise_each and mutate_each 
+### summarise_each and mutate_each 
 The `summarise_each()` and `mutate_each()` allows you to simultaneous apply a function to all columns at once. It is insanely convenient and efficient.
 
 A few notes:
@@ -531,7 +529,7 @@ class %>%
 </table>
 </div>
 
-## do and unnest
+### do and unnest
 Sometimes `summarise()` and `mutate()` just isn't enough. Luckily, there is a function `do()` that is perfect for these scenarios. 
 
 In our data set we have unique student-teacher linkages for each unique subject and grade combination. However, when we ignore subject and grade, we may have duplicated linkages. 
@@ -696,7 +694,7 @@ class %>%
   unnest(tidy_df)
 {% endhighlight %}
 
-# Using data.table
+## Using data.table
 The data.table package has optimized data frames to be able to handle large amounts of data. 
 
 Let's split by grade and subject and count the number of males and females in each grade and subject. This is equivalent to using `summmarise()`.
@@ -800,3 +798,35 @@ classDT[, list(mean = mean(z_post), sd = sd(post)), by = list(subject, grade)]
 </tbody>
 </table>
 </div>
+
+# In SAS
+
+# In SQL
+
+SQL allows split apply combine using the following phrases
+
+* `group by`
+* `having`
+
+Aggregate functions tend to be used along with the `group by` command. These functions include
+
+* `count( * )`
+* `count( distinct A )`
+* `sum( distinct A )`
+* `avg( distinct A )`
+* `max( A )`
+* `min( A )`
+* `first( A )`
+* `last( A )`
+
+Below is an example of this type of SQL statement.
+{% highlight sql %}
+SELECT COUNT(DISTINCT COL1) as C
+from TAB1
+group by COLG
+having COL1 > 5
+order by C
+;
+{% endhighlight %}
+
+

@@ -13,13 +13,7 @@ library(jn.general)
 lib(data, viz)
 ```
 
-Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package, created by Hadley Wickham, provides some handy tools to subset and select with ease.   
-In this post, I will outline the subsetting functions available through dplyr and explain how and when I use them. In addition, I make use of magrittr's piping function, which can combine a complicated sequence of logic into a code chain that is easier to read. More information about magrittr can be found on the [magrittr vignette][magrittr_link]{:target="blank"}.
-
-{% highlight r %}
-library(dplyr)
-library(magrittr)
-{% endhighlight %}
+Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package provides some handy tools to subset and select with ease.   
 
 # Example Data
 Let's generate some random data to use with dplyr. The random generator function is available via the [jn.general package][jn.general_link]{:target="blank"}.
@@ -80,13 +74,13 @@ data %>% filter(posttest_grade == 10, posttest_subject == "math", posttest_score
 The `dplyr::slice()` function allows rows to be extracted by position.
 
 {% highlight r %}
-# extract the 25th-30th students in the data set
-data %>% slice(25:30)
+# extract the 25th-27th students in the data set
+data %>% slice(25:27)
 {% endhighlight %}
 <div class = "dftab">
 ```{r dplyr slice ex, echo = FALSE}
-# extract the 25th-30th students in the data set
-data %>% slice(25:30) %>% nhuyhoa_df_print(head = 6)
+# extract the 25th-27th students in the data set
+data %>% slice(25:27) %>% nhuyhoa_df_print(head = 6)
 ```
 </div><p></p>
 
@@ -104,7 +98,7 @@ data %>% dplyr::select(posttest_score, posttest_grade, d_gender, posttest_subjec
 {% endhighlight %}
 <div class = "dftab">
 ```{r dplyr select ex1, echo = FALSE}
-data %>% dplyr::select(posttest_score, posttest_grade, d_gender, posttest_subject) %>% nhuyhoa_df_print()
+data %>% dplyr::select(posttest_score, posttest_grade, d_gender, posttest_subject) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -114,7 +108,7 @@ data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% 
 {% endhighlight %}
 <div class = "dftab">
 ```{r dplyr select ex2, echo = FALSE}
-data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% nhuyhoa_df_print()
+data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -132,7 +126,7 @@ data %>% dplyr::select(var_pos) %>% head
 <div class = "dftab">
 ```{r dplyr select ex3, echo = FALSE}
 var_pos <- 26:29 
-data %>% dplyr::select(var_pos) %>% nhuyhoa_df_print()
+data %>% dplyr::select(var_pos) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -146,7 +140,7 @@ data %>% dplyr::select(one_of(var_names)) %>% head
 <div class = "dftab">
 ```{r dplyr select ex4, echo = FALSE}
 var_names <- c("d_black", "d_hispanic", "d_asian", "d_native")
-data %>% dplyr::select(one_of(var_names)) %>% nhuyhoa_df_print()
+data %>% dplyr::select(one_of(var_names)) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -154,7 +148,7 @@ data %>% dplyr::select(one_of(var_names)) %>% nhuyhoa_df_print()
 
 Helper functions such as `matches()`, `starts_with()`, and `ends_with()` are perhaps the most powerful feature of the select function. For example, let's start with extracting the pretest score columns. 
 
-See the [regular expression post][regex_link]{:target="blank"} for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable. 
+Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable. 
 
 {% highlight r %}
 # use matches to find all pretest score columns
@@ -162,7 +156,7 @@ data %>% dplyr::select(matches("pretest_\\d+_score")) %>% head
 {% endhighlight %}
 <div class = "dftab">
 ```{r dplyr select ex7, echo = FALSE}
-data %>% dplyr::select(matches("pretest_\\d+_score")) %>% nhuyhoa_df_print()
+data %>% dplyr::select(matches("pretest_\\d+_score")) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -176,7 +170,7 @@ data %>% dplyr::select(starts_with("posttest")) %>% head
 {% endhighlight %}
 <div class = "dftab">
 ```{r dplyr select ex8, echo = FALSE}
-data %>% dplyr::select(starts_with("posttest")) %>% nhuyhoa_df_print()
+data %>% dplyr::select(starts_with("posttest")) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -186,7 +180,7 @@ data %>% dplyr::select(ends_with("_score")) %>% head
 {% endhighlight %}
 <div class = "dftab">
 ```{r dplyr select ex9, echo = FALSE}
-data %>% dplyr::select(ends_with("_score")) %>% nhuyhoa_df_print()
+data %>% dplyr::select(ends_with("_score")) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -201,7 +195,7 @@ data %>% dplyr::select(student_id, matches("pretest_\\d+_score"), d_gender, star
 {% endhighlight %}
 <div class = "dftab">
 ```{r dplyr select ex10, echo = FALSE}
-data %>% dplyr::select(student_id, matches("pretest_\\d+_score"), d_gender, starts_with("d_")) %>% nhuyhoa_df_print()
+data %>% dplyr::select(student_id, matches("pretest_\\d+_score"), d_gender, starts_with("d_")) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -213,10 +207,9 @@ data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>
 <div class = "dftab">
 ```{r dplyr select ex11, echo = FALSE}
 no_good <- paste0("pretest_10_", c("name", "score", "version", "grade"))
-data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>% nhuyhoa_df_print()
+data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
-
 
 Sometimes when I have very wide data, I use `dplyr::select()` to roughly reorganize columns. This is pretty handy, especially if I eventually have to save results in a csv file for review at a later time.
 
@@ -233,7 +226,7 @@ unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pre
 set.seed(1)
 order <- sample(1:ncol(data))
 unorganized_data <- dplyr::select(data, order)
-unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pretest"), d_gender, d_gifted, everything()) %>% nhuyhoa_df_print()
+unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pretest"), d_gender, d_gifted, everything()) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -246,7 +239,7 @@ unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% head
 {% endhighlight %}
 <div class = "dftab">
 ```{r dplyr select reorder2, echo = FALSE}
-unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% nhuyhoa_df_print()
+unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% nhuyhoa_df_print(head = 3)
 ```
 </div><p></p>
 
@@ -296,7 +289,6 @@ final %>% nhuyhoa_df_print()
 Note: The `jn.general::refine()` function used here is a wrapper function for `Filter()`. 
 
 
-[magrittr_link]: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html
 [jn.general_link]: https://github.com/jnnguyen2/jn.general
 [regex_link]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 

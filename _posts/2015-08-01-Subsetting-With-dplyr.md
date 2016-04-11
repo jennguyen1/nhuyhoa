@@ -10,13 +10,7 @@ categories: ['r programming']
 
 
 
-Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package, created by Hadley Wickham, provides some handy tools to subset and select with ease.   
-In this post, I will outline the subsetting functions available through dplyr and explain how and when I use them. In addition, I make use of magrittr's piping function, which can combine a complicated sequence of logic into a code chain that is easier to read. More information about magrittr can be found on the [magrittr vignette][magrittr_link]{:target="blank"}.
-
-{% highlight r %}
-library(dplyr)
-library(magrittr)
-{% endhighlight %}
+Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package provides some handy tools to subset and select with ease.   
 
 # Example Data
 Let's generate some random data to use with dplyr. The random generator function is available via the [jn.general package][jn.general_link]{:target="blank"}.
@@ -468,8 +462,8 @@ data %>% filter(posttest_grade == 10, posttest_subject == "math", posttest_score
 The `dplyr::slice()` function allows rows to be extracted by position.
 
 {% highlight r %}
-# extract the 25th-30th students in the data set
-data %>% slice(25:30)
+# extract the 25th-27th students in the data set
+data %>% slice(25:27)
 {% endhighlight %}
 <div class = "dftab">
 <table>
@@ -604,102 +598,6 @@ data %>% slice(25:30)
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
   </tr>
-  <tr>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 38.46154 </td>
-   <td style="text-align:center;"> ss </td>
-   <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> 12.82051 </td>
-   <td style="text-align:center;"> 94.87179 </td>
-   <td style="text-align:center;"> 33.333333 </td>
-   <td style="text-align:center;"> 17.94872 </td>
-   <td style="text-align:center;"> 48.71795 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> male </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> TRUE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 87.17949 </td>
-   <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 51.28205 </td>
-   <td style="text-align:center;"> 53.84615 </td>
-   <td style="text-align:center;"> 53.846154 </td>
-   <td style="text-align:center;"> 46.15385 </td>
-   <td style="text-align:center;"> 64.10256 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> TRUE </td>
-   <td style="text-align:center;"> TRUE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> TRUE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 33.33333 </td>
-   <td style="text-align:center;"> ss </td>
-   <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> 35.89744 </td>
-   <td style="text-align:center;"> 0.00000 </td>
-   <td style="text-align:center;"> 87.179487 </td>
-   <td style="text-align:center;"> 61.53846 </td>
-   <td style="text-align:center;"> 94.87179 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> male </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> NA </td>
-  </tr>
 </tbody>
 </table>
 </div><p></p>
@@ -744,18 +642,6 @@ data %>% dplyr::select(posttest_score, posttest_grade, d_gender, posttest_subjec
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> male </td>
    <td style="text-align:center;"> science </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 92.30769 </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> math </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 20.51282 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> read </td>
   </tr>
 </tbody>
 </table>
@@ -807,10 +693,10 @@ data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% 
    <td style="text-align:center;"> CompSci367 </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 82.05128 </td>
-   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 28.20513 </td>
    <td style="text-align:center;"> 92.30769 </td>
    <td style="text-align:center;"> 89.74359 </td>
-   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 79.48718 </td>
    <td style="text-align:center;"> 8 </td>
    <td style="text-align:center;"> 8 </td>
    <td style="text-align:center;"> 10 </td>
@@ -836,10 +722,10 @@ data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% 
    <td style="text-align:center;"> CompSci367 </td>
    <td style="text-align:center;"> SAT </td>
    <td style="text-align:center;"> 48.71795 </td>
-   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 43.58974 </td>
    <td style="text-align:center;"> 20.51282 </td>
    <td style="text-align:center;"> 43.58974 </td>
-   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 71.79487 </td>
    <td style="text-align:center;"> 9 </td>
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 10 </td>
@@ -865,10 +751,10 @@ data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% 
    <td style="text-align:center;"> CompSci367 </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 17.94872 </td>
-   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 12.82051 </td>
    <td style="text-align:center;"> 23.07692 </td>
    <td style="text-align:center;"> 51.28205 </td>
-   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> 66.66667 </td>
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 8 </td>
    <td style="text-align:center;"> 9 </td>
@@ -885,64 +771,6 @@ data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% 
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 41.02564 </td>
-   <td style="text-align:center;"> 48.717949 </td>
-   <td style="text-align:center;"> 30.76923 </td>
-   <td style="text-align:center;"> 100.00000 </td>
-   <td style="text-align:center;"> 7.692308 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> TRUE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 84.61538 </td>
-   <td style="text-align:center;"> 5.128205 </td>
-   <td style="text-align:center;"> 25.64103 </td>
-   <td style="text-align:center;"> 66.66667 </td>
-   <td style="text-align:center;"> 94.871795 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
   </tr>
 </tbody>
 </table>
@@ -979,18 +807,6 @@ data %>% dplyr::select(var_pos) %>% head
   <tr>
    <td style="text-align:center;"> NA </td>
    <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
   </tr>
@@ -1040,18 +856,6 @@ data %>% dplyr::select(one_of(var_names)) %>% head
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
   </tr>
-  <tr>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
 </tbody>
 </table>
 </div><p></p>
@@ -1060,7 +864,7 @@ data %>% dplyr::select(one_of(var_names)) %>% head
 
 Helper functions such as `matches()`, `starts_with()`, and `ends_with()` are perhaps the most powerful feature of the select function. For example, let's start with extracting the pretest score columns. 
 
-See the [regular expression post][regex_link]{:target="blank"} for more on regex. Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable. 
+Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable. 
 
 {% highlight r %}
 # use matches to find all pretest score columns
@@ -1080,38 +884,24 @@ data %>% dplyr::select(matches("pretest_\\d+_score")) %>% head
 <tbody>
   <tr>
    <td style="text-align:center;"> 82.05128 </td>
-   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 28.20513 </td>
    <td style="text-align:center;"> 92.30769 </td>
    <td style="text-align:center;"> 89.74359 </td>
-   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 79.48718 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 48.71795 </td>
-   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 43.58974 </td>
    <td style="text-align:center;"> 20.51282 </td>
    <td style="text-align:center;"> 43.58974 </td>
-   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 71.79487 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 17.94872 </td>
-   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 12.82051 </td>
    <td style="text-align:center;"> 23.07692 </td>
    <td style="text-align:center;"> 51.28205 </td>
-   <td style="text-align:center;"> 66.666667 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 41.02564 </td>
-   <td style="text-align:center;"> 48.717949 </td>
-   <td style="text-align:center;"> 30.76923 </td>
-   <td style="text-align:center;"> 100.00000 </td>
-   <td style="text-align:center;"> 7.692308 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 84.61538 </td>
-   <td style="text-align:center;"> 5.128205 </td>
-   <td style="text-align:center;"> 25.64103 </td>
    <td style="text-align:center;"> 66.66667 </td>
-   <td style="text-align:center;"> 94.871795 </td>
   </tr>
 </tbody>
 </table>
@@ -1150,16 +940,6 @@ data %>% dplyr::select(starts_with("posttest")) %>% head
    <td style="text-align:center;"> science </td>
    <td style="text-align:center;"> 10 </td>
   </tr>
-  <tr>
-   <td style="text-align:center;"> 92.30769 </td>
-   <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 20.51282 </td>
-   <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 10 </td>
-  </tr>
 </tbody>
 </table>
 </div><p></p>
@@ -1184,42 +964,26 @@ data %>% dplyr::select(ends_with("_score")) %>% head
   <tr>
    <td style="text-align:center;"> 25.64103 </td>
    <td style="text-align:center;"> 82.05128 </td>
-   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 28.20513 </td>
    <td style="text-align:center;"> 92.30769 </td>
    <td style="text-align:center;"> 89.74359 </td>
-   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 79.48718 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 35.89744 </td>
    <td style="text-align:center;"> 48.71795 </td>
-   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 43.58974 </td>
    <td style="text-align:center;"> 20.51282 </td>
    <td style="text-align:center;"> 43.58974 </td>
-   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 71.79487 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 56.41026 </td>
    <td style="text-align:center;"> 17.94872 </td>
-   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 12.82051 </td>
    <td style="text-align:center;"> 23.07692 </td>
    <td style="text-align:center;"> 51.28205 </td>
-   <td style="text-align:center;"> 66.666667 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 92.30769 </td>
-   <td style="text-align:center;"> 41.02564 </td>
-   <td style="text-align:center;"> 48.717949 </td>
-   <td style="text-align:center;"> 30.76923 </td>
-   <td style="text-align:center;"> 100.00000 </td>
-   <td style="text-align:center;"> 7.692308 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 20.51282 </td>
-   <td style="text-align:center;"> 84.61538 </td>
-   <td style="text-align:center;"> 5.128205 </td>
-   <td style="text-align:center;"> 25.64103 </td>
    <td style="text-align:center;"> 66.66667 </td>
-   <td style="text-align:center;"> 94.871795 </td>
   </tr>
 </tbody>
 </table>
@@ -1256,10 +1020,10 @@ data %>% dplyr::select(student_id, matches("pretest_\\d+_score"), d_gender, star
   <tr>
    <td style="text-align:center;"> 1 </td>
    <td style="text-align:center;"> 82.05128 </td>
-   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 28.20513 </td>
    <td style="text-align:center;"> 92.30769 </td>
    <td style="text-align:center;"> 89.74359 </td>
-   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 79.48718 </td>
    <td style="text-align:center;"> male </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
@@ -1270,10 +1034,10 @@ data %>% dplyr::select(student_id, matches("pretest_\\d+_score"), d_gender, star
   <tr>
    <td style="text-align:center;"> 1 </td>
    <td style="text-align:center;"> 48.71795 </td>
-   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 43.58974 </td>
    <td style="text-align:center;"> 20.51282 </td>
    <td style="text-align:center;"> 43.58974 </td>
-   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 71.79487 </td>
    <td style="text-align:center;"> male </td>
    <td style="text-align:center;"> NA </td>
    <td style="text-align:center;"> NA </td>
@@ -1284,44 +1048,16 @@ data %>% dplyr::select(student_id, matches("pretest_\\d+_score"), d_gender, star
   <tr>
    <td style="text-align:center;"> 1 </td>
    <td style="text-align:center;"> 17.94872 </td>
-   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 12.82051 </td>
    <td style="text-align:center;"> 23.07692 </td>
    <td style="text-align:center;"> 51.28205 </td>
-   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> 66.66667 </td>
    <td style="text-align:center;"> male </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> 41.02564 </td>
-   <td style="text-align:center;"> 48.717949 </td>
-   <td style="text-align:center;"> 30.76923 </td>
-   <td style="text-align:center;"> 100.00000 </td>
-   <td style="text-align:center;"> 7.692308 </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> TRUE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:center;"> 84.61538 </td>
-   <td style="text-align:center;"> 5.128205 </td>
-   <td style="text-align:center;"> 25.64103 </td>
-   <td style="text-align:center;"> 66.66667 </td>
-   <td style="text-align:center;"> 94.871795 </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
   </tr>
 </tbody>
 </table>
@@ -1363,9 +1099,9 @@ data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>
    <td style="text-align:center;"> SAT </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 82.05128 </td>
-   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 28.20513 </td>
    <td style="text-align:center;"> 92.30769 </td>
-   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 79.48718 </td>
    <td style="text-align:center;"> 8 </td>
    <td style="text-align:center;"> 8 </td>
    <td style="text-align:center;"> 10 </td>
@@ -1382,9 +1118,9 @@ data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>
    <td style="text-align:center;"> SAT </td>
    <td style="text-align:center;"> SAT </td>
    <td style="text-align:center;"> 48.71795 </td>
-   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 43.58974 </td>
    <td style="text-align:center;"> 20.51282 </td>
-   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 71.79487 </td>
    <td style="text-align:center;"> 9 </td>
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 10 </td>
@@ -1401,9 +1137,9 @@ data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>
    <td style="text-align:center;"> SAT </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 17.94872 </td>
-   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 12.82051 </td>
    <td style="text-align:center;"> 23.07692 </td>
-   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> 66.66667 </td>
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> 8 </td>
    <td style="text-align:center;"> 9 </td>
@@ -1412,49 +1148,10 @@ data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>
    <td style="text-align:center;"> A </td>
    <td style="text-align:center;"> A </td>
    <td style="text-align:center;"> B </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 41.02564 </td>
-   <td style="text-align:center;"> 48.717949 </td>
-   <td style="text-align:center;"> 30.76923 </td>
-   <td style="text-align:center;"> 7.692308 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> B </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 84.61538 </td>
-   <td style="text-align:center;"> 5.128205 </td>
-   <td style="text-align:center;"> 25.64103 </td>
-   <td style="text-align:center;"> 94.871795 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> C </td>
   </tr>
 </tbody>
 </table>
 </div><p></p>
-
 
 Sometimes when I have very wide data, I use `dplyr::select()` to roughly reorganize columns. This is pretty handy, especially if I eventually have to save results in a csv file for review at a later time.
 
@@ -1509,12 +1206,12 @@ unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pre
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 28.20513 </td>
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> Math222 </td>
    <td style="text-align:center;"> C </td>
    <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 79.48718 </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 89.74359 </td>
    <td style="text-align:center;"> SAT </td>
@@ -1541,12 +1238,12 @@ unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pre
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> ss </td>
    <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 43.58974 </td>
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> Math222 </td>
    <td style="text-align:center;"> C </td>
    <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 71.79487 </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 43.58974 </td>
    <td style="text-align:center;"> SAT </td>
@@ -1573,12 +1270,12 @@ unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pre
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> science </td>
    <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 12.82051 </td>
    <td style="text-align:center;"> 9 </td>
    <td style="text-align:center;"> Math222 </td>
    <td style="text-align:center;"> A </td>
    <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> 66.66667 </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 51.28205 </td>
    <td style="text-align:center;"> SAT </td>
@@ -1594,70 +1291,6 @@ unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pre
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> male </td>
    <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> 92.30769 </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 48.717949 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 7.692308 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 100.00000 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 41.02564 </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 30.76923 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> TRUE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:center;"> 20.51282 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 5.128205 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 94.871795 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 66.66667 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 84.61538 </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 25.64103 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
@@ -1713,12 +1346,12 @@ unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% head
 <tbody>
   <tr>
    <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 28.205128 </td>
+   <td style="text-align:center;"> 28.20513 </td>
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> Math222 </td>
    <td style="text-align:center;"> C </td>
    <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 79.487179 </td>
+   <td style="text-align:center;"> 79.48718 </td>
    <td style="text-align:center;"> 25.64103 </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 10 </td>
@@ -1745,12 +1378,12 @@ unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% head
   </tr>
   <tr>
    <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 43.589744 </td>
+   <td style="text-align:center;"> 43.58974 </td>
    <td style="text-align:center;"> 10 </td>
    <td style="text-align:center;"> Math222 </td>
    <td style="text-align:center;"> C </td>
    <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 71.794872 </td>
+   <td style="text-align:center;"> 71.79487 </td>
    <td style="text-align:center;"> 35.89744 </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 12 </td>
@@ -1777,12 +1410,12 @@ unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% head
   </tr>
   <tr>
    <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 12.820513 </td>
+   <td style="text-align:center;"> 12.82051 </td>
    <td style="text-align:center;"> 9 </td>
    <td style="text-align:center;"> Math222 </td>
    <td style="text-align:center;"> A </td>
    <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 66.666667 </td>
+   <td style="text-align:center;"> 66.66667 </td>
    <td style="text-align:center;"> 56.41026 </td>
    <td style="text-align:center;"> ACT </td>
    <td style="text-align:center;"> 10 </td>
@@ -1803,70 +1436,6 @@ unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% head
    <td style="text-align:center;"> male </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 48.717949 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 7.692308 </td>
-   <td style="text-align:center;"> 92.30769 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 100.00000 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 41.02564 </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 30.76923 </td>
-   <td style="text-align:center;"> math </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> TRUE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> CompSci367 </td>
-   <td style="text-align:center;"> 5.128205 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> Math222 </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 94.871795 </td>
-   <td style="text-align:center;"> 20.51282 </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 66.66667 </td>
-   <td style="text-align:center;"> SAT </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> C </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> ACT </td>
-   <td style="text-align:center;"> 84.61538 </td>
-   <td style="text-align:center;"> B </td>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:center;"> A </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 25.64103 </td>
-   <td style="text-align:center;"> read </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> female </td>
-   <td style="text-align:center;"> FALSE </td>
-   <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
    <td style="text-align:center;"> FALSE </td>
@@ -2069,7 +1638,6 @@ final <- data %>%
 Note: The `jn.general::refine()` function used here is a wrapper function for `Filter()`. 
 
 
-[magrittr_link]: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html
 [jn.general_link]: https://github.com/jnnguyen2/jn.general
 [regex_link]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 

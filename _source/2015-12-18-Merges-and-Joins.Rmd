@@ -48,7 +48,7 @@ To specify the join, simply replace the blank with `inner`, `full outer`, `left`
 
 To join multiple data frames in SQL, you can also do successive joins. Simply append an additional `___ join ... on` statements after the previous join.
 
-Other operations similar to merges:
+Other operations to combine tables:
 
 * `union`
 * `intersect`
@@ -65,7 +65,7 @@ All merges in R can be done with a simple `merge()` function. The arguments for 
 
 To join multiple data frames in R, you can do successive joins. That is, join two and use the result to join with another data frame. To save time, the function `jn.general::mult_merge()` was created to make merging multiple data frames easier.
 
-Other operations similar to merges:
+Other operations to combine data frames:
 
 * `cbind()`
 * `rbind()`, `data.table::rbindlist()`

@@ -417,7 +417,6 @@ airquality %>%
 (By r-statistics)
 
 # In SAS
-Reshaping in SAS can be done with `proc transpose` command.
 
 ## Long to Wide
 

@@ -10,6 +10,8 @@ categories: ['basics']
 
 SQL (Structured Query Language) is a database language designed to extract and manipulate data from databases. 
 
+Other languages generally have functionality to interface with databases using SQL.
+
 # Basic Statement
 The basic SQL statement is pretty simple.
 

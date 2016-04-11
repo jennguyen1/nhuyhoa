@@ -136,6 +136,31 @@ function | description
 `str_wrap()` | wrap strings into formatted paragraphs
 `word()` | extract words from sentence
 
+## In SAS
+
+Additional metacharacters for SAS
+
+* `%` substitute for 0 or more characters
+
+function | description
+---------|---------------
+`lengthn()` | length of string
+`upcase()`, `lowcase()`, `propcase()` | change string case
+`compbl()` | combines >1 blank to 1 blank
+`compress()` | removes specified character/char class
+`cat()` | concatenates characters
+`cats()` | strips leading & trailing blanks before joining
+`catx()` | concatenates characters, 1st arg is separator
+`left()`, `trim()`, strip()` | removes blanks from L, R, both sides
+`find()` | finds characters
+`findc()` | finds individual characters
+`findw()` | finds words
+`anyalnum()`, `anyalpha()`, `anydigit()`, `anyspace()` | finds any of listed; can also replace any with not
+`substr()` | takes substring
+`scan()` | scans string
+`compare()` | compares strings
+`translate()`| translates one to another
+
 ## In SQL
 
 Regular expressions can be specified in SQL using the `where` clause. 
@@ -149,6 +174,7 @@ where name like '[aeiou]%'
 {% endhighlight %}
 
 The metacharacters that can be used with SQL are a little different than those listed above. 
+
 * `[...]` brackets, same as above (including negation)
 * `%` substitute for 0 or more characters
 * `_` substitute for a single character

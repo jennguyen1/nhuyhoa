@@ -394,11 +394,8 @@ echo $((5+3))
 {% endhighlight %}
 
 
-## If/Else, Loops & Functions
+## Condtionals
 
-**If and Else:**
-
-Conditions
 
 {% highlight r %}
 # returns 0 for true; 1 for false
@@ -436,7 +433,7 @@ Conditions
 [ oldfile.txt -ot newfile.txt ]; echo $?
 {% endhighlight %}
 
-Format for if/else
+**Format for if/else**
 
 {% highlight r %}
 if cmd; then
@@ -460,7 +457,7 @@ else
 fi
 {% endhighlight %}
 
-Format for switch statments
+**Format for switch statements**
 
 {% highlight r %}
 case ${var} in 
@@ -492,9 +489,9 @@ case ${value} in
 esac
 {% endhighlight %}
 
-**Loops:**
+## Loops
 
-For loops
+**For Loops**
 
 {% highlight r %}
 # loop through a list
@@ -538,7 +535,7 @@ do
 done
 {% endhighlight %}
 
-While and Until loops
+**While and Until Loops**
 
 {% highlight r %}
 while [ condition ]
@@ -552,13 +549,14 @@ until [ condition ]
 done
 {% endhighlight %}
 
-Control within loops
+**Control within Loops**
 
 * Skip to next iteration: `continue`
 * Exit loop: `break`
 
-**Functions and Aliasing:**
-Aliasing
+## Functions and Aliasing
+
+**Aliasing**
 
 {% highlight r %}
 # save the shortcut
@@ -574,7 +572,7 @@ unalias shortcut
 alias
 {% endhighlight %}
 
-Functions
+**Functions**
 
 {% highlight r %}
 # declare functions
@@ -748,10 +746,5 @@ END{
 # run awk script
 awk -f awk_script.awk test.txt
 {% endhighlight %}
-
-
-# Useful Locations
-
-desk22.stat.wisc.edu:public/html
 
 [linux_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMeXJRRWdFTFQzMEU/view?usp=sharing

@@ -86,6 +86,14 @@ Sometimes we may want to change the format of variables.
 * Numeric to character conversion: `put(VALUE, $32.)`
 * Character to numeric conversion: `input(VALUE, best32.)`
 
+Other expressions of interest
+
+* `=`, `^=`, `>`, ...
+* `&`, `|`, `not` 
+* `is missing`, `is not missing`, `is null`
+* `n()`, `nmiss()`
+* `between __ and __`, `contains`, `in (..., ..., ...)`
+
 **Renaming Columns**
 
 {% highlight r %}
@@ -139,12 +147,72 @@ There are several options for sorting
 * `LINGUISTIC(NUMERIC_COLLATION = ON)`: treats numbers as numbers and not just digits
 * `nodupkey` removes duplicate keys
 
-# Other 
+## Using SQL in SAS
 
 {% highlight r %}
-title "";
-# in other functions
-output out = ;
-libname LIBNAME FILEPATH
+proc sql;
+select COLNAMES/EXPRESSION as NEWNAME
+into :MACRONAME
+separated by ""
+from TABLE
+where CONDITION
+group by COLNAMES
+having EXPRESSION
+order by COLNAMES ASC/DCS;
+quit;
 {% endhighlight %}
+
+Can also do SQL joins in SAS
+
+{% highlight r %}
+proc sql;
+select * 
+from TAB1
+inner join TAB2
+where TAB1.id = TAB2.id;
+quit;
+{% endhighlight %}
+
+# Conditionals
+The basic statement for if and else are
+
+
+{% highlight r %}
+if CONDITION then EXPRESSION;
+else if CONDITION then EXPRESSION;
+else EXPRESSION;
+{% endhighlight %}
+
+# Loops
+
+**For Loops**
+
+{% highlight r %}
+do i = START to STOP by INCREMENT;
+  OPERATIONS;
+end;
+
+do i = 1, 2, 3, 4 to 10 by INCREMENT;
+  OPERATIONS;
+end;
+{% endhighlight %}
+
+**While and Until Loops**
+
+{% highlight r %}
+do while(CONDITION);
+  OPERATIONS;
+end;
+
+do until(CONDITION);
+  OPERATIONS;
+end;
+{% endhighlight %}
+
+**Control within Loops**
+
+* Skip to next iteration: `continue`
+* Exit loop: `leave`
+
+# Functions
 

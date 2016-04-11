@@ -240,7 +240,7 @@ Say we have a number of files that we want to open. Rather than reading them in 
 directory <- "~/Desktop/file_monster/"
 
 # get a list of all the files in the directory
-file_paths <- list.files(directory)
+file_paths <- list.files(directory, full.names = TRUE)
 
 # we only want to open the csv files
 file_paths <- file_paths %>% str_subset(".csv")

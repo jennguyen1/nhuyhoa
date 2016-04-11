@@ -372,11 +372,8 @@ echo $((5+3))
 ```
 
 
-## If/Else, Loops & Functions
+## Condtionals
 
-**If and Else:**
-
-Conditions
 ```{r, eval = FALSE}
 # returns 0 for true; 1 for false
 
@@ -413,7 +410,7 @@ Conditions
 [ oldfile.txt -ot newfile.txt ]; echo $?
 ```
 
-Format for if/else
+**Format for if/else**
 ```{r, eval = FALSE}
 if cmd; then
   # stuff
@@ -435,7 +432,7 @@ else
 fi
 ```
 
-Format for switch statments
+**Format for switch statements**
 ```{r, eval = FALSE}
 case ${var} in 
   options)
@@ -465,9 +462,9 @@ case ${value} in
 esac
 ```
 
-**Loops:**
+## Loops
 
-For loops
+**For Loops**
 ```{r, eval = FALSE}
 # loop through a list
 for var in list
@@ -509,7 +506,7 @@ do
 done
 ```
 
-While and Until loops
+**While and Until Loops**
 ```{r, eval = FALSE}
 while [ condition ]
 do
@@ -522,13 +519,14 @@ until [ condition ]
 done
 ```
 
-Control within loops
+**Control within Loops**
 
 * Skip to next iteration: `continue`
 * Exit loop: `break`
 
-**Functions and Aliasing:**
-Aliasing
+## Functions and Aliasing
+
+**Aliasing**
 ```{r, eval = FALSE}
 # save the shortcut
 alias shortcut="cd ~Desktop; nano temp.txt"
@@ -543,7 +541,7 @@ unalias shortcut
 alias
 ```
 
-Functions
+**Functions**
 ```{r, eval = FALSE}
 # declare functions
 f() {
@@ -711,10 +709,5 @@ END{
 # run awk script
 awk -f awk_script.awk test.txt
 ```
-
-
-# Useful Locations
-
-desk22.stat.wisc.edu:public/html
 
 [linux_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMeXJRRWdFTFQzMEU/view?usp=sharing

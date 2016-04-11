@@ -84,6 +84,7 @@
   </li>
   <li><a href="#implementation" id="markdown-toc-implementation">Implementation</a>    <ul>
       <li><a href="#in-r" id="markdown-toc-in-r">In R</a></li>
+      <li><a href="#in-sas" id="markdown-toc-in-sas">In SAS</a></li>
       <li><a href="#in-sql" id="markdown-toc-in-sql">In SQL</a></li>
     </ul>
   </li>
@@ -337,6 +338,89 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
   </tbody>
 </table>
 
+<h2 id="in-sas">In SAS</h2>
+
+<p>Additional metacharacters for SAS</p>
+
+<ul>
+  <li><code>%</code> substitute for 0 or more characters</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>function</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>lengthn()</code></td>
+      <td>length of string</td>
+    </tr>
+    <tr>
+      <td><code>upcase()</code>, <code>lowcase()</code>, <code>propcase()</code></td>
+      <td>change string case</td>
+    </tr>
+    <tr>
+      <td><code>compbl()</code></td>
+      <td>combines &gt;1 blank to 1 blank</td>
+    </tr>
+    <tr>
+      <td><code>compress()</code></td>
+      <td>removes specified character/char class</td>
+    </tr>
+    <tr>
+      <td><code>cat()</code></td>
+      <td>concatenates characters</td>
+    </tr>
+    <tr>
+      <td><code>cats()</code></td>
+      <td>strips leading &amp; trailing blanks before joining</td>
+    </tr>
+    <tr>
+      <td><code>catx()</code></td>
+      <td>concatenates characters, 1st arg is separator</td>
+    </tr>
+    <tr>
+      <td><code>left()</code>, <code>trim()</code>, strip()`</td>
+      <td>removes blanks from L, R, both sides</td>
+    </tr>
+    <tr>
+      <td><code>find()</code></td>
+      <td>finds characters</td>
+    </tr>
+    <tr>
+      <td><code>findc()</code></td>
+      <td>finds individual characters</td>
+    </tr>
+    <tr>
+      <td><code>findw()</code></td>
+      <td>finds words</td>
+    </tr>
+    <tr>
+      <td><code>anyalnum()</code>, <code>anyalpha()</code>, <code>anydigit()</code>, <code>anyspace()</code></td>
+      <td>finds any of listed; can also replace any with not</td>
+    </tr>
+    <tr>
+      <td><code>substr()</code></td>
+      <td>takes substring</td>
+    </tr>
+    <tr>
+      <td><code>scan()</code></td>
+      <td>scans string</td>
+    </tr>
+    <tr>
+      <td><code>compare()</code></td>
+      <td>compares strings</td>
+    </tr>
+    <tr>
+      <td><code>translate()</code></td>
+      <td>translates one to another</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="in-sql">In SQL</h2>
 
 <p>Regular expressions can be specified in SQL using the <code>where</code> clause.</p>
@@ -347,10 +431,13 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
 where name like <span class="s">&#39;[aeiou]%&#39;</span>
 <span class="p">;</span></code></pre></div>
 
-<p>The metacharacters that can be used with SQL are a little different than those listed above. <br />
-* <code>[...]</code> brackets, same as above (including negation)<br />
-* <code>%</code> substitute for 0 or more characters<br />
-* <code>_</code> substitute for a single character</p>
+<p>The metacharacters that can be used with SQL are a little different than those listed above.</p>
+
+<ul>
+  <li><code>[...]</code> brackets, same as above (including negation)</li>
+  <li><code>%</code> substitute for 0 or more characters</li>
+  <li><code>_</code> substitute for a single character</li>
+</ul>
 
 
   </article>
