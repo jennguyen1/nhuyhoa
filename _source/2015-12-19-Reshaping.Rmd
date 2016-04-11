@@ -167,11 +167,27 @@ airquality %>%
 ![reshaping in R](http://jnguyen92.github.io/nhuyhoa/figure/images/transpose.png)
 (By r-statistics)
 
+# In SAS
+Reshaping in SAS can be done with `proc transpose` command.
+
+## Long to Wide
+
+```{r, eval = FALSE}
+proc transpose data = LONGDATA out = WIDEDATA prefix = COLPREFIX;
+by LONGID;
+id WIDEID;
+var VALUE.VAR;
+```
+
+This formula runs the equivalent of `"LONGID ~ WIDEID", value.var = VALUE.VAR` in R.
+
+## Wide to Long
+
 # In SQL
 
 Reshaping in SQL can be done with the `pivot` command. See below for an example of transforming the data from long to wide. 
 
-```{r, eval = FALSE}
+{% highlight sql %}
 SELECT *
 FROM (
     SELECT
@@ -185,5 +201,5 @@ PIVOT
     FOR [month] IN (jan, feb, mar, apr,
     may, jun, jul, aug, sep, oct, nov, dec)
 )AS pvt
-```
+{% endhighlight %}
 

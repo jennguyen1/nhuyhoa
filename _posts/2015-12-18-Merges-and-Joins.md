@@ -34,19 +34,6 @@ Keep all rows from y and all those from x that match.
 
 # Implementation 
 
-## In R
-All merges in R can be done with a simple `merge()` function. The arguments for this function include
-
-* `x`, `y`: data frames to be merged
-* `by`: the names of columns on which matches are searched
-* `all`: option for inner or outer join; set to `FALSE` for inner join and `TRUE` for outer join
-* `all.x`: option for left join
-* `all.y`: option for right join
-
-To join multiple data frames in R, you can do successive joins. That is, join two and use the result to join with another data frame. To save time, the function `jn.general::mult_merge()` was created to make merging multiple data frames easier
-
-The `dplyr` package has some additional join functions that are useful depending on the situation. Examples of join types include `dplyr::anti_join()` and set operations such as `dplyr::intersect()`, `dplyr::union()`, and `dplyr::setdiff()`.
-
 ## In SQL
 Joins in SQL follow a simple format:
 
@@ -61,8 +48,57 @@ To specify the join, simply replace the blank with `inner`, `full outer`, `left`
 
 To join multiple data frames in SQL, you can also do successive joins. Simply append an additional `___ join ... on` statements after the previous join.
 
-Other operations
+Other operations similar to merges:
 
 * `union`
 * `intersect`
 * `except`
+
+## In R
+All merges in R can be done with a simple `merge()` function. The arguments for this function include
+
+* `x`, `y`: data frames to be merged
+* `by`: the names of columns on which matches are searched
+* `all`: option for inner or outer join; set to `FALSE` for inner join and `TRUE` for outer join
+* `all.x`: option for left join
+* `all.y`: option for right join
+
+To join multiple data frames in R, you can do successive joins. That is, join two and use the result to join with another data frame. To save time, the function `jn.general::mult_merge()` was created to make merging multiple data frames easier.
+
+Other operations similar to merges:
+
+* `cbind()`
+* `rbind()`, `data.table::rbindlist()`
+* `dplyr::anti_join()` 
+* `dplyr::intersect()` 
+* `dplyr::union()` 
+* `dplyr::setdiff()`
+
+## In SAS
+
+Merging data in SAS requires first sorting by the merge variable then merging.
+
+
+{% highlight r %}
+# first sort both files
+proc sort data = TAB;
+by VAR1 VAR2 ...;
+run;
+
+# then merge
+merge TAB1 (in=INVAR1) TAB2 (in==INVAR2);
+by VAR1 VAR2;
+if INVAR and INVAR2;
+run;
+{% endhighlight %}
+
+By default SAS merges will do an outer merge. Additional filtering can be done to specify other types of merges. The example above is doing an inner merge. 
+
+An operation similar to union or rbind is
+
+{% highlight r %}
+data NAME;
+set TAB1 TAB2;
+run;
+{% endhighlight %}
+
