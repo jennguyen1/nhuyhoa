@@ -8,6 +8,48 @@ categories: ['basics']
 * TOC
 {:toc}
 
+# Brief Overview of Data Structures
+
+## Vectors
+Vectors are one-dimensional arrays and can be generated with the function `c(...)`. 
+
+Vectors can be various types: numeric, logical, character, or factor. All values in a vector must be one type. To change change a vector's type use the following functions `as.numeric()`, `as.logical()`, `as.character()`, `as.factor()`. Note that a factor are a way of representing categorical variables.
+
+Some built-in R functions are vectorized, element-wise operations. Examples of these include arithmetic functions, relational comparisons, etc.
+
+In R, objects are indexed starting from 1. For example, `x[1:5]`.
+
+Some useful functions for vectors include `seq(from, to, by)`, `sample(x, size, replace, prob)`, `which()`, `%in%`, `order()`, `sort()`, `quantile()`, `cut()`, and `table()`.
+
+## Matrices
+Matrices are multi-dimensional arrays. They are generated from the function `matrix( c(...), nrow = , ncol = , byrow = )`. Vectors can be combined into matrices with the functions `cbind(...)` or `rbind(...)`.
+
+Similar to vectors, arrays may be numeric, logical, or character, but it must be all one type. Matrices may also have vectorized functions. 
+
+Matrices are indexed in similar ways, commas are used to separate the dimensions of matrices. For example, `m[1:4, 10:4]`.
+
+Matrices can be multipled using `%*%` or divided using `solve(a, b)` (If b isn't supplied, `solve` computes the inverse). Additional functions include `t()` for the transpose.
+
+## Data Frames
+Data frames are two-dimensional structures where columns can be different types. To make a data frame use `data.frame(...)`, all columns of the data frame must be the same length. 
+
+Data frames can be indexed and edited in similar ways to matrices. Here are a few examples `df[1:10, 3]`, `df[,2]`, `df$x`, `df[,"x"]`. 
+
+Some useful functions to use with data frames include `dim()`, `nrow()`, `ncol()`, `head()`, `tail()`, `colnames()`, `str()`, `summary()`.
+
+Data tables are an alternative to data frames that allow for optimized operations. They are available in `data.table` package. Data tables may differ from data frames in some indexing aspects.
+
+## Lists
+A list is the free-for-all data structure. It is like a data frame but is not limited by any length restrictions. Lists can hold any data structure, including other lists. To make a list use `list(...)`. 
+
+Lists can be indexed by number `l[[1]]` or by name `l$apple`, `l[["apple"]]`. Unfortunately lists cannot be sliced, so to subset a list, loops should be used. See [Apply and Parallel Processing][apply_post]{:target = "_blank"} post.
+
+## Special Values
+
+`NULL` is a null object. To test whether an object is `NULL`, use `is.null()`
+
+`NA` is a missing value. To test whether an object is `NA`, use `is.na()`
+
 # Conditionals
 Setup:
 
@@ -116,48 +158,6 @@ do.call(FUN, NAMED_LIST)
 {% highlight r%}
 match.fun("FUN")
 {% endhighlight%}
-
-# Brief Overview of Data Structures
-
-## Vectors
-Vectors are one-dimensional arrays and can be generated with the function `c(...)`. 
-
-Vectors can be various types: numeric, logical, character, or factor. All values in a vector must be one type. To change change a vector's type use the following functions `as.numeric()`, `as.logical()`, `as.character()`, `as.factor()`. Note that a factor are a way of representing categorical variables.
-
-Some built-in R functions are vectorized, element-wise operations. Examples of these include arithmetic functions, relational comparisons, etc.
-
-In R, objects are indexed starting from 1. For example, `x[1:5]`.
-
-Some useful functions for vectors include `seq(from, to, by)`, `sample(x, size, replace, prob)`, `which()`, `%in%`, `order()`, `sort()`, `quantile()`, `cut()`, and `table()`.
-
-## Matrices
-Matrices are multi-dimensional arrays. They are generated from the function `matrix( c(...), nrow = , ncol = , byrow = )`. Vectors can be combined into matrices with the functions `cbind(...)` or `rbind(...)`.
-
-Similar to vectors, arrays may be numeric, logical, or character, but it must be all one type. Matrices may also have vectorized functions. 
-
-Matrices are indexed in similar ways, commas are used to separate the dimensions of matrices. For example, `m[1:4, 10:4]`.
-
-Matrices can be multipled using `%*%` or divided using `solve(a, b)` (If b isn't supplied, `solve` computes the inverse). Additional functions include `t()` for the transpose.
-
-## Data Frames
-Data frames are two-dimensional structures where columns can be different types. To make a data frame use `data.frame(...)`, all columns of the data frame must be the same length. 
-
-Data frames can be indexed and edited in similar ways to matrices. Here are a few examples `df[1:10, 3]`, `df[,2]`, `df$x`, `df[,"x"]`. 
-
-Some useful functions to use with data frames include `dim()`, `nrow()`, `ncol()`, `head()`, `tail()`, `colnames()`, `str()`, `summary()`.
-
-Data tables are an alternative to data frames that allow for optimized operations. They are available in `data.table` package. Data tables may differ from data frames in some indexing aspects.
-
-## Lists
-A list is the free-for-all data structure. It is like a data frame but is not limited by any length restrictions. Lists can hold any data structure, including other lists. To make a list use `list(...)`. 
-
-Lists can be indexed by number `l[[1]]` or by name `l$apple`, `l[["apple"]]`. Unfortunately lists cannot be sliced, so to subset a list, loops should be used. See [Apply and Parallel Processing][apply_post]{:target = "_blank"} post.
-
-## Special Values
-
-`NULL` is a null object. To test whether an object is `NULL`, use `is.null()`
-
-`NA` is a missing value. To test whether an object is `NA`, use `is.na()`
 
 
 [apply_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Apply-Parallel-Processing.html

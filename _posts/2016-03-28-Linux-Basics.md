@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linux Basics"
-date: "October 30, 2015"
+date: "March 28, 2016"
 categories: ['basics']
 ---
 
@@ -17,7 +17,8 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 * `|` to chain commands
 * `xargs` reads items from standard input delimited by blanks and executes command multiple times
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # example: delete all *.txt files
 find . -name "*.txt" | xargs rm
 
@@ -26,12 +27,13 @@ find . -name "*.jpg" | xargs tar -zcf jpg.tar.gz
 
 # example: batch rename
 ls | grep \.jpg$ | sed 'p;s/\.jpg/\.png/' | xargs -n2 mv
-```
+{% endhighlight %}
 
 * `echo` repeat your own text, can pipe into files
 * `printf` for formatting text
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # strings
 printf "Hello my name is %s.\n" Jenny
 
@@ -49,7 +51,7 @@ printf "%4d" 15
 
 # formatting: add a bunch of 0s
 printf "%04d" 15
-```
+{% endhighlight %}
 
 # Working With Files
 
@@ -75,7 +77,8 @@ printf "%04d" 15
 * `fold` prints out content in more readable format
 
 * `sort` sorting
-```{r, eval = FALSE}
+
+{% highlight r %}
 # sort by 1st col, then 2nd, then 3rd ...
 sort input.txt
 
@@ -84,27 +87,30 @@ sort +2 input.txt
 
 # sort 2nd col as numbers, descending order; then sort 3rd col as strings ascending order
 sort -k2,2nr -k3,3 input.txt
-```
+{% endhighlight %}
 
 * `cut` cuts out selected portions of each line from each file and writes to standard output
-```{r, eval = FALSE}
+
+{% highlight r %}
 # cut 1, 2, 3, 5, 7 columns
 cut -f1-3,5,7- input.txt
 
 # cut 3rd column w/ columns separated by a single space
 cut -d" " -f 3 input.txt
-```
+{% endhighlight %}
 
 Examples
-```{r, eval = FALSE}
+
+{% highlight r %}
 # find the 10 most common words
 cat temp.txt | tr "[A-Z]" "[a-z]" | tr -c "[:alnum:]" "[\n*]" | sort | uniq -c | sort -nr | head -10
-```
+{% endhighlight %}
 
 ## Finding Files
-```{r, eval = FALSE}
+
+{% highlight r %}
 find directory -type (f/d) \(-name "." -(and/or/not) -name "."\)
-```
+{% endhighlight %}
 
 ## Zipping Files
 
@@ -119,7 +125,8 @@ Some common action terms
 * `z` process through gzip
 * `f` specify name of the $$.tar$$ files you want to create
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # creating a tar file
 tar -cvf file_name.tar file1 file2 ... filen
 
@@ -131,17 +138,18 @@ tar -xvf file_name.tar
 
 # unpack tar.gz files
 tar -xzf file_name.tar.gz
-```
+{% endhighlight %}
 
 `zip` options:
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # zip files
 zip file_name file1 file2 ... filen
 
 # unzip files
 unzip file_name.zip
-```
+{% endhighlight %}
 
 ## Changing Permissions of Files
 
@@ -164,17 +172,19 @@ File access options:
 
 When listed via `ls`, the file access options from left to right are for owner, group, then all. 
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # make file readable by group
 chmod g+r filepath
 
 # make file executable by all
 chmod +x filepath
-```
+{% endhighlight %}
 
 ## Printing Files
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # obtain a list of available printers
 lpstat -p -d
 
@@ -186,25 +196,28 @@ lpr -P printer_name filename
 
 # pass commands to printer: print two sides
 lpr -o sides=two-sided-long-edge -Pprinter_name file_name
-```
+{% endhighlight %}
 
 # My Computer and Other Servers 
 
 **Log In Via ssh:**
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 ssh username@place
-```
+{% endhighlight %}
 
 **Download from a Server:**
-```{r, eval = FALSE}
+
+{% highlight r %}
 curl -o online_file_name
-```
+{% endhighlight %}
 
 
 **Upload to a Server:**
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # using rsync
 rsync -a filename username@place:file_directory
 
@@ -213,7 +226,7 @@ scp original.file user@location.to.transfer:file_path
 
 # using scp with directories
 scp -rp file location.to.transfer
-```
+{% endhighlight %}
 
 # Shell Scripting
 
@@ -221,15 +234,17 @@ A shell script is a file containing lines for the shell to execute. Everything t
 
 **Start scripts with the statement:**
 
-```{r}
+
+{% highlight r %}
 #!/bin/sh
-```
+{% endhighlight %}
 
 The rest of the script can be populated with a list of commands or comments (#). 
 
 **Execute script:**
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # using source
 source script_name
 
@@ -238,13 +253,14 @@ bash script_name
 
 # using sh
 sh script_name
-```
+{% endhighlight %}
 
 ## Variables
 
 **Setting Variables:**
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # set variable, note no spaces
 VAR="value"
 VAR2=25
@@ -257,11 +273,12 @@ NAME[index]=value
 
 # set environmental vars so child processes can inherit
 export VAR2="value2"
-```
+{% endhighlight %}
 
 **Call Variables:**
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # call a variable (brackets are not required but convention)
 cmd ${VAR}
 
@@ -272,12 +289,12 @@ cmd ${NAME[@]}
 
 # find the length of a variable
 cmd ${#VAR}
-
-```
+{% endhighlight %}
 
 **View and Remove Variables:**
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # view list of variables
 set
 
@@ -286,13 +303,14 @@ unset VAR
 
 # remove array element
 unset NAME[3]
-```
+{% endhighlight %}
 
 **Substitution Operators:**
 
 If the variable is not set:
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # return another value
 echo "${TMP:-value}"
 
@@ -301,10 +319,11 @@ echo "${TMP:=value}"
 
 # abort
 echo "${TMP:?value}"
-```
+{% endhighlight %}
 
 Obtaining substrings
-```{r, eval = FALSE}
+
+{% highlight r %}
 # obtain everything after 4th char
 echo ${STR:4}
 
@@ -313,15 +332,16 @@ echo ${STR:6:5}
 
 # obtain portion of string that isn't name
 echo ${STR%name}
-```
+{% endhighlight %}
 
 ## Passing Parameters to Scripts
 
 **Call a Script:**
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 script_name param1 param2 param3
-```
+{% endhighlight %}
 
 **Access Parameters in Script:**
 
@@ -333,7 +353,8 @@ script_name param1 param2 param3
 
 ## Input/Output of Data
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # input data
 to_file < from_file
 
@@ -354,10 +375,11 @@ from_file >> to_file
 
 # output error emssages
 program_with_error 2> to_file
-```
+{% endhighlight %}
 
 ## Doing Math
-```{r, eval = FALSE}
+
+{% highlight r %}
 # using let
 let a = 5*3
 let "a = $a + 1"
@@ -369,7 +391,7 @@ c=$(($a + 2))
 ((a++))
 ((a+=4))
 echo $((5+3))
-```
+{% endhighlight %}
 
 
 ## If/Else, Loops & Functions
@@ -377,7 +399,8 @@ echo $((5+3))
 **If and Else:**
 
 Conditions
-```{r, eval = FALSE}
+
+{% highlight r %}
 # returns 0 for true; 1 for false
 
 # test for equality with strings
@@ -411,10 +434,11 @@ Conditions
 # test lifetime of files: newer (nt) and older (ot)
 [ oldfile.txt -nt newfile.txt ]; echo $?
 [ oldfile.txt -ot newfile.txt ]; echo $?
-```
+{% endhighlight %}
 
 Format for if/else
-```{r, eval = FALSE}
+
+{% highlight r %}
 if cmd; then
   # stuff
 elif cmd; then
@@ -422,9 +446,10 @@ elif cmd; then
 else
     # stuff
 fi
-```
+{% endhighlight %}
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # example
 if [ ${value} -eq 1 ] || [ ${value} -eq 2 ]; then
   echo "1 or 2"
@@ -433,10 +458,11 @@ elif [ ${value} -gt 5 ]; then
 else
   echo "something else"
 fi
-```
+{% endhighlight %}
 
 Format for switch statments
-```{r, eval = FALSE}
+
+{% highlight r %}
 case ${var} in 
   options)
     # stuff
@@ -445,9 +471,10 @@ case ${var} in
     # stuff
     ;;
 esac
-```
+{% endhighlight %}
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # example
 case ${value} in 
   [aeiouAEIOU]*)
@@ -463,12 +490,13 @@ case ${value} in
     echo "ok that's makes sense now"
   ;;
 esac
-```
+{% endhighlight %}
 
 **Loops:**
 
 For loops
-```{r, eval = FALSE}
+
+{% highlight r %}
 # loop through a list
 for var in list
 do
@@ -485,9 +513,10 @@ for i in $(seq 1 10)
 do
   # stuff
 done
-```
+{% endhighlight %}
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # example
 count=1
 for fruit in "apple" "orange" "banna"
@@ -507,10 +536,11 @@ for file in ./*
 do
   # stuff
 done
-```
+{% endhighlight %}
 
 While and Until loops
-```{r, eval = FALSE}
+
+{% highlight r %}
 while [ condition ]
 do
   # stuff
@@ -520,7 +550,7 @@ until [ condition ]
   do 
     # stuff
 done
-```
+{% endhighlight %}
 
 Control within loops
 
@@ -529,7 +559,8 @@ Control within loops
 
 **Functions and Aliasing:**
 Aliasing
-```{r, eval = FALSE}
+
+{% highlight r %}
 # save the shortcut
 alias shortcut="cd ~Desktop; nano temp.txt"
 
@@ -541,10 +572,11 @@ unalias shortcut
 
 # view list of aliases
 alias
-```
+{% endhighlight %}
 
 Functions
-```{r, eval = FALSE}
+
+{% highlight r %}
 # declare functions
 f() {
   echo $1
@@ -562,7 +594,7 @@ function f{
 
 # call function
 f hello
-```
+{% endhighlight %}
 
 
 ## Sed
@@ -581,7 +613,8 @@ Sed is a command line tool to conduct regular expressions commands.
   * `w`: write to a file
   * `I`: ignore case (only in Windows)
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # example: addresses
 sed '1,2s/heart/love/' test.txt
 
@@ -609,10 +642,11 @@ sed '/^$/d' test.txt
 
 # example: trim lead & trailing whitespaces
 sed 's/^[ \t]*//;s/[ \t]*$//' test.txt
-```
+{% endhighlight %}
 
 * Apply a sequence of commands using a sed script
-```{r, eval = FALSE}
+
+{% highlight r %}
 # sed script
 s/blue/black/g
 s/windows/mac/g
@@ -620,12 +654,13 @@ s/square/circle/g
 
 # call script
 sed -f sed_script test.txt
-```
+{% endhighlight %}
 
 ## Awk
 Awk is a scripting language used for text extraction and processing. 
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # form strings
 ls -l | awk '{print "my username is " $3}'
 
@@ -674,12 +709,13 @@ awk '{for(i=1;i!=NF;++i)c[$i]++}END{for (x in c) print x,c[x]}' input.txt
 
 # process simple csv
 awk -F, '{print $1,$2}'
-```
+{% endhighlight %}
 
 
 **Format of .awk File:**
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 BEGIN{
   // initialize variables: executes only once
 }
@@ -690,9 +726,10 @@ BEGIN{
 END{
   // cleanup: executed once after file is exhausted
 }
-```
+{% endhighlight %}
 
-```{r, eval = FALSE}
+
+{% highlight r %}
 # example
 BEGIN{
   printf "Just getting started\n";
@@ -710,7 +747,7 @@ END{
 
 # run awk script
 awk -f awk_script.awk test.txt
-```
+{% endhighlight %}
 
 
 # Useful Locations

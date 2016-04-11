@@ -1,0 +1,70 @@
+---
+layout: post
+title: "SAS Basics"
+date: "July 26, 2015"
+categories: ['basics']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+# Working with Data
+
+## Import Data
+
+**Manually**
+```{r}
+data NAME;
+input VARNAMES ($);
+datalines;
+NUMBERS;
+run;
+```
+
+**CSV Files**
+```{r}
+data filename;
+infile “FILEPATH” dlm = ‘,’ startobs = 2 dsd;
+input VARNAMES @@;
+run;
+```
+
+```{r}
+proc import datafile = “FILEPATH” out = NAME dbms = csv replace;
+getnames = yes;
+datarow = 2;
+guessingrows = 1000;
+run;
+```
+
+**From Existing Table**
+```{r}
+data NAME;
+set DAT;
+```
+
+## Export Data
+
+**To CSV**
+```{r}
+proc export data = NAME outfile = "" outtable = TABNAME dbms = csv replace;
+run;
+```
+
+**Print Data**
+```{r}
+proc print data = DAT noobs;
+```
+
+## Other 
+```{r}
+title "";
+# in other functions
+output out = ;
+libname LIBNAME FILEPATH
+```
+
