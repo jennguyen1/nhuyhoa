@@ -199,5 +199,57 @@ end;
 * Skip to next iteration: `continue`
 * Exit loop: `leave`
 
-# Functions
+# Macros
+Functions in SAS are known as macros. 
+
+**Declare Macro Variables**
+```{r}
+%LET MNAME = VALUE;
+```
+
+We can convert data values into macro variables by doing
+```{r}
+call symput("MNAME", VALUE);
+```
+
+**Use Macro Variable**
+```{r}
+&MNAME
+```
+
+When used in a string, macrovariables should start with a `&` and end with a space, `;`, `&`, or `.`
+
+There are a number of built-in macrovariables, including
+
+* `&sysdate`, `&sysdate9`
+* `&ststime`
+* `&sysday`
+
+To write macrovariables to the console, one can do
+```{r}
+%PUT &MNAME;
+```
+
+
+**Conditional**
+```{r}
+%if CONDITION %then ACTION;
+%else %if CONDITION %then ACTION;
+%else ACTION;
+
+%if CONDITION %then %do;
+  OPERATIONS;
+%end;
+```
+
+**Functions**
+```{r}
+%macro MACRONAME(param1 = , param2 = , ...);
+  OPERATIONS;
+%mend MACRONAME;
+
+%MACRONAME(PARAMS);
+```
+
+Notice that the parameters are macrovariables, so they should be used with `&`. 
 

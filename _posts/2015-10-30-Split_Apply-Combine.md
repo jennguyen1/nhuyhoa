@@ -801,6 +801,41 @@ classDT[, list(mean = mean(z_post), sd = sd(post)), by = list(subject, grade)]
 
 # In SAS
 
+Split-apply-combine in SAS can be done within the `proc` statements. There is `by` or `class` clause that allows users to specify what they would like the data to be split by.
+
+Here are a few examples.
+
+
+{% highlight r %}
+proc sort; by GROUP.VAR;
+
+proc rank ASCENDING/DESCENDING;
+by GROUP.VAR;
+var ORDER.VAR;
+ranks NEW.RANK.COL;
+run;
+{% endhighlight %}
+
+Proc means has a number of different options. See SAS documentation for more information.
+
+{% highlight r %}
+proc means OPTIONS;
+class GROUP.VAR;
+var MEANS.VAR;
+output out = OUTNAME OPTIONS = VARNAME;
+run;
+{% endhighlight %}
+
+
+{% highlight r %}
+proc standard OPTIONS;
+by GROUP.VAR;
+var VARNAMES;
+run;
+{% endhighlight %}
+
+To combine the grouped summaries back into the main data, we would need to run a merge/join.
+
 # In SQL
 
 SQL allows split apply combine using the following phrases
@@ -829,4 +864,4 @@ order by C
 ;
 {% endhighlight %}
 
-
+To combine the grouped summaries back into the main data, we would need to run a merge/join.
