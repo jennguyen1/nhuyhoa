@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OLS: Interpretation of Coefficients"
+title: "OLS: Interpretation of Model Results"
 date: "October 21, 2015"
 categories: ['statistics', 'regression analysis']
 ---
@@ -10,8 +10,9 @@ categories: ['statistics', 'regression analysis']
 
 
 
+# Beta Coefficients
 
-# Continuous Variables
+## Continuous Variables
 
 
 {% highlight r %}
@@ -83,14 +84,14 @@ predict(m1, data.frame(x1 = 0, x2 = 0)) # same as intercept term
 ## 30.29037
 {% endhighlight %}
 
-## Excluding the Intercept Term
+### Excluding the Intercept Term
 If we were to remove the intercept term, we would have
 
 $$ Y = 0 + \beta_1 x_1 + \beta_2 x_2 $$ where $$ \beta_0 = 0 $$.
 
 Thus when we fit a regression without an intercept, we insist that the expected value of $$Y$$ when all x's are $$0$$ is $$0$$. If we know that the intercept is $$0$$, doing so will give us more residual degrees of freedom. However, care should be done in setting the intercept to $$0$$, as this may lead to errors in estimating the other coefficients. 
 
-## Center and Scaling Features
+### Center and Scaling Features
 Sometimes we may want to center and scale the data prior to fitting models. While interpretation of coefficients may change, the model is essentially the same model. 
 
 In some cases it may not make sense to interpret the intercept when the predictors are set to zero. For example, consider the model $$Y = \alpha + \beta_1 * height + \beta_2 * weight$$. The intercept is the expected value of $$Y$$ when $$height$$ and $$weight$$ are set to $$0$$, but that isn't terribly useful. 
@@ -99,9 +100,9 @@ Now, consider the model where $$height$$ and $$weight$$ are centered around thei
 
 Coefficients may be easier to interpret when all features are standardized to a similar scale. Following standardization, the coefficients are interpreted in units of standard deviations with respect to the corresponding predictor. The intercept is the expected value of $$Y$$ when the predictors are at their mean values. 
 
-# Categorical Variables
+## Categorical Variables
 
-## Default Contrasts
+### Default Contrasts
 
 {% highlight r %}
 m2 <- lm(Petal.Length ~ Species, data = iris)
@@ -172,7 +173,8 @@ iris %>% # same as versicolor coefficient
 ## 1 2.798
 {% endhighlight %}
 
-### Excluding the Intercept
+**Excluding the Intercept**
+
 When the intercept term is excluded, the coefficients are no longer relative comparisons. Instead, they are the expected value of $$Y$$ for that group. The test measures whether the mean is significant different from $$0$$, doesn't portray much meaning. Because of this, there is no meaning in running a linear model without an intercept for categorical covariates.
 
 
@@ -190,7 +192,7 @@ summary(m2a)$coefficients %>% round(3)
 ## Speciesvirginica     5.552      0.061  91.228        0
 {% endhighlight %}
 
-## Polynomial Contrasts
+### Polynomial Contrasts
 When we have ordinal categorical variables, it is more useful to generate polynomial contrasts to assess linear, quadratic, and cubic trends among those ordered groups. The ordinal categorical variable should have levels that are equally spaced. 
 
 We can simulate ordinal categorical variables for our example.
@@ -214,7 +216,7 @@ summary(m3)$coefficients %>% round(3)
 {% endhighlight %}
 Here we see that there is a strong linear effect of $$ord.Petal.Length$$ with $$Sepal.Length$$. There is not a strong quadratic effect of $$ord.Petal.Length$$ with $$Sepal.Length$$.
 
-# Continuous and Categorical Variables
+## Continuous and Categorical Variables
 
 {% highlight r %}
 m4 <- lm(Sepal.Length ~ Petal.Length*Species, data = iris)
@@ -258,7 +260,7 @@ $$ Sepal.Length $$ | $$ = \beta_0 + \beta_1 * Petal.Length + \beta_3 + \beta_5 *
 
 Essentially what we have is 3 separate lines for each value of Species, the categorical variable. 
 
-<img src="/nhuyhoa/figure/source/2015-10-21-OLS-Interpret-Coef/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-10-21-OLS-Interpretation/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 
 We can perform hypothesis testing to determine whether the species have similar intercepts (no difference between the categories) and/or similar slopes (effect of continuous variable is the same for all categories) for Petal Length, thereby simplifying the model. 
 
@@ -280,7 +282,7 @@ summary(m4a)$coefficients %>% round(3)
 ## Petal.Length:Speciesvirginica     0.453      0.290   1.563    0.120
 {% endhighlight %}
 
-## Excluding the Intercept
+### Excluding the Intercept
 If we were to remove the intercept, we have the following regression lines.
 
 If $$Species == "setosa"$$: <br>
@@ -296,7 +298,7 @@ This is essentially the same equations as the previous model.
 
 It is important to note even though both models generate similar regression lines, the overall model diagnostics ($$R^2$$, F statistic) will be different because the model is different.
 
-# Interaction Terms
+## Interaction Terms
 An interaction relates to the relationship among 2 or more variables. It occurs when the simultaneous influence of two variables on a third is not additive. In other words, the effect of one predictor on the response is different for different levels of another predictor. When interactions are significant we cannot just interpret the main effect, we must consider them together.
 
 Consider the example above. We see that the effect of $$Petal.Length$$ on $$Sepal.Length$$ are the same for every $$Species$$, ie the slopes are the same. In this case, we say that there is no (significant) interaction between $$Species$$ and $$Petal.Length$$. If the slopes were different, we would conclude that the effect of $$Petal.Length$$ on $$Sepal.Length$$ were different for different species.
@@ -304,12 +306,12 @@ Consider the example above. We see that the effect of $$Petal.Length$$ on $$Sepa
 Another example is genetic risk factors and diet on diabetes. Unhealthy diets have been shown to have an effect on diabetes, but that effect is more severe if one has a gene with high risk for developing diabetes. 
 
 Interaction effects can be examined with interaction plots. The idea here is to plot $$Y$$ against one effect grouped by the other effect. Here's an example.
-<img src="/nhuyhoa/figure/source/2015-10-21-OLS-Interpret-Coef/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-10-21-OLS-Interpretation/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" />
 
 If the interaction term is significant, we would expect to see parallel lines. Here the lines are parallel at low doses, so the effect of the dosage is the same for both supplements. However at higher does the lines are not parallel, so the effect of dosage is not the same for the two supplements.
 
 
-# Analysis of Variance
+## Analysis of Variance
 We can use theory to conduct hypothesis tests regarding models.
 
 The basic idea here is to compare the variance accounted for by the covariates to the variance of the error. We can do that by computing the test statistic $$F = \frac{SS_R/df_R}{SS_E/df_E} $$, where $$SS_R$$ and $$df_R$$ are the sums of squares and degrees of freedom accounted for by the covariates and $$SS_E$$ and $$df_E$$ are the sums of squares and degrees of freedom of the error. Recall from above that this is the $$ F $$ distribution with $$ df_R, df_E $$ degrees of freedom. Use this distribution to determine if the ratio observed is too great to be due to chance.
@@ -372,6 +374,75 @@ We had looked at the summary table for this model in a previous post. The result
 * 3rd row: after $$Petal.Length$$ and $$Species$$ have been taken into consideration, the variance accounted for by the interaction of $$Petal.Length$$ and $$Species$$ is not significantly different than the variance of the error
 
 These extensions from the basic case are known as ANCOVA (analysis of covariance), MANOVA (multivariate analysis of variance), and MANCOVA (multivariate analysis of variance). They can all be assessed with linear models using the summary table or anova table in R.
+
+# Intervals Around Fitted Values
+
+## Confidence Intervals
+Recall $$ Y_* = x_*\beta $$
+
+Let $$ x'_* = (1, x_{0*}, ..., x_{*p}) $$ 
+
+The expected value of Y is <br>
+$$ E(Y) = \hat{Y}_* = x'_*\hat{\beta} $$
+
+The variance of our estimate is
+
+----------------------|-------------------
+$$ Var(\hat{Y}_*) $$  | $$= Var(x'_*\hat{\beta})$$ 
+                      | $$= x'_*Var(\hat{\beta})x_* $$
+                      | $$= \sigma^2x'_*(X'X)^{-1}x_* $$
+
+thus $$ \hat{Y}_*  \sim  N(x'_*\hat{\beta}, \sigma^2x'_*(X'X)^{-1}x_*) $$
+
+So the $$100(1-\alpha)$$% confidence interval is
+
+$$ \hat{Y}_* \pm t_{n-p, \alpha/2} \sqrt{MSE} \sqrt{x'_*(X'X)^{-1}x_*} $$
+
+We can also do this in R: `predict(object, newdata, interval = "confidence")`
+
+## Prediction Intervals
+If we want to predict new values, we incur additional error. <br>
+$$ Y_0 = x'_0\beta + \epsilon_0 $$
+
+We assume that $$ e_0  \sim  N(0, \sigma^2) $$ and $$ e_0 \perp \hat{Y}_0 $$ 
+Let $$ x'_0 = (1, x_{00}, ..., x_{0p}) $$
+
+The expected value of Y is <br>
+$$ E(Y) = \hat{Y}_0 + 0 = x'_0\hat{\beta} $$
+
+The variance of our estimate is
+
+----------------------|-------------------
+$$ Var(\hat{Y}_0) $$  | $$ = Var(x'_0\hat{\beta} + \epsilon) $$
+                      | $$ = \sigma^2x'_0(X'X)^{-1}x_0 + \sigma^2 $$
+                      | $$ = \sigma^2 (x'_0(X'X)^{-1}x_0 + 1) $$
+
+Thus the $$100(1-\alpha)$$% confidence interval is
+
+$$ \hat{Y}_* \pm t_{n-p, \alpha/2} \sqrt{MSE} \sqrt{x'_*(X'X)^{-1}x_* + 1} $$
+
+Let's assess our assumptions. We assume that $$ e_0  \sim  N(0, \sigma^2) $$, which is an assumption we make with all linear regressions. We also assume $$ e_0 \perp \hat{Y}_0 $$. 
+
+$$ e_0 = Y_0 - \hat{Y}_0 $$ <br>
+$$ cov(e_0, \hat{Y}_0) = cov(Y - \hat{Y}_0, \hat{Y}_0) = cov(Y_0 - HY_0, HY_0) $$ <br>
+where $$ H = X(X'X)^{-1}X' $$ or the projection matrix.
+
+----------------------------|--------------------
+$$ cov(Y_0(I - H), HY_0) $$ | $$ = cov(Y_0, HY_0) + cov(-HY_0, HY_0) $$
+                            | $$ = H Var(Y_0) - Var(\hat{Y}_0) $$ 
+                            | $$ = H \sigma^2 - \sigma^2X'_0(X'X)^{-1}X_0 $$
+                            | $$ = \sigma^2 (H - H) $$
+                            | $$ = 0 $$
+                               
+Thus, we can conclude that $$ e_0 \perp \hat{Y}_0 $$ and the above prediction interval is correct.
+
+We can also do this in R: `predict(object, newdata, interval = "prediction")`
+
+## Example
+The plot below displays the fitted line (black), 95% confidence interval (blue), and 95% prediction intervals (green) for the estimated Y. Notice that the prediction intervals are much wider than the confidence intervals to account for prediction error. Also note that the bands are tighter around the $$\bar{x}$$ and wider at points farther away from $$\bar{x}$$. 
+
+<img src="/nhuyhoa/figure/source/2015-10-21-OLS-Interpretation/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
+
 
 
 [diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/Regression-Diagnostics.html
