@@ -235,7 +235,11 @@ hc <- hclust(dist(ir), method = "average")
 ggdendro::ggdendrogram(hc)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error in loadNamespace(name): there is no package called 'ggdendro'
+{% endhighlight %}
 
 If we cut the dendrogram into 3 groups, we have pretty solid cluser for the $$setosa$$ group (homogeneous and small cluster size). The other two groups are have some misclassifications, potentially due to the hazy boundry line between the two groups. 
 
@@ -247,14 +251,24 @@ hc2 <- as.dendrogram(hc)
 plot(dendextend::color_labels(hc2, 3))
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error in loadNamespace(name): there is no package called 'dendextend'
+{% endhighlight %}
+
+
 
 {% highlight r %}
 # color the brances
 plot(dendextend::color_branches(hc2, 3))
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-7-2.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error in loadNamespace(name): there is no package called 'dendextend'
+{% endhighlight %}
 
 # DBSCAN
 The DBSCAN algorithm is a density based clustering algorithm. It groups objects into one cluster if they are connected to one another by a densely populated area.

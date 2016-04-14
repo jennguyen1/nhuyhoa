@@ -9,6 +9,9 @@ categories: ['statistics', 'multivariate analysis']
 {:toc}
 
 
+{% highlight text %}
+## Error in library(ISLR): there is no package called 'ISLR'
+{% endhighlight %}
 
 
 # Classification Techniques
@@ -90,41 +93,48 @@ We can fit LDA in R as such
 
 {% highlight r %}
 lda.fit <- lda(Direction ~ Lag1 + Lag2, data = Smarket)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in is.data.frame(data): object 'Smarket' not found
+{% endhighlight %}
+
+
+
+{% highlight r %}
 lda.fit
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## Call:
-## lda(Direction ~ Lag1 + Lag2, data = Smarket)
-## 
-## Prior probabilities of groups:
-##   Down     Up 
-## 0.4816 0.5184 
-## 
-## Group means:
-##             Lag1        Lag2
-## Down  0.05068605  0.03229734
-## Up   -0.03969136 -0.02244444
-## 
-## Coefficients of linear discriminants:
-##             LD1
-## Lag1 -0.7567605
-## Lag2 -0.4707872
+## Error in eval(expr, envir, enclos): object 'lda.fit' not found
 {% endhighlight %}
 The coefficients of linear discriminants are provide the linear combinations of covariates to form the decision rule.
 
 
 {% highlight r %}
 lda.pred <- predict(lda.fit, sample_frac(Smarket, .1))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in predict(lda.fit, sample_frac(Smarket, 0.1)): object 'lda.fit' not found
+{% endhighlight %}
+
+
+
+{% highlight r %}
 names(lda.pred)
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## [1] "class"     "posterior" "x"
+## Error in eval(expr, envir, enclos): object 'lda.pred' not found
 {% endhighlight %}
 
 * `class`: LDA's label prediction
@@ -219,50 +229,37 @@ We can run Naive Bayes in R with the following.
 
 {% highlight r %}
 library(e1071)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in library(e1071): there is no package called 'e1071'
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # fit naive bayes
 nB.fit <- naiveBayes(Species ~ ., data = iris)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "naiveBayes"
+{% endhighlight %}
+
+
+
+{% highlight r %}
 nB.fit
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## 
-## Naive Bayes Classifier for Discrete Predictors
-## 
-## Call:
-## naiveBayes.default(x = X, y = Y, laplace = laplace)
-## 
-## A-priori probabilities:
-## Y
-##     setosa versicolor  virginica 
-##  0.3333333  0.3333333  0.3333333 
-## 
-## Conditional probabilities:
-##             Sepal.Length
-## Y             [,1]      [,2]
-##   setosa     5.006 0.3524897
-##   versicolor 5.936 0.5161711
-##   virginica  6.588 0.6358796
-## 
-##             Sepal.Width
-## Y             [,1]      [,2]
-##   setosa     3.428 0.3790644
-##   versicolor 2.770 0.3137983
-##   virginica  2.974 0.3224966
-## 
-##             Petal.Length
-## Y             [,1]      [,2]
-##   setosa     1.462 0.1736640
-##   versicolor 4.260 0.4699110
-##   virginica  5.552 0.5518947
-## 
-##             Petal.Width
-## Y             [,1]      [,2]
-##   setosa     0.246 0.1053856
-##   versicolor 1.326 0.1977527
-##   virginica  2.026 0.2746501
+## Error in eval(expr, envir, enclos): object 'nB.fit' not found
 {% endhighlight %}
 
 Similar to other models, we can also predict for new data. 
@@ -274,8 +271,7 @@ predict(nB.fit, iris[4:5,])
 
 
 {% highlight text %}
-## [1] setosa setosa
-## Levels: setosa versicolor virginica
+## Error in predict(nB.fit, iris[4:5, ]): object 'nB.fit' not found
 {% endhighlight %}
 
 # Logistic Regression vs. Discriminant Analysis vs. Naive Bayes 

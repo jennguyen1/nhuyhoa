@@ -614,94 +614,40 @@ by_both[["not_to_be"]] %>% head(10)
 Let’s do something a little more challenging to see to_be in action. With this data set, we want to remove the duplicated id entries by hand and merge them back into the non-duplicates. 
 
 <div class = "dftab">
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> id </th>
-   <th style="text-align:right;"> age </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:left;"> race </th>
-   <th style="text-align:left;"> state </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 78 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> Ohio </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> Tennessee </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 77 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Nebraska </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 17 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> asian </td>
-   <td style="text-align:left;"> North Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 69 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> South Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> white </td>
-   <td style="text-align:left;"> Mississippi </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 38 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Oregon </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> South Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 38 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> black </td>
-   <td style="text-align:left;"> Nevada </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 72 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Alaska </td>
-  </tr>
-</tbody>
-</table>
+
+{% highlight text %}
+## Error in loadNamespace(name): there is no package called 'pryr'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning in rep(digits, length.out = m): first element used of
+## 'length.out' argument
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning in seq_len(m): first element used of 'length.out' argument
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in seq_len(m): argument must be coercible to non-negative integer
+{% endhighlight %}
 </div><p></p>
 
 
 {% highlight r %}
 result <- to_be(data, view_duplicated, id)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in to_be(data, view_duplicated, id): Input x must be a data frame
 {% endhighlight %}
 
 The duplicated id entries:
@@ -710,61 +656,22 @@ The duplicated id entries:
 result[["to_be"]]
 {% endhighlight %}
 <div class = "dftab">
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> id </th>
-   <th style="text-align:right;"> age </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:left;"> race </th>
-   <th style="text-align:left;"> state </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> Tennessee </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 77 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Nebraska </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> white </td>
-   <td style="text-align:left;"> Mississippi </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 38 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Oregon </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 38 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> black </td>
-   <td style="text-align:left;"> Nevada </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 72 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Alaska </td>
-  </tr>
-</tbody>
-</table>
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'result' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in rownames(x) <- NULL: object 'x' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'x' not found
+{% endhighlight %}
 </div><p></p>
 
 The non-duplicated id entries:
@@ -773,47 +680,22 @@ The non-duplicated id entries:
 result[["not_to_be"]]
 {% endhighlight %}
 <div class = "dftab">
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> id </th>
-   <th style="text-align:right;"> age </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:left;"> race </th>
-   <th style="text-align:left;"> state </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> South Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 69 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> South Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 17 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> asian </td>
-   <td style="text-align:left;"> North Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 78 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> Ohio </td>
-  </tr>
-</tbody>
-</table>
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'result' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in rownames(y) <- NULL: object 'y' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'y' not found
+{% endhighlight %}
 </div><p></p>
 
 From the duplicated id's, I'll keep the id that corresponds to a female or, if none of the duplicated entries are female, an id corresponding to someone greater than 50 years old. 
@@ -822,40 +704,16 @@ From the duplicated id's, I'll keep the id that corresponds to a female or, if n
 result[["to_be"]] %>% arrange(gender, desc(age)) %>% group_by(id) %>% slice(1)
 {% endhighlight %}
 <div class = "dftab">
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> id </th>
-   <th style="text-align:right;"> age </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:left;"> race </th>
-   <th style="text-align:left;"> state </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> Tennessee </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 38 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Oregon </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 72 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Alaska </td>
-  </tr>
-</tbody>
-</table>
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'x' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'z' not found
+{% endhighlight %}
 </div><p></p>
 
 Now combine the results back together.
@@ -874,68 +732,22 @@ result[["to_be"]] %>%
 {% endhighlight %}
 
 <div class = "dftab">
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> id </th>
-   <th style="text-align:right;"> age </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:left;"> race </th>
-   <th style="text-align:left;"> state </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 78 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> Ohio </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> Tennessee </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 17 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> asian </td>
-   <td style="text-align:left;"> North Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 69 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> hispanic </td>
-   <td style="text-align:left;"> South Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 38 </td>
-   <td style="text-align:left;"> female </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Oregon </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> South Carolina </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 72 </td>
-   <td style="text-align:left;"> male </td>
-   <td style="text-align:left;"> native </td>
-   <td style="text-align:left;"> Alaska </td>
-  </tr>
-</tbody>
-</table>
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'result' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in rownames(a) <- NULL: object 'a' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'a' not found
+{% endhighlight %}
 </div>
 
 [package_link]: https://github.com/jnguyen92/jn.general

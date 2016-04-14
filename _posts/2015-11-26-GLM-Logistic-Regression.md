@@ -9,15 +9,6 @@ categories: ['statistics', 'regression analysis']
 {:toc}
 
 
-{% highlight text %}
-## Error: package or namespace load failed for 'GGally'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in library(faraway): there is no package called 'faraway'
-{% endhighlight %}
 
 # Binomial Response
 Suppose the response $$Y_i \sim Bin(n_i, p_i)$$ and the $$Y_i$$ are independent.
@@ -63,31 +54,10 @@ We can fit this model in R like so
 mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = binomial)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in is.data.frame(data): object 'orings' not found
-{% endhighlight %}
-
 Here we provide two pieces of information regarding the response. The first column of the matrix is the number of successes, $$y$$. The second column is the number of failures, $$n - y$$. 
 
 Here we see a graphical representation of the data and how it fits the data. 
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): could not find function "ilogit"
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in data.frame(x, y): object 'y' not found
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in ggplot(data = orings, aes(x = temp, y = (damage/6))): object 'orings' not found
-{% endhighlight %}
+<img src="/nhuyhoa/figure/source/2015-11-26-GLM-Logistic-Regression/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 In SAS, we can fit a logistic model as such
 

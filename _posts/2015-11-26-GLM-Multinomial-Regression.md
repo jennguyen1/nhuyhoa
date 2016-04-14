@@ -9,15 +9,6 @@ categories: ['statistics', 'regression analysis']
 {:toc}
 
 
-{% highlight text %}
-## Error: package or namespace load failed for 'GGally'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in library(faraway): there is no package called 'faraway'
-{% endhighlight %}
 
 # Nomial Regression
 Let {$$\pi_1, ... \pi_J$$} denote the response probabilities satisfying $$\Sigma_j\pi_j = 1$$. With $$n$$ independent observations the probability distribution for the number of outcomes of the $$J$$ types is the multinomial.

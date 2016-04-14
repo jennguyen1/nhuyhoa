@@ -9,6 +9,9 @@ categories: ['statistics', 'multivariate analysis']
 {:toc}
 
 
+{% highlight text %}
+## Error in library(pls): there is no package called 'pls'
+{% endhighlight %}
 
 # Principal Components Analysis (PCA)
 PCA is a dimension-reduction tecnique that produces a low-dimensional representation of a high-dimensional dataset. It finds a sequence of linear combinations of the variables that have
@@ -113,14 +116,28 @@ We can also plot the first two principal components against each other with the 
 
 {% highlight r %}
 library(ggfortify)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in library(ggfortify): there is no package called 'ggfortify'
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # plot the biplot
 autoplot(prcomp(dat, center = TRUE, scale. = TRUE), data = iris, colour = "Species", 
          loadings = TRUE, loadings.label = TRUE,
          loadings.label.size = 3)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error: Objects of type prcomp not supported by autoplot.
+{% endhighlight %}
 
 From this plot, we see that the first principal components has large loadings for $$Petal.Length$$ and $$Petal.Width$$. This indicates that $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
 
@@ -160,6 +177,17 @@ In R, one can do principal components regression with `pls::pcr()`. This package
 {% highlight r %}
 # fit PCR
 pcr.fit <- pls::pcr(mpg ~ ., data = mtcars, scale = TRUE, validation = "CV")
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in loadNamespace(name): there is no package called 'pls'
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # results
 summary(pcr.fit)
 {% endhighlight %}
@@ -167,27 +195,7 @@ summary(pcr.fit)
 
 
 {% highlight text %}
-## Data: 	X dimension: 32 10 
-## 	Y dimension: 32 1
-## Fit method: svdpc
-## Number of components considered: 10
-## 
-## VALIDATION: RMSEP
-## Cross-validated using 10 random segments.
-##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.653    2.672    2.526    2.545    2.592
-## adjCV        6.123    2.644    2.662    2.511    2.530    2.576
-##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.694    2.834    2.921    3.483     3.627
-## adjCV    2.670    2.802    2.882    3.412     3.544
-## 
-## TRAINING: % variance explained
-##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
-## X      57.60    84.10    90.07    92.77    94.99    97.09    98.42
-## mpg    82.53    82.63    85.40    85.41    85.47    85.56    85.58
-##      8 comps  9 comps  10 comps
-## X      99.23    99.76     100.0
-## mpg    85.85    86.09      86.9
+## Error in summary(pcr.fit): object 'pcr.fit' not found
 {% endhighlight %}
 
 
@@ -196,7 +204,11 @@ summary(pcr.fit)
 pls::validationplot(pcr.fit, val.type = "MSEP")
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error in loadNamespace(name): there is no package called 'pls'
+{% endhighlight %}
 So here we see that using 3 principal components is preferred. If we prefer to use a specified number of components, we can pass the argument `ncomps = n` instead of the `validation` argument. 
 
 # Partial Least Squares

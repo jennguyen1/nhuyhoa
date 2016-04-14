@@ -9,9 +9,6 @@ categories: ['statistics', 'multivariate analysis']
 {:toc}
 
 
-{% highlight text %}
-## Error: package or namespace load failed for 'GGally'
-{% endhighlight %}
 
 
 # Motivating Example

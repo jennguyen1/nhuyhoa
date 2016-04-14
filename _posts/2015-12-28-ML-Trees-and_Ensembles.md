@@ -9,6 +9,9 @@ categories: ['statistics', 'machine learning']
 {:toc}
 
 
+{% highlight text %}
+## Error in library(ISLR): there is no package called 'ISLR'
+{% endhighlight %}
 
 ![tree](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
 
@@ -202,6 +205,21 @@ Interpreting random forests can be quite difficult. One way to get a sense of th
 
 **CART**
 
+{% highlight text %}
+## Error in with(Carseats, ifelse(Sales <= 8, "no", "yes")): object 'Carseats' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in data.frame(Carseats, high): object 'Carseats' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in is.data.frame(x): object 'carseats' not found
+{% endhighlight %}
 
 We use the packages `rpart` and `rpart.plot`.
 
@@ -209,14 +227,41 @@ We use the packages `rpart` and `rpart.plot`.
 {% highlight r %}
 library(rpart)
 library(rpart.plot)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in library(rpart.plot): there is no package called 'rpart.plot'
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # fit decision tree
 c_tree <- rpart(high ~ . - sales, carseats, method = "class")
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in is.data.frame(data): object 'carseats' not found
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # plot tree
 prp(c_tree)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "prp"
+{% endhighlight %}
+
+
 
 {% highlight r %}
 # prune tree using cross validation
@@ -226,37 +271,34 @@ printcp(c_tree)
 
 
 {% highlight text %}
-## 
-## Classification tree:
-## rpart(formula = high ~ . - sales, data = carseats, method = "class")
-## 
-## Variables actually used in tree construction:
-## [1] advertising age         compprice   income      price      
-## [6] shelveloc  
-## 
-## Root node error: 164/400 = 0.41
-## 
-## n= 400 
-## 
-##         CP nsplit rel error  xerror     xstd
-## 1 0.286585      0   1.00000 1.00000 0.059980
-## 2 0.109756      1   0.71341 0.71341 0.055477
-## 3 0.045732      2   0.60366 0.62195 0.053154
-## 4 0.036585      4   0.51220 0.59146 0.052268
-## 5 0.027439      5   0.47561 0.60976 0.052806
-## 6 0.024390      7   0.42073 0.59146 0.052268
-## 7 0.012195      8   0.39634 0.54268 0.050723
-## 8 0.010000     10   0.37195 0.54268 0.050723
+## Error in printcp(c_tree): object 'c_tree' not found
 {% endhighlight %}
 
 
 
 {% highlight r %}
 c_tree2 <- prune(c_tree, cp = 0.0122)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in prune(c_tree, cp = 0.0122): object 'c_tree' not found
+{% endhighlight %}
+
+
+
+{% highlight r %}
 prp(c_tree2)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "prp"
+{% endhighlight %}
+
+
 
 {% highlight r %}
 # fit regression tree
@@ -264,7 +306,13 @@ r_tree <- rpart(medv ~ ., Boston, method = "anova")
 prp(r_tree)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "prp"
+{% endhighlight %}
+
+
 
 {% highlight r %}
 # CV results
@@ -286,43 +334,99 @@ rsq.rpart(r_tree)
 ## n= 506 
 ## 
 ##         CP nsplit rel error  xerror     xstd
-## 1 0.452744      0   1.00000 1.00123 0.082895
-## 2 0.171172      1   0.54726 0.66090 0.060382
-## 3 0.071658      2   0.37608 0.47715 0.053321
-## 4 0.036164      3   0.30443 0.37471 0.045452
-## 5 0.033369      4   0.26826 0.37202 0.046509
-## 6 0.026613      5   0.23489 0.35645 0.046791
-## 7 0.015851      6   0.20828 0.32495 0.045077
-## 8 0.010000      7   0.19243 0.30304 0.043090
+## 1 0.452744      0   1.00000 1.00123 0.082874
+## 2 0.171172      1   0.54726 0.66174 0.062778
+## 3 0.071658      2   0.37608 0.45808 0.049520
+## 4 0.036164      3   0.30443 0.37929 0.044814
+## 5 0.033369      4   0.26826 0.33115 0.042942
+## 6 0.026613      5   0.23489 0.31543 0.043314
+## 7 0.015851      6   0.20828 0.29890 0.042196
+## 8 0.010000      7   0.19243 0.27843 0.038304
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-4.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /><img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-5.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /><img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 We can do another example with the iris data set.
 
 {% highlight r %}
 library(partykit)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in library(partykit): there is no package called 'partykit'
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # fit model 
 iris_tree <- rpart(Species ~ Sepal.Width, Petal.Width, data = iris)
 
 # plot results
 iris_party <- as.party(iris_tree)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "as.party"
+{% endhighlight %}
+
+
+
+{% highlight r %}
 plot(iris_party)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error in plot(iris_party): object 'iris_party' not found
+{% endhighlight %}
 
 
 {% highlight r %}
 library(tree)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in library(tree): there is no package called 'tree'
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # fit model with tree
 iris_tree_2 <- tree(Species ~ Sepal.Width + Petal.Width, data = iris)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "tree"
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # another way to view cut
 plot(iris$Petal.Width, iris$Sepal.Width, pch = 19, col = as.numeric(iris$Species))
 partition.tree(iris_tree_2, label="Species", add = TRUE)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "partition.tree"
+{% endhighlight %}
+
+
+
+{% highlight r %}
 legend("topright",legend = unique(iris$Species), col = unique(as.numeric(iris$Species)), pch = 19)
 {% endhighlight %}
 
@@ -334,24 +438,37 @@ Random forests can be fit with the `randomForest` package.
 
 {% highlight r %}
 library(randomForest)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in library(randomForest): there is no package called 'randomForest'
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # fit random forest
 forest <- randomForest(medv ~ ., data = Boston, mtry = 5,  importance = TRUE)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "randomForest"
+{% endhighlight %}
+
+
+
+{% highlight r %}
 forest
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## 
-## Call:
-##  randomForest(formula = medv ~ ., data = Boston, mtry = 5, importance = TRUE) 
-##                Type of random forest: regression
-##                      Number of trees: 500
-## No. of variables tried at each split: 5
-## 
-##           Mean of squared residuals: 9.787966
-##                     % Var explained: 88.41
+## Error in eval(expr, envir, enclos): object 'forest' not found
 {% endhighlight %}
 
 
@@ -364,20 +481,7 @@ importance(forest)
 
 
 {% highlight text %}
-##           %IncMSE IncNodePurity
-## crim    16.002534     2353.2848
-## zn       4.178922      142.2784
-## indus   11.374904     2432.6310
-## chas     2.624372      186.2824
-## nox     19.049969     2546.6742
-## rm      40.489153    13597.1292
-## age     12.881491      934.2981
-## dis     18.009162     2366.3868
-## rad      6.846708      280.0343
-## tax     13.334179     1074.5103
-## ptratio 15.598495     2281.0175
-## black    7.398552      634.9182
-## lstat   31.697341    13052.9332
+## Error in eval(expr, envir, enclos): could not find function "importance"
 {% endhighlight %}
 
 **Boosting**
@@ -385,30 +489,37 @@ Boosted models can be fit using the `gbm` package
 
 {% highlight r %}
 library(gbm)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in library(gbm): there is no package called 'gbm'
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # fit gbm
 boost <- gbm(medv ~ ., data = Boston, distribution = "gaussian", n.trees = 10000, shrinkage = 0.01, interaction.depth = 4)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "gbm"
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # view results
 summary(boost)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
 
 {% highlight text %}
-##             var    rel.inf
-## lstat     lstat 36.6090530
-## rm           rm 31.4695665
-## dis         dis  9.1471516
-## crim       crim  4.7870253
-## nox         nox  4.2731387
-## age         age  3.6946368
-## ptratio ptratio  3.0930360
-## black     black  2.8009776
-## tax         tax  1.7864381
-## indus     indus  0.9544678
-## rad         rad  0.6746856
-## chas       chas  0.5867237
-## zn           zn  0.1230995
+## Error in summary(boost): object 'boost' not found
 {% endhighlight %}
 

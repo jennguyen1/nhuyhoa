@@ -529,12 +529,12 @@ We should examine traceplots for chains that do not seem to mix in well with oth
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=500):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   990    1
-## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   497    1
-## beta[3]  1.7     0.0 0.2  1.3  1.6  1.7  1.8   2.1   409    1
-## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.9   503    1
-## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   996    1
-## lp__    69.5     0.1 1.6 65.7 68.6 69.8 70.7  71.7   487    1
+## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   458    1
+## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   377    1
+## beta[3]  1.7     0.0 0.2  1.3  1.6  1.7  1.8   2.1   505    1
+## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.4   2.8   400    1
+## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   892    1
+## lp__    69.5     0.1 1.7 65.2 68.6 69.8 70.7  71.7   466    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 

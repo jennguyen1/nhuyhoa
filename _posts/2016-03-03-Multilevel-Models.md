@@ -9,6 +9,9 @@ categories: ['statistics', 'regression analysis']
 {:toc}
 
 
+{% highlight text %}
+## Error in library(HLMdiag): there is no package called 'HLMdiag'
+{% endhighlight %}
 
 Multilevel models are a compromise between two extremes
 
@@ -20,7 +23,52 @@ Multilevel models are a compromise between two extremes
 
 Consider three variants of models: 
 
-<img src="/nhuyhoa/figure/source/2016-03-03-Multilevel-Models/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+
+{% highlight text %}
+## Error in is.data.frame(data): object 'radon' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in is.data.frame(data): object 'radon' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'radon' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'grp' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error: 'data' not found, and some variables missing from formula environment
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in coef(multi_level_mod): object 'multi_level_mod' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in merge(grp, multi_level, by = c("county.name", "n"), suffixes = c("_no.pooling", : object 'grp' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in ggplot(data = plot_data, aes(x = jitter_n, xend = jitter_n, y = estimate - : object 'plot_data' not found
+{% endhighlight %}
 
 In the left plot, we fit two separate models. We fit one model with no group variables, the intercept estimate is represented by dashed horizontal line. We fit another model with separate intercepts for each group These intercept estimates and standard error bars are represented by the individual points. Notice that the sample variability is larger at small $$n$$ sizes and smaller at higher $$n$$ sizes. The complete pooling model ignores group variability while the no-pooling model overstates it (as groups with small $$n$$ sizes are inaccurately estimated). 
 

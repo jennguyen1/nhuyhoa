@@ -9,9 +9,6 @@ categories: ['statistics', 'probability and inference']
 {:toc}
 
 
-{% highlight text %}
-## Error: package or namespace load failed for 'GGally'
-{% endhighlight %}
 
 # Frequentist vs Bayesian Statistics
 

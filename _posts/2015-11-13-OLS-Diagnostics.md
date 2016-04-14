@@ -218,13 +218,6 @@ There is also a function in R: `car::avPlots()` or `av.Plots()`
 car::avPlots(m1)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Warning: no function found corresponding to methods exports from
-## 'SparseM' for: 'coerce'
-{% endhighlight %}
-
 <img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 # Solutions to Violation of Assumptions

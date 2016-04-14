@@ -85,7 +85,7 @@ $$\log(y \vert x_1 = x) $$    | $$ = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
 Then 
 
 -----------------------------------------------------------|---------------------
-$$ \log(y \vert x_1 = x + 1) - \log(odds \vert x_1 = x) $$ | $$ = \beta_1 $$
+$$ \log(y \vert x_1 = x + 1) - \log(y \vert x_1 = x) $$ | $$ = \beta_1 $$
 $$ \log \left( \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} \right)$$ | $$ = \beta_1 $$
 $$ \frac{y \vert x_1 = x + 1}{y \vert x_1 = x} $$          | $$ = e^{\beta_1} $$
 $$ (y \vert x_1 = x + 1) $$                                | $$= e^{\beta_1} * (y \vert x_1 = x)$$
