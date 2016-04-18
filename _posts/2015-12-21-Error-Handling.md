@@ -67,4 +67,20 @@ try_default(expr = 3 + "a", default = NULL, quiet = FALSE)
 ## NULL
 {% endhighlight %}
 
+# In Python
 
+## Try Catch
+
+{% highlight python %}
+try:
+  # OPERATIONS
+except Exception:
+  # OPERATIONS
+else:
+  # OPERATIONS
+{% endhighlight %}
+
+Possible excepions
+
+* IOError
+* IndexError

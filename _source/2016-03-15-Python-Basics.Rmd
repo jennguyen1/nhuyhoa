@@ -14,10 +14,6 @@ lib(data, viz)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
-{% highlight python %}
-
-{% endhighlight %}
-
 # Data Structures
 
 Python allows simultaneous declarations, so one can do `a = b = c = 0`. 
@@ -37,13 +33,13 @@ Python has basic operations such `+-/*/%` as well as `in`.
 
 Incrementing a value is quick with `x += n`.
 
-To do more advanced math operations, use the `math` or `random` package
+To do more advanced math operations, use the `math` or `random` module
 {% highlight python %}
 from math import *
 from random import *
 {% endhighlight %}
 
-These packages provide functions such as `math.abs()` `math.exp()`, `math.pow()`, `math.ceil()`, `random.random()`, `random.uniform(a, b)`, etc.
+These modules provide functions such as `math.abs()` `math.exp()`, `math.pow()`, `math.ceil()`, `random.random()`, `random.uniform(a, b)`, etc.
 
 ## String Types
 
@@ -167,7 +163,7 @@ A common function used with list comprehensions is `enumerate()` which can acces
 
 Collections provides alternatives to the base list structures.
 
-Load the package like so
+Load the module like so
 {% highlight python %}
 from collections import *
 {% endhighlight %}
@@ -255,16 +251,61 @@ You can declare a variety of unique methods for functions and use as desired. Th
 * `def __setitem__(self, index, value)` to allow setting values by indexing `myobj[index] = value`
 * `def __getslice__(self, low, high)` to allow slicing `myobj[i:j]`
 * `def __len__(self)` to obtain the length `len(myobj)`
+* `def __contains__(self)` to test whether something is inside it
 * `def __add__(self, other)` to allow adding `myobj + yourobj`
 * other operations available [here][class_operators]{:target = "_blank"}
 
+To create an iterator for the class
+
+* `def __iter__(self)` to iterate through a sequence
+* `def __next__(self)` to get the next value from an iterator
+* `def __reversed__(self)` to create an iterator in reverse order
+
 # IO
+
+We can navigate through the file system like so
+{% highlight python %}
+import os
+os.mkdir(PATH) # make a new directory
+os.listdir(PATH) # obtain file names in directory
+os.path.exists(PATH) # check if file exists
+{% endhighlight %}
 
 ## Input
 
+**From a File**
+{% highlight python %}
+# opens file and reads everything into a list of lines
+f = open(FILENAME, 'r')
+f.readlines()
+f.close()
+{% endhighlight %}
+
+**User Input**
+{% highlight python %}
+raw_input("feed me") # takes in a string
+input("feed me") # guesses the input type
+{% endhighlight %}
+
+**Command Line Arguments**
+{% highlight python %}
+import sys 
+
+# obtain list of command line arguments
+# 1st value is name of script, the rest are arguments
+sys.argv
+{% endhighlight %}
+
 ## Output
 
-## Command Line Arguments
+{% highlight python %}
+# open file and writes strings to it
+f = open(FILENAME, 'w') # write to a new file
+f = open(FILENAME, 'a') # append to a file
+f.write(STR)
+f.close()
+{% endhighlight %}
+
 
 [regex_post]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 [class_operators]: https://docs.python.org/2/library/operator.html
