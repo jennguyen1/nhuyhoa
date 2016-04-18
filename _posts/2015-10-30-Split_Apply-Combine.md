@@ -123,6 +123,7 @@ The two main functions here are `split()` and `llply()`.
 
 Let's compute the mean posttest & pretest score for males and females for each grade and subject.
 
+
 {% highlight r %}
 class %>% 
   # split: by the subject, grade, and gender
@@ -193,10 +194,102 @@ class %>%
 
 ## Using dplyr
 
+### slice
+The `slice()` function can be used to obtain certain records. For example, we can obtain the records of that obtain the maximum test score for various subgroups. 
+
+
+{% highlight r %}
+class %>% 
+  # split: subject and grade
+  group_by(subject, grade) %>% 
+  # apply: obtain records that correspond to the highest posttest score
+  slice(which.max(posttest_score))
+{% endhighlight %}
+
+<div class = "dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> teacher_id </th>
+   <th style="text-align:center;"> weight </th>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> pretest_score </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 601 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 0.1050 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 2.676 </td>
+   <td style="text-align:center;"> -1.6189 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 156 </td>
+   <td style="text-align:center;"> 14 </td>
+   <td style="text-align:center;"> 0.4288 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 2.446 </td>
+   <td style="text-align:center;"> 1.2828 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 521 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 0.5170 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 2.351 </td>
+   <td style="text-align:center;"> -0.1639 </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 356 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 0.4526 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 3.810 </td>
+   <td style="text-align:center;"> 2.3506 </td>
+   <td style="text-align:center;"> female </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
 ### summarise
 The `summarise()` function summarises data into a single row of values. 
 
 Let's count the number of males and females in each grade and subject.
+
 
 {% highlight r %}
 class %>% 
@@ -323,6 +416,7 @@ These are the means and standard deviations before standardizing.
 </table>
 </div><p></p>
 
+
 {% highlight r %}
 # standardize by grade & subject
 class <- class %>% 
@@ -384,6 +478,7 @@ A few notes:
 * by default these functions will be applied to all columns; to specify or despecify columns `dplyr::select` special functions can be used after the `funs()` argument
 
 Let's convert all the boolean variables to numeric variables. 
+
 {% highlight r %}
 class %>% 
   # select the boolean variables
@@ -440,6 +535,7 @@ class %>%
 </div><p></p>
 
 How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to $$d_gender$$ prior these calculations, splitting them into the boolean columns of $$d_gender_m$$ and $$d_gender_f$$).
+
 
 {% highlight r %}
 class %>% 
@@ -537,6 +633,7 @@ In our data set we have unique student-teacher linkages for each unique subject 
 {% endhighlight %}
 
 Ignoring the subject and grade, we want to remove the the linkage with the smallest weight. 
+
 
 {% highlight r %}
 class_edit <-  class %>%
@@ -784,6 +881,7 @@ The data.table package has optimized data frames to be able to handle large amou
 
 Let's split by grade and subject and count the number of males and females in each grade and subject. This is equivalent to using `summmarise()`.
 
+
 {% highlight r %}
 # make a data table
 classDT <- data.table(class)
@@ -836,6 +934,7 @@ classDT[, list(total_students = .N), by = list(subject, grade)]
 </div><p></p>
 
 Now let's standardize the posttest scores by grade and subject. This is equivalent to `mutate()`.
+
 
 {% highlight r %}
 # split by subject & grade and standardize

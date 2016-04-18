@@ -84,7 +84,7 @@ The two main functions here are `split()` and `llply()`.
 
 Let's compute the mean posttest & pretest score for males and females for each grade and subject.
 
-{% highlight r %}
+```{r, eval = FALSE}
 class %>% 
   # split: by the subject, grade, and gender
   split(interaction(class$d_gender, class$grade, class$subject)) %>% 
@@ -96,7 +96,7 @@ class %>%
   }) %>% 
   # combine: rbind the results together as a vector
   rbindlist()
-{% endhighlight %}
+```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
@@ -117,12 +117,32 @@ class %>%
 
 ## Using dplyr
 
+### slice
+The `slice()` function can be used to obtain certain records. For example, we can obtain the records of that obtain the maximum test score for various subgroups. 
+
+```{r, eval = FALSE}
+class %>% 
+  # split: subject and grade
+  group_by(subject, grade) %>% 
+  # apply: obtain records that correspond to the highest posttest score
+  slice(which.max(posttest_score))
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+class_edit <- class %>% 
+  group_by(subject, grade) %>% 
+  slice(which.max(posttest_score))
+class_edit %>% nhuyhoa_df_print()
+```
+</div>
+
 ### summarise
 The `summarise()` function summarises data into a single row of values. 
 
 Let's count the number of males and females in each grade and subject.
 
-{% highlight r %}
+```{r, eval = FALSE}
 class %>% 
   # split: by subject & grade
   group_by(subject, grade) %>%
@@ -133,7 +153,7 @@ class %>%
     n_female = sum(d_gender == "female")
   )
   # combine: dplyr does this automatically
-{% endhighlight %}
+```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
@@ -197,7 +217,7 @@ b4 %>% nhuyhoa_df_print()
 ```
 </div><p></p>
 
-{% highlight r %}
+```{r, eval = FALSE}
 # standardize by grade & subject
 class <- class %>% 
   # split: by grade & subject
@@ -205,7 +225,7 @@ class <- class %>%
   # apply: standardize the posttest score
   mutate(z_post = (posttest_score - mean(posttest_score)) / sd(posttest_score))
   # combine: dplyr does this automatically
-{% endhighlight %}
+```
 
 These are the means and standard deviations after standardizing.
 
@@ -225,7 +245,7 @@ A few notes:
 * by default these functions will be applied to all columns; to specify or despecify columns `dplyr::select` special functions can be used after the `funs()` argument
 
 Let's convert all the boolean variables to numeric variables. 
-{% highlight r %}
+```{r, eval = FALSE}
 class %>% 
   # select the boolean variables
   dplyr::select(starts_with("d_"), -d_gender) %>% 
@@ -233,7 +253,7 @@ class %>%
   mutate_each(funs(as.numeric)) %>% 
   # print
   head
-{% endhighlight %}
+```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
@@ -259,7 +279,7 @@ class3 <- class %>%
 
 How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to $$d_gender$$ prior these calculations, splitting them into the boolean columns of $$d_gender_m$$ and $$d_gender_f$$).
 
-{% highlight r %}
+```{r, eval = FALSE}
 class %>% 
   # split: by teacher
   group_by(teacher_id) %>% 
@@ -267,7 +287,7 @@ class %>%
   summarise_each(funs(weighted.mean(., weight)), -student_id, -weight, -subject, -grade) %>% 
   # combine: dplyr does this automatically
   head()
-{% endhighlight %}
+```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
@@ -298,7 +318,7 @@ class %>%
 
 Ignoring the subject and grade, we want to remove the the linkage with the smallest weight. 
 
-{% highlight r %}
+```{r, eval = FALSE}
 class_edit <-  class %>%
   # order descending by weight
   arrange(desc(weight)) %>% 
@@ -308,7 +328,7 @@ class_edit <-  class %>%
   do(marittr::extract(., 1, )) 
   # combine: dplyr does this automatically
 class_edit %>% head
-{% endhighlight %}
+```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
@@ -377,12 +397,12 @@ The data.table package has optimized data frames to be able to handle large amou
 
 Let's split by grade and subject and count the number of males and females in each grade and subject. This is equivalent to using `summmarise()`.
 
-{% highlight r %}
+```{r, eval = FALSE}
 # make a data table
 classDT <- data.table(class)
 # split by subject & grade and compute the total number of students
 classDT[, list(total_students = .N), by = list(subject, grade)]
-{% endhighlight %}
+```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
@@ -395,13 +415,13 @@ classDT[, list(n_students = .N, n_male = sum(d_gender == "male"), n_female = sum
 
 Now let's standardize the posttest scores by grade and subject. This is equivalent to `mutate()`.
 
-{% highlight r %}
+```{r, eval = FALSE}
 # split by subject & grade and standardize
 classDT[, z_post := (posttest_score - mean(posttest_score)) / sd(posttest_score), by = list(subject, grade)]
 
 # summarise results to see effect
 classDT[, list(mean = mean(z_post), sd = sd(post)), by = list(subject, grade)]
-{% endhighlight %}
+```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
