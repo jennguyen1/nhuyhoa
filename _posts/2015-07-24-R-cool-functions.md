@@ -71,21 +71,6 @@ data.tables:
 
 * partial(f, ..): changes the deafults of functions
 * sf <- pryr::partial(sum, 1:5, na.rm = TRUE); sf()
-
-
-{% highlight r %}
-iris %>%
-     group_by(Species)  %>%
-     do(mod = lm(Petal.Length~Petal.Width, data = .)) %>%
-     mutate(x = llply(mod, function(x) coef(x)[1])) %>% # or use broom
-     unnest(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): could not find function "%>%"
-{% endhighlight %}
      
 nonstandard evaluation:
 

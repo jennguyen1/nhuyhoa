@@ -349,7 +349,7 @@ class %>%
 
 This output isn't too meaningful, so we can use the `broom` package along with `tidyr::unnest()` to extract the model coefficients. 
 
-```{r}
+```{r, eval = FALSE}
 class %>% 
   # split: by subject and grade
   group_by(subject, grade) %>% 
@@ -358,6 +358,19 @@ class %>%
   # combine coefficient tables across models
   unnest(tidy_df)
 ```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+class_edit <- class %>% 
+  # split: by subject and grade
+  group_by(subject, grade) %>% 
+  # apply: regression model on splits and tidy into coef table
+  do(tidy_df = tidy(lm(posttest_score ~ pretest_score, data = .))) %>%   
+  # combine coefficient tables across models
+  unnest(tidy_df)
+class_edit %>% nhuyhoa_df_print(head = 10)
+```
+</div><p></p>
 
 ## Using data.table
 The data.table package has optimized data frames to be able to handle large amounts of data. 

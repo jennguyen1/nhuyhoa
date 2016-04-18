@@ -689,22 +689,95 @@ class %>%
   unnest(tidy_df)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Source: local data frame [8 x 7]
-## 
-##   subject grade          term estimate std.error statistic p.value
-##    (fctr) (int)         (chr)    (dbl)     (dbl)     (dbl)   (dbl)
-## 1    math    11   (Intercept) -0.11278   0.06278   -1.7965  0.0736
-## 2    math    11 pretest_score -0.05005   0.06133   -0.8161  0.4152
-## 3    math    12   (Intercept)  0.02828   0.06448    0.4385  0.6614
-## 4    math    12 pretest_score  0.01758   0.05797    0.3032  0.7620
-## 5    read    11   (Intercept)  0.02043   0.06772    0.3016  0.7632
-## 6    read    11 pretest_score  0.03567   0.06201    0.5751  0.5657
-## 7    read    12   (Intercept) -0.01356   0.06592   -0.2057  0.8372
-## 8    read    12 pretest_score -0.07625   0.06354   -1.2001  0.2313
-{% endhighlight %}
+<div class = "dftab">
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> term </th>
+   <th style="text-align:center;"> estimate </th>
+   <th style="text-align:center;"> std.error </th>
+   <th style="text-align:center;"> statistic </th>
+   <th style="text-align:center;"> p.value </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> (Intercept) </td>
+   <td style="text-align:center;"> -0.1128 </td>
+   <td style="text-align:center;"> 0.0628 </td>
+   <td style="text-align:center;"> -1.7965 </td>
+   <td style="text-align:center;"> 0.0736 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> pretest_score </td>
+   <td style="text-align:center;"> -0.0501 </td>
+   <td style="text-align:center;"> 0.0613 </td>
+   <td style="text-align:center;"> -0.8161 </td>
+   <td style="text-align:center;"> 0.4152 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> (Intercept) </td>
+   <td style="text-align:center;"> 0.0283 </td>
+   <td style="text-align:center;"> 0.0645 </td>
+   <td style="text-align:center;"> 0.4385 </td>
+   <td style="text-align:center;"> 0.6614 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> pretest_score </td>
+   <td style="text-align:center;"> 0.0176 </td>
+   <td style="text-align:center;"> 0.0580 </td>
+   <td style="text-align:center;"> 0.3032 </td>
+   <td style="text-align:center;"> 0.7620 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> (Intercept) </td>
+   <td style="text-align:center;"> 0.0204 </td>
+   <td style="text-align:center;"> 0.0677 </td>
+   <td style="text-align:center;"> 0.3016 </td>
+   <td style="text-align:center;"> 0.7632 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> pretest_score </td>
+   <td style="text-align:center;"> 0.0357 </td>
+   <td style="text-align:center;"> 0.0620 </td>
+   <td style="text-align:center;"> 0.5751 </td>
+   <td style="text-align:center;"> 0.5657 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> (Intercept) </td>
+   <td style="text-align:center;"> -0.0136 </td>
+   <td style="text-align:center;"> 0.0659 </td>
+   <td style="text-align:center;"> -0.2057 </td>
+   <td style="text-align:center;"> 0.8372 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> pretest_score </td>
+   <td style="text-align:center;"> -0.0763 </td>
+   <td style="text-align:center;"> 0.0635 </td>
+   <td style="text-align:center;"> -1.2001 </td>
+   <td style="text-align:center;"> 0.2313 </td>
+  </tr>
+</tbody>
+</table>
+</div><p></p>
 
 ## Using data.table
 The data.table package has optimized data frames to be able to handle large amounts of data. 
