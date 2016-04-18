@@ -54,7 +54,7 @@ set DATASET;
 **To CSV**
 
 {% highlight r %}
-proc export data = DATANAME outfile = "FILEPATH" outtable = OUTNAME dbms = csv replace;
+proc export data = DATANAME outfile = "FILEPATH" dbms = csv replace;
 run;
 {% endhighlight %}
 

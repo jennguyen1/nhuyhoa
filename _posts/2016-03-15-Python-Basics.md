@@ -1,0 +1,266 @@
+---
+layout: post
+title: "Python Basics"
+date: "March 15, 2016"
+categories: ['basics']
+---
+
+* TOC
+{:toc}
+
+
+
+{% highlight python %}
+
+{% endhighlight %}
+
+# Data Structures
+
+Python allows simultaneous declarations, so one can do `a = b = c = 0`. 
+
+To check the type of an object use the following functions
+
+* `type(obj)`
+* `isinstance(OBJ, type)`
+
+## Math Types
+
+Python has a number of basic types: int, long, float, bool, str. 
+
+Operations in are defined by type (`int / int = int`), therefore one needs to be careful to cast values into the right type for for the operation (`int / float(int) = float`).
+
+Python has basic operations such `+-/*/%` as well as `in`.
+
+Incrementing a value is quick with `x += n`.
+
+To do more advanced math operations, use the `math` or `random` package
+{% highlight python %}
+from math import *
+from random import *
+{% endhighlight %}
+
+These packages provide functions such as `math.abs()` `math.exp()`, `math.pow()`, `math.ceil()`, `random.random()`, `random.uniform(a, b)`, etc.
+
+## String Types
+
+* Sliced, `s[i:j]`, where the indices may be negative or positive. 
+* Concatenated with `+`
+* Repeated with `*`
+* Converted to list `list(s)`
+* Converted to number `ord(char)` and vice versa `chr(number)`
+
+For more information on string functions see [the post on regular expressions][regex_post]{:target = "_blank"}.
+
+For printing, strings may be formatted: `"%s is %d years old" % (name, age)`. The following are examples of formats
+
+* string: `%s`
+* integers: `%d`
+* floating point numbers: `%<nchar>.<ndecimals>f`
+
+## Lists
+
+Lists are a very common data structure. They can be nested within each other to obtain arrays. 
+
+Lists can be declared like so
+{% highlight python %}
+[..., ..., ...]
+range(i, j) # generates a sequence from i to j-1; if i omitted from 0 to j-1
+{% endhighlight %}
+
+Objects in Python on indexed starting from 0, for example `l[0:4]`. To obtain elements from a nested list, do multiple indexes, `l[i][j]`.
+
+The following are methods that can be used with lists (for example `l`)
+
+Function | Description
+---------|--------------
+`l.append(obj)` | add object to last index
+`l.insert(index, obj)` | add object to specified index
+`l.pop(index)` | remove specified index, default is last index
+`list.index(obj)` | finds first index of obj
+`l.remove(obj)` | removes object from list
+`l.reverse()` | reverses the list
+`list.count(obj)` | counts the occurances of obj
+`max(l)`, `min(l)` | finds the min and max object
+`l*n` | replicates list n times and concatenates
+`l + l2` | concatenates 2 lists
+`sorted(l)` | sorts list (has additional options)
+`len(l)` | length of list
+
+## Dictionaries
+
+Dictionaries are hash tables. It has a key and value pair that makes it easier to "find" objects since they have unique keys. The keys of a dictionary should be unique.
+
+Dictionaries can be declared like so
+{% highlight python %}
+{'KEY':VALUE, ...}
+{% endhighlight %}
+
+Dictionary values can be accessed like so
+{% highlight python %}
+d["KEY"]
+d.has_key("KEY")
+d.key()
+d.values()
+d.items() # returns (key, value tuples)
+{% endhighlight %}
+
+If both keys and values are unique, key/value pairs can be inverted using list comprehensions
+{% highlight python %}
+{val:key for key, val in d.items()}
+{% endhighlight %}
+
+## Tuples
+
+Tuples are frozen lists, once created no modifications can be made.
+
+Tuples can be declared like so
+{% highlight python %}
+(..., ...)
+{% endhighlight %}
+
+Values in tuples can be accessed the same way as lists. Tuples are very often used as returned objects in functions.
+
+## Sets
+
+Sets are lists with no duplicated entries.
+
+Sets can be declared from a list like so
+{% highlight python %}
+set(l)
+{% endhighlight %}
+
+Sets operations include:
+
+* `s.intersection(s2)`
+* `s.difference(s2)`
+* `s.union(s2)`
+* `s.issubset(s2)`
+
+## List Comprehension
+
+List comprehensions provide an easy way for looping through a list. Think of it like a shortcut to looping. It provides options for looping through tuples as well.
+
+{% highlight python %}
+[EXPR for VAR1, VAR2 in l if EXPR]
+{% endhighlight %}
+
+A Python function similary to R's `lapply` is 
+{% highlight python %}
+map(FUNCTION, l)
+{% endhighlight %}
+
+A Python function similar to R's `Filter` is
+{% highlight python %}
+filter(FUNCTION, l)
+{% endhighlight %}
+
+A common function used with list comprehensions is `enumerate()` which can access the index and values of a list
+{% highlight python %}
+[EXPR for index, value in enumerate(l)]
+{% endhighlight %}
+
+## Collections Class
+
+Collections provides alternatives to the base list structures.
+
+Load the package like so
+{% highlight python %}
+from collections import *
+{% endhighlight %}
+
+A few functions include
+
+* `namedtuple()`
+* `Counter()` is a dictionary subclass for counting hashable objects
+* `OrderedDict()` is a dictionary subclass that remembers the order entries were added
+
+# Conditionals
+
+**Format for if/else**
+{% highlight python %}
+if EXPR:
+  # OPERATIONS
+elif EXPR:
+  # OPERATIONS
+else:
+  # OPERATIONS
+{% endhighlight %}
+
+# Loops
+
+**For Loops**
+{% highlight python %}
+for i in SEQUENCE:
+  # OPERATIONS
+{% endhighlight %}
+
+**While Loops**
+{% highlight python %}
+while EXPR:
+  # OPERATIONS
+{% endhighlight %}
+
+**Control within Loops**
+
+* Skip to next iteration: `continue`
+* Exit loop: `break`
+
+# Functions
+
+{% highlight python %}
+# declare function
+def f(x = 1, PARAMS):
+  # OPERATIONS
+  return x, y
+  
+# call function
+a, b = f(x = 4, ARGS)
+{% endhighlight %}
+
+{% highlight python %}
+# anonymous functions (usually one liners)
+lambda x,y: # OPERATIONS
+
+# example
+map(lambda x: str(x), [1,2,3])
+{% endhighlight %}
+
+# Classes: OOP
+
+{% highlight python %}
+# declare class
+class myClass():
+
+  # initiate the class; use "self" to refer to the object itself
+  def __init__(self, x, y): 
+    self.x = x # public variable
+    self.__position = (x,y) # private variable
+
+  # DECLARE CLASS METHDS
+  
+# create an instance of myClass
+myobj = myClass(x, y)
+myobj.method()
+{% endhighlight %}
+
+You can declare a variety of unique methods for functions and use as desired. There are also a number of pre-defined methods that would be useful to use
+
+* `def __init__(self, ...)` to intialize the class
+* `def __repr__(self)` to determine the string printed when the object is printed
+* `def __getitem__(self, index)` to allow obtaining values by indexing `myobj[i]`
+* `def __setitem__(self, index, value)` to allow setting values by indexing `myobj[index] = value`
+* `def __getslice__(self, low, high)` to allow slicing `myobj[i:j]`
+* `def __len__(self)` to obtain the length `len(myobj)`
+* `def __add__(self, other)` to allow adding `myobj + yourobj`
+* other operations available [here][class_operators]{:target = "_blank"}
+
+# IO
+
+## Input
+
+## Output
+
+## Command Line Arguments
+
+[regex_post]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
+[class_operators]: https://docs.python.org/2/library/operator.html

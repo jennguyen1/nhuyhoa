@@ -747,4 +747,40 @@ END{
 awk -f awk_script.awk test.txt
 {% endhighlight %}
 
+# Using Other Languages from Command Line
+
+## R
+R scripts can be run using the following commands
+
+
+{% highlight r %}
+# run R directly from command line (after install properly - use homebrew)
+R
+
+# run; script; output results to command line
+Rscript script.R
+
+# run script; output results to specified file
+R CMD BATCH -q script.R myfile.txt
+
+# pass in command line arguments
+{% endhighlight %}
+
+## Python
+
+Python scripts can be run using the following commands
+
+
+{% highlight r %}
+# run a command directly in command line
+python -c "print range(3); print 'hi'"
+
+# run a python script
+python script.py arg1 arg2
+
+# run a python script and save to specified file
+python script.py arg1 arg2 >> myfile.txt
+{% endhighlight %}
+
+
 [linux_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMeXJRRWdFTFQzMEU/view?usp=sharing

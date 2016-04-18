@@ -56,6 +56,8 @@
         
           
         
+          
+        
       </div>
     </nav>
 
@@ -84,6 +86,7 @@
       <li><a href="#in-r" id="markdown-toc-in-r">In R</a></li>
       <li><a href="#in-sas" id="markdown-toc-in-sas">In SAS</a></li>
       <li><a href="#in-sql" id="markdown-toc-in-sql">In SQL</a></li>
+      <li><a href="#python" id="markdown-toc-python">Python</a></li>
     </ul>
   </li>
 </ul>
@@ -163,6 +166,10 @@ x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s
       <td style="text-align: left">matches previous character 1 or more times</td>
     </tr>
     <tr>
+      <td style="text-align: left">?</td>
+      <td style="text-align: left">matches previous character 0 or 1 times</td>
+    </tr>
+    <tr>
       <td style="text-align: left">^</td>
       <td style="text-align: left">matches at the beginning of a string</td>
     </tr>
@@ -213,6 +220,10 @@ x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s
       <td>+</td>
       <td>matches previous character 1 or more times</td>
     </tr>
+    <tr>
+      <td>?</td>
+      <td>matches previous character 0 or 1 times</td>
+    </tr>
   </tbody>
 </table>
 
@@ -256,8 +267,8 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
 <table>
   <thead>
     <tr>
-      <th>function</th>
-      <th>description</th>
+      <th>Function</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
@@ -347,8 +358,8 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
 <table>
   <thead>
     <tr>
-      <th>function</th>
-      <th>description</th>
+      <th>Function</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
@@ -437,6 +448,23 @@ where name like <span class="s">&#39;[aeiou]%&#39;</span>
   <li><code>_</code> substitute for a single character</li>
 </ul>
 
+<h2 id="python">Python</h2>
+
+<p>Function | Description<br />
+———|————–<br />
+<code>len(s)</code> | length of string<br />
+<code>s.upper()</code>, <code>s.lower()</code>, <code>s.capitalize()</code>, <code>s.capwords()</code> change string case<br />
+<code>s.isalpha()</code>, <code>s.isdigit()</code>, <code>s.isspace()</code> | tests string for type<br />
+<code>s.startswith()</code>, <code>s.endswith()</code> | checks string locations<br />
+<code>s.split(dlm)</code> | splits string into list by delimiter<br />
+<code>dlm.join(l)</code> | joins list into string by delimiter<br />
+<code>s.count()</code> | counts occurances of specified string<br />
+<code>s.find()</code>, <code>s.index()</code> | finds index of substring<br />
+<code>re.search(pattern, str)</code> | searches for a pattern inside string<br />
+<code>re.findall()</code> | finds all matches in string<br />
+<code>s.replace(old, new, n)</code> | replaces a substring up to n times<br />
+<code>re.sub(pattern, replacement, str)</code> | replaces substrings<br />
+<code>s.strip()</code> | remove trailing white space</p>
 
   </article>
 

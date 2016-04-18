@@ -57,7 +57,15 @@ where $$\frac{r_i^2}{n - p} \sim Beta(\frac{1}{2}, \frac{1}{2}(n - p - 1))$$
 
 $$ t_i = \frac{\hat{\epsilon}_i }{\hat{\sigma}_{(i)} \sqrt{1 - h_{ii}}}$$ 
 
-where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted. The value $$t_i \sim T_{n - p - 1}$$. It is common to apply a Bonferroni correction when testing for outliers.
+where $$(i)$$ represents the estimate with the $$i^{th}$$ entry deleted. The value $$t_i \sim T_{n - p - 1}$$. It is common to apply a Bonferroni correction when testing for outliers. 
+
+An easy way to conduct this test:
+
+* Add in indicator variable to the model, $$1$$ for the potential outlier and $$0$$ for all other observations
+* Examine statistic & p-value for this term
+* Adjust the p-value using a Bonferroni correction. 
+
+The $$H_0$$ is that there are no outliers in the data set vs. $$H_1$$ that the point is an outlier.
 
 Notice that residuals refer to extreme $$y$$-values. 
 

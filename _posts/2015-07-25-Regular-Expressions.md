@@ -44,6 +44,7 @@ To allow for greater flexibility, there are a number of metacharacters that conv
 |{...}   |repetition quantifier                      |
 |*       |matches previous character 0 or more times |
 |+       |matches previous character 1 or more times |
+|?       |matches previous character 0 or 1 times    |
 |^       |matches at the beginning of a string       |
 |$       |matches at the end of a string             |
 
@@ -66,6 +67,7 @@ pattern | matches
 {n, m}  | matches previous character n to m times
 *       | matches previous character 0 or more times
 +       | matches previous character 1 or more times
+?       | matches previous character 0 or 1 times
 
 **(...)**
 
@@ -115,7 +117,7 @@ In order to match these special regex expressions in R, type the backslashes twi
 x %>% str_count("\\s")
 {% endhighlight %}
 
-function | description
+Function | Description
 ---------|--------------
 `str_to_upper()`, `str_to_lower()`, `str_to_title()` | change string case
 `str_dup()` | duplicate and concatenate character vector
@@ -142,7 +144,7 @@ Additional metacharacters for SAS
 
 * `%` substitute for 0 or more characters
 
-function | description
+Function | Description
 ---------|---------------
 `lengthn()` | length of string
 `upcase()`, `lowcase()`, `propcase()` | change string case
@@ -179,3 +181,20 @@ The metacharacters that can be used with SQL are a little different than those l
 * `%` substitute for 0 or more characters
 * `_` substitute for a single character
 
+## Python
+
+Function | Description
+---------|--------------
+`len(s)` | length of string
+`s.upper()`, `s.lower()`, `s.capitalize()`, `s.capwords()` change string case
+`s.isalpha()`, `s.isdigit()`, `s.isspace()` | tests string for type
+`s.startswith()`, `s.endswith()` | checks string locations
+`s.split(dlm)` | splits string into list by delimiter
+`dlm.join(l)` | joins list into string by delimiter
+`s.count()` | counts occurances of specified string
+`s.find()`, `s.index()` | finds index of substring
+`re.search(pattern, str)` | searches for a pattern inside string
+`re.findall()` | finds all matches in string
+`s.replace(old, new, n)` | replaces a substring up to n times
+`re.sub(pattern, replacement, str)` | replaces substrings
+`s.strip()` | remove trailing white space
