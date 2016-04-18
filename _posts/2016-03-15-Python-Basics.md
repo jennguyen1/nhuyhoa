@@ -302,6 +302,18 @@ f.write(STR)
 f.close()
 {% endhighlight %}
 
+# Useful Modules
+
+* [Itertools][itertools_link]{:target = "_blank"}
+* [Pandas][pandas_link]{:target = "_blank"}
+* [Scikit Learn][scikitlearn_link]{:target = "_blank"}
+
+## Numpy and Scipy.Stats
+
+
 
 [regex_post]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 [class_operators]: https://docs.python.org/2/library/operator.html
+[itertools_link]: https://docs.python.org/2/library/itertools.html
+[pandas_link]: http://pandas.pydata.org/
+[scikitlearn_link]: http://scikit-learn.org/stable/

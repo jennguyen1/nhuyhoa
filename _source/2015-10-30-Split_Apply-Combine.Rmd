@@ -257,7 +257,7 @@ class3 <- class %>%
 ```
 </div><p></p>
 
-How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to d_gender prior these calculations, splitting them into the boolean columns of d_gender_m and d_gender_f).
+How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to $$d_gender$$ prior these calculations, splitting them into the boolean columns of $$d_gender_m$$ and $$d_gender_f$$).
 
 {% highlight r %}
 class %>% 
@@ -347,16 +347,14 @@ class %>%
   do(model = lm(posttest_score ~ pretest_score, data = .))
 ```
 
-This output isn't too meaningful, so we can use the `broom` package along with `tidyr::unnest()` to extract the model coefficients. (Try on your own browser).
+This output isn't too meaningful, so we can use the `broom` package along with `tidyr::unnest()` to extract the model coefficients. 
 
-```{r, eval = FALSE}
+```{r}
 class %>% 
   # split: by subject and grade
   group_by(subject, grade) %>% 
-  # apply: regression model on splits
-  do(model = lm(posttest_score ~ pretest_score, data = .)) %>% 
-  # apply: tidy up models into coefficient table
-  mutate(tidy_df = llply(model, tidy)) %>%
+  # apply: regression model on splits and tidy into coef table
+  do(tidy_df = tidy(lm(posttest_score ~ pretest_score, data = .))) %>%   
   # combine coefficient tables across models
   unnest(tidy_df)
 ```

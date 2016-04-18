@@ -21,41 +21,100 @@ Collectively this is known as split-apply-combine.
 # In R
 
 
-{% highlight text %}
-## Error in loadNamespace(name): there is no package called 'pryr'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in to_be(class, view_duplicated, teacher_id, student_id, grade, : Input x must be a data frame
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'fix_duplicates' not found
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'fix_duplicates' not found
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in setkeyv(x, cols, verbose = verbose, physical = physical): x is not a data.table
-{% endhighlight %}
 
 This is the example data set we will use.
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error in xj[i]: object of type 'closure' is not subsettable
-{% endhighlight %}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> teacher_id </th>
+   <th style="text-align:center;"> weight </th>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> pretest_score </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 100 </td>
+   <td style="text-align:center;"> 16 </td>
+   <td style="text-align:center;"> 0.9692 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -2.1143 </td>
+   <td style="text-align:center;"> -0.0226 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 101 </td>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 0.1913 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -0.4224 </td>
+   <td style="text-align:center;"> 0.8057 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 102 </td>
+   <td style="text-align:center;"> 17 </td>
+   <td style="text-align:center;"> 0.7622 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> -0.7631 </td>
+   <td style="text-align:center;"> 0.1451 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 102 </td>
+   <td style="text-align:center;"> 20 </td>
+   <td style="text-align:center;"> 0.9347 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -1.4334 </td>
+   <td style="text-align:center;"> 0.9452 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 103 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 0.7774 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> -0.7721 </td>
+   <td style="text-align:center;"> 0.5730 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+</tbody>
+</table>
 </div>
 
 ## Using Apply Functions
@@ -80,9 +139,53 @@ class %>%
 
 <div class = "dftab">
 <table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> descr </th>
+   <th style="text-align:center;"> post </th>
+   <th style="text-align:center;"> pre </th>
+  </tr>
+ </thead>
 <tbody>
   <tr>
-
+   <td style="text-align:center;"> math 11 female </td>
+   <td style="text-align:center;"> -0.1455 </td>
+   <td style="text-align:center;"> -0.0367 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math 11 male </td>
+   <td style="text-align:center;"> -0.0726 </td>
+   <td style="text-align:center;"> -0.0445 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math 12 female </td>
+   <td style="text-align:center;"> 0.0755 </td>
+   <td style="text-align:center;"> -0.0939 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math 12 male </td>
+   <td style="text-align:center;"> -0.0252 </td>
+   <td style="text-align:center;"> -0.0809 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read 11 female </td>
+   <td style="text-align:center;"> 0.0377 </td>
+   <td style="text-align:center;"> 0.0468 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read 11 male </td>
+   <td style="text-align:center;"> 0.0074 </td>
+   <td style="text-align:center;"> 0.0572 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read 12 female </td>
+   <td style="text-align:center;"> -0.0535 </td>
+   <td style="text-align:center;"> 0.0426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read 12 male </td>
+   <td style="text-align:center;"> 0.0350 </td>
+   <td style="text-align:center;"> -0.1185 </td>
   </tr>
 </tbody>
 </table>
@@ -109,32 +212,44 @@ class %>%
 {% endhighlight %}
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): unknown column 'subject'
-{% endhighlight %}
-
 <table>
  <thead>
   <tr>
-   <th style="text-align:center;">  </th>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> n_students </th>
+   <th style="text-align:center;"> n_male </th>
+   <th style="text-align:center;"> n_female </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> function (x, df1, df2, ncp, log = FALSE) </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 256 </td>
+   <td style="text-align:center;"> 122 </td>
+   <td style="text-align:center;"> 134 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> { </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 252 </td>
+   <td style="text-align:center;"> 122 </td>
+   <td style="text-align:center;"> 130 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> if (missing(ncp)) </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 245 </td>
+   <td style="text-align:center;"> 125 </td>
+   <td style="text-align:center;"> 120 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> .Call(C_df, x, df1, df2, log) </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> else .Call(C_dnf, x, df1, df2, ncp, log) </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 241 </td>
+   <td style="text-align:center;"> 116 </td>
+   <td style="text-align:center;"> 125 </td>
   </tr>
 </tbody>
 </table>
@@ -160,34 +275,52 @@ class %>%
 
 
 {% highlight text %}
-## Error: data_frames can only contain 1d atomic vectors and lists
+## [1] "d_black"    "d_hispanic" "d_asian"    "d_native"   "year"      
+## [6] "proficient"
 {% endhighlight %}
 
 As an artificial example, let's standardize the posttest scores by grade and subject. 
 
-{% highlight text %}
-## Error in eval(expr, envir, enclos): unknown column 'subject'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): unknown column 'subject'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'class2' not found
-{% endhighlight %}
 
 These are the means and standard deviations before standardizing.
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'b4' not found
-{% endhighlight %}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> mean </th>
+   <th style="text-align:center;"> sd </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> -0.1108 </td>
+   <td style="text-align:center;"> 1.003 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 0.0267 </td>
+   <td style="text-align:center;"> 1.019 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 0.0223 </td>
+   <td style="text-align:center;"> 1.057 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -0.0109 </td>
+   <td style="text-align:center;"> 1.024 </td>
+  </tr>
+</tbody>
+</table>
 </div><p></p>
 
 {% highlight r %}
@@ -203,10 +336,42 @@ class <- class %>%
 These are the means and standard deviations after standardizing.
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'af' not found
-{% endhighlight %}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> mean </th>
+   <th style="text-align:center;"> sd </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+</tbody>
+</table>
 </div>
 
 ### summarise_each and mutate_each 
@@ -230,44 +395,51 @@ class %>%
 {% endhighlight %}
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'd_gender' not found
-{% endhighlight %}
-
 <table>
  <thead>
   <tr>
-   <th style="text-align:center;">  </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;"> function (x, df1, df2, ncp, log = FALSE) </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> { </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> if (missing(ncp)) </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> .Call(C_df, x, df1, df2, log) </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:center;"> else .Call(C_dnf, x, df1, df2, ncp, log) </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
   </tr>
 </tbody>
 </table>
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'd_black' not found
-{% endhighlight %}
 </div><p></p>
 
-How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to d_gender prior these calculations, splitting them into the boolean columns of d_gender_m and d_gender_f).
+How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to $$d_gender$$ prior these calculations, splitting them into the boolean columns of $$d_gender_m$$ and $$d_gender_f$$).
 
 {% highlight r %}
 class %>% 
@@ -280,10 +452,78 @@ class %>%
 {% endhighlight %}
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'class3' not found
-{% endhighlight %}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> teacher_id </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> pretest_score </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+   <th style="text-align:center;"> d_gender_f </th>
+   <th style="text-align:center;"> d_gender_m </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 0.1472 </td>
+   <td style="text-align:center;"> -0.2464 </td>
+   <td style="text-align:center;"> 0.1813 </td>
+   <td style="text-align:center;"> 0.1517 </td>
+   <td style="text-align:center;"> 0.1929 </td>
+   <td style="text-align:center;"> 0.1584 </td>
+   <td style="text-align:center;"> 0.5275 </td>
+   <td style="text-align:center;"> 0.4725 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> -0.0166 </td>
+   <td style="text-align:center;"> 0.0116 </td>
+   <td style="text-align:center;"> 0.3079 </td>
+   <td style="text-align:center;"> 0.1636 </td>
+   <td style="text-align:center;"> 0.2652 </td>
+   <td style="text-align:center;"> 0.2538 </td>
+   <td style="text-align:center;"> 0.3892 </td>
+   <td style="text-align:center;"> 0.6108 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 0.0858 </td>
+   <td style="text-align:center;"> 0.2858 </td>
+   <td style="text-align:center;"> 0.1215 </td>
+   <td style="text-align:center;"> 0.2372 </td>
+   <td style="text-align:center;"> 0.1140 </td>
+   <td style="text-align:center;"> 0.2828 </td>
+   <td style="text-align:center;"> 0.7434 </td>
+   <td style="text-align:center;"> 0.2566 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> -0.0043 </td>
+   <td style="text-align:center;"> -0.0057 </td>
+   <td style="text-align:center;"> 0.2619 </td>
+   <td style="text-align:center;"> 0.1414 </td>
+   <td style="text-align:center;"> 0.2204 </td>
+   <td style="text-align:center;"> 0.2401 </td>
+   <td style="text-align:center;"> 0.4237 </td>
+   <td style="text-align:center;"> 0.5763 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> -0.0622 </td>
+   <td style="text-align:center;"> 0.0285 </td>
+   <td style="text-align:center;"> 0.1725 </td>
+   <td style="text-align:center;"> 0.1368 </td>
+   <td style="text-align:center;"> 0.1862 </td>
+   <td style="text-align:center;"> 0.1801 </td>
+   <td style="text-align:center;"> 0.4066 </td>
+   <td style="text-align:center;"> 0.5934 </td>
+  </tr>
+</tbody>
+</table>
 </div>
 
 ### do and unnest
@@ -293,7 +533,7 @@ In our data set we have unique student-teacher linkages for each unique subject 
 
 
 {% highlight text %}
-## Error in view_duplicated(., student_id, teacher_id): Columns specified not in input data
+## [1] 28
 {% endhighlight %}
 
 Ignoring the subject and grade, we want to remove the the linkage with the smallest weight. 
@@ -311,22 +551,102 @@ class_edit %>% head
 {% endhighlight %}
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error: data_frames can only contain 1d atomic vectors and lists
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'class_edit' not found
-{% endhighlight %}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> student_id </th>
+   <th style="text-align:center;"> teacher_id </th>
+   <th style="text-align:center;"> weight </th>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> posttest_score </th>
+   <th style="text-align:center;"> pretest_score </th>
+   <th style="text-align:center;"> d_gender </th>
+   <th style="text-align:center;"> d_black </th>
+   <th style="text-align:center;"> d_hispanic </th>
+   <th style="text-align:center;"> d_asian </th>
+   <th style="text-align:center;"> d_native </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 100 </td>
+   <td style="text-align:center;"> 16 </td>
+   <td style="text-align:center;"> 0.9692 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -2.1143 </td>
+   <td style="text-align:center;"> -0.0226 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 101 </td>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> 0.1913 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -0.4224 </td>
+   <td style="text-align:center;"> 0.8057 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 102 </td>
+   <td style="text-align:center;"> 17 </td>
+   <td style="text-align:center;"> 0.7622 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> -0.7631 </td>
+   <td style="text-align:center;"> 0.1451 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 102 </td>
+   <td style="text-align:center;"> 20 </td>
+   <td style="text-align:center;"> 0.9347 </td>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> -1.4334 </td>
+   <td style="text-align:center;"> 0.9452 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 103 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 0.7774 </td>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> -0.7721 </td>
+   <td style="text-align:center;"> 0.5730 </td>
+   <td style="text-align:center;"> male </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> FALSE </td>
+   <td style="text-align:center;"> TRUE </td>
+  </tr>
+</tbody>
+</table>
 </div><p></p>
 
 And here we see that those duplicates were indeed removed.
 
 {% highlight text %}
-## Error in eval(expr, envir, enclos): object 'class_edit' not found
+## [1] 0
 {% endhighlight %}
 
 `do()` is versatile because it can handle a variety of different output types. 
@@ -345,22 +665,45 @@ class %>%
 
 
 {% highlight text %}
-## Error in eval(expr, envir, enclos): unknown column 'subject'
+## Source: local data frame [4 x 3]
+## Groups: <by row>
+## 
+##   subject grade   model
+##    (fctr) (int)   (chr)
+## 1    math    11 <S3:lm>
+## 2    math    12 <S3:lm>
+## 3    read    11 <S3:lm>
+## 4    read    12 <S3:lm>
 {% endhighlight %}
 
-This output isn't too meaningful, so we can use the `broom` package along with `tidyr::unnest()` to extract the model coefficients. (Try on your own browser).
+This output isn't too meaningful, so we can use the `broom` package along with `tidyr::unnest()` to extract the model coefficients. 
 
 
 {% highlight r %}
 class %>% 
   # split: by subject and grade
   group_by(subject, grade) %>% 
-  # apply: regression model on splits
-  do(model = lm(posttest_score ~ pretest_score, data = .)) %>% 
-  # apply: tidy up models into coefficient table
-  mutate(tidy_df = llply(model, tidy)) %>%
+  # apply: regression model on splits and tidy into coef table
+  do(tidy_df = tidy(lm(posttest_score ~ pretest_score, data = .))) %>%   
   # combine coefficient tables across models
   unnest(tidy_df)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Source: local data frame [8 x 7]
+## 
+##   subject grade          term estimate std.error statistic p.value
+##    (fctr) (int)         (chr)    (dbl)     (dbl)     (dbl)   (dbl)
+## 1    math    11   (Intercept) -0.11278   0.06278   -1.7965  0.0736
+## 2    math    11 pretest_score -0.05005   0.06133   -0.8161  0.4152
+## 3    math    12   (Intercept)  0.02828   0.06448    0.4385  0.6614
+## 4    math    12 pretest_score  0.01758   0.05797    0.3032  0.7620
+## 5    read    11   (Intercept)  0.02043   0.06772    0.3016  0.7632
+## 6    read    11 pretest_score  0.03567   0.06201    0.5751  0.5657
+## 7    read    12   (Intercept) -0.01356   0.06592   -0.2057  0.8372
+## 8    read    12 pretest_score -0.07625   0.06354   -1.2001  0.2313
 {% endhighlight %}
 
 ## Using data.table
@@ -376,10 +719,47 @@ classDT[, list(total_students = .N), by = list(subject, grade)]
 {% endhighlight %}
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'subject' not found
-{% endhighlight %}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> n_students </th>
+   <th style="text-align:center;"> n_male </th>
+   <th style="text-align:center;"> n_female </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 252 </td>
+   <td style="text-align:center;"> 122 </td>
+   <td style="text-align:center;"> 130 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 241 </td>
+   <td style="text-align:center;"> 116 </td>
+   <td style="text-align:center;"> 125 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 256 </td>
+   <td style="text-align:center;"> 122 </td>
+   <td style="text-align:center;"> 134 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 245 </td>
+   <td style="text-align:center;"> 125 </td>
+   <td style="text-align:center;"> 120 </td>
+  </tr>
+</tbody>
+</table>
 </div><p></p>
 
 Now let's standardize the posttest scores by grade and subject. This is equivalent to `mutate()`.
@@ -393,16 +773,42 @@ classDT[, list(mean = mean(z_post), sd = sd(post)), by = list(subject, grade)]
 {% endhighlight %}
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'subject' not found
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'subject' not found
-{% endhighlight %}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> subject </th>
+   <th style="text-align:center;"> grade </th>
+   <th style="text-align:center;"> mean </th>
+   <th style="text-align:center;"> sd </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> math </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> read </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 1 </td>
+  </tr>
+</tbody>
+</table>
 </div>
 
 # In SAS

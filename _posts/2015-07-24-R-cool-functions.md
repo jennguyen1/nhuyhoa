@@ -54,7 +54,7 @@ display.brewer.all()
 [rmarkdown_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMV2NBbWlSNHJvM2c/view?usp=sharing
 [rmarkdown_ref2]: https://drive.google.com/file/d/0B5VF_idvHAmMTHU4MFRDV1Z3NUE/view?usp=sharing
 
-**Not Yet:**
+# Not Yet:
 
 locator function:
 
@@ -62,44 +62,15 @@ locator function:
 * heatmaps with dendrograms 2x2
 
 
-The `broom` package has three main functions that deal with a variety of modeling functions
-
-* `tidy`: extracts the model estimates and p-values
-* `glance`: extracts the model statistics ($$R^2$$, etc)
-* `augment`: extracts the individual data point statistics (fitted values, residuals, leverages, etc)
-
-
 data.tables:
 
 * with = FALSE: j is a vector of names or positions to select (similar to data frames)
 * DT[, .SD[which.max(i)], by = j]: saves the row that corresponds to max i for each unique j
 
-
-* assign
-* na.omit
-* complete.cases
-
-* list of functions
+**list of functions**
 
 * partial(f, ..): changes the deafults of functions
-* sf <- pryr::partial(sum, 1:5, na.rm = TRUE)
-sf()
-* translate_sql() in dplr r to sql
-
-plot multiple data frames: 
-
-{% highlight r %}
-ggplot() + 
-  geom_histogram(data=x, ...) +
-  geom_point(data = y, ...)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): could not find function "ggplot"
-{% endhighlight %}
-
+* sf <- pryr::partial(sum, 1:5, na.rm = TRUE); sf()
 
 
 {% highlight r %}

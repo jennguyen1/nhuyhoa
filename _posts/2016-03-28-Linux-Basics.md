@@ -762,8 +762,6 @@ Rscript script.R
 
 # run script; output results to specified file
 R CMD BATCH -q script.R myfile.txt
-
-# pass in command line arguments
 {% endhighlight %}
 
 ## Python
