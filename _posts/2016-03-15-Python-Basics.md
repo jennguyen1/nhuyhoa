@@ -304,16 +304,71 @@ f.close()
 
 # Useful Modules
 
-* [Itertools][itertools_link]{:target = "_blank"}
-* [Pandas][pandas_link]{:target = "_blank"}
-* [Scikit Learn][scikitlearn_link]{:target = "_blank"}
+* Create iterators: [Itertools][itertools_link]{:target = "_blank"}
+* Probability distributions: [scipy.stats][scipy_link]{:target = "_blank"}
+* Data analysis: [Pandas][pandas_link]{:target = "_blank"}
+* Statistical models: [Scikit Learn][scikitlearn_link]{:target = "_blank"}
 
-## Numpy and Scipy.Stats
+## Numpy 
 
+Numpy is a module that provides additional functionality for arrays.
 
+First, import the module like so
+{% highlight python %}
+import numpy
+{% endhighlight %}
+
+The following commands can be used to declare arrays.
+
+Function | Description
+---------|---------------
+`np.array(list, dtype)` | declare array from list of lists, floats, int
+`np.arrange(start, stop, by, dtype)` | array version of `range()`
+`np.linspace(start, stop, n)` | creates a range from start to stop of length n
+`np.identity(n)` | square identity matrix
+`np.ones()`, `np.zeros()` | creates array of all 0/1, pass in dimensions `(r, c)`
+`np.ones_like(a)`, `np.zeros_link(a)` | makes array of all 0/1 that looks like `a`
+`np.concatenate()` | binds arrays together
+
+The following commands can be run on instances of arrays.
+
+Function | Description
+---------|-------------
+`arr.shape` | array dimensions
+`arr.reshape((r, c))` | reshape array to new dimensions
+`arr.flatten()` | makes array 1D
+`arr.transpose()` | tranposes array
+`arr.as_type()` | converts type
+`arr.fill()` | fills an array with specified value
+`arr.tolist()` | converts array to list
+`arr.sort()` | sorts an array
+
+Numpy arrays are similar to vectors in R. You can apply element-wise functions onto each element of the array. Examples of these include `+-*/><`, `np.abs()`, `np.square()`, `np.log()`, etc. Several functions of note include
+
+Function | Description 
+---------|------------
+`np.unique()` | finds unique values of array
+`np.where()` | elementwise if/else (similar to R `ifelse()`)
+`np.vectorize(f)` | vectorizes a function (similar to R `Vectorize()`)
+
+Additional math problems include `arr.sum()`, `arr.mean()`, `arr.var()`, `arr.std()`, `arr.min()`, `arr.argmin()`, `arr.any()`, `arr.all()`. More advanced math problems include `np.dot()`, `np.inner()`, `np.outer()`, `np.cross()`, `np.linalg.det()`, `np.linalg.eig()`, `np.linalg.inv()`, `np.linag.svd()`.
+
+There are also options for random simulation.
+
+Function | Description
+---------|-------------
+`np.random.seed()` | set a seed
+`np.random.rand()` | generate array of random numbers
+`np.random.random()` | draws random numbers [0.0, 1.0)
+`np.random.randint(min, max, size)` | draws random integers
+`np.random.<dist_name>(params, size)` | generate random numbers from various distributions
+`np.random.normal(mu, sigma, size)` | generate random numbers from normal distributions
+`np.random.shuffle()` | randomly shuffle order of items in list
+`np.random.choice(a, size, replace, p)` | randomly sample from given array
 
 [regex_post]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 [class_operators]: https://docs.python.org/2/library/operator.html
 [itertools_link]: https://docs.python.org/2/library/itertools.html
+[scipy_link]: http://docs.scipy.org/doc/scipy/reference/stats.html
 [pandas_link]: http://pandas.pydata.org/
 [scikitlearn_link]: http://scikit-learn.org/stable/

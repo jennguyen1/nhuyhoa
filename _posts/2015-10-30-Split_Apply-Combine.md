@@ -195,7 +195,7 @@ class %>%
 ## Using dplyr
 
 ### slice
-The `slice()` function can be used to obtain certain records. For example, we can obtain the records of that obtain the maximum test score for various subgroups. 
+The `slice()` function can be used to obtain records by row index. For example, we can obtain the records of that obtain the maximum test score for various subgroups. 
 
 
 {% highlight r %}
@@ -296,12 +296,12 @@ class %>%
   # split: by subject & grade
   group_by(subject, grade) %>%
   # apply: count functions
+  # combine: dplyr does this automatically
   summarise(
     n_students = n(),
     n_male = sum(d_gender == "male"),
     n_female = sum(d_gender == "female")
-  )
-  # combine: dplyr does this automatically
+  ) 
 {% endhighlight %}
 
 <div class = "dftab">
@@ -423,8 +423,8 @@ class <- class %>%
   # split: by grade & subject
   group_by(subject, grade) %>% 
   # apply: standardize the posttest score
-  mutate(z_post = (posttest_score - mean(posttest_score)) / sd(posttest_score))
   # combine: dplyr does this automatically
+  mutate(z_post = (posttest_score - mean(posttest_score)) / sd(posttest_score))
 {% endhighlight %}
 
 These are the means and standard deviations after standardizing.
@@ -534,7 +534,7 @@ class %>%
 </table>
 </div><p></p>
 
-How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to $$d_gender$$ prior these calculations, splitting them into the boolean columns of $$d_gender_m$$ and $$d_gender_f$$).
+How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to $$d.gender$$ prior these calculations, splitting them into the boolean columns of $$d.gender.m$$ and $$d.gender.f$$).
 
 
 {% highlight r %}

@@ -61,18 +61,12 @@ locator function:
 * ggmap::gglocator()
 * heatmaps with dendrograms 2x2
 
-
-data.tables:
-
-* with = FALSE: j is a vector of names or positions to select (similar to data frames)
-* DT[, .SD[which.max(i)], by = j]: saves the row that corresponds to max i for each unique j
-
 **list of functions**
 
 * partial(f, ..): changes the deafults of functions
 * sf <- pryr::partial(sum, 1:5, na.rm = TRUE); sf()
      
-nonstandard evaluation:
+**nonstandard evaluation:**
 
 {% highlight r %}
 ("1 == 2") %>% parse(text = .) %>% eval
