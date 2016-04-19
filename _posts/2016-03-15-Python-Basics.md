@@ -305,17 +305,16 @@ f.close()
 # Useful Modules
 
 * Create iterators: [Itertools][itertools_link]{:target = "_blank"}
-* Probability distributions: [scipy.stats][scipy_link]{:target = "_blank"}
 * Data analysis: [Pandas][pandas_link]{:target = "_blank"}
 * Statistical models: [Scikit Learn][scikitlearn_link]{:target = "_blank"}
 
 ## Numpy 
 
-Numpy is a module that provides additional functionality for arrays.
+The module `numpy` provides additional functionality for arrays.
 
 First, import the module like so
 {% highlight python %}
-import numpy
+import numpy as np
 {% endhighlight %}
 
 The following commands can be used to declare arrays.
@@ -330,6 +329,7 @@ Function | Description
 `np.ones_like(a)`, `np.zeros_link(a)` | makes array of all 0/1 that looks like `a`
 `np.concatenate()` | binds arrays together
 
+<br>
 The following commands can be run on instances of arrays.
 
 Function | Description
@@ -343,6 +343,7 @@ Function | Description
 `arr.tolist()` | converts array to list
 `arr.sort()` | sorts an array
 
+<br>
 Numpy arrays are similar to vectors in R. You can apply element-wise functions onto each element of the array. Examples of these include `+-*/><`, `np.abs()`, `np.square()`, `np.log()`, etc. Several functions of note include
 
 Function | Description 
@@ -351,6 +352,7 @@ Function | Description
 `np.where()` | elementwise if/else (similar to R `ifelse()`)
 `np.vectorize(f)` | vectorizes a function (similar to R `Vectorize()`)
 
+<br>
 Additional math problems include `arr.sum()`, `arr.mean()`, `arr.var()`, `arr.std()`, `arr.min()`, `arr.argmin()`, `arr.any()`, `arr.all()`. More advanced math problems include `np.dot()`, `np.inner()`, `np.outer()`, `np.cross()`, `np.linalg.det()`, `np.linalg.eig()`, `np.linalg.inv()`, `np.linag.svd()`.
 
 There are also options for random simulation.
@@ -365,6 +367,40 @@ Function | Description
 `np.random.normal(mu, sigma, size)` | generate random numbers from normal distributions
 `np.random.shuffle()` | randomly shuffle order of items in list
 `np.random.choice(a, size, replace, p)` | randomly sample from given array
+
+## Scipy Stats
+
+The module `scipy.stats` gives you access to probability distributions. 
+
+Import the model like so
+{% highlight python %}
+import scipy.stats as ss
+{% endhighlight %}
+
+See the [scipy manual][scipy_link]{:target = "_blank"} for the list of available distributions.
+
+Intiate an instance of a distribution by doing 
+{% highlight python %}
+x = ss.norm(loc = 0, scale = 1)
+{% endhighlight %}
+
+Obtain values from the distribution using the following functions
+{% highlight python %}
+# generate random variables; R's rnorm()
+x.rv(n)
+
+# the y value of function, for discrete P(X = x); R's dnorm()
+x.pdf(q)
+y.pmf(q)
+
+# a | a = P(X <= x); R's pnorm()
+x.cdf(q)
+
+# x | a = P(X <= x); R's qnorm()
+x.ppf(p)
+{% endhighlight %}
+
+The module also has functions for moments, expectations, and MLE.
 
 [regex_post]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 [class_operators]: https://docs.python.org/2/library/operator.html
