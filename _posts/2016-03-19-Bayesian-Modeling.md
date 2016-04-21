@@ -529,12 +529,12 @@ We should examine traceplots for chains that do not seem to mix in well with oth
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=500):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   727    1
-## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   414    1
-## beta[3]  1.7     0.0 0.2  1.3  1.6  1.7  1.8   2.1   404    1
-## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.8   408    1
-## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   714    1
-## lp__    69.5     0.1 1.6 65.6 68.7 69.9 70.7  71.6   536    1
+## beta[1]  1.2     0.0 0.1  1.1  1.2  1.2  1.3   1.3   789    1
+## beta[2]  1.0     0.0 0.2  0.7  0.9  1.0  1.1   1.3   489    1
+## beta[3]  1.7     0.0 0.2  1.4  1.6  1.7  1.8   2.1   517    1
+## beta[4]  2.3     0.0 0.3  1.7  2.1  2.3  2.5   2.8   498    1
+## sigma    0.4     0.0 0.0  0.3  0.4  0.4  0.4   0.4   859    1
+## lp__    69.6     0.1 1.6 65.7 68.7 69.9 70.7  71.6   625    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
@@ -552,6 +552,7 @@ Graphical summaries of model fits work well with the outputs generated from Stan
 
 * Point estimates and 95% credible regions of estimated coefficients 
 * Distributions of varying slopes/intercepts
+* Residual plots
 * Other plots of simulated results; simulated via bayesian method (simulate parameters and then the posterior) or bootstrap
 
 We can compare models with

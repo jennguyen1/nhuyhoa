@@ -19,18 +19,22 @@ See [Bias Variance Tradeoff: Training & Testing Error][bv_tradeoff_train_test_po
 # Subset Selection
 
 ## Model Statistics: Adj R2, AIC, BIC, Mallow's Cp
-We can use a variety of different statistics to compare models. Software will have functions to compute these statistics. These statistics should be used as guidelines, domain knowledge is always more important.
-
-* Bigger values of adjusted $$R^2$$ is better
-* Smaller values AIC and BIC are better
-* Values of Mallow's Cp closer to p is better
+We can use a variety of different statistics to compare models. Software will have functions to compute these statistics. These statistics should be used as guidelines, domain knowledge is always more important for determining which terms should be a part of the model.
 
 **Values:**
 
 * .$$Adj.R^2 = 1 - \frac{SS_R/(n-p)}{SS_T/(n-1)}$$
 * .$$AIC = -2 l(\hat{\beta}, y) + 2p$$
 * .$$BIC = -2 l(\hat{\beta}, y) + \log(n)p$$
-* $$Cp = \frac{CSS}{s^2} + 2p - n$$ where $$s^2$$ is the MSE of the most complex model.
+* $$Cp = \frac{CSS}{s^2} + 2p - n$$ where $$s^2$$ is the MSE of the most complex model
+
+
+* Bigger values of adjusted $$R^2$$ is better
+* Smaller values AIC and BIC are better
+* Values of Mallow's Cp closer to p is better
+* BIC tends to choose smaller models than AIC
+* AIC works better when all candidate models are approximate
+* BIC works better when one candidate model is really the right model and sample sizes are large
 
 ## Forward, Backwards, Stepwise Selection
 These model selection methods uses model statistics, such as AIC or overall F-statistic, to compare models. 

@@ -73,7 +73,7 @@ $$P(\cap^r_{i=1} A_i) = 1 - P(\cup^r_{i=1} A^c_i) \ge 1 - \Sigma^r_{i = 1} P(A^c
 
 We wish to control the family-wise Type 1 error rate, the probability of making one or more Type 1 errors in a family/set of tests. We can set 
 
-$$\alpha = FWER$$ 
+$$\alpha = FWER = P(reject any H_0 | H_0)$$ 
 
 by setting $$P(A^c_i) = \alpha / r$$.
 
@@ -168,7 +168,7 @@ This method states that for large $$r$$, we do not expect all the null hypothese
 
 $$\alpha = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 0 \right)$$
 
-the expected proportion of Type 1 errors (false positives) among the rejected hypotheses.
+the expected proportion of Type 1 errors (false positives) among the rejected hypotheses. FDR cuts you some slack for making correct rejections; by correctly rejecting a certain number of hypothesis, it gives you a pass for one incorrect rejection.
 
 This method is the Benjamini and Hochberg method. This procedure requires the tests to be independent. The procedure may control FDR for certain types of correlation, but may fail for highly correlated data. (This procedure is more powerful than the Bonferroni-Holmes procedure).
 
@@ -178,7 +178,7 @@ $$p_{BH(i)} = min \left( \frac{rp_{(i)}}{i}, 1 \right)$$
 
 Let $$\alpha$$ be the FDR. Let $$k$$ be the largest $$i$$ for which $$p_{(i)} \le \frac{i}{r}\alpha$$. Then we reject tests with p-values smaller or equal to $$p_{(k)}$$. This is illustrated in the plot below ($$\alpha = 0.05$$)
 
-```{r, echo = FALSE, fig.width = 10}
+```{r, echo = FALSE, warning = FALSE, fig.width = 10}
 set.seed(5)
 null <- raply(500, t.test(rnorm(100), rnorm(100))$p.value)
 non_null <- raply(250, t.test(rnorm(100), rnorm(100, 0.25))$p.value)
@@ -194,7 +194,7 @@ grid.arrange(g1, g2, nrow = 1)
 
 We can compare these values with the q-values (FDR) generated from `p.adjust()` using the FDR method. The cutoffs for the two methods agree. 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE}
 plot_data <- mutate(plot_data, cutoff = i / 750 * 0.05)
 
 cutoff <- plot_data %>% 

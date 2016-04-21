@@ -58,7 +58,7 @@ From here we can calculate $$E[I(0)]$$, which is a function of required sample $
 
 For one-sided tests, change the $$Z_{1 - \alpha/2}$$ to $$Z_{1 - \alpha}$$.
  
-## Examples
+**Examples**
 Let $$\epsilon_1 = n_1 / n$$ and $$\epsilon_2 = n_2 / n$$. 
 
 * Two-sample normal data:
@@ -79,7 +79,7 @@ $$n\bar{p} = \frac{(Z_{1 - \alpha/2} + Z_{1 - \beta})^2}{\epsilon_1 \epsilon_2 \
 
 where $$\bar{p}$$ is the probability of an observed event.
 
-# A Different Approach
+# A Simulation Approach
 
 The power relationship is
 
@@ -96,7 +96,7 @@ We can use simulations to calculate the power, $$P(F > F_{\alpha, k-1, k(n-1)} \
 
 Another option for calculating sample sizes in ANOVA would be to choose two groups and the maximum difference between them $$D$$. Then we can compute sample sizes based on a t-test approximation. This tends to work if the number of groups is not too large. 
 
-## Selecting Parameters
+**Selecting Parameters**
 Prior to conducting a study, we don't usually have estimates of the parameters (effect size, variability, etc). We can obtain estimates of these in a number of ways
 
 * Conduct pilot studies or review literature for an estimate of variation; crucial that the estimate is based on same context as final data

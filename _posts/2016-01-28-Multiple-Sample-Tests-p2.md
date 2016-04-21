@@ -37,14 +37,6 @@ When one is assessing multiple contrasts, it would be wise to control for [multi
 
 In R, we can use `pairwise.t.test(y, x)`, `p.adjust()`. We can also test contrasts using the `multcomp::glht()` function.
 
-## Unbalanced ANOVAs
-
-How do we assess effects when our designs are missing certain factor combinations? For this, contrasts can come in handy.
-
-* Fit a one-way ANOVA as a combination of the factors 
-* Fit a contrast to assess the effect you would like (perhaps the interaction)
-* Use a MSE from the one-way ANOVA as an estimate of $$s^2_{\epsilon}$$
-
 ## Unreplicated Studies
 
 If we need to run unreplicated studies (perhaps for preliminary studies), we would have to find another way to obtain an estimate of $$\sigma^2_{\epsilon}$$. 
@@ -56,7 +48,7 @@ There are a number of ways to do this:
 * Assume that larger order interaction terms are insignificant and pools those into the error term $$\sigma^2_{\epsilon}$$
 * Assume that if none of the effects are significant, the estimated effects $$\sim iidN(0, \frac{4\sigma^2_{\epsilon}}{2^k})$$. Make a QQ-plot of estimated effects and those effects not on the QQ-line are significant
 
-## ANOVAs as Regression
+## ANOVAs as Regression To Alleviate Missing Data
 There are many advantages of treating ANOVAs as Regression
 
 * Incorporate continuous data that may be important
@@ -64,9 +56,17 @@ There are many advantages of treating ANOVAs as Regression
 * Use Type 3 SS and lsmeans (which consider other variables in model first) to assess factor effects
 * Can assess effects by comparing full and reduced models
 
+**Unbalanced ANOVAs**
+
+How do we assess effects when our designs are missing certain factor combinations? For this, contrasts can come in handy.
+
+* Fit a one-way ANOVA as a combination of the factors 
+* Fit a contrast to assess the effect you would like (perhaps the interaction)
+* Use a MSE from the one-way ANOVA as an estimate of $$s^2_{\epsilon}$$
+
 ## Statistical Software
 
-In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands. Confirm that the predictors are factors.
+In R, ANOVA can be fit with the `lm()`/`lmer()` and `anova()` or `aov()` commands. Confirm that the predictors are factors.
 
 In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands.
 

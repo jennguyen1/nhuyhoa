@@ -54,14 +54,6 @@ We eliminate potential biases and ensure that we can conduct valid causal infere
 
 Essentially we randomize so that the responses we see are independent of the treatment type. 
 
-## Replication
-Replication allows researchers to obtain precise (less variable) estimates of the mean. Increasing the number of replicates is one way of reducing the random error.
-
-There is a difference between technical replicates (subsamples) and biological replicates (experimental units or EU). Technical replicates can reduce measurement error by averaging within a single EU. Biological replication reduces the standard error of parameter estimates of the biological population. Technical replication tells us a lot about a single unit, while biological replication tells us a lot about the population. Thus, it is better to increase the number of EUs than the technical replicates.  
-
-## Blocking
-Blocking accounts for nuisance factors that may contribute to the random error. By accounting for block variability, we can decrease the unaccounted error variability and make tests more powerful. 
-
 ## Confounding
 If we do not randomize experiments, we may have confounding. Confounding occurs when additional (observed or unobserved) factors ($$Z$$) that are associated with both $$X$$ and $$Y$$ and induce misalignment between the observed association and the true causal relationship. 
 
@@ -72,6 +64,14 @@ Specifically, if $$X$$ has a causal effect on $$Y$$, but $$Z$$  has causal effec
 To deal with confounding variables, we can either randomize or adjust for the variable. Generally, it is best to randomize and adjust for key variables (age, sex, etc). We cannot adjust for everything (expensive), which is why randomization is so important.
 
 Sometimes when building complex experiments, we may use confounding to our advantage. We may confound things that we are not interested in order to have more efficient experiments for the things we are interested in. For example, in fractional factorial experiments we may confound the interactions so that we can estimate the main effects while reducing sample size and cost. 
+
+## Replication
+Replication allows researchers to obtain precise (less variable) estimates of the mean. Increasing the number of replicates is one way of reducing the random error.
+
+There is a difference between technical replicates (subsamples) and biological replicates (experimental units or EU). Technical replicates can reduce measurement error by averaging within a single EU. Biological replication reduces the standard error of parameter estimates of the biological population. Technical replication tells us a lot about a single unit, while biological replication tells us a lot about the population. Thus, it is better to increase the number of EUs than the technical replicates.  
+
+## Blocking
+Blocking accounts for nuisance factors that may contribute to the random error. By accounting for block variability, we can decrease the unaccounted error variability and make tests more powerful.
 
 ## Analysis-Based Design
 Analyses should be analyzed based on how the data was designed. Failing to do so may lead to biased results. 

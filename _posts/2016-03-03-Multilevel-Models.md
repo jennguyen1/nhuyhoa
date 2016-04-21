@@ -10,13 +10,26 @@ categories: ['statistics', 'regression analysis']
 
 
 
+# Fitting Models
+
+Models containing multiple variance components can be estimated using REML (restricted maximum likelihood). It has the advantage of obtaining unbiased estimates of the variance components (MLE estimates tend to be biased down). Once variance estimates are obtained, the fixed effects can be estimated using generalized least squares (similar to weighted least squares).
+
+REML works by 
+
+1. Fit a model with fixed effects, ignoring any variance components
+2. Obtain the regression residuals for observations modeled above (residuals only contain aspects of random effects and error)
+3. MLE on residuals to get estimates of variance components, using $$N - p$$ as the denominator (ie taking into account FE parameters and unbiasing error variance)
+
+Notice that REML uses a different likelihood function than simple likelihood. When comparing models, it is important to consider what likelihood a statistic is using. For example, if the AIC is based off the restricted likelihood, only models with different random effects can be compared. In order to compare models with different fixed effects, ordinary likelihood should be used. 
+
+An alternative method is to use a Bayesian approach to fitting. Markov Chain Monte Carlo can be used to sample from the posterior to obtain interval estimates, distributions of statistics, etc. 
+
+# Variants of Multilevel Models
+
 Multilevel models are a compromise between two extremes
 
 * Models that pool the effects of multiple groups; group indicators are not included in the model
 * Models that fit separate fits for each group
-
-
-# Variants of Multilevel Models
 
 Consider three variants of models: 
 
@@ -46,7 +59,7 @@ The variance ratio is a measure of how much many observations are needed in a gr
 
 This value tells us that the standard deviation of average $$y$$ between groups is the same as the standard deviation of the average of $$1/r$$ measurements within a group. For a group with more than $$1/r$$ observations, within-group measurements are more informative. Otherwise, the across group measurements are more informative. 
 
-## Fitting Models
+## Model Formulas
 
 We can fit variants of the varying intercept models in R with the following `lmer()` commands
 
@@ -213,8 +226,6 @@ Multilevel models may also be used creatively to assess a variety of effects. Fo
 We can easily extend the fitting of multilevel models to glms.
 
 In R, we can fit these models with `lmer()` or `glmer()`. 
-
-# Fitting Models with REML
 
 # In R
 

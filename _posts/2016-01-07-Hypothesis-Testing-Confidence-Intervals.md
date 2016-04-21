@@ -63,9 +63,9 @@ See individual tests for more information.
 ## Interpretation
 Hypothesis tests generate a p-value. The p-value calculate may depend on the alternative hypothesis
 
-* For right tailed tests, we compute $$P(X > X*)$$
-* For left tailed tests, we compute $$P(X < X*)$$ 
-* For two-sided tests, we compute $$2*P(X > \vert X* \vert)$$
+* For right tailed tests, we compute $$P(X > X^*)$$
+* For left tailed tests, we compute $$P(X < X^*)$$ 
+* For two-sided tests, we compute $$2*P(X > \vert X^* \vert)$$
 
 The p-value is defined as the probability of obtaining a result greater than or more extreme than the one observed, given that the null hypothesis is not true. 
 
@@ -130,4 +130,12 @@ Say the true value of $$\mu = 0$$. Here we see, per the definition above, that $
 
 It is important to note that the true value of the population parameter is fixed, so any single confidence interval will either contain the population parameter or not. Thus we cannot interpret the confidence interval as the probability that the true value is in the interval. 
 
-So say we want to test a null hypothesis that $$\mu = 0$$ with a 95% confidence interval. If $$\mu$$ falls within that confidence interval, we say that if we were to repeat the process many times, $$95$$% of the time $$\mu$$ will fall inside the confidence intervals. Thus we can conclude that our data does not indicate a significant difference from $$\mu = 0$$. 
+So say we want to test a null hypothesis that $$\mu = 0$$ with a $$95$$% confidence interval. If $$\mu$$ falls within that confidence interval, we say that if we were to repeat the process many times, $$95$$% of the time $$\mu$$ will fall inside the confidence intervals. Thus we can conclude that our data does not indicate a significant difference from $$\mu = 0$$. 
+
+# Bayesian Credible Regions
+
+In Bayesian statistics, posterior distributions are derived for statistics. 
+
+Credible intervals can be obtained by calculating the quantiles of the posterior distribution to obtain boundary points $$a$$ and $$b$$. They can be interpreted as some percentage that the true value of the statistic is within $$a$$ and $$b$$. 
+
+

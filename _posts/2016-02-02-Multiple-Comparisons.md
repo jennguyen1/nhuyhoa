@@ -61,7 +61,7 @@ $$P(\cap^r_{i=1} A_i) = 1 - P(\cup^r_{i=1} A^c_i) \ge 1 - \Sigma^r_{i = 1} P(A^c
 
 We wish to control the family-wise Type 1 error rate, the probability of making one or more Type 1 errors in a family/set of tests. We can set 
 
-$$\alpha = FWER$$ 
+$$\alpha = FWER = P(reject any H_0 | H_0)$$ 
 
 by setting $$P(A^c_i) = \alpha / r$$.
 
@@ -156,7 +156,7 @@ This method states that for large $$r$$, we do not expect all the null hypothese
 
 $$\alpha = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 0 \right)$$
 
-the expected proportion of Type 1 errors (false positives) among the rejected hypotheses.
+the expected proportion of Type 1 errors (false positives) among the rejected hypotheses. FDR cuts you some slack for making correct rejections; by correctly rejecting a certain number of hypothesis, it gives you a pass for one incorrect rejection.
 
 This method is the Benjamini and Hochberg method. This procedure requires the tests to be independent. The procedure may control FDR for certain types of correlation, but may fail for highly correlated data. (This procedure is more powerful than the Bonferroni-Holmes procedure).
 
@@ -165,17 +165,6 @@ The p-value for an individual test is
 $$p_{BH(i)} = min \left( \frac{rp_{(i)}}{i}, 1 \right)$$
 
 Let $$\alpha$$ be the FDR. Let $$k$$ be the largest $$i$$ for which $$p_{(i)} \le \frac{i}{r}\alpha$$. Then we reject tests with p-values smaller or equal to $$p_{(k)}$$. This is illustrated in the plot below ($$\alpha = 0.05$$)
-
-
-{% highlight text %}
-## Warning: Removed 710 rows containing missing values (geom_point).
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Warning: Removed 710 rows containing missing values (geom_path).
-{% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2016-02-02-Multiple-Comparisons/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 

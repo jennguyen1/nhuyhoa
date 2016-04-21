@@ -14,9 +14,7 @@ lib(data, viz)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
-# ANOVA
-
-**Assumptions**
+**ANOVA Assumptions**
 
 Regardless of the type, ANOVAs have the same assumptions:
 
@@ -24,10 +22,10 @@ Regardless of the type, ANOVAs have the same assumptions:
 2. Normality: $$Y_{ij} \sim N(\mu_i, \sigma^2_i)$$
 3. Equal Variance: $$\sigma^2_1 = ... = \sigma^2_k$$
 
-## Factorial Designs
+# Factorial Designs
 Factorial designs refer to designs in which all possible combinations of factors are applied to the experimental units.
 
-### Completely Randomized Single Factor ANOVA 
+## Completely Randomized Single Factor ANOVA 
 
 **Model Formulations**
 
@@ -62,7 +60,7 @@ Total | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2$$ | $$kn-1
  
 where $$F \sim F_{dfTrt, dfErr}$$. When $$F$$ is large, we say that the group effect is large so we reject the null hypothesis that the groups are the same.
 
-We can derive this distribution from [probability theory][stat_theory_link]{:target = "_blank"}. The value $$\frac{df * MS}{\sigma^2}$$ is distributed $$X^2$$. So 
+The value $$\frac{df * MS}{\sigma^2}$$ is distributed $$X^2$$. So 
 
 $$F = \frac{ \frac{df * MS}{\sigma^2} / df }{ \frac{dfErr * MSErr}{\sigma^2} / dfErr } = \frac{ MSTrt }{ MSErr }$$ 
 
@@ -74,7 +72,7 @@ $$\frac{E[MSTrt]}{E[MSE]} = 1 + \frac{1}{k - 1} \frac{n \sum^k_i \alpha^2_i}{\si
 
 Note that if $$\sum \alpha_i \approx 0$$, then this ratio $$\approx 1$$. The power of the $$F$$ test is a monotone function of $$\frac{n \sum^k_i \alpha^2_i}{\sigma^2_{\epsilon}}$$.
 
-### Completely Randomized Two Factor ANOVA
+## Completely Randomized Two Factor ANOVA
 
 **Model Formulations**
 
@@ -113,7 +111,7 @@ Let $$\bar{ab}$$ denote the mean of the high-high group, $$\bar{a}$$ denote the 
 
 We can assess these effects by generating an interaction plot. By assessing the trends and parallelism of lines, we can determine whether there may be evidence of an interaction effect. We can also test these effects with a contrast test.
 
-### Completely Randomized Three Factor ANOVA
+## Completely Randomized Three Factor ANOVA
 
 **Model Formulations**
 
@@ -163,7 +161,7 @@ For contrasts, we have
 
 We can assess these effects by generating an interaction plot. We can also test these effects with a contrast test.
 
-### Randomized Complete Block Design (One Factor) ANOVA
+## Randomized Complete Block Design (One Factor) ANOVA
 
 Blocking is a generalization of the paired analysis in t-tests. We expect there to be block to block variability, a nuisance factor. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
 
@@ -201,7 +199,7 @@ We notice several things from this table. One is that this table is reminiscent 
 
 Thus RCBD with one factor is the same as a completely randomized two-factor ANOVA where $$n = 1$$.
 
-### Randomized Complete Block Design (Two Factor) ANOVA
+## Randomized Complete Block Design (Two Factor) ANOVA
 
 **Model Formulations**
 
@@ -229,7 +227,7 @@ Error | $$(b-1)(ac-1)$$
 
 Again, notice that the $$df$$ for the error can be rewritten as $$(b-1)(ac-1) = (a - 1)(b - 1)(c - 1) + (b - 1)(c - 1) + (a - 1)(b - 1)$$. This is the pooled $$df$$ from the $$AB$$, $$BC$$, and $$ABC$$ interaction; we assume there are no interactions with block and use those terms as the error. 
 
-### Latin Squares
+## Latin Squares
 
 Latin squars are experimental designs that block in two directions. These designs require the number of row blocks = number of column blocks = number of treatment levels. 
 
@@ -260,9 +258,9 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$k^2 - 1$$
 
 We can assess the effect of treatment with an $$F$$ test with the error in the denominator. 
 
-## Random Effects and Mixed Models
+# Random Effects and Multilevel Models
 
-### Simple Random Effect Model
+## Simple Random Effect Model
 
 **Model Formulations**
 
@@ -314,7 +312,7 @@ $$Var(\bar{y}_{..})$$ | $$= Var(\mu + \hat{A}_. + \hat{\epsilon})$$
                 
 Note that $$Var(\bar{y}_{..})$$ $$\rightarrow 0$$ as $$k \rightarrow \infty$$ and $$\rightarrow \sigma^2_{\epsilon} / k$$ as $$n \rightarrow \infty$$. Thus it is better to increase the number of experimental units rather than the number of subsamples. 
 
-### Models with Subsampling
+## Models with Subsampling
 
 To understand models with subsampling, we define the following:
 
@@ -475,5 +473,3 @@ Total  | $$abc-1$$ |
 
 Notice that the $$df$$ for the wholeplot error is essentially the interaction between $$AB$$. The $$df$$ for the subplot error can be rewritten as $$a(b-1)(c-1) = (b-1)(c-1) + (a-1)(b-1)(c-1)$$. These are the pooled $$df$$ from the $$BC$$ and $$ABC$$ interaction. 
 
-
-[stat_theory_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/Distribution-Facts.html

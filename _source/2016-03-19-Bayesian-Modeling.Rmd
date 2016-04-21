@@ -557,6 +557,7 @@ Graphical summaries of model fits work well with the outputs generated from Stan
 
 * Point estimates and 95% credible regions of estimated coefficients 
 * Distributions of varying slopes/intercepts
+* Residual plots
 * Other plots of simulated results; simulated via bayesian method (simulate parameters and then the posterior) or bootstrap
 
 We can compare models with

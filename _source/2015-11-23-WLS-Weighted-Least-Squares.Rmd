@@ -42,20 +42,20 @@ $$\left[\begin{array}
 $$
 
 # Weighted Least Squares
-So to alleviate this problem we let $$w_i = 1 / \sigma^2_i$$ and define a matrix 
+So to alleviate this problem we define a matrix 
 
 $$\mathbf{W} = \left[\begin{array}
 {rrr}
-w_1 & 0 & ... & 0 \\
-0 & w_2 & ... & 0 \\
+\sigma^2_1 & 0 & ... & 0 \\
+0 & \sigma^2_2 & ... & 0 \\
 ... & ... & ... & ... \\
-0 & 0 & ... & w_p
+0 & 0 & ... & \sigma^2_p
 \end{array}\right]
 $$
 
 The WLS estimate is then
 
-$$ \hat{\beta}_{WLS} = (X'WX)^{-1} X' W Y $$
+$$ \hat{\beta}_{WLS} = (X'W^{-1} X)^{-1} X' W^{-1} Y $$
 
 # Estimating Weights
 We have several options for estimating the weights.
