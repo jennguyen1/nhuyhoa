@@ -475,57 +475,5 @@ Total  | $$abc-1$$ |
 
 Notice that the $$df$$ for the wholeplot error is essentially the interaction between $$AB$$. The $$df$$ for the subplot error can be rewritten as $$a(b-1)(c-1) = (b-1)(c-1) + (a-1)(b-1)(c-1)$$. These are the pooled $$df$$ from the $$BC$$ and $$ABC$$ interaction. 
 
-## Statistical Software
-
-In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands. Confirm that the predictors are factors.
-
-In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands.
-
-```{r, eval = FALSE}
-proc glm;
-  # these are the categorical variables
-  class x1 x2; 
-  # model statement with option for no intercept, Type 1 SS, Type 3 SS
-  model y = x1 x2 x1*x2 / noint e1 e3; 
-  # conducts a test on x1 factor using interaction as error (useful for mixed models)
-  test h = x1 e = x1*x2; 
-  random x1*x2 / test;
-
-  # lsmeans and pairwise comparisons/contrasts
-  lsmeans x1 x2 / tdiff pdiff cl adjust = tukey;
-  # can also define contrasts
-  contrast "name" x1 1 1 -1 -1 / e;
-  # output the model diagnostics for plotting and whatnot
-  output out = outfile p = yhat r = resid rstudent = rstud;
-run;
-```
-
-Some notes on terms
-
-* Type 1 SS takes takes into account fitting order given by model
-* Type 3 SS is the SS of that variable when fit last
-* LSMEANS is the mean after other variables in the model has been accounted for (blocks, etc)
-* If there are missing data or unbalanced designs, it is best to use Type 3 SS and LSMEANS
-
-```{r, eval = FALSE}
-# Fitting Mixed Models: 2 ways
-
-proc glm;
-  class wholeplot subplot;
-  model y = A B A*B field(A); 
-  random field(A) / test; 
-run;
-
-proc mixed method = type3;
-  class A B Field;
-  model response = A B A*B;
-  random field(A);
-run;
-```
-
-Some notes on terms
-
-* `b(a)` means $$b$$ is nested within $$a$$
-* `proc glm` requires the plot error to be in the model term as well as the random term, `proc mixed` doesn't
 
 [stat_theory_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/Distribution-Facts.html

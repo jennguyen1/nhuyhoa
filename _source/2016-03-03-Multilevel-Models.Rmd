@@ -251,11 +251,13 @@ As with regular regression, we can perform transformations for more effective fi
 
 Multilevel models may also be used creatively to assess a variety of effects. For example, consider a scenario where you have a number of variables that mostly measure the same thing. You can use all of the variables by combining them into a weighted average. The weighted average term would be something along the lines of $$\frac{1}{n} \sum^n_i \beta_{ij} * x_{j}$$. 
 
-# Generalized Linear Multilevel Models
+## Generalized Linear Multilevel Models
 
 We can easily extend the fitting of multilevel models to glms.
 
 In R, we can fit these models with `lmer()` or `glmer()`. 
+
+# Fitting Models with REML
 
 # In R
 

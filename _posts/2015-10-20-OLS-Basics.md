@@ -42,6 +42,13 @@ $$max \frac{-1}{2 \sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$
 which is equivalent to minimizing the $$SSE$$ (proportional)
 $$min \Sigma_i (y_i - \theta^T x_i)^2$$
 
+**Over-Parametrized Model Fitting**
+
+In some cases, the $$X$$ matrix may be overparametrized. This leads to non-invertible $$X'X$$ matrix. There are a number of ways to deal with this
+
+* Reparametrize: drop column like in R
+* Generalized inverse: generate a matrix that has similar properties to the invertible matrix and can thus be used in fitting the model; used in SAS
+
 # Estimating Variance: Sum Square Errors
 The residual is $$r = Y - \hat{Y} = Y - X\hat{\beta}$$.
 
@@ -131,7 +138,7 @@ c(B)
 
 
 {% highlight text %}
-## [1] -0.2787536  0.0769622 -0.4379665  0.1091020
+## [1] -0.28576066  0.08001271 -0.19593725  0.06044689
 {% endhighlight %}
 
 
@@ -146,6 +153,6 @@ c(coef)
 
 {% highlight text %}
 ## (Intercept)          x1          x2          x3 
-##  -0.2787536   0.0769622  -0.4379665   0.1091020
+## -0.28576066  0.08001271 -0.19593725  0.06044689
 {% endhighlight %}
 

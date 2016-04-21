@@ -61,7 +61,65 @@ There are a number of ways to do this:
 * Assume that if none of the effects are significant, the estimated effects $$\sim iidN(0, \frac{4\sigma^2_{\epsilon}}{2^k})$$. Make a QQ-plot of estimated effects and those effects not on the QQ-line are significant
 
 ## ANOVAs as Regression
-We can treat ANOVAs as regressions and analyze data that way. This lets us deal with issues such as unbalanced groups. We can assess effects by comparing full and reduced models. 
+There are many advantages of treating ANOVAs as Regression
+
+* Incorporate continuous data that may be important
+* Handle unbalanced groups and missing data
+* Use Type 3 SS and lsmeans (which consider other variables in model first) to assess factor effects
+* Can assess effects by comparing full and reduced models
+
+## Statistical Software
+
+In R, ANOVA can be fit with the `lm()` and `anova()` or `aov()` commands. Confirm that the predictors are factors.
+
+In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands.
+
+```{r, eval = FALSE}
+proc glm;
+  # these are the categorical variables
+  class x1 x2; 
+  # model statement with option for no intercept, Type 1 SS, Type 3 SS
+  model y = x1 x2 x1*x2 / noint e1 e3; 
+  # conducts a test on x1 factor using interaction as error (useful for mixed models)
+  test h = x1 e = x1*x2; 
+  random x1*x2 / test;
+
+  # lsmeans and pairwise comparisons/contrasts
+  lsmeans x1 x2 / tdiff pdiff cl adjust = tukey;
+  # can also define contrasts
+  contrast "name" x1 1 1 -1 -1 / e;
+  # output the model diagnostics for plotting and whatnot
+  output out = outfile p = yhat r = resid rstudent = rstud;
+run;
+```
+
+Some notes on terms
+
+* Type 1 SS takes takes into account fitting order given by model
+* Type 3 SS is the SS of that variable when fit last
+* LSMEANS is the mean after other variables in the model has been accounted for (blocks, etc)
+* If there are missing data or unbalanced designs, it is best to use Type 3 SS and LSMEANS
+
+```{r, eval = FALSE}
+# Fitting Mixed Models: 2 ways
+
+proc glm;
+  class wholeplot subplot;
+  model y = A B A*B field(A); 
+  random field(A) / test; 
+run;
+
+proc mixed method = type3;
+  class A B Field;
+  model response = A B A*B;
+  random field(A);
+run;
+```
+
+Some notes on terms
+
+* `b(a)` means $$b$$ is nested within $$a$$
+* `proc glm` requires the plot error to be in the model term as well as the random term, `proc mixed` doesn't
 
 # Nonparametric Tests and Equal Variance Tests
 

@@ -81,48 +81,35 @@ anova(m)
 ## Residuals            144 16.301   0.113
 {% endhighlight %}
 
-The ANOVA table presents the sums of square contributions of covariates to the model. The ANOVA table is dependent on the ordering of covariates in the model formula. For example to interpret the entry for Species, we say that after $$Petal.Length$$ has been taken into consideration, the variance accounted for by $$Species$$ is signficantly greater than the variance of the error. If we were to order the covariates differently in the model formulation, we would see different values in the ANOVA table. 
+The ANOVA table presents the sums of square contributions of covariates to the model. The ANOVA table is dependent on the ordering of covariates in the model formula. For example to interpret the entry for Species, we say that after $$Petal.Length$$ has been taken into consideration, the variance accounted for by $$Species$$ is signficantly greater than the variance of the error. If we were to order the covariates differently in the model formulation, we would see different values in the ANOVA table. This is known as the **Type I SS ANOVA** table, which takes into account the order.
+
+There is also **Type III SS ANOVA** table, which displays the effects when other variables have been accounted for (when fit last). 
+
+
+{% highlight r %}
+drop1(m, ~ ., test = "F")
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Single term deletions
+## 
+## Model:
+## Sepal.Length ~ Petal.Length * Species
+##                      Df Sum of Sq    RSS     AIC F value    Pr(>F)
+## <none>                            16.301 -320.91                  
+## Petal.Length          1   0.43459 16.735 -318.97  3.8392    0.0520
+## Species               2   2.89913 19.200 -300.36 12.8054 7.611e-06
+## Petal.Length:Species  2   0.38098 16.682 -321.45  1.6828    0.1895
+{% endhighlight %}
+
 
 Note the similarities between the summary table and the ANOVA table. 
 
 * $$MSE = 0.113$$ in the ANOVA table. Take its square root and we see that it equals the residual standard error = $$0.336$$ of the summary table. The degrees of freedom are the same. 
 * Compute $$F = \frac{\Sigma SS_R / \Sigma df_R}{SS_E/df_E} = \frac{85.867/5}{16.301/144} = 151.7 $$ on $$5$$ and $$144$$ degrees of freedom. This is equivalent to the $$F$$ statistic given in the summary table.
-* While it's not evident in this model (due to the factors being in the model), the $$F$$ value of the last covariate in the ANOVA table is equal to the $$t$$ value in summary table to the $$2^{nd}$$ power. 
-
-
-{% highlight r %}
-m2 <- lm(Sepal.Length ~ Petal.Length + Sepal.Width, data = iris)
-summary(m2)$coefficients %>% round(3)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##              Estimate Std. Error t value Pr(>|t|)
-## (Intercept)     2.249      0.248   9.070        0
-## Petal.Length    0.472      0.017  27.569        0
-## Sepal.Width     0.596      0.069   8.590        0
-{% endhighlight %}
-
-
-
-{% highlight r %}
-anova(m2)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Analysis of Variance Table
-## 
-## Response: Sepal.Length
-##               Df Sum Sq Mean Sq F value    Pr(>F)
-## Petal.Length   1 77.643  77.643 698.985 < 2.2e-16
-## Sepal.Width    1  8.196   8.196  73.787 1.163e-14
-## Residuals    147 16.329   0.111
-{% endhighlight %}
-
-In this example, we see that the square of the $$t$$ value for $$Sepal.Width$$ = $$ 8.59^2 = 78.78 $$ which is equal to the $$F$$ value for $$Sepal.Width$$. The interpretation of the $$t$$ value in the summary table is effect of the variable after all other covariates have been accounted for. This is reflected in the ANOVA table, where $$Sepal.Width$$ is the last variable. 
+* The $$F$$ value of $$Petal.Length$$ from the Type III ANOVA table is equal to $$t^2$$ of $$Petal.Length$$ from the summary table. Both of these correspond to the effect when it is fit last
 
 # Comparing Models
 Suppose we want to compare 2 models, where one is nested in the other. Let $$R$$ correspond to the reduced model with $$p - q$$ parameters. Let $$F$$ correspond to the full model with $$p$$ parameters. Then we can compare the two models with a test statistic

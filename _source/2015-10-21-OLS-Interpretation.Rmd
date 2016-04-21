@@ -172,7 +172,7 @@ This is essentially the same equations as the previous model.
 It is important to note even though both models generate similar regression lines, the overall model diagnostics ($$R^2$$, F statistic) will be different because the model is different.
 
 ## Interaction Terms
-An interaction relates to the relationship among 2 or more variables. It occurs when the simultaneous influence of two variables on a third is not additive. In other words, the effect of one predictor on the response is different for different levels of another predictor. When interactions are significant we cannot just interpret the main effect, we must consider them together.
+An interaction relates to the relationship among 2 or more variables. It occurs when the simultaneous influence of two variables on a third is not additive. In other words, the effect of one predictor on the response is different for different levels of another predictor. When interactions are significant we cannot just interpret the main effect alone, we must consider the interaction term. This is known as the **hierarchical principle**. 
 
 Consider the example above. We see that the effect of $$Petal.Length$$ on $$Sepal.Length$$ are the same for every $$Species$$, ie the slopes are the same. In this case, we say that there is no (significant) interaction between $$Species$$ and $$Petal.Length$$. If the slopes were different, we would conclude that the effect of $$Petal.Length$$ on $$Sepal.Length$$ were different for different species.
 
