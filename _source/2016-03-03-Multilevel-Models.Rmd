@@ -21,7 +21,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 
 Models containing multiple variance components can be estimated using REML (restricted maximum likelihood). It has the advantage of obtaining unbiased estimates of the variance components (MLE estimates tend to be biased down). Once variance estimates are obtained, the fixed effects can be estimated using generalized least squares (similar to weighted least squares).
 
-REML works by 
+REML estimates variance components by 
 
 1. Fit a model with fixed effects, ignoring any variance components
 2. Obtain the regression residuals for observations modeled above (residuals only contain aspects of random effects and error)
@@ -270,9 +270,9 @@ We can easily extend the fitting of multilevel models to glms.
 
 In R, we can fit these models with `lmer()` or `glmer()`. 
 
-# In R
+# Statistical Software
 
-## Viewing Results
+## Viewing Results in R
 
 We can use the following commands to view results and estimates.
 
@@ -307,3 +307,20 @@ If we want to predict a data point for a given group, we use the estimated group
 If we want to predict a data point for a new group, we conduct a two-step simulation. First we simulate the group estimate using its predictors and the error term $$\sigma^2_a$$. We then use these estimates to predict $$y$$ along with its own error terms $$\sigma^2_y$$. The variance of these predictions are $$\sigma^2_a + \sigma^2_y$$. The ability to obtain predictions for new groups is a great advantage for multilevel models.
 
 The simulation procedure detailed above is done on a Bayesian approach. We can also simulate data from a bootstrapping approach. Simulations are useful to obtain predictions, standard error estimates, etc.
+
+## Fitting in SAS and Residuals
+
+In SAS, mixed models can be fit with the `proc mixed` procedure. 
+
+```{r, eval = FALSE}
+proc mixed;
+  class a;
+  model y = / outp = cond_resids outpm = marginal_resids;
+  random a;
+run;
+```
+
+The model above fits a simple random effect model $$Y_{ij} = \mu + A_i + \epsilon_{ij}$$ where $$A_i \sim N(0, \sigma^2_a)$$ and $$\epsilon \sim N(0, \sigma^2_e)$$. It outputs two sets of residuals
+
+* `outp`: $$Y - X\hat{\beta} - Z\hat{b}$$
+* `outpm`: $$Y - X\hat{\beta}$$

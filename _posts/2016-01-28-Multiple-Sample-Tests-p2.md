@@ -107,7 +107,7 @@ proc glm;
   random field(A) / test; 
 run;
 
-proc mixed method = type3;
+proc mixed;
   class A B Field;
   model response = A B A*B;
   random field(A);
