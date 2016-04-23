@@ -10,6 +10,16 @@ categories: ['statistics', 'regression analysis']
 
 
 
+Multilevel models can be written as
+
+$$Y = X\beta + Zb + \epsilon$$
+
+where $$X\beta$$ represents the fixed effects variables and $$Zb$$ represents the random effects variables. We also have $$b \sim N(0, G)$$ and $$\epsilon \sim N(0, R)$$. Thus we have
+
+$$E[Y] = X\beta$$
+
+$$Var(Y) = ZGZ' + R = V$$
+
 # Fitting Models
 
 Models containing multiple variance components can be estimated using REML (restricted maximum likelihood). It has the advantage of obtaining unbiased estimates of the variance components (MLE estimates tend to be biased down). Once variance estimates are obtained, the fixed effects can be estimated using generalized least squares (similar to weighted least squares).
@@ -272,10 +282,18 @@ In SAS, mixed models can be fit with the `proc mixed` procedure.
 
 
 {% highlight r %}
+# mixed model with random effect a
 proc mixed;
   class a;
   model y = / outp = cond_resids outpm = marginal_resids;
   random a;
+run;
+
+# random intercept model
+proc mixed; 
+  class Person Gender;
+  model y = Person Gender;
+  random intercept Age / type=un subject=Person g;
 run;
 {% endhighlight %}
 

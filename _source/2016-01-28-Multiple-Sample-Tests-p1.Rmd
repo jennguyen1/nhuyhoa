@@ -25,7 +25,9 @@ Regardless of the type, ANOVAs have the same assumptions:
 # Factorial Designs
 Factorial designs refer to designs in which all possible combinations of factors are applied to the experimental units.
 
-## Completely Randomized Single Factor ANOVA 
+## Completely Randomized Design (CRD)
+
+### Single Factor ANOVA 
 
 **Model Formulations**
 
@@ -72,7 +74,7 @@ $$\frac{E[MSTrt]}{E[MSE]} = 1 + \frac{1}{k - 1} \frac{n \sum^k_i \alpha^2_i}{\si
 
 Note that if $$\sum \alpha_i \approx 0$$, then this ratio $$\approx 1$$. The power of the $$F$$ test is a monotone function of $$\frac{n \sum^k_i \alpha^2_i}{\sigma^2_{\epsilon}}$$.
 
-## Completely Randomized Two Factor ANOVA
+### Two Factor ANOVA
 
 **Model Formulations**
 
@@ -111,7 +113,7 @@ Let $$\bar{ab}$$ denote the mean of the high-high group, $$\bar{a}$$ denote the 
 
 We can assess these effects by generating an interaction plot. By assessing the trends and parallelism of lines, we can determine whether there may be evidence of an interaction effect. We can also test these effects with a contrast test.
 
-## Completely Randomized Three Factor ANOVA
+### Three Factor ANOVA
 
 **Model Formulations**
 
@@ -161,7 +163,9 @@ For contrasts, we have
 
 We can assess these effects by generating an interaction plot. We can also test these effects with a contrast test.
 
-## Randomized Complete Block Design (One Factor) ANOVA
+## Randomized Complete Block Design (RCBD)
+
+### One Factor ANOVA
 
 Blocking is a generalization of the paired analysis in t-tests. We expect there to be block to block variability, a nuisance factor. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
 
@@ -199,7 +203,7 @@ We notice several things from this table. One is that this table is reminiscent 
 
 Thus RCBD with one factor is the same as a completely randomized two-factor ANOVA where $$n = 1$$.
 
-## Randomized Complete Block Design (Two Factor) ANOVA
+### Two Factor ANOVA
 
 **Model Formulations**
 
@@ -227,7 +231,7 @@ Error | $$(b-1)(ac-1)$$
 
 Again, notice that the $$df$$ for the error can be rewritten as $$(b-1)(ac-1) = (a - 1)(b - 1)(c - 1) + (b - 1)(c - 1) + (a - 1)(b - 1)$$. This is the pooled $$df$$ from the $$AB$$, $$BC$$, and $$ABC$$ interaction; we assume there are no interactions with block and use those terms as the error. 
 
-## Latin Squares
+### Latin Squares
 
 Latin squars are experimental designs that block in two directions. These designs require the number of row blocks = number of column blocks = number of treatment levels. 
 
@@ -259,6 +263,16 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$k^2 - 1$$
 We can assess the effect of treatment with an $$F$$ test with the error in the denominator. 
 
 # Random Effects and Multilevel Models
+
+Multilevel models can be written as
+
+$$Y = X\beta + Zb + \epsilon$$
+
+where $$X\beta$$ represents the fixed effects variables and $$Zb$$ represents the random effects variables. We also have $$b \sim N(0, G)$$ and $$\epsilon \sim N(0, R)$$. Thus we have
+
+$$E[Y] = X\beta$$
+
+$$Var(Y) = ZGZ' + R = V$$
 
 ## Simple Random Effect Model
 
@@ -332,7 +346,7 @@ $$\bar{Y}_{ij.} = \mu + \alpha_i + \epsilon_{ij} + \bar{\delta}_{ij.} = \mu + \a
 
 Models with subsampling are essentially the same as models that average those subsamples for each experimental unit. Thus even though the $$SS$$ and $$MS$$ for these models are different, the $$F$$ statistic, degrees of freedom, and p-value for effects are all the same. If we decide not to average subsamples, we need to appropriately account for them. 
 
-### Completely Randomized Design with Subsampling
+### CRD with Subsampling
 
 Consider an experiment where the treatments are fixed but we take subsamples which are random. This is an example of a mixed model.
 
@@ -367,7 +381,7 @@ To calculate the differences of mean $$y$$ for different treatments, we can calc
 
 $$Var(\bar{y}_{i..} - \bar{y}_{i'..}) = MSPE \left(\frac{1}{ns} + \frac{1}{ns} \right)$$
 
-### Randomized Complete Block Design with Subsampling
+### RCBD with Subsampling
 
 **Model Formulations**
 
@@ -395,17 +409,11 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kbs-1$$ | |
 
 Notice that the degrees of freedom for the whole plot error can also be considered the interaction between $$A$$ and $$B$$. This is because we assume no interaction and those degrees of freedom are transferred to the error. 
 
-## Many Options of Mixed Models
-
-We can have any number of designs (fixed, random, mixed, factorial, nested) with any number of factors. Different designs will lead to different $$F$$ tests. It is important to look at $$E[MS]$$ to determine the appropriate $$F$$ test construction. 
-
-For fixed effects $$\sum effect = 0$$ and for random effects ~ $$N(0, \sigma^2)$$.
-
 ## Split Plot Designs
 
 Split plot designs refer to experiments where multiple treatments are applied in a sequence. The levels of the first factor are randomly applied to experimental units. Then the levels of the second factor are applied to subunits within the application of the first factor. Another way to look at this is that an experimental unit used in the first factor is split to generate experimental units for the second factor. Think of it as each plot level being its own experiment. 
 
-### Completely Randomized Split Plot Design
+### CRD Split Plot
 
 **Model Formulations**
 
@@ -444,7 +452,7 @@ We can obtain the following variance estimates for comparisons
 * Comparisons of subplot treatment means: $$Var(\bar{Y}_{..1} - \bar{Y}_{..1}) = \frac{2\sigma^2_{\delta}}{ab}$$
 
 
-### Randomized Complete Block Split Plot Designs
+### RCBD Split Plot 
 
 **Model Formulations**
 
@@ -473,3 +481,86 @@ Total  | $$abc-1$$ |
 
 Notice that the $$df$$ for the wholeplot error is essentially the interaction between $$AB$$. The $$df$$ for the subplot error can be rewritten as $$a(b-1)(c-1) = (b-1)(c-1) + (a-1)(b-1)(c-1)$$. These are the pooled $$df$$ from the $$BC$$ and $$ABC$$ interaction. 
 
+## Repeated Measures Designs
+
+Repeated measures is when repeated measurements are made on an experimental unit. It can be thought of as a split plot design with time being the subplot error. Repeated measure designs are a smaller/reduced version of time series. Because of the repeated measures, the observations are no longer independent and there are correlations in residual errors among the time periods. 
+
+To fit repeated measures, we have to specify the covariance structure. To determine the best covariance structure, compare model using model statistics such as AIC or BIC. 
+
+## Variance Components VC
+
+$$\left[\begin{array}
+{rrr}
+\sigma^2_1 & 0 & 0 & 0 \\
+0 & \sigma^2_1 & 0 & 0 \\
+0 & 0 & \sigma^2_1 & 0 \\
+0 & 0 & 0 & \sigma^2_1
+\end{array}\right]
+$$
+
+The variance components structure assumes that the error correlation within a subject is 0. This structure is the assumed structure for mixed models, but is not appropriate for repeated measures design. 
+
+## Compound Symmetry CS
+
+$$ \sigma^2 \left[\begin{array}
+{rrr}
+1.0 & \rho & \rho & \rho \\
+ & 1.0 & \rho & \rho \\
+ &  & 1.0 & \rho \\
+ &  &  & 1.0
+\end{array}\right] 
+= \left[\begin{array}
+{rrr}
+\sigma^2_b + \sigma^2_e & \sigma^2_b & \sigma^2_b & \sigma^2_b \\
+ & \sigma^2_b + \sigma^2_e & \sigma^2_b & \sigma^2_b \\
+ &  & \sigma^2_b + \sigma^2_e & \sigma^2_b \\
+ &  &  & \sigma^2_b + \sigma^2_e
+\end{array}\right]
+$$
+
+The compound symmetry covariance structure has correlated errors between time points within subjects. The correlations are assumed to be the same for each set of times, regardless of distance in time of the repeated measures. 
+
+## First Order Autoregressive AR(1)
+
+$$ \sigma^2 \left[\begin{array}
+{rrr}
+1.0 & \rho & \rho^2 & \rho^3 \\
+ & 1.0 & \rho & \rho^2 \\
+ &  & 1.0 & \rho \\
+ &  &  & 1.0
+\end{array}\right] 
+$$
+
+The autoregressive (lag 1) structure sets corelation to be highest for adjacent time points and systematically decreases correlation with increasing distance between time points. This structure is appropriate for evenly spaced time intervals. 
+
+## Spatial Power SP(POW)
+
+$$ \sigma^2 \left[\begin{array}
+{rrr}
+1.0 & \rho^{\frac{\vert t_1 - t_2 \vert}{\vert t_1 - t_2 \vert}} & \rho^{\frac{\vert t_1 - t_3 \vert}{\vert t_1 - t_2 \vert}} & \rho^{\frac{\vert t_1 - t_4 \vert}{\vert t_1 - t_2 \vert}} \\
+ & 1.0 & \rho^{\frac{\vert t_2 - t_3 \vert}{\vert t_1 - t_2 \vert}} & \rho^{\frac{\vert t_2 - t_4 \vert}{\vert t_1 - t_2 \vert}} \\
+ &  & 1.0 & \rho^{\frac{\vert t_3 - t_4 \vert}{\vert t_1 - t_2 \vert}} \\
+ &  &  & 1.0
+\end{array}\right] 
+$$
+
+The spatial power covariance structure is appropriate for non-evenly spaced time intervals. This structure raises the correlation to a power that accounts for the time differences. The data should express time as a quantitative value. If time intervals are evenly space, the spatial power structure will match the first order autoregressive structure. 
+
+## Unstructured Covariance UN
+
+$$\left[\begin{array}
+{rrr}
+\sigma^2_1 & \sigma_{12} & \sigma_{13} & \sigma_{14} \\
+ & \sigma^2_2 & \sigma_{23} & \sigma_{24} \\
+ &  & \sigma^2_3 & \sigma_{34} \\
+ &  &  & \sigma^2_4
+\end{array}\right]
+$$
+
+The unstructured covariance structure estimates a unique correlation for each pair of time points. Since there are many parameters, it may be difficult to estimate this structure. 
+
+# Many Options of Mixed Models
+
+We can have any number of designs (fixed, random, mixed, factorial, nested) with any number of factors. Different designs will lead to different $$F$$ tests. In some cases software may be wrong, so it is important to confirm that the degrees of freedom is correct. Then use the $$df$$ and $$E[MS]$$ to determine the approparite $$F$$ test. 
+
+For fixed effects $$\sum effect = 0$$ and for random effects ~ $$N(0, \sigma^2)$$.

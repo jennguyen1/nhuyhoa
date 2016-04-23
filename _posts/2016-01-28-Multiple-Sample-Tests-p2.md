@@ -72,6 +72,7 @@ In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands.
 
 
 {% highlight r %}
+# for regular models
 proc glm;
   # these are the categorical variables
   class x1 x2; 
@@ -99,18 +100,26 @@ Some notes on terms
 
 
 {% highlight r %}
-# Fitting Mixed Models: 2 ways
-
-proc glm;
-  class wholeplot subplot;
-  model y = A B A*B field(A); 
-  random field(A) / test; 
-run;
-
+# for mixed models
 proc mixed;
   class A B Field;
-  model response = A B A*B;
+  model y = A B A*B;
   random field(A);
+run;
+
+# for repeated measure models
+proc mixed;
+  class Person Gender Age;
+  model y = Gender Age Gender*Age;
+  repeated / type = cs subject = Person;
+  # repeated / type = ar(1) subject = Person;
+run;
+
+# random slope and intercept
+proc mixed;
+  class Person Gender;
+  model y = Gender Age;
+  random intercept Age / type = un subject = Person g;
 run;
 {% endhighlight %}
 
