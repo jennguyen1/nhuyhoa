@@ -481,9 +481,9 @@ Notice that the $$df$$ for the wholeplot error is essentially the interaction be
 
 Repeated measures is when repeated measurements are made on an experimental unit. It can be thought of as a split plot design with time being the subplot error. Repeated measure designs are a smaller/reduced version of time series. Because of the repeated measures, the observations are no longer independent and there are correlations in residual errors among the time periods. 
 
-To fit repeated measures, we have to specify the covariance structure. To determine the best covariance structure, compare model using model statistics such as AIC or BIC. 
+To fit repeated measures, we have to specify the covariance structure for $$\epsilon$$, specifically the correlations between measurements within an individual. To determine the best covariance structure, compare model using model statistics such as AIC or BIC. 
 
-## Variance Components VC
+### Variance Components VC
 
 $$\left[\begin{array}
 {rrr}
@@ -496,7 +496,7 @@ $$
 
 The variance components structure assumes that the error correlation within a subject is 0. This structure is the assumed structure for mixed models, but is not appropriate for repeated measures design. 
 
-## Compound Symmetry CS
+### Compound Symmetry CS
 
 $$ \sigma^2 \left[\begin{array}
 {rrr}
@@ -516,7 +516,7 @@ $$
 
 The compound symmetry covariance structure has correlated errors between time points within subjects. The correlations are assumed to be the same for each set of times, regardless of distance in time of the repeated measures. 
 
-## First Order Autoregressive AR(1)
+### First Order Autoregressive AR(1)
 
 $$ \sigma^2 \left[\begin{array}
 {rrr}
@@ -529,7 +529,7 @@ $$
 
 The autoregressive (lag 1) structure sets corelation to be highest for adjacent time points and systematically decreases correlation with increasing distance between time points. This structure is appropriate for evenly spaced time intervals. 
 
-## Spatial Power SP(POW)
+### Spatial Power SP(POW)
 
 $$ \sigma^2 \left[\begin{array}
 {rrr}
@@ -542,7 +542,7 @@ $$
 
 The spatial power covariance structure is appropriate for non-evenly spaced time intervals. This structure raises the correlation to a power that accounts for the time differences. The data should express time as a quantitative value. If time intervals are evenly space, the spatial power structure will match the first order autoregressive structure. 
 
-## Unstructured Covariance UN
+### Unstructured Covariance UN
 
 $$\left[\begin{array}
 {rrr}

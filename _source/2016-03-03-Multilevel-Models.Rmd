@@ -8,7 +8,7 @@ categories: ['statistics', 'regression analysis']
 * TOC
 {:toc}
 
-```{r, echo = FALSE, message = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(jn.general)
 lib(data, viz)
 library(broom)
@@ -29,17 +29,21 @@ $$Var(Y) = ZGZ' + R = V$$
 
 # Fitting Models
 
-Models containing multiple variance components can be estimated using REML (restricted maximum likelihood). It has the advantage of obtaining unbiased estimates of the variance components (MLE estimates tend to be biased down). Once variance estimates are obtained, the fixed effects can be estimated using generalized least squares (similar to weighted least squares).
-
-REML estimates variance components by 
+Models containing multiple variance components can be estimated using REML (restricted maximum likelihood). It has the advantage of obtaining unbiased estimates of the variance components (MLE estimates tend to be biased down). The process goes like this
 
 1. Fit a model with fixed effects, ignoring any variance components
 2. Obtain the regression residuals for observations modeled above (residuals only contain aspects of random effects and error)
-3. MLE on residuals to get estimates of variance components, using $$N - p$$ as the denominator (ie taking into account FE parameters and unbiasing error variance)
+3. MLE on residuals to get estimates of variance components $$\hat{\Sigma}$$, using $$N - p$$ as the denominator (ie taking into account FE parameters and unbiasing error variance)
+4. Using REML variance estimates, fixed effects estimated using generalized least squares $$\beta = (X'\hat{\Sigma}^{-1}X)^{-1} X' \hat{\Sigma}^{-1} Y$$
 
 Notice that REML uses a different likelihood function than simple likelihood. When comparing models, it is important to consider what likelihood a statistic is using. For example, if the AIC is based off the restricted likelihood, only models with different random effects can be compared. In order to compare models with different fixed effects, ordinary likelihood should be used. 
 
-An alternative method is to use a Bayesian approach to fitting. Markov Chain Monte Carlo can be used to sample from the posterior to obtain interval estimates, distributions of statistics, etc. 
+One issue that comes up in this two-step method is that we assume that $$\hat{\Sigma}$$ is the true covariance matrix when in fact it is not. The additional variability in estimating $$\hat{\Sigma}$$ is not accounted for. (Note this is the reason that R does not provide p-values for the ANOVA table of mixed models). 
+
+There are two ways to relieve this issue and obtain estiamtes for the p-value
+
+* Bootstrap
+* Bayesian/MCMC
 
 # Variants of Multilevel Models
 
