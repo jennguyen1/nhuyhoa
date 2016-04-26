@@ -85,6 +85,7 @@ Sometimes we may want to change the format of variables.
 
 * Numeric to character conversion: `put(VALUE, $32.)`
 * Character to numeric conversion: `input(VALUE, best32.)`
+* Missing data is represented by a dot `.`
 
 Other expressions of interest
 
@@ -151,6 +152,7 @@ There are several options for sorting
 
 {% highlight r %}
 proc sql;
+create table NEWTABLE as 
 select COLNAMES/EXPRESSION as NEWNAME
 into :MACRONAME
 separated by ""
@@ -197,6 +199,8 @@ do i = 1, 2, 3, 4 to 10 by INCREMENT;
 end;
 {% endhighlight %}
 
+Using an `output` statement inside a loop creates a new row/observation based on the current iteration of the loop.
+
 **While and Until Loops**
 
 {% highlight r %}
@@ -213,6 +217,38 @@ end;
 
 * Skip to next iteration: `continue`
 * Exit loop: `leave`
+
+# Arrays
+
+Arrays are useful for iterating over variables and performing repetitive tasks. 
+
+Arrays can be defined with the statement
+
+{% highlight r %}
+array ARRNAME(DIM) ELEM1 ELEM2 ELEM3 ... ELEMN;
+{% endhighlight %}
+
+Once declared, you can iterate through an array using a loop and edit single elements within the array as needed. The dimensions of an array can be accessed with `dim(ARRNAME)`.
+
+There are several shortcuts to choose variables to incorporate into an array
+
+* `__ALL__`
+* `__CHARACTER__`
+* `__NUMERIC__`
+* `var1-varn`: variable named `var1`, `var2`, ..., `varn`
+
+Below is an example
+
+{% highlight r %}
+data temps;
+  set temps;
+  input City $ 1-18 m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12;
+	array fahr(*) m1-m12;
+	do i = 1 to 12;
+	      fahr(i) = 1.8*fahr(i) + 32;  	
+    end;
+run;
+{% endhighlight %}
 
 # Macros
 Functions in SAS are known as macros. 

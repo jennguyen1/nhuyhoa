@@ -557,7 +557,7 @@ $$\left[\begin{array}
 \end{array}\right]
 $$
 
-The unstructured covariance structure estimates a unique correlation for each pair of time points. Since there are many parameters, it may be difficult to estimate this structure. 
+The unstructured covariance structure estimates a unique correlation for each pair of time points. Since there are many parameters, it may be difficult to estimate this structure. These are used in random intercept/slope models.
 
 # Many Options of Mixed Models
 

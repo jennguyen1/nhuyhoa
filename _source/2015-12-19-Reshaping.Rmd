@@ -169,7 +169,7 @@ airquality %>%
 
 # In SAS
 
-## Long to Wide
+## Wide to Long
 
 ```{r, eval = FALSE}
 proc transpose data = LONGDATA out = WIDEDATA prefix = COLPREFIX;
@@ -180,25 +180,70 @@ var VALUE.VAR;
 
 This formula runs the equivalent of `"LONGID ~ WIDEID", value.var = VALUE.VAR` in R.
 
-## Wide to Long
+## Long to Wide
+
+```{r, eval = FALSE}
+data LONGDATA;
+set WIDEDATA;
+array ARR(DIM) WIDEVARS;
+do VARIABLE_VAR = VAL1 VAL2 ... VALN;
+  VALUE_VAR = ARR(VARIABLE_VAR);
+  output;
+end;
+drop WIDEVARS;
+run;
+```
 
 # In SQL
 
-Reshaping in SQL can be done with the `pivot` command. See below for an example of transforming the data from long to wide. 
+Reshaping in SQL can be done with the `pivot` command. 
+
+## Wide to Long
 
 {% highlight sql %}
-SELECT *
-FROM (
-    SELECT
-        year(invoiceDate) as [year], left(datename(month,invoicedate), 3) as [month],
-        InvoiceAmount as Amount
-    FROM Invoice
-) as s
-PIVOT
-(
-    SUM(Amount)
-    FOR [month] IN (jan, feb, mar, apr,
-    may, jun, jul, aug, sep, oct, nov, dec)
-)AS pvt
+select COLNAMES
+from TABLE
+unpivot (
+  VALUE_VAR 
+  for VARIABLE_VAR 
+  in(VARIABLE_VAR_VAL)
+) as NEWTABLE;
+{% endhighlight %}
+
+The following is an example that unpivots the $$MONTH$$ variable wide while putting the value into a $$AMNT$$ variable
+
+{% highlight sql %}
+select ID, MONTH, AMNT
+from CALTAB
+unpivot ( 
+  AMNT 
+  for MONTH 
+  in(JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)
+) as UNPVT;
+{% endhighlight %}
+
+## Long to Wide
+
+{% highlight sql %}
+select COLNAMES
+from TABLE
+pivot ( 
+  AGG_FUNC(VALUE_VAR) 
+  for VARIABLE_VAR 
+  in(VARIABLE_VAR_VALS)
+) as NEWTABLE;
+{% endhighlight %}
+
+The following is an example that pivots the $$MONTH$$ variable wide while taking the sum of $$AMNT$$.
+
+{% highlight sql %}
+select *
+from CALTAB
+) as S
+pivot (
+  sum(AMNT)
+  for MONTH 
+  in (JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)
+) as PVT;
 {% endhighlight %}
 

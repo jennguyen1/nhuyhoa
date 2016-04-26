@@ -209,7 +209,7 @@ file.exists(PATH) # check whether file exists
 
 There are many ways to get data into R. 
 
-Opening files can be done with any of the following functions
+**From a File**
 ```{r, eval = FALSE}
 read.csv()
 data.table::fread()
@@ -217,11 +217,38 @@ readxl::excel_sheets()
 readxl::read_excel()
 ```
 
-Additional options include
+**Additional Options**
 
 * `scan()` reads in user input
 * Connecting to a SQL server (like `RODBC`)
 * Scraping data from the internet (scrapeR and XML)
+
+**Command Line Arguments**
+
+The best option for using command line arguments is to use `optparse`.
+
+```{r, eval = FALSE}
+# add shebang command on top of the script
+#!/usr/local/bin/Rscript
+
+# open the library
+library(optparse)
+
+# declare the arguments in the file
+option_list <- list(
+  make_option(c("-v", "--verbose"), action="store_true", default=TRUE, help="Print extra output [default]"),
+  make_option(c("-q", "--quietly"), action="store_false", dest="verbose", help="Print little output"),
+  make_option(c("-c", "--count"), type="integer", default=5, help="Number of random normals to generate [default %default]", metavar="number"),
+  make_option("--generator", default="rnorm", help = "Function to generate random deviates [default \"%default\"]"),
+  make_option("--mean", default=0, help="Mean if generator == \"rnorm\" [default %default]"), 
+  make_option("--sd", default=1, metavar="standard deviation", help="Standard deviation if generator == \"rnorm\" [default %default]")
+)
+
+opt <- parse_args(OptionParser(option_list=option_list))
+
+# access the command line arguments with
+opt$generator
+```
 
 ## Output
 
