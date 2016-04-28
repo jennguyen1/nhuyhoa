@@ -136,7 +136,7 @@ There are several options for sorting
 * `ASCI`: sorts by blanks, numbers, uppercase, lowercase
 * `LINGUISTIC(STRENGTH = PRIMARY)`: sorts in ASCI, ignoring case
 * `LINGUISTIC(NUMERIC_COLLATION = ON)`: treats numbers as numbers and not just digits
-* `nodupkey` removes duplicate keys
+* `nodupkey`: removes duplicate keys
 
 ## Using SQL in SAS
 ```{r}

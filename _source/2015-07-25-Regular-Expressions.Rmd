@@ -139,7 +139,7 @@ Function | Description
 `cat()` | concatenates characters
 `cats()` | strips leading & trailing blanks before joining
 `catx()` | concatenates characters, 1st arg is separator
-`left()`, `trim()`, strip()` | removes blanks from L, R, both sides
+`left()`, `trim()`, `strip()` | removes blanks from L, R, both sides
 `find()` | finds characters
 `findc()` | finds individual characters
 `findw()` | finds words
@@ -166,12 +166,12 @@ The metacharacters that can be used with SQL are a little different than those l
 * `%` substitute for 0 or more characters
 * `_` substitute for a single character
 
-## Python
+## In Python
 
 Function | Description
 ---------|--------------
 `len(s)` | length of string
-`s.upper()`, `s.lower()`, `s.capitalize()`, `s.capwords()` change string case
+`s.upper()`, `s.lower()`, `s.capitalize()`, `s.capwords()` | change string case
 `s.isalpha()`, `s.isdigit()`, `s.isspace()` | tests string for type
 `s.startswith()`, `s.endswith()` | checks string locations
 `s.split(dlm)` | splits string into list by delimiter
@@ -183,3 +183,4 @@ Function | Description
 `s.replace(old, new, n)` | replaces a substring up to n times
 `re.sub(pattern, replacement, str)` | replaces substrings
 `s.strip()` | remove trailing white space
+

@@ -86,7 +86,7 @@
       <li><a href="#in-r" id="markdown-toc-in-r">In R</a></li>
       <li><a href="#in-sas" id="markdown-toc-in-sas">In SAS</a></li>
       <li><a href="#in-sql" id="markdown-toc-in-sql">In SQL</a></li>
-      <li><a href="#python" id="markdown-toc-python">Python</a></li>
+      <li><a href="#in-python" id="markdown-toc-in-python">In Python</a></li>
     </ul>
   </li>
 </ul>
@@ -392,7 +392,7 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
       <td>concatenates characters, 1st arg is separator</td>
     </tr>
     <tr>
-      <td><code>left()</code>, <code>trim()</code>, strip()`</td>
+      <td><code>left()</code>, <code>trim()</code>, <code>strip()</code></td>
       <td>removes blanks from L, R, both sides</td>
     </tr>
     <tr>
@@ -448,23 +448,71 @@ where name like <span class="s">&#39;[aeiou]%&#39;</span>
   <li><code>_</code> substitute for a single character</li>
 </ul>
 
-<h2 id="python">Python</h2>
+<h2 id="in-python">In Python</h2>
 
-<p>Function | Description<br />
-———|————–<br />
-<code>len(s)</code> | length of string<br />
-<code>s.upper()</code>, <code>s.lower()</code>, <code>s.capitalize()</code>, <code>s.capwords()</code> change string case<br />
-<code>s.isalpha()</code>, <code>s.isdigit()</code>, <code>s.isspace()</code> | tests string for type<br />
-<code>s.startswith()</code>, <code>s.endswith()</code> | checks string locations<br />
-<code>s.split(dlm)</code> | splits string into list by delimiter<br />
-<code>dlm.join(l)</code> | joins list into string by delimiter<br />
-<code>s.count()</code> | counts occurances of specified string<br />
-<code>s.find()</code>, <code>s.index()</code> | finds index of substring<br />
-<code>re.search(pattern, str)</code> | searches for a pattern inside string<br />
-<code>re.findall()</code> | finds all matches in string<br />
-<code>s.replace(old, new, n)</code> | replaces a substring up to n times<br />
-<code>re.sub(pattern, replacement, str)</code> | replaces substrings<br />
-<code>s.strip()</code> | remove trailing white space</p>
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>len(s)</code></td>
+      <td>length of string</td>
+    </tr>
+    <tr>
+      <td><code>s.upper()</code>, <code>s.lower()</code>, <code>s.capitalize()</code>, <code>s.capwords()</code></td>
+      <td>change string case</td>
+    </tr>
+    <tr>
+      <td><code>s.isalpha()</code>, <code>s.isdigit()</code>, <code>s.isspace()</code></td>
+      <td>tests string for type</td>
+    </tr>
+    <tr>
+      <td><code>s.startswith()</code>, <code>s.endswith()</code></td>
+      <td>checks string locations</td>
+    </tr>
+    <tr>
+      <td><code>s.split(dlm)</code></td>
+      <td>splits string into list by delimiter</td>
+    </tr>
+    <tr>
+      <td><code>dlm.join(l)</code></td>
+      <td>joins list into string by delimiter</td>
+    </tr>
+    <tr>
+      <td><code>s.count()</code></td>
+      <td>counts occurances of specified string</td>
+    </tr>
+    <tr>
+      <td><code>s.find()</code>, <code>s.index()</code></td>
+      <td>finds index of substring</td>
+    </tr>
+    <tr>
+      <td><code>re.search(pattern, str)</code></td>
+      <td>searches for a pattern inside string</td>
+    </tr>
+    <tr>
+      <td><code>re.findall()</code></td>
+      <td>finds all matches in string</td>
+    </tr>
+    <tr>
+      <td><code>s.replace(old, new, n)</code></td>
+      <td>replaces a substring up to n times</td>
+    </tr>
+    <tr>
+      <td><code>re.sub(pattern, replacement, str)</code></td>
+      <td>replaces substrings</td>
+    </tr>
+    <tr>
+      <td><code>s.strip()</code></td>
+      <td>remove trailing white space</td>
+    </tr>
+  </tbody>
+</table>
+
 
   </article>
 

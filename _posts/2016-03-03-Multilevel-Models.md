@@ -280,6 +280,16 @@ If we want to predict a data point for a new group, we conduct a two-step simula
 
 The simulation procedure detailed above is done on a Bayesian approach. We can also simulate data from a bootstrapping approach. Simulations are useful to obtain predictions, standard error estimates, etc.
 
+## Plotting Random Effects in R
+
+
+{% highlight r %}
+library(lattice)
+qqmath(ranef(mod, condVar = TRUE), strip = FALSE)
+{% endhighlight %}
+
+This is like a qqplot for the random effects. 
+
 ## Fitting in SAS and Residuals
 
 In SAS, mixed models can be fit with the `proc mixed` procedure. 
@@ -296,7 +306,7 @@ run;
 # random intercept model
 proc mixed; 
   class Person Gender;
-  model y = Person Gender;
+  model y = Person Gender / ddfm = betwithin; # denominator degrees of freedom - try options and make sure its correct
   random intercept Age / type=un subject=Person g;
 run;
 {% endhighlight %}
