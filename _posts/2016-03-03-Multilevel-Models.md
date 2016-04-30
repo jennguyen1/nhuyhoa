@@ -239,11 +239,30 @@ Multilevel models may also be used creatively to assess a variety of effects. Fo
 
 We can easily extend the fitting of multilevel models to glms.
 
-In R, we can fit these models with `lmer()` or `glmer()`. 
+The generic function is written as
+
+$$\eta = X \beta + Z b$$
+
+**Linear Regression**
+
+$$Y_i \sim N(\mu_i, \sigma^2_y)$$ <br>
+$$Y = X \beta + Z b + \epsilon$$
+
+**Logistic Regression**
+
+$$Y_i \sim Binomial(n_i, p_i)$$ <br>
+$$inv.logit(p) = X \beta + Z b$$
+
+**Poisson Regression**
+
+$$Y_i \sim Poisson(\lambda_i)$$ <br>
+$$\log(\lambda) = X \beta + Zb$$
 
 # Statistical Software
 
 ## Viewing Results in R
+
+In R, we can fit these models with `lmer()` or `glmer()`. 
 
 We can use the following commands to view results and estimates.
 

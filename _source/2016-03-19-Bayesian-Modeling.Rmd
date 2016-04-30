@@ -25,49 +25,44 @@ Bayesian regression takes in prior information regarding the parameters and upda
 
 In Bayesian regression, we pick the posterior distribution of the responses. We set prior distributions for our parameters ($$\beta$$s and $$\sigma^2$$) and obtain estimates of those parameters. 
 
-## Linear Regression
+**Linear Regression**
 
-$$y_i \sim N(\mu_i, \sigma^2_y)$$
-
+$$y_i \sim N(\mu_i, \sigma^2_y)$$ <br>
 $$\mu_i = X \beta$$
 
 where we set priors on the $$\beta$$s and $$\sigma^2_y$$.
 
-## Logistic Regression
+**Logistic Regression**
 
-$$y_i \sim Binomial(n_i, p_i)$$
-
+$$y_i \sim Binomial(n_i, p_i)$$ <br>
 $$inv.logit(p_i) = X \beta$$
 
 where we set priors on the $$\beta$$s.
 
 We can model overdispersed logistic regression as such
 
-$$y_i \sim Binomial(\overrightarrow{n}, \overrightarrow{p})$$
-
+$$y_i \sim Binomial(\overrightarrow{n}, \overrightarrow{p})$$ <br>
 $$inv.logit(\overrightarrow{p}) = X \beta + \overrightarrow{\epsilon}$$
 
 where the errors have a $$\epsilon_i \sim N(0, \sigma^2_e)$$. We set priors on the $$\beta$$s and $$\sigma^2_e$$. The errors reduces to a regular binomal distribution when $$\sigma^2_e = 0$$.
 
-## Poisson Regression
+**Poisson Regression**
 
-$$y_i \sim Poisson(\lambda_i)$$
-
+$$y_i \sim Poisson(\lambda_i)$$ <br>
 $$\log(\lambda_i) = X \beta$$
 
 where we set priors on the $$\beta$$s.
 
 We can model overdispersed poisson regression as such
 
-$$y_i \sim Poisson(\lambda_i)$$
-
+$$y_i \sim Poisson(\lambda_i)$$ <br>
 $$\log(\overrightarrow{\lambda}) = X \beta + \overrightarrow{\epsilon}$$
 
 where the errors have a $$\epsilon_i \sim N(0, \sigma^2_e)$$. We set priors on the $$\beta$$s and $$\sigma^2_e$$. The errors reduces to a regular poisson distribution when $$\sigma^2_e = 0$$.
 
 As with non-Bayesian poisson regression, offset terms can be incorporated if needed.
 
-## Multilevel Regression
+**Multilevel Regression**
 
 We covered multilevel models in a previous post. These models have a variety of forms. For the simplest varying-intercept model, a Gaussian prior is used for the $$\alpha_j$$. The parameters of this prior are called hyperparameters, and they also have prior distribtions.
 
@@ -109,7 +104,9 @@ We can regularize (reduce overfitting) models in Bayesian regression by setting 
 
 For example, rather than setting the priors to $$\beta \sim N(0, 100)$$ we can set them to $$\beta \sim N(0, 1)$$. This restricts the coefficients to very small values. If the effect is truely important, the data will overpower the prior and set the $$\beta$$ coefficient to a greater value. 
 
-Setting Gaussian priors refers to the $$L_2$$ norm penalty (ridge regression). We can also use a zero-centered Laplacian prior to the $$L_1$$ norm penalty (lasso regression). We penalize by a weighted $$L_1$$ and $$L_2$$ norms (elastic net) by using a complex prior $$\sim C(\lambda, \alpha) e^{\lambda \vert w \vert_1 + \alpha \vert w \vert_2}$$.  
+* Ridge regression ($$L_2$$ norm penalty): Gaussian priors
+* Lasso regression ($$L_1$$ norm penalty): zero-centered Laplacian priors
+* Elastic net (weighted $$L_1$$ and $$L_2$$ norm penalty): complex prior $$\sim C(\lambda, \alpha) e^{\lambda \vert w \vert_1 + \alpha \vert w \vert_2}$$
 
 # Stan for Fitting Bayesian Models
 
@@ -125,7 +122,7 @@ We can fit models in R using Stan through the function `stan()`. This function t
 Below is an example of data pre-processing and passing the data into stan
 ```{r, eval = FALSE}
 # load stan
-library(stan)
+library(rstan)
 
 # data pre-processing
 X <- as.data.frame( model.matrix(mpg ~ drat + wt + qsec + cyl, data = mtcars) )
@@ -172,17 +169,17 @@ When priors are not specified for parameters, the assumed prior is a noninformat
 data{ 
   int<lower=0> N; 
   int<lower=0> K;
-  vector[N] y;
-  vector[N] x1;
-  vector[N] x2;
+  real y[N];
+  real x1[N];
+  real x2[N];
   int grp[N];
 }
 transformed data{
-  vector[N] log_x1; # log transformation
-  vector[N] z_x2; # z-standardization
-  vector[N] inter; # interaction terms
-  vector[N] grp1; # categorical predictor
-  vector[N] grp2; # categorical predictor
+  real log_x1[N]; # log transformation
+  real z_x2[N]; # z-standardization
+  real inter[N]; # interaction terms
+  real grp1[N]; # categorical predictor
+  real grp2[N]; # categorical predictor
   
   log_x1 <- log(x1);
   z_x2 <- ( x2 - mean(x2) ) / sd(x2);
@@ -197,12 +194,19 @@ parameters{
   vector[K] beta;
   real<lower=0> sigma;
 }
+transformed parameters{
+  real y_hat[N];
+  
+  for(i in 1:N){
+    y_hat[i] <- beta[1] + beta[2]*log_x1[i] + beta[3]*z_x2[i] + beta[4]*inter[i] + beta[5]*grp1[i] + beta[6]*grp2[i]
+  }
+}
 model{
-  y ~ normal(beta[1] + beta[2]*log_x1 + beta[3]*z_x2 + beta[4]*inter + beta[5]*grp1 + beta[6]*grp2, sigma);
+  y ~ normal(y_hat, sigma);
 }
 generated quantities{
-  vector[N] pred; # fitted values
-  vector[N] e_y; # residuals
+  real pred[N]; 
+  real e_y[N]; 
   
   for (i in 1:N){
     pred[i] <- beta[1] + beta[2]*log_x1[i] + beta[3]*z_x2[i] + beta[4]*inter[i] + beta[5]*grp1[i] + beta[6]*grp2[i];
@@ -250,16 +254,16 @@ data {
   int<lower=0> N;
   int<lower=0> K;
   int<lower=0,upper=1> y[N];
-  vector[N] x1;
+  real x1[N];
 }
 parameters {
-  vector[K] beta;
+  real beta[K];
 }
 model {
   y ~ bernoulli_logit(beta[1] + beta[2] * x1); 
 }
 generated_quantities{
-  vector[N] pred;
+  real pred[N];
 
   for (i in 1:N){
     pred[i] <- fmax(0, fmin(1, inv_logit(beta[1] + beta[2] * x1[i])));
@@ -268,18 +272,18 @@ generated_quantities{
 ```
 
 ```{r, eval = FALSE}
-# Logistic Model 2: passing in p
+# Logistic Model 2: passing in p on probaility scale
 data {
   int<lower=0> N;
   int<lower=0> K;
   int<lower=0,upper=1> y[N];
-  vector[N] x1;
+  real x1[N];
 }
 parameters {
-  vector[K] beta;
+  real beta[K];
 }
 transformed parameters{
-  vector[N] p_hat;
+  real p_hat[N];
   
   for(i in 1:N){
     p_hat[i] <- fmax(0, fmin(1, inv_logit(beta[1] + beta[2] * x1[i])))
@@ -343,16 +347,16 @@ data {
   int<lower=0> N; 
   int<lower=0> K;
   int y[N];
-  vector[N] offset;
-  vector[N] x1;
+  real offset[N];
+  real x1[N];
 }
 transformed data {
-  vector[N] log_offset;
+  real log_offset[N];
 
   log_offset <- log(offset);
 }
 parameters {
-  vector[K] beta;
+  real beta[K];
 } 
 model {
   y ~ poisson_log(log_offset + beta[1] + beta[2] * x1);
@@ -365,17 +369,17 @@ data {
   int<lower=0> N; 
   int<lower=0> K;
   int y[N];
-  vector[N] offset;
-  vector[N] x1;
+  real offset[N];
+  real x1[N];
 }
 transformed data {
-  vector[N] log_offset;
+  real log_offset[N];
 
   log_offset <- log(offset);
 }
 parameters {
-  vector[K] beta;
-  vector[N] lambda;
+  real beta[K];
+  real lambda[N];
   real<lower=0> sigma;
 } 
 model {
@@ -388,49 +392,69 @@ model {
 
 ### Multilevel Models
 ```{r, eval = FALSE}
-# Mutlilevel Model: varying intercept
+# Mutlilevel Model: varying intercept and nested effects
 data {
+  # sample and group sizes
   int<lower=0> N; 
-  int<lower=0> J;
-  
-  vector[N] y;
-  vector[N] x1;
-  
-  int<lower=1, upper = J> grp[N];
-  vector[J] u1;
+  int<lower=0> nCounty;
+  int<lower=0> nZip;
+
+  # group level data
+  int inCountybyZips[nZip];
+
+  # individual level data
+  int inZipsbyHouse[N];
+  int basement[N];
+  real y[N];
 } 
 parameters {
-  vector[J] a;
-  vector[2] gamma;
-  real<lower=0,upper=100> sigma_a;
-  
-  vector[1] beta;
-  real<lower=0,upper=100> sigma_y;
+  real beta;
+
+  real<lower=0,upper=100> sigma_e;
+  real<lower=0,upper=100> sigma_c;
+  real<lower=0,upper=100> sigma_z;
+
+  real mu_cty;
+
+  real err_cty[nCounty];
+  real err_zips[nZip];
 } 
 transformed parameters {
-  vector[J] a_hat;
-  vector[N] y_hat;
-  
-  for(j in 1:J){
-    a_hat[j] <- gamma[1] + gamma[1]*u1[j];
+  real y_hat[N];
+  real cty[nCounty];
+  real zips[nZip];
+
+  # 3 levels house nested in zip code nested in county
+  for (j in 1:nCounty){
+    cty[j] <- mu_cty + err_cty[j];
   }
-  
+
+  for (k in 1:nZip){
+    zips[k] <- cty[inCountybyZips[k]] + err_zips[k];
+  }
+
   for (i in 1:N){
-    y_hat[i] <- a[grp[i]] + beta[1]*x1[i];
+    y_hat[i] <- beta*basement[i] + zips[inZipsbyHouse[i]];
   }
 }
 model {
-  gamma ~ normal(0, 100); # priors
-  beta ~ normal(0, 100);
-  
-  sigma_a ~ uniform(0, 100);
-  sigma_y ~ uniform(0, 100);
 
-  a ~ normal(a_hat, sigma_a);
-  y ~ normal(y_hat, sigma_y);
-}
+  # priors
+  b ~ normal(0, 10);
+  mu_cty ~ normal(0, 100);
+  sigma_c ~ uniform(0, 100);
+  sigma_z ~ uniform(0, 100);
+  sigma_e ~ uniform(0, 100);
 
+  # random effects
+  err_cty ~ normal(0, sigma_c); 
+  err_zips ~ normal(0, sigma_z); 
+
+  # individual level
+  y ~ normal(y_hat, sigma_e);
+} 
 ```
+
 
 ```{r, eval = FALSE}
 # Multilevel Model: varying intercept and varying slope
