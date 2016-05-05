@@ -66,7 +66,9 @@ How do we assess effects when our designs are missing certain factor combination
 
 ## Statistical Software
 
-In R, ANOVA can be fit with the `lm()`/`lmer()` and `anova()` or `aov()` commands. Confirm that the predictors are factors.
+Note that statistical software may not necessarily get the model correct. Prior to interpreting results, make sure to guarantee that the degrees of freedom are correct. 
+
+In R, ANOVA can be fit with the `lm()`,`lme4::lmer()`,`anova()` and `aov()` commands. There is an additional package that provides the functions `lmerTest::glmer()` and `lmerTest::anova()`. For glms, there is `MASS::glmmPQL()` and `lme4::glmer()`. Confirm that the predictors are factors.
 
 In SAS, ANOVA can be fit with the `proc glm` or `proc mixed` commands.
 

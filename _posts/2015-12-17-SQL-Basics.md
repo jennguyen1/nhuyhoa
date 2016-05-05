@@ -21,7 +21,7 @@ from TAB
 where EXPRESSION
 group by COLNAMES
 having EXPRESSION
-order by COLNAMES ACS/DSC;
+order by COLNAMES ACS/DESC;
 {% endhighlight %}
 
 Notice the similarities between SQL statments and corresponding functions in $$R$$. 

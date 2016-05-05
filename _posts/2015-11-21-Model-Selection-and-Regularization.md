@@ -21,6 +21,8 @@ See [Bias Variance Tradeoff: Training & Testing Error][bv_tradeoff_train_test_po
 ## Model Statistics: Adj R2, AIC, BIC, Mallow's Cp
 We can use a variety of different statistics to compare models. Software will have functions to compute these statistics. These statistics should be used as guidelines, domain knowledge is always more important for determining which terms should be a part of the model.
 
+When comparing model statistics, the underlying data should be the same across those models. For example, one cannot compare a model with and without an outlier using these statistics.
+
 **Values:**
 
 * .$$Adj.R^2 = 1 - \frac{SS_R/(n-p)}{SS_T/(n-1)}$$

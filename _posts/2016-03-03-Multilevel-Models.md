@@ -237,7 +237,7 @@ Multilevel models may also be used creatively to assess a variety of effects. Fo
 
 ## Generalized Linear Multilevel Models
 
-We can easily extend the fitting of multilevel models to glms.
+We can easily extend the fitting of multilevel models to glms. For logistic and poisson models, adding a random effect term may be considered as modeling overdispersion.
 
 The generic function is written as
 
