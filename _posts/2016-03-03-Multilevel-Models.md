@@ -29,11 +29,15 @@ Models containing multiple variance components can be estimated using REML (rest
 3. MLE on residuals to get estimates of variance components $$\hat{\Sigma}$$, using $$N - p$$ as the denominator (ie taking into account FE parameters and unbiasing error variance)
 4. Using REML variance estimates, fixed effects estimated using generalized least squares $$\beta = (X'\hat{\Sigma}^{-1}X)^{-1} X' \hat{\Sigma}^{-1} Y$$
 
-Notice that REML uses a different likelihood function than simple likelihood. When comparing models, it is important to consider what likelihood a statistic is using. For example, if the AIC is based off the restricted likelihood, only models with different random effects can be compared. In order to compare models with different fixed effects, ordinary likelihood should be used. 
+Notice that REML uses a different likelihood function than simple likelihood. When comparing models, it is important to consider what likelihood a statistic is using. 
+
+* Compare models with different fixed effects only when random effects are all the same
+* Compare models with different random effects only if the fixed effects are all the same
+* When comparing random effects, if testing near a boundary point $$\sigma^2 = 0$$ vs. $$\sigma^2 \ne 0$$ the likelihood ratio statistic is not approximately $$X^2$$ so must compare models via simulations
 
 One issue that comes up in this two-step method is that we assume that $$\hat{\Sigma}$$ is the true covariance matrix when in fact it is not. The additional variability in estimating $$\hat{\Sigma}$$ is not accounted for. (Note this is the reason that R does not provide p-values for the ANOVA table of mixed models). 
 
-There are two ways to relieve this issue and obtain estiamtes for the p-value
+There are two ways to relieve this issue and obtain estimates for the p-value
 
 * Bootstrap
 * Bayesian/MCMC
