@@ -8,20 +8,22 @@ categories: ['statistics', 'probability and inference']
 * TOC
 {:toc}
 
-# Likelihood
+# Maximum Likelihood
 Likelihood is a common staitstical approach for analyzing data and conducting inference. 
 
-Suppose we observe iid responses $$Y_i$$ for $$i = 1, ...n$$. Let the density of $$Y_i$$ be $$f(y \vert \mu)$$. 
+Suppose we observe iid responses $$Y_i$$ for $$i = 1, ...n$$. Let the density of $$Y_i$$ be $$f(y \vert \theta)$$. 
 
 Then the joint density for $$Y_1, ..., Y_n$$ is 
 
-$$f(y_1, ..., y_n \vert \mu) = \prod^n_{i = 1} f(y_i \vert \mu)$$
+$$f(y_1, ..., y_n \vert \theta) = \prod^n_{i = 1} f(y_i \vert \theta)$$
 
 The likelihood function is then
 
-$$L(\mu) = \prod^n_{i = 1} f(Y_i \vert \mu)$$
+$$L(\theta) = \prod^n_{i = 1} f(Y_i \vert \theta)$$
 
-The maximum likelihood estimate (MLE) of $$\mu$$ is the value of $$\mu$$ that maximizes $$L(\mu)$$. To calculate this we can take the first derivate and set it equal to 0. Often we maximize the log likelihood $$\log(L(\mu))$$ for simpler calculations. 
+The maximum likelihood estimate (MLE) of $$\theta$$ is the value of $$\theta$$ that maximizes $$L(\theta)$$. To calculate this we can take the first derivate and set it equal to 0. Often we maximize the log likelihood $$\log(L(\theta))$$ for simpler calculations. 
+
+The MLE of $$\tau(\theta)$$ is $$\tau(\hat{\theta})$$. 
 
 **Example:**
 
@@ -51,20 +53,9 @@ $$n\mu $$  | $$ = \sum^n_{i = 1} Y_i$$
 
 $$\hat{\mu} = \frac{1}{n} \sum^n_{i = 1} Y_i = \bar{Y}$$
 
-# Score Function and Fischer Information
-We can derive additional statistics from the likelihood equation.
+# Variance of MLE Estimator
 
-The log likelihood is defined as 
-
-$$l(\mu) = \log(L(\mu))$$
-
-The score function is defined as
-
-$$U(\mu) = \frac{\partial}{\partial \mu} l(\mu)$$
-
-The fischer infromation is defined as 
-
-$$I(\mu) = Var[U(\mu)] = - \frac{\partial}{\partial \mu} U(\mu) \approx \frac{1}{Var(\hat{\mu})}$$
+$$Var(\tau(\theta)) = \frac{\left( \frac{\partial}{\partial \theta} \tau(\theta)\right)^2}{I(\theta)} = \frac{\left(\frac{\partial}{\partial \theta} \tau(\theta)\right)^2}{-E\left(\frac{\partial^2}{\partial \theta^2}logf(\overrightarrow{x} \vert \theta)\right)}$$
 
 # Three Likelihood Tests
 Generally the score test is preferred because it does not require that we find the MLE estimate. 
@@ -73,13 +64,14 @@ Generally the score test is preferred because it does not require that we find t
 
 $$ G(\theta_0) = -2 \log \left( \frac{L(\theta_0)}{L(\hat{\theta})} \right) = -2[l(\theta_0) - l(\hat{\theta})] \sim \chi^2_1$$
 
-## Score Test
-
-$$ \frac{U(\theta_0)^2}{I(\theta_0)}  \sim \chi^2_1$$
-
 ## Wald Test
 
 $$\frac{(\hat{\theta} - \theta_0)^2}{Var[\hat{\theta}]} \sim \chi^2_1$$
+
+## Score Test
+Define the score function $$U(\theta) = \frac{\partial}{\partial \theta} log \left( L(\theta) \right)$$ and $$I(\theta) = -E\left(\frac{\partial^2}{\partial \mu^2}logf(\overrightarrow{x} \vert \mu)\right)$$.
+
+$$ \frac{U(\theta_0)^2}{I(\theta_0)}  \sim \chi^2_1$$
 
 # Beyond One-Sample Data
 
@@ -110,13 +102,13 @@ The likelihood ratio test is
 
 $$ -2[l(\hat{\alpha}_0, 0) - l(\hat{\alpha}, \hat{\beta})]  \sim \chi^2_1$$
 
-The score test is
-
-$$\frac{U_{\beta}(\hat{\alpha}_0, 0)^2}{Var[U_{\beta} (\hat{\alpha}_0, 0)]} \sim \chi^2_1$$
-
 The wald test is
 
 $$ \frac{\hat{\beta}^2}{Var[\hat{\beta}]}  \sim \chi^2_1$$
+
+The score test is
+
+$$\frac{U_{\beta}(\hat{\alpha}_0, 0)^2}{Var[U_{\beta} (\hat{\alpha}_0, 0)]} \sim \chi^2_1$$
 
 We see that for the score test, we do not need to compute the MLE for $$\beta$$. This makes it computationally easier and preferred.
 
