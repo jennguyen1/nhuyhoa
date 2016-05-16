@@ -14,12 +14,12 @@ lib(data)
 ```
 
 
-The format of your data is an important consideration. Data be formatted long or wide. Often times you will need to switch between the various formats to obtain the metrics you need. 
+The format of data is an important consideration. Data be formatted long or wide. Often times fprmats will need to switch to obtain the needed metrics. 
 
 * Long-format: contains a column for possible variable types and a column with the values for those variables; extremely useful for grouping and running separate operations on by groups
 * Wide-format: each variable contains its own columns, populated by values
 
-To switch between the two formats, transpose operations can be used. This is similar to using pivot tables in Excel. This can be useful in plotting.
+To switch between the two formats, transpose operations can be used. This is similar to using pivot tables in Excel. 
 
 # In R
 There are a few packages in R that can do transposing. The function names are different, but the idea is the same. 
@@ -78,7 +78,7 @@ To specify the format of the data, we need three things.
 
 Once we have these three things we can generate a casting formula:
 
-$$ id.vars $$ ~ $$ variable $$, $$ value.var = value $$
+`id.vars ~ variable, value.var = "value"`
 
 We can use the melted data from above to shift it back into wide mode.
 ```{r, eval = FALSE}
@@ -94,7 +94,7 @@ melt(airquality, id.vars = c("Month", "Day")) %>%
 ```
 </div><p></p>
 
-One potentially annoying error might occur when you do this. If there are duplicated entries of the $$id$$ and $$variable$$, then the function will want to aggregate the duplicated values in each cell. 
+If there are duplicated entries of the $$id$$ and $$variable$$, then the function will want to aggregate the duplicated values in each cell. 
 
 ```{r, eval = FALSE}
 # first melt it
@@ -114,7 +114,7 @@ temp %>% nhuyhoa_df_print()
 ```
 </div><p></p>
 
-If this is what you wanted, you can specify the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
+If aggregation is desired, they can be specified as the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
 
 ```{r, eval = FALSE}
 # first melt it
@@ -131,7 +131,7 @@ melt(airquality, id.vars = c("Month", "Day")) %>%
 ```
 </div><p></p>
 
-If this isn't what you wanted, you make have to be a little creative. One way to do this is to edit the variable values to make it unique across combinations.
+If aggregation is not desired, achieving the correct format will require a little creativity. One way to do this is to edit the variable values to make it unique across combinations.
 
 ```{r, eval = FALSE}
 airquality %>% 
@@ -143,7 +143,7 @@ airquality %>%
   group_by(Day, variable) %>% 
   mutate(id = 1:length(value)) %>% 
   na.omit %>% 
-  unite(variable.id, variable, id) %>% 
+  mutate(variable.id = paste(variable, id, sep = "_")) %>% 
   # now run dcast and observe the changes
   dcast(Day ~ variable.id, value.var = "value")
 ```
@@ -156,7 +156,7 @@ airquality %>%
   group_by(Day, variable) %>% 
   mutate(id = 1:length(value)) %>% 
   na.omit %>% 
-  unite(variable.id, variable, id) %>% 
+  mutate(variable.id = paste(variable, id, sep = "_")) %>% 
   dcast(Day ~ variable.id, value.var = "value") %>% 
   nhuyhoa_df_print()
 ```

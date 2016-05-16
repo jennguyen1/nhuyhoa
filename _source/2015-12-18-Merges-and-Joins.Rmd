@@ -8,8 +8,6 @@ categories: ['data wrangling']
 * TOC
 {:toc}
 
-Often when you have data from multiple sources, you need to combine the data to effectively analyze the data. The most effective way to do this is with joins or merges. 
-
 # Types of Joins
 
 ## Inner Join
@@ -46,7 +44,7 @@ on tab1.id = tab2.id and tab1.id2 = tab2.id2;
 
 To specify the join, simply replace the blank with `inner`, `full outer`, `left`, or `right`. 
 
-To join multiple data frames in SQL, you can also do successive joins. Simply append an additional `___ join ... on` statements after the previous join.
+To join multiple data frames in SQL, do successive joins. Simply append an additional `___ join ... on` statements after the previous join.
 
 Other operations to combine tables:
 
@@ -63,7 +61,7 @@ All merges in R can be done with a simple `merge()` function. The arguments for 
 * `all.x`: option for left join
 * `all.y`: option for right join
 
-To join multiple data frames in R, you can do successive joins. That is, join two and use the result to join with another data frame. To save time, the function `jn.general::mult_merge()` was created to make merging multiple data frames easier.
+To join multiple data frames in R, do successive joins. That is, join two and use the result to join with another data frame. To save time, the function `jn.general::mult_merge()` was created to make merging multiple data frames easier.
 
 Other operations to combine data frames:
 

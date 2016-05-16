@@ -17,7 +17,7 @@ In some cases we may want/need to speed up code. There are a variety of ways to 
 # Timing Code
 
 ## Profiling Code
-A single source file be timed to determine which step is the "bottleneck". By profiling a script, R will record the step it is currently working on every 0.02 seconds. This will give us an indication of which step is taking the longest, so that we can focus on making that step more efficient.
+A single source file be timed to determine which step is the "bottleneck". By profiling a script, R will record the step it is currently working on every 0.02 seconds. This will give an indication of which step is taking the longest, so that one can focus on making that step more efficient.
 
 To profile a slow $$myScript.R$$:
 
@@ -26,7 +26,7 @@ To profile a slow $$myScript.R$$:
 * run `summaryRprof(filename = "Rprof.out", lines = "show")` on the profiling output
 
 ## Comparing Run Times
-To compare the runtimes of several functions, you can use the function `microbenchmark()` (in the microbenchmark package). This function will run each code fragment a specified number of times (default is 100x) and return the summary statistics of the runtimes. You can also plot the output to see the time distributions of each code fragment. 
+To compare the runtimes of several functions, use the function `microbenchmark::microbenchmark()`. This function will run each code fragment a specified number of times (default is 100x) and return the summary statistics of the runtimes. Time distributions of each code fragment may also be plotted and analyzed.
 
 # Speeding Up Code with Parallel Programming
 See the [parallel processing post][parallel_processing_post]{: target = "_blank"}.
