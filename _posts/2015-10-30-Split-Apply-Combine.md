@@ -10,7 +10,7 @@ categories: ['data wrangling']
 
 
 
-Say we are given a data set where we want to group by a given category and compute summary statistics based on that category. The general process is
+Obtaining summary statistics for a given group can be done using the general process:
 
 1. Split: split by the variable
 2. Apply: apply the function to each split
@@ -22,7 +22,7 @@ Collectively this is known as split-apply-combine.
 
 
 
-This is the example data set we will use.
+The example data set:
 
 <div class = "dftab">
 <table>
@@ -195,7 +195,7 @@ class %>%
 ## Using dplyr
 
 ### slice
-The `slice()` function can be used to obtain records by row index. For example, we can obtain the records of that obtain the maximum test score for various subgroups. 
+The `slice()` function can be used to obtain records by row index. For example, to obtain the records of the maximum test score for various subgroups. 
 
 
 {% highlight r %}
@@ -469,13 +469,13 @@ These are the means and standard deviations after standardizing.
 </div>
 
 ### summarise_each and mutate_each 
-The `summarise_each()` and `mutate_each()` allows you to simultaneous apply a function to all columns at once. It is insanely convenient and efficient.
+The `summarise_each()` and `mutate_each()` simultaneously applies a function to all columns at once. 
 
 A few notes:
 
 * wrap functions in `funs()`
 * for functions with additional arguments, do `funs(my_func(., addnl_args))`
-* by default these functions will be applied to all columns; to specify or despecify columns `dplyr::select` special functions can be used after the `funs()` argument
+* by default these functions will be applied to all columns; to specify or despecify columns the special `dplyr::select` functions can be applied after the `funs()` argument
 
 Let's convert all the boolean variables to numeric variables. 
 
@@ -623,16 +623,16 @@ class %>%
 </div>
 
 ### do and unnest
-Sometimes `summarise()` and `mutate()` just isn't enough. Luckily, there is a function `do()` that is perfect for these scenarios. 
+`do()` is versatile because it can handle a variety of different output types. 
 
-In our data set we have unique student-teacher linkages for each unique subject and grade combination. However, when we ignore subject and grade, we may have duplicated linkages. 
+In the example data set, there are unique student-teacher linkages for each unique subject and grade combination. However ignoring subject and grade, there may be  duplicated linkages. 
 
 
 {% highlight text %}
 ## [1] 28
 {% endhighlight %}
 
-Ignoring the subject and grade, we want to remove the the linkage with the smallest weight. 
+Ignoring the subject and grade, remove the the linkage with the smallest weight. 
 
 
 {% highlight r %}
@@ -740,15 +740,13 @@ class_edit %>% head
 </table>
 </div><p></p>
 
-And here we see that those duplicates were indeed removed.
+Those duplicates were indeed removed.
 
 {% highlight text %}
 ## [1] 0
 {% endhighlight %}
 
-`do()` is versatile because it can handle a variety of different output types. 
-
-Here I create summary tables of $$posttest.score$$ regressed against $$pretest.score$$ for each unique combination of subject and grade. 
+Here are summary tables of $$posttest.score$$ regressed against $$pretest.score$$ for each unique combination of subject and grade. 
 
 {% highlight r %}
 class %>% 
@@ -773,7 +771,7 @@ class %>%
 ## 4    read    12 <S3:lm>
 {% endhighlight %}
 
-This output isn't too meaningful, so we can use the `broom` package along with `tidyr::unnest()` to extract the model coefficients. 
+This output isn't too meaningful; the `broom` package along with `tidyr::unnest()` can be used to extract the model coefficients. 
 
 
 {% highlight r %}
@@ -1018,7 +1016,7 @@ var VARNAMES;
 run;
 {% endhighlight %}
 
-To combine the grouped summaries back into the main data, we would need to run a merge/join.
+To combine the grouped summaries back into the main data, run a merge/join.
 
 # In SQL
 
@@ -1048,4 +1046,4 @@ order by C
 ;
 {% endhighlight %}
 
-To combine the grouped summaries back into the main data, we would need to run a merge/join.
+To combine the grouped summaries back into the main data, run a merge/join.

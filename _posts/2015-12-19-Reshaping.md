@@ -11,12 +11,12 @@ categories: ['data wrangling']
 
 
 
-The format of your data is an important consideration. Data be formatted long or wide. Often times you will need to switch between the various formats to obtain the metrics you need. 
+The format of data is an important consideration. Data be formatted long or wide. Often times formats will need to switch to obtain the needed metrics. 
 
 * Long-format: contains a column for possible variable types and a column with the values for those variables; extremely useful for grouping and running separate operations on by groups
 * Wide-format: each variable contains its own columns, populated by values
 
-To switch between the two formats, transpose operations can be used. This is similar to using pivot tables in Excel. This can be useful in plotting.
+To switch between the two formats, transpose operations can be used. This is similar to using pivot tables in Excel. 
 
 # In R
 There are a few packages in R that can do transposing. The function names are different, but the idea is the same. 
@@ -126,7 +126,7 @@ melt(airquality)
 </table>
 </div><p></p>
 
-Now perhaps we don't want to melt all variables, we can keep one (or more) as a column. This tells the function that we want to know the values of the variables for each unique combination of our specified columns.
+Rather than melting all variables, one can keep one (or more) columns. This tells the function to provide the values of the variables for each unique combination of the specified columns.
 
 
 {% highlight r %}
@@ -185,17 +185,17 @@ Functions:
 * `dcast()`
 * `spread()`
 
-To specify the format of the data, we need three things. 
+To specify the format of the data, three terms are needed 
 
 1. The $$id$$ variables (similar to those used in the melt column)
 2. The name of the $$variable$$ column that will contain the new column names (swing it into the column names)
 3. The name of the $$value$$ column in which the data spaces are filled in
 
-Once we have these three things we can generate a casting formula:
+With these three terms, the casting formula is
 
-$$ id.vars $$ ~ $$ variable $$, $$ value.var = value $$
+`id.vars ~ variable, value.var = "value"`
 
-We can use the melted data from above to shift it back into wide mode.
+Use the melted data from above to shift it back into wide mode.
 
 {% highlight r %}
 melt(airquality, id.vars = c("Month", "Day")) %>% 
@@ -259,7 +259,7 @@ melt(airquality, id.vars = c("Month", "Day")) %>%
 </table>
 </div><p></p>
 
-One potentially annoying error might occur when you do this. If there are duplicated entries of the $$id$$ and $$variable$$, then the function will want to aggregate the duplicated values in each cell. 
+If there are duplicated entries of the $$id$$ and $$variable$$, then the function will want to aggregate the duplicated values in each cell. 
 
 
 {% highlight r %}
@@ -325,7 +325,7 @@ melt(airquality, id.vars = c("Month", "Day")) %>%
 </table>
 </div><p></p>
 
-If this is what you wanted, you can specify the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
+If aggregation is desired, it can be specified as the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
 
 
 {% highlight r %}
@@ -386,7 +386,7 @@ melt(airquality, id.vars = c("Month", "Day")) %>%
 </table>
 </div><p></p>
 
-If this isn't what you wanted, you make have to be a little creative. One way to do this is to edit the variable values to make it unique across combinations.
+If aggregation is not desired, achieving the correct format will require a little creativity. One way to do this is to edit the variable values to make it unique across combinations.
 
 
 {% highlight r %}
@@ -399,16 +399,96 @@ airquality %>%
   group_by(Day, variable) %>% 
   mutate(id = 1:length(value)) %>% 
   na.omit %>% 
-  unite(variable.id, variable, id) %>% 
+  mutate(variable.id = paste(variable, id, sep = "_")) %>% 
   # now run dcast and observe the changes
   dcast(Day ~ variable.id, value.var = "value")
 {% endhighlight %}
 
 <div class = "dftab">
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): unknown column 'variable'
-{% endhighlight %}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> Day </th>
+   <th style="text-align:center;"> Ozone_1 </th>
+   <th style="text-align:center;"> Ozone_2 </th>
+   <th style="text-align:center;"> Ozone_3 </th>
+   <th style="text-align:center;"> Ozone_4 </th>
+   <th style="text-align:center;"> Ozone_5 </th>
+   <th style="text-align:center;"> Wind_1 </th>
+   <th style="text-align:center;"> Wind_2 </th>
+   <th style="text-align:center;"> Wind_3 </th>
+   <th style="text-align:center;"> Wind_4 </th>
+   <th style="text-align:center;"> Wind_5 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 41 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 135 </td>
+   <td style="text-align:center;"> 39 </td>
+   <td style="text-align:center;"> 96 </td>
+   <td style="text-align:center;"> 7.4 </td>
+   <td style="text-align:center;"> 8.6 </td>
+   <td style="text-align:center;"> 4.1 </td>
+   <td style="text-align:center;"> 6.9 </td>
+   <td style="text-align:center;"> 6.9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 36 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 49 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 78 </td>
+   <td style="text-align:center;"> 8.0 </td>
+   <td style="text-align:center;"> 9.7 </td>
+   <td style="text-align:center;"> 9.2 </td>
+   <td style="text-align:center;"> 13.8 </td>
+   <td style="text-align:center;"> 5.1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 12 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 32 </td>
+   <td style="text-align:center;"> 16 </td>
+   <td style="text-align:center;"> 73 </td>
+   <td style="text-align:center;"> 12.6 </td>
+   <td style="text-align:center;"> 16.1 </td>
+   <td style="text-align:center;"> 9.2 </td>
+   <td style="text-align:center;"> 7.4 </td>
+   <td style="text-align:center;"> 2.8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 18 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 78 </td>
+   <td style="text-align:center;"> 91 </td>
+   <td style="text-align:center;"> 11.5 </td>
+   <td style="text-align:center;"> 9.2 </td>
+   <td style="text-align:center;"> 10.9 </td>
+   <td style="text-align:center;"> 6.9 </td>
+   <td style="text-align:center;"> 4.6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 5 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 64 </td>
+   <td style="text-align:center;"> 35 </td>
+   <td style="text-align:center;"> 47 </td>
+   <td style="text-align:center;"> 14.3 </td>
+   <td style="text-align:center;"> 8.6 </td>
+   <td style="text-align:center;"> 4.6 </td>
+   <td style="text-align:center;"> 7.4 </td>
+   <td style="text-align:center;"> 7.4 </td>
+  </tr>
+</tbody>
+</table>
 </div><p></p>
 
 ## Visual Diagram of Reshaping in R
@@ -461,7 +541,7 @@ unpivot (
 ) as NEWTABLE;
 {% endhighlight %}
 
-The following is an example that unpivots the $$MONTH$$ variable wide while putting the value into a $$AMNT$$ variable
+The following is an example that unpivots the $$MONTH$$ variable wide while putting the value into a $$AMNT$$ variable.
 
 {% highlight sql %}
 select ID, MONTH, AMNT

@@ -215,15 +215,16 @@ switch(
 
 
 {% highlight text %}
-## [1] 300
+## [1] 100
 {% endhighlight %}
 
 `switch()` can also be used to execute many lines of code. Simply use place these executions inside the brackets `{}`. 
 
 ## Vectorize
-Sometimes you may just want to write your function that uses conditionals to relate certain values. Your function inputs may just take one data structure (perhaps one value) and may throw an error if you pass in something along the lines of a vector. 
 
-For these instances, there is a function, called `Vectorize()` that can transform these types of functions so that it will work with vectors. 
+User-defined functions usualy only take in one value. The function will throw an error if vectors are passed into such functions.
+
+For these instances, there is a function, called `Vectorize()` that can transform these types of functions so that can accomodate vectors. 
 
 {% highlight r %}
 # create a function f

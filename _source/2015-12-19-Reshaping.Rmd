@@ -14,7 +14,7 @@ lib(data)
 ```
 
 
-The format of data is an important consideration. Data be formatted long or wide. Often times fprmats will need to switch to obtain the needed metrics. 
+The format of data is an important consideration. Data be formatted long or wide. Often times formats will need to switch to obtain the needed metrics. 
 
 * Long-format: contains a column for possible variable types and a column with the values for those variables; extremely useful for grouping and running separate operations on by groups
 * Wide-format: each variable contains its own columns, populated by values
@@ -50,7 +50,7 @@ melt(airquality) %>% nhuyhoa_df_print()
 ```
 </div><p></p>
 
-Now perhaps we don't want to melt all variables, we can keep one (or more) as a column. This tells the function that we want to know the values of the variables for each unique combination of our specified columns.
+Rather than melting all variables, one can keep one (or more) columns. This tells the function to provide the values of the variables for each unique combination of the specified columns.
 
 ```{r, eval = FALSE}
 melt(airquality, id.vars = c("Month", "Day"))
@@ -70,17 +70,17 @@ Functions:
 * `dcast()`
 * `spread()`
 
-To specify the format of the data, we need three things. 
+To specify the format of the data, three terms are needed 
 
 1. The $$id$$ variables (similar to those used in the melt column)
 2. The name of the $$variable$$ column that will contain the new column names (swing it into the column names)
 3. The name of the $$value$$ column in which the data spaces are filled in
 
-Once we have these three things we can generate a casting formula:
+With these three terms, the casting formula is
 
 `id.vars ~ variable, value.var = "value"`
 
-We can use the melted data from above to shift it back into wide mode.
+Use the melted data from above to shift it back into wide mode.
 ```{r, eval = FALSE}
 melt(airquality, id.vars = c("Month", "Day")) %>% 
   dcast(Month + Day ~ variable, value = "value")
@@ -114,7 +114,7 @@ temp %>% nhuyhoa_df_print()
 ```
 </div><p></p>
 
-If aggregation is desired, they can be specified as the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
+If aggregation is desired, it can be specified as the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
 
 ```{r, eval = FALSE}
 # first melt it
@@ -210,7 +210,7 @@ unpivot (
 ) as NEWTABLE;
 {% endhighlight %}
 
-The following is an example that unpivots the $$MONTH$$ variable wide while putting the value into a $$AMNT$$ variable
+The following is an example that unpivots the $$MONTH$$ variable wide while putting the value into a $$AMNT$$ variable.
 
 {% highlight sql %}
 select ID, MONTH, AMNT

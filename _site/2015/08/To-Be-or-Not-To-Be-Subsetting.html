@@ -678,57 +678,154 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 <p>Let’s do something a little more challenging to see to_be in action. With this data set, we want to remove the duplicated id entries by hand and merge them back into the non-duplicates.</p>
 
 <div class="dftab">
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in loadNamespace(name): there is no package called &#39;pryr&#39;</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Warning in rep(digits, length.out = m): first element used of
-## &#39;length.out&#39; argument</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Warning in seq_len(m): first element used of &#39;length.out&#39; argument</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in seq_len(m): argument must be coercible to non-negative integer</code></pre></div>
-
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 78 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Ohio </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Tennessee </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 77 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Nebraska </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> asian </td>
+   <td style="text-align:left;"> North Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 69 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> white </td>
+   <td style="text-align:left;"> Mississippi </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Oregon </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> black </td>
+   <td style="text-align:left;"> Nevada </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Alaska </td>
+  </tr>
+</tbody>
+</table>
 </div>
 <p></p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r">result <span class="o">&lt;-</span> to_be<span class="p">(</span>data<span class="p">,</span> view_duplicated<span class="p">,</span> id<span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in to_be(data, view_duplicated, id): Input x must be a data frame</code></pre></div>
 
 <p>The duplicated id entries:</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span></code></pre></div>
 
 <div class="dftab">
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object &#39;result&#39; not found</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in rownames(x) &lt;- NULL: object &#39;x&#39; not found</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object &#39;x&#39; not found</code></pre></div>
-
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Tennessee </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 77 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Nebraska </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> white </td>
+   <td style="text-align:left;"> Mississippi </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Oregon </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> black </td>
+   <td style="text-align:left;"> Nevada </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Alaska </td>
+  </tr>
+</tbody>
+</table>
 </div>
 <p></p>
 
@@ -737,22 +834,47 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 <div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]]</span></code></pre></div>
 
 <div class="dftab">
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object &#39;result&#39; not found</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in rownames(y) &lt;- NULL: object &#39;y&#39; not found</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object &#39;y&#39; not found</code></pre></div>
-
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 69 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> asian </td>
+   <td style="text-align:left;"> North Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 78 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Ohio </td>
+  </tr>
+</tbody>
+</table>
 </div>
 <p></p>
 
@@ -761,16 +883,40 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 <div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">1</span><span class="p">)</span></code></pre></div>
 
 <div class="dftab">
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object &#39;x&#39; not found</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object &#39;z&#39; not found</code></pre></div>
-
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Tennessee </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Oregon </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Alaska </td>
+  </tr>
+</tbody>
+</table>
 </div>
 <p></p>
 
@@ -788,22 +934,68 @@ result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span cla
   <span class="kp">rbind</span><span class="p">(</span>result<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]])</span></code></pre></div>
 
 <div class="dftab">
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object &#39;result&#39; not found</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in rownames(a) &lt;- NULL: object &#39;a&#39; not found</code></pre></div>
-
-
-
-
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object &#39;a&#39; not found</code></pre></div>
-
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> race </th>
+   <th style="text-align:left;"> state </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 78 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Ohio </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> Tennessee </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> asian </td>
+   <td style="text-align:left;"> North Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 69 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> hispanic </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Oregon </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> South Carolina </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:left;"> native </td>
+   <td style="text-align:left;"> Alaska </td>
+  </tr>
+</tbody>
+</table>
 </div>
 
 
