@@ -9,9 +9,9 @@ categories: ['statistics', 'probability and inference']
 {:toc}
 
 # Maximum Likelihood
-Likelihood is a common staitstical approach for analyzing data and conducting inference. 
+Likelihood is a common statistical approach for analyzing data and conducting inference. 
 
-Suppose we observe iid responses $$Y_i$$ for $$i = 1, ...n$$. Let the density of $$Y_i$$ be $$f(y \vert \theta)$$. 
+Suppose there are iid responses $$Y_i$$ for $$i = 1, ...n$$. Let the density of $$Y_i$$ be $$f(y \vert \theta)$$. 
 
 Then the joint density for $$Y_1, ..., Y_n$$ is 
 
@@ -21,13 +21,13 @@ The likelihood function is then
 
 $$L(\theta) = \prod^n_{i = 1} f(Y_i \vert \theta)$$
 
-The maximum likelihood estimate (MLE) of $$\theta$$ is the value of $$\theta$$ that maximizes $$L(\theta)$$. To calculate this we can take the first derivate and set it equal to 0. Often we maximize the log likelihood $$\log(L(\theta))$$ for simpler calculations. 
+The maximum likelihood estimate (MLE) of $$\theta$$ is the value of $$\theta$$ that maximizes $$L(\theta)$$. To calculate this, take the first derivate and set it equal to 0. Often it is easier to maximize the log likelihood $$\log(L(\theta))$$. 
 
 The MLE of $$\tau(\theta)$$ is $$\tau(\hat{\theta})$$. 
 
 **Example:**
 
-Consider the one-sample iid normal case: $$Y_i \sim N(\mu, \sigma^2)$$ where we assume that $$\sigma^2$$ is known. We want to find the MLE of $$\mu$$.
+Consider the one-sample iid normal sample $$Y_i \sim N(\mu, \sigma^2)$$ where $$\sigma^2$$ is known. Find the MLE of $$\mu$$.
 
 The density for $$Y_i$$ is <br>
 $$f(y \vert \mu) = \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(y - \mu)^2}{2\sigma^2}\right)$$
@@ -44,7 +44,7 @@ It is easier to maximize the log likelihood
 $$l(\mu)$$ | $$ = \sum^n_{i = 1} \log \big[ \frac{1}{\sigma \sqrt{2\pi}} exp \left( -\frac{(Y_i - \mu)^2}{2\sigma^2}\right) \big]$$
            | $$ = n * \log \left( \frac{1}{\sigma \sqrt{2\pi}}\right) - \frac{1}{2\sigma^2} \sum^n_{i = 1} (Y_i - \mu)^2$$
 
-To maximize we take the derivative with respect to $$\mu$$
+To maximize take the derivative with respect to $$\mu$$
 
 -----------|--------------------------
 $$l'(\mu)$$| $$ = - \frac{2}{2 \sigma^2} \sum^n_{i = 1} (Y_i - \mu) = 0$$
@@ -58,7 +58,7 @@ $$\hat{\mu} = \frac{1}{n} \sum^n_{i = 1} Y_i = \bar{Y}$$
 $$Var(\tau(\theta)) = \frac{\left( \frac{\partial}{\partial \theta} \tau(\theta)\right)^2}{I(\theta)} = \frac{\left(\frac{\partial}{\partial \theta} \tau(\theta)\right)^2}{-E\left(\frac{\partial^2}{\partial \theta^2}logf(\overrightarrow{x} \vert \theta)\right)}$$
 
 # Three Likelihood Tests
-Generally the score test is preferred because it does not require that we find the MLE estimate. 
+Generally the score test is preferred because it does not require the MLE estimate. 
 
 ## Likelihood Test
 
@@ -88,14 +88,14 @@ We want to test $$H_0: \beta = 0$$
 The log likelihood function is
 $$l(\theta_0, \theta_1) = l(\theta_0) + l(\theta_1) $$
 
-in which we can do a change of variables transformation to get $$l(\alpha, \beta)$$.
+do a change of variables transformation to get $$l(\alpha, \beta)$$.
 
 The score gradient vector has 2 components
 
 * .$$U_{\alpha}(\alpha, \beta) = \frac{\partial}{\partial \alpha} l(\alpha, \beta)$$
 * .$$U_{\beta}(\alpha, \beta) = \frac{\partial}{\partial \beta} l(\alpha, \beta)$$
 
-So we calculate $$\hat{\alpha}$$ with <br>
+So calculate $$\hat{\alpha}$$ with <br>
 $$U_{\alpha}(\alpha, 0) = 0$$
 
 The likelihood ratio test is
@@ -110,7 +110,7 @@ The score test is
 
 $$\frac{U_{\beta}(\hat{\alpha}_0, 0)^2}{Var[U_{\beta} (\hat{\alpha}_0, 0)]} \sim \chi^2_1$$
 
-We see that for the score test, we do not need to compute the MLE for $$\beta$$. This makes it computationally easier and preferred.
+For the score test, it is not neccessary to compute the MLE for $$\beta$$. This makes it computationally easier and preferred.
 
 Example calculations are available [here][likelihood_calc]{:target = "_blank"}. 
 
