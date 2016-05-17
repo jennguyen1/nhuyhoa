@@ -10,10 +10,10 @@ categories: ['r programming']
 
 
 
-Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package provides some handy tools to subset and select with ease.   
+The dplyr package provides handy tools to slice and dice data into various formats with ease.   
 
 # Example Data
-Let's generate some random data to use with dplyr. The random generator function is available via the [jn.general package][jn.general_link]{:target="blank"}.
+Let's use the random generator function, `jn.general::rdata()`, to generate an example data set.
 
 
 {% highlight r %}
@@ -245,13 +245,11 @@ data %<>% select(student_id, matches("posttest"), matches("pretest"), matches("d
 </table>
 </div><p></p>
 
-
-
 # dplyr::slice() and dplyr::filter()
 There are a number of functions that allow for rowise manipulation in dplyr, two of which are `dplyr::filter()` and `dplyr::slice()`. 
 
 ## Subsetting rows by conditional expression
-The `dplyr::filter()` function takes logical conditions as arguments. If multiple conditions are supplied as arguments (via `','`), they are combined with `&`. Thus `or` arguments should be supplied within one condition with `|`. 
+The `dplyr::filter()` function takes logical conditions as arguments. Combine multiple conditions with `&` (and) or `|` (or). This function is equivalent to base R's subset function.
 
 {% highlight r %}
 # subset to students with posttest math scores over 75 and are in the 10th grade
@@ -602,13 +600,11 @@ data %>% slice(25:27)
 </table>
 </div><p></p>
 
-In terms of subsetting by rows, dplyr's filter function is  equivalent to base R's subset function. 
-
 # dplyr::select()
-The `dplyr::select()` function selects columns from a data set. To deselect columns, simply place a `-` before the name or special function call. 
+The `dplyr::select()` function selects columns from a data set. To deselect columns, place a `-` before the name or special function call. 
 
 ## Select columns by name
-Selecting columns by name is easy; just write out the name of the column(s), separated by commas - no need to wrap names with quotations or in a vector.  
+Selecting columns by name by writing out the name of the column(s), separated by commas.
 
 {% highlight r %}
 # select multiple columns by name
@@ -778,7 +774,9 @@ data %>% dplyr::select(-posttest_score, -posttest_grade, -posttest_subject) %>% 
 
 ## Select columns by numeric position or column name
 
-Say we want to extract columns from a data frame using a vector of column names or positions. For this example, let's try to select the demographics columns corresponding to race. 
+Columns can also be extracted from a data.frame using a vector of column names or positions. 
+
+For this example, select the demographics columns corresponding to race. 
 
 For numeric position values, just pass the vector as an argument to the select function.
 
@@ -862,9 +860,11 @@ data %>% dplyr::select(one_of(var_names)) %>% head
 
 ## Select columns using regex
 
-Helper functions such as `matches()`, `starts_with()`, and `ends_with()` are perhaps the most powerful feature of the select function. For example, let's start with extracting the pretest score columns. 
+Helper functions such as `matches()`, `starts_with()`, and `ends_with()` are perhaps the most powerful feature of the select function. 
 
-Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable. 
+Start with extracting the pretest score columns. 
+
+Notice that this method is generic (any pretest number it will qualify) and reuseable. 
 
 {% highlight r %}
 # use matches to find all pretest score columns
@@ -909,7 +909,7 @@ data %>% dplyr::select(matches("pretest_\\d+_score")) %>% head
 
 The helper functions `starts_with()` and `ends_with()` are similar to `matches()` but is specialized in that it only looks at the beginning or the end of the string for a pattern match.
 
-Let's use `starts_with()` and `ends_with()` to extract (1) all posttest information and (2) all test score columns.
+Use `starts_with()` and `ends_with()` to extract (1) all posttest information and (2) all test score columns.
 
 {% highlight r %}
 # extract all posttest information
@@ -992,7 +992,6 @@ data %>% dplyr::select(ends_with("_score")) %>% head
 For added functionality, the `matches()`, `starts_with()`, and `ends_with()` function works even when the regex string is stored as a variable. This tends to be useful when developing functions that runs on any data set, where the regex string can be passed as a parameter. 
 
 ## Combining selection techniques
-Finally let's select multiple columns using a variety of the select methods we just learned. Simply separate out each call with a comma; use `-` to deselect columns.
 
 {% highlight r %}
 # select multiple columns
@@ -1153,7 +1152,7 @@ data %>% dplyr::select(student_id, starts_with("pretest_"), -one_of(no_good)) %>
 </table>
 </div><p></p>
 
-Sometimes when I have very wide data, I use `dplyr::select()` to roughly reorganize columns. This is pretty handy, especially if I eventually have to save results in a csv file for review at a later time.
+With very wide data, `dplyr::select()` can be used to reorganize columns. 
 
 {% highlight r %}
 # shuffle up column positions
@@ -1300,7 +1299,8 @@ unorganized_data %>% dplyr::select(student_id, matches("posttest"), matches("pre
 </table>
 </div><p></p>
 
-When reorganizing columns, if the selectors are too specific, you run the risk of losing data. This is where the helper function `everything()` can be useful; `everything()` selects all variables. Including `everything()` at the end of the selection specifications ensures that columns that aren't accounted for in the ordering are included in the returned data frame. 
+When reorganizing columns if the selectors are too specific, data may be lost in the process. The helper function `everything()` selects all variables not already selected. Including `everything()` at the end of the selection specifications ensures that columns that aren't accounted for in the ordering are included in the returned data frame. 
+
 To move columns to the end of the list, deselect the column and then include `everything()`. 
 
 {% highlight r %}
@@ -1444,10 +1444,13 @@ unorganized_data %>% dplyr::select(-starts_with("d_"), everything()) %>% head
 </table>
 </div><p></p>
 
-Overall, I think dplyr's `select()` function is very useful when doing data work. Columns can be selected easily without having to wrap column names in quotations or `c()`, unlike base R's subset function. Deselecting is more consistent with the simple `-` negation, and matching column groups are much simpler with the help of special functions. 
-
 # Challenge round
-Let's do something a little more challenging to see the power of dplyr. We want to clean up this data set to remove all pretest information that does not correspond to the ACT or SAT. In addition, we only want information regarding to students who took the math or reading posttest in the 12th grade. 
+The power of dplyr can be seen with a more challenging problem. 
+
+Clean up this data set by 
+
+* removing  all pretest information that does not correspond to the ACT or SAT
+* keep information regarding to students who took a math/reading posttest in the 12th grade
 
 
 {% highlight r %}

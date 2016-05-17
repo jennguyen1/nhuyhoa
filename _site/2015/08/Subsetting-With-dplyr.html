@@ -93,10 +93,10 @@
   <li><a href="#challenge-round" id="markdown-toc-challenge-round">Challenge round</a></li>
 </ul>
 
-<p>Cleaning data can be tedious and annoying, but data rarely ever comes in a tidy, nicely packaged with a bow on top form. In order to get the data in a form that we want, we often need to slice and dice the data in various ways. Luckily, the dplyr package provides some handy tools to subset and select with ease.</p>
+<p>The dplyr package provides handy tools to slice and dice data into various formats with ease.</p>
 
 <h1 id="example-data">Example Data</h1>
-<p>Let’s generate some random data to use with dplyr. The random generator function is available via the <a href="https://github.com/jnnguyen2/jn.general" target="blank">jn.general package</a>.</p>
+<p>Let’s use the random generator function, <code>jn.general::rdata()</code>, to generate an example data set.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
 data <span class="o">&lt;-</span> jn.general<span class="o">::</span>rdata<span class="p">(</span>n <span class="o">=</span> <span class="m">750</span><span class="p">,</span>
@@ -330,7 +330,7 @@ data <span class="o">%&lt;&gt;%</span> select<span class="p">(</span>student_id<
 <p>There are a number of functions that allow for rowise manipulation in dplyr, two of which are <code>dplyr::filter()</code> and <code>dplyr::slice()</code>.</p>
 
 <h2 id="subsetting-rows-by-conditional-expression">Subsetting rows by conditional expression</h2>
-<p>The <code>dplyr::filter()</code> function takes logical conditions as arguments. If multiple conditions are supplied as arguments (via <code>','</code>), they are combined with <code>&amp;</code>. Thus <code>or</code> arguments should be supplied within one condition with <code>|</code>.</p>
+<p>The <code>dplyr::filter()</code> function takes logical conditions as arguments. Combine multiple conditions with <code>&amp;</code> (and) or <code>|</code> (or). This function is equivalent to base R’s subset function.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># subset to students with posttest math scores over 75 and are in the 10th grade</span>
 data <span class="o">%&gt;%</span> filter<span class="p">(</span>posttest_grade <span class="o">==</span> <span class="m">10</span><span class="p">,</span> posttest_subject <span class="o">==</span> <span class="s">&quot;math&quot;</span><span class="p">,</span> posttest_score <span class="o">&gt;</span> <span class="m">75</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
@@ -681,13 +681,11 @@ data <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">
 </div>
 <p></p>
 
-<p>In terms of subsetting by rows, dplyr’s filter function is  equivalent to base R’s subset function.</p>
-
 <h1 id="dplyrselect">dplyr::select()</h1>
-<p>The <code>dplyr::select()</code> function selects columns from a data set. To deselect columns, simply place a <code>-</code> before the name or special function call.</p>
+<p>The <code>dplyr::select()</code> function selects columns from a data set. To deselect columns, place a <code>-</code> before the name or special function call.</p>
 
 <h2 id="select-columns-by-name">Select columns by name</h2>
-<p>Selecting columns by name is easy; just write out the name of the column(s), separated by commas - no need to wrap names with quotations or in a vector.</p>
+<p>Selecting columns by name by writing out the name of the column(s), separated by commas.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select multiple columns by name</span>
 data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>posttest_score<span class="p">,</span> posttest_grade<span class="p">,</span> d_gender<span class="p">,</span> posttest_subject<span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
@@ -857,7 +855,9 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 
 <h2 id="select-columns-by-numeric-position-or-column-name">Select columns by numeric position or column name</h2>
 
-<p>Say we want to extract columns from a data frame using a vector of column names or positions. For this example, let’s try to select the demographics columns corresponding to race.</p>
+<p>Columns can also be extracted from a data.frame using a vector of column names or positions.</p>
+
+<p>For this example, select the demographics columns corresponding to race.</p>
 
 <p>For numeric position values, just pass the vector as an argument to the select function.</p>
 
@@ -941,9 +941,11 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 
 <h2 id="select-columns-using-regex">Select columns using regex</h2>
 
-<p>Helper functions such as <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> are perhaps the most powerful feature of the select function. For example, let’s start with extracting the pretest score columns.</p>
+<p>Helper functions such as <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> are perhaps the most powerful feature of the select function.</p>
 
-<p>Notice that this method is generic (no matter what the pretest number it will qualify) and reuseable.</p>
+<p>Start with extracting the pretest score columns.</p>
+
+<p>Notice that this method is generic (any pretest number it will qualify) and reuseable.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># use matches to find all pretest score columns</span>
 data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
@@ -988,7 +990,7 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 
 <p>The helper functions <code>starts_with()</code> and <code>ends_with()</code> are similar to <code>matches()</code> but is specialized in that it only looks at the beginning or the end of the string for a pattern match.</p>
 
-<p>Let’s use <code>starts_with()</code> and <code>ends_with()</code> to extract (1) all posttest information and (2) all test score columns.</p>
+<p>Use <code>starts_with()</code> and <code>ends_with()</code> to extract (1) all posttest information and (2) all test score columns.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract all posttest information</span>
 data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>starts_with<span class="p">(</span><span class="s">&quot;posttest&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
@@ -1071,7 +1073,6 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 <p>For added functionality, the <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> function works even when the regex string is stored as a variable. This tends to be useful when developing functions that runs on any data set, where the regex string can be passed as a parameter.</p>
 
 <h2 id="combining-selection-techniques">Combining selection techniques</h2>
-<p>Finally let’s select multiple columns using a variety of the select methods we just learned. Simply separate out each call with a comma; use <code>-</code> to deselect columns.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select multiple columns</span>
 data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>student_id<span class="p">,</span> matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">),</span> d_gender<span class="p">,</span> starts_with<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
@@ -1232,7 +1233,7 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 </div>
 <p></p>
 
-<p>Sometimes when I have very wide data, I use <code>dplyr::select()</code> to roughly reorganize columns. This is pretty handy, especially if I eventually have to save results in a csv file for review at a later time.</p>
+<p>With very wide data, <code>dplyr::select()</code> can be used to reorganize columns.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># shuffle up column positions</span>
 order <span class="o">&lt;-</span> <span class="kp">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="kp">ncol</span><span class="p">(</span>data<span class="p">))</span>
@@ -1379,8 +1380,9 @@ unorganized_data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>sel
 </div>
 <p></p>
 
-<p>When reorganizing columns, if the selectors are too specific, you run the risk of losing data. This is where the helper function <code>everything()</code> can be useful; <code>everything()</code> selects all variables. Including <code>everything()</code> at the end of the selection specifications ensures that columns that aren’t accounted for in the ordering are included in the returned data frame. <br />
-To move columns to the end of the list, deselect the column and then include <code>everything()</code>.</p>
+<p>When reorganizing columns if the selectors are too specific, data may be lost in the process. The helper function <code>everything()</code> selects all variables not already selected. Including <code>everything()</code> at the end of the selection specifications ensures that columns that aren’t accounted for in the ordering are included in the returned data frame.</p>
+
+<p>To move columns to the end of the list, deselect the column and then include <code>everything()</code>.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># move demographic information to the furthest right</span>
 unorganized_data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span><span class="o">-</span>starts_with<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">),</span> everything<span class="p">())</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
@@ -1523,10 +1525,15 @@ unorganized_data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>sel
 </div>
 <p></p>
 
-<p>Overall, I think dplyr’s <code>select()</code> function is very useful when doing data work. Columns can be selected easily without having to wrap column names in quotations or <code>c()</code>, unlike base R’s subset function. Deselecting is more consistent with the simple <code>-</code> negation, and matching column groups are much simpler with the help of special functions.</p>
-
 <h1 id="challenge-round">Challenge round</h1>
-<p>Let’s do something a little more challenging to see the power of dplyr. We want to clean up this data set to remove all pretest information that does not correspond to the ACT or SAT. In addition, we only want information regarding to students who took the math or reading posttest in the 12th grade.</p>
+<p>The power of dplyr can be seen with a more challenging problem.</p>
+
+<p>Clean up this data set by</p>
+
+<ul>
+  <li>removing  all pretest information that does not correspond to the ACT or SAT</li>
+  <li>keep information regarding to students who took a math/reading posttest in the 12th grade</li>
+</ul>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># grade and subject query of interest</span>
 grade_query <span class="o">&lt;-</span> <span class="m">12</span>

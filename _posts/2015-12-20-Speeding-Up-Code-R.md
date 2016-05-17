@@ -10,8 +10,6 @@ categories: ['r programming']
 
 
 
-In some cases we may want/need to speed up code. There are a variety of ways to do this.
-
 # Timing Code
 
 ## Profiling Code

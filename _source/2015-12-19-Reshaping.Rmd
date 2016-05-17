@@ -14,7 +14,7 @@ lib(data)
 ```
 
 
-The format of data is an important consideration. Data be formatted long or wide. Often times formats will need to switch to obtain the needed metrics. 
+Data be formatted long or wide. Often formats will need to switch to obtain the needed metrics. 
 
 * Long-format: contains a column for possible variable types and a column with the values for those variables; extremely useful for grouping and running separate operations on by groups
 * Wide-format: each variable contains its own columns, populated by values
