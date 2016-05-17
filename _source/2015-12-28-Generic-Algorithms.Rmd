@@ -15,11 +15,8 @@ knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
 ```
 
 
-These topics cover generic algorithms that can be applied to a variety of different machine learning algorithms. 
-
 # Gradient Descent
-Assume that we start with some intial $$\theta$$. The algorithm repeatedly takes a step in the direction of the steepest decrease of $$J$$ until it reaches a local minimum. 
-
+Start with some intial $$\theta$$. This algorithm repeatedly takes a step in the direction of the steepest decrease of $$J$$ until it reaches a local minimum. 
 
 There are two variants of the gradient descent algorithm
 
@@ -37,7 +34,7 @@ The stochastic gradient descent algorithm updates the parameters after examining
       $$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta)$$ <br>
 **} }**
 
-A compromise between the two is mini-batch gradient descent. For this method rather than adjusting $$\theta_j$$ after looking at $$1$$ training observation, we look at $$m$$ training observations where $$m < n$$. The for loop iterations from $$1$$ to $$n$$ in steps of $$m$$. 
+A compromise between the two is mini-batch gradient descent. For this method rather than adjusting $$\theta_j$$ after looking at $$1$$ training observation, it looks at $$m$$ training observations where $$m < n$$. The for loop iterations from $$1$$ to $$n$$ in steps of $$m$$. 
 
 The value $$\alpha$$ is the learning rate. Some care should be taken in choosing the value of $$\alpha$$. If $$\alpha$$ was too small, convergence may be slower. If $$\alpha$$ was too big, the algorithm may overshoot the minimum and fail to converge. 
 
@@ -66,9 +63,9 @@ The Kullback-Leibler (KL) divergence provides a distance measure between two dis
 
 $$D_{KL}(P(X) \vert Q(X)) = \sum_x P(x) \log \frac{P(x)}{Q(x)} = \sum_i p_i [\log(p_i) - \log(q_i)]$$
 
-If the two distributions are indpendent, then $$P$$ is non-informative about $$Q$$. The KL divergence will be small. 
+If the two distributions are independent, then $$P$$ is non-informative about $$Q$$. The KL divergence will be small. 
 
-We can use KL divergence to understand comparing models with divergence. Deviance is an estimate of relative information divergence.
+KL divergence can be used to understand comparing models with divergence. Deviance is an estimate of relative information divergence.
 
 
 -------------------------------|----------------

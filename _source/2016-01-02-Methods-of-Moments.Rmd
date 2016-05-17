@@ -27,7 +27,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 
 1. Equate the first sample moment about the origin $$M_1$$ to the first theoretical moment $$E[X]$$
 2. Equate the second sample moment about the origin $$M_2$$ to the second theoretical moment $$E[X^2]$$
-3. Continue equating sample moments about the origin $$M_k$$ to the corresponding theoretical moments $$E[X^k]$$ until you have as many equations as parameters
+3. Continue equating sample moments about the origin $$M_k$$ to the corresponding theoretical moments $$E[X^k]$$ until there are as many equations as parameters
 4. Solve for parameters
 
 **Example**
@@ -48,7 +48,7 @@ $$\hat{\sigma}^2_{MOM} = \frac{1}{n} \sum^n_i X_i^2 - \mu^2 = \frac{1}{n} \sum^n
 
 1. Equate the first sample moment about the origin $$M_1$$ to the first theoretical moment $$E[X]$$
 2. Equate the second sample moment about the mean $$M^*_2$$ to the second theoretical moment about the mean $$E[(X-\mu)^2]$$
-3. Continue equating sample moments about the mean $$M^*_k$$ to the corresponding theoretical moments $$E[(X-\mu)^k]$$ until you have as many equations as parameters
+3. Continue equating sample moments about the mean $$M^*_k$$ to the corresponding theoretical moments $$E[(X-\mu)^k]$$ until there are as many equations as parameters
 4. Solve for parameters
 
 **Example**
@@ -62,10 +62,10 @@ Set $$M_1 = E[X] \rightarrow \bar{X} = \alpha \theta \rightarrow \alpha = \frac{
 
 Set $$M^*_2 = Var(X) \rightarrow \frac{1}{n} \sum_i (X_i - \bar{X})^2 = \alpha \theta^2$$
 
-We substitute to get $$\alpha \theta^2 = \left( \frac{\bar{X}}{\theta} \right) \theta^2 = \bar{X} \theta = \frac{1}{n} \sum_i (X_i - \bar{X})^2$$
+Substitute to get $$\alpha \theta^2 = \left( \frac{\bar{X}}{\theta} \right) \theta^2 = \bar{X} \theta = \frac{1}{n} \sum_i (X_i - \bar{X})^2$$
 
 $$\hat{\theta}_{MOM} = \frac{1}{n\bar{X}} \sum_i (X_i - \bar{X})^2$$
 
-We back substitute to get 
+Back substitute to get 
 
 $$\hat{\alpha}_{MOM} = \frac{\bar{X}}{\hat{\theta}_{MOM}} = \frac{n \bar{X}^2 }{ \sum_i (X_i - \bar{X})^2 }$$
