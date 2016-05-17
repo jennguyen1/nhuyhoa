@@ -89,15 +89,32 @@
 
 <h1 id="subsetting-functions-in-r">Subsetting Functions in R</h1>
 
-<p>In a previous post, I dicussed the subsetting functions available via the dplyr package, including the <code>filter()</code>, <code>slice()</code>, and <code>select()</code> functions. There are a number of additional ways to subset data frames in R.</p>
+<p>There are a number of different subsetting functions available in base R and external packages.</p>
 
-<p>However what if rather than tossing the data that does not correspond to the subset (call it the “anti-subset”), we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other. One could easily subset two times, once with the condition and again with the negation. However in some cases, obtaining the anti-subset isn’t all that straight forward. For example what if the subset was obtained randomly, as with functions like <code>sample_n()</code> or <code>sample_frac()</code>, or when there is no clear negation, such as <code>view_duplicated()</code>?</p>
+<p>However, there are no functions available for keeping (rather than discarding) the data that does not correspond to the subset (call it the “anti-subset”). This process might be useful for performing a different set of operations on two different subsets of the data and combining the results back again.</p>
 
-<p>Having faced this issue many times, I wrote the <code>to_be()</code> function as a way to obtain both the subsetted data and the “anti-subset”. It is available in the <a href="https://github.com/jnguyen92/jn.general" target="blank">jn.general package</a>.</p>
+<p>In some cases, obtaining the anti-subset isn’t straightforward. For example, when the subset is obtained randomly (as with <code>sample_n()</code> or <code>sample_frac()</code>) or when there is no clear negation (as with <code>jn.general::view_duplicated()</code>).</p>
+
+<p>A simple solution is to use the function <code>jn.general::to_be()</code>, which returns both the subsetted and the anti-subsetted data. It is available in the <a href="https://github.com/jnguyen92/jn.general" target="blank">jn.general package</a>.</p>
 
 <h1 id="to-be-or-not-to-be">To Be or Not To Be</h1>
 
-<p>The function<code>to_be()</code> is quite simple when broken down. It takes in a data frame, a subsetting function, and any additional arguments needed for the subset. After performing the needed operations, <code>to_be()</code> returns a list of two objects. The first object returned, “to_be”, is the resulting data frame when the subset function is applied to the input data. The second object returned, “not_to_be” is the anti-subset, obtained by considering a total of three cases: subset by rows, subset by columns, and subset by rows and columns.</p>
+<p>The function <code>to_be()</code> is quite simple when broken down.</p>
+
+<p>The parameters include</p>
+
+<ul>
+  <li>A data.frame</li>
+  <li>A subsetting function</li>
+  <li>Any additional arguments to be passed to the subset function</li>
+</ul>
+
+<p>After performing the subset operations, <code>to_be()</code> returns a list of two objects</p>
+
+<ul>
+  <li>A data.frame “to_be”: the resulting data.frame when the subset function is applied to the input data</li>
+  <li>A data.frame “not_to_be”: the anti-subset, the opposite of the subset operation</li>
+</ul>
 
 <h2 id="subset-by-rows">Subset by Rows</h2>
 
@@ -675,7 +692,7 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 </div>
 
 <h1 id="challenge-round">Challenge Round</h1>
-<p>Let’s do something a little more challenging to see <code>to_be</code> in action. With this data set,s remove the duplicated id entries by hand and merge them back into the non-duplicates.</p>
+<p>Let’s do something a little more challenging to see <code>to_be</code> in action. With this data set, remove the duplicated id entries by hand and merge them back into the non-duplicates.</p>
 
 <div class="dftab">
 <table>

@@ -29,7 +29,7 @@ find . -name "*.jpg" | xargs tar -zcf jpg.tar.gz
 ls | grep \.jpg$ | sed 'p;s/\.jpg/\.png/' | xargs -n2 mv
 {% endhighlight %}
 
-* `echo` repeat your own text, can pipe into files
+* `echo` repeat text, can pipe into files
 * `printf` for formatting text
 
 
@@ -99,7 +99,7 @@ cut -f1-3,5,7- input.txt
 cut -d" " -f 3 input.txt
 {% endhighlight %}
 
-Examples
+**Example**
 
 {% highlight r %}
 # find the 10 most common words
@@ -123,7 +123,7 @@ Some common action terms
 * `x` extract 
 * `v` verbose mode
 * `z` process through gzip
-* `f` specify name of the $$.tar$$ files you want to create
+* `f` specify name of the $$.tar$$ files to create
 
 
 {% highlight r %}
@@ -170,7 +170,7 @@ File access options:
 * `w` write
 * `e` executable
 
-When listed via `ls`, the file access options from left to right are for owner, group, then all. 
+When listed via `ls`, the file access options from left to right are for owner, group, all. 
 
 
 {% highlight r %}
@@ -230,7 +230,7 @@ scp -rp file location.to.transfer
 
 # Shell Scripting
 
-A shell script is a file containing lines for the shell to execute. Everything that you can do on the command line, you can put into a shell script. Shell scripts should be short. Longer scripts can be written using other languages and then run using a few lines of a shell script.
+A shell script is a file containing lines for the shell to execute. Everything that can be done on the command line can be put into a shell script. Shell scripts should be relatively short. Longer scripts can be written using other languages and then run using a few lines of a shell script.
 
 **Start scripts with the statement:**
 

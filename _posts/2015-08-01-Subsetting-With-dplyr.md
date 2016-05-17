@@ -1641,6 +1641,5 @@ final <- data %>%
 Note: The `jn.general::refine()` function used here is a wrapper function for `Filter()`. 
 
 
-[jn.general_link]: https://github.com/jnnguyen2/jn.general
 [regex_link]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 

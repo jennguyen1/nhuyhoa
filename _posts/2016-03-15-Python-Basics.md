@@ -12,7 +12,7 @@ categories: ['basics']
 
 # Data Structures
 
-Python allows simultaneous declarations, so one can do `a = b = c = 0`. 
+Python allows simultaneous declarations, `a = b = c = 0` is possible. 
 
 To check the type of an object use the following functions
 
@@ -23,13 +23,13 @@ To check the type of an object use the following functions
 
 Python has a number of basic types: int, long, float, bool, str. 
 
-Operations in are defined by type (`int / int = int`), therefore one needs to be careful to cast values into the right type for for the operation (`int / float(int) = float`).
+Operations in are defined by type (`int / int = int`), so take care to cast values into the right type for the operation (`int / float(int) = float`).
 
-Python has basic operations such `+-/*/%` as well as `in`.
+Python has basic operations such as `+-/*/%` and `in`.
 
-Incrementing a value is quick with `x += n`.
+Quickly increment with with `x += n`.
 
-To do more advanced math operations, use the `math` or `random` module
+For more advanced math operations, use the `math` or `random` module
 {% highlight python %}
 from math import *
 from random import *
@@ -39,11 +39,11 @@ These modules provide functions such as `math.abs()` `math.exp()`, `math.pow()`,
 
 ## String Types
 
-* Sliced, `s[i:j]`, where the indices may be negative or positive. 
-* Concatenated with `+`
-* Repeated with `*`
-* Converted to list `list(s)`
-* Converted to number `ord(char)` and vice versa `chr(number)`
+* Sliced, `s[i:j]`, where the indices may be negative or positive
+* Concatenate with `+`
+* Repeat with `*`
+* Convert to list `list(s)`
+* Convert to number `ord(char)` and vice versa `chr(number)`
 
 For more information on string functions see [the post on regular expressions][regex_post]{:target = "_blank"}.
 
@@ -84,7 +84,7 @@ Function | Description
 
 ## Dictionaries
 
-Dictionaries are hash tables. It has a key and value pair that makes it easier to "find" objects since they have unique keys. The keys of a dictionary should be unique.
+Dictionaries are hash tables. It has a key and value pair that makes it easier to find/access objects since they have unique keys. The keys of a dictionary should be unique.
 
 Dictionaries can be declared like so
 {% highlight python %}
@@ -239,7 +239,7 @@ myobj = myClass(x, y)
 myobj.method()
 {% endhighlight %}
 
-You can declare a variety of unique methods for functions and use as desired. There are also a number of pre-defined methods that would be useful to use
+Classes have a set of unique methods and functions. There are also a number of pre-defined methods that would be useful to use
 
 * `def __init__(self, ...)` to intialize the class
 * `def __repr__(self)` to determine the string printed when the object is printed
@@ -249,7 +249,7 @@ You can declare a variety of unique methods for functions and use as desired. Th
 * `def __len__(self)` to obtain the length `len(myobj)`
 * `def __contains__(self)` to test whether something is inside it
 * `def __add__(self, other)` to allow adding `myobj + yourobj`
-* other operations available [here][class_operators]{:target = "_blank"}
+* other operations available on the [Python manual][class_operators]{:target = "_blank"}
 
 To create an iterator for the class
 
@@ -259,7 +259,7 @@ To create an iterator for the class
 
 # IO
 
-We can navigate through the file system like so
+Navigate through a file system like so
 {% highlight python %}
 import os
 os.mkdir(PATH) # make a new directory
@@ -344,7 +344,7 @@ Function | Description
 `arr.sort()` | sorts an array
 
 <br>
-Numpy arrays are similar to vectors in R. You can apply element-wise functions onto each element of the array. Examples of these include `+-*/><`, `np.abs()`, `np.square()`, `np.log()`, etc. Several functions of note include
+Numpy arrays are similar to vectors in R. Vectorized functions may be implemented on the array. Examples of these include `+-*/><`, `np.abs()`, `np.square()`, `np.log()`, etc. Several functions of note include
 
 Function | Description 
 ---------|------------
@@ -353,7 +353,9 @@ Function | Description
 `np.vectorize(f)` | vectorizes a function (similar to R `Vectorize()`)
 
 <br>
-Additional math problems include `arr.sum()`, `arr.mean()`, `arr.var()`, `arr.std()`, `arr.min()`, `arr.argmin()`, `arr.any()`, `arr.all()`. More advanced math problems include `np.dot()`, `np.inner()`, `np.outer()`, `np.cross()`, `np.linalg.det()`, `np.linalg.eig()`, `np.linalg.inv()`, `np.linag.svd()`.
+Additional math problems include `arr.sum()`, `arr.mean()`, `arr.var()`, `arr.std()`, `arr.min()`, `arr.argmin()`, `arr.any()`, `arr.all()`. 
+
+More advanced math problems include `np.dot()`, `np.inner()`, `np.outer()`, `np.cross()`, `np.linalg.det()`, `np.linalg.eig()`, `np.linalg.inv()`, `np.linag.svd()`.
 
 There are also options for random simulation.
 
@@ -370,7 +372,7 @@ Function | Description
 
 ## Scipy Stats
 
-The module `scipy.stats` gives you access to probability distributions. 
+The module `scipy.stats` provides access to probability distributions. 
 
 Import the model like so
 {% highlight python %}

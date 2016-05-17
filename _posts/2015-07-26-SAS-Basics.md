@@ -81,7 +81,7 @@ NEWCOL = EXPR;
 run;
 {% endhighlight %}
 
-Sometimes we may want to change the format of variables. 
+To change the format of variables
 
 * Numeric to character conversion: `put(VALUE, $32.)`
 * Character to numeric conversion: `input(VALUE, best32.)`
@@ -228,7 +228,7 @@ Arrays can be defined with the statement
 array ARRNAME(DIM) ELEM1 ELEM2 ELEM3 ... ELEMN;
 {% endhighlight %}
 
-Once declared, you can iterate through an array using a loop and edit single elements within the array as needed. The dimensions of an array can be accessed with `dim(ARRNAME)`.
+Once declared, use a loop to iterate through an array and edit single elements as needed. The dimensions of an array can be accessed with `dim(ARRNAME)`.
 
 There are several shortcuts to choose variables to incorporate into an array
 
@@ -259,7 +259,7 @@ Functions in SAS are known as macros.
 %LET MNAME = VALUE;
 {% endhighlight %}
 
-We can convert data values into macro variables by doing
+Data values can be converted into macro variables with
 
 {% highlight r %}
 call symput("MNAME", VALUE);
@@ -279,7 +279,7 @@ There are a number of built-in macrovariables, including
 * `&ststime`
 * `&sysday`
 
-To write macrovariables to the console, one can do
+To write macrovariables to the console, write
 
 {% highlight r %}
 %PUT &MNAME;
@@ -308,5 +308,5 @@ To write macrovariables to the console, one can do
 %MACRONAME(PARAMS);
 {% endhighlight %}
 
-Notice that the parameters are macrovariables, so they should be used with `&`. 
+The parameters of macros are macro variables, so access them with `&`.
 
