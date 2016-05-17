@@ -16,7 +16,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 
 # Data Structures
 
-Python allows simultaneous declarations, `a = b = c = 0` is possible. 
+Python allows simultaneous declarations, so `a = b = c = 0` is possible. 
 
 To check the type of an object use the following functions
 

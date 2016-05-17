@@ -66,7 +66,7 @@ pattern | matches
 
 **(...)**
 
-The metacharacters `(...)` are very useful in replacing strings. When wrapped around a string, it "remembers" the matched pattern. Then when specifying the replacement, it allows us to refer to the matched pattern by using `\n` where n refers to the nth wrapped expression. 
+The metacharacters `(...)` are very useful in replacing strings. When wrapped around a string, it "remembers" the matched pattern. Then when specifying the replacement, it allows users to refer to the matched pattern by using `\n` where n refers to the nth wrapped expression. 
 
 We can look at this example in R:
 ```{r example data}

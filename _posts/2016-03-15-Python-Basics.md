@@ -12,7 +12,7 @@ categories: ['basics']
 
 # Data Structures
 
-Python allows simultaneous declarations, `a = b = c = 0` is possible. 
+Python allows simultaneous declarations, so `a = b = c = 0` is possible. 
 
 To check the type of an object use the following functions
 

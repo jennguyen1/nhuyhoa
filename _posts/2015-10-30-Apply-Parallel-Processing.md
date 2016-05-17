@@ -47,17 +47,26 @@ The package plyr has a number of apply functions to that allow for proper contro
 
 Plyr functions have the form `__ply()`. 
 
-
-|input\output |list  |data.frame |array |empty |
-|:------------|:-----|:----------|:-----|:-----|
-|list         |llply |ldply      |laply |l_ply |
-|data.frame   |dlply |ddply      |daply |d_ply |
-|array        |alply |adply      |aaply |a_ply |
+input/output | list | data.frame | array | empty
+-------------|------|------------|-------|------
+**list**     | llply| ldply      | laply | l_ply
+**data.frame**| dlply| ddply     | daply | d_ply
+**array**    | alply| adply      | aaply | a_ply
 
 <p></p>
 The first character (`l`, `d`, `a`) denotes the format of the incoming object. The second character (`l`, `d`, `a`, `_`) denotes the format of the outcoming object. 
 
-For example, `llply()` takes in a list, applies a function on all elements of that list, and returns the results in a list. On the other hand, `ldply()` takes in a list, applies a function on all elements of that list, and merges the results into a data frame.
+The function `llply()` 
+
+* takes in a list
+* applies a function on all elements of that list
+* returns the results in a list
+
+The function `ldply()` 
+
+* takes in a list
+* applies a function on all elements of that list
+* merges the results into a data frame
 
 The `_` refers to no output. This is useful for when the outputs are taken care of (saved or printed) within the loop, and there is no need for other output.
 
@@ -365,7 +374,7 @@ output[[2]]
 {% endhighlight %}
 And so on for the following iterations.
 
-So this is the result of our model builds. It isn't very useful broken up into so many pieces, so let's use `jn.general::extract_list()` on our output. 
+So this is the result of the model builds. It isn't very useful broken up into so many pieces, so let's use `jn.general::extract_list()` on the output. 
 
 {% highlight r %}
 # rename the data frames
