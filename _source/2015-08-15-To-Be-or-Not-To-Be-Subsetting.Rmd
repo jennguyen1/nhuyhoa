@@ -14,15 +14,28 @@ lib(viz)
 
 # Subsetting Functions in R
 
-In a previous post, I dicussed the subsetting functions available via the dplyr package, including the `filter()`, `slice()`, and `select()` functions. There are a number of additional ways to subset data frames in R. 
+There are a number of different subsetting functions available in base R and external packages. 
 
-However what if rather than tossing the data that does not correspond to the subset (call it the "anti-subset"), we wanted to keep it? Say perhaps, we want to subset, perform a sequence of operations, and then somehow relate the two to each other. One could easily subset two times, once with the condition and again with the negation. However in some cases, obtaining the anti-subset isn't all that straight forward. For example what if the subset was obtained randomly, as with functions like `sample_n()` or `sample_frac()`, or when there is no clear negation, such as `view_duplicated()`?
+However, there are no functions available for keeping (rather than discarding) the data that does not correspond to the subset (call it the "anti-subset"). This process might be useful for performing a different set of operations on two different subsets of the data and combining the results back again. 
 
-Having faced this issue many times, I wrote the `to_be()` function as a way to obtain both the subsetted data and the "anti-subset". It is available in the [jn.general package][package_link]{:target="blank"}.
+In some cases, obtaining the anti-subset isn't straightforward. For example, when the subset is obtained randomly (as with `sample_n()` or `sample_frac()`) or when there is no clear negation (as with `jn.general::view_duplicated()`). 
+
+A simple solution is to use the function `jn.general::to_be()`, which returns both the subsetted and the anti-subsetted data. It is available in the [jn.general package][package_link]{:target="blank"}.
 
 # To Be or Not To Be
 
-The function`to_be()` is quite simple when broken down. It takes in a data frame, a subsetting function, and any additional arguments needed for the subset. After performing the needed operations, `to_be()` returns a list of two objects. The first object returned, "to_be", is the resulting data frame when the subset function is applied to the input data. The second object returned, "not_to_be" is the anti-subset, obtained by considering a total of three cases: subset by rows, subset by columns, and subset by rows and columns. 
+The function `to_be()` is quite simple when broken down. 
+
+The parameters include
+
+* A data.frame
+* A subsetting function
+* Any additional arguments to be passed to the subset function
+
+After performing the subset operations, `to_be()` returns a list of two objects
+
+* A data.frame "to_be": the resulting data.frame when the subset function is applied to the input data
+* A data.frame "not_to_be": the anti-subset, the opposite of the subset operation
 
 ## Subset by Rows
 
@@ -55,7 +68,6 @@ by_row[["not_to_be"]] %>% nhuyhoa_df_print()
 ```{r subset by col ex}
 by_col <- to_be(mtcars, dplyr::select, -one_of(c("gear", "vs")))
 ```
-
 
 {% highlight r %}
 # data corresponding to all car information except gear & vs 
@@ -107,7 +119,7 @@ by_both[["not_to_be"]] %>% head(10) %>% kable(format = "html")
 </div>
 
 # Challenge Round
-Let’s do something a little more challenging to see `to_be` in action. With this data set,s remove the duplicated id entries by hand and merge them back into the non-duplicates. 
+Let's do something a little more challenging to see `to_be` in action. With this data set, remove the duplicated id entries by hand and merge them back into the non-duplicates. 
 
 <div class = "dftab">
 ```{r challenge data, echo = FALSE}

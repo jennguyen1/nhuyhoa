@@ -13,10 +13,11 @@ library(jn.general)
 lib(data, viz)
 ```
 
-For loops in R are known to be quite slow as the number of iterations increase. Thus it is advised to use apply functions for looping operations. In cases when it is desirable to optimize code even more, parallel processing can be used alongside the apply functions.
+
+For loops in R are can be quite slow as the number of iterations increase. Apply functions or parallel processing are recommended to optimize code for looping operations. 
 
 # Apply as a For Loop Replacement
-Lapply is a desireable replacement of for-loops when each iteration is independent of the others. 
+Lapply can replace for-loops when each iteration is independent of the others. 
 
 Recall the basic setup of the for loop: 
 {% highlight r%}
@@ -28,7 +29,7 @@ for (LOOP_VAR in SEQUENCE) {
 }
 {% endhighlight%}
 
-The setup is similar when using apply.
+The setup is similar when using lapply.
 {% highlight r%}
 lapply(SEQUENCE, function(i, ...){
   EXECUTION
@@ -38,7 +39,7 @@ lapply(SEQUENCE, function(i, ...){
 ...)
 {% endhighlight%}
 
-Note that the keywords break and next cannot be used with `lapply()`. In order to skip an iteration, enact a conditional statment and return an empty object. 
+Note that the keywords break and next cannot be used with `lapply()`. In order to skip an iteration, implement a conditional statment and return an empty object. 
 
 The output of an `lapply()` is a list object. 
 
@@ -65,9 +66,9 @@ x %>% dplyr::select(one_of("input\\output"), everything()) %>% kable
 <p></p>
 The first character (`l`, `d`, `a`) denotes the format of the incoming object. The second character (`l`, `d`, `a`, `_`) denotes the format of the outcoming object. 
 
-For example, `llply()` means take a list, apply a function on all elements of that list, and the results in a list. On the other hand, `ldply()` means take a list, apply a function on all elements of that list, and merge the results into a data frame.
+For example, `llply()` takes in a list, applies a function on all elements of that list, and returns the results in a list. On the other hand, `ldply()` takes in a list, applies a function on all elements of that list, and merges the results into a data frame.
 
-The `_` refers to no output. This is useful for when the outputs are taken care of (saved or printed) within the loop, and you have no need for overall outputs.
+The `_` refers to no output. This is useful for when the outputs are taken care of (saved or printed) within the loop, and there is no need for other output.
 
 In addition to providing control for input and output types, plyr functions have additional arguments for increased efficiency. 
 
@@ -75,10 +76,10 @@ In addition to providing control for input and output types, plyr functions have
 * `.parallel` and `.paropts`:  allows iterations to be run in parallel. Details on how to do this is provided in a later section.
 
 ## l*ply
-The function `l*ply(.data, .fun, ...)` is probably the most general. It is identical to the `lapply()` function provided in the first section.
+The function `l*ply(.data, .fun, ...)` is probably the most general. It is identical to the `lapply()` function.
 
 ## d*ply
-The function `d*ply()` are used with data frames. However, more recent packages provide better control and support for these tasks. See the post on [Split-Apply-Combine][sac_link]{:target="blank"} for more information.
+The function `d*ply()` are used with data frames. However, other packages provide better control and support for these tasks. See the post on [Split-Apply-Combine][sac_link]{:target="blank"} for more information.
 
 ## a*ply
 The function `a*ply(.data, .margins, .fun, ...)` will apply a functions on the rows and/or columns of an array. The rows or columns can be specified using the `.margins`, pass 1 to split by rows, 2 to split by columns. 
@@ -94,10 +95,10 @@ y %>% unlist
 ```
 Here the first row is the column name, the second row is the count of even values
 
-Note that data frames of one type are technically arrays too. So they can be passed as the .data argument to `a*ply()`.
+Note that data frames of one type are technically arrays too. So they can be passed as the `.data` argument to `a*ply()`.
 
 ## r*ply
-The function `r*ply(.n, .expr, ...)` replicates an expression/function n times. This is great for running multiple iterations of random number generator.
+The function `r*ply(.n, .expr, ...)` replicates an expression/function n times. This is useful for running multiple iterations of random number generator.
 
 
 ```{r, eval = FALSE}
@@ -112,9 +113,9 @@ rdply(5, runif(3)) %>% nhuyhoa_df_print()
 </div>
 
 # Multivariate Apply
-We can simultaneously loop over several vectors at once with `Map`.
+`Map` can simultaneously loop over several vectors at once. 
 
-For example, we can compute multiple weighted means with two list, one with multiple vectors of observations and one with corresponding weights.
+For example, it can be used to compute multiple weighted means of two different data sets. Here, one set of weights  is applied to two different data sets. 
 ```{r}
 # list of obs and weights
 obs <- replicate(5, runif(10), simplify = FALSE)
@@ -124,11 +125,10 @@ weights <- replicate(5, rpois(10, 5) + 1, simplify = FALSE)
 Map(function(x, w) weighted.mean(x, w, na.rm = TRUE), obs, weights) 
 ```
 
-# Foreach Functions
-Under Construction :)
-
 # Parallel Processing
-Parallel processing allows independent tasks to be dispatched to different cores. These cores compute them in parallel and combine the results. Running tasks in parallel can reduce the runtime in half or more! However parallel processing is only recommended for time-consuming tasks. With shorter tasks, it may take more time to set up the cores than to run the analysis iteratively!
+Parallel processing allows independent tasks to be dispatched to different cores. These cores compute them in parallel and combine the results. Running tasks in parallel can reduce the runtime by half or more. 
+
+However, parallel processing is only recommended for time-consuming tasks. With shorter tasks, it may take more time to set up the cores than to run the analysis iteratively.
 
 Here's the general setup:
 {% highlight r %}
@@ -159,7 +159,7 @@ Note that this is one of many ways to run parallel processing.
 # Cool Uses of Apply
 
 ## Example 1
-Say we have a number of files that we want to open. Rather than reading them in one by one, we could use an apply loop.
+Rather than opening a large number of files one by one, an apply loop can be used to open all the files at once.
 
 {% highlight r %}
 # given a directory
@@ -178,12 +178,13 @@ files <- llply(file_paths, data.table::fread, .progress = "time")
 super_set <- rbindlist(files)
 {% endhighlight %}
 
-And there you have it, all the files you need in one compact list. The great thing about `llply()` is that you aren't restricted to simple functions. So instead of just reading in the file, you could do even more data processing to fit your needs. The sky's the limit!
+The object `super_set` will have all the specified files in one compact list. The advantage of the apply functions is that it isn't restricted to simple functions. So if there are additional data pre-processing steps, user-defined functions can also be used with the apply functions.
 
 ## Example 2
-In some cases, we want to build any number of independent models and group common data outputs for simple extraction. So perhaps we want all the diagnostics in one data frame so we can compare them across multiple models. An easy way to do this is with the function `extract_list()`, which uses a recursive looping function to accumulate the data structures. 
 
-Here's an example of when `extract_list()` would come in handy.
+Imagine a work flow where independent models are constructed with different parameters. The goal is to group common data outputs from each of those models for a more simplified analysis. For example, multiple models can be compared by gathering all diagnostics into one data.frame. An easy way to do this is with the function `jn.general::extract_list()`, which uses a recursive apply/looping function to accumulate the data structures. 
+
+Here's an example of when `jn.general::extract_list()` would come in handy.
 ```{r}
 # function to generate some random data
 random_data <- function(){
@@ -206,7 +207,7 @@ output[[2]]
 ```
 And so on for the following iterations.
 
-So this is the result of our model builds. It isn't very useful broken up into so many pieces, so let's use `extract_list()` on our output. 
+So this is the result of our model builds. It isn't very useful broken up into so many pieces, so let's use `jn.general::extract_list()` on our output. 
 ``` {r}
 # rename the data frames
 renamed <- rename_list(output, names = paste0("m", 1:length(output)))
@@ -215,7 +216,7 @@ extract <- extract_list(renamed)
 extract
 ```
 
-Clean aggregated outputs, makes analysis and comparison much more simple!
+The function returns clean aggregated outputs, making analysis and comparison much more simple!
 
 The separate files can be extracted quite simply with `$`. 
 ```{r}
@@ -225,4 +226,4 @@ cold_states <- extract$temp$cold
 ```
 
 
-[sac_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/Split_Apply-Combine.html
+[sac_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/Split-Apply-Combine.html
