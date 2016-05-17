@@ -611,7 +611,7 @@ by_both[["not_to_be"]] %>% head(10)
 </div>
 
 # Challenge Round
-Let’s do something a little more challenging to see to_be in action. With this data set, we want to remove the duplicated id entries by hand and merge them back into the non-duplicates. 
+Let’s do something a little more challenging to see `to_be` in action. With this data set,s remove the duplicated id entries by hand and merge them back into the non-duplicates. 
 
 <div class = "dftab">
 <table>
@@ -816,7 +816,7 @@ result[["not_to_be"]]
 </table>
 </div><p></p>
 
-From the duplicated id's, I'll keep the id that corresponds to a female or, if none of the duplicated entries are female, an id corresponding to someone greater than 50 years old. 
+Keep the id that corresponds to a female or someone greater than 50 years old.
 
 {% highlight r %}
 result[["to_be"]] %>% arrange(gender, desc(age)) %>% group_by(id) %>% slice(1)

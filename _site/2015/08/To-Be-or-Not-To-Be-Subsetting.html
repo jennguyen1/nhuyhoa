@@ -675,7 +675,7 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 </div>
 
 <h1 id="challenge-round">Challenge Round</h1>
-<p>Let’s do something a little more challenging to see to_be in action. With this data set, we want to remove the duplicated id entries by hand and merge them back into the non-duplicates.</p>
+<p>Let’s do something a little more challenging to see <code>to_be</code> in action. With this data set,s remove the duplicated id entries by hand and merge them back into the non-duplicates.</p>
 
 <div class="dftab">
 <table>
@@ -878,7 +878,7 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 </div>
 <p></p>
 
-<p>From the duplicated id’s, I’ll keep the id that corresponds to a female or, if none of the duplicated entries are female, an id corresponding to someone greater than 50 years old.</p>
+<p>Keep the id that corresponds to a female or someone greater than 50 years old.</p>
 
 <div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">1</span><span class="p">)</span></code></pre></div>
 
