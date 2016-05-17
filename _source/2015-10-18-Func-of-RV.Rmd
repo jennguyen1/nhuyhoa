@@ -8,7 +8,6 @@ categories: ['statistics', 'probability and inference']
 * TOC
 {:toc}
 
-How do we compute the distribution function of a random variable?
 
 # Jacobian Theorem For 1 Variable
 Let $$X$$ be a random variable with a known pdf. Let $$ Y = f(X) $$ a random variable that is a function of X. To compute the distribution of $$Y$$,
@@ -78,21 +77,22 @@ The moment generating function has several properties
 # Delta Method
 If the distribution of a random variable cannot be computed directly, one can use the delta method and the central limit theorem. The delta method to obtain information about the distribution about a transformation of a random variable.
 
-Suppose $$Y$$ is a random variable where $$E[Y] = \mu$$ and $$var[Y] = \sigma^2$$. Let $$X = g(Y)$$ for some differentiable function $$g$$, where $$g'(\mu)$$ exists and is non-zero. Then we can derive from the Taylor series expansion $$g(Y) = g(\mu) + g'(\mu)(Y - \mu) + C$$. 
+Suppose $$Y$$ is a random variable where $$E[Y] = \mu$$ and $$var[Y] = \sigma^2$$. Let $$X = g(Y)$$ for some differentiable function $$g$$, where $$g'(\mu)$$ exists and is non-zero. Then from the Taylor series expansion $$g(Y) = g(\mu) + g'(\mu)(Y - \mu) + C$$. 
 
 $$E(X) \approx g(\mu)$$
 
 $$Var(X) \approx [g'(\mu)]^2 Var(Y) = [g'(\mu)]^2 \sigma^2$$
 
-Using these moments, we may also apply the CLT to obtain the convergence distribution of the random variable. 
+Using these moments, apply the CLT to obtain the convergence distribution of the random variable. 
 
 **Example:**
 
-Let $$Y \sim Bin(n, p)$$ and $$\hat{\theta} = \log \left( \frac{Y}{n - Y} \right)$$
+Let $$Y \sim Bin(n, p)$$ and $$\theta = \log \left( \frac{Y}{n - Y} \right)$$
 
 Then $$g(y) = \log \left( \frac{y}{n - y} \right) = \log(y) - \log(n - y)$$ <br>
-And $$\frac{\partial}{\partial y}g(y) = \frac{1}{y} + \frac{1}{n - y} = \frac{n}{y(n - y)}$$
+And $$\frac{\partial}{\partial y}g(y) = \frac{1}{y} + \frac{1}{n - y} = \frac{n}{y(n - y)}$$ <br>
+Since $$E[Y] = np$$ and $$g'(np) = \frac{n}{np(n - np)} = \frac{1}{np(1 - p)}$$ 
 
-Since $$E[Y] = np$$, $$g'(np) = \frac{n}{np(n - np)} = \frac{1}{np(1 - p)}$$ <br>
-And $$Var(\hat{\theta}) = \left( \frac{1}{np(1-p)} \right)^2 np(1-p) = \frac{1}{np(1-p)}$$
+Then $$E[\theta] = np$$ <br>
+And $$Var(\theta) = \left( \frac{1}{np(1-p)} \right)^2 np(1-p) = \frac{1}{np(1-p)}$$
 
