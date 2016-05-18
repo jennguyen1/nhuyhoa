@@ -50,28 +50,28 @@ so that
 
 $$E[Y(u) \vert T(u) = B] - E[Y(u) \vert T(u) = A] = E[Y_B(u)] - E[Y_A(u)] = D$$
 
-We eliminate potential biases and ensure that we can conduct valid causal inference. 
+Randomization eliminates potential biases and ensure that valid causal inference can be conducted.  
 
-Essentially we randomize so that the responses we see are independent of the treatment type. 
+Essentially randomization ensures the responses are independent of the treatment type. 
 
 ## Confounding
-If we do not randomize experiments, we may have confounding. Confounding occurs when additional (observed or unobserved) factors ($$Z$$) that are associated with both $$X$$ and $$Y$$ and induce misalignment between the observed association and the true causal relationship. 
+Failure to randomize experiments may lead to confounding. Confounding occurs when additional (observed or unobserved) factors ($$Z$$) that are associated with both $$X$$ and $$Y$$ and induce misalignment between the observed association and the true causal relationship. 
 
 ![Confounding](http://jnguyen92.github.io/nhuyhoa/figure/images/confounding.png)
 
 Specifically, if $$X$$ has a causal effect on $$Y$$, but $$Z$$  has causal effects on both $$X$$ and $$Y$$, then the observed assiciation between $$X$$ and $$Y$$ wil reflect the net effect of $$X$$ and the effect of $$Z$$ on $$X$$ and $$Y$$. In some cases $$X$$ may not have a causal effect on $$Y$$, but the confounding variable may make it seem like there is. 
 
-To deal with confounding variables, we can either randomize or adjust for the variable. Generally, it is best to randomize and adjust for key variables (age, sex, etc). We cannot adjust for everything (expensive), which is why randomization is so important.
+To deal with confounding variables, either randomize or adjust for the variable. Generally, it is best to randomize and adjust for key variables (age, sex, etc). Due to costs, it is not possible to adjust for everything, which means randomization is very important.
 
-Sometimes when building complex experiments, we may use confounding to our advantage. We may confound things that we are not interested in order to have more efficient experiments for the things we are interested in. For example, in fractional factorial experiments we may confound the interactions so that we can estimate the main effects while reducing sample size and cost. 
+Sometimes when building complex experiments, confounding may be used to the experimenter's advantage. Factors that are not of interest may be confounded with factors that are of more importance. For example, fractional factorial experiments may confound the interactions so that the main effects can be estimated and sample size and cost can be kept down.
 
 ## Replication
 Replication allows researchers to obtain precise (less variable) estimates of the mean. Increasing the number of replicates is one way of reducing the random error.
 
-There is a difference between technical replicates (subsamples) and biological replicates (experimental units or EU). Technical replicates can reduce measurement error by averaging within a single EU. Biological replication reduces the standard error of parameter estimates of the biological population. Technical replication tells us a lot about a single unit, while biological replication tells us a lot about the population. Thus, it is better to increase the number of EUs than the technical replicates.  
+There is a difference between technical replicates (subsamples) and biological replicates (experimental units or EU). Technical replicates can reduce measurement error by averaging within a single EU. Biological replication reduces the standard error of parameter estimates of the biological population. Technical replication reveals a lot about a single unit, while biological replication reveals a lot about the population. Thus, it is better to increase the number of EUs than the technical replicates.  
 
 ## Blocking
-Blocking accounts for nuisance factors that may contribute to the random error. By accounting for block variability, we can decrease the unaccounted error variability and make tests more powerful.
+Blocking accounts for nuisance factors that may contribute to the random error. By accounting for block variability, the random error variability is decreased and tests are more powerful.
 
 ## Analysis-Based Design
 Analyses should be analyzed based on how the data was designed. Failing to do so may lead to biased results. 
@@ -85,11 +85,11 @@ Missing data falls into a number of categories
 * **Missinginess that depends on unobserved predictors**: missing data are informative, will bias results
 * **Missingness that depends on missing value**: censoring
 
-It is generally impossible to know whether data is really missing at random or it is due to unobserved predictors. We generally make assumptions or check with other studies. 
+It is generally impossible to know whether data is really missing at random or it is due to unobserved predictors. The best alternative is to make assumptions or check with other studies.
 
-We cannot deal statistically with missing data. It is important to note that data is missing and interpret results with this taken into account. 
+Missing data cannot be dealt with statistically. It is important to note that data is missing and interpret results with this taken into account. 
 
-With missing data, there are a number of things we can do to proceed with analysis
+With missing data, there are a number of things that can be done to proceed with analysis
 
 * Complete-case analysis: drop all cases with missing data
 * Available-case analysis: study different subsets of data where data is fully available
