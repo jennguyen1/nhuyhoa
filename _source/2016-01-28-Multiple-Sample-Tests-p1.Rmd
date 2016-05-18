@@ -41,11 +41,11 @@ $$Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$$
 
 where $$\epsilon_{ij}$$ ~ iid$$N(0, \sigma^2_{\epsilon})$$. 
 
-We assume $$\sum \alpha_i = 0$$ if $$H_0$$ is true.
+Assume $$\sum \alpha_i = 0$$ if $$H_0$$ is true.
 
 **ANOVA Table**
 
-We have the following terms
+Define the following terms
 
 * treatment sum: $$y_{i.} = \sum^{n_i}_{j = 1} y_{ij}$$
 * treatment mean: $$\bar{y}_{i.} = y_{i.}/n_i$$
@@ -60,7 +60,7 @@ Total | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2$$ | $$kn-1
 
 <p></p>
  
-where $$F \sim F_{dfTrt, dfErr}$$. When $$F$$ is large, we say that the group effect is large so we reject the null hypothesis that the groups are the same.
+where $$F \sim F_{dfTrt, dfErr}$$. When $$F$$ is large, the group effect is large so reject the null hypothesis that the groups are the same.
 
 The value $$\frac{df * MS}{\sigma^2}$$ is distributed $$X^2$$. So 
 
@@ -101,17 +101,17 @@ Total | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})
 
 <p></p>
 
-Note that we have three separate $$F$$ tests with the error as the demonimator (similar to the single factor case) to assess the $$A_{main}$$, $$B_{main}$$, and $$AB_{int}$$ effects. 
+Note that there are three separate $$F$$ tests with the error as the demonimator (similar to the single factor case) to assess the $$A_{main}$$, $$B_{main}$$, and $$AB_{int}$$ effects. 
 
 **Contrasts**
 
-Let $$\bar{ab}$$ denote the mean of the high-high group, $$\bar{a}$$ denote the mean of high-low group, $$\bar{b}$$ denote the mean of the low-high group, and $$\bar{1}$$ denote the mean of the low-low group. We have
+Let $$\bar{ab}$$ denote the mean of the high-high group, $$\bar{a}$$ denote the mean of high-low group, $$\bar{b}$$ denote the mean of the low-high group, and $$\bar{1}$$ denote the mean of the low-low group. So
 
 * .$$A_{main} = \frac{1}{2} [(\bar{ab} - \bar{b}) + (\bar{a} - \bar{1})]$$
 * .$$B_{main} = \frac{1}{2} [(\bar{ab} - \bar{a}) + (\bar{b} - \bar{1})]$$
 * .$$AB_{int} = \frac{1}{2} [(\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
 
-We can assess these effects by generating an interaction plot. By assessing the trends and parallelism of lines, we can determine whether there may be evidence of an interaction effect. We can also test these effects with a contrast test.
+These effects can be assessed by generating an interaction plot. By assessing the trends and parallelism of lines, it can be determined whether there may be evidence of an interaction effect. These effects can also be assed with a contrast.
 
 ### Three Factor ANOVA
 
@@ -143,13 +143,13 @@ Total | $$\sum_{ijkl} (y_{ijk.} - \bar{y}_{...})^2$$ | $$abcn - 1$$
 
 <p></p>
 
-Note that we have many separate $$F$$ tests with the error as the demonimator (similar to the single factor case).
+Note that there are many separate $$F$$ tests with the error as the demonimator (similar to the single factor case).
 
-We need to consider the hierarchy principal when we consider these effects. If a higher order term is important, that means that a lower order term is important as well (and as in linear regression, should not be removed from the model). 
+It is important to follow the hierarchy principal when assessing these effects. If a higher order term is important, that means that a lower order term is important as well (and as in linear regression, should not be removed from the model). 
 
 **Contrasts**
 
-For contrasts, we have
+For contrasts, 
 
 * .$$A_{main} = \frac{1}{4} [(\bar{abc} - \bar{bc}) + (\bar{ab} - \bar{b}) + (\bar{ac} - \bar{c}) + (\bar{a} - \bar{1})]$$
 * .$$B_{main} = \frac{1}{4} [(\bar{abc} - \bar{ac}) + (\bar{ab} - \bar{a}) + (\bar{bc} - \bar{c}) + (\bar{b} - \bar{1})]$$
@@ -161,15 +161,15 @@ For contrasts, we have
 
 * .$$ABC_{int} = \frac{1}{4} [(\bar{abc} - \bar{bc}) - (\bar{ac} - \bar{c}) - (\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
 
-We can assess these effects by generating an interaction plot. We can also test these effects with a contrast test.
+These effects can be assessed with an interaction plot or a contrast.
 
 ## Randomized Complete Block Design (RCBD)
 
 ### One Factor ANOVA
 
-Blocking is a generalization of the paired analysis in t-tests. We expect there to be block to block variability, a nuisance factor. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, we decrease the unaccounted variability and make the test for treatment more powerful. 
+Blocking is a generalization of the paired analysis in t-tests. It is expcted that there is block to block variability, a nuisance factor. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, the unaccounted variability is decreased and the test for treatment is more powerful. 
 
-A single block should be homogeneous. To ensure this homogeneity, we want to make sure blocks are small enough that
+A single block should be homogeneous. To ensure this homogeneity, make sure blocks are small enough that
 
 * all treatments are contained with a block but
 * there are no duplicated treatments within a block
@@ -195,11 +195,13 @@ Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2$$ | $$kb - 1$$
 
 <p></p>
 
-We can assess the effect of treatment with an $$F$$ test with the error in the denominator. 
+The effect of treatment can be assessed with an $$F$$ test with the error in the denominator. 
 
-Note that we can ignore the $$F$$ test for the effect of blocks. The blocks were used in order to account for variability. (If we want to test for a specific effect, we should include it in the model as a factor and randomize its assignment). A significant test would indicate that we were right to block. If we did not find a significant block effect, we should not pool the block with error and analyze the data as a completely randomized design! We need to analyze the data as we have designed it, otherwise we would bias our tests. 
+Note that the $$F$$ test for the effect of blocks may be ignored. The blocks were used in order to account for variability. (If a specific test is to be tested, it should be included in the model as a factor and randomized). A significant test would indicate that it was right to block. If there was no significant block effect, the block error should not be pooled with the residual error and analyzed as a completely randomized design! The data needs to be analyzed as the experiment was designed, otherwise the tests would be biased.
 
-We notice several things from this table. One is that this table is reminiscent of the ANOVA table for two-factor ANOVA where $$n = 1$$. Another similarity is that the $$SS$$ and $$df$$ for error is similar to the $$SS$$ and $$df$$ for the interaction term in the two-factor case. This is because we assume an additive model and so the error that is normally given to the interaction is transferred to the error. We say that the interaction term is confounded with the error.
+Note that this table is reminiscent of the ANOVA table for two-factor ANOVA where $$n = 1$$. 
+
+Also note that the $$SS$$ and $$df$$ for error is similar to the $$SS$$ and $$df$$ for the interaction term in the two-factor case. This is because an additive model is assumed and so the error that is normally given to the interaction is transferred to the error. In this case, the interaction term is confounded with the error.
 
 Thus RCBD with one factor is the same as a completely randomized two-factor ANOVA where $$n = 1$$.
 
@@ -229,7 +231,7 @@ Error | $$(b-1)(ac-1)$$
 
 <p></p>
 
-Again, notice that the $$df$$ for the error can be rewritten as $$(b-1)(ac-1) = (a - 1)(b - 1)(c - 1) + (b - 1)(c - 1) + (a - 1)(b - 1)$$. This is the pooled $$df$$ from the $$AB$$, $$BC$$, and $$ABC$$ interaction; we assume there are no interactions with block and use those terms as the error. 
+Again, notice that the $$df$$ for the error can be rewritten as $$(b-1)(ac-1) = (a - 1)(b - 1)(c - 1) + (b - 1)(c - 1) + (a - 1)(b - 1)$$. This is the pooled $$df$$ from the $$AB$$, $$BC$$, and $$ABC$$ interaction; assume there are no interactions with block and use those terms as the error. 
 
 ### Latin Squares
 
@@ -260,7 +262,7 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$k^2 - 1$$
 
 <p></p>
 
-We can assess the effect of treatment with an $$F$$ test with the error in the denominator. 
+The effect of treatment can be assessed with an $$F$$ test with the error in the denominator. 
 
 # Random Effects and Multilevel Models
 
@@ -268,7 +270,7 @@ Multilevel models can be written as
 
 $$Y = X\beta + Zb + \epsilon$$
 
-where $$X\beta$$ represents the fixed effects variables and $$Zb$$ represents the random effects variables. We also have $$b \sim N(0, G)$$ and $$\epsilon \sim N(0, R)$$. Thus we have
+where $$X\beta$$ represents the fixed effects variables and $$Zb$$ represents the random effects variables. Also assume $$b \sim N(0, G)$$ and $$\epsilon \sim N(0, R)$$. Then
 
 $$E[Y] = X\beta$$
 
@@ -287,7 +289,7 @@ where
 * $$A_i \sim N(0, \sigma^2_A)$$ corresponds to the random effect (group variation)
 * $$\epsilon_{ij} \sim N(0, \sigma^2_{\epsilon})$$ represents the error within each group
 
-Note that this is quite similar to the fixed effects (previous models) that were covered. However, $$A_i$$ represents a sample from some population $$N(0, \sigma^2_A)$$ which we are interested in (rather than specific distinct group). 
+Note that this is quite similar to the fixed effects (previous models) that were covered. However, $$A_i$$ represents a sample from some population $$N(0, \sigma^2_A)$$ of interest (rather than specific distinct group). 
 
 
 **ANOVA Table**
@@ -300,11 +302,11 @@ Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}
 
 <p></p>
 
-We test $$H_0: \sigma^2_A = 0$$ vs. $$H_A: \sigma^2_A > 0$$ with $$F = \frac{MSTrt}{MSE}$$. 
+Test $$H_0: \sigma^2_A = 0$$ vs. $$H_A: \sigma^2_A > 0$$ with $$F = \frac{MSTrt}{MSE}$$. 
 
 **Variance Components**
 
-Based off this ANOVA table, we use $$\hat{\sigma}^2_{\epsilon} = MSE$$ and $$\hat{\sigma}^2_A = \frac{MSTrt - MSE}{n}$$.
+Based off this ANOVA table, use $$\hat{\sigma}^2_{\epsilon} = MSE$$ and $$\hat{\sigma}^2_A = \frac{MSTrt - MSE}{n}$$.
 
 Another important quantity is the intraclass correlation coefficient
 
@@ -316,7 +318,7 @@ This value is the correlation between the observations within the group. Small v
 
 Note that a confidence interval would be $$\bar{y}_{..} \pm t_{\alpha/2, k-1} \sqrt{MSTrt/(nk)}$$.
 
-We can use the expected MS to find the variance of $$Y$$.
+Use the expected MS to find the variance of $$Y$$.
 
 ----------------|----------------
 $$Var(Y_{ij})$$ | $$= \sigma^2_A + \sigma^2_{\epsilon}$$
@@ -328,11 +330,11 @@ Note that $$Var(\bar{y}_{..})$$ $$\rightarrow 0$$ as $$k \rightarrow \infty$$ an
 
 ## Models with Subsampling
 
-To understand models with subsampling, we define the following:
+To understand models with subsampling, define the following:
 
-An **experimental unit** is the group to which a treatment is applied in a single trial of the experiment. We may also call an experimental unit "a plot". 
+An **experimental unit** is the group to which a treatment is applied in a single trial of the experiment. An experimental unit can be considered a "plot". 
 
-A **sampling unit** is a subunit within (nested inside) an experimental unit. When analyzing experimental data, we either have to adjust for a sampling unit in the model or average sampling units for each experimental unit prior to analysis. Treating sampling units as experimental units can inflate the error $$df$$. 
+A **sampling unit** is a subunit within (nested inside) an experimental unit. When analyzing experimental data, it is important to adjust for a sampling unit in the model or average sampling units for each experimental unit prior to analysis. Treating sampling units as experimental units can inflate the error $$df$$. 
 
 Consider a one-sample test with subsampling. The model is written as
 
@@ -344,11 +346,11 @@ One interesting note is that this model will give equivalent results if one were
 
 $$\bar{Y}_{ij.} = \mu + \alpha_i + \epsilon_{ij} + \bar{\delta}_{ij.} = \mu + \alpha_i + e_{ij}$$
 
-Models with subsampling are essentially the same as models that average those subsamples for each experimental unit. Thus even though the $$SS$$ and $$MS$$ for these models are different, the $$F$$ statistic, degrees of freedom, and p-value for effects are all the same. If we decide not to average subsamples, we need to appropriately account for them. 
+Models with subsampling are essentially the same as models that average those subsamples for each experimental unit. Thus even though the $$SS$$ and $$MS$$ for these models are different, the $$F$$ statistic, degrees of freedom, and p-value for effects are all the same. If subsamples are not averaged, they need to be accounted for.
 
 ### CRD with Subsampling
 
-Consider an experiment where the treatments are fixed but we take subsamples which are random. This is an example of a mixed model.
+Consider an experiment where the treatments are fixed but random subsamples are taken. This is an example of a mixed model.
 
 **Model Formulations**
 
@@ -373,11 +375,11 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kns-1$$ | |
 
 <p></p>
 
-Notice that the expected MS are a little different. To conduct our $$F$$ test for treatment, we compute $$F = \frac{MSTrt}{MSPE}$$, where $$E[F] = 1 + 1 + ns \sum^k_i \alpha^2_i / (k - 1)$$. 
+Notice that the expected MS are a little different. To conduct our $$F$$ test for treatment, compute $$F = \frac{MSTrt}{MSPE}$$, where $$E[F] = 1 + 1 + ns \sum^k_i \alpha^2_i / (k - 1)$$. 
 
-The guideline here is that when testing any source of variability for significance, we look for a denominator for the $$F$$ test that contains all the elements of the $$E[MS]$$ except the source of interest.
+The guideline here is that when testing any source of variability for significance, look for a denominator for the $$F$$ test that contains all the elements of the $$E[MS]$$ except the source of interest.
 
-To calculate the differences of mean $$y$$ for different treatments, we can calculate
+To calculate the differences of mean $$y$$ for different treatments, calculate
 
 $$Var(\bar{y}_{i..} - \bar{y}_{i'..}) = MSPE \left(\frac{1}{ns} + \frac{1}{ns} \right)$$
 
@@ -407,7 +409,7 @@ Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kbs-1$$ | |
 
 <p></p>
 
-Notice that the degrees of freedom for the whole plot error can also be considered the interaction between $$A$$ and $$B$$. This is because we assume no interaction and those degrees of freedom are transferred to the error. 
+Notice that the degrees of freedom for the whole plot error can also be considered the interaction between $$A$$ and $$B$$. This is because no interactions are assumed and those degrees of freedom are transfered to the error.
 
 ## Split Plot Designs
 
@@ -441,10 +443,10 @@ Total | $$\sum_{ijk} (y_{ijk} - \bar{y}_{...})^2$$ | $$abc-1$$ | |
 
 <p></p>
 
-Again as with mixed models, we look at $$E[MS]$$ to determine the appropriate $$F$$ test construction.
+Again as with mixed models, look at $$E[MS]$$ to determine the appropriate $$F$$ test construction.
 
 
-We can obtain the following variance estimates for comparisons
+Obtain the following variance estimates for comparisons
 
 * Comparisons within the same whole plot treatment: $$Var(\bar{Y}_{1.1} - \bar{Y}_{1.2}) = \frac{2\sigma^2_{\delta}}{b}$$
 * Comparisons across whole plot treatments: $$Var(\bar{Y}_{1.1} - \bar{Y}_{2.1}) = \frac{2(\sigma^2_{\delta} + c\sigma^2_{\epsilon})}{b}$$
@@ -485,7 +487,7 @@ Notice that the $$df$$ for the wholeplot error is essentially the interaction be
 
 Repeated measures is when repeated measurements are made on an experimental unit. It can be thought of as a split plot design with time being the subplot error. Repeated measure designs are a smaller/reduced version of time series. Because of the repeated measures, the observations are no longer independent and there are correlations in residual errors among the time periods. 
 
-To fit repeated measures, we have to specify the covariance structure for $$\epsilon$$, specifically the correlations between measurements within an individual. To determine the best covariance structure, compare model using model statistics such as AIC or BIC. 
+To fit repeated measures, specify the covariance structure for $$\epsilon$$, specifically the correlations between measurements within an individual. To determine the best covariance structure, compare model using model statistics such as AIC or BIC. 
 
 ### Variance Components VC
 
@@ -561,6 +563,7 @@ The unstructured covariance structure estimates a unique correlation for each pa
 
 # Many Options of Mixed Models
 
-We can have any number of designs (fixed, random, mixed, factorial, nested) with any number of factors. Different designs will lead to different $$F$$ tests. In some cases software may be wrong, so it is important to confirm that the degrees of freedom is correct. Then use the $$df$$ and $$E[MS]$$ to determine the approparite $$F$$ test. 
+There are any number of designs (fixed, random, mixed, factorial, nested) with any number of factors. Different designs will lead to different $$F$$ tests. In some cases software may be wrong, so it is important to confirm that the degrees of freedom is correct. Then use the $$df$$ and $$E[MS]$$ to determine the approparite $$F$$ test. 
 
 For fixed effects $$\sum effect = 0$$ and for random effects ~ $$N(0, \sigma^2)$$.
+

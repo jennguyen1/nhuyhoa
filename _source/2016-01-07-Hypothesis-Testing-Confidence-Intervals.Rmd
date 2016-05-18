@@ -27,6 +27,11 @@ The steps for conducting a hypothesis test is
 
 There are Type 1 and Type 2 errors with hypothesis testing. 
 
+Decision/Reality | H0 True | H0 False
+-----------------|---------|-----------
+**Reject H0**    | Type 1 error | Correct
+**Accept H0**    | Correct | Type 2 error
+
 ```{r, echo=FALSE}
 c1 <- c("Decision", "Reject H0", "Accept H0")
 c2 <- c("H0 is true", "Type 1 error", "Correct")
@@ -57,7 +62,7 @@ $$ p.value = P(X > x | H_0) $$
 
 One can deduce (carefully) that since the result is unlikely to occur under the null hypothesis, the data had to have been generated from another probability distribution. 
 
-There are a lot of potentially dangerous ways to interpret p-values. Assumptions should be assessed prior to drawing a final conclusion, and multiple corrections should be adjusted for. P-values should be assessed, not just taken at face value.
+There are a lot of potentially dangerous ways to interpret p-values. Assumptions should be assessed prior to drawing a final conclusion, and multiple corrections should be adjusted for. P-values should be assessed and not just taken at face value.
 
 # Confidence Intervals
 
@@ -105,7 +110,7 @@ $$\bar{X} \pm t_{\alpha/2} * SE$$
 
 **Example 2:**
 
-For this example, consider the confidence interval for the ratio of two variances $$\frac{\sigma^2_y}{\sigma^2_x}$$. We know that $$\frac{(n-1)s^2}{\sigma^2}$$ is distributed $$X^2_{n - 1}$$ and $$\frac{X^2_p / p}{X^2_q / q}$$ is distributed $$F_{p, q}$$. So we wish to compute
+For this example, consider the confidence interval for the ratio of two variances $$\frac{\sigma^2_y}{\sigma^2_x}$$. The value $$\frac{(n-1)s^2}{\sigma^2}$$ is distributed $$X^2_{n - 1}$$ and $$\frac{X^2_p / p}{X^2_q / q}$$ is distributed $$F_{p, q}$$. Evaluate
 
 $$P(F_{p, q, 1 - \alpha/2} < \frac{\frac{(n - 1) s^2_x}{\sigma_x^2} / (n - 1)}{\frac{(m - 1) s^2_y}{\sigma_y^2} / (m - 1)} < F_{p, q, \alpha/2}) = 1 - \alpha$$
 
@@ -119,7 +124,7 @@ $$F_{p, q, 1 - \alpha/2} \frac{s^2_y}{s^2_x} < \frac{\sigma^2_y}{\sigma^2_x} < F
 
 
 ## Interpretation
-Confidence intervals are used to convey the amount of uncertainty associated with a sample estimate of a population parameter. Data is collected and the results are used to generate a point estimate and a confidence interval. How does one interpret the confidence interval?
+Confidence intervals are used to convey the amount of uncertainty associated with a sample estimate of a population parameter. Data is collected and the results are used to generate a point estimate and a confidence interval. How are confidence intervals interpreted?
 
 Consider a $$(1 - \alpha) 100$$% confidence interval. This interval means that if the data collection and analysis process was replicated many times, $$(1 - \alpha) 100$$% of the generated intervals would contain the true value of the population parameter. 
 
