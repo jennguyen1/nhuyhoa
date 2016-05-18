@@ -61,7 +61,7 @@ Failure to randomize experiments may lead to confounding. Confounding occurs whe
 
 Specifically, if $$X$$ has a causal effect on $$Y$$, but $$Z$$  has causal effects on both $$X$$ and $$Y$$, then the observed assiciation between $$X$$ and $$Y$$ wil reflect the net effect of $$X$$ and the effect of $$Z$$ on $$X$$ and $$Y$$. In some cases $$X$$ may not have a causal effect on $$Y$$, but the confounding variable may make it seem like there is. 
 
-To deal with confounding variables, either randomize or adjust for the variable. Generally, it is best to randomize and adjust for key variables (age, sex, etc). Due to costs, it is not possible to adjust for everything, which means randomization is very important.
+To deal with confounding variables, either randomize or adjust for the variable. Generally, it is best to randomize and adjust for key variables (age, sex, etc). Due to costs, it is not possible to adjust for everything which means randomization is very important.
 
 Sometimes when building complex experiments, confounding may be used to the experimenter's advantage. Factors that are not of interest may be confounded with factors that are of more importance. For example, fractional factorial experiments may confound the interactions so that the main effects can be estimated and sample size and cost can be kept down.
 
@@ -100,7 +100,7 @@ With missing data, there are a number of things that can be done to proceed with
 
 Imputation methods assume that missing data is missing at random. 
 
-## Modling Imputation
+## Modeling Imputation
 
 **KNN**
 

@@ -15,7 +15,7 @@ categories: ['statistics', 'experimental design']
 
 ## Pairwise Comparisons and Contrasts
 
-After rejecting a test that the means of the groups are not equal, we want to know exactly which ones are different. 
+After rejecting a test that the means of the groups are not equal, it may be desireable to know exactly which ones are different.
 
 A contrast is a linear function of the group means. It can be used to compare two means or any set of groups of groups.
 
@@ -25,21 +25,21 @@ Procedure:
 * $$C$$ is estimated with $$\hat{C} = \Sigma^r_{i = 1} c_i \bar{Y}_i$$ 
 * The variance of the estimate $$\hat{C}$$ is $$s_{\hat{C}}^2 = \sigma^2_e \Sigma^r_{i = 1} \frac{c^2_i}{n_i}$$
 
-We can test $$H_0: \sum c_i = 0$$ with 
+Test $$H_0: \sum c_i = 0$$ with 
 
 $$T = \frac{\sum c_i \bar{y}_{i.}}{s_{\epsilon} \sqrt{\sum c_i^2 / n_i}}$$
 
 which is distributed $$t_{dfE}$$ (two-sided test). Similarly a $$95$$% confidence interval can be created.
 
-Note that when we have an ANOVA with $$k$$ treatments and a set of $$k - 1$$ orthogonal contrasts (ie $$c_i c_j = 0$$), then the SS will add up to $$SSTrt$$. One example of a set of orthogonal contrasts are linear, quadratic, cubic, etc contrasts.
+Note that when there is an ANOVA with $$k$$ treatments and a set of $$k - 1$$ orthogonal contrasts (ie $$c_i c_j = 0$$), then the SS will add up to $$SSTrt$$. One example of a set of orthogonal contrasts are linear, quadratic, cubic, etc contrasts.
 
 When one is assessing multiple contrasts, it would be wise to control for [multiple comparisons][multiple_comp_link]{:target = "_blank"}. 
 
-In R, we can use `pairwise.t.test(y, x)`, `p.adjust()`. We can also test contrasts using the `multcomp::glht()` function.
+In R, use `pairwise.t.test(y, x)`, `p.adjust()`. Contrasts can be tested using the `multcomp::glht()` function.
 
 ## Unreplicated Studies
 
-If we need to run unreplicated studies (perhaps for preliminary studies), we would have to find another way to obtain an estimate of $$\sigma^2_{\epsilon}$$. 
+If unreplicated studies need to be run (perhaps for preliminary studies), there needs to be another way to obtain an estimate of $$\sigma^2_{\epsilon}$$. 
 
 There are a number of ways to do this:
 
@@ -58,10 +58,10 @@ There are many advantages of treating ANOVAs as Regression
 
 **Unbalanced ANOVAs**
 
-How do we assess effects when our designs are missing certain factor combinations? For this, contrasts can come in handy.
+How are the effects assessed when certain factor combinations are missing? For this, contrasts can come in handy.
 
 * Fit a one-way ANOVA as a combination of the factors 
-* Fit a contrast to assess the effect you would like (perhaps the interaction)
+* Fit a contrast to assess the effect (perhaps the interaction)
 * Use a MSE from the one-way ANOVA as an estimate of $$s^2_{\epsilon}$$
 
 ## Statistical Software
@@ -141,7 +141,7 @@ A nonparametric alternative to ANOVA requires a rank transformation. The procedu
 2. Analyze rank values in standard ANOVA
 
 #### Kruskal-Wallis Test
-For this test, we make the following assumptions
+This test has the following assumptions
 
 * Independent samples
 * Continuous variable
@@ -156,12 +156,12 @@ The steps for this test is as follows
 
 $$KW = (N - 1) \frac{\sum^k_{i = 1} n_i (\bar{R}_{i.} - \bar{R})^2}{\sum^k_{i = 1} \sum^{n_i}_{j = 1} (R_{ij} - \bar{R})^2}$$
 
-where $$KW$$ is approximately distributed $$X^2_{k - 1}$$. When sample sizes are small, we can compare to permutations or distribution tables. 
+where $$KW$$ is approximately distributed $$X^2_{k - 1}$$. When sample sizes are small, Compare to permutations or distribution tables. 
 
-In R, we fit with `kruskal.test()`.
+In R, this model is fit with `kruskal.test()`.
 
 #### Friedman's Test
-The nonparametric equivalent for the two-factor ANOVA is Friedman's test. We test the null hypothesis that each rank within each block is equally likely. 
+The nonparametric equivalent for the two-factor ANOVA is Friedman's test. Test that null hypothesis that each rank within each block is equally likely. 
 
 The steps for this test is as follows
 
@@ -171,9 +171,9 @@ The steps for this test is as follows
 
 $$Q = N^2(k - 1) \frac{\sum^k_{i = 1} (\bar{R}_{i.} - \bar{R})^2}{\sum^k_{i = 1} \sum^{n_i}_{j = 1} (R_{ij} - \bar{R})^2}$$
 
-where $$Q$$ is approximately distributed $$X^2_{k - 1}$$. When sample sizes are small, we can compare to permutations or distribution tables. 
+where $$Q$$ is approximately distributed $$X^2_{k - 1}$$. When sample sizes are small, compare to permutations or distribution tables. 
 
-In R, we fit with `friedman.test()`.
+In R, this model is fit with `friedman.test()`.
 
 ## Tests of Equal Variance
 **Levene's Test**

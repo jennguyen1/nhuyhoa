@@ -185,7 +185,7 @@ $$P(k, N, D, n) = \frac{\binom{D}{k} \binom{N - D}{n - k}}{\binom{N}{n}}$$
 
 where $$k = 1, ..., n$$
 
-Using this definition, we can map out the exact distribution of $$k$$ and compare that to our observed $$k$$ to obtain a p-value. 
+Using this definition, we can map out the exact distribution of $$k$$ and compare that to the observed $$k$$ to obtain a p-value. 
 
 Extensions to $$I x J$$ tables are implenented in statistical software.
 
@@ -281,7 +281,7 @@ $$\exp \left( log(\hat{OR}) \pm z_{\alpha/2} \sqrt{Var(\log(\hat{OR}))} \right)$
 (Since this is the confidence interval is the odds ratio, we reject if $$1$$ is not in the interval).
 
 # Ordinal Categories
-In some cases, our tables may contain ordinal categories. If this is the case, we would want to know if there exists a linear trend or correlation among the levels of the characteristics. 
+In some cases, the tables may contain ordinal categories. If this is the case, we would want to know if there exists a linear trend or correlation among the levels of the characteristics. 
 
 The Mantel-Haenszel statistic ($$M^2$$) applies to both Pearson and Spearman correlation. 
 
@@ -477,7 +477,7 @@ Consider the model of independence for two-way tables. Recall
 
 $$E[Y_{ij}] = \mu_{ij} = np_{ij} = n p_{i+} p_{+j}$$
 
-By taking $$\log$$s we get
+By taking $$\log$$s
 
 $$\log(\mu_{ij}) = \log(n) + \log(p_{i+}) + \log(p_{+j})$$
 
@@ -485,7 +485,7 @@ $$\log(\mu_{ij}) = \lambda + \lambda^A_i + \lambda^B_j$$
 
 where $$A$$ and $$B$$ denote the two categorical variables. 
 
-We have the following notations
+With the following notations
 
 * $$\lambda$$ represents the overall effect
 * $$\lambda^A_i$$ represents the main effect of variable $$A$$ or classification in row $$i$$
@@ -521,7 +521,7 @@ If $$H_1$$ is true then $$odds.ratio = exp(\lambda^{AB}_{11} + \lambda^{AB}_{22}
 
 ## Three Way Tables
 
-Recall the variants of independence in the $$3$$-way tables. We can summarise these into log linear models.
+Recall the variants of independence in the $$3$$-way tables. These can be summarised into log linear models.
 
 Type | Model
 -------------------------|---------------------
@@ -531,4 +531,5 @@ Condiitonal Independence | $$\mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j + \l
 Homogeneous Association  | $$\mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j + \lambda^C_k + \lambda^{AB}_{ij} + \lambda^{AC}_{ik} + \lambda^{BC}_{jk}$$
 Complete Dependence      | $$\mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j + \lambda^C_k + \lambda^{AB}_{ij} + \lambda^{AC}_{ik} + \lambda^{BC}_{jk} + \lambda^{ABC}_{ijk}$$
 
-We can apply the same model testing and diagnostic procedures as glms to log linear models. 
+The same model testing and diagnostic procedures of GLMs can be applied to log linear models.
+
