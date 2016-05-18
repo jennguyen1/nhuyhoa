@@ -15,7 +15,7 @@ library(glmnet)
 knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
 ```
 
-When running experiments it is important that the sample size is large enough to obtain a reasonable amount of power to detect differences in effect sizes. While size differences are unknown prior to the study, researchers calculate a sample size based of the kind of size difference they wish to detect. 
+When running experiments it is important that the sample size is large enough to obtain a reasonable amount of power to detect differences in effect sizes. While size differences are unknown prior to the study, researchers can calculate a sample size based of the kind of size difference they wish to detect. 
 
 Larger sample sizes increase power (the probability of rejecting when there is a true difference) and reduces the false discovery rate (Type 1 error). However, due to limited resources it is not possible to gather an unlimited number of samples. Maintaining this balance is exactly the reason why sample size calculations are so important.
 
@@ -45,7 +45,7 @@ Let $$\theta$$ be the parameter of interest. Then
 * score function $$U(\theta)$$
 * information $$I(\theta)$$
 
-In large samples, we have $$E_{\theta}[U(0)] = I(0) \theta$$. 
+In large samples, $$E_{\theta}[U(0)] = I(0) \theta$$. 
 
 The test statistic for $$H_0: \theta = 0$$ is 
 
@@ -105,7 +105,7 @@ Another option for calculating sample sizes in ANOVA would be to choose two grou
 
 Prior to conducting a study, estimates of parameters (effect size, variability, etc) are usually not available. Estimates of these parameters can be obtained in a number of ways
 
-* Conduct pilot studies or review literature for an estimate of variation; crucial that the estimate is based on same context as final data
+* Conduct pilot studies or review literature for an estimate of variation; it is crucial that the estimate is based on same context as final data
 * Specify effect size based on how large a change is of interest; can refer to previous studies, literature, etc
 * Use a variety of estimates to cover possible scenarios
 
@@ -116,7 +116,7 @@ Being able to show good power and pre-specified effect size is important because
 # In R
 In general, sample sizes calculations are not done by hand. There are a number of software packages that will do sample size calculations. The challenge is to determine the parameters prior to conducting the experiment. Crude estimates of these can be obtained from prior experiments or a range of likely values can be tested.
 
-R has several functions to calculate desired power and sample sizes. 
+R has several functions to calculate desired power and sample sizes
 
 * `power.t.test()`
 * `power.anova.test()`
