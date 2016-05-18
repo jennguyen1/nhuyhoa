@@ -11,7 +11,7 @@ categories: ['statistics', 'experimental design']
 # Rubin Causal Model
 The Rubin Causal Model is a conceptual model that defines causal effects in terms of unobservable  questions. 
 
-Imagine that, giveen two possible treatments $$A$$, $$B$$, each subject $$u$$, has two potential outcomes
+Imagine that, given two possible treatments $$A$$, $$B$$, each subject $$u$$, has two potential outcomes
 
 * $$Y_A(u)$$ - response if subject were to receive $$A$$
 * $$Y_B(u)$$ - response if subject were to receive $$B$$
@@ -26,15 +26,15 @@ Let a larger $$Y$$ be "better", then
 * $$D(u) < 0$$ give subject $$u$$ treatment $$A$$
 * $$D(u) = 0$$ give subject $$u$$ either treatment $$A$$ or $$B$$
 
-Unfortunately, it is is impossible to observe both $$Y_A(u)$$ and $$Y_B(u)$$ in the same subject (unless we had clones. That is we can never know the effect of the treatment in a single subject.
+Unfortunately, it is not possible to observe both $$Y_A(u)$$ and $$Y_B(u)$$ in the same subject. So it's not possible to know the effect of the treatment in a single subject.
 
-Instead we can examine the Population Average Causal Effect of $$B$$ relative to $$A$$. 
+Instead examine the Population Average Causal Effect of $$B$$ relative to $$A$$. 
 
 $$D = E[D(u)] = E[Y_B(u) - Y_A(u)] = E[Y_B(u)] - E[Y_A(u)]$$
 
-We can estimate $$E[Y_B(u)]$$, $$E[Y_A(u)]$$ using different sets of subjects. 
+Estimate $$E[Y_B(u)]$$, $$E[Y_A(u)]$$ using different sets of subjects. 
 
-We can then test the null hypothesis 
+Then test the null hypothesis 
 
 $$H_0: D = 0$$
 

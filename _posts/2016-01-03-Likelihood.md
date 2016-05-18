@@ -11,7 +11,7 @@ categories: ['statistics', 'probability and inference']
 # Maximum Likelihood
 Likelihood is a common statistical approach for analyzing data and conducting inference. 
 
-Suppose there are iid responses $$Y_i$$ for $$i = 1, ...n$$. Let the density of $$Y_i$$ be $$f(y \vert \theta)$$. 
+Suppose $$Y_i$$ are iid responses for $$i = 1, ...n$$ with the pdf $$f(y \vert \theta)$$. 
 
 Then the joint density for $$Y_1, ..., Y_n$$ is 
 
