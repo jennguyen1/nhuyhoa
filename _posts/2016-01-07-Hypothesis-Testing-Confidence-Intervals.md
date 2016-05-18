@@ -28,32 +28,6 @@ Decision/Reality | H0 True | H0 False
 **Reject H0**    | Type 1 error | Correct
 **Accept H0**    | Correct | Type 2 error
 
-<table class = "presenttab">
- <thead>
-  <tr>
-   <th style="text-align:left;">  </th>
-   <th style="text-align:left;"> Reality </th>
-   <th style="text-align:left;">  </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Decision </td>
-   <td style="text-align:left;"> H0 is true </td>
-   <td style="text-align:left;"> H0 is false </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Reject H0 </td>
-   <td style="text-align:left;"> Type 1 error </td>
-   <td style="text-align:left;"> Correct </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Accept H0 </td>
-   <td style="text-align:left;"> Correct </td>
-   <td style="text-align:left;"> Type 2 error </td>
-  </tr>
-</tbody>
-</table>
 <p></p>
 
 Rejecting $$H_0$$ when $$H_0$$ is true results in a Type I error. The probability of a Type 1 error is denoted $$\alpha$$.
@@ -85,13 +59,13 @@ There are a lot of potentially dangerous ways to interpret p-values. Assumptions
 ## Derivation
 Confidence intervals are used to convey the amount of uncertainty associated with a sample estimate of a population parameter. In the diagram below, the shaded region represents the confidence interval. Confidence intervals may be one-sided or two-sided.
 
-<img src="/nhuyhoa/figure/source/2016-01-07-Hypothesis-Testing-Confidence-Intervals/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-01-07-Hypothesis-Testing-Confidence-Intervals/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
 
 To generate a $$(1-\alpha)100$$% confidence interval, start with the test statistic. The test statistic may vary depending on its distribution, but the process is the same.
 
 **Example 1:**
 
-For this example, use the t-statistic, which is distributed $$t$$. Obtain an interval around $$\bar{X}$$ which satisifies
+For example the t-statistic is distributed $$t$$. Obtain an interval around $$\bar{X}$$ which satisifies
 
 $$P(-t_{\alpha/2} < \frac{\bar{X} - \mu}{SE} < t_{\alpha/2}) = 1 - \alpha$$
 
@@ -131,7 +105,7 @@ Consider a $$(1 - \alpha) 100$$% confidence interval. This interval means that i
 
 Say the true value of $$\mu = 0$$. Here, per the definition above, that $$95/100$$ intervals contain the true value of $$\mu$$. 
 
-<img src="/nhuyhoa/figure/source/2016-01-07-Hypothesis-Testing-Confidence-Intervals/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-01-07-Hypothesis-Testing-Confidence-Intervals/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 It is important to note that the true value of the population parameter is fixed, so any single confidence interval will either contain the population parameter or not. Thus confidence intervals cannot be interpreted as the probability that the true value is in the interval. 
 

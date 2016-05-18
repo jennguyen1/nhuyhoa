@@ -111,13 +111,13 @@ Let $$\bar{ab}$$ denote the mean of the high-high group, $$\bar{a}$$ denote the 
 * .$$B_{main} = \frac{1}{2} [(\bar{ab} - \bar{a}) + (\bar{b} - \bar{1})]$$
 * .$$AB_{int} = \frac{1}{2} [(\bar{ab} - \bar{b}) - (\bar{a} - \bar{1})]$$
 
-These effects can be assessed by generating an interaction plot. By assessing the trends and parallelism of lines, it can be determined whether there may be evidence of an interaction effect. These effects can also be assed with a contrast.
+These effects can be assessed by generating an interaction plot. By assessing the trends and parallelism of lines, it can be determined whether there may be evidence of an interaction effect. These effects can also be assessed with a contrast.
 
 ### Three Factor ANOVA
 
 **Model Formulations**
 
-$$Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\beta \gamma)_{jk} \epsilon_{ijkl}$$
+$$Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\beta \gamma)_{jk} + \epsilon_{ijkl}$$
 
 where
 
@@ -167,7 +167,7 @@ These effects can be assessed with an interaction plot or a contrast.
 
 ### One Factor ANOVA
 
-Blocking is a generalization of the paired analysis in t-tests. It is expcted that there is block to block variability, a nuisance factor. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, the unaccounted variability is decreased and the test for treatment is more powerful. 
+Blocking is a generalization of the paired analysis in t-tests. It is expected that there is block to block variability, a nuisance factor. The observations in the same block share a block effect and are less variable than observations in other blocks. By accounting for the block variability, the unaccounted variability is decreased and the test for treatment is more powerful. 
 
 A single block should be homogeneous. To ensure this homogeneity, make sure blocks are small enough that
 

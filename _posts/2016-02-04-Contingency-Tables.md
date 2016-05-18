@@ -19,13 +19,13 @@ $$Z = \frac{Y_1 - np_1}{\sqrt{np_1(1 - p_1)}}$$
 
 where $$Z \sim N(0, 1)$$. 
 
-Squaring $$Z$$ we get
+Squaring $$Z$$ gets
 
 $$Z^2 = X^2 = \frac{(Y_1 - np_1)^2}{np_1(1 - p_1)}$$ 
 
 where $$X^2 \sim \chi^2_1$$. 
 
-We can rearrange to get
+Rearrange to get
 
 --------|------------------
 $$X^2$$ | $$= \frac{(Y_1 - np_1)^2}{np_1(1 - p_1)} * ((1 - p_1) + p_1)$$
@@ -37,7 +37,7 @@ $$X^2$$ | $$= \frac{(Y_1 - np_1)^2}{np_1(1 - p_1)} * ((1 - p_1) + p_1)$$
         | $$= \sum^2_{i = 1} \frac{(Y_i - np_i)^2}{np_i}$$
         | $$= \sum^2_{i = 1} \frac{(Obs - Exp)^2}{Exp}$$
 
-Thus we obtain the $$X^2$$ goodness of fit statistic. 
+Resulting in the $$X^2$$ goodness of fit statistic. 
 
 Consider the following table
 
@@ -62,11 +62,13 @@ For large sample sizes, $$X^2$$ and $$G^2$$ are equivalent.
 ## Application
 It is important to note that
 
-* We require CLT so that the expected number of each category is $$\ge 5$$; if needed, we may want collapse cells to achieve this
+* Require CLT so that the expected number of each category is $$\ge 5$$; if needed, may collapse cells
 * The degrees of freedom of $$X^2$$ depends on the number of independent counts
-* We reject the $$H_0$$ if the observed counts are very different from the expected counts (thus a greater $$X^2$$)
+* Reject the $$H_0$$ if the observed counts are very different from the expected counts (thus a greater $$X^2$$)
 
-How do we obtain the probabilities? One way is for it to be given to us. We might also be interested in testing whether a data set follows a specific probability distribution. Generally these probability distributions have parameters that are unspecified (Poisson, Binomial, etc). In this case, to conduct chi-square goodness of fit tests, 
+How are the probabilities obtained? They may be given from an external source. 
+
+In other cases, the test may be comparing the data set to a specific probability distribution. Generally these probability distributions have parameters that are unspecified (Poisson, Binomial, etc). In this case, to conduct chi-square goodness of fit tests, 
 
 1. Estimate the parameters using the maximum likelihood method
 2. Calculate the chi-square statistic using the obtained estimates
@@ -74,7 +76,7 @@ How do we obtain the probabilities? One way is for it to be given to us. We migh
 
 **Example:**
 
-We want to know whether the data below is consistent with a Poisson model?
+Is the data below is consistent with a Poisson model?
 
 **no. of calls** | 0 | 1 | 2 | 3 | 4 | 5
 -----------------|---|---|---|---|-------
@@ -82,19 +84,19 @@ We want to know whether the data below is consistent with a Poisson model?
 
 $$\hat{\lambda} = \frac{19(0) + 26(1) + 29(2) + 13(3) + 10(4) + 3(5)}{100} = 1.78$$
 
-The Poisson pmf is $$P(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}$$, thus $$E[Y_i] = 100 * P(X = x)$$. We also want to collapse the last two counts to obtain values greater than $$5$$. 
+The Poisson pmf is $$P(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}$$, thus $$E[Y_i] = 100 * P(X = x)$$. Collapse the last two counts to obtain values greater than $$5$$. 
 
 **no. of calls** | 0 | 1 | 2 | 3 | 4 | 5
 -----------------|---|---|---|---|-------
 **count**        | 19| 26| 29| 13| 10| 3
 **expect**       | 16.86 | 30.02 | 26.72 | 15.85 | 10.55
 
-We would have $$X^2 = 2.08$$ and $$G^2 = 2.09$$. This multinomial model has $$k - 1$$ parameters and we estimate $$1$$ parameter $$\lambda$$. Thus the degrees of freedom is $$k - 1 - 1 = 3$$
+Thus $$X^2 = 2.08$$ and $$G^2 = 2.09$$. This multinomial model has $$k - 1$$ parameters and estimates $$1$$ parameter $$\lambda$$. Thus the degrees of freedom is $$k - 1 - 1 = 3$$
 
-We comnare these statistics to $$\chi^2_3$$ and obtain a p-value of $$0.56$$. Thus we conclude that the Poisson model fits well. 
+Compare these statistics to $$\chi^2_3$$ and obtain a p-value of $$0.56$$. Thus the conclusion is that the Poisson model fits well.
 
 ## Residuals
-When results show that observed counts don't match expected counts, we may do additional analysis on the residuals to assess what could have gone wrong. 
+When results show that observed counts don't match expected counts, additional analyses on the residuals may be needed to assess what cells diverged from the expected values.
 
 The residuals are the square root of the components that sum up to the $$X^2$$ and the $$G^2$$ statistics. (For example, in $$X^2$$ it is $$r_j = \frac{O_j - E_j}{\sqrt{E_j}}$$). 
 
@@ -103,12 +105,10 @@ If the model is true, $$E[X^2] = E[G^2] = df$$ and the typical size of a single 
 
 # I x J Contingency Tables
 
-(In the examples below, I present the $$X^2$$ test statistic. The deviance statistic is generated similar to the formula defined above).
+The examples below use the $$X^$$ test statistic. The deviance statistic is generated similar to the formula defined above.
 
 ## Homogeneity
-The test for homogeneity tests whether two or more multinomial distributions are equal. That is, we hold the row totals fixed. 
-
-We want to test
+The test for homogeneity tests whether two or more multinomial distributions are equal. That is, the row totals are held fixed. 
 
 $$H_0: p_{11} = p_{21} and p_{12} = p_{22} ... p_{1k} = p_{2k}$$
 
@@ -128,16 +128,15 @@ The test statistic is
 
 $$X^2 = \sum^I_{i = 1} \sum^J_{j = 1} \frac{(y_{ij} - n_i \hat{p}_j)^2}{n_i \hat{p}_j}$$
 
-We have $$I(J - 1)$$ df (each row is multinomial so $$n_i$$ is fixed) and estimate $$(J - 1)$$ parameters ($$\hat{p}_j$$). So 
+Thus $$I(J - 1)$$ df (each row is multinomial so $$n_i$$ is fixed) and estimate $$(J - 1)$$ parameters ($$\hat{p}_j$$). So 
 
 $$df  = IJ - I - J + 1 = (I - 1)(J - 1)$$
 
 So the statistic $$X^2 \sim \chi^2_{(I - 1)(J - 1)}$$
 
 ## Independence
-Now consider that we hold the total sample size fixed (but not the marginal totals). Each cell is a Poisson random variable with its own rate. Then we cross-classify each subject into one and only one of the mutually exclusive and exhaustive $$A_i \cap B_i$$. 
 
-We wish to test
+Consider that the total sample size is fixed (but not the marginal totals). Each cell is a Poisson random variable with its own rate. Each subject is cross-classified into one and only one of the mutually exclusive and exhaustive $$A_i \cap B_i$$. 
 
 $$H_0: A \perp B; P(AB) = P(A)P(B)$$
 
@@ -158,7 +157,7 @@ The test statistic is
 
 $$X^2 = \sum^I_{i = 1} \sum^J_{j = 1} \frac{(y_{ij} - \frac{y_{i.} y_{.j}}{n})^2}{\frac{y_{i.} y_{.j}}{n}}$$
 
-We have $$(IJ - 1)$$ df (only grand total $$n$$ is fixed) and estimate $$(I + J - 2)$$ parameters (marginal probabilities). So 
+Thus $$(IJ - 1)$$ df (only grand total $$n$$ is fixed) and estimate $$(I + J - 2)$$ parameters (marginal probabilities). So 
 
 $$df  = IJ - 1 + - I - J + 2 = IJ - I - J + 1 = (I - 1)(J - 1)$$
 
@@ -170,7 +169,7 @@ A test statistic or p-value is a measure of the evidence against $$H_0$$ that de
 Measures of association should not change if cell counts $$n_{ij}$$ are replaced by $$kn_{ij}$$ for some constant factor $$k$$. Sensitivity analsysis should be done to check that this is the case in analyses. 
 
 ## Fischer's Exact Test
-When the row totals and column totals are fixed by design, we have hypergeometric sampling. We can assess these types of tables with exact tests. We can also use exact when sample sizes are small and asymptotic approximations are violated. 
+When the row totals and column totals are fixed by design, this is hypergeometric sampling. These types of tables can be assessed with exact tests. Exact tests are also useful when sample sizes are small and asymptotic approximations are violated. 
 
 Consider the following table
 
@@ -185,7 +184,7 @@ $$P(k, N, D, n) = \frac{\binom{D}{k} \binom{N - D}{n - k}}{\binom{N}{n}}$$
 
 where $$k = 1, ..., n$$
 
-Using this definition, we can map out the exact distribution of $$k$$ and compare that to the observed $$k$$ to obtain a p-value. 
+Using this definition, the exact distribution of $$k$$ can be mapped out and compared to the observed $$k$$ to obtain a p-value.
 
 Extensions to $$I x J$$ tables are implenented in statistical software.
 
@@ -193,7 +192,7 @@ Extensions to $$I x J$$ tables are implenented in statistical software.
 # Point Estimators
 
 ## Difference in Proportions
-We wish to test
+Consider the test
 
 $$H_0: p_1 = p_2$$
 
@@ -211,9 +210,9 @@ The variance of this estimate is
 
 $$Var(\delta) = Var(p_1 - p_2) = Var(p_1) + Var(p_2) = \frac{p_1(1 - p_1)}{n_{1+}} + \frac{p_2(1 - p_2)}{n_{2+}}$$
 
-The values $$p_1$$ and $$p_2$$ can be estimated with $$\hat{p_1}$$ and $$\hat{p_2}$$ from the data. This variance estimate is generally used in confidence intervals. We can use the normal approximation to the bionomial distribution.
+The values $$p_1$$ and $$p_2$$ can be estimated with $$\hat{p_1}$$ and $$\hat{p_2}$$ from the data. This variance estimate is generally used in confidence intervals. Use the normal approximation to the bionomial distribution.
 
-For hypothesis testing under $$H_0: p_1 = p_2$$, so we can obtain a more efficient estimate of $$Var(\hat{\delta})$$ using the pooled proportion $$\hat{p} = \frac{n_{11} + n_{21}}{n_{1+} + n_{2+}}$$. 
+For hypothesis testing under $$H_0: p_1 = p_2$$, obtain a more efficient estimate of $$Var(\hat{\delta})$$ using the pooled proportion $$\hat{p} = \frac{n_{11} + n_{21}}{n_{1+} + n_{2+}}$$. 
 
 $$Var(\hat{\delta}) = \hat{p}(1 - \hat{p}) \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$$
 
@@ -228,7 +227,7 @@ This value can be estimated with
 
 $$\hat{\rho} = \frac{n_{11} / n_{1+}}{n_{21} / n_{2+}}$$
 
-Since this value is non-negative, we take the $$\log$$ of $$\rho$$ to obtain a more normal distribution. 
+Since this value is non-negative, take the $$\log$$ of $$\rho$$ to obtain a more normal distribution. 
 
 The approximate variance of $$\rho$$ (using the Delta method) is
 
@@ -246,7 +245,7 @@ The $$(1 - \alpha)100$$% confidence interval is
 
 $$\exp \left( log(\hat{\rho}) \pm z_{\alpha/2} \sqrt{Var(\log(\hat{\rho}))} \right)$$
 
-(Since this is the confidence interval is the odds ratio, we reject if $$1$$ is not in the interval).
+(Since this is the confidence interval is the odds ratio, reject if $$1$$ is not in the interval).
 
 ## Odds Ratios
 The odds is a ratio of success to failure. 
@@ -263,7 +262,7 @@ This value can be estimated with
 
 $$\hat{OR} = \frac{n_{11}n_{22}}{n_{12}n_{21}}$$
 
-To estimate the variance, we again take the $$\log$$ and use the delta method
+To estimate the variance, take the $$\log$$ and use the delta method
 
 -----------------------|---------------------------------
 $$Var(log(\hat{OR}))$$ | $$ = Var(\log(n_{11}) + \log(n_{22}) - \log(n_{12}) - \log(n_{21}))$$
@@ -278,14 +277,12 @@ The $$(1 - \alpha)100$$% confidence interval is
 
 $$\exp \left( log(\hat{OR}) \pm z_{\alpha/2} \sqrt{Var(\log(\hat{OR}))} \right)$$
 
-(Since this is the confidence interval is the odds ratio, we reject if $$1$$ is not in the interval).
+(Since this is the confidence interval is the odds ratio, reject if $$1$$ is not in the interval).
 
 # Ordinal Categories
-In some cases, the tables may contain ordinal categories. If this is the case, we would want to know if there exists a linear trend or correlation among the levels of the characteristics. 
+In some cases, the tables may contain ordinal categories. If this is the case, the objective is to determine whether there exists a linear trend or correlation among the levels of the characteristics. 
 
 The Mantel-Haenszel statistic ($$M^2$$) applies to both Pearson and Spearman correlation. 
-
-We wish to test
 
 $$H_0: \rho = 0$$
 
@@ -300,56 +297,54 @@ where $$M^2 \sim X^2_1$$.
 * If the two variables are independent, $$\rho = 0, M^2 = 0$$
 * If the two variables are perfectly associated, $$\rho = 1, M^2 = (n - 1)$$
 
-In order to compute $$r$$, we need to assign scores or numerical values to the categorical rows and columns. We have several options
+In order to compute $$r$$, assign scores or numerical values to the categorical rows and columns. There are several options 
 
 * Equal spacing integers
 * Midranks
 * Midpoints
 * Domain knowledge
 
-Once these scores are assigned, we can deaggregate the relationships and compute the correlation ($$r$$).
+Once these scores are assigned, the relationships can be deaggregated and the correlation $$r$$ can be computed. 
 
 # Dependence
-Matched pairs are two samples that are statistically dependent. We want to know if the margins of the table are the same. 
+Matched pairs are two samples that are statistically dependent. THe objective is to determine whether the margins of the table are the same.
 
-Suppose we survey people at two time points and want to measure whether their categorization stays the same over time.
-
-In other words, we wish to test 
+Suppose people are surveyd at two time points and the objective is to measure whether their categorization stays the same over time.
 
 $$H_0: p_{12} = p_{21}$$
 
-We can use McNemar's test to test for marginal homogeneity and symmetry. 
+Use McNemar's test to test for marginal homogeneity and symmetry. 
 
-Suppose that $$n_{12} + n_{21}$$ is fixed. Under the null hypothesis, we would expect the frequency of counts in $$n_{12}$$ as in $$n_{21}$$. Thus $$n_{12} \sim Bin(n_{12} + n_{21}, 0.5)$$. 
+Suppose that $$n_{12} + n_{21}$$ is fixed. Under the null hypothesis, the frequency of counts in $$n_{12}$$ should be the same as in $$n_{21}$$. Thus $$n_{12} \sim Bin(n_{12} + n_{21}, 0.5)$$. 
 
-Assuming that $$n_{12} + n_{21}$$ is large, we would have the test statistic
+Assuming that $$n_{12} + n_{21}$$ is large, the test statistic is
 
 $$Z = \frac{\frac{n_{12}}{n_{12} + n_{21}} - 0.5 }{\sqrt{\frac{0.5(1 - 0.5)}{n_{12} + n_{21}}}} = \frac{n_{12} - n_{21}}{\sqrt{n_{12} + n_{21}}}$$
 
 where $$Z$$ is approximately $$N(0, 1)$$ if cell counts are large ($$\ge 5$$) or distributed $$Bin(n_{12} + n_{21}, 0.5)$$.
 
-We can square the above value to get
+Square the above value to get
 
 $$X^2 = \frac{(n_{12} - n_{21})^2}{\sqrt{n_{12} + n_{21}}}$$
 
 where $$X^2 \sim \chi^2_1$$. This test is valid when $$n$$ is fixed (but not $$n_{12} + n_{21}$$). 
 
-We can obtain confidence intervals on the difference between the marginal proportions
+WObtain confidence intervals on the difference between the marginal proportions
 
 $$d = p_{1+} - p_{+1} = p_{12} - p_{21}$$
 
-We can estimate that with
+which is estimated with
 
 $$\hat{d} = \frac{n_{12}}{n} + \frac{n_{21}}{n}$$
 
-We can calculate
+Calculate
 
 -----------------|-----------------
 $$Var(\hat{d})$$ | $$ = n^{-2} Var(n_{12} - n_{21})$$
                  | $$ = n^{-2} \left( Var(n_{12}) + Var(n_{21}) - 2Cov(n_{12}, n_{21}) \right)$$
                  | $$ = n^{-2} \left( p_{12}(1 - p_{12}) + p_{21} (1 - p_{21}) + 2 p_{12} p_{21} \right)$$
 
-We estimate the variance as
+Estimate the variance as
 
 $$ \hat{Var}(\hat{d}) = \frac{1}{n} \left( \frac{n_{12}}{n}(1 - \frac{n_{12}}{n}) + \frac{n_{21}}{n}(1 - \frac{n_{21}}{n}) + 2 \frac{n_{21}n_{12}}{n^2} \right)$$
 
@@ -359,9 +354,9 @@ $$\hat{d} \pm z_{\alpha/2} \sqrt{\hat{Var}(\hat{d})}$$
 
 # Three-Way Contingency Tables
 
-With $$k$$-way tables, we have a different sampling scheme. We can think if it as stratified sampling where we have a fixed sample size for each partial table. 
+With $$k$$-way tables, there is a different sampling scheme. It can be thought of as stratified sampling where there are fixed sample size for each partial table.
 
-For modeling independence and association in $$3$$-way tables, we consider several types of relationships
+For modeling independence and association in $$3$$-way tables, consider several types of relationships
 
 * Mutual independence: all variables are independent $$A \perp B \perp C$$ or $$(A, B, C)$$
 * Joint independence: two variables are jointly independent given the third $$AB \perp C$$ or $$(AB, C)$$
@@ -369,7 +364,7 @@ For modeling independence and association in $$3$$-way tables, we consider sever
 * Conditional independence: two variables independent given the third $$A \vert C \perp B \vert C$$ or $$(AC, BC)$$
 * Homogeneous association: conditional odds-ratios do not depend on the value of the third variable $$AB \perp AC \perp BC$$ or $$(AB, AC, BC)$$
 
-We also have these relationships
+Consider the following relationships
 
 * Mutual independence $$\Rightarrow$$ joint independence
 * Joint independence $$\Rightarrow$$ marginal indpependence
@@ -379,11 +374,11 @@ Under the model of mutual independence
 
 $$P(A = i, B = j, C = k) = P(A = i)P(B = j)P(C = k)$$
 
-We can estimate the expected values
+Estimate the expected values
 
 $$E[Y_{ijk}] = np_{i++}p_{+j+}p_{++k} = \frac{n_{i++}n_{+j+}n_{++k}}{n^2}$$
 
-To calculate the degrees of freedom, we have
+To calculate the degrees of freedom, 
 
 $$df = (IJK - 1) - [(I - 1)+(J - 1)+(K - 1)]$$
 
@@ -400,24 +395,24 @@ $$P(A = i, B = j, C = k) = P(A = i, B = j) P(C = k)$$
 
 Note that if mutual independence applies, then all three variants of joint independence also applies. 
 
-We can estimate the expected values
+Estimate the expected values
 
 $$E[Y_{ijk}] = n p_{ij+} p_{++k} = \frac{n_{ij+} n_{++k}}{n}$$
 
-To calculate the degrees of freedom, we have
+To calculate the degrees of freedom, 
 
 $$df = (IJK - 1) - [(IJ - 1)+(K - 1)] = (IJ - 1)(K - 1)$$
 
-If we combine $$AB$$ into one variable, we are essentially running a $$2$$-way analysis on $$AB$$ and $$C$$. 
+If $$AB$$ is combined into one variable, it turns into a $$2$$-way analysis on $$AB$$ and $$C$$. 
 
 ## Marginal Independence
 Under the model of marginal independence
 
 $$P(A = i, C = k) = P(A = i) P(C = k)$$
 
-where we completely ignore the $$B$$ variable. 
+where $$B$$ variableis ignored.
 
-If we combine collapse over the levels of $$B$$, we are essentially running a $$2$$-way analysis on $$A$$ and $$C$$. 
+By collapsing over the levels of $$B$$, it turns into a $$2$$-way analysis on $$A$$ and $$C$$. 
 
 ## Conditional Independence
 Under the model of conditional independence
@@ -426,7 +421,7 @@ $$P(A = i, B = j \vert C = k) = P(A = i \vert C = k) P(B = j \vert C = k)$$
 
 that is for each value of $$C$$, $$A \perp B$$.
 
-There are two ways we can test this hypothesis
+There are two ways to test this hypothesis
 
 * Sum up $$X^2$$ or $$G^2$$ statistics from the levels of $$A$$ (sum of $$\chi^2$$ is $$\chi^2$$). The total $$df = K(I - 1)(J - 1)$$. 
 * Cochran-Mantel-Haenszel test
@@ -443,7 +438,7 @@ where $$\mu_{11k} = E(n_{11}) = \frac{n_{1+k}n_{+1k}}{n_{++k}}$$ and $$Var(n_{11
 
 The statistic $$M^2 \sim \chi^2_1$$.
 
-We can obtain an estimate of the common odds ratio
+Obtain an estimate of the common odds ratio
 
 $$\hat{\theta}_{MH} = \frac{\sum_k (n_{11k}n_{22k}) / n_{++k}}{\sum_k (n_{12k}n_{21k}) / n_{++k}}$$
 
@@ -455,7 +450,7 @@ The CMH can also be generalized to $$IxJxK$$ tables if needed.
 
 Homogeneous association implies that the conditional relationship between $$AB$$ given $$C$$ is the same for each level of $$C$$. 
 
-The homogeneous association model requires that the $$AB$$ odds ratios at each level of $$C$$ be identical (but not necessarily equal to $$1$$). In other words, we test
+The homogeneous association model requires that the $$AB$$ odds ratios at each level of $$C$$ be identical (but not necessarily equal to $$1$$). 
 
 $$H_0: \theta_{AB(1)} = ... = \theta_{AB(k)}$$
 
@@ -493,7 +488,7 @@ With the following notations
 * $$\lambda^A_I = \lambda^B_J = 0$$ due to categorical variable coding
 * $$\lambda^{AB}_{ij}$$ represents the interaction effect of $$AB$$. Note that in this model $$\lambda^{AB}_{ij} = 0$$ implying independence
 
-This test is essentially the same as the one above. We are testing independence against non-independence.
+This test is essentially the same as the one above. The test compares independence to dependence. 
 
 $$H_0: \mu_{ij} = \lambda + \lambda^A_i + \lambda^B_j$$
 
