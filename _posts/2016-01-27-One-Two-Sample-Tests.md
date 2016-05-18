@@ -14,7 +14,7 @@ categories: ['statistics', 'experimental design']
 # One Sample Tests
 
 ## Z-Test and T-Test
-Consider a sample randomly drawn from a normally distributed population. Test the population mean against a known standard (say $$\mu_0$$). So the null hypothesis is
+Consider a sample randomly drawn from a normally distributed population. The objective is to test the population mean against a known standard (say $$\mu_0$$). So the null hypothesis is
 
 $$H_0: \mu_1 = \mu_0$$
 
@@ -24,13 +24,13 @@ There's two ways to do this.
 
 **Assume $$\sigma^2$$ Known**
 
-By the CLT $$\bar{X} \sim N(\mu, \sigma^2)$$.  
+By the CLT, $$\bar{X} \sim N(\mu, \sigma^2)$$.  
 
 Calculate the test statistic 
 
 $$Z = \frac{\bar{X} - \mu_0}{\sqrt{\sigma^2/n}}$$
 
-where $$Z \sim N(0, 1)$$ under the null hypothesis. From here compute the p-value to test $$H_0$$.
+where $$Z \sim N(0, 1)$$ under the null hypothesis. From here, compute the p-value to test $$H_0$$.
 
 **Assume $$\sigma^2$$ Unknown**
 
@@ -45,7 +45,7 @@ where $$T \sim t_{n - 1}$$ under the null hypothesis. From here compute the p-va
 ## Nonparametric Test
 
 ### Wilcoxon Signed Rank Test
-Parametric tests are not ideal when there are outliers or non-normality. Nonparametric tests are more robust to violoations of these assumptions. 
+Parametric tests are not ideal when there are outliers or non-normality. Nonparametric tests are more robust to violations of these assumptions. 
 
 The **wilcoxon signed rank test** is a test that makes 2 assumptions. 
 
@@ -70,13 +70,13 @@ This test is as follows:
 
 The distribution is available in software and in tables. Another option is to look at the exact distribution or the distribution of permutations (for $$>1$$ samples). 
 
-For small sample sizes, the distribution of $$W$$ can be derived from the sample size. In large sample sizes, the value 
+For small sample sizes, the distribution of $$W$$ can be derived from the sample size. In large sample sizes, 
 
 $$W' = \frac{\sum^n_{i = 1} Z_iR_i - \frac{n(n + 1)}{4}}{\sqrt{\frac{n(n + 1)(2n + 1)}{24}}} \sim N(0, 1)$$ 
 
 where $$W \sim N(0, 1)$$ under the null hypothesis.
 
-In R, we fit with `wilcox.test()`.
+In R, this test is fit with `wilcox.test()`.
 
 # Two Sample Tests
 
@@ -87,14 +87,12 @@ $$H_0: \mu_1 = \mu_2$$
 
 $$H_1: \mu_1 \ne \mu_2$$
 
-It is crucial that data is analyzed according to how the experiment was designed otherwise the results may be lead to invalid results (inaccurately estimate variance).
-
 In R, t-tests can be fit with the `t.test()` function. 
 
 ## Unpaired T-Test
-Suppose treatments are randomly assigned to subjects so that each subject may receive either of the two treatments. 
+Suppose treatments are randomly assigned to subjects.
 
-Compute a test statistic
+Compute the test statistic
 
 $$T = \frac{\bar{Y}_1 - \bar{Y}_2}{\sqrt{\hat{Var}(\hat{Y}_1 - \hat{Y}_2)}}$$
 
@@ -142,19 +140,19 @@ $$s^2_D = \sum (D_i - \bar{D})^2/(n - 1)$$ the sample variance of the difference
 The statistic $$T \sim t_{n - 1}$$.
 
 ## Experimental Design vs Analysis
-Suppose two scenarios with assume equal variance
+Suppose two scenarios assuming equal variance
 
 1. Design an unpaired experiment
 2. Design a paired experiment
 
-For both these scenarios, suppose the data was analyzedusing a paired analysis.
+For both these scenarios, suppose the data was analyzed using a paired analysis.
 
 For the unpaired design, the "pairs" are independent (this is built in). So
 
 $$Var(D_i) = Var(Y_1) + Var(Y_2) = 2\sigma^2$$ <br>
 $$Var(\bar{D}) = \frac{2\sigma^2}{n}$$
 
-For the paired design, it is uncertain if the "pairs" are independent. So
+For the paired design, it is uncertain whether the "pairs" are independent. So
 
 $$Var(D_i) = Var(Y_1) + Var(Y_2) - 2cov(Y_1, Y_2) = 2\sigma^2(1 - p)$$ <br>
 $$Var(\bar{D}) = \frac{2\sigma^2(1 - p)}{n}$$
@@ -174,7 +172,7 @@ This test has the following assumptions
 * Equal variances
 * Identical (but non-normal) distributions
 
-THe object is to determine whether one distribution is shifted relative to the other.
+The object is to determine whether one distribution is shifted relative to the other.
 
 $$H_0: F_1(x) = F_2(x)$$
 

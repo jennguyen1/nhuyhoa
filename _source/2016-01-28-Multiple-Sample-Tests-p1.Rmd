@@ -56,7 +56,7 @@ Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS] | F
 ------|----------------|--------------------|-------------|-------|---
 Trt   | $$\sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$\frac{SSTrt}{dfTrt}$$ | $$\sigma^2_{\epsilon} + \frac{n}{k - 1} \sum^k_i \alpha_i^2$$ | $$\frac{MSTrt}{MSE}$$ 
 Error | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2$$ | $$k(n-1)$$ | $$\frac{SSE}{dfE}$$ | $$\sigma^2_{\epsilon}$$ |
-Total | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2$$ | $$kn-1$$ | | 
+**Total** | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2$$ | $$kn-1$$ | | 
 
 <p></p>
  
@@ -97,7 +97,7 @@ A     | $$bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ | $$MSA
 B     | $$an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$MSB$$ | $$\sigma^2_{\epsilon} + \frac{an}{b - 1} \sum \beta^2_j$$
 AB    | $$n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$ | $$(a-1)(b-1)$$ | $$MSAB$$ | $$\sigma^2_{\epsilon} + \frac{n}{(a - 1)(b - 1)} \sum (\alpha \beta)^2_{ij}$$
 Error | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$ab(n - 1)$$ | $$MSE$$ | $$\sigma^2_{\epsilon}$$
-Total | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})^2$$ | $$abn - 1$$ 
+**Total** | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})^2$$ | $$abn - 1$$ 
 
 <p></p>
 
@@ -139,7 +139,7 @@ AC    | $$bn \sum^a_{i = 1} \sum^c_{k = 1} (\bar{y}_{i.k.} - \bar{y}_{i...} - \b
 BC    | $$an \sum^b_{j = 1} \sum^c_{k = 1} (\bar{y}_{.jk.} - \bar{y}_{.j..} - \bar{y}_{..k.} + \bar{y}_{....})^2$$ | $$(b-1)(c-1)$$ 
 ABC   | $$n \sum_{ijkl} (y_{ijk.} - \bar{y}_{ij..} - \bar{y}_{i.k.} - \bar{y}_{.jk.} + \bar{y}_{i...} + \bar{y}_{.j..} + \bar{y}_{..k.} - \bar{y}_{....})^2$$ | $$(a-1)(b-1)(c-1)$$ 
 Error | $$\sum_{ijkl} (y_{ijkl} - \bar{y}_{ijk.})^2$$ | $$abc(n - 1)$$ 
-Total | $$\sum_{ijkl} (y_{ijk.} - \bar{y}_{...})^2$$ | $$abcn - 1$$ 
+**Total** | $$\sum_{ijkl} (y_{ijk.} - \bar{y}_{...})^2$$ | $$abcn - 1$$ 
 
 <p></p>
 
@@ -191,13 +191,13 @@ Source| Sum of Squares | Degrees of Freedom
 Blocks| $$k\sum^b_{j = 1} (\bar{y}_{.j} - \bar{y}_{..})^2$$ | $$b-1$$ 
 Trt   | $$b\sum^k_{i = 1} (\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ 
 Error | $$\sum_{ij} (y_{ij} - \bar{y}_{i.} - \bar{y}_{.j} + \bar{y}_{..})^2$$ | $$(k-1)(b-1)$$ 
-Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2$$ | $$kb - 1$$ 
+**Total** | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2$$ | $$kb - 1$$ 
 
 <p></p>
 
 The effect of treatment can be assessed with an $$F$$ test with the error in the denominator. 
 
-Note that the $$F$$ test for the effect of blocks may be ignored. The blocks were used in order to account for variability. (If a specific test is to be tested, it should be included in the model as a factor and randomized). A significant test would indicate that it was right to block. If there was no significant block effect, the block error should not be pooled with the residual error and analyzed as a completely randomized design! The data needs to be analyzed as the experiment was designed, otherwise the tests would be biased.
+Note that the $$F$$ test for the effect of blocks may be ignored. The blocks were used in order to account for variability. (If a specific test is to be tested, it should be included in the model as a factor and randomized). A significant test would indicate that it was right to block. If there is no significant block effect, the block error still should not be pooled with the residual error and analyzed as a completely randomized design! The data needs to be analyzed as the experiment was designed, otherwise the tests would be biased.
 
 Note that this table is reminiscent of the ANOVA table for two-factor ANOVA where $$n = 1$$. 
 
@@ -235,7 +235,7 @@ Again, notice that the $$df$$ for the error can be rewritten as $$(b-1)(ac-1) = 
 
 ### Latin Squares
 
-Latin squars are experimental designs that block in two directions. These designs require the number of row blocks = number of column blocks = number of treatment levels. 
+Latin squares are experimental designs that block in two directions. These designs require the number of row blocks = number of column blocks = number of treatment levels. 
 
 In Latin Square designs, there are not values for every combination of $$i$$, $$j$$, $$k$$. The means include only the $$y_{ijl}$$ terms that exist. There will be $$k^2$$ of them. 
 
@@ -258,7 +258,7 @@ Row   | $$k \sum^k_j (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$k-1$$
 Column| $$k \sum^k_l (\bar{y}_{..l} - \bar{y}_{...})^2$$ | $$k-1$$ 
 Trt   | $$k \sum^k_i (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ 
 Error | By subtraction | $$(k-1)(k-2)$$ 
-Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$k^2 - 1$$ 
+**Total** | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$k^2 - 1$$ 
 
 <p></p>
 
@@ -298,7 +298,7 @@ Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
 ------|----------------|--------------------|-------------|---------
 Trt   | $$\sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\epsilon} + n \sigma^2_A$$ 
 Error | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2 = \sum^k_{i = 1} (n_i - 1) s_i^2$$ | $$k(n-1)$$ | $$MSE$$ | $$\sigma^2_{\epsilon}$$
-Total | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}_{..})$$ | $$kn-1$$ | | 
+**Total** | $$\sum_{ij} (y_{ij} - \bar{y}_{..})^2 = \sum_{all.obs} (y_{ij} - \bar{y}_{..})$$ | $$kn-1$$ | | 
 
 <p></p>
 
@@ -346,7 +346,7 @@ One interesting note is that this model will give equivalent results if one were
 
 $$\bar{Y}_{ij.} = \mu + \alpha_i + \epsilon_{ij} + \bar{\delta}_{ij.} = \mu + \alpha_i + e_{ij}$$
 
-Models with subsampling are essentially the same as models that average those subsamples for each experimental unit. Thus even though the $$SS$$ and $$MS$$ for these models are different, the $$F$$ statistic, degrees of freedom, and p-value for effects are all the same. If subsamples are not averaged, they need to be accounted for.
+Models with subsampling are essentially the same as models that average those subsamples for each experimental unit. Thus even though the $$SS$$ and $$MS$$ for these models are different, the $$F$$ statistic, degrees of freedom, and p-value for effects are all the same. If subsamples are not averaged, they need to be adjusted for.
 
 ### CRD with Subsampling
 
@@ -371,7 +371,7 @@ Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
 Trt   | $$sn \sum^k_{i} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + ns \sum^k_i \frac{\alpha_i^2}{k - 1}$$ 
 Plot Error | $$s \sum^k_{i} \sum^{n}_{j} (\bar{y}_{ij.} - \bar{y}_{i..})^2$$ | $$k(n-1)$$ | $$MSPE$$ | $$\sigma^2_{\delta} + s\sigma^2_{\epsilon}$$
 Subsample Error | $$\sum_{ijl} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$kn(s-1)$$ | $$MSSSE$$ | $$\sigma^2_{\delta}$$
-Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kns-1$$ | | 
+**Total** | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kns-1$$ | | 
 
 <p></p>
 
@@ -405,7 +405,7 @@ Blocks| $$ks \sum_j (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$MSBlk$$ | 
 Trt   | $$bs \sum^k_{i} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + bs \sum^k_i \frac{\alpha_i^2}{k - 1}$$ 
 Plot Error | $$s \sum_{ij} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} +\bar{y}_{...})^2$$ | $$(k-1)(b-1)$$ | $$MSPE$$ | $$\sigma^2_{\delta} + s\sigma^2_{\epsilon}$$
 Subsample Error | $$\sum_{ijl} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$kb(s-1)$$ | $$MSSSE$$ | $$\sigma^2_{\delta}$$
-Total | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kbs-1$$ | | 
+**Total** | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kbs-1$$ | | 
 
 <p></p>
 
@@ -419,7 +419,7 @@ Split plot designs refer to experiments where multiple treatments are applied in
 
 **Model Formulations**
 
-$$Y_{ijk} = \mu + \alpha_i + \epsilon_{ij} + \gamma_{k} + (\alpha \gamma)_{ij} + \delta_{ijk}$$
+$$Y_{ijk} = \mu + \alpha_i + \epsilon_{ij} + \gamma_{k} + (\alpha \gamma)_{ik} + \delta_{ijk}$$
 
 where
 
@@ -439,7 +439,7 @@ WP Error  | $$c \sum_{ij} (\bar{y}_{ij.} - \bar{y}_{i..})^2$$ | $$a(b-1)$$ | $$M
 C     | $$ab\sum_k (\bar{y}_{..k} - \bar{y}_{...})^2$$ | $$c - 1$$ | $$MSC$$ | $$\sigma^2_{\delta} + \frac{ab\sum_k \gamma_k^2}{c - 1}$$
 AC    | $$b \sum_{ik} (\bar{y}_{i.k} - \bar{y}_{i..} - \bar{y}_{..k} + \bar{y}_{...})^2$$ | $$(a-1)(c-1)$$ | $$MSAC$$ | $$\sigma^2_{\delta} + \frac{b \sum_{ik} (\alpha \gamma)_{ik}^2}{(a - 1)(c - 1)}$$
 SP Error  | $$\sum_{ijk} (y_{ijk} - \bar{y}_{i..} - \bar{y}_{..k} + \bar{y}_{...})^2$$ | $$a(b-1)(c-1)$$ | $$MSSP$$ | $$\sigma^2_{\delta}$$
-Total | $$\sum_{ijk} (y_{ijk} - \bar{y}_{...})^2$$ | $$abc-1$$ | | 
+**Total** | $$\sum_{ijk} (y_{ijk} - \bar{y}_{...})^2$$ | $$abc-1$$ | | 
 
 <p></p>
 
@@ -479,7 +479,7 @@ WP Error | $$(a-1)(b-1)$$ | $$\sigma^2_{\delta} + c \sigma^2_{\epsilon}$$
 C      | $$c-1$$ | $$\sigma^2_{\delta} + \frac{ab \sum_k \gamma^2_k}{c - 1}$$
 AC     | $$(a-1)(c-1)$$ | $$\sigma^2_{\delta} + \frac{b \sum_{ik} (\alpha \gamma)_{ik}}{(a-1)(c-1)}$$
 SP Error | $$a(b-1)(c-1)$$ | $$\sigma^2_{\delta}$$
-Total  | $$abc-1$$ |
+**Total**  | $$abc-1$$ |
 
 Notice that the $$df$$ for the wholeplot error is essentially the interaction between $$AB$$. The $$df$$ for the subplot error can be rewritten as $$a(b-1)(c-1) = (b-1)(c-1) + (a-1)(b-1)(c-1)$$. These are the pooled $$df$$ from the $$BC$$ and $$ABC$$ interaction. 
 
@@ -487,7 +487,7 @@ Notice that the $$df$$ for the wholeplot error is essentially the interaction be
 
 Repeated measures is when repeated measurements are made on an experimental unit. It can be thought of as a split plot design with time being the subplot error. Repeated measure designs are a smaller/reduced version of time series. Because of the repeated measures, the observations are no longer independent and there are correlations in residual errors among the time periods. 
 
-To fit repeated measures, specify the covariance structure for $$\epsilon$$, specifically the correlations between measurements within an individual. To determine the best covariance structure, compare model using model statistics such as AIC or BIC. 
+To fit repeated measures, specify the covariance structure for $$\epsilon$$, specifically the correlations between measurements within an individual. To determine the best covariance structure, compare model using model statistics such as AIC or BIC. Likelihood ratio tests may be utilized to compare variance structures as long as the null hypothesis test for these are not $$\sigma^2 = 0$$. In those cases, use simulations.
 
 ### Variance Components VC
 
