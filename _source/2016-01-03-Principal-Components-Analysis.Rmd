@@ -40,7 +40,7 @@ where
 * $$V_{pxp}$$ is an orthogonal matrix ($$A$$ is orthogonal if $$A^TA = AA^T = I$$) in which the columns form an orthonormal basis for the row vectors of $$X$$ 
 * $$U_{NxN}$$ is an orthogonal matrix in which the columns form an orthonormal basis for the space spanned by the column vectors of $$X$$
 
-We can regenerate the symmetric matrix with
+Regenerate the symmetric matrix with
 
 ---------|---------------------
 $$X^T X$$| $$ = (U \Sigma V^T)^T (U \Sigma V^T)$$
@@ -52,7 +52,7 @@ The matrix $$X^T X$$ is symmetric and so it can be written in the form $$Q \Lamb
 * Columns of $$V$$ are eigenvectors (of $$X^TX$$), ie the principal components loadings
 * Diagonal entries of $$D$$ are the eigenvalues (of $$X^TX$$) ordered from largest to smallest, ie the standard deviations (can derive the proportion of variance explained)
 
-We can also rearrange the SVD formula $$X = UDV^T$$ to $$XV = UD$$. This vector contains the principal component scores. 
+Rearranging the SVD formula $$X = UDV^T$$ to $$XV = UD$$ results in the principal component scores. 
 
 The principal component scores can be used in place of the original features. 
 
@@ -108,7 +108,7 @@ as.matrix(dat) %*% svd$v
 
 ## Interpretation of the Principal Components
 
-We can also plot the first two principal components against each other with the loadings, to obtain some information regarding the components. This plot is called a biplot. This requires the `ggfortify` package. 
+A plot of the first two principal components against each other with the loadings may relay some important information regarding the components. This plot is called a biplot. This requires the `ggfortify` package. 
 ```{r, echo = FALSE}
 dat <- iris[, 1:4]
 ```
@@ -122,12 +122,12 @@ autoplot(prcomp(dat, center = TRUE, scale. = TRUE), data = iris, colour = "Speci
          loadings.label.size = 3)
 ```
 
-From this plot, we see that the first principal components has large loadings for $$Petal.Length$$ and $$Petal.Width$$. This indicates that $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
+From this plot, the first principal components has large loadings for $$Petal.Length$$ and $$Petal.Width$$. This indicates that $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
 
 Each point on the plot refers to a single data point. For example, points with high values on the first principal component will have high values for $$Petal.Width$$ and $$Petal.Length$$. A point with low values of the second principal component will have high values of $$Sepal.Width$$ and $$Sepal.Length$$. 
 
 ## Choosing How Many Principal Components
-There is no best method to choose the number of components. However, one thing we could do is look at the "scree plot" and look for the point at which the trend converges. 
+There is no best method to choose the number of components. However, one thing that could be done is to look at the "scree plot" and look for the point at which the trend converges. 
 
 ```{r}
 x <- 1:length(pc$sdev)
@@ -139,7 +139,7 @@ ggplot(data = NULL, aes(x = x, y = y)) +
   xlab("Principal Component") + ylab("Prop. Variance Explained")
 ```
 
-In this plot, we could potentially choose to use 5-7 principal components. 
+In this plot, using 5-7 principal components would be adequate. 
 
 ## What PCA Can Be Used For
 
@@ -160,7 +160,7 @@ pcr.fit <- pls::pcr(mpg ~ ., data = mtcars, scale = TRUE, validation = "CV")
 summary(pcr.fit)
 pls::validationplot(pcr.fit, val.type = "MSEP")
 ```
-So here we see that using 3 principal components is preferred. If we prefer to use a specified number of components, we can pass the argument `ncomps = n` instead of the `validation` argument. 
+So here using 3 principal components is preferred. To specify a a number of components, pass the argument `ncomps = n` instead of the `validation` argument. 
 
 # Partial Least Squares
 Partial least squares (PLS) is a supervised learning modification of principal components regression (PCR). PLS generates the new low-dimensional features by making use of the response Y. It finds components that help explain both the response and the predictors. 

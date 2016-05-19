@@ -80,7 +80,7 @@ $$ \sum^{\vert T \vert}_{m = 1} \sum_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + 
 
 where $$\alpha >= 0$$, $$\vert T \vert$$ is the number of terminal nodes in subtree, $$R_m$$ is the subset of predictor space corresponding to the $$m^{th}$$ terminal node, and $$\hat{y}_{R_m}$$ is the mean of the training observations in $$R_m$$.
 
-When $$\alpha = 0$$, we have the original tree. As $$\alpha$$ increases, the tree incurs a price for having too many terminal nodes which forces the tree to become smaller. The value $$\hat{\alpha}$$ can be found via cross-validation.
+If $$\alpha = 0$$, this is the original tree. As $$\alpha$$ increases, the tree incurs a price for having too many terminal nodes which forces the tree to become smaller. The value $$\hat{\alpha}$$ can be found via cross-validation.
 
 ## Strengths & Weaknesses
 
@@ -105,7 +105,7 @@ In regression trees, the leaves of functions that predict numeric values rather 
 Rather than using information gain to score candidate splits, regression trees may use residual error, generated from a linear model. 
 
 # Ensembles
-Rather than fitting one tree, we grow a a set of trees using the training data. Then we generate predictions on each tree and combine the predictions. Ensemble methods tend to outperform simpler methods and work very well in practice. 
+Rather than fitting one tree, ensembling grows a set of trees using the training data. Then predictions are generated on each tree and then combined. Ensemble methods tend to outperform simpler methods and work very well in practice. 
 
 Predictions from models can be combined in a variety of ways
 
@@ -126,7 +126,7 @@ Unfortunately, the results are quite difficult to interpret.
   * Build tree to obtain the $$\hat{f}^{*b}(x)$$ prediction
   * Average all predictions (or take a majority vote for nominal responses)
 
-If there is one very strong predictor, most of the bagged trees will use the predictor as the top split. Thus, the predictions from the trees will be highly correlated and the average predictions will have high variance. To decorrelate the predictions, we could use a method called random forests.
+If there is one very strong predictor, most of the bagged trees will use the predictor as the top split. Thus, the predictions from the trees will be highly correlated and the average predictions will have high variance. To decorrelate the predictions, random forests may be used.
 
 ## Random Forests
 
@@ -142,7 +142,7 @@ Let $$N$$ = n-size, $$F$$ = # of parameters, $$i << F$$.
   * Do not prune
 * Average all predictions (or take a majority vote for nominal responses)
 
-The tuning parameter $$i$$ can be chosen by cross-validation. Typically we choose $$i = \sqrt{F}$$. Increasing $$i$$ may (bias-variance tradeoff)
+The tuning parameter $$i$$ can be chosen by cross-validation. Typically choose $$i = \sqrt{F}$$. Increasing $$i$$ may (bias-variance tradeoff)
 
 * increase correlation among individual trees in the forest (bad)
 * increase the accuracy of individual trees (good) 
@@ -213,7 +213,7 @@ carseats <- data.frame(Carseats, high)
 colnames(carseats) <- tolower(colnames(carseats))
 ```
 
-We use the packages `rpart` and `rpart.plot`.
+Use the packages `rpart` and `rpart.plot`.
 
 ```{r}
 library(rpart)
@@ -237,7 +237,7 @@ prp(r_tree)
 rsq.rpart(r_tree)
 ```
 
-We can do another example with the iris data set.
+Consider another example with the iris data set
 ```{r, fig.width = 15}
 library(partykit)
 

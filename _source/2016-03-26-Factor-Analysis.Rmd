@@ -18,7 +18,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 
 
 # Motivating Example
-Consider a data set of children test scores. There are $$n$$ children and test scores for $$6$$ subjects. Below we observe high correlation across the subjects. 
+Consider a data set of children test scores. There are $$n$$ children and test scores for $$6$$ subjects. There is high correlation across the subjects. 
 
 ```{r, echo = FALSE}
 n <- 250
@@ -31,7 +31,7 @@ Y <- cbind(Ystem, Yhum)
 colnames(Y) <- c("Math", "Science", "CS", "Eng", "Hist", "Classics")
 ```
 
-From the correlation matrix we see that there is a grouping of STEM and humanities subjects in correlation. The left plot is the actual data where there is high correlation among the subjects and within fields. The right plot is a hypothetical plot of what independent data would look like (shown for comparison).
+From the correlation matrix, there is a grouping of STEM and humanities subjects in correlation. The left plot is the actual data where there is high correlation among the subjects and within fields. The right plot is a hypothetical plot of what independent data would look like (shown for comparison).
 
 ```{r, echo = FALSE, fig.width = 10}
 round(cor(Y),2)
@@ -58,7 +58,7 @@ grid.arrange(g1, g2, nrow = 1)
 
 This figure shows that there is correlation across subjects, revealing a potential underlying hidden factor (academic ability). There is also higher correlation within STEM fields and within humanities fields. This reveals a potential hidden factor that of STEM/humanities ability.
 
-We can model these hidden factors with factor analysis.
+These hidden factors can be modeld with factor analysis. 
 
 # Difference Between Factor Analysis and PCA
 

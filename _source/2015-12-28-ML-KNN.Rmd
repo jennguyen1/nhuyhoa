@@ -45,9 +45,9 @@ $$ \hat{f}(x_0) = \frac{1}{K} \sum_{x_i \in N_0} y_i $$
 
 ## Example
 
-Here we run a KNN on two dimensions where the response is binary. The true boundary is given by the black line. The shaded regions are the predicted assignments.
+Here a KNN is run on two dimensions where the response is binary. The true boundary is given by the black line. The shaded regions are the predicted assignments.
 
-Here we see that the smaller $$K$$ is, the more flexible the predicted boundary line. As we increase $$K$$, the predicted boundary is more linear. 
+Tthe smaller $$K$$ is, the more flexible the predicted boundary line. As $$K$$ increases, the predicted boundary is more linear. 
 ```{r, echo = FALSE, fig.width = 15, fig.height = 5}
 sim_knn <- function(k, print_mse = FALSE){
   # set the seed
@@ -128,7 +128,7 @@ sim_knn(2)
 * KNN classification: `class::knn()` or `caret::knn3()`
 * KNN regression: `caret::knnreg()`
 
-We can use the iris data set for an example.
+Consider the iris data set
 ```{r, eval = FALSE}
 # obtain the indexes
 i <- sample(1:150, 100, replace = FALSE)
