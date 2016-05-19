@@ -25,7 +25,7 @@ Then
 
 $$E(Y_i) = Var(Y_i) = \mu_i$$
 
-From this, compute the deviance
+The deviance is
 
 $$ D = 2 \sum^n_{i = 1} \big[ y_i \log \left( \frac{y_i}{\hat{\mu}_i} \right)  - (y_i - \hat{\mu}_i) \big] $$
 
@@ -94,7 +94,7 @@ $$ (y \vert x_1 = x + 1) $$                                | $$= e^{\beta_1} * (
 Holding all other predictors constant, a unit increase in $$x_i$$ increases the count by a factor of $$exp(\hat{\beta}_i)$$
 
 # Overdispersion
-Overdispersion occurs in poisson regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i $$. With Poisson models, one can visually assess whether there might be overdispersion by plotting $$(y - \hat{\mu})^2$$ vs $$\mu$$ with the identity line. Overdispersion would result in a plot where the majority of points are above the identity line, indicating $$Var(Y) > E(Y)$$. 
+Overdispersion occurs in poisson regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i $$. With Poisson models, overdispersion may be visually assessed by plotting $$(y - \hat{\mu})^2$$ vs $$\mu$$ with the identity line. Overdispersion would result in a plot where the majority of points are above the identity line, indicating $$Var(Y) > E(Y)$$. 
 
 The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain <br>
 $$Var(Y_i)^* = \sigma^2 \mu_i $$
