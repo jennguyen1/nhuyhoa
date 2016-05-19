@@ -13,10 +13,11 @@ categories: ['statistics', 'regression analysis']
 
 Survival analysis refers to the analysis of the occurance and timing of discrete events or failures. Failures can vary depending on the application. 
 
-One feature of survival analysis is censoring, which is when the event of interest is not observed during the period of study for some subjects. We assume that the event will occur in all subjects given sufficient follow up. Subjects without events are those for whom the event will occur in the future, although the time of event is unknown. We also assume that censoring is independent of failure time.
+One feature of survival analysis is censoring, which is when the event of interest is not observed during the period of study for some subjects. Assume that the event will occur in all subjects given sufficient follow up. Subjects without events are those for whom the event will occur in the future, although the time of event is unknown. Assume that censoring is independent of failure time.
 
 # Goals of Survival Analysis
-We want to answer several questions.
+
+Several questions
 
 * What is the cumulative event rate from randomization until some fixed time(s)? (estimation)
 * Do the events differ by treatment? (hypothesis testing)
@@ -43,7 +44,7 @@ Censoring may occur in several ways.
 # One Sample Survival Curves
 
 ## Kaplan-Meier Estimate of S(t)
-Suppose we have data in the following form. First we assume that there is no censoring.
+Consider the following data assuming no censoring 
 
 ![Survival Times](http://jnguyen92.github.io/nhuyhoa/figure/images/survival_times.png)
 
@@ -54,16 +55,16 @@ $$\hat{S}(t) = 1 - \hat{F}(t)$$
 The time axis can be broken into intervals of size $$\Delta t$$, $$0 = t_0 < t_1 < ... < t_K$$ and let <br>
 $$d_k = $$ # of subjects with $$T_i \in (t_{k - 1}, t_k)$$
 
-and then we can estimate <br>
+and then estimate <br>
 $$\hat{f}(t_k) = \frac{d_k}{n \Delta t}$$
 
-then since $$S(t) = 1 - \int^t_0 f(u)du$$ we have <br>
+then since $$S(t) = 1 - \int^t_0 f(u)du$$ <br>
 $$\hat{S}(0) = 1$$ <br>
 $$\hat{S}(t_1) = \hat{S}(0) - \hat{f}(t_1)\Delta t = 1 - \frac{d_1}{n}$$ <br>
 ... <br>
 $$\hat{S}(t_k) = \hat{S}(t_{k - 1}) - \hat{f}(t_k)\Delta t = 1 - \frac{d_1 + ... + d_k}{n}$$
 
-We can also replace $$f(t)$$ with $$\lambda(t)$$. We can estimate <br>
+Replace $$f(t)$$ with $$\lambda(t)$$. Estimate <br>
 $$\hat{\lambda}(t_k) = \frac{d_k}{n_k \Delta T}$$
 
 since $$f(t) = S(t)\lambda(t)$$ and $$S(t) = 1 - \int^t_0 S(u)\lambda (u)du$$ so <br>
@@ -80,11 +81,11 @@ $$\hat{S}(t) = \prod_{k: t_k \le t} \left( 1 - \frac{d_k}{n_k}\right)$$
 where $$t_i$$ are the distinct time failures, $$n_i$$ are the numbers at risk at $$t_i$$ and $$d_i$$ are the numbers of death at times $$t_i$$. 
 
 ## Estimating Variance
-We can use the relation $$\log (\hat{S}(t)) = - \hat{\Lambda}(t)$$ to obtain estimates of the standard errors.
+Use the relation $$\log (\hat{S}(t)) = - \hat{\Lambda}(t)$$ to obtain estimates of the standard errors.
 
 $$\hat{\Lambda}(t) = -\sum_{k:t_k \le t} \log \left( 1 - \frac{d_k}{n_k} \right)$$
 
-We can assume $$d_k \sim Bin(n_k, p_k)$$ and estimate $$p_k = \frac{d_k}{n_k}$$ and use the delta method on $$\log(1 - \frac{d_k}{n_k})$$
+Assume $$d_k \sim Bin(n_k, p_k)$$ and estimate $$p_k = \frac{d_k}{n_k}$$ and use the delta method on $$\log(1 - \frac{d_k}{n_k})$$
 
 --------------------------|-----------------------
 $$Var(\log(1 - d_k/n_k))$$| $$ = \frac{1}{(1 - d_k/n_k)^2} Var(1 - d_k/n_k)$$
@@ -100,10 +101,10 @@ The delta method can be applied again
 
 $$Var( \hat{S}(t) ) = \hat{S}(t)^2 \sum_{k: t_k \le t} \frac{d_k}{n_k (n_k - d_k)}$$
 
-From this we can easily generate confidence intervals around our survival estimates. 
+This can be used to generate confidence intervals around the survival estimates. 
 
 ## In R
-Here is a sample of our data. Let's fit the survival curve and obtain survival estimates and confidence intervals. Note that censored information is available. Although it is not considered an "event", it is incorporated into the "at risk" count.
+Using this data, fit the survival curve and obtain survival estimates and confidence intervals. Note that censored information is available. Although it is not considered an "event", it is incorporated into the "at risk" count.
 
 <div class = "dftab">
 <table>
@@ -141,7 +142,17 @@ Here is a sample of our data. Let's fit the survival curve and obtain survival e
 
 {% highlight r %}
 library(survival)
+{% endhighlight %}
 
+
+
+{% highlight text %}
+## Warning: package 'survival' was built under R version 3.2.5
+{% endhighlight %}
+
+
+
+{% highlight r %}
 # fit a survival curve: day is the time and status is event/censored info
 survival <- survfit(Surv(day, status) ~ 1, conf.type = "plain")
 
@@ -168,7 +179,7 @@ summary(survival)
 ##    31      1       1    0.000     NaN          NaN          NaN
 {% endhighlight %}
 
-We can also plot the survival curve. The marked positions are the censored data.
+Plot the survival curve. The marked positions are the censored data.
 
 {% highlight r %}
 ggsurv(survival)
@@ -177,7 +188,7 @@ ggsurv(survival)
 <img src="/nhuyhoa/figure/source/2016-01-23-Survival-Analysis/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 # Two Sample Survival Curves
-With two treatment groups, we can quantify the difference between the groups with the proportional hazards model.
+With two treatment groups, the differences between groups can be quantified with the proportional hazards model.
 
 Dead        | Alive               | At risk
 ----------  |-------------------  |-----------
@@ -189,7 +200,7 @@ where the last row is the column total.
 
 The **hazard ratio** is defined as $$r = \frac{\lambda_1(t)}{\lambda_0(t)}$$ and is independent of $$t$$.
 
-By taking the $$\log$$, we have
+By taking the $$\log$$
 
 $$\log(\lambda(t)) = \log(\lambda_0(t)) + \beta*z$$
 
@@ -197,12 +208,12 @@ where $$z$$ is the treatment group and $$\beta$$ is the log hazard ratio.
 
 The MLE for $$\beta$$ is estimated using the Newton-Raphson method. This can be obtained in R.
 
-We can also adjust for additional variables by adding them to the model. 
+Additional variables may be adjusted for in the model.
 
 ## Log Rank Test
-Consider small intervals around each survival time. At time $$t_k$$, we have the $$2x2$$ table
+Consider small intervals around each survival time. At time $$t_k$$, the $$2x2$$ table
 
-We can compute the log rank test (score test) to test the null hypothesis that $$H_0: \beta = 0$$. 
+Compute the log rank test (score test) to test the null hypothesis that $$H_0: \beta = 0$$. 
 
 The score function at $$H_0$$ is
 
@@ -221,7 +232,7 @@ $$I(0) = \sum_k I_k(0)$$
 The test statistic is $$\frac{U(0)^2}{I(0)} \sim X^2_1$$
 
 ## Weighted Log Rank Test
-We can also weight failure times. Let $$w_k$$ be the weight for time $$t_k$$
+Failure times may also be weighted. Let $$w_k$$ be the weight for time $$t_k$$
 
 $$U^w(0) = \sum_k w_k U_k(0)$$
 
@@ -234,7 +245,7 @@ $$w_k = (n_{k0} + n_{k1})$$
 
 ## Proportional Hazards Assumption
 
-When modeling the Cox proportional hazard model, we make the assumption of proportional hazards. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. We can test this assumption in two ways.
+When modeling the Cox proportional hazard model, there is an assumption of proportional hazards. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. This assumption may be evaluated in several ways
 
 * Graph $$\log(\hat{\Lambda}(t))$$ vs. $$t$$ for each group, the assumption is satisfed if the shapes of the curves are similar and the separation between curves remain proportional across analysis time (parallel curves).
 * Test for a non-zero slope in a GLM regresion of the scaled Schoenfeld residuals on functions of time. A non-zero slope violates the proportional hazard assumption
@@ -242,7 +253,7 @@ When modeling the Cox proportional hazard model, we make the assumption of propo
 ## In R
 
 
-We can fit a survival function with two treatment groups.
+Fit a survival function with two treatment groups
 
 {% highlight r %}
 # fit model
@@ -255,7 +266,7 @@ ggsurv(s, cens.col = "black", xlab = "Days", main = "Survival by Treatment Group
 
 <img src="/nhuyhoa/figure/source/2016-01-23-Survival-Analysis/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
-We can fit the cox proportional hazards model and obtain the estimate for $$\beta$$ and the log rank statistic.
+Fit the cox proportional hazards model and obtain the estimate for $$\beta$$ and the log rank statistic
 
 {% highlight r %}
 coxph(Surv(days, status) ~ treatment + sex + age, data = data) %>% summary
@@ -287,7 +298,7 @@ coxph(Surv(days, status) ~ treatment + sex + age, data = data) %>% summary
 {% endhighlight %}
 The hazard ratio is significantly less than 1 even after adjusting for age and sex, indicating that the hazard of the treatment group is significantly less than the control group. (The hazard is the probability that if a person survives to time $$t$$, they will experience the event in the next instant).
 
-We can obtain an adjusted likelihood-ratio statistic by doing the following.
+Obtain an adjusted likelihood-ratio statistic by doing the following
 
 {% highlight r %}
 # fit model with and without treatment
@@ -310,7 +321,7 @@ anova(hr2, hr3, test = "Chisq")
 ## 2 -1426.1 6.5277  1   0.01062
 {% endhighlight %}
 
-We can assess the assumption of proportional hazards in two ways.
+Assess the assumption of proportional hazards in two ways
 
 {% highlight r %}
 # plotting curve

@@ -14,7 +14,7 @@ Multilevel models can be written as
 
 $$Y = X\beta + Zb + \epsilon$$
 
-where $$X\beta$$ represents the fixed effects variables and $$Zb$$ represents the random effects variables. We also have $$b \sim N(0, G)$$ and $$\epsilon \sim N(0, R)$$. Thus we have
+where $$X\beta$$ represents the fixed effects variables and $$Zb$$ represents the random effects variables and $$b \sim N(0, G)$$, $$\epsilon \sim N(0, R)$$. 
 
 $$E[Y] = X\beta$$
 
@@ -35,7 +35,7 @@ Notice that REML uses a different likelihood function than simple likelihood. Wh
 * Compare models with different random effects only if the fixed effects are all the same
 * When comparing random effects, if testing near a boundary point $$\sigma^2 = 0$$ vs. $$\sigma^2 \ne 0$$ the likelihood ratio statistic is not approximately $$X^2$$ so must compare models via simulations
 
-One issue that comes up in this two-step method is that we assume that $$\hat{\Sigma}$$ is the true covariance matrix when in fact it is not. The additional variability in estimating $$\hat{\Sigma}$$ is not accounted for. (Note this is the reason that R does not provide p-values for the ANOVA table of mixed models). 
+One issue that comes up in this two-step method is that $$\hat{\Sigma}$$ is assumed to be the true covariance matrix when in fact it is not. The additional variability in estimating $$\hat{\Sigma}$$ is not accounted for. (Note this is the reason that R does not provide p-values for the ANOVA table of mixed models). 
 
 There are two ways to relieve this issue and obtain estimates for the p-value
 
@@ -53,19 +53,19 @@ Consider three variants of models:
 
 <img src="/nhuyhoa/figure/source/2016-03-03-Multilevel-Models/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
-In the left plot, we fit two separate models. We fit one model with no group variables, the intercept estimate is represented by dashed horizontal line. We fit another model with separate intercepts for each group These intercept estimates and standard error bars are represented by the individual points. Notice that the sample variability is larger at small $$n$$ sizes and smaller at higher $$n$$ sizes. The complete pooling model ignores group variability while the no-pooling model overstates it (as groups with small $$n$$ sizes are inaccurately estimated). 
+In the left plot, two separate models are fit. One model is fit with no group variables, the intercept estimate is represented by dashed horizontal line. Another model is fit with separate intercepts for each group These intercept estimates and standard error bars are represented by the individual points. Notice that the sample variability is larger at small $$n$$ sizes and smaller at higher $$n$$ sizes. The complete pooling model ignores group variability while the no-pooling model overstates it (as groups with small $$n$$ sizes are inaccurately estimated). 
 
-In the right plot, we fit a multilevel model (with the same complete pooling estimate). Multilevel models attempt to compromise between the complete pooling and the no-pooling model. Essentially, the estimates in multilevel models are a weighted averages (based on the group $$n$$ size) of the complete pooling and the no-pooling estimates (variances). The weights are based on the group $$n$$ size. The smaller the group $$n$$ the closer the multilevel estimate is to overall average (pooling estimate). The larger the group $$n$$ the closer the multilevel estimate is to the group average (no-pooling estimate). We refer to this as shrinkage towards the mean (of varying degrees).
+Tthe right plot has a multilevel model (with the same complete pooling estimate). Multilevel models attempt to compromise between the complete pooling and the no-pooling model. Essentially, the estimates in multilevel models are a weighted averages (based on the group $$n$$ size) of the complete pooling and the no-pooling estimates (variances). The weights are based on the group $$n$$ size. The smaller the group $$n$$ the closer the multilevel estimate is to overall average (pooling estimate). The larger the group $$n$$ the closer the multilevel estimate is to the group average (no-pooling estimate). This is called shrinkage towards the mean (of varying degrees).
 
-With multilevel models of varying intercepts, the intercept terms are $$\alpha_i \sim N(\mu_a, \sigma^2_a)$$. When $$\sigma^2_a \rightarrow 0$$, we have a no-pooling model that may be underfitting. When $$\sigma^2_a \rightarrow \infty$$, we have a complete pooling model that may be overfitting. The multilevel model is essentially a compromise between the two models. It is an adaptive regularization technique.  
+With multilevel models of varying intercepts, the intercept terms are $$\alpha_i \sim N(\mu_a, \sigma^2_a)$$. When $$\sigma^2_a \rightarrow 0$$, it is considered a no-pooling model that may be underfitting. When $$\sigma^2_a \rightarrow \infty$$, it is considered a complete pooling model that may be overfitting. The multilevel model is essentially a compromise between the two models. It is an adaptive regularization technique.  
 
-We can assess the group and individual level variation using intraclass correlation. 
+The group and individual level variation are assessed using intraclass correlation. 
 
 $$\frac{\sigma^2_a}{\sigma^2_a + \sigma^2_y}$$
 
 This value ranges from $$0$$ (for no information conveyed by group) and $$1$$ (for consolidated groupings). 
 
-We can also look at the variance ratio
+The variance ratio is
 
 $$r = \frac{\sigma^2_y}{\sigma^2_a}$$
 
@@ -75,11 +75,11 @@ The variance ratio is a measure of how much many observations are needed in a gr
 * If $$n_j = r$$ then $$\hat{a}_j$$ is an average of $$\mu_a$$ and $$\bar{y}_j$$
 * If $$n_j > r$$ then $$\hat{a}_j$$ is closer to $$\bar{y}_j$$
 
-This value tells us that the standard deviation of average $$y$$ between groups is the same as the standard deviation of the average of $$1/r$$ measurements within a group. For a group with more than $$1/r$$ observations, within-group measurements are more informative. Otherwise, the across group measurements are more informative. 
+This value means that the standard deviation of average $$y$$ between groups is the same as the standard deviation of the average of $$1/r$$ measurements within a group. For a group with more than $$1/r$$ observations, within-group measurements are more informative. Otherwise, the across group measurements are more informative. 
 
 ## Model Formulas
 
-We can fit variants of the varying intercept models in R with the following `lmer()` commands
+Variants of the varying intercept models may be fit in R with the following `lmer()` commands
 
 **Varying intercept; no predictors:**
 
@@ -235,13 +235,13 @@ lmer(y ~ 1 + (1 | group.a) + (1 | group.b))
 
 **Transformations:**
 
-As with regular regression, we can perform transformations for more effective fitting and interpretation. For example, centering and scaling may allow for easier interpretation of coefficients, especially when they are correlated (as with varying intercept, varying slope type models). 
+As with regular regression, transformations may be done for more effective fitting and interpretation. For example, centering and scaling may allow for easier interpretation of coefficients, especially when they are correlated (as with varying intercept, varying slope type models). 
 
 Multilevel models may also be used creatively to assess a variety of effects. For example, consider a scenario where you have a number of variables that mostly measure the same thing. You can use all of the variables by combining them into a weighted average. The weighted average term would be something along the lines of $$\frac{1}{n} \sum^n_i \beta_{ij} * x_{j}$$. 
 
 ## Generalized Linear Multilevel Models
 
-We can easily extend the fitting of multilevel models to glms. For logistic and poisson models, adding a random effect term may be considered as modeling overdispersion.
+The fitting of multilevel models may be extended to GLMs. For logistic and poisson models, adding a random effect term may be considered as modeling overdispersion.
 
 The generic function is written as
 
@@ -266,9 +266,9 @@ $$\log(\lambda) = X \beta + Zb$$
 
 ## Viewing Results in R
 
-In R, we can fit these models with `lmer()` or `glmer()`. 
+In R, fit these models with `lmer()` or `glmer()`. 
 
-We can use the following commands to view results and estimates.
+Use the following commands to view results and estimates.
 
 
 {% highlight r %}
@@ -291,17 +291,17 @@ ranef(mod)
 se.ranef(mod)
 {% endhighlight %}
 
-We can use the following estimates to obtain confidence intervals for the estimates. 
+Use the following estimates to obtain confidence intervals for the estimates. 
 
 ## Prediction
 
-We can obtain prediction estimates and its confidence intervals (from quantiles) by using simulation. The methods of how we do this may depend on what we want to predict. 
+Obtain prediction estimates and its confidence intervals (from quantiles) by using simulation. How this is done depends on what is being predicted.
 
-If we want to predict a data point for a given group, we use the estimated group coefficient to calculate the fitted value for $$y$$. We also need to add an error term (specified by $$\sigma_y$$). The variance for these predictions are $$\sigma^2_y$$.
+Topredict a data point for a given group, use the estimated group coefficient to calculate the fitted value for $$y$$. Add an error term (specified by $$\sigma_y$$) to the equation. The variance for these predictions are $$\sigma^2_y$$.
 
-If we want to predict a data point for a new group, we conduct a two-step simulation. First we simulate the group estimate using its predictors and the error term $$\sigma^2_a$$. We then use these estimates to predict $$y$$ along with its own error terms $$\sigma^2_y$$. The variance of these predictions are $$\sigma^2_a + \sigma^2_y$$. The ability to obtain predictions for new groups is a great advantage for multilevel models.
+To predict a data point for a new group, conduct a two-step simulation. First, simulate the group estimate using its predictors and the error term $$\sigma^2_a$$. Then use these estimates to predict $$y$$ along with its own error terms $$\sigma^2_y$$. The variance of these predictions are $$\sigma^2_a + \sigma^2_y$$. The ability to obtain predictions for new groups is a great advantage for multilevel models.
 
-The simulation procedure detailed above is done on a Bayesian approach. We can also simulate data from a bootstrapping approach. Simulations are useful to obtain predictions, standard error estimates, etc.
+The simulation procedure detailed above is done on a Bayesian approach. Simulations may also be dine via a bootstrapping approach. Simulations are useful to obtain predictions, standard error estimates, etc.
 
 ## Plotting Random Effects in R
 

@@ -24,7 +24,7 @@ $$E(Y_i) = n_i p_i$$
 
 $$Var(Y_i) = n_i p_i (1-p_i)$$
 
-From this, compute the deviance. 
+The deviance is
 
 $$ D = 2 \sum^n_{i = 1} \big[ y_i \log \left( \frac{y_i}{\hat{y}_i} \right) + (n_i - y_i) \log \left( \frac{n_i - y_i}{n_i - \hat{y}_i} \right) \big] $$
 
@@ -39,7 +39,7 @@ There are a number of common link functions for binomial data. The link function
 * Probit: $$\eta = \Phi^{-1}(p)$$
 * Complementary log-log: $$\eta = \log(-\log(1 - p))$$
 
-All of these link functions differ mostly at the tails. Use the logit because it is easure to intepret using odds.
+All of these link functions differ mostly at the tails. Use the logit because it is easier to intepret using odds.
 
 # Logistic Regression Model
 
@@ -201,4 +201,4 @@ $$ \theta_j := \theta_j + \alpha (y - h(x))x_j $$
 
 [glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html#overdispersion
 [func_RV_delta_method_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Func-of-RV.html#delta-method
-[gradient_descent_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Generic-Algorithms.html#gradient-descent
+[gradient_descent_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/Generic-Algorithms.html#gradient-descent

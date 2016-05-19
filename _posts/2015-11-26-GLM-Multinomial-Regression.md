@@ -67,7 +67,7 @@ ggplot(data = gator, aes(x = choice, y = length)) +
 <img src="/nhuyhoa/figure/source/2015-11-26-GLM-Multinomial-Regression/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 From the boxplot, there is a trend in food choice and gator length.
 
-So fit a multinomial model.
+So fit a multinomial model
 
 {% highlight r %}
 # package to fit multinomial models
@@ -182,7 +182,7 @@ For ordinal categorical variables
 
 $$ logit \big[ P(Y \le j ) \big] = \theta_j - x' \beta $$
 
-where $$j = 1,...,J-1$$ and where $$\beta$$ describes the effect of $$x$$ on the log odds of response in category j or below. This model assumes that the effect of $$x$$ is identical for all $$J-1$$ cumulative logits. In other words, there would be parallel cumulative probability lines. 
+where $$j = 1,...,J-1$$ and where $$\beta$$ describes the effect of $$x$$ on the log odds of response in category j or below. This model assumes that the effect of $$x$$ is identical for all $$J-1$$ cumulative logits, resulting in parallel cumulative probability lines. 
 
 Because the covariate terms are subtracted, the $$\beta$$s are interpreted with respect to the $$\log \left( \frac{P(Y > j)}{P(Y \le j)} \right)$$ instead of $$\log \left( \frac{P(Y \le j)}{P(Y > j)} \right)$$.
 
@@ -196,9 +196,11 @@ The intercept $$\alpha_j$$ is the log-odds of falling into or below category $$j
 
 Obtain $$P(Y = j)$$ with $$P(Y = j) = P(Y \le j) - P(Y \le j - 1)$$.
 
-The slope parameter $$\beta_k$$ can be interpreted as so: holding all other covariates constant, a unit increase in $$x_k$$ increases the odds of above any category by a factor of $$exp(\beta_k)$$. Another way to interpret this is holding all other covariates constant, a unit increase in $$x_k$$ increases the odds of falling into or below any category by a factor of $$exp(-\beta_k)$$. (See diagram below, available in An Introduction to Categorical Data Analysis, Agresti).
+The slope parameter $$\beta_k$$ can be interpreted as so: holding all other covariates constant, a unit increase in $$x_k$$ increases the odds of above any category by a factor of $$exp(\beta_k)$$. Another way to interpret this is holding all other covariates constant, a unit increase in $$x_k$$ increases the odds of falling into or below any category by a factor of $$exp(-\beta_k)$$. 
 
 ![Cumulative proportional odds model](http://jnguyen92.github.io/nhuyhoa/figure/images/cum_probs_prop_odds_model.png)
+
+An Introduction to Categorical Data Analysis, Agresti
 
 ## Estimating Response Probabilities
 To obtain the response probabilities
@@ -292,6 +294,6 @@ The model discussed here assumed proportional odds. Thus it is important to asse
 The `VGAM` package is an additional resource that has functions for fitting multinomial models. 
 
 # Model Testing and Diagnostics
-Testing and diagnostics is similar to other glms. See [GLM Testing and Diagnostics][glm_diagnostics_post]{:target = "blank"}
+Testing and diagnostics is similar to other GLMs See [GLM Testing and Diagnostics][glm_diagnostics_post]{:target = "blank"}
 
 [glm_diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html

@@ -349,7 +349,7 @@ To account for overdispersion, multiply the variance by a factor of $$\sigma^2$$
 
 $$Var(Y_i)^* = \sigma^2 Var(Y_i)$$
 
-When $$\sigma^2 = 1$$ then this results in the original model. If $$\sigma^2 > 1$$, then there is overdispersion. 
+When $$\sigma^2 = 1$$, then this results in the original model. If $$\sigma^2 > 1$$, then there is overdispersion. 
 
 Estimate $$\sigma^2$$ with a Fisher scoring algorithm used to fit the model.
 
