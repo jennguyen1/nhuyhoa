@@ -47,18 +47,18 @@ qplot(x = n, y = p, size = I(1.5), geom = "line", main = "Type 1 Error Rate vs. 
 The error rates rapidly increases. The type 1 error rate is approximately $$50$$% when $$13$$ tests are conducted. Thus it is important have a way to correct for these multiple tests to ensure that the Type 1 error rate remains low.
 
 # Multiple Comparisons for Continuous Data
-Note that what number and what specific comparisons should be determined in advance (prior to receiving results) to eliminate experimenter bias.
+Note that what number and what specific comparisons should be determined in advance (prior to receiving results) to eliminate bias.
 
 Also note that the assumptions of the overall test (ex: ANOVA) also apply to these tests. 
 
 ## Fischer's Least Significant Difference (LSD)
 Fischer's LSD method first performs the ANOVA $$F$$ test and proceeds with pairwise comparisons if the $$F$$ test is significant. 
 
-For balanced groups, the groups are significantly different if to comparing $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge T_{dfE, \alpha / 2} s_{\epsilon} \sqrt{2 / n}$$. 
+For balanced groups, the groups are significantly different if $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge T_{dfE, \alpha / 2} s_{\epsilon} \sqrt{2 / n}$$. 
 
 For unbalanced groups, this is a series of t-tests taking into account the sample sizes, comparing $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge T_{dfE, \alpha / 2} s_{\epsilon} \sqrt{1 / n_i + 1/n_{i'}}$$. 
 
-Fischer's LSD method ignores the multiple comparisons problem and does not correct for multiple tests. It states to use the predetermined $$\alpha$$ value for all tests, even though it may result in high type 1 error rates. Therefore this test is quite liberal. In increasing the type 1 error rate, type 2 error rate decreases. Therefore, Fischer's LSD method results in maximizing power. 
+Fischer's LSD method ignores the multiple comparisons problem and does not correct for multiple tests. It uses a predetermined $$\alpha$$ value for all tests, even though it may result in high type 1 error rates. Therefore this test is quite liberal. In increasing the type 1 error rate, type 2 error rate decreases. Therefore, Fischer's LSD method results in maximizing power. 
 
 In the non-parametric Kruskal-Wallis test, reject if $$\vert \bar{R}_i - \bar{R}_j \vert \ge z_{\alpha / 2} \sqrt{\frac{N(N + 1)}{12} (1 / n_i + 1/n_j)}$$.
 
@@ -87,11 +87,11 @@ The bonferroni p-value is
 
 $$p_{bonf} = min(n * p, 1)$$
 
-Using bonferroni's correction, it is guaranteed a overall type 1 error rate of $$0.05$$. Unfortunately in doing so, the bonferroni method is very conservative, in which the type 2 error rate is very high and power is very low for each individual test.
+Using bonferroni's correction, it is guaranteed an overall type 1 error rate of $$0.05$$. Unfortunately, the bonferroni method is very conservative, in which the type 2 error rate is very high and power is very low for each individual test.
 
 Note that Bonferroni's correction is valid for equal and unequal sample sizes.
 
-Example:
+**Example**
 
 * Want an overall error rate of $$ \alpha = 0.05 $$ with $$20$$ tests. 
 * For each individual test use $$ \alpha_i = 0.05 / 20 = 0.0025 $$.
@@ -125,7 +125,7 @@ Tukey's method is uses the studentized range distribution. The studentized range
 
 $$q_{m, df} = \frac{w}{s}$$
 
-where the observations $$Y_i \sim iidN(\mu, \sigma^2)$$, $$w$$ is the range of the observations, and $$s$$ is the estimated standard deviation. The distribution parameters are $$m = $$ number of groups and $$df = $$ degrees of freedom for $$s^2$$, the estimate of $$\sigma^2$$.
+where the observations $$Y_i \sim iidN(\mu, \sigma^2)$$. The value $$w$$ is the range of the observations and $$s$$ is the estimated standard deviation. The distribution parameters are $$m = $$ number of groups and $$df = $$ degrees of freedom for $$s^2$$.
 
 Procedure:
 
@@ -146,7 +146,7 @@ $$ \hat{C} \pm Q \frac{s_{\epsilon}}{\sqrt{n}} \sum^k_1 \frac{\vert c_i \vert}{2
 
 This method is similar to Fischer's LSD. Hayter's method first performs the ANOVA $$F$$ test and proceeds with pairwise comparisons if the $$F$$ test is significant. 
 
-For balanced groups, the groups are significantly different if to comparing $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge Q_{\alpha, k - 1, dfE} s_{\epsilon} \sqrt{1 / n}$$. 
+For balanced groups, the groups are significantly different if $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge Q_{\alpha, k - 1, dfE} s_{\epsilon} \sqrt{1 / n}$$. 
 
 ## Scheffe's Method
 Scheffe's method applies to all possible contrasts (not just pairwise comparisons) and is the preferred method when many or all contrasts are of interest. A contrast is a linear function of the group means. Thus with Scheffe's test, one can measure whether a group of means is significantly different from another group of means.
@@ -170,7 +170,7 @@ $$\alpha = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 
 
 the expected proportion of Type 1 errors (false positives) among the rejected hypotheses. FDR cuts some slack for making correct rejections; by correctly rejecting a certain number of hypothesis, it gives a pass for one incorrect rejection.
 
-This method is the Benjamini and Hochberg method. This procedure requires the tests to be independent. The procedure may control FDR for certain types of correlation, but may fail for highly correlated data. (This procedure is more powerful than the Bonferroni-Holmes procedure).
+This method is the Benjamini and Hochberg method. This procedure requires the tests to be independent. It may control FDR for certain types of correlation, but may fail for highly correlated data. This procedure is more powerful than the Bonferroni-Holmes procedure.
 
 The p-value for an individual test is
 
@@ -215,7 +215,7 @@ Using $$r$$ ensures that $$FDR < \alpha \forall r_0$$. This is a conservative es
 
 **Obtaining an Estimate of $$r_0$$**
 
-If the number of true $$H_0$$ tests were known, one could adjust for that ($$r_0$$) rather than $$r$$. Doing so will give larger cut-off values. With many tests, $$r_0$$ can be estimated and used to replace $$r$$. 
+If the number of true $$H_0$$ tests were known, one could adjust for that ($$r_0$$) rather than $$r$$. Doing so will give larger cut-off values. If there are many tests, $$r_0$$ can be estimated and used to replace $$r$$. 
 
 Consider the histogram of p-values testing samples with a combination of the same means and different means. Under the null hypothesis, p-values are expected to be uniformly distributed between $$0$$ and $$1$$. Under the alternative hypothesis, p-values are skewed towards $$0$$. So combined
 
@@ -242,7 +242,7 @@ Obtain an estimate of $$r_0$$ from the histogram of p-values by
 
 Generally $$\lambda = 0.5$$ tends to work quite well. Assume that the region where p-values $$> \lambda$$ are mostly cases in which the null hypothesis is true. And the region where p-values $$< \lambda$$ contain information regarding the true alternative hypotheses. 
 
-If the distribution of p-values is not similar to one found above, then the test statistic does not have the assumed null distribution. The computed p-values are not valid. This would require another statistical analysis pipeline would need to be developed (perhaps assess whether assumptions were met).
+If the distribution of p-values is not similar to one found above, then the test statistic does not have the assumed null distribution. The computed p-values are not valid. If this occurs, another statistical analysis pipeline needs to be developed. 
 
 **Obtaining Value for $$q$$**
 
@@ -254,9 +254,11 @@ The estimate of estimate of $$\hat{r}_0$$ can be used to obtain an estimate of $
 $$q_{(1)} = \frac{ p_{(1)} \hat{r_0} }{R(p_{(1)})}$$
 $$q_{(i + 1)} = max \left( q_{(i)}, \frac{p_{(i + 1)}\hat{r}_0}{R(p_{(i + 1)})} \right)$$
 
-Each test has a q-value, which is defined as the minimum FDR that can be attained when calling that test significant (and all other tests which are that significant and more). In other words it is the expected proportion of false positives (for the set of all tests) incurred when calling that test significant. For example, consider a study where gene X has a q-value of 0.05. This means that 5% of genes that show p-values at least as small as gene X are false positives. 
+Each test has a q-value, which is defined as the minimum FDR that can be attained when calling that test significant (and all other tests which are that significant and more). In other words, it is the expected proportion of false positives (for the set of all tests) incurred when calling that test significant. 
 
-Generally the test picks a cut-off q-value and reject the null hypothesis for all tests with q-values less than or equal to the cut-off. 
+For example, consider a study where gene X has a q-value of 0.05. This means that 5% of genes that show p-values at least as small as gene X are false positives. 
+
+Generally one picks a cut-off q-value and reject the null hypothesis for all tests with q-values less than or equal to the cut-off. 
 
 ## Summary
 In terms of ranking methods from most liberal to most conservative

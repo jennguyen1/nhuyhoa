@@ -15,13 +15,13 @@ categories: ['statistics', 'experimental design']
 
 ## Pairwise Comparisons and Contrasts
 
-After rejecting a test that the means of the groups are not equal, it may be desireable to know exactly which ones are different.
+After rejecting an F test, the next step is to determine exactly which factor levels are different.
 
 A contrast is a linear function of the group means. It can be used to compare two means or any set of groups of groups.
 
 Procedure:
 
-* An arbitrary contrast $$C = \Sigma^r_{i = 1} c_i \mu_i$$ where $$\Sigma^r_{i = 1} c_i = 0$$. There can be an infinite number of contrasts.
+* An arbitrary contrast $$C = \Sigma^r_{i = 1} c_i \mu_i$$ where $$\Sigma^r_{i = 1} c_i = 0$$
 * $$C$$ is estimated with $$\hat{C} = \Sigma^r_{i = 1} c_i \bar{Y}_i$$ 
 * The variance of the estimate $$\hat{C}$$ is $$s_{\hat{C}}^2 = \sigma^2_e \Sigma^r_{i = 1} \frac{c^2_i}{n_i}$$
 
@@ -29,7 +29,7 @@ Test $$H_0: \sum c_i = 0$$ with
 
 $$T = \frac{\sum c_i \bar{y}_{i.}}{s_{\epsilon} \sqrt{\sum c_i^2 / n_i}}$$
 
-which is distributed $$t_{dfE}$$ (two-sided test). Similarly a $$95$$% confidence interval can be created.
+where $$T \sim t_{dfE}$$ (two-sided test). A $$95$$% confidence interval may also be created.
 
 Note that when there is an ANOVA with $$k$$ treatments and a set of $$k - 1$$ orthogonal contrasts (ie $$c_i c_j = 0$$), then the SS will add up to $$SSTrt$$. One example of a set of orthogonal contrasts are linear, quadratic, cubic, etc contrasts.
 
@@ -49,7 +49,7 @@ There are a number of ways to do this:
 * Assume that if none of the effects are significant, the estimated effects $$\sim iidN(0, \frac{4\sigma^2_{\epsilon}}{2^k})$$. Make a QQ-plot of estimated effects and those effects not on the QQ-line are significant
 
 ## ANOVAs as Regression To Alleviate Missing Data
-There are many advantages of treating ANOVAs as Regression
+There are many advantages of treating ANOVAs as a regression problem
 
 * Incorporate continuous data that may be important
 * Handle unbalanced groups and missing data
@@ -135,12 +135,13 @@ Some notes on terms
 ## Nonparametric Tests
 
 ### Ranked ANOVA
-A nonparametric alternative to ANOVA requires a rank transformation. The procedure for this method is listed below.
+A nonparametric alternative to ANOVA uses a rank transformation. The procedure for this method is 
 
 1. Rank data set from largest to smallest
 2. Analyze rank values in standard ANOVA
 
-#### Kruskal-Wallis Test
+**Kruskal-Wallis Test**
+
 This test has the following assumptions
 
 * Independent samples
@@ -148,7 +149,7 @@ This test has the following assumptions
 * Equal variances
 * Identical (but non-normal) distributions
 
-The steps for this test is as follows
+Procedure:
 
 1. Rank the combined data
 2. Record the mean ranks for each group $$\bar{R}_i$$
@@ -156,14 +157,15 @@ The steps for this test is as follows
 
 $$KW = (N - 1) \frac{\sum^k_{i = 1} n_i (\bar{R}_{i.} - \bar{R})^2}{\sum^k_{i = 1} \sum^{n_i}_{j = 1} (R_{ij} - \bar{R})^2}$$
 
-where $$KW$$ is approximately distributed $$X^2_{k - 1}$$. When sample sizes are small, Compare to permutations or distribution tables. 
+where $$KW \sim X^2_{k - 1}$$. When sample sizes are small, compare to permutations or distribution tables. 
 
 In R, this model is fit with `kruskal.test()`.
 
-#### Friedman's Test
-The nonparametric equivalent for the two-factor ANOVA is Friedman's test. Test that null hypothesis that each rank within each block is equally likely. 
+**Friedman's Test**
 
-The steps for this test is as follows
+The nonparametric equivalent for the two-factor ANOVA is Friedman's test. The null hypothesis is that each rank within each block is equally likely. 
+
+Procedure:
 
 1. Rank the observations within each block
 2. Record the mean ranks for each group $$\bar{R}_i$$ across blocks
@@ -171,7 +173,7 @@ The steps for this test is as follows
 
 $$Q = N^2(k - 1) \frac{\sum^k_{i = 1} (\bar{R}_{i.} - \bar{R})^2}{\sum^k_{i = 1} \sum^{n_i}_{j = 1} (R_{ij} - \bar{R})^2}$$
 
-where $$Q$$ is approximately distributed $$X^2_{k - 1}$$. When sample sizes are small, compare to permutations or distribution tables. 
+where $$Q \sim X^2_{k - 1}$$. When sample sizes are small, compare to permutations or distribution tables. 
 
 In R, this model is fit with `friedman.test()`.
 
