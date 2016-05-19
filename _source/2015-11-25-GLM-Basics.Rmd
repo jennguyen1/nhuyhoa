@@ -15,9 +15,9 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
 # Introduction
-With linear models (regression), we assume that the response is continuous. But what should we do if our response variables were binary or non-negative counts? In these situations, we can use generalized linear models to assess our data.
+With linear models (regression), the responses are continuous. When the responses are not continuous, generalized linear models should be used.
 
-With generalized linear model, we transform the response with a link function and then fit a linear model.
+With generalized linear model, the responses are transformed with a link function. The model of the link function to the predictors resemble a linear function.
 
 # Exponential Families
 The response variable should be a member of the exponential family distribution, which takes the general form
@@ -53,7 +53,7 @@ where $$\theta = \log(\mu)$$ and $$\phi = 1$$
 The mean and variance of exponential family distributions are $$E[Y] = \mu = b'(\theta)$$ and $$Var[Y] = b''(\theta) a(\phi)$$.
 
 # Link Function
-The link function $$g$$ is one such that $$\eta = g(\mu)$$ is unconstrained. The function $$g$$ is invertible, such that $$\mu = g^{-1}(\eta)$$ for $$ -\infty < \eta < \infty $$. We then fit the linear model to the transformed response: $$ g(\mu) = X\beta$$.
+The link function $$g$$ is one such that $$\eta = g(\mu)$$ is unconstrained. The function $$g$$ is invertible, such that $$\mu = g^{-1}(\eta)$$ for $$ -\infty < \eta < \infty $$. The linear model is fit to the transformed response: $$ g(\mu) = X\beta$$.
 
 The canonical link has $$g$$ such that $$\eta = g(\mu) = \theta$$ 
 

@@ -17,7 +17,9 @@ library(faraway)
 data(orings)
 ```
 
-The output from glms in R are basically the same regardless of the link. Here we will look at an example output. 
+The output from glms in R are basically the same regardless of the link.
+
+Consider the following example
 
 ```{r}
 mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = binomial)
@@ -34,16 +36,15 @@ The $$100(1 - \alpha)$$% confidence interval for $$\hat{\beta}_i$$ is
 $$\hat{\beta}_i \pm z_{\alpha /2} se(\hat{\beta}_i)$$
 
 # Predicted Values and Prediction Confidence Intervals
-For a given set $$ x_0 $$, we can predict the reponse.
 
-Procedure:
+Procedure for prediction:
 
 * Compute point estimate: $$ \hat{\eta} = x_0 \hat{\beta} $$
-* From R we can extract the variance matrix of the coefficients: `m$cov.unsealed`
+* From R, extract the variance matrix of the coefficients: `m$cov.unsealed`
 * Compute variance: $$ var(\hat{\eta}) = x'_0 (X'WX)^{-1} x_0$$
 * Compute confidence interval: $$ exp \left( \hat{\eta} \pm z_{\alpha/2} \sqrt{var(\hat{\eta})} \right)$$
 
-We can also use built in R functions:
+Built in R functions:
 
 * Predict $$\hat{\eta}$$: `predict(object, newdata, type = "link")`
 * Predict $$\hat{\mu}$$: `predict(object, newdata, type = "response")`
