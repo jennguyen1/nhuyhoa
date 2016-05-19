@@ -19,47 +19,46 @@ $$ P(Y_i = y_i) = \left(\begin{array}
   y_i
 \end{array}\right) p_i^{y_i} (1-p_i)^{n_i - y_i} $$
 
-We also have
-
+Then
 $$E(Y_i) = n_i p_i$$
 
 $$Var(Y_i) = n_i p_i (1-p_i)$$
 
-From this we can compute the deviance. 
+From this, compute the deviance. 
 
 $$ D = 2 \sum^n_{i = 1} \big[ y_i \log \left( \frac{y_i}{\hat{y}_i} \right) + (n_i - y_i) \log \left( \frac{n_i - y_i}{n_i - \hat{y}_i} \right) \big] $$
 
-We face a few problems when our response variable has a binomial distribution. 
+There few problems when the response variable has a binomial distribution. 
 
 * $$Var(Y) = n \mu (1 - \mu)$$, which is not constant
 * $$\mu = p$$ is bounded: $$0 \le p \le 1$$ but OLS may predict probabilities beyond this
 
-There are a number of common link functions for binomial data. We want a link function $$\eta_i = g(p_i)$$ such that $$0 \le g^{-1}(\eta) \le 1 \forall \eta$$. 
+There are a number of common link functions for binomial data. The link function should have $$\eta_i = g(p_i)$$ such that $$0 \le g^{-1}(\eta) \le 1 \forall \eta$$. 
 
 * Logit: $$\eta = \log \left( \frac{p}{1 - p} \right)$$
 * Probit: $$\eta = \Phi^{-1}(p)$$
 * Complementary log-log: $$\eta = \log(-\log(1 - p))$$
 
-All of these link functions differ mostly at the tails. We will use the logit because it is easure to intepret using odds.
+All of these link functions differ mostly at the tails. Use the logit because it is easure to intepret using odds.
 
 # Logistic Regression Model
 
-We fit the model
+Fit the model
 
 $$\log \left( \frac{p}{1 - p} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$
 
-We can fit this model in R like so
+In R, fit this model like so
 
 {% highlight r %}
 mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = binomial)
 {% endhighlight %}
 
-Here we provide two pieces of information regarding the response. The first column of the matrix is the number of successes, $$y$$. The second column is the number of failures, $$n - y$$. 
+There are two pieces of information regarding the response. The first column of the matrix is the number of successes, $$y$$. The second column is the number of failures, $$n - y$$. 
 
-Here we see a graphical representation of the data and how it fits the data. 
+Below is a graphical representation of the data and how it fits the data. 
 <img src="/nhuyhoa/figure/source/2015-11-26-GLM-Logistic-Regression/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
-In SAS, we can fit a logistic model as such
+In SAS, fit a logistic model as such
 
 {% highlight r %}
 proc logistic;
@@ -90,7 +89,7 @@ run;
 ## Odds
 The logit link function is otherwise known as log odds. Odds are often used to express the payoff for bets; it is a ratio of the probability for success vs the probability of failure. 
 
-We have the following relationships:
+There are the following relationships:
 
 $$ o = \frac{p}{1 - p} $$
 
@@ -113,21 +112,22 @@ $$ \log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) $$ | $$
 $$ \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} $$ | $$= e^{\beta_1} $$
 $$ (odds \vert x_1 = x + 1) $$ | $$= e^{\beta_1} * (odds \vert x_1 = x)$$
 
-Thus we can interpret the $$\hat{\beta}_i$$ coefficient as follows: holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$.
+Interpret the $$\hat{\beta}_i$$ coefficient as follows: holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$.
 
 ### Continuous Variables
 The interpretation of coefficients for continuous variables are same as listed above. Holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$
 
 ### Categorical Variables
 The interpretation of coefficients for categorical variables are similar to the definition above. 
-Say we have the categorical variable with the labels "A", "B", "C". We set the baseline category to be "A". Then we have $$\beta_1$$ corresponding the relative comparison of "B" to "A" and $$\beta_2$$ corresponding to the relative comparison of "C" to "A".
+
+Say there is a categorical variable with the labels "A", "B", "C". The baseline category is set to be "A". Then $$\beta_1$$ corresponds to the relative comparison of "B" to "A" and $$\beta_2$$ corresponds to the relative comparison of "C" to "A".
 
 Then $$\hat{\beta}_1$$ is the log-odds difference comparing those of category "B" to "A" and $$\hat{\beta}_2$$ is the log-odds difference comparing those of category "C" to "A".
 
 Logistic regression models with only categorical variables are another way to model contingency tables. For example, consider the model <br>
 $$logit(Y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 (x_1*x_2) + \beta_5 (x_1*x_3)$$
 
-where we have two categorical variables $$J$$ and $$N$$, <br>
+where there are two categorical variables $$J$$ and $$N$$, <br>
 $$ x_1 = 1$$ if $$J = yes$$ <br>
 $$ x_1 = 0$$ otherwise
 
@@ -137,22 +137,22 @@ $$ x_2 = 0$$ otherwise
 $$ x_3 = 1$$ if $$N = high$$ <br>
 $$ x_3 = 0$$ otherwise
 
-If all of the $$\hat{\beta}$$s were significantly different from 0, then we would have a three-way table where all tables had different odds ratios.
+If all of the $$\hat{\beta}$$s were significantly different from 0, then there would be three-way table where all tables had different odds ratios.
 
-If we conclude that $$\hat{\beta}_4$$, $$\hat{\beta}_5$$ were equal to 0, then we would have a model of three-way tables with homogeneous association (across $$N$$).
+If $$\hat{\beta}_4$$, $$\hat{\beta}_5$$ were equal to 0, then this results in a model of three-way tables with homogeneous association (across $$N$$).
 
-If we conclude that $$\hat{\beta}_2$$, $$\hat{\beta}_3$$, $$\hat{\beta}_4$$, $$\hat{\beta}_5$$ were all equal to 0, then we would have a two-way table between the response and $$J$$. 
+If $$\hat{\beta}_2$$, $$\hat{\beta}_3$$, $$\hat{\beta}_4$$, $$\hat{\beta}_5$$ were all equal to 0, then ths results in a two-way table between the response and $$J$$. 
 
 ### Continuous and Categorical Variables
-Similar to OLS, when there are a combination of continuous and categorical variables we can break down the overall model into smaller equations. Then we can do tests to determine whether there are significant differences between the categories and whether the effect of the continuous variable is the same for all categories. 
+Similar to OLS, when there are a combination of continuous and categorical variables the model can be broken down to the overall model into smaller equations. Then tests are done to determine whether there are significant differences between the categories and whether the effect of the continuous variable is the same for all categories. 
 
 # Response Probabilities
-To estimate response probabilities from the $$x$$s, we have
+To estimate response probabilities from the $$x$$s, 
 
 $$ \hat{\pi}_i = \frac{exp(\eta_{i})}{1 + exp(\eta_{i})}$$
 
 ## Effective Dose 
-We can find the $$x$$ value in which there is a $$50$$% chance of success. 
+Find the $$x$$ value in which there is a $$50$$% chance of success. 
 
 One variable case:
 
@@ -168,9 +168,9 @@ $$\log \left( \frac{0.5}{1 - 0.5} \right) $$| $$= \beta_0 + \beta_1 x_1 + ... + 
 $$ 0$$                                      | $$ = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 $$ x_1 $$                                   | $$= -\frac{\beta_0 + \beta_2 x_2 + ... + \beta_k x_k}{\beta_1} $$
 
-To determine the standard error of this estimate, we can use the [delta method][func_RV_delta_method_post]{:target = "_blank"}. 
+To determine the standard error of this estimate, use the [delta method][func_RV_delta_method_post]{:target = "_blank"}. 
 
-We can also use the built in R function: `MASS::dose.p()`.
+In R, this can be done with `MASS::dose.p()`.
 
 # Overdispersion
 Overdispersion occurs in logistic regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i (1 - \mu_i) / n_i$$. Usually this occurs when the $$n_i$$ Bernuolli trials are not identically distributed or not independent. (Note that if $$n_i = 1$$, overdispersion is not possible - data is Bernuolli). 

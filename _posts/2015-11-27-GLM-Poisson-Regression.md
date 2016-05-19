@@ -15,20 +15,20 @@ Suppose the response $$Y_i \sim Pois(\mu_i)$$ where $$\mu > 0$$ and the $$Y_i$$ 
 
 $$P(Y_i = y_i) = \frac{e^{\mu_i} \mu_i^{y_i}}{y_i!}$$
 
-We also have 
+Then
 
 $$E(Y_i) = Var(Y_i) = \mu_i$$
 
-From this we can compute the deviance
+From this, compute the deviance
 
 $$ D = 2 \sum^n_{i = 1} \big[ y_i \log \left( \frac{y_i}{\hat{\mu}_i} \right)  - (y_i - \hat{\mu}_i) \big] $$
 
-We face a problem when our response variable has a Poisson distribution. 
+There few problems when the response variable has a Poisson distribution. 
 
 * $$Var(Y) = \mu$$, which is not constant
 * $$\mu > 0$$: but OLS may predict values less than zero
 
-To alleviate these concerns, we can use a link function $$\eta_i = g(\mu) = \log(\mu)$$ such that $$g^{-1}(\eta) > 0$$ $$\forall \eta$$.
+To alleviate these concerns, use a link function $$\eta_i = g(\mu) = \log(\mu)$$ such that $$g^{-1}(\eta) > 0$$ $$\forall \eta$$.
 
 Several instances can be classified as Poisson:
 
@@ -39,29 +39,30 @@ Several instances can be classified as Poisson:
 # Poisson Regression Model
 
 ## Modeling Counts
-We fit the model
+Fit the model
 
 $$ \log(\mu) = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
 
-We can fit this model in R like so
+In R, this model is fit like so
 
 {% highlight r %}
 glm(counts ~ ., data = data, family = poisson)
 {% endhighlight %}
 
 ## Modeling Ratios
-If we have ratios and the proportions are small, we can use Poisson regression rather than logistic regression. We fit the model <br>
+
+If the response involves ratios and the proportions are small, Poisson regression can be used (rather than logistic regression). Fit the model <br>
 $$\log \left( \frac{count}{total} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$ <br>
 $$ \log(count) = \log(total) + \beta_0 + \beta_1 x_1 + ... \beta_k x_k $$
 
-We can fit this model in R like so
+In R, this model is fit like so
 
 {% highlight r %}
 glm(counts ~ offset(log(total)) + ., family = poisson, data = data)
 {% endhighlight %}
 The function `offset()` means to not fit a coefficient to a term (or set the coefficient to 1). In this model $$total = cells$$.
 
-In SAS, we can fit these models like so
+In SAS, fit these models like so
 
 {% highlight r %}
 proc genmod;
@@ -110,7 +111,7 @@ $$
 
 where $$ z > k$$, $$p$$ is the probability of success.
 
-This equation can be rewritten if we let $$Y = Z - k$$ and $$p = (1 + \alpha)^{-1}$$
+This equation can be rewritten; let $$Y = Z - k$$ and $$p = (1 + \alpha)^{-1}$$
 
 $$P(Y = y) = \left(\begin{array}
 {rrr}
@@ -127,7 +128,7 @@ $$\eta = \log \left( \frac{\mu}{\mu + k} \right) = x \beta$$
 
 Greater heterogeneity in Poisson resulting in overdispersion results in a larger value of $$D$$. As $$D \rightarrow 0$$, $$Var(Y) \rightarrow \mu$$ and the negative binomial and Poisson regression gives the same inference. 
 
-To fit a negative binomial function in R:
+In R, fit a negative binomial function with
 
 {% highlight r %}
 # load package
@@ -187,9 +188,9 @@ summary(mod)
 ## 
 ##  2 x log-likelihood:  -3645.309
 {% endhighlight %}
-Here we see that $$\hat{k} = 4.4$$ with a standard error of 0.5. 
+Here the value $$\hat{k} = 4.4$$ with a standard error of 0.5. 
 
-In SAS, we can fit models using
+In SAS, fit models using
 
 {% highlight r %}
 proc genmod;

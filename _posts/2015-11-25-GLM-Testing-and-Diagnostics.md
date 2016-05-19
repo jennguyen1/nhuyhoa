@@ -14,7 +14,7 @@ categories: ['statistics', 'regression analysis']
 
 * Null model: intercept only model
 * Saturated model: model with $$n$$ obs and $$n$$ parameters, each data point has its own parameter
-* Proposed model: model with $$p$$ parameters, model that you fit
+* Proposed model: model with $$p$$ parameters, model that is fit
 
 ## Deviance
 Derived from the likelihood ratio statistic, deviance is defined as 
@@ -35,7 +35,7 @@ The Pearson $$X^2$$ is asymptotically distributed $$X^2_p$$.
 ## Goodness of Fit Test
 Does the current model fit the data? The goodness of fit is a comparison of two models (the proposed model and the saturated model).
 
-We can fit a glm in R and assess goodness of fit.
+Fit a glm in R and assess goodness of fit.
 
 {% highlight r %}
 mod1 <- glm(cbind(dead, alive) ~ conc, family = binomial, data = bliss)
@@ -72,7 +72,7 @@ summary(mod1)
 * Null deviance: $$D_{sat} - D_{null}$$
 * Residual deviance: $$D_{sat} - D_{model}$$
 
-With these values we can conduct our hypothesis tests.
+With these values, conduct the hypothesis tests.
 
 {% highlight r %}
 # goodness of fit - using deviance
@@ -84,7 +84,7 @@ pchisq(mod1$deviance, mod1$df.residual, lower.tail = FALSE)
 {% highlight text %}
 ## [1] 0.9445968
 {% endhighlight %}
-With a $$p.value = 0.94$$, we can conclude that there is no evidence of lack of fit. 
+With a $$p.value = 0.94$$, there is no evidence of lack of fit. 
 
 
 {% highlight r %}
@@ -97,9 +97,9 @@ pchisq(sum(residuals(mod1, "pearson")^2), mod1$df.residual, lower.tail = FALSE)
 {% highlight text %}
 ## [1] 0.9469181
 {% endhighlight %}
-We use the Pearson residuals to compute the Pearson $$X^2 = \sum r_{pearson}^2$$.
+Use the Pearson residuals to compute the Pearson $$X^2 = \sum r_{pearson}^2$$.
 
-We see that the result is comparable to the deviance.
+The result is comparable to the deviance.
 
 ## Compare Two Models
 Compare two nested models, which one is better?
@@ -140,9 +140,9 @@ anova(mod1, test = "Chi")
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 {% endhighlight %}
-Here we see that the concentration term is significant. 
+Here the concentration term is significant. 
 
-We can also compare to more complex models.
+Compare to more complex models.
 
 {% highlight r %}
 # compare to quadratic concentration term
@@ -167,7 +167,7 @@ The results here indicate no need for a quadratic concentration term.
 
 ## What Can Go Wrong
 
-When we observe a deviance much larger than expected if the model was correct, we need to determine which aspects of the model specification is incorrect. 
+If the deviance is much larger than expected, then one needs to determine which aspects of the model specification is incorrect. 
 
 * Observations are not independent
 * Non linearity between covariates and link function: wrong structural form, explore different fits, transformations of predictors, etc
@@ -175,7 +175,7 @@ When we observe a deviance much larger than expected if the model was correct, w
 * Sparse data: large samples/group sizes are needed for MLE asymptotic convergence
 * Overdispersion: variance greater than assumed, which can arise when independent or identical assumptions are violated
 
-Note that unlike in linear regression, our errors do not need to be normally distributed with constant variance.
+Note that unlike in linear regression, the errors do not need to be normally distributed with constant variance.
 
 ## Residuals
 
@@ -228,7 +228,8 @@ DIFCHISQ measures the change in $$X^2$$ if an individual observation is deleted.
 mod <- glm(Species ~ ., family = poisson, data = g)
 {% endhighlight %}
 
-We can fit plots equivalent to the residuals vs fitted plots in linear regression. Since we use the deviance residuals (which are standardized), we should see constant variance. 
+Fit plots equivalent to the residuals vs fitted plots in linear regression. Since the deviance residuals (which are standardized) are used, there should be patterns indicating constant variance. 
+
 
 {% highlight r %}
 # deviance resids vs fitted response
@@ -245,14 +246,15 @@ grid.arrange(g1, g2, nrow = 1)
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
-Two different scales for the fitted values. We see that using $$\hat{\eta}$$ is better than $$\hat{\mu}$$. Overall, we see that the residuals are evenly spaced across fitted values, and there are no violation of assumptions.
+Two different scales for the fitted values. Using $$\hat{\eta}$$ is better than $$\hat{\mu}$$. The residuals are evenly spaced across fitted values, and there are no violation of assumptions.
 
-What should we do if we see violations?
+What should be done there are violations?
 
 * Nonlinear trend: consider transformation of covariates (generally better than changing the link function)
 * Non-constant variance: change the model
 
-When we plot using the response residuals, we will see variation patterns consistent with the response distribution.
+When plotted using the response residuals, there will be variation patterns consistent with the response distribution.
+
 
 {% highlight r %}
 # response residuals vs fitted link
@@ -262,9 +264,9 @@ qplot(y = residuals(mod, "response"), x = exp(predict(mod, type = "link"))) +
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-11-25-GLM-Testing-and-Diagnostics/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
-Here we see a pattern of increasing variation consistent with the Poisson distribution. 
+There is a pattern of increasing variation consistent with the Poisson distribution. 
 
-Another way to spot outliers is to bin the response residuals into equal-sized groups by the fitted values. Within each group, we can compute the average residual and average fitted value. We can plot the lines $$0 \pm 2 * SE$$ (where $$SE$$ is a function of bin size) within which we expect $$95$$% of the binned residuals to fall if the model was true. 
+Another way to spot outliers is to bin the response residuals into equal-sized groups by the fitted values. Within each group, Compute the average residual and average fitted value. Plot the lines $$0 \pm 2 * SE$$ (where $$SE$$ is a function of bin size) within which $$95$$% of the binned residuals to fall if the model was true. 
 
 
 {% highlight r %}
@@ -308,7 +310,7 @@ ggplot(data = bin_df, aes(f, r)) +
 Here one out of the 15 bins fall outside of the bounds, with no concerning patterns. 
 
 ### Half-Normal Plot
-We can plot the sorted absolute residuals to the quantiles of the half normal distribution to identify outliers. We look for points off the trend. (The examples used here are different from the model above).
+Plot the sorted absolute residuals to the quantiles of the half normal distribution to identify outliers. Look for points off the trend. (The examples used here are different from the model above).
 
 
 
@@ -335,25 +337,25 @@ c <- halfnorm(cooks.distance(modpl))
 The half-norm plot indicates that obs 25 has a big Cook's statistic. It might be useful to investigate this observation in closer detail. 
 
 ### Added Variable Plots
-Similar to regression, we can generate added variable plots. The interpretation is similar to linear models.
+Similar to regression, one can generate added variable plots. The interpretation is similar to linear models.
 
 In R: `car::avPlots()`
 
 # Overdispersion
-Overdispersion occurs when the $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i)$$ by the model. As a result of this, the model deviance could be inflated. To adjust for overdispersion, we can use quasilikelihood methods. 
+Overdispersion occurs when the $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i)$$ by the model. As a result of this, the model deviance could be inflated. To adjust for overdispersion, use quasilikelihood methods. 
 
 ## Estimate of Overdispersion Parameter
-To account for overdispersion, we multiply the variance by a factor of $$\sigma^2$$ to obtain 
+To account for overdispersion, multiply the variance by a factor of $$\sigma^2$$ to obtain 
 
 $$Var(Y_i)^* = \sigma^2 Var(Y_i)$$
 
-If $$\sigma^2 = 1$$, we have the original model. If $$\sigma^2 > 1$$, then we have overdispersion. 
+When $$\sigma^2 = 1$$ then this results in the original model. If $$\sigma^2 > 1$$, then there is overdispersion. 
 
-We can estimate $$\sigma^2$$ with a Fisher scoring algorithm used to fit the model.
+Estimate $$\sigma^2$$ with a Fisher scoring algorithm used to fit the model.
 
-When we apply overdispersion adjustment to modeling, the $$\hat{\beta}$$ coefficients is the same as the original model. The covariance matrix for $$\hat{\beta}$$ changes from $$Var(\hat{\beta}) = (X'WX)^{-1}$$ to $$Var(\hat{\beta}) = \sigma^2 (X'WX)^{-1}$$.
+When overdispersion adjustment is applied to modeling, the $$\hat{\beta}$$ coefficients is the same as the original model. The covariance matrix for $$\hat{\beta}$$ changes from $$Var(\hat{\beta}) = (X'WX)^{-1}$$ to $$Var(\hat{\beta}) = \sigma^2 (X'WX)^{-1}$$.
 
-We can estimate $$\sigma^2$$ with 
+Estimate $$\sigma^2$$ with 
 
 $$\hat{\sigma}^2 = \frac{X^2}{n - p}$$
 

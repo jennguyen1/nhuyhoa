@@ -28,7 +28,7 @@ Another way to look at this is via the link function
 
 $$\eta_{ij} = x'_i \beta_j = \log \left( \frac{\pi_{ij}}{\pi_{i1}} \right) $$
 
-To compare two categories where neither is the baseline, we can do some simple rearrangements.
+To compare two categories where neither is the baseline, do some simple rearrangements
 
 --------------------------------------------|-------------------------------------
 $$ \log\left( \frac{\pi_a}{\pi_b} \right)$$ | $$ = \log\left( \frac{\pi_a/\pi_1}{\pi_b/\pi_1} \right) = \log\left( \frac{\pi_a}{\pi_1} \right) - \log\left( \frac{\pi_b}{\pi_1} \right)$$
@@ -43,19 +43,19 @@ $$\log\left( \frac{\pi_a}{\pi_b} \right) = \alpha + \beta_1 x_1 + ... + \beta_p 
 Holding all other covariates constant, a unit increase in $$x_i$$ will lead to an increase in odds of falling into category $$a$$ over category $$b$$ by a factor of $$exp(\beta_i)$$.
 
 ## Estimating Response Probabilities
-Similar to logistic regression to estimate response probabilities, we have
+Similar to logistic regression to estimate response probabilities
 
 $$ \hat{\pi}_i = \frac{exp(\eta_{ij})}{1 + \sum^J_{j = 2} exp(\eta_{ij})}$$
 
 where $$\Sigma_i \pi_i = 1$$ and $$\eta_{i1} = 0$$. 
 
-We can also do this in R:
+In R, do this with
 
 * Response probabilities: `predict(mod, newdata, type = "probs")`
 * Class: `predict(mod, newdata, type = "class")`
 
 ## Example
-With this example, we examine how aligator length can be used to predict the gator's food choice. 
+This example examines how aligator length can be used to predict the gator's food choice. 
 
 {% highlight r %}
 ggplot(data = gator, aes(x = choice, y = length)) + 
@@ -65,9 +65,9 @@ ggplot(data = gator, aes(x = choice, y = length)) +
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-11-26-GLM-Multinomial-Regression/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
-From the boxplot, we see a trend in food choice and gator length.
+From the boxplot, there is a trend in food choice and gator length.
 
-So let's fit a multinomial model.
+So fit a multinomial model.
 
 {% highlight r %}
 # package to fit multinomial models
@@ -113,11 +113,11 @@ summary(mod1)
 ## AIC: 106.3412
 {% endhighlight %}
 
-From this, we get the multinomial equations <br>
+The multinomial equations <br>
 $$ \log(\pi_O/\pi_F) = -1.618 + 0.1101x $$ <br>
 $$ \log(\pi_I/\pi_F) = 4.089 - 2.3553x $$
 
-Thus we can use both these equations to calculate  
+Use both these equations to calculate  
 
 ----------------------|-----------------------------------
 $$\log(\pi_O/\pi_I)$$ | $$ = \log(\pi_O/\pi_F) - \log(\pi_I/\pi_F) $$
@@ -135,7 +135,7 @@ Flipped equation: <br>
 $$ \log(\pi_2/\pi_1) = \log( (\pi_1/\pi_2)^{-1} ) = -\log(\pi_1/\pi_2) = -\alpha_1 + -\beta_1x $$ 
 
 
-We can also compute the response probabilities using the equation above. 
+Compute the response probabilities using the equation above 
 $$ \hat{\pi}_O = \frac{exp(-1.618 + 0.1101x)}{1 + exp(-1.618 + 0.1101x) + exp(4.089 - 2.3553x)} $$ <br>
 $$ \hat{\pi}_I = \frac{exp(4.089 - 2.3553x)}{1 + exp(-1.618 + 0.1101x) + exp(4.089 - 2.3553x)} $$ <br>
 $$ \hat{\pi}_F = \frac{1}{1 + exp(-1.618 + 0.1101x) + exp(4.089 - 2.3553x)} $$
@@ -161,7 +161,7 @@ run;
 
 
 # Ordinal Regression
-With ordinal categorical variables, we will discuss the proportional odds logistic regression model, which can account for ordering using cumulative probabilities.
+With ordinal categorical variables, use the proportional odds logistic regression model, which can account for ordering using cumulative probabilities.
 
 A cumulative probability for $$Y$$ is the probability that $$Y$$ falls at or below a particular point. For outcome category $$j$$, the cumulative probability is 
 
@@ -178,15 +178,15 @@ The logits of cumulative probabilities are
 $$ logit \big[ P(Y \le j) \big] = \log \left( \frac{P(Y \le j)}{1 - P(Y \le j)} \right) = \log \left( \frac{p_1 + ... p_j}{p_{j + 1} + ... + p_J} \right)$$
 
 ## Interpreting Models and Coefficients
-For ordinal categorical variables, we have the model
+For ordinal categorical variables
 
 $$ logit \big[ P(Y \le j ) \big] = \theta_j - x' \beta $$
 
-where $$j = 1,...,J-1$$ and where $$\beta$$ describes the effect of $$x$$ on the log odds of response in category j or below. This model assumes that the effect of $$x$$ is identical for all $$J-1$$ cumulative logits. In other words, we would have parallel cumulative probability lines. 
+where $$j = 1,...,J-1$$ and where $$\beta$$ describes the effect of $$x$$ on the log odds of response in category j or below. This model assumes that the effect of $$x$$ is identical for all $$J-1$$ cumulative logits. In other words, there would be parallel cumulative probability lines. 
 
 Because the covariate terms are subtracted, the $$\beta$$s are interpreted with respect to the $$\log \left( \frac{P(Y > j)}{P(Y \le j)} \right)$$ instead of $$\log \left( \frac{P(Y \le j)}{P(Y > j)} \right)$$.
 
-For example, assume we have 3 ordered categories and 2 predictors. Thus, we would have
+For example, assume there are 3 ordered categories and 2 predictors. Thus
 
 $$ logit \big[ P(Y \le 1 ) \big] = \alpha_1 - \beta_1 x_1 - \beta_2 x_2$$ <br>
 $$ logit \big[ P(Y \le 2 ) \big] = \alpha_2 - \beta_1 x_1 - \beta_2 x_2$$ <br>
@@ -194,14 +194,14 @@ $$ logit \big[ P(Y \le 3 ) \big] = 1 $$
 
 The intercept $$\alpha_j$$ is the log-odds of falling into or below category $$j$$ for $$x_1 = x_2 = 0$$. 
 
-We can also obtain $$P(Y = j)$$ with $$P(Y = j) = P(Y \le j) - P(Y \le j - 1)$$.
+Obtain $$P(Y = j)$$ with $$P(Y = j) = P(Y \le j) - P(Y \le j - 1)$$.
 
 The slope parameter $$\beta_k$$ can be interpreted as so: holding all other covariates constant, a unit increase in $$x_k$$ increases the odds of above any category by a factor of $$exp(\beta_k)$$. Another way to interpret this is holding all other covariates constant, a unit increase in $$x_k$$ increases the odds of falling into or below any category by a factor of $$exp(-\beta_k)$$. (See diagram below, available in An Introduction to Categorical Data Analysis, Agresti).
 
 ![Cumulative proportional odds model](http://jnguyen92.github.io/nhuyhoa/figure/images/cum_probs_prop_odds_model.png)
 
 ## Estimating Response Probabilities
-To obtain the response probabilities, we have
+To obtain the response probabilities
 
 $$ P(Y \le j) = \frac{exp(\theta - \beta' x_i)}{1 + exp(\theta_j - \beta' x_i)}$$ 
 
@@ -243,22 +243,22 @@ summary(mod2)
 ## Residual Deviance: 711.3479 
 ## AIC: 733.3479
 {% endhighlight %}
-One thing to note is that R fits the model $$\log \left( \frac{P(Y \le j)}{P(Y > j)} \right) = \theta_j - x' \beta$$. This affects how we interpret the coefficients on the $$\beta$$s.
+One thing to note is that R fits the model $$\log \left( \frac{P(Y \le j)}{P(Y > j)} \right) = \theta_j - x' \beta$$. This affects how the $$\beta$$ coefficients are interpreted.
 
-For the cheese variable, we have the baseline dummy as $$A$$. The coefficient for $$cheeseB = -3.352$$. The responses are ordered 1 - 9, with bigger numbers indicating better responses. Thus we can interpret the $$cheeseB$$ coefficient as so: <br>
+For the cheese variable, the baseline dummy is $$A$$. The coefficient for $$cheeseB = -3.352$$. The responses are ordered 1 - 9, with bigger numbers indicating better responses. Thus interpret the $$cheeseB$$ coefficient as so: <br>
 $$\frac{odds.B.better}{odds.A.better} = exp(\beta_{cheeseB}) = exp(−3.352) = 0.035$$ 
 
-The odds that cheese B is ranked "better" is $$0.035$$ times the odds that cheese A is ranked "better". Therefore cheese A is preferred over cheese B. The t-value is relatively big in magnitude so we can conclude that this difference in preference is significant. Also note that this ranking holds over all responses, due to the proportional odds assumption. That is, cheese A is preferred over cheese B regardless of whether "better" is a response cutoff of 3 or 7 (or any other value). We can do similar comparisons for other cheese types. 
+The odds that cheese B is ranked "better" is $$0.035$$ times the odds that cheese A is ranked "better". Therefore cheese A is preferred over cheese B. The t-value is relatively big in magnitude so this difference in preference is significant. Also note that this ranking holds over all responses, due to the proportional odds assumption. That is, cheese A is preferred over cheese B regardless of whether "better" is a response cutoff of 3 or 7 (or any other value). Similar comparisons can be done for other cheese types. 
 
-We can use the results to generate our individual equations. <br>
+Use the results to generate the individual equations. <br>
 $$ \log \left( \frac{P(Y \le 1)}{P(Y > 1)} \right) = -5.4674 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$ <br>
 $$ \log \left( \frac{P(Y \le 2)}{P(Y > 2)} \right) = -4.4122 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$ <br>
 $$...$$ <br>
 $$ \log \left( \frac{P(Y \le 8)}{P(Y > 8)} \right) = 3.1058 - - 3.352X_1 - - 1.710X_2 - 1.613X_3) $$
 
-Note that we add the intercept specified by the model, but subtract the $$\beta$$ coefficients.
+Note that the intercept specified by the model is added, but the $$\beta$$ coefficients are subtracted
 
-We can also calculate individual probabilities at the baseline cheese (A):
+Calculate individual probabilities at the baseline cheese (A):
 
 For $$response = 1$$ <br>
 $$P(Y = 1) = P(Y \le 1) = ilogit(-5.4674) = 0.0042$$
