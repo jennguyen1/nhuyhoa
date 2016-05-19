@@ -9,9 +9,6 @@ categories: ['statistics', 'multivariate analysis']
 {:toc}
 
 
-{% highlight text %}
-## Error in library(pls): there is no package called 'pls'
-{% endhighlight %}
 
 # Principal Components Analysis (PCA)
 PCA is a dimension-reduction tecnique that produces a low-dimensional representation of a high-dimensional dataset. It finds a sequence of linear combinations of the variables that have
@@ -177,17 +174,6 @@ In R, one can do principal components regression with `pls::pcr()`. This package
 {% highlight r %}
 # fit PCR
 pcr.fit <- pls::pcr(mpg ~ ., data = mtcars, scale = TRUE, validation = "CV")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in loadNamespace(name): there is no package called 'pls'
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # results
 summary(pcr.fit)
 {% endhighlight %}
@@ -195,7 +181,27 @@ summary(pcr.fit)
 
 
 {% highlight text %}
-## Error in summary(pcr.fit): object 'pcr.fit' not found
+## Data: 	X dimension: 32 10 
+## 	Y dimension: 32 1
+## Fit method: svdpc
+## Number of components considered: 10
+## 
+## VALIDATION: RMSEP
+## Cross-validated using 10 random segments.
+##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
+## CV           6.123    2.719    2.797    2.612    2.678    2.731
+## adjCV        6.123    2.707    2.781    2.593    2.656    2.706
+##        6 comps  7 comps  8 comps  9 comps  10 comps
+## CV       2.807    3.016    3.046    3.502     3.968
+## adjCV    2.778    2.977    3.003    3.428     3.861
+## 
+## TRAINING: % variance explained
+##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
+## X      57.60    84.10    90.07    92.77    94.99    97.09    98.42
+## mpg    82.53    82.63    85.40    85.41    85.47    85.56    85.58
+##      8 comps  9 comps  10 comps
+## X      99.23    99.76     100.0
+## mpg    85.85    86.09      86.9
 {% endhighlight %}
 
 
@@ -204,11 +210,7 @@ summary(pcr.fit)
 pls::validationplot(pcr.fit, val.type = "MSEP")
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in loadNamespace(name): there is no package called 'pls'
-{% endhighlight %}
+<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 So here using 3 principal components is preferred. To specify a a number of components, pass the argument `ncomps = n` instead of the `validation` argument. 
 
 # Partial Least Squares

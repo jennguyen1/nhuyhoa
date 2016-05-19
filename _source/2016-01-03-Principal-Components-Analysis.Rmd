@@ -12,7 +12,7 @@ categories: ['statistics', 'multivariate analysis']
 library(jn.general)
 lib(data, viz)
 library(pls)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center') 
 ```
 
 # Principal Components Analysis (PCA)
