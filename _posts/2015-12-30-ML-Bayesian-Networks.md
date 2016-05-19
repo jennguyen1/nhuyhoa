@@ -19,7 +19,7 @@ Each node is associated with a probability function that takes a particular set 
 Given the conditional probabilities, one could compute probabilities for any combination of variables.
  
 # Conditional Independence
-Indpendence is nice property because we can certain variables without regard to the variables it is independent of. 
+Independence is nice property because variables can be analyzed without regard to the variables it is independent of.
 
 * Two nodes in a bayesian network are unconditionally independent if there is no undirected path between the nodes. 
 * If there is an undirected path between two nodes, then whether they are indpendent depends on what other evidence is known. 
@@ -41,7 +41,7 @@ There are 3 main structure search operators:
 * delete an edge
 * reverse an edge
 
-To compare network structures, we need to use a scoring function. One example is <br>
+To compare network structures, use a scoring function. One example is <br>
 $$score(G:D) = \log\left( P(G \vert D) \right)$$ <br>
 $$ = \log \left( P(D \vert G) \right) + \log \left( P(G) \right) + C$$
 
@@ -52,7 +52,7 @@ The scoring functions can be summed up to get <br>
 $$score(G:D) = \sum_i Score(X_i, Parents(X_i):D)$$
 
 ## Sparse Candidate Algorithm
-This algorithm uses Restrict and Maximize steps in an interation until convergence. The steps here only cover parts of the algorithm (until I learn a little bit more about it).
+This algorithm uses Restrict and Maximize steps in an interation until convergence. The steps here only cover parts of the algorithm.
 
 One can intially identify candidate parents in by computing the mutual information between pairs of variables. The variable with the greatest information would be the better candidate parent. <br>
 $$I(X, Y) = \sum_{x, y} \hat{P}(x, y) \log \frac{\hat(P)(x, y)}{\hat{P}(x)\hat{P}(y)}$$
@@ -63,7 +63,7 @@ $$D_{KL}(P(X) \vert Q(X)) = \sum_x P(x) \log \frac{P(x)}{Q(x)}$$
 KL can be used to assess the discrepancy between the network's estimate $$P_{net}(X, Y) $$ and the empirical estimate, with $$D_{KL}(\hat{P}(X, Y) \vert P_{net}(X, Y))$$.
 
 ## Testing Structures
-Following the construction of a Bayesian network, we can do the following
+Following the construction of a Bayesian network, do the following
 
 * bootstrapping and permutation testing to assess confidence and significance of features
 * interventions and time series experiments to assess causality

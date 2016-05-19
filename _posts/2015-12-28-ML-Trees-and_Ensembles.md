@@ -9,9 +9,6 @@ categories: ['statistics', 'machine learning']
 {:toc}
 
 
-{% highlight text %}
-## Error in library(ISLR): there is no package called 'ISLR'
-{% endhighlight %}
 
 ![tree](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
 
@@ -77,7 +74,7 @@ $$ \sum^{\vert T \vert}_{m = 1} \sum_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + 
 
 where $$\alpha >= 0$$, $$\vert T \vert$$ is the number of terminal nodes in subtree, $$R_m$$ is the subset of predictor space corresponding to the $$m^{th}$$ terminal node, and $$\hat{y}_{R_m}$$ is the mean of the training observations in $$R_m$$.
 
-When $$\alpha = 0$$, we have the original tree. As $$\alpha$$ increases, the tree incurs a price for having too many terminal nodes which forces the tree to become smaller. The value $$\hat{\alpha}$$ can be found via cross-validation.
+If $$\alpha = 0$$, this is the original tree. As $$\alpha$$ increases, the tree incurs a price for having too many terminal nodes which forces the tree to become smaller. The value $$\hat{\alpha}$$ can be found via cross-validation.
 
 ## Strengths & Weaknesses
 
@@ -102,7 +99,7 @@ In regression trees, the leaves of functions that predict numeric values rather 
 Rather than using information gain to score candidate splits, regression trees may use residual error, generated from a linear model. 
 
 # Ensembles
-Rather than fitting one tree, we grow a a set of trees using the training data. Then we generate predictions on each tree and combine the predictions. Ensemble methods tend to outperform simpler methods and work very well in practice. 
+Rather than fitting one tree, ensembling grows a set of trees using the training data. Then predictions are generated on each tree and then combined. Ensemble methods tend to outperform simpler methods and work very well in practice. 
 
 Predictions from models can be combined in a variety of ways
 
@@ -123,7 +120,7 @@ Unfortunately, the results are quite difficult to interpret.
   * Build tree to obtain the $$\hat{f}^{*b}(x)$$ prediction
   * Average all predictions (or take a majority vote for nominal responses)
 
-If there is one very strong predictor, most of the bagged trees will use the predictor as the top split. Thus, the predictions from the trees will be highly correlated and the average predictions will have high variance. To decorrelate the predictions, we could use a method called random forests.
+If there is one very strong predictor, most of the bagged trees will use the predictor as the top split. Thus, the predictions from the trees will be highly correlated and the average predictions will have high variance. To decorrelate the predictions, random forests may be used.
 
 ## Random Forests
 
@@ -139,7 +136,7 @@ Let $$N$$ = n-size, $$F$$ = # of parameters, $$i << F$$.
   * Do not prune
 * Average all predictions (or take a majority vote for nominal responses)
 
-The tuning parameter $$i$$ can be chosen by cross-validation. Typically we choose $$i = \sqrt{F}$$. Increasing $$i$$ may (bias-variance tradeoff)
+The tuning parameter $$i$$ can be chosen by cross-validation. Typically choose $$i = \sqrt{F}$$. Increasing $$i$$ may (bias-variance tradeoff)
 
 * increase correlation among individual trees in the forest (bad)
 * increase the accuracy of individual trees (good) 
@@ -205,23 +202,8 @@ Interpreting random forests can be quite difficult. One way to get a sense of th
 
 **CART**
 
-{% highlight text %}
-## Error in with(Carseats, ifelse(Sales <= 8, "no", "yes")): object 'Carseats' not found
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in data.frame(Carseats, high): object 'Carseats' not found
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in is.data.frame(x): object 'carseats' not found
-{% endhighlight %}
-
-We use the packages `rpart` and `rpart.plot`.
+Use the packages `rpart` and `rpart.plot`.
 
 
 {% highlight r %}
@@ -240,17 +222,6 @@ library(rpart.plot)
 {% highlight r %}
 # fit decision tree
 c_tree <- rpart(high ~ . - sales, carseats, method = "class")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in is.data.frame(data): object 'carseats' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # plot tree
 prp(c_tree)
 {% endhighlight %}
@@ -271,24 +242,33 @@ printcp(c_tree)
 
 
 {% highlight text %}
-## Error in printcp(c_tree): object 'c_tree' not found
+## 
+## Classification tree:
+## rpart(formula = high ~ . - sales, data = carseats, method = "class")
+## 
+## Variables actually used in tree construction:
+## [1] advertising age         compprice   income      price      
+## [6] shelveloc  
+## 
+## Root node error: 164/400 = 0.41
+## 
+## n= 400 
+## 
+##         CP nsplit rel error  xerror     xstd
+## 1 0.286585      0   1.00000 1.00000 0.059980
+## 2 0.109756      1   0.71341 0.71341 0.055477
+## 3 0.045732      2   0.60366 0.60366 0.052629
+## 4 0.036585      4   0.51220 0.61585 0.052981
+## 5 0.027439      5   0.47561 0.61585 0.052981
+## 6 0.024390      7   0.42073 0.59756 0.052450
+## 7 0.012195      8   0.39634 0.54878 0.050925
+## 8 0.010000     10   0.37195 0.56098 0.051321
 {% endhighlight %}
 
 
 
 {% highlight r %}
 c_tree2 <- prune(c_tree, cp = 0.0122)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in prune(c_tree, cp = 0.0122): object 'c_tree' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 prp(c_tree2)
 {% endhighlight %}
 
@@ -334,19 +314,19 @@ rsq.rpart(r_tree)
 ## n= 506 
 ## 
 ##         CP nsplit rel error  xerror     xstd
-## 1 0.452744      0   1.00000 1.00123 0.082874
-## 2 0.171172      1   0.54726 0.66174 0.062778
-## 3 0.071658      2   0.37608 0.45808 0.049520
-## 4 0.036164      3   0.30443 0.37929 0.044814
-## 5 0.033369      4   0.26826 0.33115 0.042942
-## 6 0.026613      5   0.23489 0.31543 0.043314
-## 7 0.015851      6   0.20828 0.29890 0.042196
-## 8 0.010000      7   0.19243 0.27843 0.038304
+## 1 0.452744      0   1.00000 1.00269 0.083046
+## 2 0.171172      1   0.54726 0.64689 0.059339
+## 3 0.071658      2   0.37608 0.44148 0.048732
+## 4 0.036164      3   0.30443 0.36547 0.043467
+## 5 0.033369      4   0.26826 0.36158 0.045181
+## 6 0.026613      5   0.23489 0.34753 0.043337
+## 7 0.015851      6   0.20828 0.30083 0.041578
+## 8 0.010000      7   0.19243 0.28149 0.040389
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /><img src="/nhuyhoa/figure/source/2015-12-28-ML-Trees-and_Ensembles/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
-We can do another example with the iris data set.
+Consider another example with the iris data set
 
 {% highlight r %}
 library(partykit)

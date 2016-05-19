@@ -15,7 +15,7 @@ categories: ['statistics', 'machine learning']
 
 One of many potential neural network models.
 
-The $$x$$s refer to input variables. Each layer has a bias or intercept term. Every node has an outgoing weight/arrow, we will call these $$\theta_{ii}$$. These weight determine the effect of the previous node to the target node. The output node gives the final function estimate. 
+The $$x$$s refer to input variables. Each layer has a bias or intercept term. Every node has an outgoing weight/arrow, called $$\theta_{ii}$$. These weight determine the effect of the previous node to the target node. The output node gives the final function estimate. 
 
 The internal nodes are computed using the previous nodes. For instance <br>
 $$a_1^{(1)} = g(x^T\theta_1^{(1)})$$ <br>
@@ -31,7 +31,7 @@ In R, neural networks can be fit with the function `neuralnet::neuralnet()`.
 # Forward Propagation
 Forward propagation starts at the input layer and proceeds through the layers to obtain the final result. 
 
-For the example in the model above, we calculate <br>
+For the example in the model above, calculate <br>
 $$a_1^{(1)} = g(x^T\theta_1^{(1)})$$ <br>
 $$a_2^{(1)} = g(x^T\theta_2^{(1)})$$<br>
 $$h(x) = a_1^{(2)} = g((a^{(1)})^T\theta_1^{(2)})$$

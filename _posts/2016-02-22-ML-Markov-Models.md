@@ -19,7 +19,7 @@ A markov chain is defined by
 * a set of transitions with associated probabilities
 * an end state that allows the model to represent a distribution over sequences of different lengths and preferences for ending with certain symbols
 
-Let $$X$$ be a sequence of $$L$$ random variables $$X_1 ... X_L$$. We have <br>
+Let $$X$$ be a sequence of $$L$$ random variables $$X_1 ... X_L$$. Then <br>
 $$P(X) = P(X_L, X_{L - 1}, ..., X_1) = P(X_L \vert X_{L - 1}, ..., X_1) P(X_{L - 1} \vert X_{L - 2}, ..., X_1) ... P(X_1)$$
 
 With first order Markov chains, the probability of each $$X_i$$ depends only on the value of $$X_{i - 1}$$ (ie $$P(X_i \vert X_1...X_{i - 1}) = P(X_i \vert X_{i - 1})$$). <br>
@@ -28,18 +28,18 @@ $$P(X) = P(X_1) \prod^L_{i = 2} P(X_i \vert X_{i - 1})$$
 The following model is an example of a first order Markov chain.
 ![Markov Model](http://jnguyen92.github.io/nhuyhoa/figure/images/markov_model.png)
 
-As we move on to higher order Markov chains, additional history is incorporated. For example, a second order Markov chain will have <br>
+As higher order Markov chains are utilized, additional history is incorporated. For example, a second order Markov chain will have <br>
 $$P(X) = P(X_1 X_2) \prod^L_{i = 3} P(X_i \vert X_{i - 1} X_{i - 2})$$
 
 Increasing the order may add predictive value, however it requires a greater number of parameters to be estimated. 
 
-Transition probabilities (marginal and conditional) can be estimated from the data. We may also want to adjust estimates (by adding 1 to all counts) as to prevent $$0$$ probabilities. 
+Transition probabilities (marginal and conditional) can be estimated from the data. These may be adjusted (by adding 1 to all counts) to prevent $$0$$ probabilities. 
 
 Markov models have a wide set of applications; some examples include gene finding and gene segmentation. One example would be to differentiate sequences containing a CpG island from a non-CpG island. One can estimate this by comparing the conditional transition probabilities. 
 
 # Hidden Markov Models
 
-Markov Chains are useful for modeling a single class of a sequence. In some cases, a sequence contains multiple classes of elements. In these cases, a hidden markov model may help us model our sequence.
+Markov Chains are useful for modeling a single class of a sequence. In some cases, a sequence contains multiple classes of elements. In these cases, a hidden markov model may help model the sequence.
 
 An HMM is defined by
 
@@ -52,7 +52,7 @@ In the example below consider an HMM for a dishonest casino, the observed state 
 
 ![HMM Schematic](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_example.png)
 
-We define the following parameters for an HMM
+Define the following parameters for an HMM
 
 * Probability of a transition from state $$k$$ to $$l$$
 
@@ -64,13 +64,13 @@ where $$\pi$$ represents the path or sequence of states through the model.
 
 $$e_k(b) = P(X_i = b \vert \pi_i = k)$$
 
-With HMMs, we have three important questions
+With HMMs, there are three important questions
 
 * How likely is a sequence?
 * What is the most probable path for generating a given sequence?
-* How can we learn the HMM parameters given a set of sequences?
+* How to learn the HMM parameters given a set of sequences?
 
-We can answer these questions with a variety of algorithms. 
+These questions can be answered with the following algorithms.
 
 ## Forward Algorithm
 How likely is a given sequence? 
@@ -79,9 +79,9 @@ The probability that the path $$\pi_1, ..., \pi_L$$ is taken and the sequence $$
 
 $$P(X_1, ..., X_L, \pi_1, ..., \pi_L) = a_{0 \pi_1} a_{\pi_LN} \prod^{L-1}_{i = 1} a_{\pi_i \pi_{i + 1}} \prod^L_{i = 1} e_{\pi_i}(X_i)$$
 
-If we knew the hidden states, this task would be trivial. If the hidden states are not known, we have to sum over all possible paths. However, the problem is the number of paths can be exponential in the length of the sequence. 
+If the hidden states were known, this task would be trivial. If the hidden states are not known, one would need to sum over all possible paths. However, the problem is the number of paths can be exponential in the length of the sequence. 
 
-The forward algorithm is a dynamic programming algorithm. The subproblem is to compute $$f_k(i)$$, the probability of generating the first $$i$$ characters and ending in state $$k$$. We can use these to recursively solve these subproblems to obtain $$f_n(L)$$, the probability of generating the entire sequence.
+The forward algorithm is a dynamic programming algorithm. The subproblem is to compute $$f_k(i)$$, the probability of generating the first $$i$$ characters and ending in state $$k$$. These can be solved recursively to obtain $$f_n(L)$$, the probability of generating the entire sequence.
 
 ### Algorithm
 
@@ -129,13 +129,13 @@ The dynamic programming matrix:
 **4**     | $$0$$  | $$0$$    | $$.1(.2*.2) = .004$$ | $$.4(.064*.2 + .004*.1) = .000528$$ | $$.1(.000512*.2 + .000528*.1) = .00001552$$ 
 **5**     | -      | -        | -        | -        | -             
 
-Thus, we have <br>
+Thus <br>
 $$P(TAGA) = .6*.00012288 + .9*.00001552 = 0.000088$$
 
 ## Viterbi Algorithm
 What is the most probable path for generating a given sequence?
 
-The viterbi algorithm is a dynamic programming algorithm. The subproblem is to compute $$v_k(i)$$, the probability of the most probable path (in transition states) accounting for the first $$i$$ characters of $$x$$ ending in state $$k$$. We can use these to recursively solve these subproblems to obtain $$v_n(L)$$, the probability of the most probable path accounting for all sequences and ending in the end state.
+The viterbi algorithm is a dynamic programming algorithm. The subproblem is to compute $$v_k(i)$$, the probability of the most probable path (in transition states) accounting for the first $$i$$ characters of $$x$$ ending in state $$k$$. These can be solved recursively to obtain $$v_n(L)$$, the probability of the most probable path accounting for all sequences and ending in the end state.
 
 ### Algorithm
 
@@ -159,14 +159,14 @@ $$ptr_l(i) = argmax_k [v_k(i)a_{kl}]$$
 $$P(x, \pi^*) = max_k [v_k(L)a_{kN}]$$ <br>
 $$\pi^*_L = argmax_k [v_k(L)a_{kN}]$$
 
-To obtain the most probable state, we can follow the traceback starting at $$\pi^*_L$$.
+To obtain the most probable state, follow the traceback starting at $$\pi^*_L$$.
 
 ### Example
 Consider the following model.
 
 ![HMM Viterbi Algorithm Example](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_viterbi_1.png)
 
-We will use $$\log2$$ rather than the actual numbers to prevent underflow. 
+Use $$\log2$$ rather than the actual numbers to prevent underflow. 
 
 ![HMM Viterbi Algorithm Example with Logs](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_viterbi_2.png)
 
@@ -186,15 +186,15 @@ $$p_L(G, 2)$$ | $$= -2.322 + max(p_H(G, 1) + p_{HL}, p_L(G, 1) + p_{LL})$$
               | $$= -2.322 + max(-2.737 - 1.322, -3.322 - 0.737)$$
               | $$= -6.06$$
 
-Eventually we have the following matrix. 
+This results in the following matrix
 
 ![HMM Viterbi Algorithm Example Calculations](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_viterbi_3.png)
 
-We have pointers which we can backtrace to obtain the sequence of states. The most probable path is **HHHLLLLLL**.
+Use the pointers to backtrace and obtain the sequence of states. The most probable path is **HHHLLLLLL**.
 
 ## Forward-Backward (Baum-Welch) Algorithm
 
-How can we learn the HMM parameters given a set of sequences?
+How to learn the HMM parameters given a set of sequences?
 
 The Baum-Welch algorithm is an expectation maximization (EM) algorithm. EM is a family of algorithms for learning probabilistic models in problems that involve a hidden state. It attempts to estimate the counts by considering every path weighted by its probability. 
 
@@ -213,7 +213,7 @@ Iterate until convergence:
   
 **Expectation Step:**
 
-Our goal is to compute $$P(\pi_i = k \vert x)$$. We can do this in several steps.
+The goal is to compute $$P(\pi_i = k \vert x)$$. This is done in several steps.
 
 The probability of producing $$x$$ with the $$i^{th}$$ symbol being produced by state $$k$$ 
 
@@ -221,7 +221,7 @@ The probability of producing $$x$$ with the $$i^{th}$$ symbol being produced by 
 $$P(\pi_i = k, x)$$ | $$= P(x_1 ... x_i, \pi_i = k) * P(x_{i + 1} ... x_L \vert \pi_i = k)$$
                     | $$= f_k(i) * b_k(i)$$
 
-The first term is computed via the forward algorithm. This gives the probability of being in state $$k$$ having observed the first $$i$$ characters of $$x$$. The second term is computed via the backward algorithm. This gives the probability of observing the rest of $$x$$, given that we are in state $$k$$ after $$i$$ characters. By combining these two probabilities, we can compute the probability of producing sequence $$x$$ with the $$i^{th}$$ symbol being produced by state $$k$$.
+The first term is computed via the forward algorithm. This gives the probability of being in state $$k$$ having observed the first $$i$$ characters of $$x$$. The second term is computed via the backward algorithm. This gives the probability of observing the rest of $$x$$, given that the current state $$k$$ after $$i$$ characters. Combine these two probabilities to compute the probability of producing sequence $$x$$ with the $$i^{th}$$ symbol being produced by state $$k$$.
 
 **Backward Algorithm**
 
@@ -240,18 +240,18 @@ $$
 
 **Expectation Step (cont):**
 
-We can use the above to calculate <br>
+Use the above to calculate <br>
 
 -------------------------|------------------
 $$P(\pi_i = k \vert x)$$ | $$= \frac{P(\pi_i = k, x)}{P(x)}$$
                          | $$=\frac{f_k(i) b_k(i)}{f_N(L)}$$
                          
-We also need to calculate the expected number of times a letter $$c$$ is emitted by state $$k$$. <br>
+Calculate the expected number of times a letter $$c$$ is emitted by state $$k$$. <br>
 $$n_{k, c} = \sum_j \frac{1}{f^j_N(L)} \sum_{i \vert x^j_i = c} f^j_k(i) b^j_k(i)$$
 
 where $$c$$ denotes a "character", $$j$$ denotes the sequences, and $$i$$ denotes a position in the sequence. 
 
-Additionally, we calculate the expected number of times that the transition from $$k$$ to $$l$$ is used. 
+Calculate the expected number of times that the transition from $$k$$ to $$l$$ is used. 
 
 For an emitting state $$l$$: <br>
 $$n_{k \rightarrow l} = \sum_{x^J} \frac{\sum_i f_k^j(i) a_{kl} e_l(x^j_{i + 1}) b^j_l(i + 1)}{f^j_N(L)}$$
@@ -261,7 +261,7 @@ $$n_{k \rightarrow l} = \sum_{x^J} \frac{\sum_i f^j_k(i) a_{kl} b^j_l(i)}{f^j_N(
 
 **Maximization Step:**
 
-Using the expected values we can estimate the new parameters.
+Using the expected values, estimate the new parameters
 
 Emission parameters: <br>
 $$e_k(c) = \frac{n_{k, c}}{\sum_{c'} n_{k, c'}}$$
@@ -271,7 +271,7 @@ $$a_{kl} = \frac{n_{k \rightarrow l}}{\sum_m n_{k \rightarrow m}}$$
 
 ### Example
 
-Consider the following model. We will go through one iteration of the algorithm.
+Consider the following model. Consider one iteration of the algorithm
 
 ![HMM Baum-Welch Algorithm Example](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_1.png)
 
@@ -281,19 +281,19 @@ Consider the following model. We will go through one iteration of the algorithm.
 
 ![HMM Baum-Welch Expectation Calc 2](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_3.png)
 
-We then calculate the expected emission counts for state 1 <br>
+Then calculate the expected emission counts for state 1 <br>
 ![HMM Baum-Welch Expectation Calc 3](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_4.png)
 
 and the expected transition counts for state 1 <br>
 ![HMM Baum-Welch Expectation Calc 4](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_5.png)
 
-Similarly, we compute these counts for state 2.
+Similarly, compute these counts for state 2.
 
 **Maximization Step:**
 
-Using the expected values from the previous step, we determine the probabilities for our states. 
+Using the expected values from the previous step, determine the probabilities for the states.
 
 For state 1 <br>
 ![HMM Baum-Welch Maximization Calc](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_6.png)
 
-We would do similar computations for state 2. 
+Similarly, do these computations for state 2. 

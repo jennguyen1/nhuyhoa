@@ -12,11 +12,11 @@ categories: ['statistics', 'multivariate analysis']
 
 
 # Motivating Example
-Consider a data set of children test scores. There are $$n$$ children and test scores for $$6$$ subjects. Below we observe high correlation across the subjects. 
+Consider a data set of children test scores. There are $$n$$ children and test scores for $$6$$ subjects. There is high correlation across the subjects. 
 
 
 
-From the correlation matrix we see that there is a grouping of STEM and humanities subjects in correlation. The left plot is the actual data where there is high correlation among the subjects and within fields. The right plot is a hypothetical plot of what independent data would look like (shown for comparison).
+From the correlation matrix, there is a grouping of STEM and humanities subjects in correlation. The left plot is the actual data where there is high correlation among the subjects and within fields. The right plot is a hypothetical plot of what independent data would look like (shown for comparison).
 
 
 {% highlight text %}
@@ -33,7 +33,7 @@ From the correlation matrix we see that there is a grouping of STEM and humaniti
 
 This figure shows that there is correlation across subjects, revealing a potential underlying hidden factor (academic ability). There is also higher correlation within STEM fields and within humanities fields. This reveals a potential hidden factor that of STEM/humanities ability.
 
-We can model these hidden factors with factor analysis.
+These hidden factors can be modeld with factor analysis. 
 
 # Difference Between Factor Analysis and PCA
 
