@@ -142,17 +142,7 @@ Using this data, fit the survival curve and obtain survival estimates and confid
 
 {% highlight r %}
 library(survival)
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Warning: package 'survival' was built under R version 3.2.5
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # fit a survival curve: day is the time and status is event/censored info
 survival <- survfit(Surv(day, status) ~ 1, conf.type = "plain")
 
@@ -245,7 +235,7 @@ $$w_k = (n_{k0} + n_{k1})$$
 
 ## Proportional Hazards Assumption
 
-When modeling the Cox proportional hazard model, there is an assumption of proportional hazards. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. This assumption may be evaluated in several ways
+The Cox proportional hazard model has an assumption of proportional hazards. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. This assumption may be evaluated in several ways
 
 * Graph $$\log(\hat{\Lambda}(t))$$ vs. $$t$$ for each group, the assumption is satisfed if the shapes of the curves are similar and the separation between curves remain proportional across analysis time (parallel curves).
 * Test for a non-zero slope in a GLM regresion of the scaled Schoenfeld residuals on functions of time. A non-zero slope violates the proportional hazard assumption

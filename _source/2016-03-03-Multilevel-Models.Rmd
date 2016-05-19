@@ -105,9 +105,9 @@ ggplot(data = plot_data, aes(x = jitter_n, xend = jitter_n, y = estimate - std.e
 
 ```
 
-In the left plot, two separate models are fit. One model is fit with no group variables, the intercept estimate is represented by dashed horizontal line. Another model is fit with separate intercepts for each group These intercept estimates and standard error bars are represented by the individual points. Notice that the sample variability is larger at small $$n$$ sizes and smaller at higher $$n$$ sizes. The complete pooling model ignores group variability while the no-pooling model overstates it (as groups with small $$n$$ sizes are inaccurately estimated). 
+In the left plot, two separate models are fit. One model is fit with no group variables, the intercept estimate is represented by dashed horizontal line. Another model is fit with separate intercepts for each group. These intercept estimates and standard error bars are represented by the individual points. Notice that the sample variability is larger at small $$n$$ sizes and smaller at higher $$n$$ sizes. The complete pooling model ignores group variability while the no-pooling model overstates it (as groups with small $$n$$ sizes are inaccurately estimated). 
 
-Tthe right plot has a multilevel model (with the same complete pooling estimate). Multilevel models attempt to compromise between the complete pooling and the no-pooling model. Essentially, the estimates in multilevel models are a weighted averages (based on the group $$n$$ size) of the complete pooling and the no-pooling estimates (variances). The weights are based on the group $$n$$ size. The smaller the group $$n$$ the closer the multilevel estimate is to overall average (pooling estimate). The larger the group $$n$$ the closer the multilevel estimate is to the group average (no-pooling estimate). This is called shrinkage towards the mean (of varying degrees).
+The right plot has a multilevel model (with the same complete pooling estimate). Multilevel models attempt to compromise between the complete pooling and the no-pooling model. Essentially, the estimates in multilevel models are a weighted averages (based on the group $$n$$ size) of the complete pooling and the no-pooling estimates (variances). The weights are based on the group $$n$$ size. The smaller the group $$n$$ the closer the multilevel estimate is to overall average (pooling estimate). The larger the group $$n$$ the closer the multilevel estimate is to the group average (no-pooling estimate). This is called shrinkage towards the mean (of varying degrees).
 
 With multilevel models of varying intercepts, the intercept terms are $$\alpha_i \sim N(\mu_a, \sigma^2_a)$$. When $$\sigma^2_a \rightarrow 0$$, it is considered a no-pooling model that may be underfitting. When $$\sigma^2_a \rightarrow \infty$$, it is considered a complete pooling model that may be overfitting. The multilevel model is essentially a compromise between the two models. It is an adaptive regularization technique.  
 
@@ -121,7 +121,7 @@ The variance ratio is
 
 $$r = \frac{\sigma^2_y}{\sigma^2_a}$$
 
-The variance ratio is a measure of how much many observations are needed in a group for there to be a balance between the completely-pooled and non-pooled estimates. The standard deviation of the mean between groups is the same as the standard deviation within a group with $$r$$ observations.
+The variance ratio is a measure of how many observations are needed in a group for there to be a balance between the completely-pooled and non-pooled estimates. The standard deviation of the mean between groups is the same as the standard deviation within a group with $$r$$ observations.
 
 * If $$n_j < r$$ then $$\hat{a}_j$$ is closer to $$\mu_a$$
 * If $$n_j = r$$ then $$\hat{a}_j$$ is an average of $$\mu_a$$ and $$\bar{y}_j$$
@@ -280,7 +280,7 @@ lmer(y ~ 1 + (1 | group.a) + (1 | group.b))
 
 As with regular regression, transformations may be done for more effective fitting and interpretation. For example, centering and scaling may allow for easier interpretation of coefficients, especially when they are correlated (as with varying intercept, varying slope type models). 
 
-Multilevel models may also be used creatively to assess a variety of effects. For example, consider a scenario where you have a number of variables that mostly measure the same thing. You can use all of the variables by combining them into a weighted average. The weighted average term would be something along the lines of $$\frac{1}{n} \sum^n_i \beta_{ij} * x_{j}$$. 
+Multilevel models may also be used creatively to assess a variety of effects. For example, consider a scenario where there are a number of variables that mostly measure the same thing. All of the variables may be used by combining them into a weighted average. The weighted average term would be something along the lines of $$\frac{1}{n} \sum^n_i \beta_{ij} * x_{j}$$. 
 
 ## Generalized Linear Multilevel Models
 
@@ -339,11 +339,13 @@ Use the following estimates to obtain confidence intervals for the estimates.
 
 Obtain prediction estimates and its confidence intervals (from quantiles) by using simulation. How this is done depends on what is being predicted.
 
-Topredict a data point for a given group, use the estimated group coefficient to calculate the fitted value for $$y$$. Add an error term (specified by $$\sigma_y$$) to the equation. The variance for these predictions are $$\sigma^2_y$$.
+To predict a data point for a given group, use the estimated group coefficient to calculate the fitted value for $$y$$. Add an error term (specified by $$\sigma_y$$) to the equation. The variance for these predictions are $$\sigma^2_y$$.
 
 To predict a data point for a new group, conduct a two-step simulation. First, simulate the group estimate using its predictors and the error term $$\sigma^2_a$$. Then use these estimates to predict $$y$$ along with its own error terms $$\sigma^2_y$$. The variance of these predictions are $$\sigma^2_a + \sigma^2_y$$. The ability to obtain predictions for new groups is a great advantage for multilevel models.
 
-The simulation procedure detailed above is done on a Bayesian approach. Simulations may also be dine via a bootstrapping approach. Simulations are useful to obtain predictions, standard error estimates, etc.
+The simulation procedure detailed above is done on a Bayesian approach. Simulations may also be done via a bootstrapping approach. 
+
+Simulations are useful to obtain predictions, standard error estimates, etc.
 
 ## Plotting Random Effects in R
 

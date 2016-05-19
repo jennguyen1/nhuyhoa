@@ -13,7 +13,7 @@ categories: ['statistics', 'regression analysis']
 library(jn.general)
 lib(data, viz)
 options(show.signif.stars=FALSE)
-knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center', warning = FALSE)
 ```
 
 Survival analysis refers to the analysis of the occurance and timing of discrete events or failures. Failures can vary depending on the application. 
@@ -193,7 +193,7 @@ $$w_k = (n_{k0} + n_{k1})$$
 
 ## Proportional Hazards Assumption
 
-When modeling the Cox proportional hazard model, there is an assumption of proportional hazards. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. This assumption may be evaluated in several ways
+The Cox proportional hazard model has an assumption of proportional hazards. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. This assumption may be evaluated in several ways
 
 * Graph $$\log(\hat{\Lambda}(t))$$ vs. $$t$$ for each group, the assumption is satisfed if the shapes of the curves are similar and the separation between curves remain proportional across analysis time (parallel curves).
 * Test for a non-zero slope in a GLM regresion of the scaled Schoenfeld residuals on functions of time. A non-zero slope violates the proportional hazard assumption
