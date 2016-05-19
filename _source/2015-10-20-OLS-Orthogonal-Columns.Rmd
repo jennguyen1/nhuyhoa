@@ -26,10 +26,10 @@ $$
 
 where $$x_i$$ are columns vectors and the columns are mutually independent.
 
-We know that <br>
+Then <br>
 $$ \hat{\beta} = (X^TX)^{-1}X^TY $$
 
-Since the columns of $$X$$ are mutually orthogonal, we have the diagonal matrix <br>
+Since the columns of $$X$$ are mutually orthogonal, then <br>
 $$\mathbf{(X^TX)^{-1}} = \left[\begin{array}
 {rrr}
 \frac{1}{x^{T}_{0}x_0} & 0 & 0 & 0 \\
@@ -67,12 +67,12 @@ $$ \hat{\beta} = \left[\begin{array}
 $$
 
 
-Note that the $$\beta_j$$ estimate depends only on the $$j^{th}$$ column in the design matrix. Thus we conclude that the effect of one variable is estimated independently of other variables.
+Note that the $$\beta_j$$ estimate depends only on the $$j^{th}$$ column in the design matrix. Thus the effect of one variable is estimated independently of other variables.
 
 # Covariance Matrix
 Recall that $$ Var[\beta] = \sigma^2 (X^TX)^{-1} $$.
 
-When our columns are orthogonal, <br>
+When the columns are orthogonal, <br>
 $$\mathbf{(X^TX)^{-1}} = \left[\begin{array}
 {rrr}
 \frac{1}{x^{T}_{0}x_0} & 0 & 0 & 0 \\
@@ -91,6 +91,6 @@ $$Var[\hat{\beta}_j] \ge \frac{\sigma^2}{x_j^{*T}x_j^*} $$ <br>
 and the minimum is attained when $$x_i^{*T}x^*_j = 0$$ $$\forall$$ $$i \ne j$$.
 
 # Orthogonal Columns in Experimental Design & Clinical Trials
-In experimental design, randomization ensures that our experimental groups are independent of baseline characteristics. Thus we ensure that there are no confounding effects. Furthermore, when we adjust for these baseline characteristics, the estimates of $$\hat{\beta}$$ do not change. On the other hand, precision of  estimation increases (smaller $$Var[\hat{\beta}]$$).
+In experimental design, randomization ensures that the experimental groups are independent of baseline characteristics. This ensures that there are no confounding effects. Furthermore, baseline characteristics are adjusted for, the estimates of $$\hat{\beta}$$ do not change. On the other hand, precision of  estimation increases (smaller $$Var[\hat{\beta}]$$).
 
 

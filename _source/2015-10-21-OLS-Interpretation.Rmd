@@ -25,9 +25,9 @@ x2 <- mtcars$drat
 m1 <- lm(y ~ x1 + x2)
 ```
 
-With continuous variables, the $$ \beta $$ coefficient can be interpreted as the change in $$Y$$ for a unit increase in X, holding all other x-values constant. The corresponding test measures whether this effect is significantly different from $$0$$, after all other variables have been considered. 
+With continuous variables, the $$ \beta $$ coefficient can be interpreted as the change in $$Y$$ for a unit increase in $$X$$, holding all other x-values constant. The corresponding test measures whether this effect is significantly different from $$0$$, after all other variables have been considered. 
 
-Note that the interpretation of coefficients can be complicated with high collinearity. For example if $$x_1$$ is correlated with $$x_2$$, then increasing $$x_1$$ would lead to an increase of $$x_2$$ even when we are trying to hold $$x_2$$ fixed. Thus it is important to examine multicollinearity among the covariates (discussed in [diagnostics post][diagnostics_post]{:target="_blank"}).
+Note that the interpretation of coefficients can be complicated with high collinearity. For example if $$x_1$$ is correlated with $$x_2$$, then increasing $$x_1$$ would lead to an increase of $$x_2$$ even when holding $$x_2$$ fixed. Thus it is important to examine multicollinearity among the covariates.
 
 ```{r}
 summary(m1)$coefficients %>% round(3)
@@ -36,7 +36,7 @@ after <- predict(m1, data.frame(x1 = 2, x2 = 0))
 after - b4 # same as x1 coefficient
 ```
 
-When we fit a linear model, we generally include an intercept term. This intercept is interpreted as the expected value of $$Y$$ when all x's are set to $$0$$. The intercept is a nuisance parameter, we generally don't care about its significance. 
+Intercept terms are generally included in fitting a linear model. This intercept is interpreted as the expected value of $$Y$$ when all $$X$$'s are set to $$0$$. The intercept is a nuisance parameter, its signifiance is not important.
 
 ```{r}
 summary(m1)$coefficients %>% round(3)
@@ -44,14 +44,15 @@ predict(m1, data.frame(x1 = 0, x2 = 0)) # same as intercept term
 ```
 
 ### Excluding the Intercept Term
-If we were to remove the intercept term, we would have
+Removing the intercept term results in 
 
 $$ Y = 0 + \beta_1 x_1 + \beta_2 x_2 $$ where $$ \beta_0 = 0 $$.
 
-Thus when we fit a regression without an intercept, we insist that the expected value of $$Y$$ when all x's are $$0$$ is $$0$$. If we know that the intercept is $$0$$, doing so will give us more residual degrees of freedom. However, care should be done in setting the intercept to $$0$$, as this may lead to errors in estimating the other coefficients. 
+Thus when fitting a regression without an intercept, one assumes that the expected value of $$Y$$ when all $$X$$'s are $$0$$ is $$0$$. Doing so gives the model more degrees of freedom. However, care should be done in setting the intercept to $$0$$, as this may lead to errors in estimating the other coefficients. 
 
 ### Center and Scaling Features
-Sometimes we may want to center and scale the data prior to fitting models. While interpretation of coefficients may change, the model is essentially the same model. 
+
+Consider centering and scaling the data prior to fitting models. While interpretation of coefficients may change, the model is essentially the same model. 
 
 In some cases it may not make sense to interpret the intercept when the predictors are set to zero. For example, consider the model $$Y = \alpha + \beta_1 * height + \beta_2 * weight$$. The intercept is the expected value of $$Y$$ when $$height$$ and $$weight$$ are set to $$0$$, but that isn't terribly useful. 
 
@@ -97,9 +98,9 @@ summary(m2a)$coefficients %>% round(3)
 ```
 
 ### Polynomial Contrasts
-When we have ordinal categorical variables, it is more useful to generate polynomial contrasts to assess linear, quadratic, and cubic trends among those ordered groups. The ordinal categorical variable should have levels that are equally spaced. 
+When there are ordinal categorical variables, it is more useful to generate polynomial contrasts to assess linear, quadratic, and cubic trends among those ordered groups. The ordinal categorical variable should have levels that are equally spaced. 
 
-We can simulate ordinal categorical variables for our example.
+For the example, consider simulated ordinal categorical variables.
 ```{r}
 # make 3 equal sized ordered groups of Petal.Length
 ord.Petal.Length <- cut(iris$Petal.Length, 3, ordered_result = TRUE)
@@ -108,7 +109,7 @@ ord.Petal.Length <- cut(iris$Petal.Length, 3, ordered_result = TRUE)
 m3 <- lm(Sepal.Length ~ ord.Petal.Length, data = iris)
 summary(m3)$coefficients %>% round(3)
 ```
-Here we see that there is a strong linear effect of $$ord.Petal.Length$$ with $$Sepal.Length$$. There is not a strong quadratic effect of $$ord.Petal.Length$$ with $$Sepal.Length$$.
+Here there is a strong linear effect of $$ord.Petal.Length$$ with $$Sepal.Length$$. There is not a strong quadratic effect of $$ord.Petal.Length$$ with $$Sepal.Length$$.
 
 ## Continuous and Categorical Variables
 ```{r}
@@ -139,7 +140,7 @@ $$ Sepal.Length $$ | $$ = \beta_0 + \beta_1 * Petal.Length + \beta_3 + \beta_5 *
                    | $$ = (\beta_0 + \beta_3) + (\beta_1 + \beta_5) * Petal.Length $$
                    | $$ = (4.2 + -3.2) + (0.54 + 0.45) * Petal.Length $$
 
-Essentially what we have is 3 separate lines for each value of Species, the categorical variable. 
+Essentially there are 3 separate lines for each value of Species, the categorical variable. 
 
 ```{r, echo = FALSE}
 ggplot(data = iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) + 
@@ -148,7 +149,7 @@ ggplot(data = iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
   ggtitle("Sepal Length vs Petal Length by Species")
 ```
 
-We can perform hypothesis testing to determine whether the species have similar intercepts (no difference between the categories) and/or similar slopes (effect of continuous variable is the same for all categories) for Petal Length, thereby simplifying the model. 
+Perform hypothesis testing to determine whether the species have similar intercepts (no difference between the categories) and/or similar slopes (effect of continuous variable is the same for all categories) for Petal Length, thereby simplifying the model. 
 
 ```{r}
 m4a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
@@ -156,7 +157,7 @@ summary(m4a)$coefficients %>% round(3)
 ```
 
 ### Excluding the Intercept
-If we were to remove the intercept, we have the following regression lines.
+Removing the intercept terms results in 
 
 If $$Species == "setosa"$$: <br>
 $$ Sepal.Length = 4.2 + 0.54 * Petal.Length $$
@@ -172,9 +173,9 @@ This is essentially the same equations as the previous model.
 It is important to note even though both models generate similar regression lines, the overall model diagnostics ($$R^2$$, F statistic) will be different because the model is different.
 
 ## Interaction Terms
-An interaction relates to the relationship among 2 or more variables. It occurs when the simultaneous influence of two variables on a third is not additive. In other words, the effect of one predictor on the response is different for different levels of another predictor. When interactions are significant we cannot just interpret the main effect alone, we must consider the interaction term. This is known as the **hierarchical principle**. 
+An interaction relates to the relationship among 2 or more variables. It occurs when the simultaneous influence of two variables on a third is not additive. In other words, the effect of one predictor on the response is different for different levels of another predictor. When interactions are significant the main effects cannot be interpreted alone. This is known as the **hierarchical principle**. 
 
-Consider the example above. We see that the effect of $$Petal.Length$$ on $$Sepal.Length$$ are the same for every $$Species$$, ie the slopes are the same. In this case, we say that there is no (significant) interaction between $$Species$$ and $$Petal.Length$$. If the slopes were different, we would conclude that the effect of $$Petal.Length$$ on $$Sepal.Length$$ were different for different species.
+Consider the example above. The effect of $$Petal.Length$$ on $$Sepal.Length$$ are the same for every $$Species$$, ie the slopes are the same. In this case, there is no (significant) interaction between $$Species$$ and $$Petal.Length$$. If the slopes were different, the effect of $$Petal.Length$$ on $$Sepal.Length$$ were different for different species.
 
 Another example is genetic risk factors and diet on diabetes. Unhealthy diets have been shown to have an effect on diabetes, but that effect is more severe if one has a gene with high risk for developing diabetes. 
 
@@ -186,13 +187,12 @@ ggplot(data = d, aes(dose, l, color = supp)) +
   ylab("mean tooth length")
 ```
 
-If the interaction term is significant, we would expect to see parallel lines. Here the lines are parallel at low doses, so the effect of the dosage is the same for both supplements. However at higher does the lines are not parallel, so the effect of dosage is not the same for the two supplements.
+If the interaction term is significant, there would be parallel lines. Here the lines are parallel at low doses, so the effect of the dosage is the same for both supplements. However at higher does the lines are not parallel, so the effect of dosage is not the same for the two supplements.
 
 
 ## Analysis of Variance
-We can use theory to conduct hypothesis tests regarding models.
 
-The basic idea here is to compare the variance accounted for by the covariates to the variance of the error. We can do that by computing the test statistic $$F = \frac{SS_R/df_R}{SS_E/df_E} $$, where $$SS_R$$ and $$df_R$$ are the sums of squares and degrees of freedom accounted for by the covariates and $$SS_E$$ and $$df_E$$ are the sums of squares and degrees of freedom of the error. Recall from above that this is the $$ F $$ distribution with $$ df_R, df_E $$ degrees of freedom. Use this distribution to determine if the ratio observed is too great to be due to chance.
+The basic idea here is to compare the variance accounted for by the covariates to the variance of the error, by computing the test statistic $$F = \frac{SS_R/df_R}{SS_E/df_E} $$, where $$SS_R$$ and $$df_R$$ are the sums of squares and degrees of freedom accounted for by the covariates and $$SS_E$$ and $$df_E$$ are the sums of squares and degrees of freedom of the error. Recall that this is the $$ F $$ distribution with $$ df_R, df_E $$ degrees of freedom. Use this distribution to determine if the ratio observed is too great to be due to chance.
 
 Consider a simple case, where the responses are continuous and the covariates are categorical. 
 
@@ -203,7 +203,7 @@ m <- lm(Petal.Length ~ Species, data = iris)
 anova(m)
 ```
 
-Here we see that the $$F$$ statistic, a ratio of the mean square errors, is too big to be due to chance with a p-value < 0.05. This means that the variability accounted for by the $$Species$$ variable is significantly greater than the variability of the error (unexplained variability). Another way to say this is that the variability between $$Species$$ is significantly greater than the pooled variability within treatments, assuming all treatments have equal variance. 
+Here the $$F$$ statistic, a ratio of the mean square errors, is too big to be due to chance with a p-value < 0.05. This means that the variability accounted for by the $$Species$$ variable is significantly greater than the variability of the error (unexplained variability). Another way to say this is that the variability between $$Species$$ is significantly greater than the pooled variability within treatments, assuming all treatments have equal variance. 
 
 This basic case is known as single-factor ANOVA. The procedures here can be extended to any model, with categorical or continuous variables. 
 
@@ -215,7 +215,7 @@ m <- lm(Sepal.Length ~ Petal.Length * Species, data = iris)
 anova(m)
 ```
 
-We had looked at the summary table for this model in a previous post. The results of an analysis of variance table should be read in a certain order. 
+The results of an analysis of variance table should be read in a certain order. 
   
 * 1st row: variance accounted for by $$Petal.Length$$ is significantly greater than the unexplained variance
 * 2nd row: after $$Petal.Length$$ has been taken into consideration, the variance accounted for by $$Species$$ is signficantly greater than the unexplained variance
@@ -233,7 +233,7 @@ Let $$ x'_* = (1, x_{0*}, ..., x_{*p}) $$
 The expected value of Y is <br>
 $$ E(Y) = \hat{Y}_* = x'_*\hat{\beta} $$
 
-The variance of our estimate is
+The variance of the estimate is
 
 ----------------------|-------------------
 $$ Var(\hat{Y}_*) $$  | $$= Var(x'_*\hat{\beta})$$ 
@@ -246,19 +246,19 @@ So the $$100(1-\alpha)$$% confidence interval is
 
 $$ \hat{Y}_* \pm t_{n-p, \alpha/2} \sqrt{MSE} \sqrt{x'_*(X'X)^{-1}x_*} $$
 
-We can also do this in R: `predict(object, newdata, interval = "confidence")`
+In R: `predict(object, newdata, interval = "confidence")`
 
 ## Prediction Intervals
-If we want to predict new values, we incur additional error. <br>
+To predict new values, additional error is incurred. <br>
 $$ Y_0 = x'_0\beta + \epsilon_0 $$
 
-We assume that $$ e_0  \sim  N(0, \sigma^2) $$ and $$ e_0 \perp \hat{Y}_0 $$ 
+Assume that $$ e_0  \sim  N(0, \sigma^2) $$ and $$ e_0 \perp \hat{Y}_0 $$ 
 Let $$ x'_0 = (1, x_{00}, ..., x_{0p}) $$
 
 The expected value of Y is <br>
 $$ E(Y) = \hat{Y}_0 + 0 = x'_0\hat{\beta} $$
 
-The variance of our estimate is
+The variance of the estimate is
 
 ----------------------|-------------------
 $$ Var(\hat{Y}_0) $$  | $$ = Var(x'_0\hat{\beta} + \epsilon) $$
@@ -269,7 +269,7 @@ Thus the $$100(1-\alpha)$$% confidence interval is
 
 $$ \hat{Y}_* \pm t_{n-p, \alpha/2} \sqrt{MSE} \sqrt{x'_*(X'X)^{-1}x_* + 1} $$
 
-Let's assess our assumptions. We assume that $$ e_0  \sim  N(0, \sigma^2) $$, which is an assumption we make with all linear regressions. We also assume $$ e_0 \perp \hat{Y}_0 $$. 
+Let's assess the assumptions. Linear regression assumes that $$ e_0  \sim  N(0, \sigma^2) $$ and $$ e_0 \perp \hat{Y}_0 $$. 
 
 $$ e_0 = Y_0 - \hat{Y}_0 $$ <br>
 $$ cov(e_0, \hat{Y}_0) = cov(Y - \hat{Y}_0, \hat{Y}_0) = cov(Y_0 - HY_0, HY_0) $$ <br>
@@ -282,9 +282,9 @@ $$ cov(Y_0(I - H), HY_0) $$ | $$ = cov(Y_0, HY_0) + cov(-HY_0, HY_0) $$
                             | $$ = \sigma^2 (H - H) $$
                             | $$ = 0 $$
                                
-Thus, we can conclude that $$ e_0 \perp \hat{Y}_0 $$ and the above prediction interval is correct.
+Thus, $$ e_0 \perp \hat{Y}_0 $$ and the above prediction interval is correct.
 
-We can also do this in R: `predict(object, newdata, interval = "prediction")`
+In R: `predict(object, newdata, interval = "prediction")`
 
 ## Example
 The plot below displays the fitted line (black), 95% confidence interval (blue), and 95% prediction intervals (green) for the estimated Y. Notice that the prediction intervals are much wider than the confidence intervals to account for prediction error. Also note that the bands are tighter around the $$\bar{x}$$ and wider at points farther away from $$\bar{x}$$. 
@@ -306,6 +306,3 @@ ggplot(data = NULL, aes(x = x, y = y)) +
   ggtitle("95% Confidence and Prediction Intervals for Simulated Data") + xlab("X") + ylab("Y")
 ```
 
-
-
-[diagnostics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/Regression-Diagnostics.html

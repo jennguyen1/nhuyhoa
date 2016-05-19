@@ -57,7 +57,7 @@ The summary table contains a lot of information regarding the linear model.
 
 Note that the $$t$$ statistic and the p-value are interpreted as the effect of the variable after all other covariates have been accounted for. 
 
-* `Residual standard error`: the estimate of $$\sigma$$ and how much we expect our fitted values to be off on average. In other words this is equal to $$ \sqrt{MSE} = \sqrt{\frac{SSE}{df_E}} =  \sqrt{\frac{SSE}{n - p}} $$
+* `Residual standard error`: the estimate of $$\sigma$$ and how much the fitted values are expected to be off on average. In other words this is equal to $$ \sqrt{MSE} = \sqrt{\frac{SSE}{df_E}} =  \sqrt{\frac{SSE}{n - p}} $$
 * `R-squared`: This is the total variance of $$Y$$ that is explained by the covariates. In other words, $$ R^2 = 1 - \frac{SS_{err}}{SS_{tot}} $$
 * `Adjusted R-squared`: This is the total variance of $$Y$$ that is explained by the covariates, adjusted for by the number of covariates. The $$R^2$$ will increase as more parameters are introduced into the model. The adjusted $$R^2$$ value places a penalty on an excess of parameters.
 * `F-statistic`: The $$F$$ statistic and corresponding p-value comparing the full model to an intercept only model
@@ -81,7 +81,7 @@ anova(m)
 ## Residuals            144 16.301   0.113
 {% endhighlight %}
 
-The ANOVA table presents the sums of square contributions of covariates to the model. The ANOVA table is dependent on the ordering of covariates in the model formula. For example to interpret the entry for Species, we say that after $$Petal.Length$$ has been taken into consideration, the variance accounted for by $$Species$$ is signficantly greater than the variance of the error. If we were to order the covariates differently in the model formulation, we would see different values in the ANOVA table. This is known as the **Type I SS ANOVA** table, which takes into account the order.
+The ANOVA table presents the sums of square contributions of covariates to the model. The ANOVA table is dependent on the ordering of covariates in the model formula. For example interpret the entry for Species as after $$Petal.Length$$ has been taken into consideration, the variance accounted for by $$Species$$ is signficantly greater than the variance of the error. Ordering the covariates differently results in different values in the ANOVA table. This is known as the **Type I SS ANOVA** table, which takes into account the order.
 
 There is also **Type III SS ANOVA** table, which displays the effects when other variables have been accounted for (when fit last). 
 
@@ -107,12 +107,12 @@ drop1(m, ~ ., test = "F")
 
 Note the similarities between the summary table and the ANOVA table. 
 
-* $$MSE = 0.113$$ in the ANOVA table. Take its square root and we see that it equals the residual standard error = $$0.336$$ of the summary table. The degrees of freedom are the same. 
+* $$MSE = 0.113$$ in the ANOVA table. Take its square root which equals the residual standard error = $$0.336$$ of the summary table. The degrees of freedom are the same. 
 * Compute $$F = \frac{\Sigma SS_R / \Sigma df_R}{SS_E/df_E} = \frac{85.867/5}{16.301/144} = 151.7 $$ on $$5$$ and $$144$$ degrees of freedom. This is equivalent to the $$F$$ statistic given in the summary table.
 * The $$F$$ value of $$Petal.Length$$ from the Type III ANOVA table is equal to $$t^2$$ of $$Petal.Length$$ from the summary table. Both of these correspond to the effect when it is fit last
 
 # Comparing Models
-Suppose we want to compare 2 models, where one is nested in the other. Let $$R$$ correspond to the reduced model with $$p - q$$ parameters. Let $$F$$ correspond to the full model with $$p$$ parameters. Then we can compare the two models with a test statistic
+Consider comparing two models, where one is nested in the other. Let $$R$$ correspond to the reduced model with $$p - q$$ parameters. Let $$F$$ correspond to the full model with $$p$$ parameters. Then compare the two models with a test statistic
 
 $$ F = \frac{(SSE_R - SSE_F)/ (df_F - df_R)}{SSE_F/df_F} $$
 
@@ -159,11 +159,11 @@ anova(modh, moda)
 ## 2    144 16.301  2   0.38098 1.6828 0.1895
 {% endhighlight %}
 
-Thus we conclude that for this data set, the full and simplified model are not significantly different from each other. The interaction term is not significantly different from $$0$$, meaning that the slope of $$Petal.Length$$ on $$Sepal.Length$$ is the same for all species. 
+Thus the full and simplified model are not significantly different from each other. The interaction term is not significantly different from $$0$$, meaning that the slope of $$Petal.Length$$ on $$Sepal.Length$$ is the same for all species. 
 
 # Confidence Intervals for Betas
 
-We can obtain the confidence intervals for the $$\beta$$s using the following function
+Obtain the confidence intervals for the $$\beta$$s using the following function
 
 {% highlight r %}
 confint(m)
@@ -218,6 +218,4 @@ predict(m, interval = "prediction") %>% head
 ## 6 5.135066 4.450925 5.819206
 {% endhighlight %}
 
-These are the confidence and prediction intervals for $$Y$$. Note that the fitted values are the same, but the interval widths for the confidence intervals are smaller compared to the prediction intervals. We know this from the derivation in the [Regression: Confidence & Prediction Intervals post][reg_int_post]{:target="blank"}. 
-
-[reg_int_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/OLS-Intervals.html
+These are the confidence and prediction intervals for $$Y$$. Note that the fitted values are the same, but the interval widths for the confidence intervals are smaller compared to the prediction intervals. 

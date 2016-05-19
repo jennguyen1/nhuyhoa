@@ -15,7 +15,7 @@ The methods described here apply to all types of GLMs.
 # Polynomial Regresion
 Adding nonlinear terms such as interactions and powers to the original predictors is polynomial regression. This type of model follows the principals of  regression. The hierarchy principle requires that lower ordered terms must be included when higher ordered terms are used (unless there are good reasons not to include them). For example if $$X^2$$ is in the model, $$X$$ must also be in the model. 
 
-We can fit the new terms in R with
+In R, fit terms with
 
 * interaction: `:` or `*`
 * powers: `poly(x, degree = n)`
@@ -55,7 +55,7 @@ The second term is a roughness penalty that controls how wiggly $$g(x)$$ is with
 
 The value of $$\lambda$$ can be chosen via cross-validation. This method does not require the placements of knots.
 
-Rather than specifying $$\lambda$$, one can specify the effective degrees of freedom. The gerater the degrees of freedom, the more flexible the smoothing spline. 
+Rather than specifying $$\lambda$$, one can specify the effective degrees of freedom. The greater the degrees of freedom, the more flexible the smoothing spline. 
 
 ## In R
 
@@ -79,7 +79,7 @@ One good resource is Wolfram Demonstrations Project on [how loess works][loess_l
 
 Another good link is the [PH525 series][ph525_link]{:target = "_blank"}.
 
-In R, one can fit a loess curve with the function `loess()` or `splines::lo()`.
+In R, fit a loess curve with the function `loess()` or `splines::lo()`.
 
 **Advantages:**
 
@@ -95,7 +95,7 @@ In R, one can fit a loess curve with the function `loess()` or `splines::lo()`.
 # Generalized Additive Models
 Generalized additive models combines the nonlinear equations of several variables into one linear model. The idea is to fit a model to each variable separately. Any variety can be used (OLS, splines, loess, etc). Those models are then combined into a single general additive model. Even though GAMS are additive, lower order interactions can be included easily as well. 
 
-In R, one can fit this model in R by combining the other nonlinear methods. 
+In R, fit this model in R by combining the other nonlinear methods. 
 
 * Fit with `gam(Y ~ s(X1, ...) + bs(X2, ...) + X3 + ns(X4) + lo(X5, ...) + ...)`
 * View the plots with `plot.gam()`

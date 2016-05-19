@@ -24,15 +24,15 @@ categories: ['statistics', 'regression analysis']
 # Underfitting & Overfitting
 
 ## Underfitting
-Suppose the true model is $$ Y = X\beta + Z\gamma + \epsilon $$ and we fit the model $$ Y = X\beta + \epsilon $$. 
+Suppose the true model is $$ Y = X\beta + Z\gamma + \epsilon $$ and the model $$ Y = X\beta + \epsilon $$ is fit. 
 
-When we underfit, our estimates for $$\hat{\beta}$$ and $$\hat{\sigma}^2$$ are both biased. 
+When underfitted, the estimates for $$\hat{\beta}$$ and $$\hat{\sigma}^2$$ are both biased. 
 Because of the bias variance trade off, the $$Var[\hat{\beta}]$$ gets smaller.
 
 ## Overfitting
-Suppose the true model is $$ Y = \beta_1 X_1  + \epsilon $$ and we fit the model $$ Y = \beta_1 X_1 + \beta_2 X_2 + \epsilon $$.
+Suppose the true model is $$ Y = \beta_1 X_1  + \epsilon $$ and the model $$ Y = \beta_1 X_1 + \beta_2 X_2 + \epsilon $$is fit.
 
-When we over fit, our estimate of $$\hat{\beta}_1$$ is unbiased, but $$Var[\hat{\beta}_1]$$ is bigger.
+When overfitted, the estimate of $$\hat{\beta}_1$$ is unbiased, but $$Var[\hat{\beta}_1]$$ is bigger.
 
 
 # Outliers
@@ -143,7 +143,7 @@ A VIF of 1 indicates no correlation. VIFs greater than 5 are on the fence, furth
 * Influence statistics: `influence.measures(m)`
 * Influence plot: `influencePlot(m)`
 * Variance Inflation Factor: `vif(m)`
-* various values: `broom::augment(m)`
+* Various values: `broom::augment(m)`
 
 ## Assess Independence:
 Independence is generally difficult to test for. Generally scientific knowledge regarding the problem at hand should be used to assess independence of observations.
@@ -152,19 +152,19 @@ Independence is generally difficult to test for. Generally scientific knowledge 
 Residuals vs fitted values plots are useful for assessing linearity and homoskedaskticity.
 
 <img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
-Here we see that the plotted points are randomly distributed above and below 0. We can conclude that our assumptions of a linear relationship and equal variance were valid
+Here the plotted points are randomly distributed above and below 0. The assumptions of a linear relationship and equal variance were valid.
 
 <img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
-Here we see that our model does not have a linear relationship, indicated by the quadratic trend of our plot.
+Here the model does not have a linear relationship, indicated by the quadratic trend of the plot.
 
 <img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
-Here we see a funneling pattern as we increase fitted values. This indicates that we have heteroskedaskticity or unequal variance. A transformation may be necessary to make the variances equal.
+Here there is a funneling pattern as fitted values increase. This indicates that there is heteroskedaskticity or unequal variance. A transformation may be necessary to make the variances equal.
 
 ## Assess Normality: QQ Normal
-To assess whether our errors are normally distributed, we can use a QQ Normal plot. See more information on how to interpret [QQ plots][qq_link]{:target="blank"}.
+To assess whether the errors are normally distributed, use a QQ Normal plot. See more information on how to interpret [QQ plots][qq_link]{:target="blank"}.
 
 <img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
-Given an approximately linear trend, we can conclude that our errors are normally distributed.
+Given an approximately linear trend, the errors are normally distributed.
 
 ## Assess Outliers: Residuals Vs. Leverage Plot
 The residuals vs leverage plot can identify outliers in both x and y. In addition, these plots can incorporate Cook's distance to identify highly influential points. 
@@ -175,9 +175,9 @@ There are no observations beyond a Cook's Distance of 0.5 or 1, so there is no c
 ## Assess Individual X Variables: Added Variable Plots
 Also known as partial regression plots, added-variable plots are refined residual plots that provide graphic information about the marginal importance of predictor $$X_j$$, given that other variables are already in the model. 
 
-To generate these plots, we graph the residual from the model $$Y \sim X$$ (excluding $$X_j$$) vs. the residuals from the model $$X_j \sim X$$. The y-axis is the y-variable after removing the effect of the x-variables (except $$X_j$$). The x-axis is $$X_j$$ after removing the effect of the other x-variables. Plotting these two residuals against each other gives us the effect of $$X_j$$ after other variables have been adjusted for, in other words, the coefficient of $$X_j$$ in the full model. 
+To generate these plots, graph the residual from the model $$Y \sim X$$ (excluding $$X_j$$) vs. the residuals from the model $$X_j \sim X$$. The y-axis is the y-variable after removing the effect of the x-variables (except $$X_j$$). The x-axis is $$X_j$$ after removing the effect of the other x-variables. Plotting these two residuals against each other gives the effect of $$X_j$$ after other variables have been adjusted for, in other words, the coefficient of $$X_j$$ in the full model. 
 
-We can use these plots to tell us whether we should to include $$X_j$$ in the model and whether a transformation of $$X_j$$ is necessary.
+These plots can be used to determine whether $$X_j$$ should be included in the model and whether a transformation of $$X_j$$ is necessary.
 
 
 {% highlight r %}
@@ -218,7 +218,7 @@ coef(m1)
 
 <img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
-Note that the slope of the plot and the coefficient for volume on the full model are the same. We interpret this plot to mean that the variable $$Volume$$ provides a meaningful contribution after already adjusting for $$Girth$$. Thus $$ Volume$$ should be added to the model.
+Note that the slope of the plot and the coefficient for volume on the full model are the same. This plot means that the variable $$Volume$$ provides a meaningful contribution after already adjusting for $$Girth$$. Thus $$ Volume$$ should be added to the model.
 
 There is also a function in R: `car::avPlots()` or `av.Plots()`
 
@@ -238,9 +238,9 @@ car::avPlots(m1)
 ## Box Cox Transformations
 
 **Background**
-When regression diagnostics display a violation of assumptions, one step we can take is to transform our variables. The Box-Cox family of transformations provide a procedure for finding the best transformation. This parameterized family of transformations is continuous at $$y>0$$ for a fixed $$\lambda$$ and it is continuous at $$\lambda$$ for a fixed $$y$$, even at $$\lambda = 0$$. 
+When regression diagnostics display a violation of assumptions, one step is to transform the variables. The Box-Cox family of transformations provide a procedure for finding the best transformation. This parameterized family of transformations is continuous at $$y>0$$ for a fixed $$\lambda$$ and it is continuous at $$\lambda$$ for a fixed $$y$$, even at $$\lambda = 0$$. 
 
-Let Y be the response variable. Then <br>
+Let $$Y$$ be the response variable. Then <br>
 $$\mathbf{y^{(\lambda})} = \left[\begin{array}
 {rrr}
   \frac{y^{\lambda} - 1}{\lambda} & \lambda \ne 0 \\
@@ -267,7 +267,8 @@ $$2$$       | $$Y^2$$
 
 The $$\lambda$$ value corresponding to the best transformation can computed in R. 
 
-We will use this example data set.
+**Example**
+
 
 
 <div class = "dftab">
@@ -340,7 +341,7 @@ bcmod$x[bcmod$y == max(bcmod$y)]
 {% highlight text %}
 ## [1] -0.3030303
 {% endhighlight %}
-From the boxcox method we see that $$\lambda = -0.303$$. This corresponds to the $$\log(Y)$$ transformation. (Note that the inverse square root transformation is ok too).
+From the boxcox method $$\lambda = -0.303$$. This corresponds to the $$\log(Y)$$ transformation. (Note that the inverse square root transformation is ok too).
 
 
 {% highlight r %}
@@ -350,7 +351,7 @@ plot(transmod$residuals ~ transmod$fitted.values)
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
-After the transformation, we see that the prior heterskedaskticity has been alleviated. 
+After the transformation, the prior heterskedaskticity has been alleviated. 
 
 
 [qq_link]: http://jnguyen92.github.io/nhuyhoa//2015/10/qqplots.html

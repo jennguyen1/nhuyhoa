@@ -17,11 +17,11 @@ The regression equation:
 $$ Y = X\beta + \epsilon $$
 
 # Estimating Beta Coefficients
-In least squares regression, we attempt to minimize the sum squared errors ($$SSE$$). 
+In least squares regression, the objective is to minimize the sum squared errors ($$SSE$$). 
 
-Let $$Y$$ = observed responses and $$\hat{Y}$$ = fitted responses. $$\hat{Y}$$ lies on the column space of $$X$$, our design matrix. The idea is that there may not be a solution to $$Y = X\beta$$, so we project $$Y$$ onto the $$col(X)$$ in which we do have a solution. 
+Let $$Y$$ = observed responses and $$\hat{Y}$$ = fitted responses. $$\hat{Y}$$ lies on the column space of $$X$$, the design matrix. The idea is that there may not be a solution to $$Y = X\beta$$, so project $$Y$$ onto the $$col(X)$$ in which there is a solution. 
 
-In order to minimize the $$SSE$$s, we have $$Y-\hat{Y}$$ is perpendicular to $$col(X)$$:
+In order to minimize the $$SSE$$s, there is $$Y-\hat{Y}$$ is perpendicular to $$col(X)$$:
 
 $$ X^T(Y-\hat{Y}) = 0 $$
 $$ X^T\hat{Y} = X^TY = X^TX\hat{\beta}$$
@@ -36,7 +36,7 @@ $$l(\theta)$$ | $$ = \log(L(\theta))$$
               | $$ = m \log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \Sigma_i (y_i - \hat{y}_i)^2$$
               | $$ = m \log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$
 
-We can drop the constant so we get
+Drop the constant to get
 $$max \frac{-1}{2 \sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$
 
 which is equivalent to minimizing the $$SSE$$ (proportional)
@@ -69,18 +69,18 @@ So...
 
 $$ SSE = (Y - X\hat{\beta})^T(Y - X\hat{\beta}) = Y^TY - \hat{\beta}^TX^TX\hat{\beta} $$
 
-From this we can derive an unbiased estimate of $$\sigma^2$$, the mean square error:
+From this derive an unbiased estimate of $$\sigma^2$$, the mean square error:
 
 $$ MSE = \frac{SSE}{n - p} $$
 
 where $$p$$ is the number of parameters (including the intercept).
 
-Note that we always minimize the $$SSE$$. So the sum of the residuals is always equal to 0.
+Note that since the $$SSE$$ is minimized, the sum of the residuals is always equal to 0.
 
 $$ min( \Sigma (y - \hat{y})^2 ) \overrightarrow 2 \Sigma (y - \hat{y}) = 0 $$
 
 # Distribution of Beta Estimates
-We know that 
+
 $$ E[Y] = X\beta $$
 $$ Var[Y] = \sigma^2 $$
 
@@ -100,7 +100,7 @@ $$ Var[\hat{\beta}] $$| $$ = (X^TX)^{-1}X^TVar[Y]X(X^TX)^{-1} $$
 
 $$ Var[\hat{\beta}] = \sigma^2 (X^TX)^{-1} $$
 
-Thus $$ \hat{\beta}  \sim  N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma^2$$ is estimated with $$MSE$$, we use a t-distribution to determine the sigificance of the $$\hat{\beta}$$ parameter.
+Thus $$ \hat{\beta}  \sim  N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma^2$$ is estimated with $$MSE$$, use a t-distribution to determine the sigificance of the $$\hat{\beta}$$ parameter.
  
 # Regression Assumptions
 Assumptions for OLS require $$ e_i  \sim  N(0, \sigma^2I) $$, in other words:
@@ -114,7 +114,7 @@ These assumptions fullfill the requirement of the Gauss-Markov theorem.
 
 The Gauss-Markov theorem states that if
 
-* $$ E[e_i] = 0 $$
+* $$ E[e_i] = 0 $$.
 * $$ Var[e_i] = \sigma^2I $$ - homoskedasticity
 * $$ cov[e_i, e_j] \forall i \ne j $$ - uncorrelated errors
 

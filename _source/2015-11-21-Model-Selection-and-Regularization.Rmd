@@ -15,16 +15,10 @@ library(glmnet)
 knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
 ```
 
-# Bias Variance Tradeoff
-See [Bias Variance Tradeoff: Bias Variance Tradeoff][bv_tradeoff_post]{:target = "_blank"}.
-
-# Training & Testing Error
-See [Bias Variance Tradeoff: Training & Testing Error][bv_tradeoff_train_test_post]{:target = "_blank"}.
-
 # Subset Selection
 
 ## Model Statistics: Adj R2, AIC, BIC, Mallow's Cp
-We can use a variety of different statistics to compare models. Software will have functions to compute these statistics. These statistics should be used as guidelines, domain knowledge is always more important for determining which terms should be a part of the model.
+A variety of different statistics can be used to compare models. Software will have functions to compute these statistics. These statistics should be used as guidelines, domain knowledge is always more important for determining which terms should be a part of the model.
 
 When comparing model statistics, the underlying data should be the same across those models. For example, one cannot compare a model with and without an outlier using these statistics.
 
@@ -53,9 +47,6 @@ These model selection methods uses model statistics, such as AIC or overall F-st
 
 These methods can be implemented in R with the `step()` or `regsubsets()` function (The latter provides more options).
 
-# Cross Validation
-See [Bias Variance Tradeoff: Cross Validation][bv_tradeoff_cv_post]{:target = "_blank"}.
-
 # Shrinkage Methods, Regularization
 Shrinkage methods regularizes coefficient estimates and shrinks those coefficient estimates towards zero. Shrinking the estimates can significantly reduce variance and provide a better fit. 
 
@@ -69,16 +60,16 @@ Y <- 3+2*X[,1]-4*X[,2]+rnorm(200,0,.5)
 ```
 
 ## Ridge Regression
-In ridge regression, we find the values of $$\hat{\beta}_{ridge}$$ such that we minimize the equation
+In ridge regression, the values of $$\hat{\beta}_{ridge}$$ are found by minimizing the equation
 
 $$\sum^n_{i = 1} (y_i - \beta_0 - \sum^p_{j = 1} \beta_j x_{ij})^2 + \lambda \sum^p_{j = 1} \beta_j^2 = RSS + \lambda \sum^p_{j = 1} \beta^2_j$$
 
 where $$\lambda \ge 0$$ is a tuning parameter, chosen via cross-validation. 
 
-Or equivalently we minimize
+Or equivalently minimize
 $$ \sum^n_{i = 1} (y_i-\beta_0-\sum^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$\sum^p_{j = 1} \beta^2 \le s$$.
 
-Then we get
+Then 
 
 $$ \hat{\beta}_{ridge} = (X'X + \lambda I_p)^{-1} X'Y $$
 
@@ -91,8 +82,8 @@ The term $$\lambda \Sigma_j \beta^2_j$$ is a shrinkage penalty; it is small when
 **Important Notes:**
 
 * Ridge regression uses the $$l_2$$ norm, otherwise defined as $$\sqrt{\Sigma_{j = 1}^p \beta^2_j}$$ (euclidian distance)
-* While we shrink the $$\beta$$ coefficients, we do not shrink the intercept parameter
-* Ridge regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \beta^2_j$$ term), so we must standardize the covariates prior to applying ridge regression (good to standardize y responses too)
+* Shrink the $$\beta$$ coefficients, not the intercept parameter
+* Ridge regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \beta^2_j$$ term), so standardize the covariates prior to applying ridge regression (good to standardize y responses too)
 
 **Advantages:**
 
@@ -120,13 +111,13 @@ plot(glmnet(X,Y,alpha=0),xvar="lambda",label=T)
 Notice how as $$\lambda$$ increases, the coefficients are shrunk towards 0 (but not necessarily equal to 0).
 
 ## Lasso Regression
-In lasso regression, we find the values of $$\hat{\beta}_{lasso}$$ such that we minimize the equation
+In lasso regression, the values of $$\hat{\beta}_{lasso}$$ are found by minimizing the equation
 
 $$\sum^n_{i = 1} (y_i - \beta_0 - \sum^p_{j = 1} \beta_j x_{ij})^2 + \lambda \sum^p_{j = 1} \vert\beta_j \vert = RSS + \lambda \sum^p_{j = 1} \vert\beta_j \vert$$
 
 where $$\lambda \ge 0$$ is a tuning parameter, chosen via cross-validation. 
 
-Or equivalently we minimize
+Or equivalently minimize
 $$ \sum^n_{i = 1} (y_i-\beta_0-\sum^p_{j = 1} \beta_j x_{ij})^2 $$ subject to $$\sum^p_{j = 1} \vert \beta \vert \le s$$.
 
 The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tuning parameter $$\lambda$$ controls the impact of shrinkage. Lasso is different from ridge because it can shrink the coefficient estimates to zero when $$\lambda$$ is large. Thus lasso regression can perform variable selection.
@@ -134,8 +125,8 @@ The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tu
 **Important Notes:**
 
 * Ridge regression uses the $$l_1$$ norm, otherwise defined as $$\Sigma_{j = 1}^p \vert \beta_j \vert$$ (manhattan distance)
-* While we shrink the $$\beta$$ coefficients, we do not shrink the intercept parameter
-* Lasso regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \vert \beta_j \vert$$ term), so we must standardize the covariates prior to applying lasso regression (good to standardize y responses too)
+* Shrink the $$\beta$$ coefficients, not the intercept parameter
+* Lasso regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \vert \beta_j \vert$$ term), so standardize the covariates prior to applying lasso regression (good to standardize y responses too)
 
 **Advantages:**
 
@@ -164,22 +155,16 @@ plot(glmnet(X,Y,alpha=1),xvar="lambda",label=T)
 Notice how as $$\lambda$$ increases, the coefficients are shrunk directly towards 0.
 
 ## Elastic Net
-Elastic net is an approach that blends both the $$l_2$$ and $$l_1$$ norm. In elastic net, we minimize the equation
+Elastic net is an approach that blends both the $$l_2$$ and $$l_1$$ norm. In elastic net, the objective is to minimize the equation
 $$ argmin_{\beta} \vert y - X \beta \vert^2 $$
 
 subject to $$(1 - \alpha) * \sum^p_{j = 1} \vert \beta_j \vert + \alpha * \sum^p_{j = 1} \beta^2_j \le t $$ for some $$t$$ (elastic net penalty) where $$ \alpha = \frac{\lambda_2}{\lambda_1 + \lambda_2}$$, chosen by cross-validation.
 
-* When $$\alpha = 1$$, we have ridge regression
-* When $$\alpha = 0$$, we have LASSO regression
-* When $$\alpha \in (0, 1)$$, we have a mix of ridge and LASSO
+* When $$\alpha = 1$$, have ridge regression
+* When $$\alpha = 0$$, have LASSO regression
+* When $$\alpha \in (0, 1)$$, have a mix of ridge and LASSO
 
 Note that since elastic net is a hybrid of ridge and LASSO, the covariates should be scaled prior to fitting the model (good to standardize y responses too).
 
-# Dimension Reduction Techniques
-See [Dimension Reduction][dimension_reduction_post]{:target = "_blank"}.
 
-[bv_tradeoff_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance.html#bias-variance-tradeoff
-[bv_tradeoff_train_test_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance.html#training--testing-error
-[bv_tradeoff_cv_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Bias-Variance.html#cross-validation
 [glmnet_vignette]: https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html
-[dimension_reduction_post]: http://jnguyen92.github.io/nhuyhoa//2016/01/ML-Dimension-Reduction.html

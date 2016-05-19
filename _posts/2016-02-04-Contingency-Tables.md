@@ -64,7 +64,7 @@ It is important to note that
 
 * Require CLT so that the expected number of each category is $$\ge 5$$; if needed, may collapse cells
 * The degrees of freedom of $$X^2$$ depends on the number of independent counts
-* Reject the $$H_0$$ if the observed counts are very different from the expected counts (thus a greater $$X^2$$)
+* Reject the $$H_0$$ if the observed counts are very different from the expected counts
 
 How are the probabilities obtained? They may be given from an external source. 
 
@@ -105,7 +105,7 @@ If the model is true, $$E[X^2] = E[G^2] = df$$ and the typical size of a single 
 
 # I x J Contingency Tables
 
-The examples below use the $$X^$$ test statistic. The deviance statistic is generated similar to the formula defined above.
+The examples below use the $$X^2$$ test statistic. The deviance statistic is generated similar to the formula defined above.
 
 ## Homogeneity
 The test for homogeneity tests whether two or more multinomial distributions are equal. That is, the row totals are held fixed. 
@@ -128,7 +128,7 @@ The test statistic is
 
 $$X^2 = \sum^I_{i = 1} \sum^J_{j = 1} \frac{(y_{ij} - n_i \hat{p}_j)^2}{n_i \hat{p}_j}$$
 
-Thus $$I(J - 1)$$ df (each row is multinomial so $$n_i$$ is fixed) and estimate $$(J - 1)$$ parameters ($$\hat{p}_j$$). So 
+The model has $$I(J - 1)$$ df (each row is multinomial so $$n_i$$ is fixed) and estimates $$(J - 1)$$ parameters ($$\hat{p}_j$$). So 
 
 $$df  = IJ - I - J + 1 = (I - 1)(J - 1)$$
 
@@ -157,7 +157,7 @@ The test statistic is
 
 $$X^2 = \sum^I_{i = 1} \sum^J_{j = 1} \frac{(y_{ij} - \frac{y_{i.} y_{.j}}{n})^2}{\frac{y_{i.} y_{.j}}{n}}$$
 
-Thus $$(IJ - 1)$$ df (only grand total $$n$$ is fixed) and estimate $$(I + J - 2)$$ parameters (marginal probabilities). So 
+The model has $$(IJ - 1)$$ df (only grand total $$n$$ is fixed) and estimates $$(I + J - 2)$$ parameters (marginal probabilities). So 
 
 $$df  = IJ - 1 + - I - J + 2 = IJ - I - J + 1 = (I - 1)(J - 1)$$
 
@@ -169,7 +169,7 @@ A test statistic or p-value is a measure of the evidence against $$H_0$$ that de
 Measures of association should not change if cell counts $$n_{ij}$$ are replaced by $$kn_{ij}$$ for some constant factor $$k$$. Sensitivity analsysis should be done to check that this is the case in analyses. 
 
 ## Fischer's Exact Test
-When the row totals and column totals are fixed by design, this is hypergeometric sampling. These types of tables can be assessed with exact tests. Exact tests are also useful when sample sizes are small and asymptotic approximations are violated. 
+Hypergeometric sampling is when the row totals and column totals are fixed by design. These types of tables can be assessed with exact tests. Exact tests are also useful when sample sizes are small and asymptotic approximations are violated. 
 
 Consider the following table
 
@@ -184,10 +184,9 @@ $$P(k, N, D, n) = \frac{\binom{D}{k} \binom{N - D}{n - k}}{\binom{N}{n}}$$
 
 where $$k = 1, ..., n$$
 
-Using this definition, the exact distribution of $$k$$ can be mapped out and compared to the observed $$k$$ to obtain a p-value.
+Using this definition, the exact distribution of $$k$$ can be mapped out, compared to the observed $$k$$ and to obtain a p-value.
 
-Extensions to $$I x J$$ tables are implenented in statistical software.
-
+Extensions to $$I x J$$ tables are implemented in statistical software.
 
 # Point Estimators
 
@@ -210,13 +209,13 @@ The variance of this estimate is
 
 $$Var(\delta) = Var(p_1 - p_2) = Var(p_1) + Var(p_2) = \frac{p_1(1 - p_1)}{n_{1+}} + \frac{p_2(1 - p_2)}{n_{2+}}$$
 
-The values $$p_1$$ and $$p_2$$ can be estimated with $$\hat{p_1}$$ and $$\hat{p_2}$$ from the data. This variance estimate is generally used in confidence intervals. Use the normal approximation to the bionomial distribution.
+The values $$p_1$$ and $$p_2$$ can be estimated with $$\hat{p}_1$$ and $$\hat{p}_2$$ from the data. This variance estimate is generally used in confidence intervals. Use the normal approximation to the bionomial distribution.
 
 For hypothesis testing under $$H_0: p_1 = p_2$$, obtain a more efficient estimate of $$Var(\hat{\delta})$$ using the pooled proportion $$\hat{p} = \frac{n_{11} + n_{21}}{n_{1+} + n_{2+}}$$. 
 
 $$Var(\hat{\delta}) = \hat{p}(1 - \hat{p}) \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$$
 
-The statistic $$Z = \frac{\hat{\delta}}{\sqrt{Var(\hat{\delta})}} $$ is approximately distributed $$N(0, 1)$$.
+The statistic $$Z = \frac{\hat{\delta}}{\sqrt{Var(\hat{\delta})}} \sim N(0, 1)$$.
 
 ## Relative Risk
 The relative risk is defined as 
@@ -229,7 +228,7 @@ $$\hat{\rho} = \frac{n_{11} / n_{1+}}{n_{21} / n_{2+}}$$
 
 Since this value is non-negative, take the $$\log$$ of $$\rho$$ to obtain a more normal distribution. 
 
-The approximate variance of $$\rho$$ (using the Delta method) is
+The approximate variance of $$\rho$$ (using the delta method) is
 
 --------------------|------------------------------
 $$Var(\log(\rho))$$ | $$= Var(\log(p_1) - \log(p_2))$$
@@ -307,9 +306,9 @@ In order to compute $$r$$, assign scores or numerical values to the categorical 
 Once these scores are assigned, the relationships can be deaggregated and the correlation $$r$$ can be computed. 
 
 # Dependence
-Matched pairs are two samples that are statistically dependent. THe objective is to determine whether the margins of the table are the same.
+Matched pairs are two samples that are statistically dependent. The objective is to determine whether the margins of the table are the same.
 
-Suppose people are surveyd at two time points and the objective is to measure whether their categorization stays the same over time.
+Suppose people are surveyed at two time points and the objective is to measure whether their categorization stays the same over time.
 
 $$H_0: p_{12} = p_{21}$$
 
@@ -321,7 +320,7 @@ Assuming that $$n_{12} + n_{21}$$ is large, the test statistic is
 
 $$Z = \frac{\frac{n_{12}}{n_{12} + n_{21}} - 0.5 }{\sqrt{\frac{0.5(1 - 0.5)}{n_{12} + n_{21}}}} = \frac{n_{12} - n_{21}}{\sqrt{n_{12} + n_{21}}}$$
 
-where $$Z$$ is approximately $$N(0, 1)$$ if cell counts are large ($$\ge 5$$) or distributed $$Bin(n_{12} + n_{21}, 0.5)$$.
+where $$Z \sim N(0, 1)$$ if cell counts are large ($$\ge 5$$) or distributed $$Bin(n_{12} + n_{21}, 0.5)$$.
 
 Square the above value to get
 
@@ -329,7 +328,7 @@ $$X^2 = \frac{(n_{12} - n_{21})^2}{\sqrt{n_{12} + n_{21}}}$$
 
 where $$X^2 \sim \chi^2_1$$. This test is valid when $$n$$ is fixed (but not $$n_{12} + n_{21}$$). 
 
-WObtain confidence intervals on the difference between the marginal proportions
+Obtain confidence intervals on the difference between the marginal proportions
 
 $$d = p_{1+} - p_{+1} = p_{12} - p_{21}$$
 
@@ -386,7 +385,7 @@ The test statistic
 
 $$X^2 = \sum_i \sum_j \sum_k \frac{(n_{ijk} - E_{ijk})^2}{E_{ijk}}$$
 
-is distributed $$\chi^2_{IJK - I - J - K + 2}$$.
+where $$X^2 \sim \chi^2_{IJK - I - J - K + 2}$$.
 
 ## Joint Independence
 Under the model of joint independence
@@ -423,7 +422,7 @@ that is for each value of $$C$$, $$A \perp B$$.
 
 There are two ways to test this hypothesis
 
-* Sum up $$X^2$$ or $$G^2$$ statistics from the levels of $$A$$ (sum of $$\chi^2$$ is $$\chi^2$$). The total $$df = K(I - 1)(J - 1)$$. 
+* Sum up $$X^2$$ or $$G^2$$ statistics from the levels of $$A$$ (sum of $$\chi^2$$ is $$\chi^2$$); the total $$df = K(I - 1)(J - 1)$$
 * Cochran-Mantel-Haenszel test
 
 The Cochran-Mantel-Haenszel test for $$2x2xK$$ tables has
@@ -458,9 +457,9 @@ The Breslow-Day statistic is
 
 $$X^2 = \sum_i \sum_j \sum_k \frac{(O_{ijk} - E_{ijk}) ^2}{E_{ijk}}$$
 
-where $$X^2$$ is approximately $$\chi^2_{K - 1}$$. 
+where $$X^2 \sim \chi^2_{K - 1}$$. 
 
-The Breslow-Day statistic does not work well with small smaple sizes nor can it be applied to $$IxJxK$$ tables. 
+The Breslow-Day statistic does not work well with small sample sizes nor can it be applied to $$IxJxK$$ tables. 
 
 # Log Linear Models
 Recall that for testing independence in tables, each cell is distributed Poisson. 
