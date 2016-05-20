@@ -16,7 +16,7 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
 # Principal Components Analysis (PCA)
-PCA is a dimension-reduction tecnique that produces a low-dimensional representation of a high-dimensional dataset. It finds a sequence of linear combinations of the variables that have
+PCA is a dimension-reduction technique that produces a low-dimensional representation of a high-dimensional dataset. It finds a sequence of linear combinations of the variables that have 
 
 * Maximal variance
 * Mutually uncorrelated (orthogonal)
@@ -24,7 +24,7 @@ PCA is a dimension-reduction tecnique that produces a low-dimensional representa
 In doing so, PCA can reduce the number of features from $$p$$ to $$M$$, where $$M < p$$.
 It is often helpful in dealing with cases in which the curse of dimensionality is severe. 
 
-The curse of dimensionality refers to the breakdown of modeling techniques when the number of parameters increase. For example in KNN, increasing the number of dimensions results in data points that are farther away which affects the algorithm efficiency.
+The curse of dimensionality refers to the breakdown of modeling techniques when the number of parameters increase. For example in KNN, increasing the number of dimensions results in data points that are farther away, which affects the algorithm efficiency.
 
 Prior to running the PCA algorithm, it is necessary to **standardize** the features. If the data is not normalized features with large values and large variances will dominate the principal components. Normalizing the features will ensure that all variables are on the same scale and have an equal opportunity to contribute to PCA. 
 

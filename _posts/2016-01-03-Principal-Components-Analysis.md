@@ -11,7 +11,7 @@ categories: ['statistics', 'multivariate analysis']
 
 
 # Principal Components Analysis (PCA)
-PCA is a dimension-reduction tecnique that produces a low-dimensional representation of a high-dimensional dataset. It finds a sequence of linear combinations of the variables that have
+PCA is a dimension-reduction technique that produces a low-dimensional representation of a high-dimensional dataset. It finds a sequence of linear combinations of the variables that have 
 
 * Maximal variance
 * Mutually uncorrelated (orthogonal)
@@ -19,7 +19,7 @@ PCA is a dimension-reduction tecnique that produces a low-dimensional representa
 In doing so, PCA can reduce the number of features from $$p$$ to $$M$$, where $$M < p$$.
 It is often helpful in dealing with cases in which the curse of dimensionality is severe. 
 
-The curse of dimensionality refers to the breakdown of modeling techniques when the number of parameters increase. For example in KNN, increasing the number of dimensions results in data points that are farther away which affects the algorithm efficiency.
+The curse of dimensionality refers to the breakdown of modeling techniques when the number of parameters increase. For example in KNN, increasing the number of dimensions results in data points that are farther away, which affects the algorithm efficiency.
 
 Prior to running the PCA algorithm, it is necessary to **standardize** the features. If the data is not normalized features with large values and large variances will dominate the principal components. Normalizing the features will ensure that all variables are on the same scale and have an equal opportunity to contribute to PCA. 
 
@@ -189,11 +189,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.719    2.797    2.612    2.678    2.731
-## adjCV        6.123    2.707    2.781    2.593    2.656    2.706
+## CV           6.123    2.692    2.720    2.519    2.570    2.621
+## adjCV        6.123    2.679    2.707    2.506    2.555    2.605
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.807    3.016    3.046    3.502     3.968
-## adjCV    2.778    2.977    3.003    3.428     3.861
+## CV       2.735    2.842    2.947    3.488     3.745
+## adjCV    2.710    2.813    2.908    3.412     3.647
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps

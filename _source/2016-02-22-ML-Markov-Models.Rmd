@@ -37,9 +37,9 @@ $$P(X) = P(X_1 X_2) \prod^L_{i = 3} P(X_i \vert X_{i - 1} X_{i - 2})$$
 
 Increasing the order may add predictive value, however it requires a greater number of parameters to be estimated. 
 
-Transition probabilities (marginal and conditional) can be estimated from the data. These may be adjusted (by adding 1 to all counts) to prevent $$0$$ probabilities. 
+Transition probabilities (marginal and conditional) can be estimated from the data. These may be adjusted (by adding 1 to all counts) to prevent $$0$$ probabilities.
 
-Markov models have a wide set of applications; some examples include gene finding and gene segmentation. One example would be to differentiate sequences containing a CpG island from a non-CpG island. One can estimate this by comparing the conditional transition probabilities. 
+Markov models have a wide set of applications; some examples include gene finding and gene segmentation. One example would be to differentiate sequences containing a CpG island from a non-CpG island. This can be estimated by comparing the conditional transition probabilities. 
 
 # Hidden Markov Models
 

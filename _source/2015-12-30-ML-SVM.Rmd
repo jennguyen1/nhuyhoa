@@ -14,7 +14,7 @@ lib(data, viz)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
-For binary classification problems, support vector machines may be used to find a plane that separates classes in the feature space. Features hsould be standardized prior to applying SVM.
+For binary classification problems, support vector machines may be used to find a plane that separates classes in the feature space. Features should be standardized prior to applying SVM.
 
 # Separating Hyperplane
 The separating hyperplane has the form <br>
@@ -60,7 +60,7 @@ In the figure below, there are 3 training observations are are equidistant from 
 A schematic diagram of maximum margin classifier (Hastie, et. al).
 
 # Slack Variables and C Boundary
-The separating hyperplane is sensitive to the support vectors, and thus may be overfitting the data. Thus to accommodate this issue, one maximize a soft margin. 
+The separating hyperplane is sensitive to the support vectors, and thus may be overfitting the data. Thus to accommodate this issue, one must maximize a soft margin. 
 
 Slack variables,  $$\epsilon_i$$, are values that indicate where the $$i^{th}$$ observation is located relative to the hyperplane and margins. 
 

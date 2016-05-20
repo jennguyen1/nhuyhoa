@@ -41,13 +41,16 @@ This task is pretty straightforward. One can compute the joint probability table
 This task is a bit harder. If an expert provides the structure, this step can be ignored. Otherwise, one can cast the structure-learning task as a search problem. 
 
 There are 3 main structure search operators:
+
 * add an edge
 * delete an edge
 * reverse an edge
 
 To compare network structures, use a scoring function. One example is <br>
-$$score(G:D) = \log\left( P(G \vert D) \right)$$ <br>
-$$ = \log \left( P(D \vert G) \right) + \log \left( P(G) \right) + C$$
+
+-------------|----------
+$$score(G:D)$$ | $$ = \log\left( P(G \vert D) \right)$$
+               | $$ = \log \left( P(D \vert G) \right) + \log \left( P(G) \right) + C$$
 
 which is derived from <br>
 $$\log\left( P(G \vert D) \right) = \int P(D \vert G, \Theta) P(\Theta \vert G) d\Theta$$

@@ -10,7 +10,7 @@ categories: ['statistics', 'multivariate analysis']
 
 
 
-Clustering is an unsupervised learning technique. Unsupervised learning methods are employed when only the features are observed (and not the associated response variable). In these cases, prediction is not hte objective. The goal is to find an informative way of visualizing data or discover subgroups among the observations. Thus, it is more of an exploratory technique.
+Clustering is an unsupervised learning technique. Unsupervised learning methods are employed when only the features are observed (and not the associated response variable). In these cases, prediction is not the objective. The goal is to find an informative way of visualizing data or discover subgroups among the observations. Thus, it is more of an exploratory technique.
 
 **Advantages:**
 
@@ -74,7 +74,7 @@ $$ min_{C_1 ... C_K} \sum^K_{k = 1} \sum_{i \in C_k} \sum^p_{j = 1} (x_{ij} - \b
 
 This algorithm will find the local minimum for cluster assignments, but it is not guaranteed to find a global minimum. This is because the cluster assignments were intially randomized. 
 
-To alleviate this problem, run the algorithm many times with random cluster assignments each time. In doing this, the replication that best minizes the optimization problem is the global minimum.
+To alleviate this problem, run the algorithm many times with random cluster assignments each time. In doing this, the replication that best minimizes the optimization problem is the global minimum.
 
 ![K-means with random starts](http://jnguyen92.github.io/nhuyhoa/figure/images/cluster_kmeans_random_starts.png)
 
@@ -85,7 +85,7 @@ To alleviate this problem, run the algorithm many times with random cluster assi
 Consider the iris data set. Here is the true data.
 <img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
-Pretend that these groupings are unknown and run a K-means clustering algorithm. 
+Pretend that these groupings are unknown and run a K-means clustering algorithm
 
 {% highlight r %}
 # generate the data
@@ -174,14 +174,14 @@ This step may also involve re-estimating the covariance matrix (if it is not hel
 With hierarchical clustering, the goal is to generate a tree-like visual representation of the observations (dendrogram) to view the clusterings obtained for each possible number of clusters. In this case, $$K$$ is not preset. 
 
 ## Algorithm
-Hierarchical clustering uses a bottom-up clustering method to generate a dendeogram tree. This means that it grows a tree starting from the leaves. (Classification/regression trees use a top-down clustering method).
+Hierarchical clustering uses a bottom-up clustering method to generate a dendrogram tree. This means that it grows a tree starting from the leaves. (Classification/regression trees use a top-down clustering method).
 
 1. Begin with $$n$$ observations and a measure of all the $${n \choose 2}$$ pairwise dissimilarities. Add each cluster (individual observations) to the list of clusters to be joined
 2. While number of clusters to be joined is greater than 1:
-  * Examine all pairwise intercluster dissimilarities among the available clusters.
-  * Fuse the pair of clusters that are most similar: remove pair of clusters and add its new fusion to list of clusters to be joined.
-  * The dissimilarity b/n two clusters indicate the height of dendrogram at which fusion is placed.
-  * Compute new pairwise intercluster dissimilarities among the $$i - 1$$ remaining clusters.
+  * Examine all pairwise intercluster dissimilarities among the available clusters
+  * Fuse the pair of clusters that are most similar: remove pair of clusters and add its new fusion to list of clusters to be joined
+  * The dissimilarity b/n two clusters indicate the height of dendrogram at which fusion is placed
+  * Compute new pairwise intercluster dissimilarities among the $$i - 1$$ remaining clusters
 
 ![hierarchical clustering algorithm](http://jnguyen92.github.io/nhuyhoa/figure/images/cluster_hierarchical_algorithm.png)
 
@@ -237,13 +237,9 @@ hc <- hclust(dist(ir), method = "average")
 ggdendro::ggdendrogram(hc)
 {% endhighlight %}
 
+<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
-
-{% highlight text %}
-## Error in loadNamespace(name): there is no package called 'ggdendro'
-{% endhighlight %}
-
-Cutting the dendrogram into 3 groups generates a slid cluster for the $$setosa$$ group (homogeneous and small cluster size). The other two groups are have some misclassifications, potentially due to the hazy boundry line between $$versicolor$$ and $$virginica$$.
+Cutting the dendrogram into 3 groups generates a cluster for the $$setosa$$ group (homogeneous and small cluster size). The other two groups are have some misclassifications, potentially due to the hazy boundry line between $$versicolor$$ and $$virginica$$.
 
 
 {% highlight r %}
@@ -253,24 +249,14 @@ hc2 <- as.dendrogram(hc)
 plot(dendextend::color_labels(hc2, 3))
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in loadNamespace(name): there is no package called 'dendextend'
-{% endhighlight %}
-
-
+<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 {% highlight r %}
 # color the brances
 plot(dendextend::color_branches(hc2, 3))
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in loadNamespace(name): there is no package called 'dendextend'
-{% endhighlight %}
+<img src="/nhuyhoa/figure/source/2016-01-02-Clustering/unnamed-chunk-7-2.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 # DBSCAN
 The DBSCAN algorithm is a density based clustering algorithm. It groups objects into one cluster if they are connected to one another by a densely populated area.

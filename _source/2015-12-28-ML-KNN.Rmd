@@ -16,7 +16,7 @@ library(class)
 ```
 
 # K Nearest Neighbors
-The k nearest neighbors method assigns a point based on its k nearest neighbors.
+The k nearest neighbors method assigns a point a value based on its k nearest neighbors.
 
 * The distance metric is defined by the user (common methods include Euclidian distance, Manhattan distance, correlation metrics, etc)
 * Parameter $$k$$ found via cross-validation

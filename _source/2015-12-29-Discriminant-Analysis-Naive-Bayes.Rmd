@@ -18,7 +18,7 @@ knitr::opts_chunk$set(fig.width = 6, fig.height = 5, fig.align = 'center')
 
 
 # Classification Techniques
-There are a number of classification techniques. Logistic and multinomial regression are called discriminant learning algorithms which learn $$p(y\vert x)$$ directly. 
+There are a number of classification techniques. Logistic and multinomial regression are called discriminant learning algorithms which learn $$p(y\vert x)$$ directly.
 
 Naive bayes and linear/quadratic discriminant analysis are called generative learning algorithms that try to model $$p(x\vert y)$$ and $$p(y)$$. They use Bayes rule to derive $$p(y\vert x)$$.
 
@@ -194,7 +194,7 @@ Use the [EM algorithm][em_post]{:target = "_blank"}.
 * Initially guess the labels for each example
 * Repeat until convergence
   * E-Step: train Naive Bayes using labeled examples
-  * M-Step: use model to predict the labels for originally unlabled examples
+  * M-Step: use model to predict the labels for originally unlabeled examples
 
 ## In R
 

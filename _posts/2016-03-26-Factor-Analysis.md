@@ -12,7 +12,7 @@ categories: ['statistics', 'multivariate analysis']
 
 
 # Motivating Example
-Consider a data set of children test scores. There are $$n$$ children and test scores for $$6$$ subjects. There is high correlation across the subjects. 
+Consider a data set of test scores. There are $$n$$ test takers and test scores for $$6$$ subjects. There is high correlation across the subjects. 
 
 
 
@@ -53,9 +53,9 @@ These hidden factors can be modeld with factor analysis.
 
 Suppose there are $$p$$ variables ($$X_1$$, $$X_2$$, ..., $$X_p$$) measured on a sample of $$n$$ subjects, then the variable $$i$$ can be written as a linear combination of $$m$$ factors ($$f_1$$, $$f_2$$, ... $$f_m$$) where $$m < p$$.
 
-$$\overrightarrow{X}_i = L_{pxm} \overrightarrow{f} + \overrrightarrow{\epsilon}$$
+$$\overrightarrow{X}_i = L_{pxm} \overrightarrow{f} + \overrightarrow{\epsilon}$$
 
-where $$X_i$$ is a $$nx1$$ vector and $$L$$ is the matrix of factor loadings for variable $$i$$ and $$\overrrightarrow{\epsilon}$$ is the portion of $$X_i$$ that cannot be explained by the factors.
+where $$X_i$$ is a $$nx1$$ vector and $$L$$ is the matrix of factor loadings for variable $$i$$ and $$\overrightarrow{\epsilon}$$ is the portion of $$X_i$$ that cannot be explained by the factors.
 
 For the example above $$\overrightarrow{f}$$ is a two element vector. The first element $$f_{1}$$ refers to the overall academic ability of that student and the second element $$f_{2}$$ is the difference in ability between STEM and humanities for that student. 
 
