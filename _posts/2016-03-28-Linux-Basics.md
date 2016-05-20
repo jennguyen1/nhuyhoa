@@ -771,6 +771,9 @@ Rscript script.R
 
 # run script; output results to specified file
 R CMD BATCH -q script.R myfile.txt
+
+# run script with arguments
+R CMD BATCH '--args arg1=val arg2=val' in_file.R out_file.out
 {% endhighlight %}
 
 To run scripts as commands, there are a few things that should be done

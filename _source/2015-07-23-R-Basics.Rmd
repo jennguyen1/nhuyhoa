@@ -248,6 +248,30 @@ opt <- parse_args(OptionParser(option_list=option_list))
 opt$generator
 ```
 
+Another option is to use `commandArgs()`
+
+```{r, eval = FALSE}
+# obtain command line args
+args <- commandArgs(TRUE)
+
+# process args
+if( length(args)==0 ){
+  # No arguments given
+  # supply default values
+} else{
+  for(i in 1:length(args)){
+    eval( parse(text = args[[i]]) )
+  }
+}
+```
+
+On the command line, run the script using
+
+```{r, eval = FALSE}
+R CMD BATCH '--args arg1=val arg2=val' in_file.R out_file.out
+```
+
+
 ## Output
 
 Options for file output include
