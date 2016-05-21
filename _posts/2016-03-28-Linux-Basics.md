@@ -773,27 +773,8 @@ Rscript script.R
 R CMD BATCH -q script.R myfile.txt
 
 # run script with arguments
-R CMD BATCH '--args arg1=val arg2='$1'' in_file.R out_file.out
-{% endhighlight %}
-
-To run scripts as commands, there are a few things that should be done
-
-{% highlight r %}
-# add a shebang to the first line with the location of R
-#!/usr/local/bin/Rscript
-
-# ensure that the code is executable
-chmod +x scriptName.R
-{% endhighlight %}
-
-Once the following are done, R scripts can also be run with command line arguments (using the `optparse` package).
-
-{% highlight r %}
-# obtain help for a script
-./scriptName.R --help
-
-# call script from command line with arguments
-./scriptName.R --mean=3 --sd=1 -c 4
+R CMD BATCH '--args -c=4 --mean=4' in_file.R out_file.out
+Rscript in_file.R -c=4 --mean=4
 {% endhighlight %}
 
 ## Python

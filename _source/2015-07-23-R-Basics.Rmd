@@ -234,41 +234,23 @@ library(optparse)
 
 # declare the arguments in the file
 option_list <- list(
-  make_option(c("-v", "--verbose"), action="store_true", default=TRUE, help="Print extra output [default]"),
-  make_option(c("-q", "--quietly"), action="store_false", dest="verbose", help="Print little output"),
-  make_option(c("-c", "--count"), type="integer", default=5, help="Number of random normals to generate [default %default]", metavar="number"),
   make_option("--generator", default="rnorm", help = "Function to generate random deviates [default \"%default\"]"),
+  make_option(c("-c", "--count"), type="integer", default=5, help="Number of random normals to generate [default %default]", metavar="number"),
   make_option("--mean", default=0, help="Mean if generator == \"rnorm\" [default %default]"), 
   make_option("--sd", default=1, metavar="standard deviation", help="Standard deviation if generator == \"rnorm\" [default %default]")
 )
 
 opt <- parse_args(OptionParser(option_list=option_list))
 
-# access the command line arguments with
-opt$generator
-```
-
-Another option is to use `commandArgs()`
-
-```{r, eval = FALSE}
-# obtain command line args
-args <- commandArgs(TRUE)
-
-# process args
-if( length(args)==0 ){
-  # No arguments given
-  # supply default values
-} else{
-  for(i in 1:length(args)){
-    eval( parse(text = args[[i]]) )
-  }
-}
+# access the command line arguments with this list
+opt
 ```
 
 On the command line, run the script using
 
 ```{r, eval = FALSE}
-R CMD BATCH '--args arg1=val arg2=val' in_file.R out_file.out
+R CMD BATCH '--args -c=4 --mean=4' in_file.R out_file.out
+Rscript in_file.R -c=4 --mean=4
 ```
 
 

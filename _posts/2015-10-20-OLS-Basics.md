@@ -23,7 +23,7 @@ Let $$Y$$ = observed responses and $$\hat{Y}$$ = fitted responses. $$\hat{Y}$$ l
 
 In order to minimize the $$SSE$$s, there is $$Y-\hat{Y}$$ is perpendicular to $$col(X)$$:
 
-$$ X^T(Y-\hat{Y}) = 0 $$
+$$ X^T(Y-\hat{Y}) = 0 $$ <br>
 $$ X^T\hat{Y} = X^TY = X^TX\hat{\beta}$$
 
 $$ \hat{\beta} = (X^TX)^{-1}X^TY $$
@@ -71,9 +71,9 @@ $$ SSE = (Y - X\hat{\beta})^T(Y - X\hat{\beta}) = Y^TY - \hat{\beta}^TX^TX\hat{\
 
 From this derive an unbiased estimate of $$\sigma^2$$, the mean square error:
 
-$$ MSE = \frac{SSE}{n - p} $$
+$$ MSE = \frac{SSE}{n - p - 1} $$
 
-where $$p$$ is the number of parameters (including the intercept).
+where $$p$$ is the number of parameters (not including the intercept).
 
 Note that since the $$SSE$$ is minimized, the sum of the residuals is always equal to 0.
 
@@ -138,7 +138,7 @@ c(B)
 
 
 {% highlight text %}
-## [1]  0.078064400  0.009143416 -0.257837684 -0.075120675
+## [1] -0.18063945  0.01538193  0.10017054  0.18027121
 {% endhighlight %}
 
 
@@ -152,7 +152,7 @@ c(coef)
 
 
 {% highlight text %}
-##  (Intercept)           x1           x2           x3 
-##  0.078064400  0.009143416 -0.257837684 -0.075120675
+## (Intercept)          x1          x2          x3 
+## -0.18063945  0.01538193  0.10017054  0.18027121
 {% endhighlight %}
 
