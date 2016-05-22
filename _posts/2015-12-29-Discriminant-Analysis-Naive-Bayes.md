@@ -84,7 +84,7 @@ In quadratic discriminant analysis, do not make the assumption that the covarian
 
 This changes the discriminant function to 
 
-$$\delta_k(x) = -\frac{1}{2}(x - \mu_k)^T \Sigma^{-1}_k(x - \mu_k) + \log(\pi_k)$$ 
+$$\delta_k(x) = -\frac{1}{2}\log\vert \Sigma_k \vert -\frac{1}{2}(x - \mu_k)^T \Sigma^{-1}_k(x - \mu_k) + \log(\pi_k)$$ 
 
 ## In R
 
@@ -301,4 +301,4 @@ predict(nB.fit, iris[4:5,])
 * Can make the assumption that features are independent (conditional on response)
 * Despite strong assumptions, works well on many problems
 
-[em_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Generic-Algorithms.html#expectation-maximization
+[em_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/Generic-Algorithms.html#expectation-maximization

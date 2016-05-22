@@ -49,7 +49,7 @@ $$ \hat{\epsilon}_i = y_i - \hat{y}_i $$
 
 **Internally standardized residuals** 
 
-$$ r_i = \frac{\hat{\epsilon}_i }{\hat{\sigma \sqrt{1 - h_{ii}}}}$$ 
+$$ r_i = \frac{\hat{\epsilon}_i }{\hat{\sigma} \sqrt{1 - h_{ii}}}$$ 
 
 where $$\frac{r_i^2}{n - p} \sim Beta(\frac{1}{2}, \frac{1}{2}(n - p - 1))$$
 

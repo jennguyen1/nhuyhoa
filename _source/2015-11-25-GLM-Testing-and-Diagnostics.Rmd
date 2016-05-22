@@ -43,7 +43,7 @@ The Pearson $$X^2$$ is asymptotically distributed $$X^2_p$$.
 ## Goodness of Fit Test
 Does the current model fit the data? The goodness of fit is a comparison of two models (the proposed model and the saturated model).
 
-Fit a glm in R and assess goodness of fit.
+Fit a GLM in R and assess goodness of fit.
 ```{r}
 mod1 <- glm(cbind(dead, alive) ~ conc, family = binomial, data = bliss)
 summary(mod1)

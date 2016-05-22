@@ -11,7 +11,7 @@ categories: ['statistics', 'regression analysis']
 # Summary Table
 
 
-The output from glms in R are basically the same regardless of the link.
+The output from GLMs in R are basically the same regardless of the link.
 
 Consider the following example
 
