@@ -642,6 +642,13 @@ sed '/^$/d' test.txt
 sed 's/^[ \t]*//;s/[ \t]*$//' test.txt
 {% endhighlight %}
 
+* Edit the document in place using sed
+
+{% highlight r %}
+sed -i 's/old/new/' test.txt
+{% endhighlight %}
+
+
 * Apply a sequence of commands using a sed script
 
 {% highlight r %}

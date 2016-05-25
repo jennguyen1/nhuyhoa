@@ -609,6 +609,12 @@ sed '/^$/d' test.txt
 sed 's/^[ \t]*//;s/[ \t]*$//' test.txt
 ```
 
+* Edit the document in place using sed
+```{r, eval = FALSE}
+sed -i 's/old/new/' test.txt
+```
+
+
 * Apply a sequence of commands using a sed script
 ```{r, eval = FALSE}
 # sed script
