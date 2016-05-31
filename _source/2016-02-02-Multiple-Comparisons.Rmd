@@ -166,7 +166,7 @@ where $$k$$ is the number of groups.
 ## False Discovery Rate (FDR)
 This method states that for large $$r$$, not all null hypotheses are expected to be true. Rather than focusing on the family-wise error rate, the objective is to control 
 
-$$\alpha = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 0 \right)$$
+$$\alpha = FDR = E \left( \frac{no.false.positive}{no.significant}  \vert n.significant > 0 \right)$$
 
 the expected proportion of Type 1 errors (false positives) among the rejected hypotheses. FDR cuts some slack for making correct rejections; by correctly rejecting a certain number of hypothesis, it gives a pass for one incorrect rejection.
 
