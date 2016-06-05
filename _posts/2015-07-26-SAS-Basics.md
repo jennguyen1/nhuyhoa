@@ -298,6 +298,15 @@ To write macrovariables to the console, write
 %end;
 {% endhighlight %}
 
+**Loops**
+
+{% highlight r %}
+%do i = START %to STOP;
+  OPERATIONS;
+%end
+{% endhighlight %}
+
+
 **Functions**
 
 {% highlight r %}

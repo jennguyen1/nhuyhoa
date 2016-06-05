@@ -276,6 +276,14 @@ To write macrovariables to the console, write
 %end;
 ```
 
+**Loops**
+```{r}
+%do i = START %to STOP;
+  OPERATIONS;
+%end
+```
+
+
 **Functions**
 ```{r}
 %macro MACRONAME(param1 = , param2 = , ...);
