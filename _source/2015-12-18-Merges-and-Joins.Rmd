@@ -83,6 +83,7 @@ by VAR1 VAR2 ...;
 run;
 
 # then merge
+data NEWTAB;
 merge TAB1 (in=INVAR1) TAB2 (in==INVAR2);
 by VAR1 VAR2;
 if INVAR and INVAR2;

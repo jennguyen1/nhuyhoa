@@ -433,7 +433,9 @@ classDT[, list(mean = mean(z_post), sd = sd(z_post)), by = list(subject, grade)]
 
 # In SAS
 
-Split-apply-combine in SAS can be done within the `proc` statements. There is `by` or `class` clause that allows users to specify what they would like the data to be split by.
+Split-apply-combine in SAS can easily be done using `proc sql` statements. These statements would group and apply the same way that it is done in SQL. 
+
+Alternatively, this can be done in SAS with the `proc` statements. There is `by` or `class` clause that allows users to specify what they would like the data to be split by.
 
 Here are a few examples.
 
