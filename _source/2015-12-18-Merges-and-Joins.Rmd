@@ -74,7 +74,9 @@ Other operations to combine data frames:
 
 ## In SAS
 
-Merging data in SAS requires first sorting by the merge variable then merging.
+Merging in SAS can easily be done using `proc sql` statements. These statements would join data the same way that it is done in SQL. 
+
+Alternatively, merging data in SAS requires first sorting by the merge variable then merging.
 
 ```{r, eval = FALSE}
 # first sort both files
