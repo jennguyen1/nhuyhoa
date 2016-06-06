@@ -26,6 +26,14 @@ order by COLNAMES ACS/DESC;
 
 Notice the similarities between SQL statments and corresponding functions in $$R$$. 
 
+For additional functionality, SQL statements can be nested. Nesting can occur at any point in the statement. For example,
+
+{% highlight sql %}
+select *
+from TAB1
+where COL1 in (select COL2 from TAB2);
+{% endhighlight %}
+
 ## Additional Options for Select
 
 {% highlight sql %}
@@ -63,10 +71,14 @@ from TAB1 as t1, TAB2 as t2
 
 Selected can be wrapped in functions to allow flexibility
 
-* `len( A )`
 * `round( A, decimal )`
+* `ceil( A )`
+* `floor( A )`
+* `A % integer`
+* `len( A )`
 * `ucase( A )`
 * `lcase( A )`
+* `trim( A )`
 * `substring( A, start, end )`
 * `concat( A, ',' , B )` or `( A + ', ' + B)`
 
@@ -134,6 +146,13 @@ drop column COLNAME
 insert into TABLE2
 select COLNAMES
 from TABLE1
+{% endhighlight %}
+
+## Create Views
+{% highlight sql %}
+create view NAME as
+select COLNAMES
+from TABLE
 {% endhighlight %}
 
 ## Create Indexes
