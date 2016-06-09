@@ -161,3 +161,31 @@ create (unique) index NAME
 on TABLE (COL1, COL2, ...)
 {% endhighlight %}
 
+# Using Variables (MS SQL Server)
+
+Variables in SQL make it easier to combine a large number of column names without typing them out by hand. This may be useful for pivot tables or other complicated operations with many columns. 
+
+Variables can be declared like so
+{% highlight sql %}
+declare @var1 varchar(MAX);
+declare @var2 int;
+{% endhighlight %}
+
+The variable may be set in a variety of ways
+{% highlight sql %}
+set @var2 = 0;
+
+select @var1 = ISNULL(@var1 + ', ', '') + COLNAME from TAB1
+
+set @var3 = N'select id, ' + @var1 + from TAB2
+{% endhighlight %}
+
+Variables can be print to the screen using the following command
+{% highlight sql %}
+print @var_name
+{% endhighlight %}
+
+If a variable is a SQL query, it can be executed with
+{% highlight sql %}
+exec sp_executesql @sql
+{% endhighlight %}

@@ -66,7 +66,7 @@ proc print data = DATANAME noobs;
 Shortcuts may be used to select many columns
 
 * `VAR1-VAR10`: VAR1, VAR2, ..., VAR10
-* `_ALL_`, `__CHARACTER__`, `__NUMERIC__`: all variables of specified type
+* `_ALL_`, `_CHARACTER_`, `_NUMERIC_`: all variables of specified type
 
 **Creating a New Column**
 ```{r}

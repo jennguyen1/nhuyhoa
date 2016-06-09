@@ -26,6 +26,14 @@ order by COLNAMES ACS/DESC;
 
 Notice the similarities between SQL statments and corresponding functions in $$R$$. 
 
+For additional functionality, SQL statements can be nested. Nesting can occur at any point in the statement. For example,
+
+{% highlight sql %}
+select *
+from TAB1
+where COL1 in (select COL2 from TAB2);
+{% endhighlight %}
+
 ## Additional Options for Select
 
 {% highlight sql %}
@@ -63,10 +71,14 @@ from TAB1 as t1, TAB2 as t2
 
 Selected can be wrapped in functions to allow flexibility
 
-* `len( A )`
 * `round( A, decimal )`
+* `ceil( A )`
+* `floor( A )`
+* `A % integer`
+* `len( A )`
 * `ucase( A )`
 * `lcase( A )`
+* `trim( A )`
 * `substring( A, start, end )`
 * `concat( A, ',' , B )` or `( A + ', ' + B)`
 
@@ -136,9 +148,44 @@ select COLNAMES
 from TABLE1
 {% endhighlight %}
 
+## Create Views
+{% highlight sql %}
+create view NAME as
+select COLNAMES
+from TABLE
+{% endhighlight %}
+
 ## Create Indexes
 {% highlight sql %}
 create (unique) index NAME
 on TABLE (COL1, COL2, ...)
 {% endhighlight %}
 
+# Using Variables (MS SQL Server)
+
+Variables in SQL make it easier to combine a large number of column names without typing them out by hand. This may be useful for pivot tables or other complicated operations with many columns. 
+
+Variables can be declared like so
+{% highlight sql %}
+declare @var1 varchar(MAX);
+declare @var2 int;
+{% endhighlight %}
+
+The variable may be set in a variety of ways
+{% highlight sql %}
+set @var2 = 0;
+
+select @var1 = ISNULL(@var1 + ', ', '') + COLNAME from TAB1
+
+set @var3 = N'select id, ' + @var1 + from TAB2
+{% endhighlight %}
+
+Variables can be print to the screen using the following command
+{% highlight sql %}
+print @var_name
+{% endhighlight %}
+
+If a variable is a SQL query, it can be executed with
+{% highlight sql %}
+exec sp_executesql @sql
+{% endhighlight %}

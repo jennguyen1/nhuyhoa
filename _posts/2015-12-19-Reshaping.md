@@ -502,28 +502,28 @@ airquality %>%
 
 
 {% highlight r %}
-proc transpose data = LONGDATA out = WIDEDATA prefix = COLPREFIX;
-by LONGID;
-id WIDEID;
-var VALUE.VAR;
-{% endhighlight %}
-
-This formula runs the equivalent of `"LONGID ~ WIDEID", value.var = VALUE.VAR` in R.
-
-## Long to Wide
-
-
-{% highlight r %}
-data LONGDATA;
-set WIDEDATA;
+data WIDEDATA;
+set LONGDATA;
 array ARR(DIM) WIDEVARS;
-do VARIABLE_VAR = VAL1 VAL2 ... VALN;
+do VARIABLE_VAR = VAL1 ... VALN; # of array dimensions
   VALUE_VAR = ARR(VARIABLE_VAR);
   output;
 end;
 drop WIDEVARS;
 run;
 {% endhighlight %}
+
+## Long to Wide
+
+
+{% highlight r %}
+proc transpose data = WIDEDATA out = LONGDATA prefix = COLPREFIX;
+by LONGID;
+id WIDEID;
+var VALUE.VAR;
+{% endhighlight %}
+
+This formula runs the equivalent of `"LONGID ~ WIDEID", value.var = VALUE.VAR` in R.
 
 # In SQL
 
