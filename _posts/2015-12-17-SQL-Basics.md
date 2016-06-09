@@ -180,12 +180,12 @@ set @var2 = 0;
 select @var1 = ISNULL(@var1 + ', ', '') + COLNAME from TAB1
 
 /* set a variable an concatenate with other vars */
-set @var3 = N'select id, ' + @var1 + 'from TAB2'
+set @sql = N'select id, ' + @var1 + 'from TAB2'
 {% endhighlight %}
 
 Variables can be print to the screen using the following command
 {% highlight sql %}
-print @var_name
+print @var1
 {% endhighlight %}
 
 If a variable is a SQL query, it can be executed with
