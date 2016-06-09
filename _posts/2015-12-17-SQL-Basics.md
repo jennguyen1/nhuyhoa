@@ -176,7 +176,7 @@ The variable may be set in a variety of ways
 /* simple set */
 set @var2 = 0;
 
-/* select and combine multiple columns into a string */
+/* select a column and combine multiple rows into a string */
 select @var1 = ISNULL(@var1 + ', ', '') + COLNAME from TAB1
 
 /* set a variable an concatenate with other vars */
