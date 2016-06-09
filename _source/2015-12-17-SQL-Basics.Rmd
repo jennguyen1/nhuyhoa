@@ -173,11 +173,14 @@ declare @var2 int;
 
 The variable may be set in a variety of ways
 {% highlight sql %}
+/* simple set */
 set @var2 = 0;
 
+/* select and combine multiple columns into a string */
 select @var1 = ISNULL(@var1 + ', ', '') + COLNAME from TAB1
 
-set @var3 = N'select id, ' + @var1 + from TAB2
+/* set a variable an concatenate with other vars */
+set @var3 = N'select id, ' + @var1 + 'from TAB2'
 {% endhighlight %}
 
 Variables can be print to the screen using the following command
