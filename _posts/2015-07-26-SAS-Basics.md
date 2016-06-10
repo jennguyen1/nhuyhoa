@@ -182,6 +182,7 @@ There are a number of functions for `proc sql` in addition to the usual SAS and 
 * `ifn( CONDITION, YES, NO )` if/else for numeric results
 
 And the following aggregate functions
+
 * `unique( A )`
 * `nmiss( A )`
 * `var( A )`
@@ -314,15 +315,6 @@ select country into :countries separated by ", "
 &MNAME
 {% endhighlight %}
 
-Macrovariables may also be concatenated to form the name of another macrovariable. This may be useful in looping. For example,
-
-{% highlight r %}
-%let var5 = 10
-%let i = 5
-
-%put &&var&i
-{% endhighlight %}
-
 When used in a string, macrovariables should start with a `&` and end with a space, `;`, `&`, or `.`
 
 There are a number of built-in macrovariables, including
@@ -335,6 +327,15 @@ To write macrovariables to the console, write
 
 {% highlight r %}
 %put &MNAME;
+{% endhighlight %}
+
+Macrovariables may also be concatenated to form the name of another macrovariable. This may be useful in looping. For example,
+
+{% highlight r %}
+%let var5 = 10
+%let i = 5
+
+%put &&var&i
 {% endhighlight %}
 
 **Conditional**
