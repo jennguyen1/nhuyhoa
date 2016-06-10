@@ -269,7 +269,6 @@ run;
 {% endhighlight %}
 
 # Macros
-Functions in SAS are known as macros. 
 
 ## Declare Macro Variables
 
