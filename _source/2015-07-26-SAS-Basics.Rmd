@@ -230,6 +230,11 @@ Arrays can be defined with the statement
 array ARRNAME(DIM) ELEM1 ELEM2 ELEM3 ... ELEMN;
 ```
 
+Arrays may also be initialized with the appropriate dimensions and edited later to create new columns
+```{r}
+array ARRNAME(DIM);
+```
+
 Once declared, use a loop to iterate through an array and edit single elements as needed. The dimensions of an array can be accessed with `dim(ARRNAME)`.
 
 There are several shortcuts to choose variables to incorporate into an array
