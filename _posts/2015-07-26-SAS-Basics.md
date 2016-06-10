@@ -151,11 +151,10 @@ There are several options for sorting
 ## Using SQL in SAS
 
 {% highlight r %}
-proc sql;
+proc sql outobs = N print;
 create table NEWTABLE as 
 select COLNAMES/EXPRESSION as NEWNAME
-into :MACRONAME
-separated by ""
+into :MACRONAME separated by ""
 from TABLE
 where CONDITION
 group by COLNAMES
@@ -174,6 +173,24 @@ inner join TAB2
 where TAB1.id = TAB2.id;
 quit;
 {% endhighlight %}
+
+There are a number of functions for `proc sql` in addition to the usual SAS and SQL functions including
+
+* `missing( A )`
+* `monotonic()` refers to the row number
+* `ifc( CONDITION, YES, NO )` if/else for character results
+* `ifn( CONDITION, YES, NO )` if/else for numeric results
+
+And the following aggregate functions
+* `unique( A )`
+* `nmiss( A )`
+* `var( A )`
+* `std( A )`
+* `stderr( A )`
+* `range( A )`
+* `sumwgt( A )`
+* `t( A )` t-value from one-sided t-test
+* `prt( A )` two-tailed p-value for t-statistic
 
 # Conditionals
 The basic statement for if and else are
@@ -265,10 +282,45 @@ Data values can be converted into macro variables with
 call symput("MNAME", VALUE);
 {% endhighlight %}
 
+**Declaring Macrovariables with Proc SQL**
+
+Macrovariables can also be created from `proc sql`.
+
+The following statement selects the first row of the column into a macrovariable 
+
+{% highlight r %}
+select country, flower into :country1, :flower1
+{% endhighlight %}
+
+This can be done with and without aggregation. 
+
+Select multiple rows and create multiple macrovariables with
+
+{% highlight r %}
+%let n = 100
+select country, flower into :country1 - :country&n, :flower1 - :flower&n
+{% endhighlight %}
+
+All the values with a column may be concatenated into a single macrovariable with
+
+{% highlight r %}
+select country into :countries separated by ", "
+{% endhighlight %}
+
 **Use Macro Variable**
+
 
 {% highlight r %}
 &MNAME
+{% endhighlight %}
+
+Macrovariables may also be concatenated to form the name of another macrovariable. This may be useful in looping. For example,
+
+{% highlight r %}
+%let var5 = 10
+%let i = 5
+
+%put &&var&i
 {% endhighlight %}
 
 When used in a string, macrovariables should start with a `&` and end with a space, `;`, `&`, or `.`
@@ -282,9 +334,8 @@ There are a number of built-in macrovariables, including
 To write macrovariables to the console, write
 
 {% highlight r %}
-%PUT &MNAME;
+%put &MNAME;
 {% endhighlight %}
-
 
 **Conditional**
 
@@ -306,7 +357,6 @@ To write macrovariables to the console, write
 %end
 {% endhighlight %}
 
-
 **Functions**
 
 {% highlight r %}
@@ -318,4 +368,3 @@ To write macrovariables to the console, write
 {% endhighlight %}
 
 The parameters of macros are macro variables, so access them with `&`.
-
