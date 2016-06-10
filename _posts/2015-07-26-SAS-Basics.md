@@ -271,7 +271,7 @@ run;
 # Macros
 Functions in SAS are known as macros. 
 
-**Declare Macro Variables**
+## Declare Macro Variables
 
 {% highlight r %}
 %LET MNAME = VALUE;
@@ -308,7 +308,7 @@ All the values with a column may be concatenated into a single macrovariable wit
 select country into :countries separated by ", "
 {% endhighlight %}
 
-**Use Macro Variable**
+## Use Macro Variable
 
 
 {% highlight r %}
@@ -338,7 +338,7 @@ Macrovariables may also be concatenated to form the name of another macrovariabl
 %put &&var&i
 {% endhighlight %}
 
-**Conditional**
+## Conditional
 
 {% highlight r %}
 %if CONDITION %then ACTION;
@@ -350,7 +350,7 @@ Macrovariables may also be concatenated to form the name of another macrovariabl
 %end;
 {% endhighlight %}
 
-**Loops**
+## Loops
 
 {% highlight r %}
 %do i = START %to STOP;
@@ -358,7 +358,7 @@ Macrovariables may also be concatenated to form the name of another macrovariabl
 %end
 {% endhighlight %}
 
-**Functions**
+## Functions
 
 {% highlight r %}
 %macro MACRONAME(param1 = , param2 = , ...);
