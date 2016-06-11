@@ -19,32 +19,32 @@ knitr::opts_chunk$set(eval = FALSE)
 **Manually**
 ```{r}
 data DATANAME;
-input VARNAMES ($);
-datalines;
-DATA;
+  input VARNAMES ($);
+  datalines;
+  DATA;
 run;
 ```
 
 **CSV Files**
 ```{r}
 data DATANNAME;
-infile "FILEPATH" dlm = ',' startobs = 2 dsd;
-input VARNAMES @@;
+  infile "FILEPATH" dlm = ',' startobs = 2 dsd;
+  input VARNAMES @@;
 run;
 ```
 
 ```{r}
 proc import datafile = "FILEPATH" out = DATANAME dbms = csv replace;
-getnames = yes;
-datarow = 2;
-guessingrows = 1000;
+  getnames = yes;
+  datarow = 2;
+  guessingrows = 1000;
 run;
 ```
 
 **From Existing Table**
 ```{r}
 data DATANAME;
-set DATASET;
+  set DATASET;
 ```
 
 ## Export Data
@@ -71,8 +71,8 @@ Shortcuts may be used to select many columns
 **Creating a New Column**
 ```{r}
 data DATANAME;
-set DATANAME;
-NEWCOL = EXPR;
+  set DATANAME;
+  NEWCOL = EXPR;
 run;
 ```
 
@@ -93,25 +93,25 @@ Other expressions of interest
 **Renaming Columns**
 ```{r}
 data DATANAME;
-set DATANAME;
-rename OLD = NEW;
+  set DATANAME;
+  rename OLD = NEW;
 run;
 ```
 
 **Reorder Columns**
 ```{r}
 data DATANAME;
-retain CORRECT.COL.ORDER;
-set DATANAME;
+  retain CORRECT.COL.ORDER;
+  set DATANAME;
 run;
 ```
 
 **Keep/Drop Columns**
 ```{r}
 data DATANAME;
-set DATANAME;
-drop COL1 COL2 ...;
-keep COL3 COL4 ...;
+  set DATANAME;
+  drop COL1 COL2 ...;
+  keep COL3 COL4 ...;
 run;
 ```
 
@@ -141,24 +141,24 @@ There are several options for sorting
 ## Using SQL in SAS
 ```{r}
 proc sql outobs = N print;
-create table NEWTABLE as 
-select COLNAMES/EXPRESSION as NEWNAME
-into :MACRONAME separated by ""
-from TABLE
-where CONDITION
-group by COLNAMES
-having EXPRESSION
-order by COLNAMES ASC/DCS;
+  create table NEWTABLE as 
+  select COLNAMES/EXPRESSION as NEWNAME
+  into :MACRONAME separated by ""
+  from TABLE
+  where CONDITION
+  group by COLNAMES
+  having EXPRESSION
+  order by COLNAMES ASC/DCS;
 quit;
 ```
 
 Can also do SQL joins in SAS
 ```{r}
 proc sql;
-select * 
-from TAB1
-inner join TAB2
-where TAB1.id = TAB2.id;
+  select * 
+  from TAB1
+  inner join TAB2
+  where TAB1.id = TAB2.id;
 quit;
 ```
 
@@ -256,7 +256,60 @@ data temps;
 run;
 ```
 
+# Functions
+
+The FCMP procedure is used to create user defined functions. 
+
+There are two ways to define functions.
+
+```{r}
+# declare function
+proc fcmp outlib = work.functions.funcs;
+  function NAME(PARAM1, PARAM2 $) $;
+    OPERATIONS;
+    return(y);
+  endsub;
+run;
+
+# run function
+options complib = (work.functions);
+NAME(PARAMS)
+%sysfunc(NAME(PARAMS))
+```
+
+```{r}
+# declare function
+proc fcmp outlib = work.functions.funcs;
+  subroutine NAME(PARAMS, RETURN1, RETURN2);
+    outargs RETURN1, RETURN2;
+    OPERATIONS; # define RETURN1 and RETURN2 here
+  endsub;
+run;
+
+# run function
+options complib = (work.functions);
+Y1 = .;
+Y2 = .;
+call NAME(PARAMS, Y1, Y2);
+```
+
+The difference between the two is the return statement. 
+
+Functions can be deleted with 
+```{r}
+proc fcmp outlib = work.functions.funcs;
+  deletefunc NAME;
+run;
+```
+
+Macros may be used in functions but require a different process. Macros should be defined with out its parameters - they will automatically be passed into the macro. To call a macro from with a function, use the following statement
+```{r}
+run_macro('MACRONAME', PARAMS);
+```
+
 # Macros
+
+Macros are variables and function like processes that work on data sets.
 
 ## Declare Macro Variables
 ```{r}

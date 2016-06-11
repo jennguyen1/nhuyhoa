@@ -18,9 +18,9 @@ categories: ['basics']
 
 {% highlight r %}
 data DATANAME;
-input VARNAMES ($);
-datalines;
-DATA;
+  input VARNAMES ($);
+  datalines;
+  DATA;
 run;
 {% endhighlight %}
 
@@ -28,17 +28,17 @@ run;
 
 {% highlight r %}
 data DATANNAME;
-infile "FILEPATH" dlm = ',' startobs = 2 dsd;
-input VARNAMES @@;
+  infile "FILEPATH" dlm = ',' startobs = 2 dsd;
+  input VARNAMES @@;
 run;
 {% endhighlight %}
 
 
 {% highlight r %}
 proc import datafile = "FILEPATH" out = DATANAME dbms = csv replace;
-getnames = yes;
-datarow = 2;
-guessingrows = 1000;
+  getnames = yes;
+  datarow = 2;
+  guessingrows = 1000;
 run;
 {% endhighlight %}
 
@@ -46,7 +46,7 @@ run;
 
 {% highlight r %}
 data DATANAME;
-set DATASET;
+  set DATASET;
 {% endhighlight %}
 
 ## Export Data
@@ -76,8 +76,8 @@ Shortcuts may be used to select many columns
 
 {% highlight r %}
 data DATANAME;
-set DATANAME;
-NEWCOL = EXPR;
+  set DATANAME;
+  NEWCOL = EXPR;
 run;
 {% endhighlight %}
 
@@ -99,8 +99,8 @@ Other expressions of interest
 
 {% highlight r %}
 data DATANAME;
-set DATANAME;
-rename OLD = NEW;
+  set DATANAME;
+  rename OLD = NEW;
 run;
 {% endhighlight %}
 
@@ -108,8 +108,8 @@ run;
 
 {% highlight r %}
 data DATANAME;
-retain CORRECT.COL.ORDER;
-set DATANAME;
+  retain CORRECT.COL.ORDER;
+  set DATANAME;
 run;
 {% endhighlight %}
 
@@ -117,9 +117,9 @@ run;
 
 {% highlight r %}
 data DATANAME;
-set DATANAME;
-drop COL1 COL2 ...;
-keep COL3 COL4 ...;
+  set DATANAME;
+  drop COL1 COL2 ...;
+  keep COL3 COL4 ...;
 run;
 {% endhighlight %}
 
@@ -152,14 +152,14 @@ There are several options for sorting
 
 {% highlight r %}
 proc sql outobs = N print;
-create table NEWTABLE as 
-select COLNAMES/EXPRESSION as NEWNAME
-into :MACRONAME separated by ""
-from TABLE
-where CONDITION
-group by COLNAMES
-having EXPRESSION
-order by COLNAMES ASC/DCS;
+  create table NEWTABLE as 
+  select COLNAMES/EXPRESSION as NEWNAME
+  into :MACRONAME separated by ""
+  from TABLE
+  where CONDITION
+  group by COLNAMES
+  having EXPRESSION
+  order by COLNAMES ASC/DCS;
 quit;
 {% endhighlight %}
 
@@ -167,10 +167,10 @@ Can also do SQL joins in SAS
 
 {% highlight r %}
 proc sql;
-select * 
-from TAB1
-inner join TAB2
-where TAB1.id = TAB2.id;
+  select * 
+  from TAB1
+  inner join TAB2
+  where TAB1.id = TAB2.id;
 quit;
 {% endhighlight %}
 
@@ -246,6 +246,12 @@ Arrays can be defined with the statement
 array ARRNAME(DIM) ELEM1 ELEM2 ELEM3 ... ELEMN;
 {% endhighlight %}
 
+Arrays may also be initialized with the appropriate dimensions and edited later to create new columns
+
+{% highlight r %}
+array ARRNAME(DIM);
+{% endhighlight %}
+
 Once declared, use a loop to iterate through an array and edit single elements as needed. The dimensions of an array can be accessed with `dim(ARRNAME)`.
 
 There are several shortcuts to choose variables to incorporate into an array
@@ -268,7 +274,64 @@ data temps;
 run;
 {% endhighlight %}
 
+# Functions
+
+The FCMP procedure is used to create user defined functions. 
+
+There are two ways to define functions.
+
+
+{% highlight r %}
+# declare function
+proc fcmp outlib = work.functions.funcs;
+  function NAME(PARAM1, PARAM2 $) $;
+    OPERATIONS;
+    return(y);
+  endsub;
+run;
+
+# run function
+options complib = (work.functions);
+NAME(PARAMS)
+%sysfunc(NAME(PARAMS))
+{% endhighlight %}
+
+
+{% highlight r %}
+# declare function
+proc fcmp outlib = work.functions.funcs;
+  subroutine NAME(PARAMS, RETURN1, RETURN2);
+    outargs RETURN1, RETURN2;
+    OPERATIONS; # define RETURN1 and RETURN2 here
+  endsub;
+run;
+
+# run function
+options complib = (work.functions);
+Y1 = .;
+Y2 = .;
+call NAME(PARAMS, Y1, Y2);
+{% endhighlight %}
+
+The difference between the two is the return statement. 
+
+Functions can be deleted with 
+
+{% highlight r %}
+proc fcmp outlib = work.functions.funcs;
+  deletefunc NAME;
+run;
+{% endhighlight %}
+
+Macros may be used in functions but require a different process. Macros should be defined with out its parameters - they will automatically be passed into the macro. To call a macro from with a function, use the following statement
+
+{% highlight r %}
+run_macro('MACRONAME', PARAMS);
+{% endhighlight %}
+
 # Macros
+
+Macros are variables and function like processes that work on data sets.
 
 ## Declare Macro Variables
 
