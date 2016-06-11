@@ -64,6 +64,42 @@ run;
 proc print data = DATANAME noobs;
 {% endhighlight %}
 
+**Reports**
+
+
+{% highlight r %}
+proc reports data = NAME headline headskip;
+  title 'SOME TITLE';
+  column COLNAMES;
+  where CONDITION;
+  define VAR1 / 'COL TITLE / WITH SPLIT' format = FORMAT spacing = N width = N;
+  define VAR2 / order descending;
+run;
+{% endhighlight %}
+
+Variables may also be grouped and summarised with any of SAS's summary statistics
+
+{% highlight r %}
+proc report data = NAME;
+  column VAR1 VAR2 VAR3;
+  define VAR1 / group 'TYPE';
+  define VAR2 / mean 'MEAN';
+  define VAR3 / var 'VARIANCE';
+run;
+{% endhighlight %}
+
+New variables may also be computed
+
+{% highlight r %}
+proc report data = NAME;
+  column VAR1 VAR2 NEWVAR;
+  define VAR3;
+  compute VAR3;
+    Var3 = EXPR;
+  endcomp;
+run;
+{% endhighlight %}
+
 
 ## Edit Data
 
@@ -278,7 +314,7 @@ run;
 
 The FCMP procedure is used to create user defined functions. 
 
-There are two ways to define functions.
+There are two ways to define functions. The main difference between the two is the return statement.
 
 
 {% highlight r %}
@@ -312,8 +348,6 @@ Y1 = .;
 Y2 = .;
 call NAME(PARAMS, Y1, Y2);
 {% endhighlight %}
-
-The difference between the two is the return statement. 
 
 Functions can be deleted with 
 
