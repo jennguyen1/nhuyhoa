@@ -159,6 +159,13 @@ A common function used with list comprehensions is `enumerate()` which can acces
 [EXPR for index, value in enumerate(l)]
 {% endhighlight %}
 
+Another useful function is `zip()` which allows you to iterate over multiple values (similar to `Map()` in R).
+
+{% highlight python %}
+zipped = zip(a, b)
+unzipped = zip(*zipped)
+{% endhighlight %}
+
 ## Collections Class
 
 Collections provides alternatives to the base list structures.
