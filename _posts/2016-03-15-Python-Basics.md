@@ -47,11 +47,26 @@ These modules provide functions such as `math.abs()` `math.exp()`, `math.pow()`,
 
 For more information on string functions see [the post on regular expressions][regex_post]{:target = "_blank"}.
 
-For printing, strings may be formatted: `"%s is %d years old" % (name, age)`. The following are examples of formats
+For printing, strings may be formatted: `"%s is %d years old" % (name, age)`.
+
+The following are examples of formats
 
 * string: `%s`
 * integers: `%d`
 * floating point numbers: `%<nchar>.<ndecimals>f`
+
+A number of variables may be concatenated to a template using a dictionary
+
+{% highlight python %}
+template = 'blah blah %(apple)s blah blah %(banana)s blah %(orange)s'
+
+# using a dictionary
+dt = {'apple': 'test1', 'banana': 'test2', 'orange': 'test3'}
+template % dt
+
+# using variables (apple, banana, orange) in the local environment
+template % local()
+{% endhighlight %}
 
 ## Lists
 
@@ -153,6 +168,13 @@ filter(FUNCTION, l)
 A common function used with list comprehensions is `enumerate()` which can access the index and values of a list
 {% highlight python %}
 [EXPR for index, value in enumerate(l)]
+{% endhighlight %}
+
+Another useful function is `zip()` which allows you to iterate over multiple values (similar to `Map()` in R).
+
+{% highlight python %}
+zipped = zip(a, b)
+unzipped = zip(*zipped)
 {% endhighlight %}
 
 ## Collections Class
