@@ -320,6 +320,7 @@ sys.argv
 
 ## Output
 
+**To a File**
 {% highlight python %}
 # open file and writes strings to it
 f = open(FILENAME, 'w') # write to a new file
@@ -327,6 +328,13 @@ f = open(FILENAME, 'a') # append to a file
 f.write(STR)
 f.close()
 {% endhighlight %}
+
+**To Command Line**
+{% highlight python %}
+import subprocess
+subprocess.call(CMD, shell = True)
+{% endhighlight %}
+
 
 # Useful Modules
 

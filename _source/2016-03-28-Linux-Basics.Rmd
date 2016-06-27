@@ -759,5 +759,7 @@ python script.py arg1 arg2
 python script.py arg1 arg2 >> myfile.txt
 ```
 
+Python scripts can also be used to run command line arguments. See the [Python post][python_post]{:target = "_blank"} for more information. 
 
 [linux_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMeXJRRWdFTFQzMEU/view?usp=sharing
+[python_post]: http://jnguyen92.github.io/nhuyhoa//2016/03/Python-Basics.html#output
