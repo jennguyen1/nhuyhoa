@@ -307,21 +307,61 @@ input("feed me") # guesses the input type
 
 **Command Line Arguments**
 {% highlight python %}
-import sys 
+#!/usr/bin/env python
 
-# obtain list of command line arguments
-# 1st value is name of script, the rest are arguments
-sys.argv
+# do progrma execution in the main environment
+if __name__ == '__main__':
+
+  # import module
+  import argparse 
+
+  # initialize the parser
+  parser = argparse.ArgumentParser(description='''DESCRIPTION''')
+  
+  # declare the arguments
+  parser.add_argument('-a', '--apple', dest = 'apple', default = 1, help = 'apple help', type=int, choices=[0, 1, 2])
+  parser.add_argument('-b', '--banana', dest = 'banana', default = 'b-a-n-a-n-a-s', help = 'banana help')
+  parser.add_argument('-c', '--corn', dest = 'corn', default = TRUE, help = 'corn help')
+  
+  # parse arguments
+  args = parser.parse_args()
+
+  # access command line arguments like so 
+  args.apple
+{% endhighlight %}
+
+On the command line, run the script using
+
+{% highlight python %}
+python in_script.py --apple 2 --banana hi --corn >& out_file.out
+{% endhighlight %}
+
+Obtain the list of arguments like so
+
+{% highlight python %}
+python in_file.py -h
 {% endhighlight %}
 
 ## Output
 
+**To a File**
 {% highlight python %}
 # open file and writes strings to it
 f = open(FILENAME, 'w') # write to a new file
 f = open(FILENAME, 'a') # append to a file
 f.write(STR)
 f.close()
+{% endhighlight %}
+
+**To Command Line**
+{% highlight python %}
+import subprocess
+
+# send command to command line
+subprocess.call(CMD, shell = True)
+
+# send command and save output
+subprocess.check_call(['CMD', 'ARG1'])
 {% endhighlight %}
 
 # Useful Modules
