@@ -253,6 +253,11 @@ R CMD BATCH '--args -c=4 --mean=4' in_file.R out_file.out
 Rscript in_file.R -c=4 --mean=4
 ```
 
+Obtain the list of arguments like so
+
+```{r, eval = FALSE}
+Rscript in_file.R -h
+```
 
 ## Output
 
