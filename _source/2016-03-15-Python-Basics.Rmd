@@ -332,9 +332,13 @@ f.close()
 **To Command Line**
 {% highlight python %}
 import subprocess
-subprocess.call(CMD, shell = True)
-{% endhighlight %}
 
+# send command to command line
+subprocess.call(CMD, shell = True)
+
+# send command and save output
+subprocess.check_call(['CMD', 'ARG1'])
+{% endhighlight %}
 
 # Useful Modules
 
