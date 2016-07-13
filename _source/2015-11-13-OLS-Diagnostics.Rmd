@@ -34,7 +34,7 @@ When underfitted, the estimates for $$\hat{\beta}$$ and $$\hat{\sigma}^2$$ are b
 Because of the bias variance trade off, the $$Var[\hat{\beta}]$$ gets smaller.
 
 ## Overfitting
-Suppose the true model is $$ Y = \beta_1 X_1  + \epsilon $$ and the model $$ Y = \beta_1 X_1 + \beta_2 X_2 + \epsilon $$is fit.
+Suppose the true model is $$ Y = \beta_1 X_1  + \epsilon $$ and the model $$ Y = \beta_1 X_1 + \beta_2 X_2 + \epsilon $$ is fit.
 
 When overfitted, the estimate of $$\hat{\beta}_1$$ is unbiased, but $$Var[\hat{\beta}_1]$$ is bigger.
 
