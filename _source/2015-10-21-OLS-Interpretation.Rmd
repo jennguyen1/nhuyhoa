@@ -151,12 +151,13 @@ ggplot(data = iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
 
 Perform hypothesis testing to determine whether the species have similar intercepts (no difference between the categories) and/or similar slopes (effect of continuous variable is the same for all categories) for Petal Length, thereby simplifying the model. 
 
+### Excluding the Intercept
+
 ```{r}
 m4a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
 summary(m4a)$coefficients %>% round(3)
 ```
 
-### Excluding the Intercept
 Removing the intercept terms results in 
 
 If $$Species == "setosa"$$: <br>
