@@ -265,6 +265,8 @@ Essentially there are 3 separate lines for each value of Species, the categorica
 
 Perform hypothesis testing to determine whether the species have similar intercepts (no difference between the categories) and/or similar slopes (effect of continuous variable is the same for all categories) for Petal Length, thereby simplifying the model. 
 
+### Excluding the Intercept
+
 
 {% highlight r %}
 m4a <- lm(Sepal.Length ~ Petal.Length*Species - 1, data = iris)
@@ -283,7 +285,6 @@ summary(m4a)$coefficients %>% round(3)
 ## Petal.Length:Speciesvirginica     0.453      0.290   1.563    0.120
 {% endhighlight %}
 
-### Excluding the Intercept
 Removing the intercept terms results in 
 
 If $$Species == "setosa"$$: <br>

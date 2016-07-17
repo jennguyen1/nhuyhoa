@@ -13,7 +13,7 @@ categories: ['statistics', 'probability and inference']
 # Normal Distribution
 Let $$ X  \sim  N(\mu, \sigma^2) $$
 
-$$ f_x(x) = \frac{1}{\sigma \sqrt{2\pi}} exp{\frac{-(x - \mu)^2}{2 \sigma^2}} $$
+$$ f_x(x) = \frac{1}{\sigma \sqrt{2\pi}} exp \left( \frac{-(x - \mu)^2}{2 \sigma^2} \right) $$
 
 $$ X = \mu + \sigma Z$$ where $$ Z  \sim  N(0, 1) $$
 

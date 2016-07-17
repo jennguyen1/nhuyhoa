@@ -83,13 +83,16 @@ There are four possible outcomes:
 * **False negative (III)**: (+) instance incorrectly classified as (-)
 * **True negative (IV)**: (-) instance correctly classified as (-)
 
+In R, confusion matrices can be generated with `caret::confusionMatrix(test$pred, test$obs)`. 
+
+
 ### ROC
 For binary responses, ROC (Receiver Operating Characteristic) AUC (Area Under the Curve) can be used. 
 
 * **True positive rate** $$= \left( P(predict.T \vert actual.T) \right)$$
 * **False positive rate** $$= \left( P(predict.T \vert actual.F) \right)$$ 
 
-The ROC curve plots the true positive rate  vs. the false positive rate across a range of thresholds. Then the AUC is calculated as a measure of accuracy. A perfect model has a $$AUC = 1$$, the trends should hug the upper left corner of the curve. A model with an $$AUC = 0.5$$ is no better than random guessing.
+The ROC curve plots the true positive rate  vs. the false positive rate across a range of thresholds. Then the AUC is calculated as a measure of accuracy. A perfect model has a $$AUC = 1$$, the trends should hug the upper left corner of the curve. A model with an $$AUC = 0.5$$ is no better than random guessing. The idea is that you want a model to have a greater true positive rate than a false positive rate.
 
 ### Precision Recall Curves
 Precision recall curves are preferred over ROC when there are highly skewed classes. 
@@ -100,9 +103,6 @@ Precision recall curves are preferred over ROC when there are highly skewed clas
 For example, cancer cases may be skewed towards the negative cancer (more non-cancer cases than cancer). However, it is extremely important to detect cancer when it exists. So focusing on precision and recall is definitely preferred over true positive and false positive rates. 
 
 The PR curve plots the precision vs. recall. An ideal algorithm will have a trend that hug the upper right hand side of the curve. 
-
-In R, confusion matrices can be generated with `caret::confusionMatrix(test$pred, test$obs)`. 
-
 
 # In R: Caret
 

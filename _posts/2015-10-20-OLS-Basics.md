@@ -77,11 +77,11 @@ where $$p$$ is the number of parameters (not including the intercept).
 
 Note that since the $$SSE$$ is minimized, the sum of the residuals is always equal to 0.
 
-$$ min( \Sigma (y - \hat{y})^2 ) \overrightarrow 2 \Sigma (y - \hat{y}) = 0 $$
+$$ min( \Sigma (y - \hat{y})^2 ) = \overrightarrow 2 \Sigma (y - \hat{y}) = 0 $$
 
 # Distribution of Beta Estimates
 
-$$ E[Y] = X\beta $$
+$$ E[Y] = X\beta $$ <br>
 $$ Var[Y] = \sigma^2 $$
 
 The beta parameters are unbiased:
@@ -138,7 +138,7 @@ c(B)
 
 
 {% highlight text %}
-## [1] -0.18063945  0.01538193  0.10017054  0.18027121
+## [1]  0.55573094 -0.12016962  0.03392832 -0.10048196
 {% endhighlight %}
 
 
@@ -153,6 +153,6 @@ c(coef)
 
 {% highlight text %}
 ## (Intercept)          x1          x2          x3 
-## -0.18063945  0.01538193  0.10017054  0.18027121
+##  0.55573094 -0.12016962  0.03392832 -0.10048196
 {% endhighlight %}
 

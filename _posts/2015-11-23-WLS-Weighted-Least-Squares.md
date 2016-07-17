@@ -46,7 +46,14 @@ $$\mathbf{W} = \left[\begin{array}
 0 & \sigma^2_2 & ... & 0 \\
 ... & ... & ... & ... \\
 0 & 0 & ... & \sigma^2_p
+\end{array}\right] = \left[\begin{array}
+{rrr}
+\sigma^2 / w_1 & 0 & ... & 0 \\
+0 & \sigma^2 / w_2 & ... & 0 \\
+... & ... & ... & ... \\
+0 & 0 & ... & \sigma^2 / w_p
 \end{array}\right]
+$$
 $$
 
 The WLS estimate is then

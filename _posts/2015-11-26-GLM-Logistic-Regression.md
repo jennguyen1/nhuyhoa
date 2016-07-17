@@ -20,6 +20,7 @@ $$ P(Y_i = y_i) = \left(\begin{array}
 \end{array}\right) p_i^{y_i} (1-p_i)^{n_i - y_i} $$
 
 Then
+
 $$E(Y_i) = n_i p_i$$
 
 $$Var(Y_i) = n_i p_i (1-p_i)$$
