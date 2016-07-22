@@ -113,28 +113,14 @@ A plot of the first two principal components against each other with the loading
 
 {% highlight r %}
 library(ggfortify)
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in library(ggfortify): there is no package called 'ggfortify'
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # plot the biplot
 autoplot(prcomp(dat, center = TRUE, scale. = TRUE), data = iris, colour = "Species", 
          loadings = TRUE, loadings.label = TRUE,
          loadings.label.size = 3)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error: Objects of type prcomp not supported by autoplot.
-{% endhighlight %}
+<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 From this plot, the first principal components has large loadings for $$Petal.Length$$ and $$Petal.Width$$. This indicates that $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
 
@@ -189,11 +175,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.692    2.720    2.519    2.570    2.621
-## adjCV        6.123    2.679    2.707    2.506    2.555    2.605
+## CV           6.123    2.712    2.756    2.621    2.689    2.690
+## adjCV        6.123    2.699    2.742    2.601    2.666    2.667
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.735    2.842    2.947    3.488     3.745
-## adjCV    2.710    2.813    2.908    3.412     3.647
+## CV       2.861    2.979    3.556    3.848     4.103
+## adjCV    2.828    2.940    3.484    3.761     3.994
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps

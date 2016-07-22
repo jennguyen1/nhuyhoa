@@ -190,10 +190,10 @@ To determine the standard error of this estimate, use the [delta method][func_RV
 In R, this can be done with `MASS::dose.p()`.
 
 # Overdispersion
-Overdispersion occurs in logistic regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i (1 - \mu_i) / n_i$$. Usually this occurs when the $$n_i$$ Bernuolli trials are not identically distributed or not independent. (Note that if $$n_i = 1$$, overdispersion is not possible - data is Bernuolli). 
+Overdispersion occurs in logistic regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i (n_i - \mu_i) / n_i$$. Usually this occurs when the $$n_i$$ Bernuolli trials are not identically distributed or not independent. (Note that if $$n_i = 1$$, overdispersion is not possible - data is Bernuolli). 
 
 The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain 
-$$Var(Y_i)^* = \sigma^2 \mu_i (1 - \mu_i) / n_i$$
+$$Var(Y_i)^* = \sigma^2 \mu_i (n_i - \mu_i) / n_i$$
 
 The steps for assessing overdispersion are listed in the [GLM Testing and Diagnostics: Overdispersion][glm_diagnostics_post]{:target = "blank"}.
 
