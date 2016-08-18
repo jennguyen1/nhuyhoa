@@ -192,7 +192,7 @@ The **hazard ratio** is defined as $$r = \frac{\lambda_1(t)}{\lambda_0(t)}$$ and
 
 By taking the $$\log$$
 
-$$\log(\lambda(t)) = \log(\lambda_0(t)) + \beta*z$$
+$$\log(\lambda(t)) = \log(\lambda_0(t)) + \beta z$$
 
 where $$z$$ is the treatment group and $$\beta$$ is the log hazard ratio.
 
