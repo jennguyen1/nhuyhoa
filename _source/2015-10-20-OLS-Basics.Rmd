@@ -24,7 +24,7 @@ Let $$Y$$ = observed responses and $$\hat{Y}$$ = fitted responses. $$\hat{Y}$$ l
 In order to minimize the $$SSE$$s, there is $$Y-\hat{Y}$$ is perpendicular to $$col(X)$$:
 
 $$ X^T(Y-\hat{Y}) = 0 $$ <br>
-$$ X^T\hat{Y} = X^TY = X^TX\hat{\beta}$$
+$$ X^TY = X^T\hat{Y} = X^TX\hat{\beta}$$
 
 $$ \hat{\beta} = (X^TX)^{-1}X^TY $$
 

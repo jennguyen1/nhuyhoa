@@ -24,7 +24,7 @@ Let $$Y$$ = observed responses and $$\hat{Y}$$ = fitted responses. $$\hat{Y}$$ l
 In order to minimize the $$SSE$$s, there is $$Y-\hat{Y}$$ is perpendicular to $$col(X)$$:
 
 $$ X^T(Y-\hat{Y}) = 0 $$ <br>
-$$ X^T\hat{Y} = X^TY = X^TX\hat{\beta}$$
+$$ X^TY = X^T\hat{Y} = X^TX\hat{\beta}$$
 
 $$ \hat{\beta} = (X^TX)^{-1}X^TY $$
 
@@ -138,7 +138,7 @@ c(B)
 
 
 {% highlight text %}
-## [1]  0.55573094 -0.12016962  0.03392832 -0.10048196
+## [1] -0.21838149  0.08808428 -0.22845559  0.06069983
 {% endhighlight %}
 
 
@@ -153,6 +153,6 @@ c(coef)
 
 {% highlight text %}
 ## (Intercept)          x1          x2          x3 
-##  0.55573094 -0.12016962  0.03392832 -0.10048196
+## -0.21838149  0.08808428 -0.22845559  0.06069983
 {% endhighlight %}
 
