@@ -120,8 +120,8 @@ In R, confusion matrices can be generated with `caret::confusionMatrix(test$pred
 ### ROC
 For binary responses, ROC (Receiver Operating Characteristic) AUC (Area Under the Curve) can be used. 
 
-* **True positive rate** $$= \left( P(predict.T \vert actual.T) \right)$$
-* **False positive rate** $$= \left( P(predict.T \vert actual.F) \right)$$ 
+* **Sensitivity = True positive rate** $$= \left( P(predict.T \vert actual.T) \right)$$
+* **Specificity = False positive rate** $$= \left( P(predict.T \vert actual.F) \right)$$ 
 
 The ROC curve plots the true positive rate  vs. the false positive rate across a range of thresholds. Then the AUC is calculated as a measure of accuracy. A perfect model has a $$AUC = 1$$, the trends should hug the upper left corner of the curve. A model with an $$AUC = 0.5$$ is no better than random guessing. The idea is that you want a model to have a greater true positive rate than a false positive rate.
 

@@ -113,7 +113,7 @@ $$ \log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) $$ | $$
 $$ \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} $$ | $$= e^{\beta_1} $$
 $$ (odds \vert x_1 = x + 1) $$ | $$= e^{\beta_1} * (odds \vert x_1 = x)$$
 
-Interpret the $$\hat{\beta}_i$$ coefficient as follows: holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$.
+The value $$exp(\hat{\beta}_i)$$ is the odds ratio for a unit increase of $$x_i$$. Interpret the $$\hat{\beta}_i$$ coefficient as follows: holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$. 
 
 ### Continuous Variables
 The interpretation of coefficients for continuous variables are same as listed above. Holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$
