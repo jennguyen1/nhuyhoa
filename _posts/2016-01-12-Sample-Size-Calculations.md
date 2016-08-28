@@ -14,13 +14,17 @@ When running experiments it is important that the sample size is large enough to
 
 Larger sample sizes increase power (the probability of rejecting when there is a true difference) and reduces the false discovery rate (Type 1 error). However, due to limited resources it is not possible to gather an unlimited number of samples. Maintaining this balance is exactly the reason why sample size calculations are so important.
 
+See this [resource][sample_size_calculators]{:target = "_blank"} for more information.
+
 # Basic Idea
 Consider the observations $$Y_i \sim N(\mu, \sigma^2)$$ for $$i = 1, ..., n$$ where $$\sigma^2$$ is known. 
 
 Then <br>
 $$\bar{Y} = \frac{1}{n} \sum_i y_i$$
 
-Reject $$H_0: \mu \le 0$$ if $$\bar{Y} > C_n$$ for some $$C_n$$. In standardized form, reject $$H_0$$ if $$Z = \sqrt{\frac{n}{\sigma^2}} \bar{Y} \ge Z_{1 - \alpha/2}$$. Therefore $$C_n = \sqrt{\frac{\sigma^2}{n}} Z_{1 - \alpha /2}$$. 
+Reject $$H_0: \mu = 0$$ if $$\bar{Y} > C_n$$ for some $$C_n$$. <br>
+In standardized form, reject $$H_0$$ if $$Z = \sqrt{\frac{n}{\sigma^2}} \bar{Y} \ge Z_{1 - \alpha/2}$$. <br>
+Therefore $$C_n = \sqrt{\frac{\sigma^2}{n}} Z_{1 - \alpha /2}$$. 
 
 ![Null and Alternative Distributions](http://jnguyen92.github.io/nhuyhoa/figure/images/null_and_alternative_dist.png)
 
@@ -116,3 +120,6 @@ R has several functions to calculate desired power and sample sizes
 * `power.t.test()`
 * `power.anova.test()`
 * `power.prop.test()`
+
+
+[sample_size_calculators]: http://powerandsamplesize.com/
