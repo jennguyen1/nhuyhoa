@@ -27,6 +27,8 @@ $$E[Y] = X\beta$$
 
 $$Var(Y) = ZGZ' + R = V$$
 
+Multi-level models should be used when the experimental units may have dependence. In experimental design, this is referred to as cluster-randomized. One example of this is value-added models that evaluate the effect of student characteristics on a posttest score. Students who have the same teacher are dependent data points. Thus it is important to incorporate teachers as a random effect. 
+
 # Fitting Models
 
 Models containing multiple variance components can be estimated using REML (restricted maximum likelihood). It has the advantage of obtaining unbiased estimates of the variance components (MLE estimates tend to be biased down). The process goes like this
