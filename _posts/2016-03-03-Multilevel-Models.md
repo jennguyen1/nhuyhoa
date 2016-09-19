@@ -20,6 +20,8 @@ $$E[Y] = X\beta$$
 
 $$Var(Y) = ZGZ' + R = V$$
 
+Multi-level models should be used when the experimental units may have dependence. In experimental design, this is referred to as cluster-randomized. One example of this is value-added models that evaluate the effect of student characteristics on a posttest score. Students who have the same teacher are dependent data points. Thus it is important to incorporate teachers as a random effect. 
+
 # Fitting Models
 
 Models containing multiple variance components can be estimated using REML (restricted maximum likelihood). It has the advantage of obtaining unbiased estimates of the variance components (MLE estimates tend to be biased down). The process goes like this
@@ -79,7 +81,7 @@ This value means that the standard deviation of average $$y$$ between groups is 
 
 ## Model Formulas
 
-Variants of the varying intercept models may be fit in R with the following `lmer()` commands
+Variants of the varying intercept models may be fit in R with the following `lme4::lmer()` and `nlme::lme` commands.
 
 **Varying intercept; no predictors:**
 
@@ -90,6 +92,7 @@ $$\alpha_j \sim N(\mu_a, \sigma^2_a)$$
 
 {% highlight r %}
 lmer(y ~ 1 + (1 | group))
+lme(y ~ 1, random = ~ 1 | group)
 {% endhighlight %}
 
 **Varying intercept; individual level predictors:**
@@ -101,6 +104,7 @@ $$\alpha_j \sim N(\mu_a, \sigma^2_a)$$
 
 {% highlight r %}
 lmer(y ~ x + (1 | group))
+lme(y ~ x, random = ~ 1 | group)
 {% endhighlight %}
 
 **Varying intercept; individual and group level predictors:**
@@ -112,6 +116,7 @@ $$\alpha_j \sim N(\mu_a + \tau grp.x, \sigma^2_a)$$
 
 {% highlight r %}
 lmer(y ~ x + grp.x + (1 | group))
+lme(y ~ x + grp.x, random = ~ 1 | group)
 {% endhighlight %}
 
 **Varying intercept, varying slope:**
@@ -137,7 +142,8 @@ p \sigma^2_a \sigma^2_b & \sigma^2_b
 
 
 {% highlight r %}
-lmer(y ~ x + (1 + x | group))
+lmer(y ~ x + (x | group))
+lme(y ~ x, random = ~ x | group)
 {% endhighlight %}
 
 **Varying intercept, varying slope; group level predictors:**
@@ -163,7 +169,8 @@ p \sigma^2_a \sigma^2_b & \sigma^2_b
 
 
 {% highlight r %}
-lmer(y ~ x + grp.x + x:grp.x + (1 + x | group))
+lmer(y ~ x + grp.x + x:grp.x + (x | group))
+lme(y ~ x + grp.x + x:grp.x, random = ~ x | group)
 {% endhighlight %}
 
 **Varying intercept, varying slope; individual level predictors:**
@@ -193,6 +200,34 @@ p_2 \sigma^2_a \sigma^2_{bz} & p_3 \sigma^2_b \sigma^2_{bz} & \sigma^2_{bz} \\
 
 {% highlight r %}
 lmer(y ~ z + x + (x + x:z | group))
+lme(y ~ z + x, random = ~ x + x:z | group)
+{% endhighlight %}
+
+**Varying intercept, varying slope, no intercept/slope covariance:**
+
+$$y_i \sim N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
+
+$$ \left(\begin{array}
+{rrr}
+\alpha_j \\
+\beta_j
+\end{array}\right)
+ \sim N\left( \left(\begin{array}
+{rrr}
+\mu_a \\
+\mu_b
+\end{array}\right) , 
+\left(\begin{array}
+{rrr}
+\sigma^2_a & 0 \\
+0 & \sigma^2_b
+\end{array}\right)
+\right)$$
+
+
+{% highlight r %}
+lmer(y ~ x + (x || group))
+lme(y ~ x, random = list(group = pdDiag(~ x)))
 {% endhighlight %}
 
 **Varying slope:**
@@ -203,10 +238,13 @@ $$\beta_j \sim N(\mu_b, \sigma^2_b)$$
 
 
 {% highlight r %}
-lmer(y ~ x + (x - 1 | group))
+lmer(y ~ x + (0 + x  | group))
+lme(y ~ x, random = ~ 0 + x | group)
 {% endhighlight %}
 
 **Nested Models:**
+
+A is nested inside B. 
 
 $$y_i \sim N(\mu + \alpha_j + \beta_{k[j]}, \sigma^2_y)$$
 
@@ -217,8 +255,8 @@ $$\beta_k \sim N(0, \sigma^2_b)$$
 
 {% highlight r %}
 lmer(y ~ 1 + (1 | group.b / group.a))
+lme(y ~ 1, random = ~ 1 | group.b / group.a)
 {% endhighlight %}
-
 
 **Non-Nested Models:**
 
@@ -232,6 +270,63 @@ $$\beta_k \sim N(0, \sigma^2_b)$$
 {% highlight r %}
 lmer(y ~ 1 + (1 | group.a) + (1 | group.b))
 {% endhighlight %}
+
+**Heteroscedasticity by groups:**
+
+$$y_i | t = 0 \sim N(x, \sigma^2_0)$$
+
+$$y_i | t = 1 \sim N(x, \sigma^2_1)$$
+
+
+{% highlight r %}
+lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "lme"
+{% endhighlight %}
+
+**Repeated Measures, compound symmetry:**
+
+{% highlight r %}
+lme(y ~ x, random = ~ 1 | group, correlation = corCompSymm(form = ~ 1 | group))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "lme"
+{% endhighlight %}
+
+
+**Repeated Measures, first order autoregressive AR(1):**
+
+
+{% highlight r %}
+lme(y ~ x, random = ~ 1 | group, correlation = corAR1())
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "lme"
+{% endhighlight %}
+
+**Repeated Measures, heterogeneous AR(1):**
+
+
+{% highlight r %}
+lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t), correlation = corAR1())
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "lme"
+{% endhighlight %}
+
 
 **Transformations:**
 

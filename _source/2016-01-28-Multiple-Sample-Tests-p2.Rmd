@@ -41,6 +41,17 @@ When one is assessing multiple contrasts, it would be wise to control for [multi
 
 In R, use `pairwise.t.test(y, x)`, `p.adjust()`. Contrasts can be tested using the `multcomp::glht()` function.
 
+For example
+```{r}
+library(multcomp)
+contr <- glht(mod, linfct = mcp(x = "Tukey"))
+summary(contr)
+confint(contr)
+
+# see the following for adjustments
+p.adjust.methods
+```
+
 ## Unreplicated Studies
 
 If unreplicated studies need to be run (perhaps for preliminary studies), there needs to be another way to obtain an estimate of $$\sigma^2_{\epsilon}$$. 

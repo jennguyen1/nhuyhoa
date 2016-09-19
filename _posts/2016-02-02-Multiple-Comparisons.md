@@ -154,7 +154,7 @@ where $$k$$ is the number of groups.
 ## False Discovery Rate (FDR)
 This method states that for large $$r$$, not all null hypotheses are expected to be true. Rather than focusing on the family-wise error rate, the objective is to control 
 
-$$\alpha = FDR = E \left( \frac{H_0 true}{n.significant}  \vert n.significant > 0 \right)$$
+$$\alpha = FDR = E \left( \frac{no.false.positive}{no.significant}  \vert n.significant > 0 \right)$$
 
 the expected proportion of Type 1 errors (false positives) among the rejected hypotheses. FDR cuts some slack for making correct rejections; by correctly rejecting a certain number of hypothesis, it gives a pass for one incorrect rejection.
 
@@ -217,6 +217,116 @@ The right method depends on the application. It's best to use conservative tests
 
 ## In R
 In R, use `pairwise.t.test(y, x)`, `p.adjust()`. There is also a FDR method in `qvalue::qvalue()`. Different methods can be specified as well. Contrasts are tested using the `multcomp::glht()` function.
+
+For example
+
+{% highlight r %}
+library(multcomp)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Loading required package: mvtnorm
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Loading required package: survival
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Loading required package: TH.data
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Loading required package: MASS
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## 
+## Attaching package: 'MASS'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## 
+## Attaching package: 'TH.data'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## The following object is masked from 'package:MASS':
+## 
+##     geyser
+{% endhighlight %}
+
+
+
+{% highlight r %}
+contr <- glht(mod, linfct = mcp(x = "Tukey"))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in factor_contrasts(model): no 'model.matrix' method for 'model' found!
+{% endhighlight %}
+
+
+
+{% highlight r %}
+summary(contr)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in summary(contr): object 'contr' not found
+{% endhighlight %}
+
+
+
+{% highlight r %}
+confint(contr)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in confint(contr): object 'contr' not found
+{% endhighlight %}
+
+
+
+{% highlight r %}
+# see the following for adjustments
+p.adjust.methods
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] "holm"       "hochberg"   "hommel"     "bonferroni" "BH"        
+## [6] "BY"         "fdr"        "none"
+{% endhighlight %}
 
 # Multiple Corrections for Count Data
 

@@ -37,6 +37,116 @@ When one is assessing multiple contrasts, it would be wise to control for [multi
 
 In R, use `pairwise.t.test(y, x)`, `p.adjust()`. Contrasts can be tested using the `multcomp::glht()` function.
 
+For example
+
+{% highlight r %}
+library(multcomp)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Loading required package: mvtnorm
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Loading required package: survival
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Loading required package: TH.data
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Loading required package: MASS
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## 
+## Attaching package: 'MASS'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## 
+## Attaching package: 'TH.data'
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## The following object is masked from 'package:MASS':
+## 
+##     geyser
+{% endhighlight %}
+
+
+
+{% highlight r %}
+contr <- glht(mod, linfct = mcp(x = "Tukey"))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in factor_contrasts(model): no 'model.matrix' method for 'model' found!
+{% endhighlight %}
+
+
+
+{% highlight r %}
+summary(contr)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in summary(contr): object 'contr' not found
+{% endhighlight %}
+
+
+
+{% highlight r %}
+confint(contr)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in confint(contr): object 'contr' not found
+{% endhighlight %}
+
+
+
+{% highlight r %}
+# see the following for adjustments
+p.adjust.methods
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] "holm"       "hochberg"   "hommel"     "bonferroni" "BH"        
+## [6] "BY"         "fdr"        "none"
+{% endhighlight %}
+
 ## Unreplicated Studies
 
 If unreplicated studies need to be run (perhaps for preliminary studies), there needs to be another way to obtain an estimate of $$\sigma^2_{\epsilon}$$. 

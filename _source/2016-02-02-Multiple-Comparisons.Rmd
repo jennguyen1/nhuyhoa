@@ -270,6 +270,17 @@ The right method depends on the application. It's best to use conservative tests
 ## In R
 In R, use `pairwise.t.test(y, x)`, `p.adjust()`. There is also a FDR method in `qvalue::qvalue()`. Different methods can be specified as well. Contrasts are tested using the `multcomp::glht()` function.
 
+For example
+```{r}
+library(multcomp)
+contr <- glht(mod, linfct = mcp(x = "Tukey"))
+summary(contr)
+confint(contr)
+
+# see the following for adjustments
+p.adjust.methods
+```
+
 # Multiple Corrections for Count Data
 
 Multiple testing assumptions assume that if a null hypothesis is true, then the p-values are uniform. This assumption is violated if there are small samples or low counts. When this occurs there are only a few possible p-values. If there is no true effect, p-values begin to pile up at very high values ($$p \approx 1$$). (When there are large samples or high counts, the CLT takes effect and the results look more continuous).
