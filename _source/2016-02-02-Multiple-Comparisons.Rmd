@@ -271,7 +271,7 @@ The right method depends on the application. It's best to use conservative tests
 In R, use `pairwise.t.test(y, x)`, `p.adjust()`. There is also a FDR method in `qvalue::qvalue()`. Different methods can be specified as well. Contrasts are tested using the `multcomp::glht()` function.
 
 For example
-```{r}
+```{r, eval = FALSE}
 library(multcomp)
 contr <- glht(mod, linfct = mcp(x = "Tukey"))
 summary(contr)

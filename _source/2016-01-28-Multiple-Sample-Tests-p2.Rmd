@@ -42,7 +42,7 @@ When one is assessing multiple contrasts, it would be wise to control for [multi
 In R, use `pairwise.t.test(y, x)`, `p.adjust()`. Contrasts can be tested using the `multcomp::glht()` function.
 
 For example
-```{r}
+```{r, eval = FALSE}
 library(multcomp)
 contr <- glht(mod, linfct = mcp(x = "Tukey"))
 summary(contr)
