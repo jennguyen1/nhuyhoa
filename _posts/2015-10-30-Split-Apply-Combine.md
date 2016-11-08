@@ -581,33 +581,6 @@ class %>%
 </table>
 </div><p></p>
 
-How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to $$d.gender$$ prior these calculations, splitting them into the boolean columns of $$d.gender.m$$ and $$d.gender.f$$).
-
-
-{% highlight r %}
-class %>% 
-  # split: by teacher
-  group_by(teacher_id) %>% 
-  # apply: weighted mean using weights on numeric columns
-  summarise_if(is.numeric, mean) %>% 
-  # combine: dplyr does this automatically
-  head()
-{% endhighlight %}
-
-<div class = "dftab">
-
-{% highlight text %}
-## Error: Each variable must have a unique name.
-## Problem variables: 'student_id', 'teacher_id', 'weight', 'subject', 'grade', 'posttest_score', 'pretest_score', 'd_gender'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'class3' not found
-{% endhighlight %}
-</div>
-
 ### do and unnest
 `do()` is versatile because it can handle a variety of different output types. 
 

@@ -263,40 +263,6 @@ df %>% nhuyhoa_df_print()
 ```
 </div><p></p>
 
-How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to $$d.gender$$ prior these calculations, splitting them into the boolean columns of $$d.gender.m$$ and $$d.gender.f$$).
-
-```{r, eval = FALSE}
-class %>% 
-  # split: by teacher
-  group_by(teacher_id) %>% 
-  # apply: weighted mean using weights on numeric columns
-  summarise_if(is.numeric, mean) %>% 
-  # combine: dplyr does this automatically
-  head()
-```
-
-<div class = "dftab">
-```{r, echo = FALSE}
-# reconfigure class
-class3 <- class %>% 
-  dplyr::select(-d_black, -d_hispanic, -d_asian, -d_native) %>% 
-  cbind(df) %>% 
-  mutate(
-    d_gender_f = ifelse(d_gender == "female", 1, 0),
-    d_gender_m = ifelse(d_gender == "male", 1, 0),
-    d_gender = NULL
-  ) 
-
-class3 %>% 
-  # split: by teacher
-  group_by(teacher_id) %>% 
-  # apply: weighted mean using weights on numeric columns
-  summarise_if(is.numeric, mean) %>% 
-  # combine: dplyr does this automatically
-  nhuyhoa_df_print()
-```
-</div>
-
 ### do and unnest
 `do()` is versatile because it can handle a variety of different output types. 
 
