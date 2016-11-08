@@ -260,16 +260,6 @@ df <- class %>%
   mutate_if(is.logical, as.numeric) 
 # print
 df %>% nhuyhoa_df_print()
-
-# reconfigure class
-class3 <- class %>% 
-  dplyr::select(-d_black, -d_hispanic, -d_asian, -d_native) %>% 
-  cbind(df) %>% 
-  mutate(
-    d_gender_f = ifelse(d_gender == "female", 1, 0),
-    d_gender_m = ifelse(d_gender == "male", 1, 0),
-    d_gender = NULL
-  ) 
 ```
 </div><p></p>
 
@@ -287,6 +277,16 @@ class %>%
 
 <div class = "dftab">
 ```{r, echo = FALSE}
+# reconfigure class
+class3 <- class %>% 
+  dplyr::select(-d_black, -d_hispanic, -d_asian, -d_native) %>% 
+  cbind(df) %>% 
+  mutate(
+    d_gender_f = ifelse(d_gender == "female", 1, 0),
+    d_gender_m = ifelse(d_gender == "male", 1, 0),
+    d_gender = NULL
+  ) 
+
 class3 %>% 
   # split: by teacher
   group_by(teacher_id) %>% 

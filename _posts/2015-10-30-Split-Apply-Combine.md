@@ -579,13 +579,6 @@ class %>%
   </tr>
 </tbody>
 </table>
-
-
-
-{% highlight text %}
-## Error: Each variable must have a unique name.
-## Problem variables: 'student_id', 'teacher_id', 'weight', 'subject', 'grade', 'posttest_score', 'pretest_score', 'd_gender'
-{% endhighlight %}
 </div><p></p>
 
 How about something a little more complicated? Let's group by teacher and compute the weighted means of all our numeric variables, using the provided weights. (Note that I made a little change to $$d.gender$$ prior these calculations, splitting them into the boolean columns of $$d.gender.m$$ and $$d.gender.f$$).
@@ -602,6 +595,13 @@ class %>%
 {% endhighlight %}
 
 <div class = "dftab">
+
+{% highlight text %}
+## Error: Each variable must have a unique name.
+## Problem variables: 'student_id', 'teacher_id', 'weight', 'subject', 'grade', 'posttest_score', 'pretest_score', 'd_gender'
+{% endhighlight %}
+
+
 
 {% highlight text %}
 ## Error in eval(expr, envir, enclos): object 'class3' not found
