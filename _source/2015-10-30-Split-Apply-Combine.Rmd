@@ -235,22 +235,21 @@ af %>% nhuyhoa_df_print()
 ```
 </div>
 
-### summarise_each and mutate_each 
-The `summarise_each()` and `mutate_each()` simultaneously applies a function to all columns at once. 
+### summarise_all and mutate_all 
+The `summarise_all()` and `mutate_all()` simultaneously applies a function to all columns at once. 
 
 A few notes:
 
 * wrap functions in `funs()`
 * for functions with additional arguments, do `funs(my_func(., addnl_args))`
-* by default these functions will be applied to all columns; to specify or despecify columns the special `dplyr::select` functions can be applied after the `funs()` argument
+* to apply a function to select variables with the functions `summarise_at()` and `mutate_at()`
+* to apply a function to variables that satisfy certain conditions with the functions `summarise_if()` and `mutate_if()`
 
 Let's convert all the boolean variables to numeric variables. 
 ```{r, eval = FALSE}
 class %>% 
-  # select the boolean variables
-  dplyr::select(starts_with("d_"), -d_gender) %>% 
-  # convert all columns to numeric
-  mutate_each(funs(as.numeric)) %>% 
+  # convert all boolean vars to numeric
+  mutate_if(is.logical, as.numeric) %>% 
   # print
   head
 ```
@@ -258,10 +257,7 @@ class %>%
 <div class = "dftab">
 ```{r, echo = FALSE}
 df <- class %>% 
-  # select demographics
-  dplyr::select(starts_with("d_"), -d_gender) %>% 
-  # make numeric
-  mutate_each(funs(as.numeric))
+  mutate_if(is.logical, as.numeric) 
 # print
 df %>% nhuyhoa_df_print()
 
@@ -284,7 +280,7 @@ class %>%
   # split: by teacher
   group_by(teacher_id) %>% 
   # apply: weighted mean using weights on numeric columns
-  summarise_each(funs(weighted.mean(., weight)), -student_id, -weight, -subject, -grade) %>% 
+  summarise_if(is.numeric, weighted.mean, w = rep(1/nrow(.), nrow(.))) %>% 
   # combine: dplyr does this automatically
   head()
 ```
@@ -295,7 +291,7 @@ class3 %>%
   # split: by teacher
   group_by(teacher_id) %>% 
   # apply: weighted mean using weights on numeric columns
-  summarise_each(funs(weighted.mean(., weight)), -student_id, -weight, -subject, -grade) %>% 
+  summarise_if(is.numeric, weighted.mean, w = rep(1/nrow(.), nrow(.)))
   # combine: dplyr does this automatically
   nhuyhoa_df_print()
 ```
