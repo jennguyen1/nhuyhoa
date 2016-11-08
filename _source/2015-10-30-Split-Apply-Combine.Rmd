@@ -60,8 +60,8 @@ keep <- fix_duplicates[["not_to_be"]]
 class <- fix_duplicates[["to_be"]] %>% 
   group_by(student_id) %>% 
   do(magrittr::extract(., 1,)) %>% 
-  rbind(keep) %>% 
-  data.table %>% 
+  list(., keep) %>% 
+  rbindlist() %>% 
   dplyr::select(student_id, teacher_id, weight, subject, grade, everything())
 
 # order columns
@@ -280,7 +280,7 @@ class %>%
   # split: by teacher
   group_by(teacher_id) %>% 
   # apply: weighted mean using weights on numeric columns
-  summarise_if(is.numeric, weighted.mean, w = rep(1/nrow(.), nrow(.))) %>% 
+  summarise_if(is.numeric, mean) %>% 
   # combine: dplyr does this automatically
   head()
 ```
@@ -291,7 +291,7 @@ class3 %>%
   # split: by teacher
   group_by(teacher_id) %>% 
   # apply: weighted mean using weights on numeric columns
-  summarise_if(is.numeric, weighted.mean, w = rep(1/nrow(.), nrow(.)))
+  summarise_if(is.numeric, mean) %>% 
   # combine: dplyr does this automatically
   nhuyhoa_df_print()
 ```
