@@ -44,6 +44,9 @@ display.brewer.all()
 * [rmarkdown][rmarkdown_ref]{:target = "_blank"}
 * [rmarkdown2][rmarkdown_ref2]{:target = "_blank"}
 
+**Other Python Apps**
+
+* [pandas cheatsheet][pandas_ref]{:target = "_blank"}
 
 [r_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMMWN5dmhaT05IRkk/view?usp=sharing
 [dplyr_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMblBxTjEwRWZXYjQ/view?usp=sharing
@@ -53,6 +56,7 @@ display.brewer.all()
 [shiny_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMU0JWZmtWSXF0dHc/view?usp=sharing
 [rmarkdown_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMV2NBbWlSNHJvM2c/view?usp=sharing
 [rmarkdown_ref2]: https://drive.google.com/file/d/0B5VF_idvHAmMTHU4MFRDV1Z3NUE/view?usp=sharing
+[pandas_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMV0dTNFpyQU9Udnc/view?usp=sharing
 
 # Not Yet:
 
@@ -63,7 +67,7 @@ locator function:
 
 **list of functions**
 
-* partial(f, ..): changes the deafults of functions
+* partial(f, ..): changes the defaults of functions
 * sf <- pryr::partial(sum, 1:5, na.rm = TRUE); sf()
      
 **nonstandard evaluation:**
