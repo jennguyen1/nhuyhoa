@@ -544,13 +544,6 @@ alias
 **Functions**
 ```{r, eval = FALSE}
 # declare functions
-f() {
-  echo $1
-  local var1='local1'
-  # stuff
-  return 5
-}
-
 function f{
   echo $1
   local var1='local1'
