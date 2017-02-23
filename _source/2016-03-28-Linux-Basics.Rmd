@@ -223,6 +223,7 @@ A shell script is a file containing lines for the shell to execute. Everything t
 
 ```{r}
 #!/bin/sh
+#!/bin/bash
 ```
 
 The rest of the script can be populated with a list of commands or comments (#). 
@@ -265,13 +266,12 @@ export VAR2="value2"
 # call a variable (brackets are not required but convention)
 cmd ${VAR}
 
-# call arrays
+# call arrays (should include [], otherwise only prints first element)
 cmd ${NAME[0]}
-cmd ${NAME[*]}
 cmd ${NAME[@]}
 
 # find the length of a variable
-cmd ${#VAR}
+cmd ${#VAR[@]}
 
 ```
 
