@@ -372,7 +372,7 @@ echo $((5+3))
 ```
 
 
-## Condtionals
+## Conditionals
 
 ```{r, eval = FALSE}
 # returns 0 for true; 1 for false
@@ -584,7 +584,7 @@ echo "hi, hi, hi" | sed 's/hi/hello/g'
 sed 's/heart/love/p' test.txt
 
 # example: different print modifier, prints original and edit
-sed 'p;s/heart/love/'
+sed 'p;s/heart/love/' test.txt
 
 # example: regex and backreferences
 sed 's/\([1-9]*\) \(#\)/ \2 \1/' test.txt
