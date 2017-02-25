@@ -632,14 +632,23 @@ awk '$3>$5' input.txt > output.txt
 # extract col 2, 4, 5
 awk '{print $2, $4, $5}' input.txt
 
-# extract columns into a tab-separated file (OFS = output field separator)
-awk 'BEGIN{OFS="\t"}{print $2, $4, $5}' input.txt
+# import simple csv
+awk -F, '{print $1,$2}'
 
-# extract columns from a tab-separated file (FS = field separator)
+# import from a tab-separated file (FS = field separator)
 awk 'BEGIN{FS="\t"}{print $2, $4, $5}' input.txt
 
-# show rows between 20th and 80th rows
+# export from a tab-separated file (OFS = output field separator)
+awk 'BEGIN{OFS="\t"}{print $2, $4, $5}' input.txt
+
+# show rows between 20th and 80th rows (NR = row number)
 awk 'NR>=20&&NR<=80' input.txt
+
+# show number columns for each row (NF = field number)
+awk '{print NF}'
+
+# awk filter 2nd column that equals variable $t
+awk -v var=$t '($2==var){print}'
 
 # print sum of col 2
 awk '{x+=$2}END{print x}' input.txt
@@ -669,8 +678,6 @@ awk '!($2 in l){print;l[$2]=1}' input.txt
 # count different words
 awk '{for(i=1;i!=NF;++i)c[$i]++}END{for (x in c) print x,c[x]}' input.txt
 
-# process simple csv
-awk -F, '{print $1,$2}'
 ```
 
 

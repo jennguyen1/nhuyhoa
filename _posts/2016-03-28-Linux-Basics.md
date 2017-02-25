@@ -237,6 +237,7 @@ A shell script is a file containing lines for the shell to execute. Everything t
 
 {% highlight r %}
 #!/bin/sh
+#!/bin/bash
 {% endhighlight %}
 
 The rest of the script can be populated with a list of commands or comments (#). 
@@ -282,13 +283,12 @@ export VAR2="value2"
 # call a variable (brackets are not required but convention)
 cmd ${VAR}
 
-# call arrays
+# call arrays (should include [], otherwise only prints first element)
 cmd ${NAME[0]}
-cmd ${NAME[*]}
 cmd ${NAME[@]}
 
 # find the length of a variable
-cmd ${#VAR}
+cmd ${#VAR[@]}
 {% endhighlight %}
 
 **View and Remove Variables:**
@@ -394,7 +394,7 @@ echo $((5+3))
 {% endhighlight %}
 
 
-## Condtionals
+## Conditionals
 
 
 {% highlight r %}
@@ -576,13 +576,6 @@ alias
 
 {% highlight r %}
 # declare functions
-f() {
-  echo $1
-  local var1='local1'
-  # stuff
-  return 5
-}
-
 function f{
   echo $1
   local var1='local1'
@@ -624,7 +617,7 @@ echo "hi, hi, hi" | sed 's/hi/hello/g'
 sed 's/heart/love/p' test.txt
 
 # example: different print modifier, prints original and edit
-sed 'p;s/heart/love/'
+sed 'p;s/heart/love/' test.txt
 
 # example: regex and backreferences
 sed 's/\([1-9]*\) \(#\)/ \2 \1/' test.txt
@@ -675,14 +668,23 @@ awk '$3>$5' input.txt > output.txt
 # extract col 2, 4, 5
 awk '{print $2, $4, $5}' input.txt
 
-# extract columns into a tab-separated file (OFS = output field separator)
-awk 'BEGIN{OFS="\t"}{print $2, $4, $5}' input.txt
+# import simple csv
+awk -F, '{print $1,$2}'
 
-# extract columns from a tab-separated file (FS = field separator)
+# import from a tab-separated file (FS = field separator)
 awk 'BEGIN{FS="\t"}{print $2, $4, $5}' input.txt
 
-# show rows between 20th and 80th rows
+# export from a tab-separated file (OFS = output field separator)
+awk 'BEGIN{OFS="\t"}{print $2, $4, $5}' input.txt
+
+# show rows between 20th and 80th rows (NR = row number)
 awk 'NR>=20&&NR<=80' input.txt
+
+# show number columns for each row (NF = field number)
+awk '{print NF}'
+
+# awk filter 2nd column that equals variable $t
+awk -v var=$t '($2==var){print}'
 
 # print sum of col 2
 awk '{x+=$2}END{print x}' input.txt
@@ -711,9 +713,6 @@ awk '!($2 in l){print;l[$2]=1}' input.txt
 
 # count different words
 awk '{for(i=1;i!=NF;++i)c[$i]++}END{for (x in c) print x,c[x]}' input.txt
-
-# process simple csv
-awk -F, '{print $1,$2}'
 {% endhighlight %}
 
 
