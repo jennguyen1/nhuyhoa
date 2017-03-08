@@ -229,6 +229,21 @@ scp original.file user@location.to.transfer:file_path
 scp -rp file location.to.transfer
 ```
 
+**Run on Background in Server:**
+
+```{r, eval = FALSE}
+# add an & at the end of command
+sh filename.sh >> output.txt &
+
+# check on currently running background commands
+top
+
+# push to background after starting
+sh filename.sh >> output.txt
+# do cntrl + z
+bg
+```
+
 # Shell Scripting
 
 A shell script is a file containing lines for the shell to execute. Everything that can be done on the command line can be put into a shell script. Shell scripts should be relatively short. Longer scripts can be written using other languages and then run using a few lines of a shell script.
