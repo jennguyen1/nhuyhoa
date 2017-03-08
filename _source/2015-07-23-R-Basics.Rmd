@@ -237,7 +237,8 @@ option_list <- list(
   make_option("--generator", default="rnorm", help = "Function to generate random deviates [default \"%default\"]"),
   make_option(c("-c", "--count"), type="integer", default=5, help="Number of random normals to generate [default %default]", metavar="number"),
   make_option("--mean", default=0, help="Mean if generator == \"rnorm\" [default %default]"), 
-  make_option("--sd", default=1, metavar="standard deviation", help="Standard deviation if generator == \"rnorm\" [default %default]")
+  make_option("--sd", default=1, metavar="standard deviation", help="Standard deviation if generator == \"rnorm\" [default %default]"), 
+  make_option("--y", action = "store_true", dest = "var", help = "If this boolean flag is activated var is set to true")
 )
 
 opt <- parse_args(OptionParser(option_list=option_list))
