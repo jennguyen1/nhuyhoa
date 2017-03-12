@@ -151,6 +151,21 @@ zip file_name file1 file2 ... filen
 unzip file_name.zip
 {% endhighlight %}
 
+`gzip` options:
+
+
+{% highlight r %}
+# gzip files
+gzip file_name file1 file2 ... filen
+
+# unzip files
+gunzip file_name.zip
+{% endhighlight %}
+View zipped files
+```
+zcat file_name
+```
+
 ## Changing Permissions of Files
 
 Syntax: `chmod (user)(+-=)(rwx) (filename)`
@@ -226,6 +241,22 @@ scp original.file user@location.to.transfer:file_path
 
 # using scp with directories
 scp -rp file location.to.transfer
+{% endhighlight %}
+
+**Run on Background in Server:**
+
+
+{% highlight r %}
+# add an & at the end of command
+sh filename.sh >> output.txt &
+
+# check on currently running background commands
+top
+
+# push to background after starting
+sh filename.sh >> output.txt
+# do cntrl + z
+bg
 {% endhighlight %}
 
 # Shell Scripting
