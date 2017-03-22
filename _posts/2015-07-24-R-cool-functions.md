@@ -10,16 +10,8 @@ categories: ['r programming']
 
 
 
-**General R**
-
-* [R reference][r_ref]{:target = "_blank"}
-* [dplyr cheatsheet][dplyr_ref]{:target = "_blank"}
-* [data.table cheatsheet][data.table_ref]{:target = "_blank"}
-
-
 **Graphics in R**
 
-* [ggplot2 cheatsheet][ggplot2_ref]{:target = "_blank"}
 * [GGally::ggpairs()][grid.arrange]{:target = "_blank"}
 * Plotmath
 
@@ -37,25 +29,11 @@ display.brewer.all()
 
 ![plot of chunk unnamed-chunk-3](/nhuyhoa/figure/source/2015-07-24-R-cool-functions/unnamed-chunk-3-1.png)
 
-
-**Other R Apps**
-
-* [shiny cheatsheet][shiny_ref]{:target = "_blank"}
-* [rmarkdown][rmarkdown_ref]{:target = "_blank"}
-* [rmarkdown2][rmarkdown_ref2]{:target = "_blank"}
-
 **Other Python Apps**
 
 * [pandas cheatsheet][pandas_ref]{:target = "_blank"}
 
-[r_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMMWN5dmhaT05IRkk/view?usp=sharing
-[dplyr_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMblBxTjEwRWZXYjQ/view?usp=sharing
-[data.table_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMYUtxVHVUVFVDbGc/view?usp=sharing
-[ggplot2_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMd1RDSlFYQ0lSZFE/view?usp=sharing
 [grid.arrange]: http://www.sthda.com/english/wiki/ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page-r-software-and-data-visualization
-[shiny_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMU0JWZmtWSXF0dHc/view?usp=sharing
-[rmarkdown_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMV2NBbWlSNHJvM2c/view?usp=sharing
-[rmarkdown_ref2]: https://drive.google.com/file/d/0B5VF_idvHAmMTHU4MFRDV1Z3NUE/view?usp=sharing
 [pandas_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMV0dTNFpyQU9Udnc/view?usp=sharing
 
 # Not Yet:

@@ -578,6 +578,12 @@ until [ condition ]
   do 
     # stuff
 done
+
+# loop of lines of a file
+while read l
+do
+  # stuff
+done < file_name.txt
 {% endhighlight %}
 
 **Control within Loops**
