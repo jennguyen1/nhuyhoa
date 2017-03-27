@@ -28,8 +28,8 @@ There are a few packages in R that can do transposing. The function names are di
 
 Functions:
 
-* `melt()`
-* `gather()`
+* `tidyr::gather()`
+* `reshape2::melt()`
 
 Take a look at the `airquality` data. 
 
@@ -41,24 +41,24 @@ airquality %>% nhuyhoa_df_print()
 
 Convert it to long format:
 ```{r, eval = FALSE}
-melt(airquality)
+gather(airquality)
 ```
 
 <div class = "dftab">
 ```{r, echo = FALSE, message = FALSE}
-melt(airquality) %>% nhuyhoa_df_print()
+gather(airquality) %>% nhuyhoa_df_print()
 ```
 </div><p></p>
 
-Rather than melting all variables, one can keep one (or more) columns. This tells the function to provide the values of the variables for each unique combination of the specified columns.
+The function also allows for the omission of several columns from being gathered, so that they are kept as id columns. This tells the function to provide the values of the variables for each unique combination of the specified columns.
 
 ```{r, eval = FALSE}
-melt(airquality, id.vars = c("Month", "Day"))
+gather(airquality, key = "variable", value = "value", -Month, -Day)
 ```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
-ex <- melt(airquality, id.vars = c("Month", "Day"))
+ex <- gather(airquality, key = "variable", value = "value", -Month, -Day)
 ex %>% nhuyhoa_df_print()
 ```
 </div><p></p>
@@ -67,8 +67,8 @@ ex %>% nhuyhoa_df_print()
 
 Functions:
 
-* `dcast()`
-* `spread()`
+* `tidyr::spread()`
+* `reshape2::dcast()`
 
 To specify the format of the data, three terms are needed 
 
@@ -82,51 +82,44 @@ With these three terms, the casting formula is
 
 Use the melted data from above to shift it back into wide mode.
 ```{r, eval = FALSE}
-melt(airquality, id.vars = c("Month", "Day")) %>% 
-  dcast(Month + Day ~ variable, value = "value")
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  spread(variable, value)
 ```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
-melt(airquality, id.vars = c("Month", "Day")) %>% 
-  dcast(Month + Day ~ variable, value = "value") %>% 
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  spread(variable, value) %>% 
   nhuyhoa_df_print()
 ```
 </div><p></p>
 
-If there are duplicated entries of the $$id$$ and $$variable$$, then the function will want to aggregate the duplicated values in each cell. 
+If there are duplicated entries of the $$id$$ and $$variable$$, then the function will throw an error.
 
 ```{r, eval = FALSE}
-# first melt it
-melt(airquality, id.vars = c("Month", "Day")) %>% 
-  # then dcast with just the Month
-  dcast(Month ~ variable, value.var = "value")
+# try this: error
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  dplyr::select(-Day) %>% 
+  spread(variable, value)
 ```
-
-```{r, echo = FALSE}
-temp <- melt(airquality, id.vars = c("Month", "Day")) %>% 
-  dcast(Month ~ variable, value.var = "value")
-```
-
-<div class = "dftab">
-```{r, echo = FALSE}
-temp %>% nhuyhoa_df_print()
-```
-</div><p></p>
 
 If aggregation is desired, it can be specified as the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
 
 ```{r, eval = FALSE}
-# first melt it
-melt(airquality, id.vars = c("Month", "Day")) %>% 
-  # then dcast with just the Month
-  dcast(Month ~ variable, value.var = "value", fun.aggregate = sum, na.rm = TRUE)
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  dplyr::select(-Day) %>% 
+  group_by(Month, variable) %>% 
+  summarise(value = sum(value, na.rm = TRUE)) %>% 
+  spread(variable, value)
 ```
 
 <div class = "dftab">
 ```{r, echo = FALSE}
-melt(airquality, id.vars = c("Month", "Day")) %>% 
-  dcast(Month ~ variable, value.var = "value", fun.aggregate = sum, na.rm = TRUE) %>% 
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  dplyr::select(-Day) %>% 
+  group_by(Month, variable) %>% 
+  summarise(value = sum(value, na.rm = TRUE)) %>% 
+  spread(variable, value) %>% 
   nhuyhoa_df_print()
 ```
 </div><p></p>

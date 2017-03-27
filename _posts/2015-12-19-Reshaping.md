@@ -25,8 +25,8 @@ There are a few packages in R that can do transposing. The function names are di
 
 Functions:
 
-* `melt()`
-* `gather()`
+* `tidyr::gather()`
+* `reshape2::melt()`
 
 Take a look at the `airquality` data. 
 
@@ -90,14 +90,14 @@ Take a look at the `airquality` data.
 Convert it to long format:
 
 {% highlight r %}
-melt(airquality)
+gather(airquality)
 {% endhighlight %}
 
 <div class = "dftab">
 <table>
  <thead>
   <tr>
-   <th style="text-align:center;"> variable </th>
+   <th style="text-align:center;"> key </th>
    <th style="text-align:center;"> value </th>
   </tr>
  </thead>
@@ -126,11 +126,11 @@ melt(airquality)
 </table>
 </div><p></p>
 
-Rather than melting all variables, one can keep one (or more) columns. This tells the function to provide the values of the variables for each unique combination of the specified columns.
+The function also allows for the omission of several columns from being gathered, so that they are kept as id columns. This tells the function to provide the values of the variables for each unique combination of the specified columns.
 
 
 {% highlight r %}
-melt(airquality, id.vars = c("Month", "Day"))
+gather(airquality, key = "variable", value = "value", -Month, -Day)
 {% endhighlight %}
 
 <div class = "dftab">
@@ -182,8 +182,8 @@ melt(airquality, id.vars = c("Month", "Day"))
 
 Functions:
 
-* `dcast()`
-* `spread()`
+* `tidyr::spread()`
+* `reshape2::dcast()`
 
 To specify the format of the data, three terms are needed 
 
@@ -198,8 +198,8 @@ With these three terms, the casting formula is
 Use the melted data from above to shift it back into wide mode.
 
 {% highlight r %}
-melt(airquality, id.vars = c("Month", "Day")) %>% 
-  dcast(Month + Day ~ variable, value = "value")
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  spread(variable, value)
 {% endhighlight %}
 
 <div class = "dftab">
@@ -210,8 +210,8 @@ melt(airquality, id.vars = c("Month", "Day")) %>%
    <th style="text-align:center;"> Day </th>
    <th style="text-align:center;"> Ozone </th>
    <th style="text-align:center;"> Solar.R </th>
-   <th style="text-align:center;"> Wind </th>
    <th style="text-align:center;"> Temp </th>
+   <th style="text-align:center;"> Wind </th>
   </tr>
  </thead>
 <tbody>
@@ -220,119 +220,64 @@ melt(airquality, id.vars = c("Month", "Day")) %>%
    <td style="text-align:center;"> 1 </td>
    <td style="text-align:center;"> 41 </td>
    <td style="text-align:center;"> 190 </td>
-   <td style="text-align:center;"> 7.4 </td>
    <td style="text-align:center;"> 67 </td>
+   <td style="text-align:center;"> 7.4 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 5 </td>
    <td style="text-align:center;"> 2 </td>
    <td style="text-align:center;"> 36 </td>
    <td style="text-align:center;"> 118 </td>
-   <td style="text-align:center;"> 8.0 </td>
    <td style="text-align:center;"> 72 </td>
+   <td style="text-align:center;"> 8.0 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 5 </td>
    <td style="text-align:center;"> 3 </td>
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> 149 </td>
-   <td style="text-align:center;"> 12.6 </td>
    <td style="text-align:center;"> 74 </td>
+   <td style="text-align:center;"> 12.6 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 5 </td>
    <td style="text-align:center;"> 4 </td>
    <td style="text-align:center;"> 18 </td>
    <td style="text-align:center;"> 313 </td>
-   <td style="text-align:center;"> 11.5 </td>
    <td style="text-align:center;"> 62 </td>
+   <td style="text-align:center;"> 11.5 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 5 </td>
    <td style="text-align:center;"> 5 </td>
    <td style="text-align:center;"> NA </td>
    <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 14.3 </td>
    <td style="text-align:center;"> 56 </td>
+   <td style="text-align:center;"> 14.3 </td>
   </tr>
 </tbody>
 </table>
 </div><p></p>
 
-If there are duplicated entries of the $$id$$ and $$variable$$, then the function will want to aggregate the duplicated values in each cell. 
+If there are duplicated entries of the $$id$$ and $$variable$$, then the function will throw an error.
 
 
 {% highlight r %}
-# first melt it
-melt(airquality, id.vars = c("Month", "Day")) %>% 
-  # then dcast with just the Month
-  dcast(Month ~ variable, value.var = "value")
+# try this: error
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  dplyr::select(-Day) %>% 
+  spread(variable, value)
 {% endhighlight %}
-
-
-{% highlight text %}
-## Aggregation function missing: defaulting to length
-{% endhighlight %}
-
-<div class = "dftab">
-<table>
- <thead>
-  <tr>
-   <th style="text-align:center;"> Month </th>
-   <th style="text-align:center;"> Ozone </th>
-   <th style="text-align:center;"> Solar.R </th>
-   <th style="text-align:center;"> Wind </th>
-   <th style="text-align:center;"> Temp </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> 5 </td>
-   <td style="text-align:center;"> 31 </td>
-   <td style="text-align:center;"> 31 </td>
-   <td style="text-align:center;"> 31 </td>
-   <td style="text-align:center;"> 31 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 6 </td>
-   <td style="text-align:center;"> 30 </td>
-   <td style="text-align:center;"> 30 </td>
-   <td style="text-align:center;"> 30 </td>
-   <td style="text-align:center;"> 30 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 7 </td>
-   <td style="text-align:center;"> 31 </td>
-   <td style="text-align:center;"> 31 </td>
-   <td style="text-align:center;"> 31 </td>
-   <td style="text-align:center;"> 31 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 31 </td>
-   <td style="text-align:center;"> 31 </td>
-   <td style="text-align:center;"> 31 </td>
-   <td style="text-align:center;"> 31 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 30 </td>
-   <td style="text-align:center;"> 30 </td>
-   <td style="text-align:center;"> 30 </td>
-   <td style="text-align:center;"> 30 </td>
-  </tr>
-</tbody>
-</table>
-</div><p></p>
 
 If aggregation is desired, it can be specified as the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
 
 
 {% highlight r %}
-# first melt it
-melt(airquality, id.vars = c("Month", "Day")) %>% 
-  # then dcast with just the Month
-  dcast(Month ~ variable, value.var = "value", fun.aggregate = sum, na.rm = TRUE)
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  dplyr::select(-Day) %>% 
+  group_by(Month, variable) %>% 
+  summarise(value = sum(value, na.rm = TRUE)) %>% 
+  spread(variable, value)
 {% endhighlight %}
 
 <div class = "dftab">
@@ -342,8 +287,8 @@ melt(airquality, id.vars = c("Month", "Day")) %>%
    <th style="text-align:center;"> Month </th>
    <th style="text-align:center;"> Ozone </th>
    <th style="text-align:center;"> Solar.R </th>
-   <th style="text-align:center;"> Wind </th>
    <th style="text-align:center;"> Temp </th>
+   <th style="text-align:center;"> Wind </th>
   </tr>
  </thead>
 <tbody>
@@ -351,36 +296,36 @@ melt(airquality, id.vars = c("Month", "Day")) %>%
    <td style="text-align:center;"> 5 </td>
    <td style="text-align:center;"> 614 </td>
    <td style="text-align:center;"> 4895 </td>
-   <td style="text-align:center;"> 360.3 </td>
    <td style="text-align:center;"> 2032 </td>
+   <td style="text-align:center;"> 360.3 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 6 </td>
    <td style="text-align:center;"> 265 </td>
    <td style="text-align:center;"> 5705 </td>
-   <td style="text-align:center;"> 308.0 </td>
    <td style="text-align:center;"> 2373 </td>
+   <td style="text-align:center;"> 308.0 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 7 </td>
    <td style="text-align:center;"> 1537 </td>
    <td style="text-align:center;"> 6711 </td>
-   <td style="text-align:center;"> 277.2 </td>
    <td style="text-align:center;"> 2601 </td>
+   <td style="text-align:center;"> 277.2 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 8 </td>
    <td style="text-align:center;"> 1559 </td>
    <td style="text-align:center;"> 4812 </td>
-   <td style="text-align:center;"> 272.6 </td>
    <td style="text-align:center;"> 2603 </td>
+   <td style="text-align:center;"> 272.6 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> 9 </td>
    <td style="text-align:center;"> 912 </td>
    <td style="text-align:center;"> 5023 </td>
-   <td style="text-align:center;"> 305.4 </td>
    <td style="text-align:center;"> 2307 </td>
+   <td style="text-align:center;"> 305.4 </td>
   </tr>
 </tbody>
 </table>
