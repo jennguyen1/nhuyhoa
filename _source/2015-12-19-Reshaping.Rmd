@@ -126,35 +126,6 @@ gather(airquality, key = "variable", value = "value", -Month, -Day) %>%
 
 If aggregation is not desired, achieving the correct format will require a little creativity. One way to do this is to edit the variable values to make it unique across combinations.
 
-```{r, eval = FALSE}
-airquality %>% 
-  # Enough to run this on a select columns
-  dplyr::select(Month, Day, Ozone, Wind) %>% 
-  # melt as usual
-  melt(id.vars = c("Month", "Day")) %>% 
-  # step to add the uniqueness factor
-  group_by(Day, variable) %>% 
-  mutate(id = 1:length(value)) %>% 
-  na.omit %>% 
-  mutate(variable.id = paste(variable, id, sep = "_")) %>% 
-  # now run dcast and observe the changes
-  dcast(Day ~ variable.id, value.var = "value")
-```
-
-<div class = "dftab">
-```{r, echo = FALSE}
-airquality %>% 
-  dplyr::select(Month, Day, Ozone, Wind) %>% 
-  melt(id.vars = c("Month", "Day")) %>% 
-  group_by(Day, variable) %>% 
-  mutate(id = 1:length(value)) %>% 
-  na.omit %>% 
-  mutate(variable.id = paste(variable, id, sep = "_")) %>% 
-  dcast(Day ~ variable.id, value.var = "value") %>% 
-  nhuyhoa_df_print()
-```
-</div><p></p>
-
 ## Visual Diagram of Reshaping in R
 
 ![reshaping in R](http://jnguyen92.github.io/nhuyhoa/figure/images/transpose.png)
