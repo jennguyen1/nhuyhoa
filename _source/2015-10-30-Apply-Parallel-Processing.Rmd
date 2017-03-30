@@ -131,7 +131,7 @@ Map(function(x, w) weighted.mean(x, w, na.rm = TRUE), obs, weights)
 
 The library `purrr` simplifies the apply functions. 
 
-The function `map()` takes a list/vector, applies a function and returns a list. There are alternatives that specifies the return object, such as `map_lgl()`, `map_int()`, `map_dbl()`, `map_chr()`, `map_df()`, etc. 
+The function `map()` takes a list/vector, applies a function and returns a list. There are alternatives that specifies the return object, such as `map_lgl()`, `map_int()`, `map_dbl()`, `map_chr()`, `map_df()`, etc. Functions can be listed using `function()` or as a formula. 
 
 ```{r, eval = FALSE}
 map(list, function, ...)
@@ -150,6 +150,22 @@ map_at(list, locations, function)
 ```
 The package also allows for applying a list of functions to an object. To do this use the functions `invoke()`, `invoke_map()`, etc.
 
+```{r, eval = FALSE}
+invoke_map(list(runif, rnorm), list(list(n = 10), list(n = 5)))
+```
+There are also functions that can be used to filter a vector: `keep()` and `discard()`.
+
+```{r, eval = FALSE}
+keep(1:10, ~ . %% 2 == 0)
+discard(1:10, ~ . %% 2 == 0)
+```
+
+The package has a number of good functions for working in R, including
+
+* `reduce()` and `reduce_right()` iteratively applies a binary function to list elements
+* `accumulate()` and `accumulate_right()` does the same as the above functions but keeps intermediary results
+* `transpose()` which restructures a list similar to `jn.general::extract_list()` explained below
+* `safely()`, `quietly()`, and `possibly()` for working with errors
 
 # Parallel Processing
 Parallel processing allows independent tasks to be dispatched to different cores. These cores compute them in parallel and combine the results. Running tasks in parallel can reduce the runtime by half or more. 
@@ -208,7 +224,7 @@ The object `super_set` will have all the specified files in one compact list. Th
 
 ## Example 2
 
-Imagine a work flow where independent models are constructed with different parameters. The goal is to group common data outputs from each of those models for a more simplified analysis. For example, multiple models can be compared by gathering all diagnostics into one data.frame. An easy way to do this is with the function `jn.general::extract_list()`, which uses a recursive apply/looping function to accumulate the data structures. 
+Imagine a work flow where independent models are constructed with different parameters. The goal is to group common data outputs from each of those models for a more simplified analysis. For example, multiple models can be compared by gathering all diagnostics into one data.frame. An easy way to do this is with the function `jn.general::extract_list()`, which uses a recursive apply/looping function to accumulate the data structures. (There is a similar function `purrr::transpose()`).
 
 Here's an example of when `jn.general::extract_list()` would come in handy.
 ```{r}
