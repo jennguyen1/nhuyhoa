@@ -12,6 +12,49 @@ categories: ['data wrangling']
 
 # In R
 
+## Purrr
+
+The package `purrr` has 3 functions to deal with error handling. These functions are applied to other functions and can handle error output.
+
+* `safely()` returns a list with 2 elements: result and error, one of which is always NULL
+* `quietly()` returns a list with 4 elements: result, output, warnings, and messages
+* `possibly()` replaces errors in 1 object with a default value
+
+
+{% highlight r %}
+map(list(1, 2, "hi"), safely(log))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "map"
+{% endhighlight %}
+
+
+
+{% highlight r %}
+map(list(1, 2, "hi"), quietly(log))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "map"
+{% endhighlight %}
+
+
+
+{% highlight r %}
+map(list(1, 2, "hi"), possibly(log, NA_real_))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): could not find function "map"
+{% endhighlight %}
+
 ## tryCatch
 Similar to other languages `tryCatch()` can be used to deal with how error, warning, and messages are dealt with. 
 

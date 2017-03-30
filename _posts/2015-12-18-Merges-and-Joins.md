@@ -65,12 +65,14 @@ To join multiple data frames in R, do successive joins. That is, join two and us
 
 Other operations to combine data frames:
 
+* `dplyr::left_join()`, `dplyr::right_join()`, `dplyr::inner_join()`, `dplyr::full_join()`
 * `cbind()`
 * `rbind()`, `data.table::rbindlist()`
 * `dplyr::anti_join()` 
 * `dplyr::intersect()` 
 * `dplyr::union()` 
 * `dplyr::setdiff()`
+* `dplyr::setequal()`
 
 ## In SAS
 
