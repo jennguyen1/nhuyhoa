@@ -221,6 +221,7 @@ lpr -o sides=two-sided-long-edge -Pprinter_name file_name
 {% highlight r %}
 ssh username@place
 {% endhighlight %}
+See this [link][ssh_login]{:target = "_blank"} to learn how to set up a ssh login without a password.
 
 **Download from a Server:**
 
@@ -270,7 +271,6 @@ A shell script is a file containing lines for the shell to execute. Everything t
 #!/bin/sh
 #!/bin/bash
 {% endhighlight %}
-
 The rest of the script can be populated with a list of commands or comments (#). 
 
 **Execute script:**
@@ -840,3 +840,4 @@ Python scripts can also be used to run command line arguments. See the [Python p
 
 [linux_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMeXJRRWdFTFQzMEU/view?usp=sharing
 [python_post]: http://jnguyen92.github.io/nhuyhoa//2016/03/Python-Basics.html#output
+[ssh_login]: http://www.linuxproblem.org/art_9.html
