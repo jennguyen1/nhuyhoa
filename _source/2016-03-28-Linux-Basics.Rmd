@@ -209,7 +209,7 @@ lpr -o sides=two-sided-long-edge -Pprinter_name file_name
 ```{r, eval = FALSE}
 ssh username@place
 ```
-See this [link][ssh_login]{:target = "_blank"} to learn how to set up a ssh login without a password.
+See [this link][ssh_login]{:target = "_blank"} to learn how to set up a ssh login without a password.
 
 **Download from a Server:**
 ```{r, eval = FALSE}
