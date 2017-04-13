@@ -133,6 +133,7 @@ summary(survival)
 Plot the survival curve. The marked positions are the censored data.
 ```{r, message = FALSE, warning = FALSE}
 ggsurv(survival)
+# survminer::ggsurvplot(survival)
 ```
 
 # Two Sample Survival Curves
@@ -212,8 +213,8 @@ Fit a survival function with two treatment groups
 s <- survfit(Surv(days, status) ~ treatment, data = data)
 
 # plot survival curves
-ggsurv(s, cens.col = "black", xlab = "Days", main = "Survival by Treatment Group") +
-  theme(legend.position = "bottom")
+ggsurv(s, cens.col = "black", xlab = "Days", main = "Survival by Treatment Group") + theme(legend.position = "bottom")
+# survminer::ggsurvplot(s)
 ```
 
 Fit the cox proportional hazards model and obtain the estimate for $$\beta$$ and the log rank statistic
