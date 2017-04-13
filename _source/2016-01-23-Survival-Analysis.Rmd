@@ -16,9 +16,7 @@ options(show.signif.stars=FALSE)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center', warning = FALSE)
 ```
 
-Survival analysis refers to the analysis of the occurance and timing of discrete events or failures. Failures can vary depending on the application. 
-
-One feature of survival analysis is censoring, which is when the event of interest is not observed during the period of study for some subjects. Assume that the event will occur in all subjects given sufficient follow up. Subjects without events are those for whom the event will occur in the future, although the time of event is unknown. Assume that censoring is independent of failure time.
+Survival analysis refers to the analysis of the occurance and timing of discrete events or failures. It lets yu analyze the rates of occurance of events over time, without assuming the rates are constant. Failures can vary depending on the application. 
 
 # Goals of Survival Analysis
 
@@ -34,12 +32,14 @@ Several questions
 * $$f(t)$$ is the pdf of $$T$$
 * $$F(t) = P(T \le t) = \int^t_0 f(u)du$$ is the cdf
 
-* $$S(t) = 1 - F(t) = P(T > t)$$ is the **survivor function**, the probability of being event free through time $$t$$
+* $$S(t) = 1 - F(t) = P(T > t)$$ is the **survival function**, the probability of being event free through time $$t$$
 
-* $$\lambda(t) = \lim_{h \rightarrow 0} \frac{P(T \in [t, t+h) \vert T > t)}{h}= \frac{f(t)}{1 - F(t)} = \frac{f(t)}{S(t)}$$ is the **hazard function**, the conditional probability of failing in a small interval following time $$t$$ per unit of time, given the subject has not failed up to time $$t$$
+* $$\lambda(t) = \lim_{h \rightarrow 0} \frac{P(T \in [t, t+h) \vert T > t)}{h}= \frac{f(t)}{1 - F(t)} = \frac{f(t)}{S(t)}$$ is the **hazard function**, the conditional probability of failing in a small interval following time $$t$$ per unit of time, given the subject has not failed up to time $$t$$ (instantaneous event rate at a particular time point $$t$$)
 * $$\Lambda(t) = \int^t_0 \lambda (u)du = \int^t_0 \frac{f(u)du}{1 - F(u)} = -\log[1 - F(t)] = -\log[S(t)]$$, is the **cumulative hazard function**, the expected number of failures through time $$t$$
 
 # Censoring
+One feature of survival analysis is censoring, which is when the event of interest is not observed during the period of study for some subjects. Assume that the event will occur in all subjects given sufficient follow up. Subjects without events are those for whom the event will occur in the future, although the time of event is unknown. Assume that censoring is independent of failure time.
+
 Censoring may occur in several ways. 
 
 * No event after study has ended
@@ -137,27 +137,24 @@ ggsurv(survival)
 ```
 
 # Two Sample Survival Curves
-With two treatment groups, the differences between groups can be quantified with the proportional hazards model.
 
-Dead        | Alive               | At risk
-----------  |-------------------  |-----------
-$$D_{k0}$$  | $$n_{k0} - D_{k0}$$ | $$n_{k0}$$
-$$D_{k1}$$  | $$n_{k1} - D_{k1}$$ | $$n_{k1}$$
-$$D_{k}$$   | $$n_{k} - D_{k}$$   | $$n_{k}$$
+Survival analysis can compare survival functions in differen groups. If you followed both groups until everyone died, both survival curves would end at 0%, but one group might have survived on average a lot longer than the other group. Survival analysis does this by comparing the hazard at different times over the observation period. Survival analysis doesn't assume that the hazard is constant but does assume that the ratio of hazards between groups is constant over time. 
 
-where the last row is the column total.
+Additional variables may be adjusted for using Cox regression (proportional hazards regression). It has the following form 
 
-The **hazard ratio** is defined as $$r = \frac{\lambda_1(t)}{\lambda_0(t)}$$ and is independent of $$t$$.
+$$\log(\lambda(t)) = \log(\lambda_0(t)) + \beta z + \beta_1 x_1 + ... + \beta_p x_p$$
 
-By taking the $$\log$$
+where $$z$$ is the treatment group and $$\beta$$ is the log hazard ratio and is independent of $$t$$.
 
-$$\log(\lambda(t)) = \log(\lambda_0(t)) + \beta z$$
+If you exponentiate both sides of the equation and limit the RHS to just a single categorical exposure variable with two groups, the equation becomes
 
-where $$z$$ is the treatment group and $$\beta$$ is the log hazard ratio.
+$$\lambda(t) = \lambda_0(t) + \exp{\beta z}$$
 
-The MLE for $$\beta$$ is estimated using the Newton-Raphson method. This can be obtained in R.
+Rearranging the equation lets you estimate the **hazard ratio**, comparing the exposed to the unexposed individuals at time t
 
-Additional variables may be adjusted for in the model.
+$$r = \frac{\lambda_1(t)}{\lambda_0(t)} = \frac{\lambda_0(t) \exp{\beta}}{\lambda_0(t)} = \exp{\beta}$$ 
+
+The model shows that the hazard ratio is $$\exp{\beta}$$ and remains constant over time t. The $$\beta$$ values represent the $$log(HR)$$ for each unit increase of a corresponding predictor variable. A positive $$\beta$$ indicates worse survival and a negative $$\beta$$ indicates better survival.
 
 ## Log Rank Test
 Consider small intervals around each survival time. At time $$t_k$$, the $$2x2$$ table
@@ -194,7 +191,7 @@ $$w_k = (n_{k0} + n_{k1})$$
 
 ## Proportional Hazards Assumption
 
-The Cox proportional hazard model has an assumption of proportional hazards. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. This assumption may be evaluated in several ways
+The proportional hazard model (Cox regression) has an assumption of proportional hazards. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. This assumption may be evaluated in several ways
 
 * Graph $$\log(\hat{\Lambda}(t))$$ vs. $$t$$ for each group, the assumption is satisfed if the shapes of the curves are similar and the separation between curves remain proportional across analysis time (parallel curves).
 * Test for a non-zero slope in a GLM regresion of the scaled Schoenfeld residuals on functions of time. A non-zero slope violates the proportional hazard assumption
