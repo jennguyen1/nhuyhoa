@@ -73,7 +73,6 @@ printf "%04d" 15
 * `expand` converts tabs to spaces
 * `unexpand` converts spaces to tabs
 * `fold` prints out content in more readable format
-* `wget` downloads from the internet
 
 * `sort` sorting
 ```{r, eval = FALSE}
@@ -215,6 +214,7 @@ See [this link][ssh_login]{:target = "_blank"} to learn how to set up a ssh logi
 **Download from a Server:**
 ```{r, eval = FALSE}
 curl -o online_file_name
+wget --no-check-certificate -q -O output_name website
 ```
 
 
@@ -245,6 +245,14 @@ top u username
 sh filename.sh >> output.txt
 # do cntrl + z
 bg
+
+# run regularly in background: crontab, check online for documentation of how to run regularly
+crontab -e
+# edit crontab file with commands to use
+crontab -l
+
+# run regularly in background: watch
+watch -n secs cmd
 ```
 
 # Shell Scripting
