@@ -20,10 +20,10 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 
 {% highlight r %}
 # example: delete all *.txt files
-find . -name "*.txt" | xargs rm
+find . -name *.txt | xargs rm
 
 # example: package all *.jpg files 
-find . -name "*.jpg" | xargs tar -zcf jpg.tar.gz
+find . -name *.jpg | xargs tar -zcf jpg.tar.gz
 
 # example: batch rename
 ls | grep \.jpg$ | sed 'p;s/\.jpg/\.png/' | xargs -n2 mv
@@ -68,7 +68,7 @@ printf "%04d" 15
   * `tr a b < file` translate a to b in the file
   * `tr -d 'aeiou'` delete specific characters
 * `uniq` for unique values
-* `wc` word counts
+* `wc -l` word counts, counts each line
 * `paste` merges lines of files together
 * `join` merges tables of files together by a given column
 * `diff` compare files line by line
@@ -221,12 +221,13 @@ lpr -o sides=two-sided-long-edge -Pprinter_name file_name
 {% highlight r %}
 ssh username@place
 {% endhighlight %}
-See this [link][ssh_login]{:target = "_blank"} to learn how to set up a ssh login without a password.
+See [this link][ssh_login]{:target = "_blank"} to learn how to set up a ssh login without a password.
 
 **Download from a Server:**
 
 {% highlight r %}
 curl -o online_file_name
+wget --no-check-certificate -q -O output_name website
 {% endhighlight %}
 
 
@@ -251,13 +252,22 @@ scp -rp file location.to.transfer
 # add an & at the end of command
 sh filename.sh >> output.txt &
 
-# check on currently running background commands
+# check on currently running background commands; for current user
 top
+top u username
 
 # push to background after starting
 sh filename.sh >> output.txt
 # do cntrl + z
 bg
+
+# run regularly in background: crontab, check online for documentation of how to run regularly
+crontab -e
+# edit crontab file with commands to use
+crontab -l
+
+# run regularly in background: watch
+watch -n secs cmd
 {% endhighlight %}
 
 # Shell Scripting
@@ -425,7 +435,7 @@ echo $((5+3))
 {% endhighlight %}
 
 
-## Conditionals
+## If/Else
 
 
 {% highlight r %}
