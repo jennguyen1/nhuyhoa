@@ -19,10 +19,10 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 
 ```{r, eval = FALSE}
 # example: delete all *.txt files
-find . -name "*.txt" | xargs rm
+find . -name *.txt | xargs rm
 
 # example: package all *.jpg files 
-find . -name "*.jpg" | xargs tar -zcf jpg.tar.gz
+find . -name *.jpg | xargs tar -zcf jpg.tar.gz
 
 # example: batch rename
 ls | grep \.jpg$ | sed 'p;s/\.jpg/\.png/' | xargs -n2 mv
@@ -66,13 +66,14 @@ printf "%04d" 15
   * `tr a b < file` translate a to b in the file
   * `tr -d 'aeiou'` delete specific characters
 * `uniq` for unique values
-* `wc` word counts
+* `wc -l` word counts, counts each line
 * `paste` merges lines of files together
 * `join` merges tables of files together by a given column
 * `diff` compare files line by line
 * `expand` converts tabs to spaces
 * `unexpand` converts spaces to tabs
 * `fold` prints out content in more readable format
+* `wget` downloads from the internet
 
 * `sort` sorting
 ```{r, eval = FALSE}
@@ -236,8 +237,9 @@ scp -rp file location.to.transfer
 # add an & at the end of command
 sh filename.sh >> output.txt &
 
-# check on currently running background commands
+# check on currently running background commands; for current user
 top
+top u username
 
 # push to background after starting
 sh filename.sh >> output.txt
@@ -401,7 +403,7 @@ echo $((5+3))
 ```
 
 
-## Conditionals
+## If/Else
 
 ```{r, eval = FALSE}
 # returns 0 for true; 1 for false
