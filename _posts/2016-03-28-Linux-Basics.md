@@ -30,28 +30,7 @@ ls | grep \.jpg$ | sed 'p;s/\.jpg/\.png/' | xargs -n2 mv
 {% endhighlight %}
 
 * `echo` repeat text, can pipe into files
-* `printf` for formatting text
-
-
-{% highlight r %}
-# strings
-printf "Hello my name is %s.\n" Jenny
-
-# integers
-printf "I am %d years old" 2
-
-# floating point values
-printf "I am %f years old" 2.4
-
-# formatting: floating points
-printf "%.2f\n" 3
-
-# formatting: add 4 spaces before digit
-printf "%4d" 15
-
-# formatting: add a bunch of 0s
-printf "%04d" 15
-{% endhighlight %}
+* `date` to obtain the date and time
 
 # Working With Files
 
@@ -62,7 +41,7 @@ printf "%04d" 15
   * `grep -i` ignores case
   * `grep -e` expanded regular expression 
   * `grep -v` opposite of the match
-  * `grep pattern --color=auto`: highlight the match
+  * `grep pattern --color=auto` highlight the match
   * special characters: `^`, `$`, `*`
 * `tr 'abc' 'ABC'` translate lower case to upper case
   * `tr a b < file` translate a to b in the file
@@ -72,18 +51,12 @@ printf "%04d" 15
 * `paste` merges lines of files together
 * `join` merges tables of files together by a given column
 * `diff` compare files line by line
-* `expand` converts tabs to spaces
-* `unexpand` converts spaces to tabs
-* `fold` prints out content in more readable format
 
 * `sort` sorting
 
 {% highlight r %}
 # sort by 1st col, then 2nd, then 3rd ...
 sort input.txt
-
-# start sorting by 3rd column
-sort +2 input.txt
 
 # sort 2nd col as numbers, descending order; then sort 3rd col as strings ascending order
 sort -k2,2nr -k3,3 input.txt
@@ -109,7 +82,7 @@ cat temp.txt | tr "[A-Z]" "[a-z]" | tr -c "[:alnum:]" "[\n*]" | sort | uniq -c |
 ## Finding Files
 
 {% highlight r %}
-find directory -type (f/d) \(-name "." -(and/or/not) -name "."\)
+find . -name *sample*
 {% endhighlight %}
 
 ## Zipping Files
@@ -137,7 +110,7 @@ tar -czvf file_name.tar.gz file1 file2 ... filen
 tar -xvf file_name.tar
 
 # unpack tar.gz files
-tar -xzf file_name.tar.gz
+tar -xzvf file_name.tar.gz
 {% endhighlight %}
 
 `zip` options:
@@ -223,15 +196,14 @@ ssh username@place
 {% endhighlight %}
 See [this link][ssh_login]{:target = "_blank"} to learn how to set up a ssh login without a password.
 
-**Download from a Server:**
+**Download from a Web Server:**
 
 {% highlight r %}
 curl -o online_file_name
 wget --no-check-certificate -q -O output_name website
 {% endhighlight %}
 
-
-**Upload to a Server:**
+**Download/Upload to a Server:**
 
 
 {% highlight r %}
@@ -268,6 +240,13 @@ crontab -l
 
 # run regularly in background: watch
 watch -n secs cmd
+{% endhighlight %}
+
+**Communicate Results via Email**
+
+
+{% highlight r %}
+echo script | mail -s "subject line" email_address
 {% endhighlight %}
 
 # Shell Scripting
@@ -421,11 +400,6 @@ program_with_error 2> to_file
 ## Doing Math
 
 {% highlight r %}
-# using let
-let a = 5*3
-let "a = $a + 1"
-let a++
-
 # using double parenthesis
 a=$((4 + 5))
 c=$(($a + 2))
@@ -649,7 +623,6 @@ Sed is a command line tool to conduct regular expressions commands.
   * `g`: global, replace for all occurances on the line
   * `p`: print only the lines where replacement occurs
   * `w`: write to a file
-  * `I`: ignore case (only in Windows)
 
 
 {% highlight r %}
@@ -660,7 +633,7 @@ sed '1,2s/heart/love/' test.txt
 echo "hi, hi, hi" | sed 's/hi/hello/'
 echo "hi, hi, hi" | sed 's/hi/hello/g'
 
-# example: print modifier - not good
+# bad example: print modifier - doesn't work
 sed 's/heart/love/p' test.txt
 
 # example: different print modifier, prints original and edit
@@ -675,11 +648,11 @@ sed 's/^[AEIOU][a-z]*/\*&\*/' test.txt
 # example: write results out
 sed 's/^[AEIOU][a-z]*/\*&\*/w output.txt' test.txt
 
-# example: delete blank lines
-sed '/^$/d' test.txt
-
 # example: trim lead & trailing whitespaces
 sed 's/^[ \t]*//;s/[ \t]*$//' test.txt
+
+# example: delete blank lines
+sed '/^$/d' test.txt
 {% endhighlight %}
 
 * Edit the document in place using sed
@@ -687,7 +660,6 @@ sed 's/^[ \t]*//;s/[ \t]*$//' test.txt
 {% highlight r %}
 sed -i 's/old/new/' test.txt
 {% endhighlight %}
-
 
 * Apply a sequence of commands using a sed script
 
@@ -716,10 +688,10 @@ awk '$3>$5' input.txt > output.txt
 awk '{print $2, $4, $5}' input.txt
 
 # import simple csv
-awk -F, '{print $1,$2}'
+awk -F , '{print $1, $2}'
 
-# import from a tab-separated file (FS = field separator)
-awk 'BEGIN{FS="\t"}{print $2, $4, $5}' input.txt
+# import tab delimited
+awk -F '\t' '{print $1, $2}'
 
 # export from a tab-separated file (OFS = output field separator)
 awk 'BEGIN{OFS="\t"}{print $2, $4, $5}' input.txt
@@ -732,7 +704,12 @@ awk '{print NF}'
 
 # awk filter 2nd column that equals variable $t
 awk -v var=$t '($2==var){print}'
+{% endhighlight %}
 
+Additional operations:
+
+
+{% highlight r %}
 # print sum of col 2
 awk '{x+=$2}END{print x}' input.txt
 
@@ -827,8 +804,10 @@ R CMD BATCH -q script.R myfile.txt
 
 # run script with arguments
 R CMD BATCH '--args -c=4 --mean=4' in_file.R out_file.out
-Rscript in_file.R -c=4 --mean=4
+Rscript in_file.R -c=4 --mean=4 >> output
 {% endhighlight %}
+
+For more information on running R in command line, see the [R post][R_post]{:arget = "_blank"}.
 
 ## Python
 
@@ -846,8 +825,9 @@ python script.py arg1 arg2
 python script.py arg1 arg2 >> myfile.txt
 {% endhighlight %}
 
-Python scripts can also be used to run command line arguments. See the [Python post][python_post]{:target = "_blank"} for more information. 
+For more information on running python in command line, see the [Python post][python_post]{:target = "_blank"}. 
 
 [linux_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMeXJRRWdFTFQzMEU/view?usp=sharing
-[python_post]: http://jnguyen92.github.io/nhuyhoa//2016/03/Python-Basics.html#output
+[python_post]: http://jnguyen92.github.io/nhuyhoa//2016/03/Python-Basics.html#command-line-arguments
+[R_post]: http://jnguyen92.github.io/nhuyhoa//2015/07/R-Basics.html#command-line-arguments
 [ssh_login]: http://www.linuxproblem.org/art_9.html

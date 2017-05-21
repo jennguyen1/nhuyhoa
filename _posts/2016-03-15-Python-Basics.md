@@ -305,7 +305,20 @@ raw_input("feed me") # takes in a string
 input("feed me") # guesses the input type
 {% endhighlight %}
 
-**Command Line Arguments**
+## Output
+
+**To a File**
+{% highlight python %}
+# open file and writes strings to it
+f = open(FILENAME, 'w') # write to a new file
+f = open(FILENAME, 'a') # append to a file
+f.write(STR)
+f.close()
+{% endhighlight %}
+
+## Command Line Arguments
+
+**Inputs**
 {% highlight python %}
 #!/usr/bin/env python
 
@@ -342,18 +355,10 @@ Obtain the list of arguments like so
 python in_file.py -h
 {% endhighlight %}
 
-## Output
+**Outputs**
 
-**To a File**
-{% highlight python %}
-# open file and writes strings to it
-f = open(FILENAME, 'w') # write to a new file
-f = open(FILENAME, 'a') # append to a file
-f.write(STR)
-f.close()
-{% endhighlight %}
+Python can send commands to the commandline with the function
 
-**To Command Line**
 {% highlight python %}
 import subprocess
 

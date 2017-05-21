@@ -273,6 +273,9 @@ Obtain the list of arguments like so
 ```{r, eval = FALSE}
 Rscript in_file.R -h
 ```
+
+It is useful for the script to print out the incoming arguments so that one can check later on. 
+
 **Outputs**
 
 R can send commands to the commandline with the function
@@ -281,6 +284,6 @@ R can send commands to the commandline with the function
 system(cmd)
 ```
 
-There are additional options to run the command, such as running the command in the background, etc.
+There are additional options to run the command, such as running the command in the background, saving responses from command line, etc.
 
 [apply_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Apply-Parallel-Processing.html
