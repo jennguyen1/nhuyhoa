@@ -1,0 +1,27 @@
+---
+layout: post
+title: "Recipe Template"
+date: "May 22, 2017"
+categories: ['recipes']
+---
+
+* TOC
+{:toc}
+
+```{r, eval = FALSE}
+library(jn.general)
+lib(data)
+load("data/recipes.Rdata")
+current <- recipes[["alfredo"]]
+```
+
+
+# Ingredients
+<div class = "recipe">
+```{r, echo = FALSE}
+class %>% nhuyhoa_df_print()
+```
+</div>
+
+# Instructions
+

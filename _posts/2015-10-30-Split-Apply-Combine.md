@@ -9,6 +9,11 @@ categories: ['data wrangling']
 {:toc}
 
 
+{% highlight text %}
+## Warning in `[.data.table`(., , `:=`((args), TRUE), with = FALSE):
+## with=FALSE ignored, it isn't needed when using :=. See ?':=' for
+## examples.
+{% endhighlight %}
 
 Obtaining summary statistics for a given group can be done using the general process:
 
@@ -160,13 +165,13 @@ class %>%
   </tr>
   <tr>
    <td style="text-align:center;"> math 12 female </td>
-   <td style="text-align:center;"> 0.0755 </td>
-   <td style="text-align:center;"> -0.0939 </td>
+   <td style="text-align:center;"> 0.0673 </td>
+   <td style="text-align:center;"> -0.0867 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> math 12 male </td>
-   <td style="text-align:center;"> -0.0252 </td>
-   <td style="text-align:center;"> -0.0809 </td>
+   <td style="text-align:center;"> -0.0415 </td>
+   <td style="text-align:center;"> -0.0886 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read 11 female </td>
@@ -175,13 +180,13 @@ class %>%
   </tr>
   <tr>
    <td style="text-align:center;"> read 11 male </td>
-   <td style="text-align:center;"> 0.0074 </td>
-   <td style="text-align:center;"> 0.0572 </td>
+   <td style="text-align:center;"> 0.0000 </td>
+   <td style="text-align:center;"> 0.0473 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read 12 female </td>
-   <td style="text-align:center;"> -0.0535 </td>
-   <td style="text-align:center;"> 0.0426 </td>
+   <td style="text-align:center;"> -0.0614 </td>
+   <td style="text-align:center;"> 0.0253 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read 12 male </td>
@@ -326,23 +331,23 @@ class %>%
   <tr>
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 252 </td>
-   <td style="text-align:center;"> 122 </td>
-   <td style="text-align:center;"> 130 </td>
+   <td style="text-align:center;"> 255 </td>
+   <td style="text-align:center;"> 124 </td>
+   <td style="text-align:center;"> 131 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 245 </td>
-   <td style="text-align:center;"> 125 </td>
+   <td style="text-align:center;"> 246 </td>
+   <td style="text-align:center;"> 126 </td>
    <td style="text-align:center;"> 120 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 241 </td>
+   <td style="text-align:center;"> 243 </td>
    <td style="text-align:center;"> 116 </td>
-   <td style="text-align:center;"> 125 </td>
+   <td style="text-align:center;"> 127 </td>
   </tr>
 </tbody>
 </table>
@@ -397,20 +402,20 @@ These are the means and standard deviations before standardizing.
   <tr>
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 0.0267 </td>
-   <td style="text-align:center;"> 1.019 </td>
+   <td style="text-align:center;"> 0.0144 </td>
+   <td style="text-align:center;"> 1.024 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 0.0223 </td>
+   <td style="text-align:center;"> 0.0184 </td>
    <td style="text-align:center;"> 1.057 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> -0.0109 </td>
-   <td style="text-align:center;"> 1.024 </td>
+   <td style="text-align:center;"> -0.0154 </td>
+   <td style="text-align:center;"> 1.021 </td>
   </tr>
 </tbody>
 </table>
@@ -588,7 +593,7 @@ In the example data set, there are unique student-teacher linkages for each uniq
 
 
 {% highlight text %}
-## [1] 28
+## [1] 0
 {% endhighlight %}
 
 Ignoring the subject and grade, remove the the linkage with the smallest weight. 
@@ -780,55 +785,55 @@ class %>%
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> 0.0283 </td>
-   <td style="text-align:center;"> 0.0645 </td>
-   <td style="text-align:center;"> 0.4385 </td>
-   <td style="text-align:center;"> 0.6614 </td>
+   <td style="text-align:center;"> 0.0161 </td>
+   <td style="text-align:center;"> 0.0644 </td>
+   <td style="text-align:center;"> 0.2503 </td>
+   <td style="text-align:center;"> 0.8025 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> 0.0176 </td>
-   <td style="text-align:center;"> 0.0580 </td>
-   <td style="text-align:center;"> 0.3032 </td>
-   <td style="text-align:center;"> 0.7620 </td>
+   <td style="text-align:center;"> 0.0195 </td>
+   <td style="text-align:center;"> 0.0581 </td>
+   <td style="text-align:center;"> 0.3361 </td>
+   <td style="text-align:center;"> 0.7371 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 11 </td>
    <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> 0.0204 </td>
-   <td style="text-align:center;"> 0.0677 </td>
-   <td style="text-align:center;"> 0.3016 </td>
-   <td style="text-align:center;"> 0.7632 </td>
+   <td style="text-align:center;"> 0.0165 </td>
+   <td style="text-align:center;"> 0.0675 </td>
+   <td style="text-align:center;"> 0.2448 </td>
+   <td style="text-align:center;"> 0.8068 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 11 </td>
    <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> 0.0357 </td>
-   <td style="text-align:center;"> 0.0620 </td>
-   <td style="text-align:center;"> 0.5751 </td>
-   <td style="text-align:center;"> 0.5657 </td>
+   <td style="text-align:center;"> 0.0395 </td>
+   <td style="text-align:center;"> 0.0618 </td>
+   <td style="text-align:center;"> 0.6395 </td>
+   <td style="text-align:center;"> 0.5231 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> (Intercept) </td>
-   <td style="text-align:center;"> -0.0136 </td>
-   <td style="text-align:center;"> 0.0659 </td>
-   <td style="text-align:center;"> -0.2057 </td>
-   <td style="text-align:center;"> 0.8372 </td>
+   <td style="text-align:center;"> -0.0185 </td>
+   <td style="text-align:center;"> 0.0655 </td>
+   <td style="text-align:center;"> -0.2824 </td>
+   <td style="text-align:center;"> 0.7779 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 12 </td>
    <td style="text-align:center;"> pretest_score </td>
-   <td style="text-align:center;"> -0.0763 </td>
-   <td style="text-align:center;"> 0.0635 </td>
-   <td style="text-align:center;"> -1.2001 </td>
-   <td style="text-align:center;"> 0.2313 </td>
+   <td style="text-align:center;"> -0.0724 </td>
+   <td style="text-align:center;"> 0.0631 </td>
+   <td style="text-align:center;"> -1.1475 </td>
+   <td style="text-align:center;"> 0.2523 </td>
   </tr>
 </tbody>
 </table>
@@ -862,16 +867,16 @@ classDT[, list(total_students = .N), by = list(subject, grade)]
   <tr>
    <td style="text-align:center;"> math </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 252 </td>
-   <td style="text-align:center;"> 122 </td>
-   <td style="text-align:center;"> 130 </td>
+   <td style="text-align:center;"> 255 </td>
+   <td style="text-align:center;"> 124 </td>
+   <td style="text-align:center;"> 131 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 12 </td>
-   <td style="text-align:center;"> 241 </td>
+   <td style="text-align:center;"> 243 </td>
    <td style="text-align:center;"> 116 </td>
-   <td style="text-align:center;"> 125 </td>
+   <td style="text-align:center;"> 127 </td>
   </tr>
   <tr>
    <td style="text-align:center;"> math </td>
@@ -883,8 +888,8 @@ classDT[, list(total_students = .N), by = list(subject, grade)]
   <tr>
    <td style="text-align:center;"> read </td>
    <td style="text-align:center;"> 11 </td>
-   <td style="text-align:center;"> 245 </td>
-   <td style="text-align:center;"> 125 </td>
+   <td style="text-align:center;"> 246 </td>
+   <td style="text-align:center;"> 126 </td>
    <td style="text-align:center;"> 120 </td>
   </tr>
 </tbody>
