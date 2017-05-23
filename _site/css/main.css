@@ -293,12 +293,20 @@ pre {
     margin: auto;
     border: 1px solid black;
     width: 75%; }
-  .post-content .presenttab th {
-    background-color: #E0E0E0;
+  .post-content .presenttab th, .post-content td {
     border-bottom: 1px solid black;
     padding: 5px; }
-  .post-content .presenttab td {
-    border-bottom: 1px dotted black;
+  .post-content .presenttab th {
+    background-color: #E0E0E0; }
+  .post-content .presenttabnoh {
+    border-collapse: collapse;
+    margin: auto;
+    border: 1px solid black;
+    width: 75%; }
+  .post-content .presenttabnoh th {
+    display: none; }
+  .post-content .presenttabnoh td {
+    border-bottom: 1px solid black;
     padding: 5px; }
   .post-content .dftab {
     font-size: 15px;
