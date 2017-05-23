@@ -2,7 +2,7 @@
 layout: post
 title: "Split Apply Combine"
 date: "October 30, 2015"
-categories: ['data wrangling', 'recipes']
+categories: ['data wrangling']
 ---
 
 * TOC
