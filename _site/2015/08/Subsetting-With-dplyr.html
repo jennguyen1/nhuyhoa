@@ -39,23 +39,15 @@
           
         
           
-          <a class="page-link" href="/nhuyhoa//software_notes/">Software Notebook</a>
+          <a class="page-link" href="/nhuyhoa//recipes/">Recipes</a>
           
         
           
-          <a class="page-link" href="/nhuyhoa//stat_notes/">Statistics Notebook</a>
+          <a class="page-link" href="/nhuyhoa//software_notes/">Software</a>
           
         
           
-        
-          
-        
-          
-        
-          
-        
-          
-        
+          <a class="page-link" href="/nhuyhoa//stat_notes/">Statistics</a>
           
         
       </div>
@@ -96,33 +88,33 @@
 <p>The dplyr package provides handy tools to slice and dice data into various formats with ease.</p>
 
 <h1 id="example-data">Example Data</h1>
-<p>Let’s use the random generator function, <code>jn.general::rdata()</code>, to generate an example data set.</p>
+<p>Let’s use the random generator function, <code class="highlighter-rouge">jn.general::rdata()</code>, to generate an example data set.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-data <span class="o">&lt;-</span> jn.general<span class="o">::</span>rdata<span class="p">(</span>n <span class="o">=</span> <span class="m">750</span><span class="p">,</span>
-              <span class="c1"># posttests</span>
-              gen_seq<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> length.out <span class="o">=</span> <span class="m">40</span><span class="p">,</span> name <span class="o">=</span> <span class="s">&quot;posttest_score&quot;</span><span class="p">),</span>
-              gen_subject<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;posttest_subject&quot;</span><span class="p">),</span>
-              gen_seq<span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> name <span class="o">=</span> <span class="s">&quot;posttest_grade&quot;</span><span class="p">),</span>
-              <span class="c1"># pretests</span>
-              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_7_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="s">&quot;ACT&quot;</span><span class="p">),</span>
-              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_8_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="s">&quot;Math222&quot;</span><span class="p">),</span>
-              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_9_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="s">&quot;SAT&quot;</span><span class="p">),</span>
-              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_10_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="s">&quot;CompSci367&quot;</span><span class="p">),</span>
-              gen_char<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;pretest_11_name&quot;</span><span class="p">,</span> values <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;ACT&quot;</span><span class="p">,</span> <span class="s">&quot;SAT&quot;</span><span class="p">)),</span>
-              gen_seq<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> length.out <span class="o">=</span> <span class="m">40</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">5</span><span class="p">,</span> name <span class="o">=</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span> <span class="s">&quot;_score&quot;</span><span class="p">),</span> add.na <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
-              gen_seq<span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="m">11</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">5</span><span class="p">,</span> name <span class="o">=</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span> <span class="s">&quot;_grade&quot;</span><span class="p">)),</span>
-              gen_char<span class="p">(</span>ncol <span class="o">=</span> <span class="m">5</span><span class="p">,</span> name <span class="o">=</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span> <span class="s">&quot;_version&quot;</span><span class="p">),</span> values <span class="o">=</span> <span class="kc">LETTERS</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]),</span>
-              <span class="c1"># demographics</span>
-              gen_gender<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;d_gender&quot;</span><span class="p">),</span>
-              gen_bool<span class="p">(</span>ncol <span class="o">=</span> <span class="m">4</span><span class="p">,</span> name <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;d_black&quot;</span><span class="p">,</span> <span class="s">&quot;d_hispanic&quot;</span><span class="p">,</span> <span class="s">&quot;d_asian&quot;</span><span class="p">,</span> <span class="s">&quot;d_native&quot;</span><span class="p">),</span> add.na <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> probs <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.15</span><span class="p">,</span> <span class="m">0.8</span><span class="p">,</span> <span class="m">0.05</span><span class="p">)),</span>
-              gen_bool<span class="p">(</span>ncol <span class="o">=</span> <span class="m">1</span><span class="p">,</span> name <span class="o">=</span> <span class="s">&quot;d_gifted&quot;</span><span class="p">,</span> probs <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> add.na <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span> 
-              <span class="c1"># student id</span>
-              <span class="m">.i</span>d <span class="o">=</span> <span class="kc">FALSE</span>
-              <span class="p">)</span>
-data <span class="o">%&lt;&gt;%</span> group_by<span class="p">(</span>posttest_subject<span class="p">)</span> <span class="o">%&gt;%</span> mutate<span class="p">(</span>student_id <span class="o">=</span> <span class="m">1</span><span class="o">:</span>n<span class="p">())</span> <span class="o">%&gt;%</span> <span class="kt">data.frame</span>
-<span class="c1"># formatting</span>
-data <span class="o">%&lt;&gt;%</span> select<span class="p">(</span>student_id<span class="p">,</span> matches<span class="p">(</span><span class="s">&quot;posttest&quot;</span><span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;pretest&quot;</span><span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">))</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">jn.general</span><span class="o">::</span><span class="n">rdata</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">750</span><span class="p">,</span><span class="w">
+              </span><span class="c1"># posttests
+</span><span class="w">              </span><span class="n">gen_seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"posttest_score"</span><span class="p">),</span><span class="w">
+              </span><span class="n">gen_subject</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"posttest_subject"</span><span class="p">),</span><span class="w">
+              </span><span class="n">gen_seq</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"posttest_grade"</span><span class="p">),</span><span class="w">
+              </span><span class="c1"># pretests
+</span><span class="w">              </span><span class="n">gen_char</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pretest_7_name"</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ACT"</span><span class="p">),</span><span class="w">
+              </span><span class="n">gen_char</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pretest_8_name"</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Math222"</span><span class="p">),</span><span class="w">
+              </span><span class="n">gen_char</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pretest_9_name"</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SAT"</span><span class="p">),</span><span class="w">
+              </span><span class="n">gen_char</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pretest_10_name"</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"CompSci367"</span><span class="p">),</span><span class="w">
+              </span><span class="n">gen_char</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pretest_11_name"</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"ACT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SAT"</span><span class="p">)),</span><span class="w">
+              </span><span class="n">gen_seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"pretest_"</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="s2">"_score"</span><span class="p">),</span><span class="w"> </span><span class="n">add.na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+              </span><span class="n">gen_seq</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"pretest_"</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="s2">"_grade"</span><span class="p">)),</span><span class="w">
+              </span><span class="n">gen_char</span><span class="p">(</span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"pretest_"</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="o">:</span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="s2">"_version"</span><span class="p">),</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">LETTERS</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]),</span><span class="w">
+              </span><span class="c1"># demographics
+</span><span class="w">              </span><span class="n">gen_gender</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"d_gender"</span><span class="p">),</span><span class="w">
+              </span><span class="n">gen_bool</span><span class="p">(</span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"d_black"</span><span class="p">,</span><span class="w"> </span><span class="s2">"d_hispanic"</span><span class="p">,</span><span class="w"> </span><span class="s2">"d_asian"</span><span class="p">,</span><span class="w"> </span><span class="s2">"d_native"</span><span class="p">),</span><span class="w"> </span><span class="n">add.na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">probs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">)),</span><span class="w">
+              </span><span class="n">gen_bool</span><span class="p">(</span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"d_gifted"</span><span class="p">,</span><span class="w"> </span><span class="n">probs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="n">add.na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> 
+              </span><span class="c1"># student id
+</span><span class="w">              </span><span class="n">.id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="w">
+              </span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">group_by</span><span class="p">(</span><span class="n">posttest_subject</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">student_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">data.frame</span><span class="w">
+</span><span class="c1"># formatting
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">student_id</span><span class="p">,</span><span class="w"> </span><span class="n">matches</span><span class="p">(</span><span class="s2">"posttest"</span><span class="p">),</span><span class="w"> </span><span class="n">matches</span><span class="p">(</span><span class="s2">"pretest"</span><span class="p">),</span><span class="w"> </span><span class="n">matches</span><span class="p">(</span><span class="s2">"d_"</span><span class="p">))</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -327,13 +319,13 @@ data <span class="o">%&lt;&gt;%</span> select<span class="p">(</span>student_id<
 <p></p>
 
 <h1 id="dplyrslice-and-dplyrfilter">dplyr::slice() and dplyr::filter()</h1>
-<p>There are a number of functions that allow for rowise manipulation in dplyr, two of which are <code>dplyr::filter()</code> and <code>dplyr::slice()</code>.</p>
+<p>There are a number of functions that allow for rowise manipulation in dplyr, two of which are <code class="highlighter-rouge">dplyr::filter()</code> and <code class="highlighter-rouge">dplyr::slice()</code>.</p>
 
 <h2 id="subsetting-rows-by-conditional-expression">Subsetting rows by conditional expression</h2>
-<p>The <code>dplyr::filter()</code> function takes logical conditions as arguments. Combine multiple conditions with <code>&amp;</code> (and) or <code>|</code> (or). This function is equivalent to base R’s subset function.</p>
+<p>The <code class="highlighter-rouge">dplyr::filter()</code> function takes logical conditions as arguments. Combine multiple conditions with <code class="highlighter-rouge">&amp;</code> (and) or <code class="highlighter-rouge">|</code> (or). This function is equivalent to base R’s subset function.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># subset to students with posttest math scores over 75 and are in the 10th grade</span>
-data <span class="o">%&gt;%</span> filter<span class="p">(</span>posttest_grade <span class="o">==</span> <span class="m">10</span><span class="p">,</span> posttest_subject <span class="o">==</span> <span class="s">&quot;math&quot;</span><span class="p">,</span> posttest_score <span class="o">&gt;</span> <span class="m">75</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># subset to students with posttest math scores over 75 and are in the 10th grade
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">posttest_grade</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">posttest_subject</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"math"</span><span class="p">,</span><span class="w"> </span><span class="n">posttest_score</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">75</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -538,10 +530,10 @@ data <span class="o">%&gt;%</span> filter<span class="p">(</span>posttest_grade 
 <p></p>
 
 <h2 id="subsetting-rows-by-row-position">Subsetting rows by row position</h2>
-<p>The <code>dplyr::slice()</code> function allows rows to be extracted by position.</p>
+<p>The <code class="highlighter-rouge">dplyr::slice()</code> function allows rows to be extracted by position.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract the 25th-27th students in the data set</span>
-data <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">25</span><span class="o">:</span><span class="m">27</span><span class="p">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract the 25th-27th students in the data set
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">slice</span><span class="p">(</span><span class="m">25</span><span class="o">:</span><span class="m">27</span><span class="p">)</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -682,13 +674,13 @@ data <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">
 <p></p>
 
 <h1 id="dplyrselect">dplyr::select()</h1>
-<p>The <code>dplyr::select()</code> function selects columns from a data set. To deselect columns, place a <code>-</code> before the name or special function call.</p>
+<p>The <code class="highlighter-rouge">dplyr::select()</code> function selects columns from a data set. To deselect columns, place a <code class="highlighter-rouge">-</code> before the name or special function call.</p>
 
 <h2 id="select-columns-by-name">Select columns by name</h2>
 <p>Selecting columns by name by writing out the name of the column(s), separated by commas.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select multiple columns by name</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>posttest_score<span class="p">,</span> posttest_grade<span class="p">,</span> d_gender<span class="p">,</span> posttest_subject<span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select multiple columns by name
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">posttest_score</span><span class="p">,</span><span class="w"> </span><span class="n">posttest_grade</span><span class="p">,</span><span class="w"> </span><span class="n">d_gender</span><span class="p">,</span><span class="w"> </span><span class="n">posttest_subject</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -724,8 +716,8 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 </div>
 <p></p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># deselect multiple columns by name</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span><span class="o">-</span>posttest_score<span class="p">,</span> <span class="o">-</span>posttest_grade<span class="p">,</span> <span class="o">-</span>posttest_subject<span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># deselect multiple columns by name
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">posttest_score</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">posttest_grade</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">posttest_subject</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -861,9 +853,9 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 
 <p>For numeric position values, just pass the vector as an argument to the select function.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select based on column position</span>
-var_pos <span class="o">&lt;-</span> <span class="m">25</span><span class="o">:</span><span class="m">29</span> 
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>var_pos<span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select based on column position
+</span><span class="n">var_pos</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">25</span><span class="o">:</span><span class="m">29</span><span class="w"> 
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">var_pos</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -899,11 +891,11 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 </div>
 <p></p>
 
-<p>For character names, wrap the helper function <code>one_of()</code> around the character vector and pass this to the select function.</p>
+<p>For character names, wrap the helper function <code class="highlighter-rouge">one_of()</code> around the character vector and pass this to the select function.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select based on column name</span>
-var_names <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;d_black&quot;</span><span class="p">,</span> <span class="s">&quot;d_hispanic&quot;</span><span class="p">,</span> <span class="s">&quot;d_asian&quot;</span><span class="p">,</span> <span class="s">&quot;d_native&quot;</span><span class="p">)</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>one_of<span class="p">(</span>var_names<span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select based on column name
+</span><span class="n">var_names</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"d_black"</span><span class="p">,</span><span class="w"> </span><span class="s2">"d_hispanic"</span><span class="p">,</span><span class="w"> </span><span class="s2">"d_asian"</span><span class="p">,</span><span class="w"> </span><span class="s2">"d_native"</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">one_of</span><span class="p">(</span><span class="n">var_names</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -941,14 +933,14 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 
 <h2 id="select-columns-using-regex">Select columns using regex</h2>
 
-<p>Helper functions such as <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> are perhaps the most powerful feature of the select function.</p>
+<p>Helper functions such as <code class="highlighter-rouge">matches()</code>, <code class="highlighter-rouge">starts_with()</code>, and <code class="highlighter-rouge">ends_with()</code> are perhaps the most powerful feature of the select function.</p>
 
 <p>Start with extracting the pretest score columns.</p>
 
 <p>Notice that this method is generic (any pretest number it will qualify) and reuseable.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># use matches to find all pretest score columns</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># use matches to find all pretest score columns
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">matches</span><span class="p">(</span><span class="s2">"pretest_\\d+_score"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -988,12 +980,12 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 </div>
 <p></p>
 
-<p>The helper functions <code>starts_with()</code> and <code>ends_with()</code> are similar to <code>matches()</code> but is specialized in that it only looks at the beginning or the end of the string for a pattern match.</p>
+<p>The helper functions <code class="highlighter-rouge">starts_with()</code> and <code class="highlighter-rouge">ends_with()</code> are similar to <code class="highlighter-rouge">matches()</code> but is specialized in that it only looks at the beginning or the end of the string for a pattern match.</p>
 
-<p>Use <code>starts_with()</code> and <code>ends_with()</code> to extract (1) all posttest information and (2) all test score columns.</p>
+<p>Use <code class="highlighter-rouge">starts_with()</code> and <code class="highlighter-rouge">ends_with()</code> to extract (1) all posttest information and (2) all test score columns.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract all posttest information</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>starts_with<span class="p">(</span><span class="s">&quot;posttest&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract all posttest information
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">starts_with</span><span class="p">(</span><span class="s2">"posttest"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -1025,8 +1017,8 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 </div>
 <p></p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract all test score columns</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>ends_with<span class="p">(</span><span class="s">&quot;_score&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># extract all test score columns
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">ends_with</span><span class="p">(</span><span class="s2">"_score"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -1070,12 +1062,12 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 </div>
 <p></p>
 
-<p>For added functionality, the <code>matches()</code>, <code>starts_with()</code>, and <code>ends_with()</code> function works even when the regex string is stored as a variable. This tends to be useful when developing functions that runs on any data set, where the regex string can be passed as a parameter.</p>
+<p>For added functionality, the <code class="highlighter-rouge">matches()</code>, <code class="highlighter-rouge">starts_with()</code>, and <code class="highlighter-rouge">ends_with()</code> function works even when the regex string is stored as a variable. This tends to be useful when developing functions that runs on any data set, where the regex string can be passed as a parameter.</p>
 
 <h2 id="combining-selection-techniques">Combining selection techniques</h2>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select multiple columns</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>student_id<span class="p">,</span> matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_score&quot;</span><span class="p">),</span> d_gender<span class="p">,</span> starts_with<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select multiple columns
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">student_id</span><span class="p">,</span><span class="w"> </span><span class="n">matches</span><span class="p">(</span><span class="s2">"pretest_\\d+_score"</span><span class="p">),</span><span class="w"> </span><span class="n">d_gender</span><span class="p">,</span><span class="w"> </span><span class="n">starts_with</span><span class="p">(</span><span class="s2">"d_"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -1143,9 +1135,9 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 </div>
 <p></p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select all pretest info and then deselect pretest 10 info</span>
-no_good <span class="o">&lt;-</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_10_&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;score&quot;</span><span class="p">,</span> <span class="s">&quot;version&quot;</span><span class="p">,</span> <span class="s">&quot;grade&quot;</span><span class="p">))</span>
-data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>student_id<span class="p">,</span> starts_with<span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">),</span> <span class="o">-</span>one_of<span class="p">(</span>no_good<span class="p">))</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># select all pretest info and then deselect pretest 10 info
+</span><span class="n">no_good</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"pretest_10_"</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"score"</span><span class="p">,</span><span class="w"> </span><span class="s2">"version"</span><span class="p">,</span><span class="w"> </span><span class="s2">"grade"</span><span class="p">))</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">student_id</span><span class="p">,</span><span class="w"> </span><span class="n">starts_with</span><span class="p">(</span><span class="s2">"pretest_"</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="n">one_of</span><span class="p">(</span><span class="n">no_good</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -1233,14 +1225,14 @@ data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span cla
 </div>
 <p></p>
 
-<p>With very wide data, <code>dplyr::select()</code> can be used to reorganize columns.</p>
+<p>With very wide data, <code class="highlighter-rouge">dplyr::select()</code> can be used to reorganize columns.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># shuffle up column positions</span>
-order <span class="o">&lt;-</span> <span class="kp">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="kp">ncol</span><span class="p">(</span>data<span class="p">))</span>
-unorganized_data <span class="o">&lt;-</span> dplyr<span class="o">::</span>select<span class="p">(</span>data<span class="p">,</span> <span class="kp">order</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># shuffle up column positions
+</span><span class="n">order</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="w">
+</span><span class="n">unorganized_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="p">)</span><span class="w">
 
-<span class="c1"># organize columns: id, then posttest info, pretest info, demographics info</span>
-unorganized_data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span>student_id<span class="p">,</span> matches<span class="p">(</span><span class="s">&quot;posttest&quot;</span><span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;pretest&quot;</span><span class="p">),</span> d_gender<span class="p">,</span> d_gifted<span class="p">,</span> everything<span class="p">())</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+</span><span class="c1"># organize columns: id, then posttest info, pretest info, demographics info
+</span><span class="n">unorganized_data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">student_id</span><span class="p">,</span><span class="w"> </span><span class="n">matches</span><span class="p">(</span><span class="s2">"posttest"</span><span class="p">),</span><span class="w"> </span><span class="n">matches</span><span class="p">(</span><span class="s2">"pretest"</span><span class="p">),</span><span class="w"> </span><span class="n">d_gender</span><span class="p">,</span><span class="w"> </span><span class="n">d_gifted</span><span class="p">,</span><span class="w"> </span><span class="n">everything</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -1380,12 +1372,12 @@ unorganized_data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>sel
 </div>
 <p></p>
 
-<p>When reorganizing columns if the selectors are too specific, data may be lost in the process. The helper function <code>everything()</code> selects all variables not already selected. Including <code>everything()</code> at the end of the selection specifications ensures that columns that aren’t accounted for in the ordering are included in the returned data frame.</p>
+<p>When reorganizing columns if the selectors are too specific, data may be lost in the process. The helper function <code class="highlighter-rouge">everything()</code> selects all variables not already selected. Including <code class="highlighter-rouge">everything()</code> at the end of the selection specifications ensures that columns that aren’t accounted for in the ordering are included in the returned data frame.</p>
 
-<p>To move columns to the end of the list, deselect the column and then include <code>everything()</code>.</p>
+<p>To move columns to the end of the list, deselect the column and then include <code class="highlighter-rouge">everything()</code>.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># move demographic information to the furthest right</span>
-unorganized_data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>select<span class="p">(</span><span class="o">-</span>starts_with<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">),</span> everything<span class="p">())</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># move demographic information to the furthest right
+</span><span class="n">unorganized_data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">starts_with</span><span class="p">(</span><span class="s2">"d_"</span><span class="p">),</span><span class="w"> </span><span class="n">everything</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -1535,35 +1527,35 @@ unorganized_data <span class="o">%&gt;%</span> dplyr<span class="o">::</span>sel
   <li>keep information regarding to students who took a math/reading posttest in the 12th grade</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># grade and subject query of interest</span>
-grade_query <span class="o">&lt;-</span> <span class="m">12</span>
-subject_query <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;math&quot;</span><span class="p">,</span> <span class="s">&quot;read&quot;</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># grade and subject query of interest
+</span><span class="n">grade_query</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">12</span><span class="w">
+</span><span class="n">subject_query</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"math"</span><span class="p">,</span><span class="w"> </span><span class="s2">"read"</span><span class="p">)</span><span class="w">
 
-<span class="c1"># obtains pretest number corresponding to pretests of the ACT and SAT category</span>
-pretest_numbers <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> 
-  <span class="c1"># select all pretest columns</span>
-  dplyr<span class="o">::</span>select<span class="p">(</span>matches<span class="p">(</span><span class="s">&quot;pretest_\\d+_name&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># obtain unique test names per column</span>
-  <span class="kp">apply</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="kp">unique</span><span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># filter to elements that contain either ACT or SAT</span>
-  jn.general<span class="o">::</span>refine<span class="p">(</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">any</span><span class="p">(</span>str_detect<span class="p">(</span>x<span class="p">,</span> <span class="s">&quot;ACT|SAT&quot;</span><span class="p">)))</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># obtain the names</span>
-  names <span class="o">%&gt;%</span> 
-  <span class="c1"># extract the pretest number</span>
-  str_extract<span class="p">(</span><span class="s">&quot;\\d+&quot;</span><span class="p">)</span> 
+</span><span class="c1"># obtains pretest number corresponding to pretests of the ACT and SAT category
+</span><span class="n">pretest_numbers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># select all pretest columns
+</span><span class="w">  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">matches</span><span class="p">(</span><span class="s2">"pretest_\\d+_name"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># obtain unique test names per column
+</span><span class="w">  </span><span class="n">apply</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">unique</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># filter to elements that contain either ACT or SAT
+</span><span class="w">  </span><span class="n">jn.general</span><span class="o">::</span><span class="n">refine</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">any</span><span class="p">(</span><span class="n">str_detect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s2">"ACT|SAT"</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># obtain the names
+</span><span class="w">  </span><span class="n">names</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># extract the pretest number
+</span><span class="w">  </span><span class="n">str_extract</span><span class="p">(</span><span class="s2">"\\d+"</span><span class="p">)</span><span class="w"> 
 
-<span class="c1"># generates the names of the pretest information </span>
-<span class="c1">## matches doesn&#39;t allow multiple matches so we have to regenerate the names of the pretests information</span>
-pretests_of_interest <span class="o">&lt;-</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">&quot;pretest_&quot;</span><span class="p">,</span> pretest_numbers<span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># interact the pretest names with the values name score and grade</span>
-  <span class="kp">interaction</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;score&quot;</span><span class="p">,</span> <span class="s">&quot;grade&quot;</span><span class="p">,</span> <span class="s">&quot;version&quot;</span><span class="p">),</span> sep <span class="o">=</span> <span class="s">&quot;_&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># extract the unique names</span>
-  <span class="kp">levels</span>
+</span><span class="c1"># generates the names of the pretest information 
+## matches doesn't allow multiple matches so we have to regenerate the names of the pretests information
+</span><span class="n">pretests_of_interest</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"pretest_"</span><span class="p">,</span><span class="w"> </span><span class="n">pretest_numbers</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># interact the pretest names with the values name score and grade
+</span><span class="w">  </span><span class="n">interaction</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"score"</span><span class="p">,</span><span class="w"> </span><span class="s2">"grade"</span><span class="p">,</span><span class="w"> </span><span class="s2">"version"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># extract the unique names
+</span><span class="w">  </span><span class="n">levels</span><span class="w">
 
-<span class="c1"># selects posttest, ACT/SAT pretests, demographics and subsets by the grade/subject of interest</span>
-final <span class="o">&lt;-</span> data <span class="o">%&gt;%</span> 
-  dplyr<span class="o">::</span>select<span class="p">(</span>student_id<span class="p">,</span> starts_with<span class="p">(</span><span class="s">&quot;posttest_&quot;</span><span class="p">),</span> one_of<span class="p">(</span>pretests_of_interest<span class="p">),</span> starts_with<span class="p">(</span><span class="s">&quot;d_&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
-  dplyr<span class="o">::</span>filter<span class="p">(</span>posttest_grade <span class="o">%in%</span> grade_query<span class="p">,</span> posttest_subject <span class="o">%in%</span> subject_query<span class="p">)</span></code></pre></div>
+</span><span class="c1"># selects posttest, ACT/SAT pretests, demographics and subsets by the grade/subject of interest
+</span><span class="n">final</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">student_id</span><span class="p">,</span><span class="w"> </span><span class="n">starts_with</span><span class="p">(</span><span class="s2">"posttest_"</span><span class="p">),</span><span class="w"> </span><span class="n">one_of</span><span class="p">(</span><span class="n">pretests_of_interest</span><span class="p">),</span><span class="w"> </span><span class="n">starts_with</span><span class="p">(</span><span class="s2">"d_"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="n">posttest_grade</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">grade_query</span><span class="p">,</span><span class="w"> </span><span class="n">posttest_subject</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">subject_query</span><span class="p">)</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -1719,7 +1711,7 @@ final <span class="o">&lt;-</span> data <span class="o">%&gt;%</span>
 </div>
 <p></p>
 
-<p>Note: The <code>jn.general::refine()</code> function used here is a wrapper function for <code>Filter()</code>.</p>
+<p>Note: The <code class="highlighter-rouge">jn.general::refine()</code> function used here is a wrapper function for <code class="highlighter-rouge">Filter()</code>.</p>
 
 
   </article>

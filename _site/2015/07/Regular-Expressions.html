@@ -39,23 +39,15 @@
           
         
           
-          <a class="page-link" href="/nhuyhoa//software_notes/">Software Notebook</a>
+          <a class="page-link" href="/nhuyhoa//recipes/">Recipes</a>
           
         
           
-          <a class="page-link" href="/nhuyhoa//stat_notes/">Statistics Notebook</a>
+          <a class="page-link" href="/nhuyhoa//software_notes/">Software</a>
           
         
           
-        
-          
-        
-          
-        
-          
-        
-          
-        
+          <a class="page-link" href="/nhuyhoa//stat_notes/">Statistics</a>
           
         
       </div>
@@ -95,8 +87,8 @@
 
 <p>To search for an exact pattern, simply search for the pattern.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># detect the name Charlie</span>
-x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s">&quot;Charlie&quot;</span><span class="p">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># detect the name Charlie
+</span><span class="n">x</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">str_detect</span><span class="p">(</span><span class="s2">"Charlie"</span><span class="p">)</span></code></pre></figure>
 
 <h2 id="character-classes">Character Classes</h2>
 
@@ -184,13 +176,13 @@ x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s
 
 <p><strong>[…]</strong></p>
 
-<p><code>[...]</code> can be used to select from a customized group of characters. To specify characters, list them out inside the brackets. To not match a customized group of characters, add a negation character like so: <code>[^...]</code>.</p>
+<p><code class="highlighter-rouge">[...]</code> can be used to select from a customized group of characters. To specify characters, list them out inside the brackets. To not match a customized group of characters, add a negation character like so: <code class="highlighter-rouge">[^...]</code>.</p>
 
-<p>To specifically search for only uppercase letters, use <code>[A-Z]</code>; for lowercase letters <code>[a-z]</code>. To search for both uppercase and lowercase letters, use <code>[A-Za-z]</code>.</p>
+<p>To specifically search for only uppercase letters, use <code class="highlighter-rouge">[A-Z]</code>; for lowercase letters <code class="highlighter-rouge">[a-z]</code>. To search for both uppercase and lowercase letters, use <code class="highlighter-rouge">[A-Za-z]</code>.</p>
 
 <p><strong>{…}</strong></p>
 
-<p>To match a character (or a group of characters) multiple times, repetition quantifiers come in handy: <code>{...}</code>, <code>*</code>, or <code>+</code>.</p>
+<p>To match a character (or a group of characters) multiple times, repetition quantifiers come in handy: <code class="highlighter-rouge"><span class="p">{</span><span class="err">...</span><span class="p">}</span></code>, <code class="highlighter-rouge">*</code>, or <code class="highlighter-rouge">+</code>.</p>
 
 <table>
   <thead>
@@ -229,31 +221,31 @@ x <span class="o">%&gt;%</span> str_detect<span class="p">(</span><span class="s
 
 <p><strong>(…)</strong></p>
 
-<p>The metacharacters <code>(...)</code> are very useful in replacing strings. When wrapped around a string, it “remembers” the matched pattern. Then when specifying the replacement, it allows users to refer to the matched pattern by using <code>\n</code> where n refers to the nth wrapped expression.</p>
+<p>The metacharacters <code class="highlighter-rouge">(...)</code> are very useful in replacing strings. When wrapped around a string, it “remembers” the matched pattern. Then when specifying the replacement, it allows users to refer to the matched pattern by using <code class="highlighter-rouge">\n</code> where n refers to the nth wrapped expression.</p>
 
 <p>We can look at this example in R:</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">&lt;-</span> <span class="s">&quot;Flintstone,Fred  *111-222-3333 fflinstone@gmail.com crane operator&quot;</span>
-pattern <span class="o">&lt;-</span> <span class="s">&quot;(\\w+)[, ]+(\\w+)\\s+([\\d-*]+)\\s+([\\w@.]+)\\s+(.+)&quot;</span>
-<span class="c1">## 1st () references the last name</span>
-<span class="c1">## 2nd () references the first name</span>
-<span class="c1">## 3rd () references the phone number</span>
-<span class="c1">## 4th () references the email address</span>
-<span class="c1">## 5th () references the person&#39;s occupation</span>
-x <span class="o">%&gt;%</span> str_replace<span class="p">(</span>pattern <span class="o">=</span> pattern<span class="p">,</span> replacement <span class="o">=</span> <span class="s">&quot;\\2 \\1 is a \\5&quot;</span><span class="p">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"Flintstone,Fred  *111-222-3333 fflinstone@gmail.com crane operator"</span><span class="w">
+</span><span class="n">pattern</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"(\\w+)[, ]+(\\w+)\\s+([\\d-*]+)\\s+([\\w@.]+)\\s+(.+)"</span><span class="w">
+</span><span class="c1">## 1st () references the last name
+## 2nd () references the first name
+## 3rd () references the phone number
+## 4th () references the email address
+## 5th () references the person's occupation
+</span><span class="n">x</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">str_replace</span><span class="p">(</span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">,</span><span class="w"> </span><span class="n">replacement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\\2 \\1 is a \\5"</span><span class="p">)</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;Fred Flintstone is a crane operator&quot;</code></pre></div>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## [1] "Fred Flintstone is a crane operator"</code></pre></figure>
 
 <p><strong>^ and $</strong></p>
 
-<p>The metacharacters <code>^</code> and <code>$</code> are used to match patterns at specific positions of a string.</p>
+<p>The metacharacters <code class="highlighter-rouge">^</code> and <code class="highlighter-rouge">$</code> are used to match patterns at specific positions of a string.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">grep <span class="s">&quot;^\d&quot;</span>
-grep <span class="s">&quot;\w$&quot;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">grep</span><span class="w"> </span><span class="s2">"^\d"</span><span class="w">
+</span><span class="n">grep</span><span class="w"> </span><span class="s2">"\w$"</span></code></pre></figure>
 
 <p><strong>Using Metacharacters as Normal Characters</strong></p>
 
-<p>To use these characters as regular characters, precede the character with escape characters or wrap then in square brackets. For example, to search for the character <code>+</code>, type <code>\+</code> or <code>[+]</code> into the search pattern string.</p>
+<p>To use these characters as regular characters, precede the character with escape characters or wrap then in square brackets. For example, to search for the character <code class="highlighter-rouge">+</code>, type <code class="highlighter-rouge">\+</code> or <code class="highlighter-rouge">[+]</code> into the search pattern string.</p>
 
 <h1 id="implementation">Implementation</h1>
 
@@ -261,8 +253,8 @@ grep <span class="s">&quot;\w$&quot;</span></code></pre></div>
 
 <p>In order to match these special regex expressions in R, type the backslashes twice, like so:</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># count the number of space characters in each string of x</span>
-x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s">&quot;\\s&quot;</span><span class="p">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># count the number of space characters in each string of x
+</span><span class="n">x</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">str_count</span><span class="p">(</span><span class="s2">"\\s"</span><span class="p">)</span></code></pre></figure>
 
 <table>
   <thead>
@@ -273,75 +265,75 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
   </thead>
   <tbody>
     <tr>
-      <td><code>str_to_upper()</code>, <code>str_to_lower()</code>, <code>str_to_title()</code></td>
+      <td><code class="highlighter-rouge">str_to_upper()</code>, <code class="highlighter-rouge">str_to_lower()</code>, <code class="highlighter-rouge">str_to_title()</code></td>
       <td>change string case</td>
     </tr>
     <tr>
-      <td><code>str_dup()</code></td>
+      <td><code class="highlighter-rouge">str_dup()</code></td>
       <td>duplicate and concatenate character vector</td>
     </tr>
     <tr>
-      <td><code>paste()</code></td>
+      <td><code class="highlighter-rouge">paste()</code></td>
       <td>join multiple strings into single string</td>
     </tr>
     <tr>
-      <td><code>nchar()</code></td>
+      <td><code class="highlighter-rouge">nchar()</code></td>
       <td>number of characters</td>
     </tr>
     <tr>
-      <td><code>str_count()</code></td>
+      <td><code class="highlighter-rouge">str_count()</code></td>
       <td>count number of matches in string</td>
     </tr>
     <tr>
-      <td><code>str_sub()</code></td>
+      <td><code class="highlighter-rouge">str_sub()</code></td>
       <td>extract and replace substrings</td>
     </tr>
     <tr>
-      <td><code>str_subset()</code></td>
+      <td><code class="highlighter-rouge">str_subset()</code></td>
       <td>keep strings matching a pattern</td>
     </tr>
     <tr>
-      <td><code>str_detect()</code></td>
+      <td><code class="highlighter-rouge">str_detect()</code></td>
       <td>detect presence of a pattern</td>
     </tr>
     <tr>
-      <td><code>str_locate()</code>, <code>str_locate_all()</code></td>
+      <td><code class="highlighter-rouge">str_locate()</code>, <code class="highlighter-rouge">str_locate_all()</code></td>
       <td>locate positions of patterns</td>
     </tr>
     <tr>
-      <td><code>str_extract()</code>, <code>str_extract_all()</code></td>
+      <td><code class="highlighter-rouge">str_extract()</code>, <code class="highlighter-rouge">str_extract_all()</code></td>
       <td>extract pieces that match pattern</td>
     </tr>
     <tr>
-      <td><code>str_match()</code>, <code>str_match_all()</code></td>
+      <td><code class="highlighter-rouge">str_match()</code>, <code class="highlighter-rouge">str_match_all()</code></td>
       <td>extract matched groups</td>
     </tr>
     <tr>
-      <td><code>str_replace()</code>, <code>str_replace_all()</code></td>
+      <td><code class="highlighter-rouge">str_replace()</code>, <code class="highlighter-rouge">str_replace_all()</code></td>
       <td>replace matched patterns</td>
     </tr>
     <tr>
-      <td><code>str_replace_na()</code></td>
+      <td><code class="highlighter-rouge">str_replace_na()</code></td>
       <td>replace NA</td>
     </tr>
     <tr>
-      <td><code>str_split()</code></td>
+      <td><code class="highlighter-rouge">str_split()</code></td>
       <td>split by pattern</td>
     </tr>
     <tr>
-      <td><code>str_trim()</code></td>
+      <td><code class="highlighter-rouge">str_trim()</code></td>
       <td>trim white space</td>
     </tr>
     <tr>
-      <td><code>str_pad()</code></td>
+      <td><code class="highlighter-rouge">str_pad()</code></td>
       <td>pad string</td>
     </tr>
     <tr>
-      <td><code>str_wrap()</code></td>
+      <td><code class="highlighter-rouge">str_wrap()</code></td>
       <td>wrap strings into formatted paragraphs</td>
     </tr>
     <tr>
-      <td><code>word()</code></td>
+      <td><code class="highlighter-rouge">word()</code></td>
       <td>extract words from sentence</td>
     </tr>
   </tbody>
@@ -352,7 +344,7 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
 <p>Additional metacharacters for SAS</p>
 
 <ul>
-  <li><code>%</code> substitute for 0 or more characters</li>
+  <li><code class="highlighter-rouge">%</code> substitute for 0 or more characters</li>
 </ul>
 
 <table>
@@ -364,67 +356,67 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
   </thead>
   <tbody>
     <tr>
-      <td><code>lengthn()</code></td>
+      <td><code class="highlighter-rouge">lengthn()</code></td>
       <td>length of string</td>
     </tr>
     <tr>
-      <td><code>upcase()</code>, <code>lowcase()</code>, <code>propcase()</code></td>
+      <td><code class="highlighter-rouge">upcase()</code>, <code class="highlighter-rouge">lowcase()</code>, <code class="highlighter-rouge">propcase()</code></td>
       <td>change string case</td>
     </tr>
     <tr>
-      <td><code>compbl()</code></td>
+      <td><code class="highlighter-rouge">compbl()</code></td>
       <td>combines &gt;1 blank to 1 blank</td>
     </tr>
     <tr>
-      <td><code>compress()</code></td>
+      <td><code class="highlighter-rouge">compress()</code></td>
       <td>removes specified character/char class</td>
     </tr>
     <tr>
-      <td><code>cat()</code></td>
+      <td><code class="highlighter-rouge">cat()</code></td>
       <td>concatenates characters</td>
     </tr>
     <tr>
-      <td><code>cats()</code></td>
+      <td><code class="highlighter-rouge">cats()</code></td>
       <td>strips leading &amp; trailing blanks before joining</td>
     </tr>
     <tr>
-      <td><code>catx()</code></td>
+      <td><code class="highlighter-rouge">catx()</code></td>
       <td>concatenates characters, 1st arg is separator</td>
     </tr>
     <tr>
-      <td><code>left()</code>, <code>trim()</code>, <code>strip()</code></td>
+      <td><code class="highlighter-rouge">left()</code>, <code class="highlighter-rouge">trim()</code>, <code class="highlighter-rouge">strip()</code></td>
       <td>removes blanks from L, R, both sides</td>
     </tr>
     <tr>
-      <td><code>find()</code></td>
+      <td><code class="highlighter-rouge">find()</code></td>
       <td>finds characters</td>
     </tr>
     <tr>
-      <td><code>findc()</code></td>
+      <td><code class="highlighter-rouge">findc()</code></td>
       <td>finds individual characters</td>
     </tr>
     <tr>
-      <td><code>findw()</code></td>
+      <td><code class="highlighter-rouge">findw()</code></td>
       <td>finds words</td>
     </tr>
     <tr>
-      <td><code>anyalnum()</code>, <code>anyalpha()</code>, <code>anydigit()</code>, <code>anyspace()</code></td>
+      <td><code class="highlighter-rouge">anyalnum()</code>, <code class="highlighter-rouge">anyalpha()</code>, <code class="highlighter-rouge">anydigit()</code>, <code class="highlighter-rouge">anyspace()</code></td>
       <td>finds any of listed; can also replace any with not</td>
     </tr>
     <tr>
-      <td><code>substr()</code></td>
+      <td><code class="highlighter-rouge">substr()</code></td>
       <td>takes substring</td>
     </tr>
     <tr>
-      <td><code>scan()</code></td>
+      <td><code class="highlighter-rouge">scan()</code></td>
       <td>scans string</td>
     </tr>
     <tr>
-      <td><code>compare()</code></td>
+      <td><code class="highlighter-rouge">compare()</code></td>
       <td>compares strings</td>
     </tr>
     <tr>
-      <td><code>translate()</code></td>
+      <td><code class="highlighter-rouge">translate()</code></td>
       <td>translates one to another</td>
     </tr>
   </tbody>
@@ -432,20 +424,20 @@ x <span class="o">%&gt;%</span> str_count<span class="p">(</span><span class="s"
 
 <h2 id="in-sql">In SQL</h2>
 
-<p>Regular expressions can be specified in SQL using the <code>where</code> clause.</p>
+<p>Regular expressions can be specified in SQL using the <code class="highlighter-rouge">where</code> clause.</p>
 
 <p>Here is an example of selecting names that start with vowels.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">select <span class="o">*</span> from <span class="kp">table</span>
-where name like <span class="s">&#39;[aeiou]%&#39;</span>
-<span class="p">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">table</span><span class="w">
+</span><span class="n">where</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">like</span><span class="w"> </span><span class="s1">'[aeiou]%'</span><span class="w">
+</span><span class="p">;</span></code></pre></figure>
 
 <p>The metacharacters that can be used with SQL are a little different than those listed above.</p>
 
 <ul>
-  <li><code>[...]</code> brackets, same as above (including negation)</li>
-  <li><code>%</code> substitute for 0 or more characters</li>
-  <li><code>_</code> substitute for a single character</li>
+  <li><code class="highlighter-rouge">[...]</code> brackets, same as above (including negation)</li>
+  <li><code class="highlighter-rouge">%</code> substitute for 0 or more characters</li>
+  <li><code class="highlighter-rouge">_</code> substitute for a single character</li>
 </ul>
 
 <h2 id="in-python">In Python</h2>
@@ -459,55 +451,55 @@ where name like <span class="s">&#39;[aeiou]%&#39;</span>
   </thead>
   <tbody>
     <tr>
-      <td><code>len(s)</code></td>
+      <td><code class="highlighter-rouge">len(s)</code></td>
       <td>length of string</td>
     </tr>
     <tr>
-      <td><code>s.upper()</code>, <code>s.lower()</code>, <code>s.capitalize()</code>, <code>s.capwords()</code></td>
+      <td><code class="highlighter-rouge">s.upper()</code>, <code class="highlighter-rouge">s.lower()</code>, <code class="highlighter-rouge">s.capitalize()</code>, <code class="highlighter-rouge">s.capwords()</code></td>
       <td>change string case</td>
     </tr>
     <tr>
-      <td><code>s.isalpha()</code>, <code>s.isdigit()</code>, <code>s.isspace()</code></td>
+      <td><code class="highlighter-rouge">s.isalpha()</code>, <code class="highlighter-rouge">s.isdigit()</code>, <code class="highlighter-rouge">s.isspace()</code></td>
       <td>tests string for type</td>
     </tr>
     <tr>
-      <td><code>s.startswith()</code>, <code>s.endswith()</code></td>
+      <td><code class="highlighter-rouge">s.startswith()</code>, <code class="highlighter-rouge">s.endswith()</code></td>
       <td>checks string locations</td>
     </tr>
     <tr>
-      <td><code>s.split(dlm)</code></td>
+      <td><code class="highlighter-rouge">s.split(dlm)</code></td>
       <td>splits string into list by delimiter</td>
     </tr>
     <tr>
-      <td><code>dlm.join(l)</code></td>
+      <td><code class="highlighter-rouge">dlm.join(l)</code></td>
       <td>joins list into string by delimiter</td>
     </tr>
     <tr>
-      <td><code>s.count()</code></td>
+      <td><code class="highlighter-rouge">s.count()</code></td>
       <td>counts occurances of specified string</td>
     </tr>
     <tr>
-      <td><code>s.find()</code>, <code>s.index()</code></td>
+      <td><code class="highlighter-rouge">s.find()</code>, <code class="highlighter-rouge">s.index()</code></td>
       <td>finds index of substring</td>
     </tr>
     <tr>
-      <td><code>re.search(pattern, str)</code></td>
+      <td><code class="highlighter-rouge">re.search(pattern, str)</code></td>
       <td>searches for a pattern inside string</td>
     </tr>
     <tr>
-      <td><code>re.findall()</code></td>
+      <td><code class="highlighter-rouge">re.findall()</code></td>
       <td>finds all matches in string</td>
     </tr>
     <tr>
-      <td><code>s.replace(old, new, n)</code></td>
+      <td><code class="highlighter-rouge">s.replace(old, new, n)</code></td>
       <td>replaces a substring up to n times</td>
     </tr>
     <tr>
-      <td><code>re.sub(pattern, replacement, str)</code></td>
+      <td><code class="highlighter-rouge">re.sub(pattern, replacement, str)</code></td>
       <td>replaces substrings</td>
     </tr>
     <tr>
-      <td><code>s.strip()</code></td>
+      <td><code class="highlighter-rouge">s.strip()</code></td>
       <td>remove trailing white space</td>
     </tr>
   </tbody>

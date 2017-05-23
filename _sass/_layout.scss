@@ -202,29 +202,29 @@
     }
     
     table{
-      padding-bottom: 5px;
+        padding-bottom: 5px;
     }
     
     th {
-      text-align: center;
+        text-align: center;
     }
     
     .presenttab {
-      border-collapse:collapse;
-      margin:auto;
-      border: 1px solid black;
-      width: 75%;
+        border-collapse:collapse;
+        margin:auto;
+        border: 1px solid black;
+        width: 75%;
     }
     
     .presenttab th{
-      background-color:#E0E0E0 ;
-      border-bottom:1px solid black;
-      padding: 5px;
+        background-color:#E0E0E0 ;
+        border-bottom:1px solid black;
+        padding: 5px;
     }
   
     .presenttab td{
-      border-bottom:1px dotted black;
-      padding: 5px;
+        border:1px dotted black;
+        padding: 5px;
     }
 
     .dftab {
@@ -233,13 +233,6 @@
         border-radius: 3px;
         background-color: $background-code-color;
         
-        width: 100%;
-        overflow-x: auto;
-    }
-    
-    .recipe {
-        font-size: $code-font-size;
-
         width: 100%;
         overflow-x: auto;
     }

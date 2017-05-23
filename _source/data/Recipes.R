@@ -3,10 +3,10 @@ recipes = list()
 
 # alfredo
 ingredients = list(
-  other = c("pasta", "alfredo sauce", "salt", "pepper", "garlic", "yellow onion"),
-  meat = "", 
-  veggies = c("alfredo", "spinach", "mushrooms"),
-  fruit = ""
+  Other = c("pasta", "alfredo sauce", "salt", "pepper", "garlic", "yellow onion"),
+  Meat = "", 
+  Veggies = c("alfredo", "spinach", "mushrooms"),
+  Fruit = ""
 )
 instructions = data.frame(Instructions = c(
   "Boil pasta and veggies",

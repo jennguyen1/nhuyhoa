@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Recipe Template"
+title: "Alfredo"
 date: "May 22, 2017"
 categories: ['recipes']
 ---
@@ -8,20 +8,20 @@ categories: ['recipes']
 * TOC
 {:toc}
 
-```{r, eval = FALSE}
+```{r, echo = FALSE, warning = FALSE}
 library(jn.general)
 lib(data)
 load("data/recipes.Rdata")
 current <- recipes[["alfredo"]]
 ```
 
-
-# Ingredients
-<div class = "recipe">
+**Ingredients**
 ```{r, echo = FALSE}
-class %>% nhuyhoa_df_print()
+current$display_ingredients %>% nhuyhoa_df_print(data = FALSE)
 ```
-</div>
 
-# Instructions
+<br>
 
+```{r, echo = FALSE}
+current$instructions %>% nhuyhoa_df_print(data = FALSE)
+```

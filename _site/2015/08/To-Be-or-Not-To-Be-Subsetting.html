@@ -39,23 +39,15 @@
           
         
           
-          <a class="page-link" href="/nhuyhoa//software_notes/">Software Notebook</a>
+          <a class="page-link" href="/nhuyhoa//recipes/">Recipes</a>
           
         
           
-          <a class="page-link" href="/nhuyhoa//stat_notes/">Statistics Notebook</a>
+          <a class="page-link" href="/nhuyhoa//software_notes/">Software</a>
           
         
           
-        
-          
-        
-          
-        
-          
-        
-          
-        
+          <a class="page-link" href="/nhuyhoa//stat_notes/">Statistics</a>
           
         
       </div>
@@ -93,13 +85,13 @@
 
 <p>However, there are no functions available for keeping (rather than discarding) the data that does not correspond to the subset (call it the “anti-subset”). This process might be useful for performing a different set of operations on two different subsets of the data and combining the results back again.</p>
 
-<p>In some cases, obtaining the anti-subset isn’t straightforward. For example, when the subset is obtained randomly (as with <code>sample_n()</code> or <code>sample_frac()</code>) or when there is no clear negation (as with <code>jn.general::view_duplicated()</code>).</p>
+<p>In some cases, obtaining the anti-subset isn’t straightforward. For example, when the subset is obtained randomly (as with <code class="highlighter-rouge">sample_n()</code> or <code class="highlighter-rouge">sample_frac()</code>) or when there is no clear negation (as with <code class="highlighter-rouge">jn.general::view_duplicated()</code>).</p>
 
-<p>A simple solution is to use the function <code>jn.general::to_be()</code>, which returns both the subsetted and the anti-subsetted data. It is available in the <a href="https://github.com/jnguyen92/jn.general" target="blank">jn.general package</a>.</p>
+<p>A simple solution is to use the function <code class="highlighter-rouge">jn.general::to_be()</code>, which returns both the subsetted and the anti-subsetted data. It is available in the <a href="https://github.com/jnguyen92/jn.general" target="blank">jn.general package</a>.</p>
 
 <h1 id="to-be-or-not-to-be">To Be or Not To Be</h1>
 
-<p>The function <code>to_be()</code> is quite simple when broken down.</p>
+<p>The function <code class="highlighter-rouge">to_be()</code> is quite simple when broken down.</p>
 
 <p>The parameters include</p>
 
@@ -109,7 +101,7 @@
   <li>Any additional arguments to be passed to the subset function</li>
 </ul>
 
-<p>After performing the subset operations, <code>to_be()</code> returns a list of two objects</p>
+<p>After performing the subset operations, <code class="highlighter-rouge">to_be()</code> returns a list of two objects</p>
 
 <ul>
   <li>A data.frame “to_be”: the resulting data.frame when the subset function is applied to the input data</li>
@@ -118,10 +110,10 @@
 
 <h2 id="subset-by-rows">Subset by Rows</h2>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">by_row <span class="o">&lt;-</span> to_be<span class="p">(</span>mtcars<span class="p">,</span> dplyr<span class="o">::</span>filter<span class="p">,</span> cyl <span class="o">!=</span> <span class="m">4</span><span class="p">,</span> mpg <span class="o">&gt;</span> <span class="m">20</span><span class="p">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">by_row</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">to_be</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">,</span><span class="w"> </span><span class="n">cyl</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">mpg</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">20</span><span class="p">)</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cars where the cyl is not 4 and mpg is greater than 20</span>
-by_row<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cars where the cyl is not 4 and mpg is greater than 20
+</span><span class="n">by_row</span><span class="p">[[</span><span class="s2">"to_be"</span><span class="p">]]</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -189,8 +181,8 @@ by_row<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span cla
 </div>
 <p></p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cars where cyl is 4 or mpg is less than 20</span>
-by_row<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cars where cyl is 4 or mpg is less than 20
+</span><span class="n">by_row</span><span class="p">[[</span><span class="s2">"not_to_be"</span><span class="p">]]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -287,10 +279,10 @@ by_row<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span
 
 <h2 id="subset-by-columns">Subset by Columns</h2>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">by_col <span class="o">&lt;-</span> to_be<span class="p">(</span>mtcars<span class="p">,</span> dplyr<span class="o">::</span>select<span class="p">,</span> <span class="o">-</span>one_of<span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;gear&quot;</span><span class="p">,</span> <span class="s">&quot;vs&quot;</span><span class="p">)))</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">by_col</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">to_be</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">one_of</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"gear"</span><span class="p">,</span><span class="w"> </span><span class="s2">"vs"</span><span class="p">)))</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to all car information except gear &amp; vs </span>
-by_col<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to all car information except gear &amp; vs 
+</span><span class="n">by_col</span><span class="p">[[</span><span class="s2">"to_be"</span><span class="p">]]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -374,8 +366,8 @@ by_col<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span cla
 </div>
 <p></p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to gear and vs information of cars</span>
-by_col<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> <span class="kp">head</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to gear and vs information of cars
+</span><span class="n">by_col</span><span class="p">[[</span><span class="s2">"not_to_be"</span><span class="p">]]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -418,12 +410,12 @@ by_col<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span
 
 <h2 id="subset-by-rows-and-columns">Subset by Rows and Columns</h2>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">by_both <span class="o">&lt;-</span> to_be<span class="p">(</span>mtcars<span class="p">,</span> <span class="kp">subset</span><span class="p">,</span> subset <span class="o">=</span> mpg <span class="o">&gt;</span> <span class="m">20</span><span class="p">,</span> select <span class="o">=</span> <span class="kt">c</span><span class="p">(</span>cyl<span class="p">,</span> hp<span class="p">,</span> wt<span class="p">))</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">by_both</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">to_be</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="n">subset</span><span class="p">,</span><span class="w"> </span><span class="n">subset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpg</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">cyl</span><span class="p">,</span><span class="w"> </span><span class="n">hp</span><span class="p">,</span><span class="w"> </span><span class="n">wt</span><span class="p">))</span></code></pre></figure>
 
 <p>When the function both subsets rows and selects columns, the anti-subset data frame will replace the extracted values with NAs.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cyl, hp, wt of cars with an mpg greater than 20</span>
-by_both<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cyl, hp, wt of cars with an mpg greater than 20
+</span><span class="n">by_both</span><span class="p">[[</span><span class="s2">"to_be"</span><span class="p">]]</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -525,8 +517,8 @@ by_both<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span cl
 </div>
 <p></p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cyl, hp, wt of cars with an mpg greater than 20 are replaced with NAs</span>
-by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> <span class="kp">head</span><span class="p">(</span><span class="m">10</span><span class="p">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># data corresponding to cyl, hp, wt of cars with an mpg greater than 20 are replaced with NAs
+</span><span class="n">by_both</span><span class="p">[[</span><span class="s2">"not_to_be"</span><span class="p">]]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="m">10</span><span class="p">)</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -692,7 +684,7 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 </div>
 
 <h1 id="challenge-round">Challenge Round</h1>
-<p>Let’s do something a little more challenging to see <code>to_be</code> in action. With this data set, remove the duplicated id entries by hand and merge them back into the non-duplicates.</p>
+<p>Let’s do something a little more challenging to see <code class="highlighter-rouge">to_be</code> in action. With this data set, remove the duplicated id entries by hand and merge them back into the non-duplicates.</p>
 
 <div class="dftab">
 <table>
@@ -781,11 +773,11 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 </div>
 <p></p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">result <span class="o">&lt;-</span> to_be<span class="p">(</span>data<span class="p">,</span> view_duplicated<span class="p">,</span> id<span class="p">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">to_be</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">view_duplicated</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">)</span></code></pre></figure>
 
 <p>The duplicated id entries:</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">result</span><span class="p">[[</span><span class="s2">"to_be"</span><span class="p">]]</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -848,7 +840,7 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 
 <p>The non-duplicated id entries:</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]]</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">result</span><span class="p">[[</span><span class="s2">"not_to_be"</span><span class="p">]]</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -897,7 +889,7 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 
 <p>Keep the id that corresponds to a female or someone greater than 50 years old.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r">result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> slice<span class="p">(</span><span class="m">1</span><span class="p">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">result</span><span class="p">[[</span><span class="s2">"to_be"</span><span class="p">]]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">arrange</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">desc</span><span class="p">(</span><span class="n">age</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">group_by</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">slice</span><span class="p">(</span><span class="m">1</span><span class="p">)</span></code></pre></figure>
 
 <div class="dftab">
 <table>
@@ -939,16 +931,16 @@ by_both<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><spa
 
 <p>Now combine the results back together.</p>
 
-<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># obtain the duplicated entries</span>
-result<span class="p">[[</span><span class="s">&quot;to_be&quot;</span><span class="p">]]</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># order by gender (females first) and decreasing age</span>
-  arrange<span class="p">(</span>gender<span class="p">,</span> desc<span class="p">(</span>age<span class="p">))</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># group by unique id&#39;s</span>
-  group_by<span class="p">(</span>id<span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># take the first entry in each group</span>
-  do<span class="p">(</span>slice<span class="p">(</span><span class="m">.</span><span class="p">,</span><span class="m">1</span><span class="p">))</span> <span class="o">%&gt;%</span> 
-  <span class="c1"># combine results with non-duplicated data</span>
-  <span class="kp">rbind</span><span class="p">(</span>result<span class="p">[[</span><span class="s">&quot;not_to_be&quot;</span><span class="p">]])</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># obtain the duplicated entries
+</span><span class="n">result</span><span class="p">[[</span><span class="s2">"to_be"</span><span class="p">]]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># order by gender (females first) and decreasing age
+</span><span class="w">  </span><span class="n">arrange</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">desc</span><span class="p">(</span><span class="n">age</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># group by unique id's
+</span><span class="w">  </span><span class="n">group_by</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># take the first entry in each group
+</span><span class="w">  </span><span class="n">do</span><span class="p">(</span><span class="n">slice</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># combine results with non-duplicated data
+</span><span class="w">  </span><span class="n">rbind</span><span class="p">(</span><span class="n">result</span><span class="p">[[</span><span class="s2">"not_to_be"</span><span class="p">]])</span></code></pre></figure>
 
 <div class="dftab">
 <table>
