@@ -11,15 +11,19 @@ categories: ['recipes']
 ```{r, echo = FALSE, warning = FALSE}
 library(jn.general)
 lib(data)
-load("data/recipes.Rdata")
-current <- recipes[["alfredo"]]
+load("data/recipes.Rdata") 
+current <- recipes[["alfredo"]] 
 ```
+
+**Ingredients**
 
 ```{r, echo = FALSE}
 current$display_ingredients %>% nhuyhoa_df_print(data = FALSE, attribute = "class = \"presenttab\"")
 ```
 
 <br>
+
+**Instructions**
 
 ```{r, echo = FALSE}
 current$instructions %>% nhuyhoa_df_print(data = FALSE, attribute = "class = \"presenttabnoh\"")

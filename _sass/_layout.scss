@@ -213,23 +213,27 @@
         border-collapse:collapse;
         margin:auto;
         border: 1px solid black;
-        width: 75%;
+        width: 98%;
+        table-layout: fixed;
     }
-    
-    .presenttab th, td{
+
+    .presenttab th{
+        background-color:#E0E0E0 ;
         border-bottom:1px solid black;
         padding: 5px;
     }
   
-    .presenttab th{
-        background-color:#E0E0E0 ;
+    .presenttab td{
+        border:1px solid black;
+        padding: 5px;
+        font-size: 14px; 
     }
     
     .presenttabnoh {
         border-collapse:collapse;
         margin:auto;
-        border: 1px solid black;
-        width: 75%;
+        border: none;
+        width: 98%;
     }
     
     .presenttabnoh th{
@@ -237,7 +241,7 @@
     }
     
     .presenttabnoh td{
-        border:1px solid black;
+        border:none;
         padding: 5px;
     }
 

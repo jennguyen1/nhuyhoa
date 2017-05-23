@@ -292,21 +292,25 @@ pre {
     border-collapse: collapse;
     margin: auto;
     border: 1px solid black;
-    width: 75%; }
-  .post-content .presenttab th, .post-content td {
+    width: 98%;
+    table-layout: fixed; }
+  .post-content .presenttab th {
+    background-color: #E0E0E0;
     border-bottom: 1px solid black;
     padding: 5px; }
-  .post-content .presenttab th {
-    background-color: #E0E0E0; }
+  .post-content .presenttab td {
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 14px; }
   .post-content .presenttabnoh {
     border-collapse: collapse;
     margin: auto;
-    border: 1px solid black;
-    width: 75%; }
+    border: none;
+    width: 98%; }
   .post-content .presenttabnoh th {
     display: none; }
   .post-content .presenttabnoh td {
-    border-bottom: 1px solid black;
+    border: none;
     padding: 5px; }
   .post-content .dftab {
     font-size: 15px;
