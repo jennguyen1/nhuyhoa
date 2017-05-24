@@ -250,6 +250,72 @@ instructions = data.frame(Instructions = c(
 	"Cook for another 30 min"
 ))
 recipes[["Ca Kho"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# nuoc mau
+ingredients = list(
+  Other = c("sugar"),
+  Meat = "", 
+  Veggies = "",
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+	"Add a lot of sugar to pot (no oil)", 
+	"Heat on high power until dissolved and bubbles start to form", 
+	"Turn off heat", 
+	"Quickly add small cup of water", 
+	"Once cooled, save in a glass container"
+))
+recipes[["Nuoc Mau"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# ca kho
+ingredients = list(
+  Other = c("wonton soup base", "salt", "pepper"),
+  Meat = c("pork rib tips"), 
+  Veggies = c("taro or yam", "rice paddy herbs"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+	"Marinate the pork in salt, pepper, shallots",
+	"Boil water on medium heat", 
+	"Add pork rib tips", 
+	"When foam starts to form, lower heat and remove foam"
+	"When foam all clear, turn to medium high heat and cover loosely with lid", 
+	"Add 2 packs of wonton soup base",
+	"Boil taro or yam in a separate pot", 
+	"Add taro or yam to pork broth", 
+	"Add rice paddy herbs"
+))
+recipes[["Canh Khoai Tay Suon"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# ca kho
+ingredients = list(
+  Other = c("tamarind pulp", "salt", "pepper", "sugar", "nuoc mam"),
+  Meat = c("catfish"), 
+  Veggies = c("elephant ear stem", "rice paddy herbs", "green onions", "bean sprouts"),
+  Fruit = c("tomatoes", "pineapple")
+)
+instructions = data.frame(Instructions = c(
+	"Cut up tomatoes, pineapple, elephant ear stem, herbs into small chunks",
+	"Pour boiling water into 1.5 spoonfuls of smashed tamarind pulp in a bowl", 
+	"Marinate catfish with salt and pepper", 
+	"Heat some tomato in pot with oil for a few minutes", 
+	"Add one bowl of water",
+	"Pour tamarind liquid into a pot using a sieve, force as much tamarind juice through sieve as possible", 
+	"Add 4 tbsp of sugar to pot", 
+	"Add 4 tbsp of fish sauce to pot", 
+	"Add catfish to the soup",
+	"Cook on medium high until fish is cooked", 
+	"Remove catfish"
+	"Add tomatoes, pineapple, elephant ear stemp, herbs", 
+	"Cook for 1-2 minutes", 
+	"Add bean sprouts", 
+	"Adjust broth to with salt, sugar, fish sauce for flavoring", 
+	"Add fish back into broth", 
+	"Simmer for a few minutes"
+))
+recipes[["Canh Chua Ca"]] = list(ingredients = ingredients, instructions = instructions)
+
+
 
 
 
