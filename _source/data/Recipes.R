@@ -122,7 +122,7 @@ recipes[["Bo Bia"]] = list(ingredients = ingredients, instructions = instruction
 # tofu tomato soup
 ingredients = list(
   Other = c("wonton soup base"),
-  Meat = c("tofu", "pork chops"), 
+  Meat = c("tofu", "pork ribs tips"), 
   Veggies = c("green onions", "yellow onions", "cilantro"),
   Fruit = c("tomatoes")
 )
@@ -131,7 +131,7 @@ instructions = data.frame(Instructions = c(
 	"When tomatoes have softened, add 1 bowl of water", 
 	"Add cilantro, green onions",
 	"Add chopped tofu (may be fried if desired)", 
-	"Add prepared pork chops (optional)", 
+	"Add prepared pork ribs (optional)", 
 	"Add 2 packs of wonton soup base", 
 	"Simmer for 15 minutes"
 ))
@@ -154,6 +154,103 @@ instructions = data.frame(Instructions = c(
 	"Simmer for 15 minutes"
 ))
 recipes[["Dau Sot Ca Chua"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# cabbage and egg
+ingredients = list(
+  Other = c("fish sauce"),
+  Meat = c("egg"), 
+  Veggies = c("cabbage"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+	"Hard boil egg for 15 min",
+	"Cut up and boil cabbage", 
+	"Mash up egg and add fish sauce & water", 
+))
+recipes[["Bap Cai Luoc"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# Pork or Chicken Broth
+ingredients = list(
+  Other = c("wonton soup base", "salt", "pepper"),
+  Meat = c("pork ribs tips", "chicken wing tips"), 
+  Veggies = c("shallots"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+	"Marinate the meat in salt, pepper, shallots",
+	"Boil water on medium heat", 
+	"Add meat", 
+	"When foam starts to form, lower heat and remove foam"
+	"When foam all clear, turn to medium high heat and cover loosely with lid", 
+	"Add wonton soup base",
+	"The meat and broth can be combined with other options such as canh, etc", 
+))
+recipes[["Pork or Chicken Broth"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# nui
+ingredients = list(
+  Other = c("macaroni", "wonton soup base", "salt", "pepper"),
+  Meat = c("pork ribs tips"), 
+  Veggies = c("mustard greens", "shallots"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+	"Marinate the pork in salt, pepper, shallots",
+	"Boil water on medium heat", 
+	"Add pork rib tips", 
+	"When foam starts to form, lower heat and remove foam"
+	"When foam all clear, turn to medium high heat and cover loosely with lid", 
+	"Add 2 packs of wonton soup base",
+	"Boil mustard greens separately", 
+	"Make noodles separately", 
+	"Combine noodles, mustard greens, and soup broth with pork in a bowl"
+))
+recipes[["Nui"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# thit kho
+ingredients = list(
+  Other = c("salt", "pepper", "nuoc mam", "nuoc mau"),
+  Meat = c("pork belly", "eggs"), 
+  Veggies = c("shallots"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+	"Clean pork belly with water and salt, trim excess fat",
+	"Cut pork belly into cubes",
+	"Marinate pork belly with salt, pepper, and shallots", 
+	"Hard boil eggs", 
+	"Cook pork belly in pan on low heat", 
+	"Drizzle 3-4 spoons of nuoc mau", 
+	"After pork belly done sizzling, add water up to top level of pork", 
+	"Cook on low for 1.5 - 2 hours, removing meat foam", 
+	"Add eggs", 
+	"Add nuoc mam for flavor", 
+	"Cook on low heat for 0.5 hour"
+))
+recipes[["Thit Kho"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# ca kho
+ingredients = list(
+  Other = c("salt", "pepper", "nuoc mam", "nuoc mau"),
+  Meat = c("catfish"), 
+  Veggies = c("shallots", "yellow onions"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+	"Coat pan with oil",
+	"Layer the pan bottom with yellow onion strips and sprinkle in pepper",
+	"Clean catfish with water and salt",
+	"Marinate catfish with salt, pepper, and shallots", 
+	"Place fish on top of onions", 
+	"Drizzle 3-4 spoons of nuoc mau", 
+	"Heat on low for a little bit",
+	"Pour in just enough water to cover fish", 
+	"Boil on medium heat", 
+	"After 30 min add nuoc mam for flavoring", 
+	"Cook for another 30 min"
+))
+recipes[["Ca Kho"]] = list(ingredients = ingredients, instructions = instructions)
+
 
 
 #################################################################################################################################
