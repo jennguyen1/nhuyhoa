@@ -64,7 +64,7 @@ current$display_ingredients %>% nhuyhoa_df_print(data = FALSE, attribute = \"cla
 current$instructions %>% nhuyhoa_df_print(data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
 ```
 ") %>% paste(collapse = "")
-write(script, file = paste0("2017-05-15-", dish, ".Rmd"))
+write(script, file = paste0("_source/2017-05-15-", dish, ".Rmd"))
 return(paste(script, "done"))
 }
   
