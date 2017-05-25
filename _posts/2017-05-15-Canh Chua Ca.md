@@ -1,0 +1,86 @@
+---
+layout: post
+title: "Canh Chua Ca"
+date: "May 15, 2017"
+categories: ['recipes']
+---
+
+* TOC
+{:toc}
+
+
+
+**Ingredients**
+
+<table class = "presenttab">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Other </th>
+   <th style="text-align:left;"> Meat </th>
+   <th style="text-align:left;"> Veggies </th>
+   <th style="text-align:left;"> Fruit </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> tamarind pulp </td>
+   <td style="text-align:left;"> catfish </td>
+   <td style="text-align:left;"> elephant ear stem </td>
+   <td style="text-align:left;"> tomatoes </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> rice paddy herbs </td>
+   <td style="text-align:left;"> pineapple </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> pepper </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> green onions </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sugar </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> bean sprouts </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> nuoc mam </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
+
+<br>
+
+**Instructions**
+
+<table class = "presenttabnoh">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Instructions </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Cut up tomatoes, pineapple, elephant ear stem, herbs into small chunks </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pour boiling water into 1.5 spoonfuls of smashed tamarind pulp in a bowl </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Marinate catfish with salt and pepper </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fry some garlic until golden then remove and save for later </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add soem water to a pot </td>
+  </tr>
+</tbody>
+</table>
+

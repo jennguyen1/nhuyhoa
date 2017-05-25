@@ -1,6 +1,8 @@
 #TODO: pictures
 
 # initiate
+library(jn.general)
+lib(data)
 recipes = list()
 ###################
 # alfredo

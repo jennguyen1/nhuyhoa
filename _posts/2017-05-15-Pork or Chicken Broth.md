@@ -1,0 +1,74 @@
+---
+layout: post
+title: "Pork or Chicken Broth"
+date: "May 15, 2017"
+categories: ['recipes']
+---
+
+* TOC
+{:toc}
+
+
+
+**Ingredients**
+
+<table class = "presenttab">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Other </th>
+   <th style="text-align:left;"> Meat </th>
+   <th style="text-align:left;"> Veggies </th>
+   <th style="text-align:left;"> Fruit </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> wonton soup base </td>
+   <td style="text-align:left;"> pork ribs tips </td>
+   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;"> chicken wing tips </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> pepper </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
+
+<br>
+
+**Instructions**
+
+<table class = "presenttabnoh">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Instructions </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fry tofu </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> When tomatoes have softened, add very small bowl of water </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add fried tofu </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add green onions </td>
+  </tr>
+</tbody>
+</table>
+
