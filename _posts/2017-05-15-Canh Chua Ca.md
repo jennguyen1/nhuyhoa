@@ -79,7 +79,34 @@ categories: ['recipes']
    <td style="text-align:left;"> Fry some garlic until golden then remove and save for later </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add soem water to a pot </td>
+   <td style="text-align:left;"> Add some water to a pot </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Drain liquid from tamarind into pot, discard excess pulp </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add 4 spoons of sugar </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add 4 spoons of nuoc mam </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add catfish and boil for 10ish min </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Remove catfish from stew </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add in veggies and cook </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Put the catfish back into the stew </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Adjust tastes as necessary </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add the garlic </td>
   </tr>
 </tbody>
 </table>

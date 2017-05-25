@@ -69,6 +69,12 @@ categories: ['recipes']
   <tr>
    <td style="text-align:left;"> Add prepared pork ribs (optional) </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> Add 2 packs of wonton soup base </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Simmer for 15 minutes </td>
+  </tr>
 </tbody>
 </table>
 

@@ -301,7 +301,7 @@ instructions = data.frame(Instructions = c(
 	"Pour boiling water into 1.5 spoonfuls of smashed tamarind pulp in a bowl",
 	"Marinate catfish with salt and pepper",
 	"Fry some garlic until golden then remove and save for later",
-	"Add soem water to a pot",
+	"Add some water to a pot",
 	"Drain liquid from tamarind into pot, discard excess pulp",
 	"Add 4 spoons of sugar",
 	"Add 4 spoons of nuoc mam",
@@ -336,7 +336,7 @@ recipes[["Spaghetti"]] = list(ingredients = ingredients, instructions = instruct
 # fried rice
 ingredients = list(
   Other = c("rice", "salt", "pepper", "soy sauce"),
-  Meat = c("eggs", "any"),
+  Meat = c("any", "eggs"),
   Veggies = c("any", "garlic", "shallots", "yellow onion"),
   Fruit = c("any")
 )
@@ -405,7 +405,7 @@ current <- recipes[['", dish, "']]
 **Ingredients**
 
 ```{r, echo = FALSE}
-current$display_ingredients %>% nhuyhoa_df_print(data = FALSE, attribute = \"class = \\\"presenttab\\\"\")
+current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttab\\\"\")
 ```
 
 <br>
@@ -413,7 +413,7 @@ current$display_ingredients %>% nhuyhoa_df_print(data = FALSE, attribute = \"cla
 **Instructions**
 
 ```{r, echo = FALSE}
-current$instructions %>% nhuyhoa_df_print(data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
+current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
 ```
 ") %>% paste(collapse = "")
 write(script, file = paste0("_source/2017-05-15-", dish, ".Rmd"))

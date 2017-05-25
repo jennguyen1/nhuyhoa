@@ -69,6 +69,12 @@ categories: ['recipes']
   <tr>
    <td style="text-align:left;"> Add green onions </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> Add with nuoc mam and water for flavor </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Simmer for 15 minutes </td>
+  </tr>
 </tbody>
 </table>
 

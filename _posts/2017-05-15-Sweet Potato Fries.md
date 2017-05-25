@@ -69,6 +69,15 @@ categories: ['recipes']
   <tr>
    <td style="text-align:left;"> Sprinkle in garlic powder and oil </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> Spread out on baking pan </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cook at 400 degrees F for 30 min, flip in between </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Take out and sprinkle with salt </td>
+  </tr>
 </tbody>
 </table>
 

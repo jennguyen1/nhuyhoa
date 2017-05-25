@@ -18,7 +18,7 @@ current <- recipes[['Spaghetti']]
 **Ingredients**
 
 ```{r, echo = FALSE}
-current$display_ingredients %>% nhuyhoa_df_print(data = FALSE, attribute = "class = \"presenttab\"")
+current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttab\"")
 ```
 
 <br>
@@ -26,6 +26,6 @@ current$display_ingredients %>% nhuyhoa_df_print(data = FALSE, attribute = "clas
 **Instructions**
 
 ```{r, echo = FALSE}
-current$instructions %>% nhuyhoa_df_print(data = FALSE, attribute = "class = \"presenttabnoh\"")
+current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttabnoh\"")
 ```
 

@@ -69,6 +69,18 @@ categories: ['recipes']
   <tr>
    <td style="text-align:left;"> When foam all clear, turn to medium high heat and cover loosely with lid </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> Add 2 packs of wonton soup base </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Boil taro or yam in a separate pot </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add taro or yam to pork broth </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add rice paddy herbs </td>
+  </tr>
 </tbody>
 </table>
 

@@ -75,6 +75,15 @@ categories: ['recipes']
   <tr>
    <td style="text-align:left;"> Simmer </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> Add nuoc mam for taste </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add mushrooms and onions </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Simmer </td>
+  </tr>
 </tbody>
 </table>
 

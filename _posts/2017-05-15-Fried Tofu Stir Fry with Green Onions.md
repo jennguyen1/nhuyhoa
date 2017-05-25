@@ -63,6 +63,15 @@ categories: ['recipes']
   <tr>
    <td style="text-align:left;"> Add green onions and stir until they soften </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> Add tofu and stir </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add sauce mixture and stir </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Heat for approximately 5 min </td>
+  </tr>
 </tbody>
 </table>
 
