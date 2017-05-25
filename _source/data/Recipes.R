@@ -6,14 +6,14 @@ recipes = list()
 # alfredo
 ingredients = list(
   Other = c("pasta", "alfredo sauce", "salt", "pepper"),
-  Meat = "", 
+  Meat = "",
   Veggies = c("asparagus", "spinach", "mushrooms", "yellow onion", "garlic"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
   "Boil pasta and veggies",
   "Heat garlic & onion in a pot",
-  "Add alfredo sauce and veggies to pot", 
+  "Add alfredo sauce and veggies to pot",
   "Add salt & pepper",
   "Simmer until ready to serve"
 ))
@@ -22,14 +22,14 @@ recipes[["Alfredo"]] = list(ingredients = ingredients, instructions = instructio
 # cha ca
 ingredients = list(
   Other = "",
-  Meat = c("Lee's Seafood Co cha ca dac biet fish paste"), 
+  Meat = c("Lee's Seafood Co cha ca dac biet fish paste"),
   Veggies = c("dill"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
   "Defrost the cha ca fish paste",
   "Mix fish paste with dill",
-  "Fry on low heat with thin layer of oil, flipping when golden", 
+  "Fry on low heat with thin layer of oil, flipping when golden",
   "Let sit for a few minutes to fully cook"
 ))
 recipes[["Cha Ca"]] = list(ingredients = ingredients, instructions = instructions)
@@ -37,13 +37,13 @@ recipes[["Cha Ca"]] = list(ingredients = ingredients, instructions = instruction
 # fried chicken
 ingredients = list(
   Other = c("salt", "pepper", "soy sauce"),
-  Meat = c("chicken legs or wings"), 
+  Meat = c("chicken legs or wings"),
   Veggies = c("shallots"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
   "Marinate chieck with salt, pepper, shallots, and soy sauce",
-  "Fry chicken on medium low heat with thin layer of oil", 
+  "Fry chicken on medium low heat with thin layer of oil",
   "Let sit for a few minutes to fully cook"
 ))
 recipes[["Fried Chicken"]] = list(ingredients = ingredients, instructions = instructions)
@@ -51,14 +51,14 @@ recipes[["Fried Chicken"]] = list(ingredients = ingredients, instructions = inst
 # stir fried spinach
 ingredients = list(
   Other = c("salt", "sugar", "nuoc mam", "oyster sauce"),
-  Meat = "", 
+  Meat = "",
   Veggies = c("spinach", "garlic"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
   "Heat chopped garlic on medium heat with a little oil",
   "Add a lot of spinach (a lot, will shrink)",
-  "Stir and add salt, sugar, nuoc mam", 
+  "Stir and add salt, sugar, nuoc mam",
   "Stir and add oyster sauce",
   "Stir for a few minutes"
 ))
@@ -67,18 +67,18 @@ recipes[["Rau Muong Toi"]] = list(ingredients = ingredients, instructions = inst
 # stir fried tofu
 ingredients = list(
   Other = c("nuoc mam"),
-  Meat = c("tofu"), 
+  Meat = c("tofu"),
   Veggies = c("green onions", "shallot"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-	"Cut shallots and green onions", 
-	"Make a mixture of water and nuoc mam in a small bowl", 
-	"Fry tofu", 
-	"In saucer, golden the shallots", 
-	"Add green onions and stir until they soften", 
-	"Add tofu and stir", 
-	"Add sauce mixture and stir", 
+	"Cut shallots and green onions",
+	"Make a mixture of water and nuoc mam in a small bowl",
+	"Fry tofu",
+	"In saucer, golden the shallots",
+	"Add green onions and stir until they soften",
+	"Add tofu and stir",
+	"Add sauce mixture and stir",
 	"Heat for approximately 5 min"
 ))
 recipes[["Fried Tofu Stir Fry with Green Onions"]] = list(ingredients = ingredients, instructions = instructions)
@@ -86,17 +86,17 @@ recipes[["Fried Tofu Stir Fry with Green Onions"]] = list(ingredients = ingredie
 # spring rolls
 ingredients = list(
   Other = c("Go Gai rice paper", "medium thick noodles", "housin sauce", "peanut butter", "salt"),
-  Meat = c("pork belly", "jumbo shrimp"), 
+  Meat = c("pork belly", "jumbo shrimp"),
   Veggies = c("cucumber", "lettuce", "mint", "thai basil"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-	"Boil pork belly with salt on medium heat for 30 min (no pink juices when pierce), move to ice bath when done", 
-	"Boil shrimp on medium heat for 1-3 minutes until it turns pink, move to ice bath when done", 
-	"Slice pork belly and shrimp", 
-	"Prepare the noodles", 
+	"Boil pork belly with salt on medium heat for 30 min (no pink juices when pierce), move to ice bath when done",
+	"Boil shrimp on medium heat for 1-3 minutes until it turns pink, move to ice bath when done",
+	"Slice pork belly and shrimp",
+	"Prepare the noodles",
 	"Clean and prepare the veggies",
-	"To make sauce, dilute hoisin sauce & peanut butter with broth until the taste is right", 
+	"To make sauce, dilute hoisin sauce & peanut butter with broth until the taste is right",
 	"Make rolls"
 ))
 recipes[["Goi Cuon"]] = list(ingredients = ingredients, instructions = instructions)
@@ -104,17 +104,17 @@ recipes[["Goi Cuon"]] = list(ingredients = ingredients, instructions = instructi
 # bo bia
 ingredients = list(
   Other = c("Go Gai rice paper", "medium thick noodles", "housin sauce", "peanut butter"),
-  Meat = c("chinese sausages", "eggs"), 
+  Meat = c("chinese sausages", "eggs"),
   Veggies = c("cucumber", "lettuce", "mint", "thai basil"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-	"Boil chinese sausages for 15 min, move to ice bath when done", 
-	"Make thin egg omeletes, one egg at a time", 
-	"Slice sausages and eggs", 
-	"Prepare the noodles", 
+	"Boil chinese sausages for 15 min, move to ice bath when done",
+	"Make thin egg omeletes, one egg at a time",
+	"Slice sausages and eggs",
+	"Prepare the noodles",
 	"Clean and prepare the veggies",
-	"To make sauce, dilute hoisin sauce & peanut butter with broth until the taste is right", 
+	"To make sauce, dilute hoisin sauce & peanut butter with broth until the taste is right",
 	"Make rolls"
 ))
 recipes[["Bo Bia"]] = list(ingredients = ingredients, instructions = instructions)
@@ -122,17 +122,17 @@ recipes[["Bo Bia"]] = list(ingredients = ingredients, instructions = instruction
 # tofu tomato soup
 ingredients = list(
   Other = c("wonton soup base"),
-  Meat = c("tofu", "pork ribs tips"), 
+  Meat = c("tofu", "pork ribs tips"),
   Veggies = c("green onions", "yellow onions", "cilantro"),
   Fruit = c("tomatoes")
 )
 instructions = data.frame(Instructions = c(
-	"Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil", 
-	"When tomatoes have softened, add 1 bowl of water", 
+	"Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil",
+	"When tomatoes have softened, add 1 bowl of water",
 	"Add cilantro, green onions",
-	"Add chopped tofu (may be fried if desired)", 
-	"Add prepared pork ribs (optional)", 
-	"Add 2 packs of wonton soup base", 
+	"Add chopped tofu (may be fried if desired)",
+	"Add prepared pork ribs (optional)",
+	"Add 2 packs of wonton soup base",
 	"Simmer for 15 minutes"
 ))
 recipes[["Tofu Tomato Soup"]] = list(ingredients = ingredients, instructions = instructions)
@@ -140,17 +140,17 @@ recipes[["Tofu Tomato Soup"]] = list(ingredients = ingredients, instructions = i
 # tofu tomato sauce
 ingredients = list(
   Other = c("fish sauce"),
-  Meat = c("tofu"), 
+  Meat = c("tofu"),
   Veggies = c("green onions", "yellow onions"),
   Fruit = c("tomatoes")
 )
 instructions = data.frame(Instructions = c(
 	"Fry tofu",
-	"Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil", 
-	"When tomatoes have softened, add very small bowl of water", 
-	"Add fried tofu", 
+	"Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil",
+	"When tomatoes have softened, add very small bowl of water",
+	"Add fried tofu",
 	"Add green onions",
-	"Add with nuoc mam and water for flavor", 
+	"Add with nuoc mam and water for flavor",
 	"Simmer for 15 minutes"
 ))
 recipes[["Dau Sot Ca Chua"]] = list(ingredients = ingredients, instructions = instructions)
@@ -158,51 +158,51 @@ recipes[["Dau Sot Ca Chua"]] = list(ingredients = ingredients, instructions = in
 # cabbage and egg
 ingredients = list(
   Other = c("fish sauce"),
-  Meat = c("egg"), 
+  Meat = c("eggs", ),
   Veggies = c("cabbage"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
 	"Hard boil egg for 15 min",
-	"Cut up and boil cabbage", 
-	"Mash up egg and add fish sauce & water", 
+	"Cut up and boil cabbage",
+	"Mash up egg and add fish sauce & water",
 ))
 recipes[["Bap Cai Luoc"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # Pork or Chicken Broth
 ingredients = list(
   Other = c("wonton soup base", "salt", "pepper"),
-  Meat = c("pork ribs tips", "chicken wing tips"), 
+  Meat = c("pork ribs tips", "chicken wing tips"),
   Veggies = c("shallots"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
 	"Marinate the meat in salt, pepper, shallots",
-	"Boil water on medium heat", 
-	"Add meat", 
+	"Boil water on medium heat",
+	"Add meat",
 	"When foam starts to form, lower heat and remove foam"
-	"When foam all clear, turn to medium high heat and cover loosely with lid", 
+	"When foam all clear, turn to medium high heat and cover loosely with lid",
 	"Add wonton soup base",
-	"The meat and broth can be combined with other options such as canh, etc", 
+	"The meat and broth can be combined with other options such as canh, etc",
 ))
 recipes[["Pork or Chicken Broth"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # nui
 ingredients = list(
   Other = c("macaroni", "wonton soup base", "salt", "pepper"),
-  Meat = c("pork ribs tips"), 
+  Meat = c("pork ribs tips"),
   Veggies = c("mustard greens", "shallots"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
 	"Marinate the pork in salt, pepper, shallots",
-	"Boil water on medium heat", 
-	"Add pork rib tips", 
+	"Boil water on medium heat",
+	"Add pork rib tips",
 	"When foam starts to form, lower heat and remove foam"
-	"When foam all clear, turn to medium high heat and cover loosely with lid", 
+	"When foam all clear, turn to medium high heat and cover loosely with lid",
 	"Add 2 packs of wonton soup base",
-	"Boil mustard greens separately", 
-	"Make noodles separately", 
+	"Boil mustard greens separately",
+	"Make noodles separately",
 	"Combine noodles, mustard greens, and soup broth with pork in a bowl"
 ))
 recipes[["Nui"]] = list(ingredients = ingredients, instructions = instructions)
@@ -210,21 +210,21 @@ recipes[["Nui"]] = list(ingredients = ingredients, instructions = instructions)
 # thit kho
 ingredients = list(
   Other = c("salt", "pepper", "nuoc mam", "nuoc mau"),
-  Meat = c("pork belly", "eggs"), 
+  Meat = c("pork belly", "eggs"),
   Veggies = c("shallots"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
 	"Clean pork belly with water and salt, trim excess fat",
 	"Cut pork belly into cubes",
-	"Marinate pork belly with salt, pepper, and shallots", 
-	"Hard boil eggs", 
-	"Cook pork belly in pan on low heat", 
-	"Drizzle 3-4 spoons of nuoc mau", 
-	"After pork belly done sizzling, add water up to top level of pork", 
-	"Cook on low for 1.5 - 2 hours, removing meat foam", 
-	"Add eggs", 
-	"Add nuoc mam for flavor", 
+	"Marinate pork belly with salt, pepper, and shallots",
+	"Hard boil eggs",
+	"Cook pork belly in pan on low heat",
+	"Drizzle 3-4 spoons of nuoc mau",
+	"After pork belly done sizzling, add water up to top level of pork",
+	"Cook on low for 1.5 - 2 hours, removing meat foam",
+	"Add eggs",
+	"Add nuoc mam for flavor",
 	"Cook on low heat for 0.5 hour"
 ))
 recipes[["Thit Kho"]] = list(ingredients = ingredients, instructions = instructions)
@@ -232,7 +232,7 @@ recipes[["Thit Kho"]] = list(ingredients = ingredients, instructions = instructi
 # ca kho
 ingredients = list(
   Other = c("salt", "pepper", "nuoc mam", "nuoc mau"),
-  Meat = c("catfish"), 
+  Meat = c("catfish"),
   Veggies = c("shallots", "yellow onions"),
   Fruit = ""
 )
@@ -240,13 +240,13 @@ instructions = data.frame(Instructions = c(
 	"Coat pan with oil",
 	"Layer the pan bottom with yellow onion strips and sprinkle in pepper",
 	"Clean catfish with water and salt",
-	"Marinate catfish with salt, pepper, and shallots", 
-	"Place fish on top of onions", 
-	"Drizzle 3-4 spoons of nuoc mau", 
+	"Marinate catfish with salt, pepper, and shallots",
+	"Place fish on top of onions",
+	"Drizzle 3-4 spoons of nuoc mau",
 	"Heat on low for a little bit",
-	"Pour in just enough water to cover fish", 
-	"Boil on medium heat", 
-	"After 30 min add nuoc mam for flavoring", 
+	"Pour in just enough water to cover fish",
+	"Boil on medium heat",
+	"After 30 min add nuoc mam for flavoring",
 	"Cook for another 30 min"
 ))
 recipes[["Ca Kho"]] = list(ingredients = ingredients, instructions = instructions)
@@ -254,70 +254,120 @@ recipes[["Ca Kho"]] = list(ingredients = ingredients, instructions = instruction
 # nuoc mau
 ingredients = list(
   Other = c("sugar"),
-  Meat = "", 
+  Meat = "",
   Veggies = "",
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-	"Add a lot of sugar to pot (no oil)", 
-	"Heat on high power until dissolved and bubbles start to form", 
-	"Turn off heat", 
-	"Quickly add small cup of water", 
+	"Add a lot of sugar to pot (no oil)",
+	"Heat on high power until dissolved and bubbles start to form",
+	"Turn off heat",
+	"Quickly add small cup of water",
 	"Once cooled, save in a glass container"
 ))
 recipes[["Nuoc Mau"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
-# ca kho
+# taro soup
 ingredients = list(
   Other = c("wonton soup base", "salt", "pepper"),
-  Meat = c("pork rib tips"), 
+  Meat = c("pork rib tips"),
   Veggies = c("taro or yam", "rice paddy herbs"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
 	"Marinate the pork in salt, pepper, shallots",
-	"Boil water on medium heat", 
-	"Add pork rib tips", 
-	"When foam starts to form, lower heat and remove foam"
-	"When foam all clear, turn to medium high heat and cover loosely with lid", 
+	"Boil water on medium heat",
+	"Add pork rib tips",
+	"When foam starts to form, lower heat and remove foam",
+	"When foam all clear, turn to medium high heat and cover loosely with lid",
 	"Add 2 packs of wonton soup base",
-	"Boil taro or yam in a separate pot", 
-	"Add taro or yam to pork broth", 
+	"Boil taro or yam in a separate pot",
+	"Add taro or yam to pork broth",
 	"Add rice paddy herbs"
 ))
 recipes[["Canh Khoai Tay Suon"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
-# ca kho
+# catfish soup
 ingredients = list(
   Other = c("tamarind pulp", "salt", "pepper", "sugar", "nuoc mam"),
-  Meat = c("catfish"), 
+  Meat = c("catfish"),
   Veggies = c("elephant ear stem", "rice paddy herbs", "green onions", "bean sprouts"),
   Fruit = c("tomatoes", "pineapple")
 )
 instructions = data.frame(Instructions = c(
 	"Cut up tomatoes, pineapple, elephant ear stem, herbs into small chunks",
-	"Pour boiling water into 1.5 spoonfuls of smashed tamarind pulp in a bowl", 
-	"Marinate catfish with salt and pepper", 
-	"Heat some tomato in pot with oil for a few minutes", 
-	"Add one bowl of water",
-	"Pour tamarind liquid into a pot using a sieve, force as much tamarind juice through sieve as possible", 
-	"Add 4 tbsp of sugar to pot", 
-	"Add 4 tbsp of fish sauce to pot", 
-	"Add catfish to the soup",
-	"Cook on medium high until fish is cooked", 
-	"Remove catfish"
-	"Add tomatoes, pineapple, elephant ear stemp, herbs", 
-	"Cook for 1-2 minutes", 
-	"Add bean sprouts", 
-	"Adjust broth to with salt, sugar, fish sauce for flavoring", 
-	"Add fish back into broth", 
-	"Simmer for a few minutes"
+	"Pour boiling water into 1.5 spoonfuls of smashed tamarind pulp in a bowl",
+	"Marinate catfish with salt and pepper",
+	"Fry some garlic until golden then remove and save for later",
+	"Add soem water to a pot",
+	"Drain liquid from tamarind into pot, discard excess pulp",
+	"Add 4 spoons of sugar",
+	"Add 4 spoons of nuoc mam",
+	"Add catfish and boil for 10ish min",
+	"Remove catfish from stew",
+	"Add in veggies and cook",
+	"Put the catfish back into the stew",
+	"Adjust tastes as necessary",
+	"Add the garlic"
 ))
 recipes[["Canh Chua Ca"]] = list(ingredients = ingredients, instructions = instructions)
-
-
-
-
+###################
+# spaghetti
+ingredients = list(
+  Other = c("spaghetti", "Rinaldi sauce"),
+  Meat = c("ground beef"),
+  Veggies = c("mushrooms", "spinach", "yellow onions", "shallots"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Prepare the noodles",
+  "Cook shallots in pot with oil",
+  "Cook ground beef and drain meat fat",
+  "Add Rinaldi pasta sauce",
+  "Simmer",
+  "Add nuoc mam for taste",
+  "Add mushrooms and onions",
+  "Simmer"
+))
+recipes[["Spaghetti"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# fried rice
+ingredients = list(
+  Other = c("rice", "salt", "pepper", "soy sauce"),
+  Meat = c("eggs", "any"),
+  Veggies = c("any", "garlic", "shallots", "yellow onion"),
+  Fruit = c("any")
+)
+instructions = data.frame(Instructions = c(
+  "Make rice day before with less water, refrigerate for 1 day",
+  "Prepare the meat and veggies, thoroughly dry",
+  "Cook shallots, garlic, onions in pan with oil until golden",
+  "Add eggs on low power",
+  "Add salt, pepper, soy sauce",
+  "Mix in rice",
+  "Add seasonings to liking",
+  "Stir in meat and veggies"
+))
+recipes[["Com Chien"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# sweet potato fries
+ingredients = list(
+  Other = c("cornstarch", "salt", "garlic powder"),
+  Meat = "",
+  Veggies = c("sweet potatoes"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Cut sweet potato fries into strips",
+  "Soak in water for 45 min",
+  "Dry off potatoes",
+  "Cover in cornstarch",
+  "Sprinkle in garlic powder and oil",
+  "Spread out on baking pan",
+  "Cook at 400 degrees F for 30 min, flip in between",
+  "Take out and sprinkle with salt"
+))
+recipes[["Sweet Potato Fries"]] = list(ingredients = ingredients, instructions = instructions)
 
 #################################################################################################################################
 
@@ -328,7 +378,7 @@ recipes <- map(recipes, function(x){
   return(x)
 })
 
-# save recipes into a file  
+# save recipes into a file
 save(recipes, file = "_source/data/recipes.Rdata")
 
 # generate recipe files
@@ -346,8 +396,8 @@ categories: ['recipes']
 ```{r, echo = FALSE, warning = FALSE}
 library(jn.general)
 lib(data)
-load('data/recipes.Rdata') 
-current <- recipes[['", dish, "']] 
+load('data/recipes.Rdata')
+current <- recipes[['", dish, "']]
 ```
 
 **Ingredients**
@@ -357,9 +407,9 @@ current$display_ingredients %>% nhuyhoa_df_print(data = FALSE, attribute = \"cla
 ```
 
 <br>
-  
+
 **Instructions**
-  
+
 ```{r, echo = FALSE}
 current$instructions %>% nhuyhoa_df_print(data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
 ```
@@ -367,5 +417,5 @@ current$instructions %>% nhuyhoa_df_print(data = FALSE, attribute = \"class = \\
 write(script, file = paste0("_source/2017-05-15-", dish, ".Rmd"))
 return(paste(script, "done"))
 }
-  
+
 map(names(recipes), make_script)

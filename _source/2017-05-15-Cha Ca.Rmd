@@ -1,0 +1,31 @@
+---
+layout: post
+title: "Cha Ca"
+date: "May 15, 2017"
+categories: ['recipes']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, warning = FALSE}
+library(jn.general)
+lib(data)
+load('data/recipes.Rdata')
+current <- recipes[['Cha Ca']]
+```
+
+**Ingredients**
+
+```{r, echo = FALSE}
+current$display_ingredients %>% nhuyhoa_df_print(data = FALSE, attribute = "class = \"presenttab\"")
+```
+
+<br>
+
+**Instructions**
+
+```{r, echo = FALSE}
+current$instructions %>% nhuyhoa_df_print(data = FALSE, attribute = "class = \"presenttabnoh\"")
+```
+

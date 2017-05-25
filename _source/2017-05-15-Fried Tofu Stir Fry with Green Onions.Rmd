@@ -1,0 +1,31 @@
+---
+layout: post
+title: "Fried Tofu Stir Fry with Green Onions"
+date: "May 15, 2017"
+categories: ['recipes']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, warning = FALSE}
+library(jn.general)
+lib(data)
+load('data/recipes.Rdata')
+current <- recipes[['Fried Tofu Stir Fry with Green Onions']]
+```
+
+**Ingredients**
+
+```{r, echo = FALSE}
+current$display_ingredients %>% nhuyhoa_df_print(data = FALSE, attribute = "class = \"presenttab\"")
+```
+
+<br>
+
+**Instructions**
+
+```{r, echo = FALSE}
+current$instructions %>% nhuyhoa_df_print(data = FALSE, attribute = "class = \"presenttabnoh\"")
+```
+
