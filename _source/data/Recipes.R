@@ -160,14 +160,14 @@ recipes[["Dau Sot Ca Chua"]] = list(ingredients = ingredients, instructions = in
 # cabbage and egg
 ingredients = list(
   Other = c("fish sauce"),
-  Meat = c("eggs", ),
+  Meat = c("eggs"),
   Veggies = c("cabbage"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
 	"Hard boil egg for 15 min",
 	"Cut up and boil cabbage",
-	"Mash up egg and add fish sauce & water",
+	"Mash up egg and add fish sauce & water"
 ))
 recipes[["Bap Cai Luoc"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
@@ -182,10 +182,10 @@ instructions = data.frame(Instructions = c(
 	"Marinate the meat in salt, pepper, shallots",
 	"Boil water on medium heat",
 	"Add meat",
-	"When foam starts to form, lower heat and remove foam"
+	"When foam starts to form, lower heat and remove foam",
 	"When foam all clear, turn to medium high heat and cover loosely with lid",
 	"Add wonton soup base",
-	"The meat and broth can be combined with other options such as canh, etc",
+	"The meat and broth can be combined with other options such as canh, etc"
 ))
 recipes[["Pork or Chicken Broth"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
@@ -200,7 +200,7 @@ instructions = data.frame(Instructions = c(
 	"Marinate the pork in salt, pepper, shallots",
 	"Boil water on medium heat",
 	"Add pork rib tips",
-	"When foam starts to form, lower heat and remove foam"
+	"When foam starts to form, lower heat and remove foam",
 	"When foam all clear, turn to medium high heat and cover loosely with lid",
 	"Add 2 packs of wonton soup base",
 	"Boil mustard greens separately",
@@ -416,7 +416,7 @@ current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attri
 current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
 ```
 ") %>% paste(collapse = "")
-write(script, file = paste0("_source/2017-05-15-", dish, ".Rmd"))
+write(script, file = paste0("_source/2017-05-15-", dish %>% str_replace(" ", "-"), ".Rmd"))
 return(paste(script, "done"))
 }
 

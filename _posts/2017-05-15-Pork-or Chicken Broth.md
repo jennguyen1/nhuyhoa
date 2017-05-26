@@ -55,25 +55,25 @@ categories: ['recipes']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Fry tofu </td>
+   <td style="text-align:left;"> Marinate the meat in salt, pepper, shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil </td>
+   <td style="text-align:left;"> Boil water on medium heat </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> When tomatoes have softened, add very small bowl of water </td>
+   <td style="text-align:left;"> Add meat </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add fried tofu </td>
+   <td style="text-align:left;"> When foam starts to form, lower heat and remove foam </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add green onions </td>
+   <td style="text-align:left;"> When foam all clear, turn to medium high heat and cover loosely with lid </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add with nuoc mam and water for flavor </td>
+   <td style="text-align:left;"> Add wonton soup base </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Simmer for 15 minutes </td>
+   <td style="text-align:left;"> The meat and broth can be combined with other options such as canh, etc </td>
   </tr>
 </tbody>
 </table>
