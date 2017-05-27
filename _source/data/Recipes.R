@@ -1,4 +1,3 @@
-#TODO: pictures
 
 # initiate
 library(jn.general)
@@ -48,7 +47,7 @@ instructions = data.frame(Instructions = c(
   "Fry chicken on medium low heat with thin layer of oil",
   "Let sit for a few minutes to fully cook"
 ))
-recipes[["Fried Chicken"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Ga Chien"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # stir fried spinach
 ingredients = list(
@@ -70,7 +69,7 @@ recipes[["Rau Muong Toi"]] = list(ingredients = ingredients, instructions = inst
 ingredients = list(
   Other = c("nuoc mam"),
   Meat = c("tofu"),
-  Veggies = c("green onions", "shallot"),
+  Veggies = c("green onions", "shallots"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
@@ -83,7 +82,7 @@ instructions = data.frame(Instructions = c(
 	"Add sauce mixture and stir",
 	"Heat for approximately 5 min"
 ))
-recipes[["Fried Tofu Stir Fry with Green Onions"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Dau Xiao Hanh"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # spring rolls
 ingredients = list(
@@ -106,7 +105,7 @@ recipes[["Goi Cuon"]] = list(ingredients = ingredients, instructions = instructi
 # bo bia
 ingredients = list(
   Other = c("Go Gai rice paper", "medium thick noodles", "housin sauce", "peanut butter"),
-  Meat = c("chinese sausages", "eggs"),
+  Meat = c("chinese pork sausages", "eggs"),
   Veggies = c("cucumber", "lettuce", "mint", "thai basil"),
   Fruit = ""
 )
@@ -124,16 +123,16 @@ recipes[["Bo Bia"]] = list(ingredients = ingredients, instructions = instruction
 # tofu tomato soup
 ingredients = list(
   Other = c("wonton soup base"),
-  Meat = c("tofu", "pork ribs tips"),
-  Veggies = c("green onions", "yellow onions", "cilantro"),
-  Fruit = c("tomatoes")
+  Meat = c("tofu", "pork ribs tips", "Lee's Seafood Co cha ca dac biet fish paste"),
+  Veggies = c("green onions", "yellow onion", "cilantro"),
+  Fruit = c("tomato")
 )
 instructions = data.frame(Instructions = c(
-	"Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil",
+	"Heat yellow onion and tomatoes in pot on medium heat with sprinkle of oil",
 	"When tomatoes have softened, add 1 bowl of water",
 	"Add cilantro, green onions",
 	"Add chopped tofu (may be fried if desired)",
-	"Add prepared pork ribs (optional)",
+	"Add prepared pork ribs or cha ca (optional)",
 	"Add 2 packs of wonton soup base",
 	"Simmer for 15 minutes"
 ))
@@ -143,12 +142,12 @@ recipes[["Tofu Tomato Soup"]] = list(ingredients = ingredients, instructions = i
 ingredients = list(
   Other = c("fish sauce"),
   Meat = c("tofu"),
-  Veggies = c("green onions", "yellow onions"),
-  Fruit = c("tomatoes")
+  Veggies = c("green onions", "yellow onion"),
+  Fruit = c("tomato")
 )
 instructions = data.frame(Instructions = c(
 	"Fry tofu",
-	"Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil",
+	"Heat yellow onion and tomatoes in pot on medium heat with sprinkle of oil",
 	"When tomatoes have softened, add very small bowl of water",
 	"Add fried tofu",
 	"Add green onions",
@@ -235,7 +234,7 @@ recipes[["Thit Kho"]] = list(ingredients = ingredients, instructions = instructi
 ingredients = list(
   Other = c("salt", "pepper", "nuoc mam", "nuoc mau"),
   Meat = c("catfish"),
-  Veggies = c("shallots", "yellow onions"),
+  Veggies = c("shallots", "yellow onion"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
@@ -294,7 +293,7 @@ ingredients = list(
   Other = c("tamarind pulp", "salt", "pepper", "sugar", "nuoc mam"),
   Meat = c("catfish"),
   Veggies = c("elephant ear stem", "rice paddy herbs", "green onions", "bean sprouts"),
-  Fruit = c("tomatoes", "pineapple")
+  Fruit = c("tomato", "pineapple")
 )
 instructions = data.frame(Instructions = c(
 	"Cut up tomatoes, pineapple, elephant ear stem, herbs into small chunks",
@@ -318,7 +317,7 @@ recipes[["Canh Chua Ca"]] = list(ingredients = ingredients, instructions = instr
 ingredients = list(
   Other = c("spaghetti", "Rinaldi sauce"),
   Meat = c("ground beef"),
-  Veggies = c("mushrooms", "spinach", "yellow onions", "shallots"),
+  Veggies = c("mushrooms", "spinach", "yellow onion", "shallots"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
@@ -356,7 +355,7 @@ recipes[["Com Chien"]] = list(ingredients = ingredients, instructions = instruct
 ingredients = list(
   Other = c("cornstarch", "salt", "garlic powder"),
   Meat = "",
-  Veggies = c("sweet potatoes"),
+  Veggies = c("sweet potato"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
@@ -380,12 +379,26 @@ recipes <- map(recipes, function(x){
   return(x)
 })
 
+# for uploading the images
+for(n in names(recipes)){
+
+  pics <- list.files("figure/food/", pattern = n)
+  recipes[[n]]$pics <- pics %>% str_subset("JPG") # can i handle movies?
+  
+}
+
 # save recipes into a file
 save(recipes, file = "_source/data/recipes.Rdata")
 
 # generate recipe files
-make_script <- function(dish){
-script <- c("---
+make_script <- function(i){
+  dish <- names(recipes)[i]
+  pic <- recipes[[i]]$pics %>% 
+    paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>% 
+    paste(collapse = "\n")
+  pic <- ifelse(length(recipes[[i]]$pics) == 0, "", pic)
+  
+  script <- c("---
 layout: post
 title: \"", dish, "\"
 date: \"May 15, 2017\"
@@ -402,6 +415,8 @@ load('data/recipes.Rdata')
 current <- recipes[['", dish, "']]
 ```
 
+", pic,"
+
 **Ingredients**
 
 ```{r, echo = FALSE}
@@ -416,8 +431,9 @@ current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attri
 current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
 ```
 ") %>% paste(collapse = "")
-write(script, file = paste0("_source/2017-05-15-", dish %>% str_replace(" ", "-"), ".Rmd"))
-return(paste(script, "done"))
+  write(script, file = paste0("_source/2017-05-15-", dish %>% str_replace(" ", "-"), ".Rmd"))
+  return(paste(script, "done"))
 }
 
-map(names(recipes), make_script)
+map(1:length(recipes), make_script)
+

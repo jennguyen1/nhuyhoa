@@ -10,6 +10,8 @@ categories: ['recipes']
 
 
 
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh Chua Ca.JPG)
+
 **Ingredients**
 
 <table class = "presenttab">
@@ -26,7 +28,7 @@ categories: ['recipes']
    <td style="text-align:left;"> tamarind pulp </td>
    <td style="text-align:left;"> catfish </td>
    <td style="text-align:left;"> elephant ear stem </td>
-   <td style="text-align:left;"> tomatoes </td>
+   <td style="text-align:left;"> tomato </td>
   </tr>
   <tr>
    <td style="text-align:left;"> salt </td>

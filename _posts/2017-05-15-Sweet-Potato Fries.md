@@ -10,6 +10,8 @@ categories: ['recipes']
 
 
 
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Sweet Potato Fries.JPG)
+
 **Ingredients**
 
 <table class = "presenttab">
@@ -25,7 +27,7 @@ categories: ['recipes']
   <tr>
    <td style="text-align:left;"> cornstarch </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> sweet potatoes </td>
+   <td style="text-align:left;"> sweet potato </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

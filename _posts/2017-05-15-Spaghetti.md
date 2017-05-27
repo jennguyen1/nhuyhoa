@@ -10,6 +10,8 @@ categories: ['recipes']
 
 
 
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Spaghetti.JPG)
+
 **Ingredients**
 
 <table class = "presenttab">
@@ -37,7 +39,7 @@ categories: ['recipes']
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> yellow onions </td>
+   <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

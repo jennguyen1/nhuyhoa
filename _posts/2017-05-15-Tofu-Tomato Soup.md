@@ -10,6 +10,8 @@ categories: ['recipes']
 
 
 
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Tofu Tomato Soup.JPG)
+
 **Ingredients**
 
 <table class = "presenttab">
@@ -26,17 +28,17 @@ categories: ['recipes']
    <td style="text-align:left;"> wonton soup base </td>
    <td style="text-align:left;"> tofu </td>
    <td style="text-align:left;"> green onions </td>
-   <td style="text-align:left;"> tomatoes </td>
+   <td style="text-align:left;"> tomato </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> pork ribs tips </td>
-   <td style="text-align:left;"> yellow onions </td>
+   <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> Lee's Seafood Co cha ca dac biet fish paste </td>
    <td style="text-align:left;"> cilantro </td>
    <td style="text-align:left;">  </td>
   </tr>
@@ -55,7 +57,7 @@ categories: ['recipes']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil </td>
+   <td style="text-align:left;"> Heat yellow onion and tomatoes in pot on medium heat with sprinkle of oil </td>
   </tr>
   <tr>
    <td style="text-align:left;"> When tomatoes have softened, add 1 bowl of water </td>
@@ -67,7 +69,7 @@ categories: ['recipes']
    <td style="text-align:left;"> Add chopped tofu (may be fried if desired) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add prepared pork ribs (optional) </td>
+   <td style="text-align:left;"> Add prepared pork ribs or cha ca (optional) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add 2 packs of wonton soup base </td>

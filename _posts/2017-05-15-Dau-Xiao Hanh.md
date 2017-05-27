@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fried Tofu Stir Fry with Green Onions"
+title: "Dau Xiao Hanh"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -9,6 +9,8 @@ categories: ['recipes']
 {:toc}
 
 
+
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Dau Xiao Hanh.JPG)
 
 **Ingredients**
 
@@ -31,7 +33,7 @@ categories: ['recipes']
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallot </td>
+   <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>

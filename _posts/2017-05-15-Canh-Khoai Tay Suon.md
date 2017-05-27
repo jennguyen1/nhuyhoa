@@ -10,6 +10,9 @@ categories: ['recipes']
 
 
 
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh Khoai Tay Suon1.JPG)
+![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh Khoai Tay Suon2.JPG)
+
 **Ingredients**
 
 <table class = "presenttab">

@@ -15,6 +15,8 @@ load('data/recipes.Rdata')
 current <- recipes[['Com Chien']]
 ```
 
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Com Chien.JPG)
+
 **Ingredients**
 
 ```{r, echo = FALSE}

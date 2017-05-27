@@ -10,6 +10,8 @@ categories: ['recipes']
 
 
 
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Dau Sot Ca Chua.JPG)
+
 **Ingredients**
 
 <table class = "presenttab">
@@ -26,12 +28,12 @@ categories: ['recipes']
    <td style="text-align:left;"> fish sauce </td>
    <td style="text-align:left;"> tofu </td>
    <td style="text-align:left;"> green onions </td>
-   <td style="text-align:left;"> tomatoes </td>
+   <td style="text-align:left;"> tomato </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> yellow onions </td>
+   <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -52,7 +54,7 @@ categories: ['recipes']
    <td style="text-align:left;"> Fry tofu </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Heat yellow onions and tomatoes in pot on medium heat with sprinkle of oil </td>
+   <td style="text-align:left;"> Heat yellow onion and tomatoes in pot on medium heat with sprinkle of oil </td>
   </tr>
   <tr>
    <td style="text-align:left;"> When tomatoes have softened, add very small bowl of water </td>

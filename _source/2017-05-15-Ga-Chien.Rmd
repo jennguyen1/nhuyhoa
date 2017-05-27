@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fried Chicken"
+title: "Ga Chien"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -12,8 +12,10 @@ categories: ['recipes']
 library(jn.general)
 lib(data)
 load('data/recipes.Rdata')
-current <- recipes[['Fried Chicken']]
+current <- recipes[['Ga Chien']]
 ```
+
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Ga Chien.JPG)
 
 **Ingredients**
 
