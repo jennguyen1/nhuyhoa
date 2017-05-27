@@ -9,31 +9,50 @@ categories: ['recipes']
 {:toc}
 
 
-{% highlight text %}
-## Error in readChar(con, 5L, useBytes = TRUE): cannot open the connection
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'recipes' not found
-{% endhighlight %}
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Bap Cai Luoc.JPG)
 
 **Ingredients**
 
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'current' not found
-{% endhighlight %}
+<table class = "presenttab">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Other </th>
+   <th style="text-align:left;"> Meat </th>
+   <th style="text-align:left;"> Veggies </th>
+   <th style="text-align:left;"> Fruit </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> fish sauce </td>
+   <td style="text-align:left;"> eggs </td>
+   <td style="text-align:left;"> cabbage </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
 
 <br>
 
 **Instructions**
 
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'current' not found
-{% endhighlight %}
+<table class = "presenttabnoh">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Instructions </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Hard boil egg for 15 min </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cut up and boil cabbage </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mash up egg and add fish sauce &amp; water </td>
+  </tr>
+</tbody>
+</table>
 

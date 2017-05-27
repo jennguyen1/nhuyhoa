@@ -388,6 +388,7 @@ for(n in names(recipes)){
 }
 
 # save recipes into a file
+save(recipes, file = "_source/data/recipes.Rdata")
 save(recipes, file = "~/Desktop/recipe_finder/recipes.Rdata")
 
 # generate recipe files

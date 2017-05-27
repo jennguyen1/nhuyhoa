@@ -9,31 +9,74 @@ categories: ['recipes']
 {:toc}
 
 
-{% highlight text %}
-## Error in readChar(con, 5L, useBytes = TRUE): cannot open the connection
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'recipes' not found
-{% endhighlight %}
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Rau Muong Toi.JPG)
 
 **Ingredients**
 
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'current' not found
-{% endhighlight %}
+<table class = "presenttab">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Other </th>
+   <th style="text-align:left;"> Meat </th>
+   <th style="text-align:left;"> Veggies </th>
+   <th style="text-align:left;"> Fruit </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> spinach </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sugar </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> garlic </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> nuoc mam </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> oyster sauce </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
 
 <br>
 
 **Instructions**
 
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'current' not found
-{% endhighlight %}
+<table class = "presenttabnoh">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Instructions </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Heat chopped garlic on medium heat with a little oil </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add a lot of spinach (a lot, will shrink) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Stir and add salt, sugar, nuoc mam </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Stir and add oyster sauce </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Stir for a few minutes </td>
+  </tr>
+</tbody>
+</table>
 

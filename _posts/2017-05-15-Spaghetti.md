@@ -9,31 +9,83 @@ categories: ['recipes']
 {:toc}
 
 
-{% highlight text %}
-## Error in readChar(con, 5L, useBytes = TRUE): cannot open the connection
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'recipes' not found
-{% endhighlight %}
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Spaghetti.JPG)
 
 **Ingredients**
 
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'current' not found
-{% endhighlight %}
+<table class = "presenttab">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Other </th>
+   <th style="text-align:left;"> Meat </th>
+   <th style="text-align:left;"> Veggies </th>
+   <th style="text-align:left;"> Fruit </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> spaghetti </td>
+   <td style="text-align:left;"> ground beef </td>
+   <td style="text-align:left;"> mushrooms </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Rinaldi sauce </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> spinach </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> yellow onion </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
 
 <br>
 
 **Instructions**
 
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'current' not found
-{% endhighlight %}
+<table class = "presenttabnoh">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Instructions </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Prepare the noodles </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cook shallots in pot with oil </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cook ground beef and drain meat fat </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add Rinaldi pasta sauce </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Simmer </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add nuoc mam for taste </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add mushrooms and onions </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Simmer </td>
+  </tr>
+</tbody>
+</table>
 
