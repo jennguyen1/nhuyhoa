@@ -388,7 +388,7 @@ for(n in names(recipes)){
 }
 
 # save recipes into a file
-save(recipes, file = "_source/data/recipes.Rdata")
+save(recipes, file = "~/Desktop/recipe_finder/recipes.Rdata")
 
 # generate recipe files
 make_script <- function(i){
@@ -431,7 +431,7 @@ current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attri
 current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
 ```
 ") %>% paste(collapse = "")
-  write(script, file = paste0("_source/2017-05-15-", dish %>% str_replace(" ", "-"), ".Rmd"))
+  write(script, file = paste0("_source/2017-05-15-", dish %>% str_replace_all(" ", "-"), ".Rmd"))
   return(paste(script, "done"))
 }
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Spaghetti"
+title: "Sweet Potato Fries"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -19,7 +19,7 @@ categories: ['recipes']
 ## Error in eval(expr, envir, enclos): object 'recipes' not found
 {% endhighlight %}
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Spaghetti.JPG)
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Sweet Potato Fries.JPG)
 
 **Ingredients**
 
