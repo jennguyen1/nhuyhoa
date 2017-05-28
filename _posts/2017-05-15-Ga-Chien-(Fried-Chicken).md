@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rau Muong Toi"
+title: "Ga Chien (Fried Chicken)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -10,7 +10,7 @@ categories: ['recipes']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Rau Muong Toi.JPG)
+
 
 **Ingredients**
 
@@ -26,24 +26,18 @@ categories: ['recipes']
 <tbody>
   <tr>
    <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> spinach </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sugar </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> garlic </td>
+   <td style="text-align:left;"> chicken legs or wings </td>
+   <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> nuoc mam </td>
+   <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> oyster sauce </td>
+   <td style="text-align:left;"> soy sauce </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -63,19 +57,13 @@ categories: ['recipes']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Heat chopped garlic on medium heat with a little oil </td>
+   <td style="text-align:left;"> Marinate chieck with salt, pepper, shallots, and soy sauce </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a lot of spinach (a lot, will shrink) </td>
+   <td style="text-align:left;"> Fry chicken on medium low heat with thin layer of oil </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir and add salt, sugar, nuoc mam </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Stir and add oyster sauce </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Stir for a few minutes </td>
+   <td style="text-align:left;"> Let sit for a few minutes to fully cook </td>
   </tr>
 </tbody>
 </table>

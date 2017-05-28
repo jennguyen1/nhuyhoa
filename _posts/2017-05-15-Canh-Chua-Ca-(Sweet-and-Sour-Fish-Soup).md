@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Canh Chua Ca"
+title: "Canh Chua Ca (Sweet and Sour Fish Soup)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -10,7 +10,7 @@ categories: ['recipes']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh Chua Ca.JPG)
+
 
 **Ingredients**
 

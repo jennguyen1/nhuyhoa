@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Goi Cuon"
+title: "Bap Cai Luoc (Cabbage and Egg Sauce)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -12,10 +12,10 @@ categories: ['recipes']
 library(jn.general)
 lib(data)
 load('data/recipes.Rdata')
-current <- recipes[['Goi Cuon']]
+current <- recipes[['Bap Cai Luoc (Cabbage and Egg Sauce)']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Goi Cuon.JPG)
+
 
 **Ingredients**
 

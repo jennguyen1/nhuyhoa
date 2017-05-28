@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dau Xiao Hanh"
+title: "Goi Cuon (Spring Rolls)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -12,10 +12,10 @@ categories: ['recipes']
 library(jn.general)
 lib(data)
 load('data/recipes.Rdata')
-current <- recipes[['Dau Xiao Hanh']]
+current <- recipes[['Goi Cuon (Spring Rolls)']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Dau Xiao Hanh.JPG)
+
 
 **Ingredients**
 

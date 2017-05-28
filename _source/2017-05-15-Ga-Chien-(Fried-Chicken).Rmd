@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dau Sot Ca Chua"
+title: "Ga Chien (Fried Chicken)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -12,10 +12,10 @@ categories: ['recipes']
 library(jn.general)
 lib(data)
 load('data/recipes.Rdata')
-current <- recipes[['Dau Sot Ca Chua']]
+current <- recipes[['Ga Chien (Fried Chicken)']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Dau Sot Ca Chua.JPG)
+
 
 **Ingredients**
 

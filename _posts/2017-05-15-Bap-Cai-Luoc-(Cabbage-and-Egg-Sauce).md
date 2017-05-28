@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bap Cai Luoc"
+title: "Bap Cai Luoc (Cabbage and Egg Sauce)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -10,7 +10,7 @@ categories: ['recipes']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Bap Cai Luoc.JPG)
+
 
 **Ingredients**
 

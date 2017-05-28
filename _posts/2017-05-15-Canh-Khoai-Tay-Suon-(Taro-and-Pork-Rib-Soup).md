@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Canh Khoai Tay Suon"
+title: "Canh Khoai Tay Suon (Taro and Pork Rib Soup)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -10,8 +10,7 @@ categories: ['recipes']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh Khoai Tay Suon1.JPG)
-![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh Khoai Tay Suon2.JPG)
+
 
 **Ingredients**
 

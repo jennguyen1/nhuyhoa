@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dau Sot Ca Chua"
+title: "Dau Xiao Hanh (Tofu Green Onions Stir Fry)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -10,7 +10,7 @@ categories: ['recipes']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Dau Sot Ca Chua.JPG)
+
 
 **Ingredients**
 
@@ -25,15 +25,15 @@ categories: ['recipes']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> fish sauce </td>
+   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;"> tofu </td>
    <td style="text-align:left;"> green onions </td>
-   <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> yellow onion </td>
+   <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -51,25 +51,28 @@ categories: ['recipes']
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> Cut shallots and green onions </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Make a mixture of water and nuoc mam in a small bowl </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> Fry tofu </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Heat yellow onion and tomatoes in pot on medium heat with sprinkle of oil </td>
+   <td style="text-align:left;"> In saucer, golden the shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> When tomatoes have softened, add very small bowl of water </td>
+   <td style="text-align:left;"> Add green onions and stir until they soften </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add fried tofu </td>
+   <td style="text-align:left;"> Add tofu and stir </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add green onions </td>
+   <td style="text-align:left;"> Add sauce mixture and stir </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add with nuoc mam and water for flavor </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Simmer for 15 minutes </td>
+   <td style="text-align:left;"> Heat for approximately 5 min </td>
   </tr>
 </tbody>
 </table>

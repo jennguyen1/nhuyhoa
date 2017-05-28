@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bap Cai Luoc"
+title: "Dau Sot Ca Chua (Tofu and Tomatoes)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -12,10 +12,10 @@ categories: ['recipes']
 library(jn.general)
 lib(data)
 load('data/recipes.Rdata')
-current <- recipes[['Bap Cai Luoc']]
+current <- recipes[['Dau Sot Ca Chua (Tofu and Tomatoes)']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Bap Cai Luoc.JPG)
+
 
 **Ingredients**
 

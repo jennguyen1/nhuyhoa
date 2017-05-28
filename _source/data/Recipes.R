@@ -47,7 +47,7 @@ instructions = data.frame(Instructions = c(
   "Fry chicken on medium low heat with thin layer of oil",
   "Let sit for a few minutes to fully cook"
 ))
-recipes[["Ga Chien"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Ga Chien (Fried Chicken)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # stir fried spinach
 ingredients = list(
@@ -63,7 +63,7 @@ instructions = data.frame(Instructions = c(
   "Stir and add oyster sauce",
   "Stir for a few minutes"
 ))
-recipes[["Rau Muong Toi"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Rau Muong Toi (Spinach Stir Fry)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # stir fried tofu
 ingredients = list(
@@ -82,7 +82,7 @@ instructions = data.frame(Instructions = c(
 	"Add sauce mixture and stir",
 	"Heat for approximately 5 min"
 ))
-recipes[["Dau Xiao Hanh"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Dau Xiao Hanh (Tofu Green Onions Stir Fry)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # spring rolls
 ingredients = list(
@@ -100,7 +100,7 @@ instructions = data.frame(Instructions = c(
 	"To make sauce, dilute hoisin sauce & peanut butter with broth until the taste is right",
 	"Make rolls"
 ))
-recipes[["Goi Cuon"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Goi Cuon (Spring Rolls)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # bo bia
 ingredients = list(
@@ -154,7 +154,7 @@ instructions = data.frame(Instructions = c(
 	"Add with nuoc mam and water for flavor",
 	"Simmer for 15 minutes"
 ))
-recipes[["Dau Sot Ca Chua"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Dau Sot Ca Chua (Tofu and Tomatoes)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # cabbage and egg
 ingredients = list(
@@ -168,7 +168,7 @@ instructions = data.frame(Instructions = c(
 	"Cut up and boil cabbage",
 	"Mash up egg and add fish sauce & water"
 ))
-recipes[["Bap Cai Luoc"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Bap Cai Luoc (Cabbage and Egg Sauce)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # Pork or Chicken Broth
 ingredients = list(
@@ -286,7 +286,7 @@ instructions = data.frame(Instructions = c(
 	"Add taro or yam to pork broth",
 	"Add rice paddy herbs"
 ))
-recipes[["Canh Khoai Tay Suon"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Canh Khoai Tay Suon (Taro and Pork Rib Soup)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # catfish soup
 ingredients = list(
@@ -311,7 +311,7 @@ instructions = data.frame(Instructions = c(
 	"Adjust tastes as necessary",
 	"Add the garlic"
 ))
-recipes[["Canh Chua Ca"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Canh Chua Ca (Sweet and Sour Fish Soup)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # spaghetti
 ingredients = list(
@@ -349,7 +349,7 @@ instructions = data.frame(Instructions = c(
   "Add seasonings to liking",
   "Stir in meat and veggies"
 ))
-recipes[["Com Chien"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Com Chien (Fried Rice)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # sweet potato fries
 ingredients = list(
