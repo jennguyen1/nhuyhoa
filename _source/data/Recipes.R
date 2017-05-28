@@ -396,7 +396,7 @@ make_script <- function(i){
   dish <- names(recipes)[i]
   pic <- recipes[[i]]$pics %>% 
     paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>% 
-    paste(collapse = "\n")
+    paste(collapse = "\n\n")
   pic <- ifelse(length(recipes[[i]]$pics) == 0, "", pic)
   
   script <- c("---
