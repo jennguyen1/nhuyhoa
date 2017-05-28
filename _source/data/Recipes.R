@@ -3,6 +3,26 @@
 library(jn.general)
 lib(data)
 recipes = list()
+
+###################
+# sushi
+ingredients = list(
+  Other = c("seaweed paper", "rice", "eel sauce", "rolling mat"),
+  Meat = c("crab", "shrimp", "pork belly", "eggs"),
+  Veggies = c("cucumber", "carrot", "spinach", "asparagus", "shallots"),
+  Fruit = c("avocado")
+)
+instructions = data.frame(Instructions = c(
+  "Press 3/4 of the seaweed paper with rice with flip over with empty rice side near body",
+  "Place sushi fillings in row",
+  "Using rolling mat, tightly roll",
+  "Filling options:",
+  "avocado, carrot, cucumber, crab, shrimp, eel sauce, topped with fried shallots",
+  "avocado, carrot, cucumber, crab, eel sauce, topped with fried shallots",
+  "avocado, carrot, cucumber, shrimp, eel sauce, topped with fried shallots",
+  "carrots, spinach, thin egg omelette, crab"
+))
+recipes[["Sushi"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # alfredo
 ingredients = list(
@@ -384,7 +404,7 @@ for(n in names(recipes)){
 
   pics <- list.files("figure/food/", pattern = n %>% str_replace(" \\(.*", ""))
   recipes[[n]]$pics <- pics %>% str_subset("JPG") # can i handle movies?
-  
+
 }
 
 # save recipes into a file
@@ -394,11 +414,11 @@ save(recipes, file = "~/Desktop/recipe_finder/recipes.Rdata")
 # generate recipe files
 make_script <- function(i){
   dish <- names(recipes)[i]
-  pic <- recipes[[i]]$pics %>% 
-    paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>% 
+  pic <- recipes[[i]]$pics %>%
+    paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>%
     paste(collapse = "\n\n")
   pic <- ifelse(length(recipes[[i]]$pics) == 0, "", pic)
-  
+
   script <- c("---
 layout: post
 title: \"", dish, "\"
