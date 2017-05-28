@@ -382,7 +382,7 @@ recipes <- map(recipes, function(x){
 # for uploading the images
 for(n in names(recipes)){
 
-  pics <- list.files("figure/food/", pattern = n)
+  pics <- list.files("figure/food/", pattern = n %>% str_replace(" \\(.*", ""))
   recipes[[n]]$pics <- pics %>% str_subset("JPG") # can i handle movies?
   
 }
@@ -432,8 +432,9 @@ current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attri
 current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
 ```
 ") %>% paste(collapse = "")
-  write(script, file = paste0("_source/2017-05-15-", dish %>% str_replace_all(" ", "-"), ".Rmd"))
-  return(paste(script, "done"))
+  file_name <- paste0("_source/2017-05-15-", dish %>% str_replace_all(" ", "-"), ".Rmd")
+  write(script, file = file_name)
+  return(script)
 }
 
 map(1:length(recipes), make_script)

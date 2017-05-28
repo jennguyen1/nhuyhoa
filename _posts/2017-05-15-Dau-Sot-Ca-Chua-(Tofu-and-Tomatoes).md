@@ -10,7 +10,7 @@ categories: ['recipes']
 
 
 
-
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Dau Sot Ca Chua.JPG)
 
 **Ingredients**
 
