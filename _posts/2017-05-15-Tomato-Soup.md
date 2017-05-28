@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tofu Tomato Soup"
+title: "Tomato Soup"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -42,6 +42,12 @@ categories: ['recipes']
    <td style="text-align:left;"> cilantro </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> dill </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -63,13 +69,10 @@ categories: ['recipes']
    <td style="text-align:left;"> When tomatoes have softened, add 1 bowl of water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add cilantro, green onions </td>
+   <td style="text-align:left;"> Add cilantro, green onions, dill </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add chopped tofu (may be fried if desired) </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add prepared pork ribs or cha ca (optional) </td>
+   <td style="text-align:left;"> Add tofu (fried if desired), pork chops, or cha ca </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add 2 packs of wonton soup base </td>

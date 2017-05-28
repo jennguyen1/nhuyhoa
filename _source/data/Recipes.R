@@ -144,15 +144,14 @@ recipes[["Bo Bia"]] = list(ingredients = ingredients, instructions = instruction
 ingredients = list(
   Other = c("wonton soup base"),
   Meat = c("tofu", "pork ribs tips", "Lee's Seafood Co cha ca dac biet fish paste"),
-  Veggies = c("green onions", "yellow onion", "cilantro"),
+  Veggies = c("green onions", "yellow onion", "cilantro", "dill"),
   Fruit = c("tomato")
 )
 instructions = data.frame(Instructions = c(
 	"Heat yellow onion and tomatoes in pot on medium heat with sprinkle of oil",
 	"When tomatoes have softened, add 1 bowl of water",
-	"Add cilantro, green onions",
-	"Add chopped tofu (may be fried if desired)",
-	"Add prepared pork ribs or cha ca (optional)",
+	"Add cilantro, green onions, dill",
+	"Add tofu (fried if desired), pork chops, or cha ca", 
 	"Add 2 packs of wonton soup base",
 	"Simmer for 15 minutes"
 ))

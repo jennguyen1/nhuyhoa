@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tofu Tomato Soup"
+title: "Tomato Soup"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -12,7 +12,7 @@ categories: ['recipes']
 library(jn.general)
 lib(data)
 load('data/recipes.Rdata')
-current <- recipes[['Tofu Tomato Soup']]
+current <- recipes[['Tomato Soup']]
 ```
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Tofu Tomato Soup.JPG)
