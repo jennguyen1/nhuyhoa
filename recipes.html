@@ -5,7 +5,7 @@ permalink: /recipes/
 ---
 <section>
     <table>
-        {% for post in site.posts.reverse %}
+        {% for post in site.posts reversed %}
             {% if post.categories contains 'recipes' %}
                 <tr>
                     <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
