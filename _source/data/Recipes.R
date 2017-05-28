@@ -155,7 +155,7 @@ instructions = data.frame(Instructions = c(
 	"Add 2 packs of wonton soup base",
 	"Simmer for 15 minutes"
 ))
-recipes[["Tofu Tomato Soup"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Tomato Soup"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # tofu tomato sauce
 ingredients = list(
