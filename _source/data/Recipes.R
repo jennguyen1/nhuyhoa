@@ -9,7 +9,7 @@ recipes = list()
 ingredients = list(
   Other = c("seaweed paper", "rice", "eel sauce", "rolling mat"),
   Meat = c("crab", "shrimp", "pork belly", "eggs"),
-  Veggies = c("cucumber", "carrot", "spinach", "asparagus", "shallots"),
+  Veggies = c("cucumber", "carrot", "spinach", "asparagus", "shallots", "yellow onion",
   Fruit = c("avocado")
 )
 instructions = data.frame(Instructions = c(
@@ -18,8 +18,8 @@ instructions = data.frame(Instructions = c(
   "Using rolling mat, tightly roll",
   "Filling options:",
   "avocado, carrot, cucumber, crab, shrimp, eel sauce, topped with fried shallots",
-  "avocado, carrot, cucumber, crab, eel sauce, topped with fried shallots",
-  "avocado, carrot, cucumber, shrimp, eel sauce, topped with fried shallots",
+  "avocado, carrot, cucumber, crab, eel sauce, topped with fried shallots/onions",
+  "avocado, carrot, cucumber, shrimp, eel sauce, topped with fried shallots/onions",
   "carrots, spinach, thin egg omelette, crab"
 ))
 recipes[["Sushi"]] = list(ingredients = ingredients, instructions = instructions)
