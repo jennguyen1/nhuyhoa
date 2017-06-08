@@ -5,11 +5,79 @@ lib(data)
 recipes = list()
 
 ###################
+# crab cake
+ingredients = list(
+  Other = c("salt", "pepper", "mushroom seasoning", "hoisin sauce"),
+  Meat = "",
+  Veggies = c("green beans", "mushrooms", "garlic"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Heat minced garlic in pan with oil", 
+  "Add green beans and mushrooms", 
+  "Add small bowl of water", 
+  "Sprinkle in salt, pepper, mushroom seasoning or hoisin sauce", 
+  "Let cook until beans and mushrooms have softened"
+))
+recipes[["Fried Green Beans and Mushrooms"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# crab cake
+ingredients = list(
+  Other = c("bread crumbs", "mayo", "salt"),
+  Meat = c("crab", "eggs"),
+  Veggies = "",
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Extract crab meat from the body", 
+  "Add 1 egg to crab", 
+  "Add a spoonful of mayo and a pinch of salt", 
+  "Mix in bread crumbs", 
+  "Put in fridge for half hour", 
+  "Form patties and cover with bread crumbs", 
+  "Fry crab cakes carefully", 
+  "Place in sandwich bun"
+))
+recipes[["Crab Cake"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# fish sauce
+ingredients = list(
+  Other = c("nuoc mam", "sugar", "water", "vinegar"),
+  Meat = "",
+  Veggies = c("garlic"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Mix nuoc mam, sugar and water at a 1:1:4 ratio",
+  "Add a tiny amount of vinegar",
+  "Adjust taste as necessary", 
+  "Mix in minced garlic"
+))
+recipes[["Nuoc Mam"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# fried fish
+ingredients = list(
+  Other = c("salt", "pepper", "nuoc mam"),
+  Meat = c("catfish"),
+  Veggies = c("shallots", "garlic"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Mince shallots and garlic", 
+  "Cut catfish approximately 3 in long",
+  "Marinate fish in salt, pepper, shallots, and garlic", 
+  "Let fish sit for half hour", 
+  "Fry fish on medium high heat with thin layer of oil", 
+  "Flip fish and fry other side on medium low heat", 
+  "Let sit for a few minutes to fully cook"
+))
+recipes[["Ca Chien (Fried Fish)"]] = list(ingredients = ingredients, instructions = instructions)
+###################
 # sushi
 ingredients = list(
   Other = c("seaweed paper", "rice", "eel sauce", "rolling mat"),
   Meat = c("crab", "shrimp", "pork belly", "eggs"),
-  Veggies = c("cucumber", "carrot", "spinach", "asparagus", "shallots", "yellow onion",
+  Veggies = c("cucumber", "carrot", "spinach", "asparagus", "shallots", "yellow onion"),
   Fruit = c("avocado")
 )
 instructions = data.frame(Instructions = c(
