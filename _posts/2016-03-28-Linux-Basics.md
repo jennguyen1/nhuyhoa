@@ -16,6 +16,8 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 
 * `|` to chain commands
 * `xargs` reads items from standard input delimited by blanks and executes command multiple times
+* `>` or `>>` divert all output to a file
+* `2>` diverte all errors to a file
 
 
 {% highlight r %}
@@ -222,7 +224,7 @@ scp -rp file location.to.transfer
 
 {% highlight r %}
 # add an & at the end of command
-sh filename.sh >> output.txt &
+sh filename.sh >> output.txt 2> err.txt &
 
 # check on currently running background commands; for current user
 top
@@ -523,6 +525,12 @@ done
 
 for i in $(seq 1 10)
 do
+  # stuff
+done
+
+# loop through sequence by 
+for i in $(seq 1 2 22)
+do 
   # stuff
 done
 {% endhighlight %}

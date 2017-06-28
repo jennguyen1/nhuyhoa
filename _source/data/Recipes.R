@@ -4,8 +4,30 @@ library(jn.general)
 lib(data)
 recipes = list()
 
+
 ###################
-# crab cake
+# suon or thit ram
+ingredients = list(
+  Other = c("salt", "pepper", "sugar", "soy sauce", "corn starch"),
+  Meat = c("pork spare ribs", "pork belly"),
+  Veggies = c("shallots", "yellow onion", "green onions"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Cut pork spare ribs (suon) into squares or pork belly into slices", 
+  "Marinate meat with salt, pepper, and minced shallots", 
+  "Fry meat on medium high heat with thin layer of oil until brown", 
+  "Once meat is mostly cooked, turn heat down to medium low", 
+  "Add 2.5 spoons of sugar", 
+  "Add a solution of 3:4 ratio of soy sauce to water", 
+  "Sprinkle in a little bit of corn starch", 
+  "Turn heat down to low", 
+  "Add in sliced yellow onion and chopped green onions", 
+  "Wait a few minutes to fully cook"
+))
+recipes[["Suon or Thit Ram"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# green beans
 ingredients = list(
   Other = c("salt", "pepper", "mushroom seasoning", "hoisin sauce"),
   Meat = "",
@@ -180,7 +202,7 @@ ingredients = list(
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-	"Boil pork belly with salt on medium heat for 30 min (no pink juices when pierce), move to ice bath when done",
+	"Boil pork belly with salt on medium high heat for 45 min (no pink juices when pierce), move to ice bath when done",
 	"Boil shrimp on medium heat for 1-3 minutes until it turns pink, move to ice bath when done",
 	"Slice pork belly and shrimp",
 	"Prepare the noodles",
@@ -313,7 +335,7 @@ instructions = data.frame(Instructions = c(
 	"Cook on low for 1.5 - 2 hours, removing meat foam",
 	"Add eggs",
 	"Add nuoc mam for flavor",
-	"Cook on low heat for 0.5 hour"
+	"Cook on low heat for 0.5 hour to reduce 50% of liquid"
 ))
 recipes[["Thit Kho"]] = list(ingredients = ingredients, instructions = instructions)
 ###################

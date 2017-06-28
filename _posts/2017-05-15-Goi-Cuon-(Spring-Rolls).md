@@ -69,7 +69,7 @@ categories: ['recipes']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Boil pork belly with salt on medium heat for 30 min (no pink juices when pierce), move to ice bath when done </td>
+   <td style="text-align:left;"> Boil pork belly with salt on medium high heat for 45 min (no pink juices when pierce), move to ice bath when done </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Boil shrimp on medium heat for 1-3 minutes until it turns pink, move to ice bath when done </td>
