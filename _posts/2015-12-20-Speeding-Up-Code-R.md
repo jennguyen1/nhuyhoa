@@ -27,4 +27,4 @@ To compare the runtimes of several functions, use the function `microbenchmark::
 # Speeding Up Code with Parallel Programming
 See the [parallel processing post][parallel_processing_post]{: target = "_blank"}.
 
-[parallel_processing_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Apply-Parallel-Processing.html#parallel-processing
+[parallel_processing_post]: http://jnguyen92.github.io/nhuyhoa//2017/03/Parallel-Processing.html#in-r

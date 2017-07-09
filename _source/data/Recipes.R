@@ -4,7 +4,38 @@ library(jn.general)
 lib(data)
 recipes = list()
 
-
+###################
+# fruit tart
+ingredients = list(
+  Other = c("graham crackers", "sugar", "margarine", "cinnamon", "salt", "whole milk", "vanilla", "flour", "cornstarch", "eggs"),
+  Meat = "",
+  Veggies = "",
+  Fruit = c("any")
+)
+instructions = data.frame(Instructions = c(
+  "Crust", 
+  "Finely crush about graham crackers", 
+  "Stir 1.5 cups graham cracker crumbs, 0.25 cup sugar, 0.5 tsp cinnamon and pinch of salt in large bowl", 
+  "Stir in 6 tbsp of melted margarine", 
+  "Ensure that the mixture has consistency of cookie dough (not too dry or wet)", 
+  "Press mixture to bottom of muffin pan with hands",
+  "Freeze for 1 hour or bake at 325 degrees for 10 min then cool before filling",
+  "Pastry Cream",
+  "Mix together 0.25 cups of sugar and 3 eggs", 
+  "Add 2 tbsp flour and 2 tbsp cornstarch", 
+  "Mix to you get a smooth paste", 
+  "In a saucepan, add 1.25 cups whole milk and 1 tsp vanilla extract and bring to just boiling", 
+  "Remove milk mixture and slowly add to egg mixture, whisking constantly to prevent curdling", 
+  "Pour egg mixture into saucepan and cook over medium heat until boiling, whisking constantly", 
+  "When it boils, whisk mixture constantly for a minute until it becomes thick", 
+  "Remove from heat and whisk in 2 tbsp of margarine", 
+  "Pour into clean bowl and immediately cover with plastic wrap, with a few holes poked through", 
+  "Refridgerate for 2 hours before using", 
+  "Beat or whisk custard before using to remove any lumps", 
+  "Assembly",
+  "Place custard on crust then add fruit"
+))
+recipes[["Fruit Tart"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # suon or thit ram
 ingredients = list(
