@@ -1,9 +1,51 @@
+# Recipes
+# Date: July 2017
+# Author: Jenny Nguyen
+# Email: jennifernguyen1992@gmail.com
 
-# initiate
-library(jn.general)
-lib(data)
 recipes = list()
 
+###################
+# salad
+ingredients = list(
+  Other = c("sugar", "apple cider vinegar", "salt", "pepper"),
+  Meat = "",
+  Veggies = c("yellow onion", "lettuce"),
+  Fruit = c("tomato")
+)
+instructions = data.frame(Instructions = c(
+  "In a small bowl, mix sugar, apple cider vinegar, sliced yellow onion, and pinch of black pepper", 
+  "Mix, taste, and adjust to liking", 
+  "Slice tomatoes and sprinkle with salt and sugar", 
+  "Cut lettuce to bite-sided pieces", 
+  "Mix tomatoes, lettuce and sauce", 
+  "Serve with rice and a meat dish"
+))
+recipes[["Salad"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# pad thai
+ingredients = list(
+  Other = c("sugar", "fish sauce", "tamarind concentrate", "noodles"),
+  Meat = c("any", "eggs"),
+  Veggies = c("any", "shallots", "garlic"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Soak the noodles in warm water", 
+  "Make the sauce by nearly boiling 3:1:1 ratio of sugar, fish sauce, tamarind concentrate", 
+  "Fry half of the shallots and garlic on medium heat", 
+  "Cook the meats on medium", 
+  "Once meats done cooking, remove them from the heat and place aside", 
+  "Fry the second half of the shallots and garlic", 
+  "Add the noodles to the pan and stir around with a little water", 
+  "Stir in a bit of the sauce", 
+  "Make some room in the pan, sprinkle oil and eggs", 
+  "Scramble the eggs and mix in with the noodles", 
+  "Stir in the rest of the sauce", 
+  "Mix in the meats and veggies", 
+  "Let sit for few minutes to finish cooking"
+))
+recipes[["Pad Thai"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # fruit tart
 ingredients = list(
@@ -13,25 +55,25 @@ ingredients = list(
   Fruit = c("any")
 )
 instructions = data.frame(Instructions = c(
-  "Crust", 
-  "Finely crush about graham crackers", 
-  "Stir 1.5 cups graham cracker crumbs, 0.25 cup sugar, 0.5 tsp cinnamon and pinch of salt in large bowl", 
-  "Stir in 6 tbsp of melted margarine", 
-  "Ensure that the mixture has consistency of cookie dough (not too dry or wet)", 
+  "Crust",
+  "Finely crush about graham crackers",
+  "Stir 1.5 cups graham cracker crumbs, 0.25 cup sugar, 0.5 tsp cinnamon and pinch of salt in large bowl",
+  "Stir in 6 tbsp of melted margarine",
+  "Ensure that the mixture has consistency of cookie dough (not too dry or wet)",
   "Press mixture to bottom of muffin pan with hands",
   "Freeze for 1 hour or bake at 325 degrees for 10 min then cool before filling",
   "Pastry Cream",
-  "Mix together 0.25 cups of sugar and 3 eggs", 
-  "Add 2 tbsp flour and 2 tbsp cornstarch", 
-  "Mix to you get a smooth paste", 
-  "In a saucepan, add 1.25 cups whole milk and 1 tsp vanilla extract and bring to just boiling", 
-  "Remove milk mixture and slowly add to egg mixture, whisking constantly to prevent curdling", 
-  "Pour egg mixture into saucepan and cook over medium heat until boiling, whisking constantly", 
-  "When it boils, whisk mixture constantly for a minute until it becomes thick", 
-  "Remove from heat and whisk in 2 tbsp of margarine", 
-  "Pour into clean bowl and immediately cover with plastic wrap, with a few holes poked through", 
-  "Refridgerate for 2 hours before using", 
-  "Beat or whisk custard before using to remove any lumps", 
+  "Mix together 0.25 cups of sugar and 3 eggs",
+  "Add 2 tbsp flour and 2 tbsp cornstarch",
+  "Mix to you get a smooth paste",
+  "In a saucepan, add 1.25 cups whole milk and 1 tsp vanilla extract and bring to just boiling",
+  "Remove milk mixture and slowly add to egg mixture, whisking constantly to prevent curdling",
+  "Pour egg mixture into saucepan and cook over medium heat until boiling, whisking constantly",
+  "When it boils, whisk mixture constantly for a minute until it becomes thick",
+  "Remove from heat and whisk in 2 tbsp of margarine",
+  "Pour into clean bowl and immediately cover with plastic wrap, with a few holes poked through",
+  "Refridgerate for 2 hours before using",
+  "Beat or whisk custard before using to remove any lumps",
   "Assembly",
   "Place custard on crust then add fruit"
 ))
@@ -45,15 +87,15 @@ ingredients = list(
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-  "Cut pork spare ribs (suon) into squares or pork belly into slices", 
-  "Marinate meat with salt, pepper, and minced shallots", 
-  "Fry meat on medium high heat with thin layer of oil until brown", 
-  "Once meat is mostly cooked, turn heat down to medium low", 
-  "Add 2.5 spoons of sugar", 
-  "Add a solution of 3:4 ratio of soy sauce to water", 
-  "Sprinkle in a little bit of corn starch", 
-  "Turn heat down to low", 
-  "Add in sliced yellow onion and chopped green onions", 
+  "Cut pork spare ribs (suon) into squares or pork belly into slices",
+  "Marinate meat with salt, pepper, and minced shallots",
+  "Fry meat on medium high heat with thin layer of oil until brown",
+  "Once meat is mostly cooked, turn heat down to medium low",
+  "Add 2.5 spoons of sugar",
+  "Add a solution of 3:4 ratio of soy sauce to water",
+  "Sprinkle in a little bit of corn starch",
+  "Turn heat down to low",
+  "Add in sliced yellow onion and chopped green onions",
   "Wait a few minutes to fully cook"
 ))
 recipes[["Suon or Thit Ram"]] = list(ingredients = ingredients, instructions = instructions)
@@ -66,10 +108,10 @@ ingredients = list(
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-  "Heat minced garlic in pan with oil", 
-  "Add green beans and mushrooms", 
-  "Add small bowl of water", 
-  "Sprinkle in salt, pepper, mushroom seasoning or hoisin sauce", 
+  "Heat minced garlic in pan with oil",
+  "Add green beans and mushrooms",
+  "Add small bowl of water",
+  "Sprinkle in salt, pepper, mushroom seasoning or hoisin sauce",
   "Let cook until beans and mushrooms have softened"
 ))
 recipes[["Fried Green Beans and Mushrooms"]] = list(ingredients = ingredients, instructions = instructions)
@@ -82,13 +124,13 @@ ingredients = list(
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-  "Extract crab meat from the body", 
-  "Add 1 egg to crab", 
-  "Add a spoonful of mayo and a pinch of salt", 
-  "Mix in bread crumbs", 
-  "Put in fridge for half hour", 
-  "Form patties and cover with bread crumbs", 
-  "Fry crab cakes carefully", 
+  "Extract crab meat from the body",
+  "Add 1 egg to crab",
+  "Add a spoonful of mayo and a pinch of salt",
+  "Mix in bread crumbs",
+  "Put in fridge for half hour",
+  "Form patties and cover with bread crumbs",
+  "Fry crab cakes carefully",
   "Place in sandwich bun"
 ))
 recipes[["Crab Cake"]] = list(ingredients = ingredients, instructions = instructions)
@@ -103,7 +145,7 @@ ingredients = list(
 instructions = data.frame(Instructions = c(
   "Mix nuoc mam, sugar and water at a 1:1:4 ratio",
   "Add a tiny amount of vinegar",
-  "Adjust taste as necessary", 
+  "Adjust taste as necessary",
   "Mix in minced garlic"
 ))
 recipes[["Nuoc Mam"]] = list(ingredients = ingredients, instructions = instructions)
@@ -116,13 +158,14 @@ ingredients = list(
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-  "Mince shallots and garlic", 
+  "Mince shallots and garlic",
   "Cut catfish approximately 3 in long",
-  "Marinate fish in salt, pepper, shallots, and garlic", 
-  "Let fish sit for half hour", 
-  "Fry fish on medium high heat with thin layer of oil", 
-  "Flip fish and fry other side on medium low heat", 
-  "Let sit for a few minutes to fully cook"
+  "Marinate fish in salt, pepper, shallots, and garlic",
+  "Let fish sit for half hour",
+  "Fry fish on medium high heat with thin layer of oil",
+  "Flip fish and fry other side on medium low heat",
+  "Let sit for a few minutes to fully cook",
+  "Eat with nuoc mam"
 ))
 recipes[["Ca Chien (Fried Fish)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
@@ -204,7 +247,7 @@ instructions = data.frame(Instructions = c(
   "Stir and add oyster sauce",
   "Stir for a few minutes"
 ))
-recipes[["Rau Muong Toi (Spinach Stir Fry)"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Rau Muong Xao Toi (Spinach Stir Fry)"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # stir fried tofu
 ingredients = list(
@@ -272,7 +315,7 @@ instructions = data.frame(Instructions = c(
 	"Heat yellow onion and tomatoes in pot on medium heat with sprinkle of oil",
 	"When tomatoes have softened, add 1 bowl of water",
 	"Add cilantro, green onions, dill",
-	"Add tofu (fried if desired), pork chops, or cha ca", 
+	"Add tofu (fried if desired), pork chops, or cha ca",
 	"Add 2 packs of wonton soup base",
 	"Simmer for 15 minutes"
 ))
@@ -509,73 +552,4 @@ instructions = data.frame(Instructions = c(
   "Take out and sprinkle with salt"
 ))
 recipes[["Sweet Potato Fries"]] = list(ingredients = ingredients, instructions = instructions)
-
-#################################################################################################################################
-
-# for proper display of ingredients
-recipes <- map(recipes, function(x){
-  m <- max(map_int(x$ingredients, length))
-  x$display_ingredients <- map(x$ingredients, function(x) c(x, rep("", m - length(x)))) %>% as.data.frame()
-  return(x)
-})
-
-# for uploading the images
-for(n in names(recipes)){
-
-  pics <- list.files("figure/food/", pattern = n %>% str_replace(" \\(.*", ""))
-  recipes[[n]]$pics <- pics %>% str_subset("JPG") # can i handle movies?
-
-}
-
-# save recipes into a file
-save(recipes, file = "_source/data/recipes.Rdata")
-save(recipes, file = "~/Desktop/recipe_finder/recipes.Rdata")
-
-# generate recipe files
-make_script <- function(i){
-  dish <- names(recipes)[i]
-  pic <- recipes[[i]]$pics %>%
-    paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>%
-    paste(collapse = "\n\n")
-  pic <- ifelse(length(recipes[[i]]$pics) == 0, "", pic)
-
-  script <- c("---
-layout: post
-title: \"", dish, "\"
-date: \"May 15, 2017\"
-categories: ['recipes']
----
-
-* TOC
-{:toc}
-
-```{r, echo = FALSE, warning = FALSE}
-library(jn.general)
-lib(data)
-load('data/recipes.Rdata')
-current <- recipes[['", dish, "']]
-```
-
-", pic,"
-
-**Ingredients**
-
-```{r, echo = FALSE}
-current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttab\\\"\")
-```
-
-<br>
-
-**Instructions**
-
-```{r, echo = FALSE}
-current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
-```
-") %>% paste(collapse = "")
-  file_name <- paste0("_source/2017-05-15-", dish %>% str_replace_all(" ", "-"), ".Rmd")
-  write(script, file = file_name)
-  return(script)
-}
-
-map(1:length(recipes), make_script)
 

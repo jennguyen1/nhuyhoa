@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ca Chien (Fried Fish)"
+title: "Rau Muong Xao Toi (Spinach Stir Fry)"
 date: "May 15, 2017"
 categories: ['recipes']
 ---
@@ -10,7 +10,7 @@ categories: ['recipes']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Ca Chien.JPG)
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Rau Muong Xao Toi.JPG)
 
 **Ingredients**
 
@@ -26,18 +26,24 @@ categories: ['recipes']
 <tbody>
   <tr>
    <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;"> catfish </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> spinach </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> pepper </td>
+   <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> nuoc mam </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> oyster sauce </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -57,28 +63,19 @@ categories: ['recipes']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Mince shallots and garlic </td>
+   <td style="text-align:left;"> Heat chopped garlic on medium heat with a little oil </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cut catfish approximately 3 in long </td>
+   <td style="text-align:left;"> Add a lot of spinach (a lot, will shrink) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Marinate fish in salt, pepper, shallots, and garlic </td>
+   <td style="text-align:left;"> Stir and add salt, sugar, nuoc mam </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Let fish sit for half hour </td>
+   <td style="text-align:left;"> Stir and add oyster sauce </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fry fish on medium high heat with thin layer of oil </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Flip fish and fry other side on medium low heat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Let sit for a few minutes to fully cook </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Eat with nuoc mam </td>
+   <td style="text-align:left;"> Stir for a few minutes </td>
   </tr>
 </tbody>
 </table>
