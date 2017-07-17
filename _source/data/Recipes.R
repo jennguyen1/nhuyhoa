@@ -1,4 +1,4 @@
-# Recipes
+# Recipes - database
 # Date: July 2017
 # Author: Jenny Nguyen
 # Email: jennifernguyen1992@gmail.com
@@ -14,11 +14,11 @@ ingredients = list(
   Fruit = c("tomato")
 )
 instructions = data.frame(Instructions = c(
-  "In a small bowl, mix sugar, apple cider vinegar, sliced yellow onion, and pinch of black pepper", 
-  "Mix, taste, and adjust to liking", 
-  "Slice tomatoes and sprinkle with salt and sugar", 
-  "Cut lettuce to bite-sided pieces", 
-  "Mix tomatoes, lettuce and sauce", 
+  "In a small bowl, mix sugar, apple cider vinegar, sliced yellow onion, and pinch of black pepper",
+  "Mix, taste, and adjust to liking",
+  "Slice tomatoes and sprinkle with salt and sugar",
+  "Cut lettuce to bite-sided pieces",
+  "Mix tomatoes, lettuce and sauce",
   "Serve with rice and a meat dish"
 ))
 recipes[["Salad"]] = list(ingredients = ingredients, instructions = instructions)
@@ -31,18 +31,18 @@ ingredients = list(
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-  "Soak the noodles in warm water", 
-  "Make the sauce by nearly boiling 3:1:1 ratio of sugar, fish sauce, tamarind concentrate", 
-  "Fry half of the shallots and garlic on medium heat", 
-  "Cook the meats on medium", 
-  "Once meats done cooking, remove them from the heat and place aside", 
-  "Fry the second half of the shallots and garlic", 
-  "Add the noodles to the pan and stir around with a little water", 
-  "Stir in a bit of the sauce", 
-  "Make some room in the pan, sprinkle oil and eggs", 
-  "Scramble the eggs and mix in with the noodles", 
-  "Stir in the rest of the sauce", 
-  "Mix in the meats and veggies", 
+  "Soak the noodles in warm water",
+  "Make the sauce by nearly boiling 3:1:1 ratio of sugar, fish sauce, tamarind concentrate",
+  "Fry half of the shallots and garlic on medium heat",
+  "Cook the meats on medium",
+  "Once meats done cooking, remove them from the heat and place aside",
+  "Fry the second half of the shallots and garlic",
+  "Add the noodles to the pan and stir around with a little water",
+  "Stir in a bit of the sauce",
+  "Make some room in the pan, sprinkle oil and eggs",
+  "Scramble the eggs and mix in with the noodles",
+  "Stir in the rest of the sauce",
+  "Mix in the meats and veggies",
   "Let sit for few minutes to finish cooking"
 ))
 recipes[["Pad Thai"]] = list(ingredients = ingredients, instructions = instructions)
@@ -304,22 +304,39 @@ instructions = data.frame(Instructions = c(
 ))
 recipes[["Bo Bia"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
-# tofu tomato soup
+# Canh cha ca
 ingredients = list(
-  Other = c("wonton soup base"),
-  Meat = c("tofu", "pork ribs tips", "Lee's Seafood Co cha ca dac biet fish paste"),
-  Veggies = c("green onions", "yellow onion", "cilantro", "dill"),
+  Other = c("wonton soup base", "nuoc mam pha"),
+  Meat = c("Lee's Seafood Co cha ca dac biet fish paste"),
+  Veggies = c("green onions", "yellow onion", "shallots", "dill"),
   Fruit = c("tomato")
 )
 instructions = data.frame(Instructions = c(
-	"Heat yellow onion and tomatoes in pot on medium heat with sprinkle of oil",
+  "Heat yellow onion, shallots, and tomatoes in pot on medium heat with sprinkle of oil",
+  "When tomatoes have softened, add 1 bowl of water",
+  "Add cha ca",
+  "Add green onions and dill",
+  "Add 2 packs of wonton soup base and nuoc mam pha",
+  "Simmer for 15 minutes"
+))
+recipes[["Canh Cha Ca"]] = list(ingredients = ingredients, instructions = instructions)
+###################
+# tofu tomato soup
+ingredients = list(
+  Other = c("wonton soup base", "nuoc mam pha"),
+  Meat = c("tofu", "pork ribs tips"),
+  Veggies = c("green onions", "yellow onion", "shallots", "cilantro"),
+  Fruit = c("tomato")
+)
+instructions = data.frame(Instructions = c(
+	"Heat yellow onion, shallots, and tomatoes in pot on medium heat with sprinkle of oil",
 	"When tomatoes have softened, add 1 bowl of water",
-	"Add cilantro, green onions, dill",
+	"Add cilantro, green onions, etc",
 	"Add tofu (fried if desired), pork chops, or cha ca",
-	"Add 2 packs of wonton soup base",
+	"Add 2 packs of wonton soup base and nuoc mam pha",
 	"Simmer for 15 minutes"
 ))
-recipes[["Tomato Soup"]] = list(ingredients = ingredients, instructions = instructions)
+recipes[["Tofu Tomato Soup"]] = list(ingredients = ingredients, instructions = instructions)
 ###################
 # tofu tomato sauce
 ingredients = list(
