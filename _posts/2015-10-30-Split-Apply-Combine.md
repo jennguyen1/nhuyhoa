@@ -9,11 +9,6 @@ categories: ['data wrangling']
 {:toc}
 
 
-{% highlight text %}
-## Warning in `[.data.table`(., , `:=`((args), TRUE), with = FALSE):
-## with=FALSE ignored, it isn't needed when using :=. See ?':=' for
-## examples.
-{% endhighlight %}
 
 Obtaining summary statistics for a given group can be done using the general process:
 
