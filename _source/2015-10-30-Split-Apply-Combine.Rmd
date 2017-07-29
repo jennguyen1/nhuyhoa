@@ -11,7 +11,7 @@ categories: ['data wrangling']
 ```{r, echo = FALSE}
 library(jn.general)
 lib(data, model)
-options(digits = 4) 
+options(digits = 4)
 ```
 
 Obtaining summary statistics for a given group can be done using the general process:
