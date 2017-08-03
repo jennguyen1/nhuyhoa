@@ -278,6 +278,9 @@ NAME[index]=value
 
 # set environmental vars so child processes can inherit
 export VAR2="value2"
+
+# set variable to be parent directory of current bash script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ```
 
 **Call Variables:**
