@@ -14,6 +14,7 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 
 # Generic Commands
 
+* `alias x='cmd'; x` to save a series of commands under a different name
 * `|` to chain commands
 * `xargs` reads items from standard input delimited by blanks and executes command multiple times
 * `>` or `>>` divert all output to a file
@@ -253,31 +254,6 @@ echo script | mail -s "subject line" email_address
 
 # Shell Scripting
 
-A shell script is a file containing lines for the shell to execute. Everything that can be done on the command line can be put into a shell script. Shell scripts should be relatively short. Longer scripts can be written using other languages and then run using a few lines of a shell script.
-
-**Start scripts with the statement:**
-
-
-{% highlight r %}
-#!/bin/sh
-#!/bin/bash
-{% endhighlight %}
-The rest of the script can be populated with a list of commands or comments (#). 
-
-**Execute script:**
-
-
-{% highlight r %}
-# using source
-source script_name
-
-# using bash
-bash script_name
-
-# using sh
-sh script_name
-{% endhighlight %}
-
 ## Variables
 
 **Setting Variables:**
@@ -313,20 +289,6 @@ cmd ${NAME[@]}
 cmd ${#VAR[@]}
 {% endhighlight %}
 
-**View and Remove Variables:**
-
-
-{% highlight r %}
-# view list of variables
-set
-
-# remove variable
-unset VAR
-
-# remove array element
-unset NAME[3]
-{% endhighlight %}
-
 **Substitution Operators:**
 
 If the variable is not set:
@@ -356,49 +318,6 @@ echo ${STR:6:5}
 echo ${STR%name}
 {% endhighlight %}
 
-## Passing Parameters to Scripts
-
-**Call a Script:**
-
-
-{% highlight r %}
-script_name param1 param2 param3
-{% endhighlight %}
-
-**Access Parameters in Script:**
-
-* The first argument is `${1}`, the second `${2}`, and so on
-* The name of the script is accessed with `${0}`
-* If the argument is not specified, the shell takes it in as `null`
-* The number of arguments: `$#`
-* Access all arguments at once: `#@`
-
-## Input/Output of Data
-
-
-{% highlight r %}
-# input data
-to_file < from_file
-
-# input user data
-read var1 var2 var3
-read -p "a message for you:" var1
-
-# input user data as passwords
-stty -echo
-read password1
-stty echo
-
-# output data
-from_file > to_file
-
-# append data
-from_file >> to_file
-
-# output error emssages
-program_with_error 2> to_file
-{% endhighlight %}
-
 ## Doing Math
 
 {% highlight r %}
@@ -411,7 +330,7 @@ echo $((5+3))
 {% endhighlight %}
 
 
-## If/Else
+## Conditions
 
 
 {% highlight r %}
@@ -450,174 +369,7 @@ echo $((5+3))
 [ oldfile.txt -ot newfile.txt ]; echo $?
 {% endhighlight %}
 
-**Format for if/else**
-
-{% highlight r %}
-if cmd; then
-  # stuff
-elif cmd; then
-  # stuff
-else
-    # stuff
-fi
-{% endhighlight %}
-
-
-{% highlight r %}
-# example
-if [ ${value} -eq 1 ] || [ ${value} -eq 2 ]; then
-  echo "1 or 2"
-elif [ ${value} -gt 5 ]; then
-  echo "greater than 5"
-else
-  echo "something else"
-fi
-{% endhighlight %}
-
-**Format for switch statements**
-
-{% highlight r %}
-case ${var} in 
-  options)
-    # stuff
-    ;;
-  options)
-    # stuff
-    ;;
-esac
-{% endhighlight %}
-
-
-{% highlight r %}
-# example
-case ${value} in 
-  [aeiouAEIOU]*)
-    echo "your name starts with a vowel!"
-  ;;
-  0|9)
-    echo "where does your name start with 0 or 9?"
-  ;;
-  [1-9]*) 
-    echo "actually why are there even numbers in a name?"
-  ;;
-  [a-zA-Z]*) 
-    echo "ok that's makes sense now"
-  ;;
-esac
-{% endhighlight %}
-
-## Loops
-
-**For Loops**
-
-{% highlight r %}
-# loop through a list
-for var in list
-do
-  # stuff
-done
-
-# loop through numbers
-for (( i=1; i <=5; i++ ))
-do
-  # stuff
-done
-
-for i in $(seq 1 10)
-do
-  # stuff
-done
-
-# loop through sequence by 
-for i in $(seq 1 2 22)
-do 
-  # stuff
-done
-{% endhighlight %}
-
-
-{% highlight r %}
-# example
-count=1
-for fruit in "apple" "orange" "banna"
-do
-  echo "I like to eat eat eat ${fruit}."
-  ((count=count+1))
-done
-
-# example: loop over arguments
-for i in $@
-do
-  # stuff
-done
-
-# example: loop over files
-for file in ./*
-do
-  # stuff
-done
-{% endhighlight %}
-
-**While and Until Loops**
-
-{% highlight r %}
-while [ condition ]
-do
-  # stuff
-done
-
-until [ condition ]
-  do 
-    # stuff
-done
-
-# loop of lines of a file
-while read l
-do
-  # stuff
-done < file_name.txt
-{% endhighlight %}
-
-**Control within Loops**
-
-* Skip to next iteration: `continue`
-* Exit loop: `break`
-
-## Functions and Aliasing
-
-**Aliasing**
-
-{% highlight r %}
-# save the shortcut
-alias shortcut="cd ~Desktop; nano temp.txt"
-
-# run shortcut
-shortcut
-
-# remove alias
-unalias shortcut
-
-# view list of aliases
-alias
-{% endhighlight %}
-
-**Functions**
-
-{% highlight r %}
-# declare functions
-function f{
-  echo $1
-  local var1='local1'
-  # stuff
-  return 5
-}
-
-# call function
-f hello
-{% endhighlight %}
-
-
-## Sed
+# Sed
 
 Sed is a command line tool to conduct regular expressions commands.
 
@@ -681,7 +433,7 @@ s/square/circle/g
 sed -f sed_script test.txt
 {% endhighlight %}
 
-## Awk
+# Awk
 Awk is a scripting language used for text extraction and processing. 
 
 
@@ -692,8 +444,8 @@ ls -l | awk '{print "my username is " $3}'
 # choose rows where col 3 larger than col 5
 awk '$3>$5' input.txt > output.txt
 
-# extract col 2, 4, 5
-awk '{print $2, $4, $5}' input.txt
+# extract col 2, 4, 5, last col - 1, last col
+awk '{print $2, $4, $5, $(NF-1), $NF}' input.txt
 
 # import simple csv
 awk -F , '{print $1, $2}'
@@ -706,9 +458,6 @@ awk 'BEGIN{OFS="\t"}{print $2, $4, $5}' input.txt
 
 # show rows between 20th and 80th rows (NR = row number)
 awk 'NR>=20&&NR<=80' input.txt
-
-# show number columns for each row (NF = field number)
-awk '{print NF}'
 
 # awk filter 2nd column that equals variable $t
 awk -v var=$t '($2==var){print}'
@@ -745,6 +494,10 @@ awk '!($2 in l){print;l[$2]=1}' input.txt
 
 # count different words
 awk '{for(i=1;i!=NF;++i)c[$i]++}END{for (x in c) print x,c[x]}' input.txt
+
+# match multiple values on col 2
+POSes="1 2 3"
+awk -v POSes="$POSes" 'BEGIN{ split(POSes,tmp); for (i in tmp) poses[tmp[i]] } $2 in poses{ print $0 }' input.txt
 {% endhighlight %}
 
 
@@ -785,57 +538,5 @@ END{
 awk -f awk_script.awk test.txt
 {% endhighlight %}
 
-# Using Other Languages from Command Line
-
-## R
-
-To find the location of R, use the following commands
-
-
-{% highlight r %}
-which R
-which Rscript
-{% endhighlight %}
-
-R scripts can be run using the following commands
-
-
-{% highlight r %}
-# run R directly from command line (after install properly - use homebrew)
-R
-
-# run; script; output results to command line
-Rscript script.R
-
-# run script; output results to specified file
-R CMD BATCH -q script.R myfile.txt
-
-# run script with arguments
-R CMD BATCH '--args -c=4 --mean=4' in_file.R out_file.out
-Rscript in_file.R -c=4 --mean=4 >> output
-{% endhighlight %}
-
-For more information on running R in command line, see the [R post][R_post]{:arget = "_blank"}.
-
-## Python
-
-Python scripts can be run using the following commands
-
-
-{% highlight r %}
-# run a command directly in command line
-python -c "print range(3); print 'hi'"
-
-# run a python script
-python script.py arg1 arg2
-
-# run a python script and save to specified file
-python script.py arg1 arg2 >> myfile.txt
-{% endhighlight %}
-
-For more information on running python in command line, see the [Python post][python_post]{:target = "_blank"}. 
-
 [linux_ref]: https://drive.google.com/file/d/0B5VF_idvHAmMeXJRRWdFTFQzMEU/view?usp=sharing
-[python_post]: http://jnguyen92.github.io/nhuyhoa//2016/03/Python-Basics.html#command-line-arguments
-[R_post]: http://jnguyen92.github.io/nhuyhoa//2015/07/R-Basics.html#command-line-arguments
 [ssh_login]: http://www.linuxproblem.org/art_9.html
