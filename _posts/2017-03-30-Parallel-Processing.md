@@ -14,7 +14,29 @@ However, parallel processing is only recommended for time-consuming tasks. With 
 
 # In R
 
-For parallel processing in R, the `plyr` and `doParallel` packages are needed.
+For parallel processing in R, the `parallel`.
+
+{% highlight r %}
+# load library
+library(parallel)
+
+# find out max # cores you can use
+detectCores()
+
+# generate clusters - n = # of clusters
+cl <- makeCluster(n)
+
+# push functions/vars to clusters
+clusterExport(cl = cl, varlist = c("function1", "var1"))
+
+# use plyr to run in parallel
+parLapply(cl = cl, X, fun)
+
+# close clusters
+stopCluster(cl)
+{% endhighlight %}
+
+Another option is to use the `plyr` and `doParallel` packages.
 
 {% highlight r %}
 # load library
@@ -40,7 +62,7 @@ stopCluster(cl)
 
 Think of each core as its own separate "R session", in that it will only have information passed to it from the function. The cores will not have access to variables and packages that have been loaded in the current environment. Thus it is best to provide the function with all necessary objects (as parameters) and provide all necessary packages in the `.paropts` argument. 
 
-Note that this is one of many ways to run parallel processing in R. 
+Note that these are two of many ways to run parallel processing in R. 
 
 # In Python
 
