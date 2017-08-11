@@ -170,8 +170,14 @@ A few functions include
 # Useful Modules
 
 * Create iterators: [Itertools][itertools_link]{:target = "_blank"}
-* Data analysis: [Pandas][pandas_link]{:target = "_blank"}
 * Statistical models: [Scikit Learn][scikitlearn_link]{:target = "_blank"}
+
+## Pandas
+
+The module `pandas` provides the ability to work with data frames. 
+
+* [Pandas][pandas_link]{:target = "_blank"} 
+* [Pandas_Cheatsheet][pandas_cheatsheet]{:target = "_blank"}
 
 ## Numpy 
 
@@ -273,4 +279,5 @@ The module also has functions for moments, expectations, and MLE.
 [itertools_link]: https://docs.python.org/2/library/itertools.html
 [scipy_link]: http://docs.scipy.org/doc/scipy/reference/stats.html
 [pandas_link]: http://pandas.pydata.org/
+[Pandas_Cheatsheet]: https://drive.google.com/file/d/0B5VF_idvHAmMV0dTNFpyQU9Udnc/view?usp=sharing
 [scikitlearn_link]: http://scikit-learn.org/stable/
