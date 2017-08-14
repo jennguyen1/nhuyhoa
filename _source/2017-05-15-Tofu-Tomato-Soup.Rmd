@@ -2,7 +2,7 @@
 layout: post
 title: "Tofu Tomato Soup"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC

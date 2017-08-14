@@ -3,10 +3,12 @@ layout: page
 title: Recipes
 permalink: /recipes/
 ---
+
+<h1 style = "padding-top:0;">Entrees</h1>
 <section>
     <table>
         {% for post in site.posts reversed %}
-            {% if post.categories contains 'recipes' %}
+            {% if post.categories contains 'recipes' and post.categories contains 'meal' %}
                 <tr>
                     <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
                 </tr>
@@ -16,3 +18,16 @@ permalink: /recipes/
 </section>
 
 <br />
+
+<h1 style = "padding-top:0;">Desserts</h1>
+<section>
+    <table>
+        {% for post in site.posts reversed %}
+            {% if post.categories contains 'recipes' and post.categories contains 'dessert' %}
+                <tr>
+                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+                </tr>
+            {% endif %}
+       {% endfor %}
+    </table>
+</section>

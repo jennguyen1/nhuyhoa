@@ -2,7 +2,7 @@
 layout: post
 title: "Sweet Potato Fries"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'dessert']
 ---
 
 * TOC

@@ -2,7 +2,7 @@
 layout: post
 title: "Ca Chien (Fried Fish)"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC

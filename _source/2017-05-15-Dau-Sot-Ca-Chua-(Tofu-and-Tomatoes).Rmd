@@ -2,7 +2,7 @@
 layout: post
 title: "Dau Sot Ca Chua (Tofu and Tomatoes)"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC

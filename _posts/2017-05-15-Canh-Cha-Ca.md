@@ -2,7 +2,7 @@
 layout: post
 title: "Canh Cha Ca"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC
@@ -10,7 +10,7 @@ categories: ['recipes']
 
 
 
-
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh Cha Ca.JPG)
 
 **Ingredients**
 

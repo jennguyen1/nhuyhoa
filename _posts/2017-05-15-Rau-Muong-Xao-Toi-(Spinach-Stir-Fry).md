@@ -2,7 +2,7 @@
 layout: post
 title: "Rau Muong Xao Toi (Spinach Stir Fry)"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC

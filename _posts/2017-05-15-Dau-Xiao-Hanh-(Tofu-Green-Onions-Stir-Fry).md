@@ -2,7 +2,7 @@
 layout: post
 title: "Dau Xiao Hanh (Tofu Green Onions Stir Fry)"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC

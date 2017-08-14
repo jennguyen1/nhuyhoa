@@ -2,7 +2,7 @@
 layout: post
 title: "Bap Cai Luoc (Cabbage and Egg Sauce)"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC

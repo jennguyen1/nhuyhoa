@@ -2,7 +2,7 @@
 layout: post
 title: "Canh Khoai Tay Suon (Taro and Pork Rib Soup)"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC

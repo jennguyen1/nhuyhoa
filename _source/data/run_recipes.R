@@ -15,15 +15,13 @@ recipes <- map(recipes, function(x){
   return(x)
 })
 
-# for uploading the images
+# find the picture(s) for the recipe
 for(n in names(recipes)){
-
   pics <- list.files("figure/food/", pattern = n %>% str_replace(" \\(.*", ""))
   recipes[[n]]$pics <- pics %>% str_subset("JPG") # can i handle movies?
-
 }
 
-# save recipes into a file
+# save recipes database into a file
 save(recipes, file = "_source/data/recipes.Rdata")
 save(recipes, file = "~/Desktop/recipe_finder/recipes.Rdata")
 
@@ -42,7 +40,7 @@ make_script <- function(i){
 layout: post
 title: \"", dish, "\"
 date: \"May 15, 2017\"
-categories: ['recipes']
+categories: ['recipes', '", recipes[[i]]$meal, "']
 ---
 
 * TOC

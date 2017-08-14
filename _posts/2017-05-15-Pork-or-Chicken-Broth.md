@@ -2,7 +2,7 @@
 layout: post
 title: "Pork or Chicken Broth"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'other']
 ---
 
 * TOC

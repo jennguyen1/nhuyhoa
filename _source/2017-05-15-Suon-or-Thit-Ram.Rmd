@@ -2,7 +2,7 @@
 layout: post
 title: "Suon or Thit Ram"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC

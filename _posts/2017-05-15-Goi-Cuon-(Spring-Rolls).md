@@ -2,7 +2,7 @@
 layout: post
 title: "Goi Cuon (Spring Rolls)"
 date: "May 15, 2017"
-categories: ['recipes']
+categories: ['recipes', 'meal']
 ---
 
 * TOC
