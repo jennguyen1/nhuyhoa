@@ -105,10 +105,10 @@ categories: ['recipes']
    <td style="text-align:left;"> Finely crush about graham crackers </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir 1.5 cups graham cracker crumbs, 0.25 cup sugar, 0.5 tsp cinnamon and pinch of salt in large bowl </td>
+   <td style="text-align:left;"> Stir 1 pack of graham cracker crumbs, 0.25 cup sugar, 0.5 tsp cinnamon and pinch of salt in large bowl </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in 6 tbsp of melted margarine </td>
+   <td style="text-align:left;"> Slowly stir in 5 tbsp of melted margarine </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Ensure that the mixture has consistency of cookie dough (not too dry or wet) </td>
@@ -123,16 +123,16 @@ categories: ['recipes']
    <td style="text-align:left;"> Pastry Cream </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix together 0.25 cups of sugar and 3 eggs </td>
+   <td style="text-align:left;"> Mix together 1 tbsp + 1 tsp of sugar and 1 egg </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add 2 tbsp flour and 2 tbsp cornstarch </td>
+   <td style="text-align:left;"> Add 2 tsp flour and 2 tsp cornstarch </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix to you get a smooth paste </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> In a saucepan, add 1.25 cups whole milk and 1 tsp vanilla extract and bring to just boiling </td>
+   <td style="text-align:left;"> In a saucepan, add 6 tbsp + 2 tsp whole milk and 0.33 tsp vanilla extract and bring to just boiling </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Remove milk mixture and slowly add to egg mixture, whisking constantly to prevent curdling </td>
@@ -144,7 +144,7 @@ categories: ['recipes']
    <td style="text-align:left;"> When it boils, whisk mixture constantly for a minute until it becomes thick </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Remove from heat and whisk in 2 tbsp of margarine </td>
+   <td style="text-align:left;"> Remove from heat and whisk in 2 tsp of margarine </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Pour into clean bowl and immediately cover with plastic wrap, with a few holes poked through </td>
