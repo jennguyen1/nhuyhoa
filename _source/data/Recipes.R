@@ -295,11 +295,11 @@ recipes[["Ga Chien (Fried Chicken)"]] = list(ingredients = ingredients, instruct
 ingredients = list(
   Other = c("mam tom"),
   Meat = "",
-  Veggies = c("spinach", "garlic"),
+  Veggies = c("spinach", "garlic", "shallots"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-  "Heat chopped garlic on medium heat with a little oil",
+  "Heat minced garlic and shallots on medium heat with a little oil",
   "Add a lot of spinach (a lot, will shrink), best to use water spinach (ong choy, rau muong)",
   "Stir in mam tom",
   "Stir for a few minutes"
