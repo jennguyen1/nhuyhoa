@@ -293,16 +293,15 @@ recipes[["Ga Chien (Fried Chicken)"]] = list(ingredients = ingredients, instruct
 ###################
 # stir fried spinach
 ingredients = list(
-  Other = c("salt", "sugar", "nuoc mam", "oyster sauce"),
+  Other = c("mam tom"),
   Meat = "",
   Veggies = c("spinach", "garlic"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
   "Heat chopped garlic on medium heat with a little oil",
-  "Add a lot of spinach (a lot, will shrink)",
-  "Stir and add salt, sugar, nuoc mam",
-  "Stir and add oyster sauce",
+  "Add a lot of spinach (a lot, will shrink), best to use water spinach (ong choy, rau muong)",
+  "Stir in mam tom",
   "Stir for a few minutes"
 ))
 recipes[["Rau Muong Xao Toi (Spinach Stir Fry)"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
