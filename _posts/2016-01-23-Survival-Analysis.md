@@ -41,6 +41,12 @@ Censoring may occur in several ways.
 * Subjects may be lost to followup - cannot be contacted
 * Subject withdraws consent and revokes participation
 
+There are several types of censoring.
+
+* **right truncation** - examples listed above
+* **interval censoring** - exact time of failure not observed, but rather two time points between which the event occurred (discrete survival times)
+* **left truncation** - delayed entry into the study, bias since subject must have lived long enough to enter at a later time
+
 # One Sample Survival Curves
 
 ## Kaplan-Meier Estimate of S(t)
@@ -172,36 +178,24 @@ summary(survival)
 Plot the survival curve. The marked positions are the censored data.
 
 {% highlight r %}
+# survminer::ggsurvplot(survival)
 ggsurv(survival)
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2016-01-23-Survival-Analysis/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
-{% highlight r %}
-# survminer::ggsurvplot(survival)
-{% endhighlight %}
-
 # Two Sample Survival Curves
 
-Survival analysis can compare survival functions in differen groups. If you followed both groups until everyone died, both survival curves would end at 0%, but one group might have survived on average a lot longer than the other group. Survival analysis does this by comparing the hazard at different times over the observation period. Survival analysis doesn't assume that the hazard is constant but does assume that the ratio of hazards between groups is constant over time. 
-
-Additional variables may be adjusted for using Cox regression (proportional hazards regression). It has the following form 
-
-$$\log(\lambda(t)) = \log(\lambda_0(t)) + \beta z + \beta_1 x_1 + ... + \beta_p x_p$$
-
-where $$z$$ is the treatment group and $$\beta$$ is the log hazard ratio and is independent of $$t$$.
-
-If you exponentiate both sides of the equation and limit the RHS to just a single categorical exposure variable with two groups, the equation becomes
-
-$$\lambda(t) = \lambda_0(t) + \exp{\beta z}$$
-
-Rearranging the equation lets you estimate the **hazard ratio**, comparing the exposed to the unexposed individuals at time t
-
-$$r = \frac{\lambda_1(t)}{\lambda_0(t)} = \frac{\lambda_0(t) \exp{\beta}}{\lambda_0(t)} = \exp{\beta}$$ 
-
-The model shows that the hazard ratio is $$\exp{\beta}$$ and remains constant over time t. The $$\beta$$ values represent the $$log(HR)$$ for each unit increase of a corresponding predictor variable. A positive $$\beta$$ indicates worse survival and a negative $$\beta$$ indicates better survival.
+Survival analysis can compare survival functions in different groups. If you followed both groups until everyone died, both survival curves would end at 0%, but one group might have survived on average a lot longer than the other group.
 
 ## Log Rank Test
+
+The log rank test has the following hypothesis to compare survival functions
+
+$$H_0: S_1(t) = S_2(t)$$
+
+$$H_1: S_1(t) \ne S_2(t)$$
+
 Consider small intervals around each survival time. At time $$t_k$$, the $$2x2$$ table
 
 Compute the log rank test (score test) to test the null hypothesis that $$H_0: \beta = 0$$. 
@@ -222,7 +216,8 @@ $$I(0) = \sum_k I_k(0)$$
 
 The test statistic is $$\frac{U(0)^2}{I(0)} \sim X^2_1$$
 
-## Weighted Log Rank Test
+**Weighted Log Rank Test**
+
 Failure times may also be weighted. Let $$w_k$$ be the weight for time $$t_k$$
 
 $$U^w(0) = \sum_k w_k U_k(0)$$
@@ -234,9 +229,43 @@ The test statistic is then $$\frac{U^w(0)^2}{I^w(0)} \sim X^2_1$$
 One option for weights is the Gehan-Wilcoxon method, where
 $$w_k = (n_{k0} + n_{k1})$$
 
-## Proportional Hazards Assumption
+## Cox Proportional Hazards Model
 
-The proportional hazard model (Cox regression) has an assumption of proportional hazards. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. This assumption may be evaluated in several ways
+The cox proportional hazards model compares the hazard at different times over the observation period. It doesn't assume that the hazard is constant but does assume that the ratio of hazards between groups is constant over time. 
+
+Additional variables may be adjusted for using Cox regression (proportional hazards regression). It has the following form 
+
+$$\log(\lambda(t)) = \log(\lambda_0(t)) + \beta z + \beta_1 x_1 + ... + \beta_p x_p$$
+
+where $$z$$ is the treatment group and $$\beta$$ is the log hazard ratio and is independent of $$t$$.
+
+If you exponentiate both sides of the equation and limit the RHS to just a single categorical exposure variable with two groups, the equation becomes
+
+$$\lambda(t) = \lambda_0(t)\exp{\beta z}$$
+
+Rearranging the equation lets you estimate the **hazard ratio**, comparing the exposed to the unexposed individuals at time $$t$$
+
+$$r = \frac{\lambda_1(t)}{\lambda_0(t)} = \frac{\lambda_0(t) \exp{\beta}}{\lambda_0(t)} = \exp{\beta}$$ 
+
+The model shows that the hazard ratio is $$\exp{\beta}$$ and remains constant over time $$t$$. The $$\beta$$ values represent the $$log(HR)$$ for each unit increase of a corresponding predictor variable. A positive $$\beta$$ indicates worse survival and a negative $$\beta$$ indicates better survival.
+
+**Stratified Analysis**
+
+Suppose there is variable $$G$$ with which one would like to stratify by. It would have the following form
+
+$$\log(\lambda(t)) = \log(\lambda_0(t))*G + \beta z + \beta_1 x_1 + ... + \beta_p x_p$$
+
+This means that each group would have its own model. <br>
+G1: $$\log(\lambda(t)) = \log(\lambda_{0,1}(t)) + \beta z + \beta_1 x_1 + ... + \beta_p x_p$$ <br>
+G2: $$\log(\lambda(t)) = \log(\lambda_{0,2}(t)) + \beta z + \beta_1 x_1 + ... + \beta_p x_p$$ 
+
+**Proportional Hazards Assumption**
+
+Recall that 
+
+$$\frac{\lambda_1(t)}{\lambda_0(t)} = \exp{\beta}$$ 
+
+The hazard ratio is not dependent on t. This naturally leads to proportional hazards assumption. In other words, the hazard for any individual is a fixed proportion of the hazard for any other individual. This assumption may be evaluated in several ways
 
 * Graph $$\log(\hat{\Lambda}(t))$$ vs. $$t$$ for each group, the assumption is satisfed if the shapes of the curves are similar and the separation between curves remain proportional across analysis time (parallel curves).
 * Test for a non-zero slope in a GLM regresion of the scaled Schoenfeld residuals on functions of time. A non-zero slope violates the proportional hazard assumption
@@ -251,14 +280,11 @@ Fit a survival function with two treatment groups
 s <- survfit(Surv(days, status) ~ treatment, data = data)
 
 # plot survival curves
+# survminer::ggsurvplot(s)
 ggsurv(s, cens.col = "black", xlab = "Days", main = "Survival by Treatment Group") + theme(legend.position = "bottom")
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2016-01-23-Survival-Analysis/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
-
-{% highlight r %}
-# survminer::ggsurvplot(s)
-{% endhighlight %}
 
 Fit the cox proportional hazards model and obtain the estimate for $$\beta$$ and the log rank statistic
 
