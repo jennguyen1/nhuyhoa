@@ -45,8 +45,7 @@ R | Python | Bash
 | **enumerate()** |
 
 
-
-TODO: **Bash List Examples**
+**Bash List Examples**
 
 * `$(seq start end by)`
 * `'a' 'b' 'c'`
@@ -176,7 +175,8 @@ pandas.to_csv()
 {% highlight bash %}
 from_file > to_file
 from_file >> to_file
-program_with_error 2> to_file
+from_file &> out_file
+from_file &>> out_file
 {% endhighlight %}
 
 # Interacting with Command Line
