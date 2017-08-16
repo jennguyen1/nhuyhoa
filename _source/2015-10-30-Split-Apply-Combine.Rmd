@@ -10,7 +10,7 @@ categories: ['data wrangling']
 
 ```{r, echo = FALSE}
 library(jn.general)
-lib(data, model)
+lib(data)
 options(digits = 4) 
 ```
 

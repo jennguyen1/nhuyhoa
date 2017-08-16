@@ -119,7 +119,7 @@ fits <- fitted(mod1) %>% data.frame
 fits$length <- gator$length
 
 # melt data for plotting
-plot_data <- melt(fits, "length")
+plot_data <- reshape2::melt(fits, "length")
 setnames(plot_data, c("variable", "value"), c("choice", "probability"))
 
 # find indices of choices

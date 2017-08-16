@@ -180,8 +180,8 @@ Let $$\alpha$$ be the FDR. Let $$k$$ be the largest $$i$$ for which $$p_{(i)} \l
 
 ```{r, echo = FALSE, warning = FALSE, fig.width = 10}
 set.seed(5)
-null <- raply(500, t.test(rnorm(100), rnorm(100))$p.value)
-non_null <- raply(250, t.test(rnorm(100), rnorm(100, 0.25))$p.value)
+null <- plyr::raply(500, t.test(rnorm(100), rnorm(100))$p.value)
+non_null <- plyr::raply(250, t.test(rnorm(100), rnorm(100, 0.25))$p.value)
 plot_data <- data.frame(i = 1:750, p.vals = sort(c(null, non_null)))
 g1 <- ggplot() + 
   geom_point(data = plot_data, aes(i, p.vals)) +
@@ -221,8 +221,8 @@ Consider the histogram of p-values testing samples with a combination of the sam
 
 ```{r, echo = FALSE}
 set.seed(5)
-null <- raply(500, t.test(rnorm(100), rnorm(100))$p.value)
-non_null <- raply(500, t.test(rnorm(100), rnorm(100, 0.4))$p.value)
+null <- plyr::raply(500, t.test(rnorm(100), rnorm(100))$p.value)
+non_null <- plyr::raply(500, t.test(rnorm(100), rnorm(100, 0.4))$p.value)
 
 plot_data <- data.frame(p.vals = c(null, non_null), type = c(rep("null", length(null)), rep("non-null", length(non_null))))
 plot_data$type <- reorder(plot_data$type, ifelse(plot_data$type == "null", 1, 2))

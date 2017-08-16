@@ -40,8 +40,8 @@ indp_data <- matrix(rnorm(n*p), n, p)
 colnames(indp_data) <- colnames(Y)
 rownames(indp_data) <- rownames(Y)
 
-y_plot <- melt(cor(Y))
-indp_plot <- melt(cor(indp_data))
+y_plot <- reshape2::melt(cor(Y))
+indp_plot <- reshape2::melt(cor(indp_data))
 
 
 plot_heatmap <- function(d, title = ""){

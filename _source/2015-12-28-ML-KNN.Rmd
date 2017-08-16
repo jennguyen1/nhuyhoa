@@ -10,7 +10,7 @@ categories: ['statistics', 'machine learning']
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(jn.general)
-lib(data, viz, model)
+lib(data, viz)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 library(class)
 ```
@@ -159,7 +159,7 @@ pred <- knn(train[, 1:4], test[, 1:4], train$Species, k = 3)
 # cross-tab results
 plot_table <- table(pred, test$Species) %>% 
   data.frame %>% 
-  dcast(pred ~ Var2, value.var = "Freq") 
+  reshape2::dcast(pred ~ Var2, value.var = "Freq") 
 
 rownames(plot_table) <- plot_table$pred
 plot_table$pred <- NULL
