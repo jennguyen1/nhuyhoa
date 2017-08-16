@@ -236,11 +236,12 @@ if __name__ == '__main__':
 {% highlight bash %}
 echo 'number of arguments:'$#
 echo 'all arguments:'$@
+echo 'all arguments:'$*
 echo 'script name:'$0
 echo 'first arg:'$1
 echo 'second arg:'$2
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR=$( cd "$( dirname $0 )
 echo 'dir of script:'${DIR}
 {% endhighlight %}
 
