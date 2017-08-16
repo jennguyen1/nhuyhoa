@@ -77,7 +77,7 @@ class myClass():
   self.x = x # public variable
   self.__position = (x,y) # private variable
 
-  # DECLARE CLASS METHDS
+  # DECLARE CLASS METHODS
 
 # create an instance of myClass
 myobj = myClass(x, y)
@@ -241,7 +241,7 @@ echo 'script name:'$0
 echo 'first arg:'$1
 echo 'second arg:'$2
 
-DIR=$( cd "$( dirname $0 )
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 echo 'dir of script:'${DIR}
 {% endhighlight %}
 
