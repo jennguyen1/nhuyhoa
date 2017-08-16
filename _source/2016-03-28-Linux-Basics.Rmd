@@ -18,7 +18,7 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 * `|` to chain commands
 * `xargs` reads items from standard input delimited by blanks and executes command multiple times
 * `>` or `>>` divert all output to a file
-* `2>` diverte all errors to a file
+* `&>` or `&>>` diverts outputs & errors to a file
 
 ```{r, eval = FALSE}
 # example: delete all *.txt files
@@ -212,6 +212,7 @@ scp -rp file location.to.transfer
 ```{r, eval = FALSE}
 # add an & at the end of command
 sh filename.sh >> output.txt 2> err.txt &
+sh filename.sh &>> console.txt &
 
 # check on currently running background commands; for current user
 top
