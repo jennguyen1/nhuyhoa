@@ -18,7 +18,7 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 * `|` to chain commands
 * `xargs` reads items from standard input delimited by blanks and executes command multiple times
 * `>` or `>>` divert all output to a file
-* `2>` diverte all errors to a file
+* `&>` or `&>>` diverts outputs & errors to a file
 
 
 {% highlight r %}
@@ -226,6 +226,7 @@ scp -rp file location.to.transfer
 {% highlight r %}
 # add an & at the end of command
 sh filename.sh >> output.txt 2> err.txt &
+sh filename.sh &>> console.txt &
 
 # check on currently running background commands; for current user
 top
@@ -398,6 +399,9 @@ sed 's/heart/love/p' test.txt
 
 # example: different print modifier, prints original and edit
 sed 'p;s/heart/love/' test.txt
+
+# example: print out lines by number; -n suppresses printing of other lines
+sed -n '2,5p' test.txt
 
 # example: regex and backreferences
 sed 's/\([1-9]*\) \(#\)/ \2 \1/' test.txt

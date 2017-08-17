@@ -93,7 +93,7 @@ plot_data <- merge(grp, multi_level, by = c("county.name", "n"), suffixes = c("_
   reshape2::melt(id.vars = c("county.name", "jitter_n"), measure.vars = c("estimate_no.pooling", "std.error_no.pooling", "estimate_multilevel", "std.error_multilevel")) %>% 
   separate(variable, c("statistic", "type"), sep = "_") %>% 
   reshape2::dcast(county.name + jitter_n + type ~ statistic, value.var = "value") %>% 
-  mutate(temp = factor(type), type = reorder(temp, as.numeric(mapvalues(type, c("no.pooling", "multilevel"), 1:2))))
+  mutate(temp = factor(type), type = reorder(temp, as.numeric(plyr::mapvalues(type, c("no.pooling", "multilevel"), 1:2))))
 
 # plot data
 ggplot(data = plot_data, aes(x = jitter_n, xend = jitter_n, y = estimate - std.error, yend = estimate + std.error)) +

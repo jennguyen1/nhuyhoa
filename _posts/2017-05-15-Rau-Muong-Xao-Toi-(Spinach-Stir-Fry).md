@@ -25,27 +25,21 @@ categories: ['recipes', 'meal']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;"> mam tom </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> spinach </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> sugar </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> oyster sauce </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -63,16 +57,13 @@ categories: ['recipes', 'meal']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Heat chopped garlic on medium heat with a little oil </td>
+   <td style="text-align:left;"> Heat minced garlic and shallots on medium heat with a little oil </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a lot of spinach (a lot, will shrink) </td>
+   <td style="text-align:left;"> Add a lot of spinach (a lot, will shrink), best to use water spinach (ong choy, rau muong) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir and add salt, sugar, nuoc mam </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Stir and add oyster sauce </td>
+   <td style="text-align:left;"> Stir in mam tom </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir for a few minutes </td>

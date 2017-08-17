@@ -45,8 +45,7 @@ R | Python | Bash
 | **enumerate()** |
 
 
-
-TODO: **Bash List Examples**
+**Bash List Examples**
 
 * `$(seq start end by)`
 * `'a' 'b' 'c'`
@@ -78,7 +77,7 @@ class myClass():
   self.x = x # public variable
   self.__position = (x,y) # private variable
 
-  # DECLARE CLASS METHDS
+  # DECLARE CLASS METHODS
 
 # create an instance of myClass
 myobj = myClass(x, y)
@@ -176,7 +175,8 @@ pandas.to_csv()
 {% highlight bash %}
 from_file > to_file
 from_file >> to_file
-program_with_error 2> to_file
+from_file &> out_file
+from_file &>> out_file
 {% endhighlight %}
 
 # Interacting with Command Line
@@ -236,11 +236,12 @@ if __name__ == '__main__':
 {% highlight bash %}
 echo 'number of arguments:'$#
 echo 'all arguments:'$@
+echo 'all arguments:'$*
 echo 'script name:'$0
 echo 'first arg:'$1
 echo 'second arg:'$2
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 echo 'dir of script:'${DIR}
 {% endhighlight %}
 
