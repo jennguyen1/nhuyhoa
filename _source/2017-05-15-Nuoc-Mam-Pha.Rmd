@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Won Ton Soup (Mi Hoanh Thanh)"
+title: "Nuoc Mam Pha"
 date: "May 15, 2017"
-categories: ['recipes', 'meal']
+categories: ['recipes', 'other']
 ---
 
 * TOC
@@ -12,12 +12,10 @@ categories: ['recipes', 'meal']
 library(jn.general)
 lib(data)
 load('data/recipes.Rdata')
-current <- recipes[['Won Ton Soup (Mi Hoanh Thanh)']]
+current <- recipes[['Nuoc Mam Pha']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Won Ton Soup1.JPG)
 
-![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Won Ton Soup2.JPG)
 
 **Ingredients**
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Won Ton Fried"
+title: "Wonton Fried"
 date: "May 15, 2017"
 categories: ['recipes', 'meal']
 ---
@@ -10,7 +10,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Won Ton Fried.JPG)
+
 
 **Ingredients**
 
@@ -25,7 +25,7 @@ categories: ['recipes', 'meal']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> won ton wrappers </td>
+   <td style="text-align:left;"> wonton wrappers </td>
    <td style="text-align:left;"> ground pork </td>
    <td style="text-align:left;"> water chestnuts </td>
    <td style="text-align:left;">  </td>

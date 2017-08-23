@@ -25,7 +25,7 @@ categories: ['recipes', 'meal']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> fish sauce </td>
+   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;"> tofu </td>
    <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;"> tomato </td>

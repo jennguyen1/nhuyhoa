@@ -25,9 +25,9 @@ instructions = data.frame(Instructions = c(
 ))
 recipes[["7 Layer Bar"]] = list(ingredients = ingredients, instructions = instructions, meal = "dessert")
 ###################
-# won ton soup
+# wonton soup
 ingredients = list(
-  Other = c("won ton wrappers", "egg noodles", "won ton soup base", "salt", "pepper"),
+  Other = c("wonton wrappers", "egg noodles", "wonton soup base", "salt", "pepper"),
   Meat = c("chicken broth", "ground pork", "shrimp", "pork xa xiu"),
   Veggies = c("water chestnuts", "shallots", "green onions", "bok choy"),
   Fruit = ""
@@ -35,18 +35,18 @@ ingredients = list(
 instructions = data.frame(Instructions = c(
   "Make chicken broth according to chicken broth recipe (as an alternative mix 4 parts chicken broth to 1.5 part water and wonton soup base)",
   "Clean & cut up bok choy, green onions, xa xiu",
-  "Make won tons according to fried wonton recipe ",
-  "Add won tons to pot of boiling water, once it has floated to the surface cook for 2-3 more min",
+  "Make wontons according to fried wonton recipe ",
+  "Add wontons to pot of boiling water, once it has floated to the surface cook for 2-3 more min",
   "Cook egg noodle soup per instructions (boil for 2-3 min)",
-  "Assemble bowl with noodles, veggies, won tons and xa xiu",
+  "Assemble bowl with noodles, veggies, wontons and xa xiu",
   "Pour boiling broth into bowl",
   "Sprinkle with fried shallots"
 ))
-recipes[["Won Ton Soup (Mi Hoanh Thanh)"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
+recipes[["Wonton Soup (Mi Hoanh Thanh)"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
 ###################
 # potstickers
 ingredients = list(
-  Other = c("won ton wrappers", "salt", "pepper", "sugar", "soy sauce", "vinegar"),
+  Other = c("wonton wrappers", "salt", "pepper", "sugar", "soy sauce", "vinegar"),
   Meat = c("ground pork", "shrimp"),
   Veggies = c("water chestnuts", "shallots", "green onions"),
   Fruit = ""
@@ -62,7 +62,7 @@ instructions = data.frame(Instructions = c(
   "Ensure the meats inside are fully cooked before removing from pan",
   "To make the sauce, mix diluted soy sauce, bit of vinegar, pinch of sugar, bit of stir fried green onions"
 ))
-recipes[["Won Ton Fried"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
+recipes[["Wonton Fried"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
 ###################
 # salad
 ingredients = list(
@@ -83,14 +83,14 @@ recipes[["Salad"]] = list(ingredients = ingredients, instructions = instructions
 ###################
 # pad thai
 ingredients = list(
-  Other = c("sugar", "fish sauce", "tamarind concentrate", "noodles"),
+  Other = c("sugar", "nuoc mam", "tamarind concentrate", "noodles"),
   Meat = c("any", "eggs"),
   Veggies = c("any", "shallots", "garlic"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
   "Soak the noodles in warm water",
-  "Make the sauce by nearly boiling 3:1:1 ratio of sugar, fish sauce, tamarind concentrate",
+  "Make the sauce by nearly boiling 3:1:1 ratio of sugar, nuoc mam, tamarind concentrate",
   "Fry half of the shallots and garlic on medium heat",
   "Cook the meats on medium",
   "Once meats done cooking, remove them from the heat and place aside",
@@ -139,7 +139,7 @@ recipes[["Fruit Tart"]] = list(ingredients = ingredients, instructions = instruc
 ###################
 # suon or thit ram
 ingredients = list(
-  Other = c("salt", "pepper", "sugar", "soy sauce", "corn starch"),
+  Other = c("salt", "pepper", "sugar", "soy sauce", "cornstarch"),
   Meat = c("pork spare ribs", "pork belly"),
   Veggies = c("shallots", "yellow onion", "green onions"),
   Fruit = ""
@@ -151,7 +151,7 @@ instructions = data.frame(Instructions = c(
   "Once meat is mostly cooked, turn heat down to medium low",
   "Add 2.5 spoons of sugar",
   "Add a solution of 3:4 ratio of soy sauce to water",
-  "Sprinkle in a little bit of corn starch",
+  "Sprinkle in a little bit of cornstarch",
   "Turn heat down to low",
   "Add in sliced yellow onion and chopped green onions",
   "Wait a few minutes to fully cook"
@@ -193,7 +193,7 @@ instructions = data.frame(Instructions = c(
 ))
 recipes[["Crab Cake"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
 ###################
-# fish sauce
+# nuoc mam pha
 ingredients = list(
   Other = c("nuoc mam", "sugar", "water", "vinegar"),
   Meat = "",
@@ -206,7 +206,7 @@ instructions = data.frame(Instructions = c(
   "Adjust taste as necessary",
   "Mix in minced garlic"
 ))
-recipes[["Nuoc Mam"]] = list(ingredients = ingredients, instructions = instructions, meal = "other")
+recipes[["Nuoc Mam Pha"]] = list(ingredients = ingredients, instructions = instructions, meal = "other")
 ###################
 # fried fish
 ingredients = list(
@@ -327,7 +327,7 @@ recipes[["Dau Xiao Hanh (Tofu Green Onions Stir Fry)"]] = list(ingredients = ing
 ###################
 # spring rolls
 ingredients = list(
-  Other = c("Go Gai rice paper", "medium thick noodles", "housin sauce", "peanut butter", "salt"),
+  Other = c("Go Gai rice paper", "noodles", "hoisin sauce", "peanut butter", "salt"),
   Meat = c("pork belly", "jumbo shrimp"),
   Veggies = c("cucumber", "lettuce", "mint", "thai basil"),
   Fruit = ""
@@ -345,7 +345,7 @@ recipes[["Goi Cuon (Spring Rolls)"]] = list(ingredients = ingredients, instructi
 ###################
 # bo bia
 ingredients = list(
-  Other = c("Go Gai rice paper", "medium thick noodles", "housin sauce", "peanut butter"),
+  Other = c("Go Gai rice paper", "noodles", "hoisin sauce", "peanut butter"),
   Meat = c("chinese pork sausages", "eggs"),
   Veggies = c("cucumber", "lettuce", "mint", "thai basil"),
   Fruit = ""
@@ -397,7 +397,7 @@ recipes[["Tofu Tomato Soup"]] = list(ingredients = ingredients, instructions = i
 ###################
 # tofu tomato sauce
 ingredients = list(
-  Other = c("fish sauce"),
+  Other = c("nuoc mam"),
   Meat = c("tofu"),
   Veggies = c("green onions", "yellow onion"),
   Fruit = c("tomato")
@@ -415,7 +415,7 @@ recipes[["Dau Sot Ca Chua (Tofu and Tomatoes)"]] = list(ingredients = ingredient
 ###################
 # cabbage and egg
 ingredients = list(
-  Other = c("fish sauce"),
+  Other = c("nuoc mam"),
   Meat = c("eggs"),
   Veggies = c("cabbage"),
   Fruit = ""
@@ -423,7 +423,7 @@ ingredients = list(
 instructions = data.frame(Instructions = c(
 	"Hard boil egg for 15 min",
 	"Cut up and boil cabbage",
-	"Mash up egg and add fish sauce & water"
+	"Mash up egg and add nuoc mam & water"
 ))
 recipes[["Bap Cai Luoc (Cabbage and Egg Sauce)"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
 ###################

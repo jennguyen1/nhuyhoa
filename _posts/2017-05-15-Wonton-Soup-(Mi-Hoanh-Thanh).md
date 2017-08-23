@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Won Ton Soup (Mi Hoanh Thanh)"
+title: "Wonton Soup (Mi Hoanh Thanh)"
 date: "May 15, 2017"
 categories: ['recipes', 'meal']
 ---
@@ -10,9 +10,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Won Ton Soup1.JPG)
 
-![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Won Ton Soup2.JPG)
 
 **Ingredients**
 
@@ -27,7 +25,7 @@ categories: ['recipes', 'meal']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> won ton wrappers </td>
+   <td style="text-align:left;"> wonton wrappers </td>
    <td style="text-align:left;"> chicken broth </td>
    <td style="text-align:left;"> water chestnuts </td>
    <td style="text-align:left;">  </td>
@@ -39,7 +37,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> won ton soup base </td>
+   <td style="text-align:left;"> wonton soup base </td>
    <td style="text-align:left;"> shrimp </td>
    <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
@@ -77,16 +75,16 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Clean &amp; cut up bok choy, green onions, xa xiu </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Make won tons according to fried wonton recipe </td>
+   <td style="text-align:left;"> Make wontons according to fried wonton recipe </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add won tons to pot of boiling water, once it has floated to the surface cook for 2-3 more min </td>
+   <td style="text-align:left;"> Add wontons to pot of boiling water, once it has floated to the surface cook for 2-3 more min </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Cook egg noodle soup per instructions (boil for 2-3 min) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Assemble bowl with noodles, veggies, won tons and xa xiu </td>
+   <td style="text-align:left;"> Assemble bowl with noodles, veggies, wontons and xa xiu </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Pour boiling broth into bowl </td>

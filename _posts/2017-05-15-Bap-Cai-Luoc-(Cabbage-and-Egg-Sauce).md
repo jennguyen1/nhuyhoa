@@ -25,7 +25,7 @@ categories: ['recipes', 'meal']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> fish sauce </td>
+   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;"> eggs </td>
    <td style="text-align:left;"> cabbage </td>
    <td style="text-align:left;">  </td>
@@ -51,7 +51,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Cut up and boil cabbage </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mash up egg and add fish sauce &amp; water </td>
+   <td style="text-align:left;"> Mash up egg and add nuoc mam &amp; water </td>
   </tr>
 </tbody>
 </table>

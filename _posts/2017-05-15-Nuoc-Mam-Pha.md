@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Nuoc Mam"
+title: "Nuoc Mam Pha"
 date: "May 15, 2017"
 categories: ['recipes', 'other']
 ---

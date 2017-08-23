@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Nuoc Mam"
+title: "Wonton Fried"
 date: "May 15, 2017"
-categories: ['recipes', 'other']
+categories: ['recipes', 'meal']
 ---
 
 * TOC
@@ -12,7 +12,7 @@ categories: ['recipes', 'other']
 library(jn.general)
 lib(data)
 load('data/recipes.Rdata')
-current <- recipes[['Nuoc Mam']]
+current <- recipes[['Wonton Fried']]
 ```
 
 

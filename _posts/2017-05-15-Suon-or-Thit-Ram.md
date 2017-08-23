@@ -51,7 +51,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> corn starch </td>
+   <td style="text-align:left;"> cornstarch </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -89,7 +89,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Add a solution of 3:4 ratio of soy sauce to water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Sprinkle in a little bit of corn starch </td>
+   <td style="text-align:left;"> Sprinkle in a little bit of cornstarch </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Turn heat down to low </td>
