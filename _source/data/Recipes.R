@@ -19,7 +19,7 @@ instructions = data.frame(Instructions = c(
   "Evely pour on sweetened condensed milk over graham cracker layer",
   "Layer with coconut flakes, chocolate chips, butterscotch chips, and nuts",
   "Evenly press mixture down on milk",
-  "Bake for 25-30 min", 
+  "Bake for 25-30 min",
   "Cool and cut bars",
   "Store at room temp"
 ))
@@ -28,12 +28,12 @@ recipes[["7 Layer Bar"]] = list(ingredients = ingredients, instructions = instru
 # won ton soup
 ingredients = list(
   Other = c("won ton wrappers", "egg noodles", "won ton soup base", "salt", "pepper"),
-  Meat = c("ground pork", "shrimp", "pork xa xiu"),
+  Meat = c("chicken broth", "ground pork", "shrimp", "pork xa xiu"),
   Veggies = c("water chestnuts", "shallots", "green onions", "bok choy"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-  "Make chicken broth according to chiken broth recipe (as an alternative mix 4 parts chicken broth to 1 part water and wonton soup base)",
+  "Make chicken broth according to chicken broth recipe (as an alternative mix 4 parts chicken broth to 1.5 part water and wonton soup base)",
   "Clean & cut up bok choy, green onions, xa xiu",
   "Make won tons according to fried wonton recipe ",
   "Add won tons to pot of boiling water, once it has floated to the surface cook for 2-3 more min",
@@ -42,7 +42,7 @@ instructions = data.frame(Instructions = c(
   "Pour boiling broth into bowl",
   "Sprinkle with fried shallots"
 ))
-recipes[["Won Ton Soup"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
+recipes[["Won Ton Soup (Mi Hoanh Thanh)"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
 ###################
 # potstickers
 ingredients = list(
@@ -529,7 +529,7 @@ recipes[["Nuoc Mau"]] = list(ingredients = ingredients, instructions = instructi
 ingredients = list(
   Other = c("wonton soup base", "salt", "pepper"),
   Meat = c("pork rib tips"),
-  Veggies = c("taro or yam", "rice paddy herbs"),
+  Veggies = c("taro", "yam", "rice paddy herbs"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
