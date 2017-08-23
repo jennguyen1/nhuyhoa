@@ -15,7 +15,7 @@ load('data/recipes.Rdata')
 current <- recipes[['Sushi']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Sushi1.JPG)
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Sushi.JPG)
 
 ![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Sushi2.JPG)
 
