@@ -10,7 +10,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Suon or Thit Ram1.JPG)
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Suon or Thit Ram.JPG)
 
 ![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Suon or Thit Ram2.JPG)
 

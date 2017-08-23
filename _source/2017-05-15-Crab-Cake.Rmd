@@ -15,7 +15,7 @@ load('data/recipes.Rdata')
 current <- recipes[['Crab Cake']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Crab Cake1.JPG)
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Crab Cake.JPG)
 
 ![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Crab Cake2.JPG)
 

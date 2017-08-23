@@ -10,7 +10,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Wonton Soup1.JPG)
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Wonton Soup.JPG)
 
 ![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Wonton Soup2.JPG)
 
