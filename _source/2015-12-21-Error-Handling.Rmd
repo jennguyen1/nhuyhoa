@@ -9,7 +9,7 @@ categories: ['data wrangling']
 {:toc}
 
 ```{r, echo = FALSE}
-library(jn.general)
+library(jn.general) 
 lib(data)
 ```
 
