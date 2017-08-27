@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rau Muong Xao Toi (Spinach Stir Fry)"
+title: "Bourbon Chicken"
 date: "May 15, 2017"
 categories: ['recipes', 'meal']
 ---
@@ -10,7 +10,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Rau Muong Xao Toi.JPG)
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Bourbon Chicken.JPG)
 
 **Ingredients**
 
@@ -25,21 +25,21 @@ categories: ['recipes', 'meal']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> mam tom </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> spinach </td>
+   <td style="text-align:left;"> soy sauce </td>
+   <td style="text-align:left;"> chicken thighs </td>
+   <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> brown sugar </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> cornstarch </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -57,16 +57,19 @@ categories: ['recipes', 'meal']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Heat minced garlic and shallots on medium heat with a little oil </td>
+   <td style="text-align:left;"> Heat minced shallots &amp; garlic in oil on medium heat </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a lot of spinach (a lot, will shrink), best to use water spinach (ong choy, rau muong), if so blanch before frying </td>
+   <td style="text-align:left;"> Add chicken and cook until brown </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in diluted mam tom </td>
+   <td style="text-align:left;"> Stir in a 2:2:1 mixture of soy sauce, brown sugar and water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir for a few minutes </td>
+   <td style="text-align:left;"> Add some cornstarch to thicken sauce </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add green onions </td>
   </tr>
 </tbody>
 </table>

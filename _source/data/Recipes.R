@@ -4,6 +4,41 @@
 # Email: jennifernguyen1992@gmail.com
 
 recipes = list()
+
+###################
+# tofu mushroom stir fry
+ingredients = list(
+  Other = c("soy sauce", "sugar"),
+  Meat = c("tofu"),
+  Veggies = c("shallots", "garlic", "mushrooms", "bean sprouts", "green onions"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Fry tofu",
+  "Heat minced shallots and garlic in oil on medium heat",
+  "Stir in sliced mushrooms", 
+  "Stir in soy sauce & sugar",
+  "Stir in fried tofu",
+  "Stir in bean sprouts & green onions", 
+  "Adjust to taste with soy sauce & sugar"
+))
+recipes[["Tofu Mushroom Stir Fry"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
+###################
+# bourbon chicken
+ingredients = list(
+  Other = c("soy sauce", "brown sugar", "cornstarch"),
+  Meat = c("chicken thighs"),
+  Veggies = c("shallots", "garlic"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Heat minced shallots & garlic in oil on medium heat",
+  "Add chicken and cook until brown",
+  "Stir in a 2:2:1 mixture of soy sauce, brown sugar and water",
+  "Add some cornstarch to thicken sauce",
+  "Add green onions"
+))
+recipes[["Bourbon Chicken"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
 ###################
 # 7 layer bar
 ingredients = list(
@@ -248,16 +283,17 @@ recipes[["Sushi"]] = list(ingredients = ingredients, instructions = instructions
 ###################
 # alfredo
 ingredients = list(
-  Other = c("pasta", "alfredo sauce", "salt", "pepper"),
-  Meat = "",
+  Other = c("pasta", "alfredo sauce", "salt", "pepper", "garlic salt"),
+  Meat = c("chicken", "shrimp"),
   Veggies = c("asparagus", "spinach", "mushrooms", "yellow onion", "garlic"),
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
   "Boil pasta and veggies",
   "Heat garlic & onion in a pot",
+  "Cook the chicken and shrimp",
   "Add alfredo sauce and veggies to pot",
-  "Add salt & pepper",
+  "Add salt, pepper & garlic salt",
   "Simmer until ready to serve"
 ))
 recipes[["Alfredo"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")
@@ -300,8 +336,8 @@ ingredients = list(
 )
 instructions = data.frame(Instructions = c(
   "Heat minced garlic and shallots on medium heat with a little oil",
-  "Add a lot of spinach (a lot, will shrink), best to use water spinach (ong choy, rau muong)",
-  "Stir in mam tom",
+  "Add a lot of spinach (a lot, will shrink), best to use water spinach (ong choy, rau muong), if so blanch before frying",
+  "Stir in diluted mam tom",
   "Stir for a few minutes"
 ))
 recipes[["Rau Muong Xao Toi (Spinach Stir Fry)"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal")

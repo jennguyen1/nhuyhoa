@@ -214,9 +214,9 @@ scp -rp file location.to.transfer
 sh filename.sh >> output.txt 2> err.txt &
 sh filename.sh &>> console.txt &
 
-# check on currently running background commands; for current user
+# check on currently running background commands; lists program in a file
 top
-top u username
+top -b -n 1 -c -u username
 
 # push to background after starting
 sh filename.sh >> output.txt

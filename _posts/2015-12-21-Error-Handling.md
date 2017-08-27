@@ -28,7 +28,28 @@ map(list(1, 2, "hi"), safely(log))
 
 
 {% highlight text %}
-## Error in eval(expr, envir, enclos): could not find function "map"
+## [[1]]
+## [[1]]$result
+## [1] 0
+## 
+## [[1]]$error
+## NULL
+## 
+## 
+## [[2]]
+## [[2]]$result
+## [1] 0.6931472
+## 
+## [[2]]$error
+## NULL
+## 
+## 
+## [[3]]
+## [[3]]$result
+## NULL
+## 
+## [[3]]$error
+## <simpleError in .f(...): non-numeric argument to mathematical function>
 {% endhighlight %}
 
 
@@ -40,7 +61,7 @@ map(list(1, 2, "hi"), quietly(log))
 
 
 {% highlight text %}
-## Error in eval(expr, envir, enclos): could not find function "map"
+## Error in .f(...): non-numeric argument to mathematical function
 {% endhighlight %}
 
 
@@ -52,7 +73,14 @@ map(list(1, 2, "hi"), possibly(log, NA_real_))
 
 
 {% highlight text %}
-## Error in eval(expr, envir, enclos): could not find function "map"
+## [[1]]
+## [1] 0
+## 
+## [[2]]
+## [1] 0.6931472
+## 
+## [[3]]
+## [1] NA
 {% endhighlight %}
 
 ## tryCatch
@@ -107,7 +135,7 @@ try_default(expr = 3 + "a", default = NULL, quiet = FALSE)
 
 
 {% highlight text %}
-## NULL
+## Error in eval(expr, envir, enclos): could not find function "try_default"
 {% endhighlight %}
 
 # In Python
