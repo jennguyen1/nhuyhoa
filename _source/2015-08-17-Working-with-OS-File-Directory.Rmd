@@ -19,7 +19,7 @@ R | Python | Bash
 **dir.exists()** | **os.path.exists()** | 
 **file.exists()** | |
 **list.files()** | **os.listdir()** | **ls**
-**file.path()** | **os.path.join()* |
+**file.path()** | **os.path.join()** |
 ..............................................|..............................................|..............................................
 
 # Reading in Files
