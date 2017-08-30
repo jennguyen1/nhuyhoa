@@ -17,6 +17,9 @@ current <- recipes[['Fried Green Beans and Mushrooms']]
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Fried Green Beans and Mushrooms.JPG)
 
+
+
+
 **Ingredients**
 
 ```{r, echo = FALSE}

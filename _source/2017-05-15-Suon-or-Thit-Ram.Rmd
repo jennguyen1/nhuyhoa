@@ -19,6 +19,9 @@ current <- recipes[['Suon or Thit Ram']]
 
 ![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Suon or Thit Ram2.JPG)
 
+
+
+
 **Ingredients**
 
 ```{r, echo = FALSE}

@@ -19,6 +19,9 @@ current <- recipes[['Canh Khoai Tay Suon (Taro and Pork Rib Soup)']]
 
 ![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh Khoai Tay Suon2.JPG)
 
+
+
+
 **Ingredients**
 
 ```{r, echo = FALSE}

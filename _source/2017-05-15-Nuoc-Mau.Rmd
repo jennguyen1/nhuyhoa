@@ -17,6 +17,9 @@ current <- recipes[['Nuoc Mau']]
 
 
 
+[![youtube](http://img.youtube.com/vi/ZGQHPZQSH_s0.jpg)](http://www.youtube.com/watch?v=ZGQHPZQSH_s)
+
+
 **Ingredients**
 
 ```{r, echo = FALSE}

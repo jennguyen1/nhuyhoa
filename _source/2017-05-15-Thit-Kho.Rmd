@@ -17,6 +17,9 @@ current <- recipes[['Thit Kho']]
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Thit Kho.JPG)
 
+
+
+
 **Ingredients**
 
 ```{r, echo = FALSE}

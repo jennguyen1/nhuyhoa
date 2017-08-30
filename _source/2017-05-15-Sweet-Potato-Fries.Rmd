@@ -17,6 +17,9 @@ current <- recipes[['Sweet Potato Fries']]
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Sweet Potato Fries.JPG)
 
+
+
+
 **Ingredients**
 
 ```{r, echo = FALSE}

@@ -17,6 +17,9 @@ current <- recipes[['Fruit Tart']]
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Fruit Tart.JPG)
 
+
+
+
 **Ingredients**
 
 ```{r, echo = FALSE}

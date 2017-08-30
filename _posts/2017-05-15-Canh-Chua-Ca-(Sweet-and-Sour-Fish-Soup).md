@@ -12,6 +12,9 @@ categories: ['recipes', 'meal']
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh Chua Ca.JPG)
 
+[![youtube](http://img.youtube.com/vi/hrJyKrzsjNs0.jpg)](http://www.youtube.com/watch?v=hrJyKrzsjNs)
+
+
 **Ingredients**
 
 <table class = "presenttab">

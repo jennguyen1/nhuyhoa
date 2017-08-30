@@ -17,6 +17,9 @@ current <- recipes[['Spaghetti']]
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Spaghetti.JPG)
 
+
+
+
 **Ingredients**
 
 ```{r, echo = FALSE}

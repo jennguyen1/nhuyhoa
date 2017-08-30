@@ -17,6 +17,9 @@ current <- recipes[['Salad']]
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Salad.JPG)
 
+
+
+
 **Ingredients**
 
 ```{r, echo = FALSE}

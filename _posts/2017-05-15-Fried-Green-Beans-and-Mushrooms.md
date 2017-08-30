@@ -12,6 +12,9 @@ categories: ['recipes', 'meal']
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Fried Green Beans and Mushrooms.JPG)
 
+
+
+
 **Ingredients**
 
 <table class = "presenttab">

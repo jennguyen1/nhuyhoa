@@ -12,6 +12,9 @@ categories: ['recipes', 'meal']
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Tofu Mushroom Stir Fry.JPG)
 
+
+
+
 **Ingredients**
 
 <table class = "presenttab">
