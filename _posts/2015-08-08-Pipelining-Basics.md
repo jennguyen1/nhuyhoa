@@ -66,7 +66,6 @@ R | Python | Bash
 
 # Classes and Modules
 
-**Python**
 Python can split up code into separate files.
 
 {% highlight python %}

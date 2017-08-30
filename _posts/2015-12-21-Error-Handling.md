@@ -106,14 +106,14 @@ error_handling(stop("!"))
 {% endhighlight %}
 
 ## failwith
-The function `failwith()` can control how errors within a function are dealt with. 
+The function `dplyr::failwith()` can control how errors within a function are dealt with. 
 
 {% highlight r %}
 # arbitrary function
 f <- function(x) if( is.character(x) ) stop("There is an error")
 
 # add the failwith option to the function
-f2 <- failwith(default = NULL, f, quiet = TRUE)
+f2 <- dplyr::failwith(default = NULL, f, quiet = TRUE)
 
 # run option
 f2("testing")
@@ -123,19 +123,6 @@ f2("testing")
 
 {% highlight text %}
 ## NULL
-{% endhighlight %}
-
-## try_default
-The function `try_default()` can control how errors within an expression are dealt with. 
-
-{% highlight r %}
-try_default(expr = 3 + "a", default = NULL, quiet = FALSE)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): could not find function "try_default"
 {% endhighlight %}
 
 # In Python
