@@ -2,7 +2,7 @@
 layout: post
 title: "Exception Handling"
 date: "December 21, 2015"
-categories: ['data wrangling']
+categories: ['pipelines']
 ---
 
 * TOC
@@ -139,6 +139,15 @@ try_default(expr = 3 + "a", default = NULL, quiet = FALSE)
 {% endhighlight %}
 
 # In Python
+
+## Assertions
+
+Within functions, assertions can be used to detect errors. The syntax is below
+
+{% highlight python %}
+def f():
+  assert condition, error_msg
+{% endhighlight %}
 
 ## Try Catch
 

@@ -336,7 +336,8 @@ ingredients = list(
 )
 instructions = data.frame(Instructions = c(
   "Heat minced garlic and shallots on medium heat with a little oil",
-  "Add a lot of spinach (a lot, will shrink), best to use water spinach (ong choy, rau muong), if so blanch before frying",
+  "Add a lot of spinach", 
+  "If using watch spinach (ong choy, rau muong), blanch (boil and ice bath) before frying",
   "Stir in diluted mam tom",
   "Stir for a few minutes"
 ))

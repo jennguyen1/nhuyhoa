@@ -271,6 +271,26 @@ x.ppf(p)
 
 The module also has functions for moments, expectations, and MLE.
 
+## BeautifulSoup
+
+This module is used for web scraping
+
+{% highlight python %}
+import urllib2
+from bs4 import BeautifulSoup
+
+page = urllib2.urlopen(url)
+soup = BeautifulSoup(page.content, 'html.parser')
+{% endhighlight %}
+
+Tags, classes, ids, etc can be extracted from the object.
+
+{% highlight python %}
+list(soup.children)
+soup.find(tag).text.strip()
+soup.find(tag, class = 'class')
+{% endhighlight %}
+
 [regex_post]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 [itertools_link]: https://docs.python.org/2/library/itertools.html
 [scipy_link]: http://docs.scipy.org/doc/scipy/reference/stats.html

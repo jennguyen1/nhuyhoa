@@ -2,7 +2,7 @@
 layout: post
 title: "Parallel Processing"
 date: "March 30, 2017"
-categories: ['data wrangling']
+categories: ['pipelines']
 ---
 
 * TOC
