@@ -10,9 +10,7 @@ categories: ['pipelines']
 
 
 
-# In R
-
-## Purrr
+**R**
 
 The package `purrr` has 3 functions to deal with error handling. These functions are applied to other functions and can handle error output.
 
@@ -83,7 +81,7 @@ map(list(1, 2, "hi"), possibly(log, NA_real_))
 ## [1] NA
 {% endhighlight %}
 
-## tryCatch
+
 Similar to other languages `tryCatch()` can be used to deal with how error, warning, and messages are dealt with. 
 
 {% highlight r %}
@@ -105,7 +103,7 @@ error_handling(stop("!"))
 ## [1] "error"
 {% endhighlight %}
 
-## failwith
+
 The function `dplyr::failwith()` can control how errors within a function are dealt with. 
 
 {% highlight r %}
@@ -125,9 +123,7 @@ f2("testing")
 ## NULL
 {% endhighlight %}
 
-# In Python
-
-## Assertions
+**Python**
 
 Within functions, assertions can be used to detect errors. The syntax is below
 
@@ -136,7 +132,7 @@ def f():
   assert condition, error_msg
 {% endhighlight %}
 
-## Try Catch
+Try/catch is also available in python.
 
 {% highlight python %}
 try:

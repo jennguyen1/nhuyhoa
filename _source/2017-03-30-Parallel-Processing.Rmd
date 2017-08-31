@@ -12,7 +12,7 @@ Parallel processing allows independent tasks to be dispatched to different cores
 
 However, parallel processing is only recommended for time-consuming tasks. With shorter tasks, it may take more time to set up the cores than to run the analysis iteratively.
 
-# In R
+**R**
 
 For parallel processing in R, the `parallel`.
 
@@ -64,7 +64,7 @@ Think of each core as its own separate "R session", in that it will only have in
 
 Note that these are two of many ways to run parallel processing in R. 
 
-# In Python
+**Python**
 
 For parallel processing in Python, the `multiprocessing` package is needed.
 
