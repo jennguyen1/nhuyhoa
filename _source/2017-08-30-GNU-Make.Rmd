@@ -107,7 +107,7 @@ all : something.dat
 
 # Running Make
 
-{% highlight make %}
+{% highlight linux %}
 # run the Makefile
 make
 
