@@ -8,9 +8,9 @@ categories: ['pipelines']
 * TOC
 {:toc}
 
-Parallel processing allows independent tasks to be dispatched to different cores. These cores compute them in parallel and combine the results. Running tasks in parallel can reduce the runtime by half or more. 
+Parallel processing allows independent tasks to be dispatched to different cores. These cores compute them in parallel and combine the results. Running tasks in parallel can reduce the runtime by half or more. Each core is a new environemnt, so it is required to export your current environment so that the worker cores have objects to work with.
 
-However, parallel processing is only recommended for time-consuming tasks. With shorter tasks, it may take more time to set up the cores than to run the analysis iteratively.
+However, parallel processing is only recommended for time-consuming tasks. With shorter tasks, it may take more time to set up the cores than to run the analysis iteratively. 
 
 **R**
 
@@ -22,6 +22,12 @@ library(parallel)
 
 # find out max # cores you can use
 detectCores()
+
+# run in parallel - for linux/mac
+mclapply(list, function, mc.cores = n)
+mcMap(f, x, y, mc.cores = n)
+
+# run in parallel - for windows
 
 # generate clusters - n = # of clusters
 cl <- makeCluster(n)
@@ -35,6 +41,11 @@ parLapply(cl = cl, X, fun)
 # close clusters
 stopCluster(cl)
 {% endhighlight %}
+
+The function `mclapply()` copies the current environemnt into each worker environment and can be run from Linux/Mac. The function `parLapply()` requires you to tell the cluster what to load and can be run from Linux/Mac/Windows. 
+
+It is important to note that if you are saving big objects in memory, `mclapply()` worker environments will multiply this by copying the object into their environment. Take care to either actively remove objects with `rm()` and clear memory with `gc()`, or just use `parLapply()`
+
 
 Another option is to use the `plyr` and `doParallel` packages.
 

@@ -49,33 +49,34 @@ It is good practice to print out a time stamp for start/end of script and the co
 
 **R**
 {% highlight r %}
-library(optparse)
+library(argparse)
 
-option_list <- list(
-  make_option("--apple", help = "Type of apple [default '%default']", dest = "apple", default = "red"), 
-  make_option(c("-c", "--count"), help = "How many apples [default %default]", dest = "count", type="integer", default = 5),
-  make_option("--eat", help = "Boolean flag, should I eat the apple(s)?", dest = "eat", action = "store_true", default = FALSE)
-)
+# initialize the parser
+parser <- ArgumentParser(description = "Apple Game")
 
-opt <- parse_args(Option_Parser(description = "Apple Game", option_list = option_list))
+# declare the arguments
+parser$add_argument('-a', '--apple', help = 'Type of apple [%(default)s]', dest = 'apple', default = "red")
+parser$add_argument('-c', '--count', help = 'How many apples [%(default)s]', dest = 'count', default = 5)
+parser$add_argument('--eat', help = 'Boolean flag, should I eat the apple(s)? [%(default)s]', dest = 'eat', action = 'store_true', default = FALSE)
+  
+# parse arguments
+args <- parser$parse_args()
 {% endhighlight %}
 
 **Python**
 {% highlight python %}
 import argparse
 
-if __name__ == '__main__':
-
-  # initialize the parser
-  parser = argparse.ArgumentParser(description='''Apple Game''')
+# initialize the parser
+parser = argparse.ArgumentParser(description='''Apple Game''')
   
-  # declare the arguments
-  parser.add_argument('-a', '--apple', help = 'Type of apple', dest = 'apple', default = "red")
-  parser.add_argument('-c', '--count', help = 'How many apples', dest = 'count', default = 5)
-  parser.add_argument('--eat', help = 'Boolean flag, should I eat the apple(s)?', dest = 'eat', action = 'store_true', default = FALSE)
+# declare the arguments
+parser.add_argument('-a', '--apple', help = 'Type of apple [%(default)s]', dest = 'apple', default = "red")
+parser.add_argument('-c', '--count', help = 'How many apples [%(default)s]', dest = 'count', default = 5)
+parser.add_argument('--eat', help = 'Boolean flag, should I eat the apple(s)? [%(default)s]', dest = 'eat', action = 'store_true', default = False)
   
-  # parse arguments
-  args = parser.parse_args()
+# parse arguments
+args = parser.parse_args()
 {% endhighlight %}
 
 **Bash**

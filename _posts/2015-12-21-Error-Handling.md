@@ -129,7 +129,7 @@ Within functions, assertions can be used to detect errors. The syntax is below
 
 {% highlight python %}
 def f():
-  assert condition, error_msg
+  assert(condition, error_msg)
 {% endhighlight %}
 
 Try/catch is also available in python.

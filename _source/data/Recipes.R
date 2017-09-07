@@ -5,6 +5,28 @@
 
 recipes = list()
 
+
+
+#----------------------------------------------------------------------------------------------------------
+# canh muop mong toi
+ingredients = list(
+  Other = c("salt", "pepper", "fried shrimp", "wonton soup base"),
+  Meat = "",
+  Veggies = c("luffa", "spinach", "shallots"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Soak fried shrimp in hot water and mash fried shrimp", 
+  "Wash and cut the luffa (chinese/taiwanese okra), spinach, shallots", 
+  "Stir fry luffa & shallots with salt & pepper", 
+  "Add bowl of fried shrimp & additional water",
+  "Add wonton soup base",
+  "Add spinach (chinese spinach) prior to boiling",
+  "Adjust to taste as necessary", 
+  "", 
+  "Canh spoils easily, so refridgerate when cool"
+))
+recipes[["Canh Muop Mong Toi"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")
 #----------------------------------------------------------------------------------------------------------
 # thit heo luoc cham tom mam
 ingredients = list(
@@ -185,6 +207,7 @@ instructions = data.frame(Instructions = c(
   "Ensure that the mixture has consistency of cookie dough (not too dry or wet)",
   "Press mixture to bottom of muffin pan with hands",
   "Freeze for 1 hour or bake at 325 degrees for 10 min then cool before filling",
+  "", 
   "Pastry Cream",
   "Mix together 1 tbsp + 1 tsp of sugar and 1 egg",
   "Add 2 tsp flour and 2 tsp cornstarch",
@@ -197,6 +220,7 @@ instructions = data.frame(Instructions = c(
   "Pour into clean bowl and immediately cover with plastic wrap, with a few holes poked through",
   "Refridgerate for 2 hours before using",
   "Beat or whisk custard before using to remove any lumps",
+  "", 
   "Assembly",
   "Place custard on crust then add fruit"
 ))
