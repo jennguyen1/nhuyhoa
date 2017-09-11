@@ -32,9 +32,10 @@ import subprocess
 subprocess.check_output(CMD, shell = True) # gets command line output; CalledProcessError if code is non-zero
 subprocess.call(CMD, shell = True) # runs code, get return code
 subprocess.check_call(['CMD', 'ARG1']) # runs code, CalledProcessError if code is non-zero
+subprocess.Popen(CMD, shell = True) # runs in the background (nothing in python code depends on it)
 
 from subprocess import Popen, PIPE
-proc = Popen(CMD, stdout = PIPE, stderr = PIPE)
+proc = Popen(CMD, stdout = PIPE, stderr = PIPE) 
 proc.wait() # wait for completion
 stdout, stderr = process.communicate()
 proc.returncode
