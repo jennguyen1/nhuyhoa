@@ -280,7 +280,7 @@ import urllib2
 from bs4 import BeautifulSoup
 
 page = urllib2.urlopen(url)
-soup = BeautifulSoup(page.content, 'html.parser')
+soup = BeautifulSoup(page, 'html.parser')
 {% endhighlight %}
 
 Tags, classes, ids, etc can be extracted from the object.

@@ -21,7 +21,7 @@ instructions = data.frame(Instructions = c(
   "Stir fry luffa & shallots with salt & pepper", 
   "Add bowl of fried shrimp & additional water",
   "Add wonton soup base",
-  "Add spinach (chinese spinach) prior to boiling",
+  "Add spinach (asian spinach) prior to boiling",
   "Adjust to taste as necessary", 
   "", 
   "Canh spoils easily, so refridgerate when cool"
@@ -464,7 +464,7 @@ instructions = data.frame(Instructions = c(
   "When tomatoes have softened, add 1 bowl of water",
   "Add cha ca",
   "Add green onions and dill",
-  "Add 2 packs of wonton soup base and nuoc mam pha",
+  "Add wonton soup base and nuoc mam pha, adjust to taste",
   "Simmer for 15 minutes"
 ))
 recipes[["Canh Cha Ca"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")

@@ -20,7 +20,7 @@ For parallel processing in R, the `parallel`.
 # load library
 library(parallel)
 
-# find out max # cores you can use
+# total number of cores
 detectCores()
 
 # run in parallel - for linux/mac
@@ -54,7 +54,7 @@ Another option is to use the `plyr` and `doParallel` packages.
 library(plyr)
 library(doParallel)
 
-# find out max # cores you can use
+# total number of cores
 detectCores()
 
 # generate clusters - n = # of clusters
@@ -81,20 +81,35 @@ For parallel processing in Python, the `multiprocessing` package is needed.
 
 {% highlight python %}
 # load module
+from itertools import repeat
 import multiprocessing as mp
 
 # define function
 def f(x):
   return x**3
-  
-# generate clusters - n = # of clusters
-pool = mp.Pool(processes=n)
 
-# option 1: lock main program until all processes are finished
-results = pool.map(f, range(1,7))
+def f2(x,y):
+  return(x*y)
+  
+# total number of cores
+n = mp.cpu_count()
+  
+# generate clusters
+pool = mp.Pool(processes = n)
+
+# option 1: lock main program until all processes are finished; map = 1 arg, startmap = multiple args
+pool.map(f, range(1,7))
+pool.starmap(f, zip(range(1, 7), range(1,7)))
+pool.starmap(f, zip(range(1,7), repeat(10)))
 
 # option 2: submits all processes at once and retrieve results as they finish
 results = pool.map_async(f, range(1,7))
+# DO OTHER STUFF
+results.wait() # block program starting here
 output = results.get()
+
+# close 
+pool.close()
+pool.join()
 {% endhighlight %}
 

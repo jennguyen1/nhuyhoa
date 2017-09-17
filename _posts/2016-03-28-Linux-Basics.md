@@ -20,8 +20,7 @@ See [Linux Cheatsheet][linux_ref]{:target = "_blank"}
 * `>` or `>>` divert all output to a file
 * `&>` or `&>>` diverts outputs & errors to a file
 
-
-{% highlight r %}
+{% highlight bash %}
 # example: delete all *.txt files
 find . -name *.txt | xargs rm
 
@@ -34,6 +33,12 @@ ls | grep \.jpg$ | sed 'p;s/\.jpg/\.png/' | xargs -n2 mv
 
 * `echo` repeat text, can pipe into files
 * `date` to obtain the date and time
+* `head` and `tail` can be used to slice through a file
+
+{% highlight bash %}
+# example: slice through very large file quickly
+tail -n +${start} file | head -n ${end - start + 1}
+{% endhighlight %}
 
 # Working With Files
 
@@ -56,8 +61,7 @@ ls | grep \.jpg$ | sed 'p;s/\.jpg/\.png/' | xargs -n2 mv
 * `diff` compare files line by line
 
 * `sort` sorting
-
-{% highlight r %}
+{% highlight bash %}
 # sort by 1st col, then 2nd, then 3rd ...
 sort input.txt
 
@@ -66,8 +70,7 @@ sort -k2,2nr -k3,3 input.txt
 {% endhighlight %}
 
 * `cut` cuts out selected portions of each line from each file and writes to standard output
-
-{% highlight r %}
+{% highlight bash %}
 # cut 1, 2, 3, 5, 7 columns
 cut -f1-3,5,7- input.txt
 
@@ -76,15 +79,13 @@ cut -d" " -f 3 input.txt
 {% endhighlight %}
 
 **Example**
-
-{% highlight r %}
+{% highlight bash %}
 # find the 10 most common words
 cat temp.txt | tr "[A-Z]" "[a-z]" | tr -c "[:alnum:]" "[\n*]" | sort | uniq -c | sort -nr | head -10
 {% endhighlight %}
 
 ## Finding Files
-
-{% highlight r %}
+{% highlight bash %}
 find . -name *sample*
 {% endhighlight %}
 
@@ -101,8 +102,7 @@ Some common action terms
 * `z` process through gzip
 * `f` specify name of the $$.tar$$ files to create
 
-
-{% highlight r %}
+{% highlight bash %}
 # creating a tar file
 tar -cvf file_name.tar file1 file2 ... filen
 
@@ -118,8 +118,7 @@ tar -xzvf file_name.tar.gz
 
 `zip` options:
 
-
-{% highlight r %}
+{% highlight bash %}
 # zip files
 zip file_name file1 file2 ... filen
 
@@ -129,18 +128,18 @@ unzip file_name.zip
 
 `gzip` options:
 
-
-{% highlight r %}
+{% highlight bash %}
 # gzip files
 gzip file_name file1 file2 ... filen
 
 # unzip files
 gunzip file_name.zip
 {% endhighlight %}
+
 View zipped files
-```
+{% highlight bash %}
 zcat file_name
-```
+{% endhighlight %}
 
 ## Changing Permissions of Files
 
@@ -163,8 +162,7 @@ File access options:
 
 When listed via `ls`, the file access options from left to right are for owner, group, all. 
 
-
-{% highlight r %}
+{% highlight bash %}
 # make file readable by group
 chmod g+r filepath
 
@@ -174,8 +172,7 @@ chmod +x filepath
 
 ## Printing Files
 
-
-{% highlight r %}
+{% highlight bash %}
 # obtain a list of available printers
 lpstat -p -d
 
@@ -193,23 +190,20 @@ lpr -o sides=two-sided-long-edge -Pprinter_name file_name
 
 **Log In Via ssh:**
 
-
-{% highlight r %}
+{% highlight bash %}
 ssh username@place
 {% endhighlight %}
 See [this link][ssh_login]{:target = "_blank"} to learn how to set up a ssh login without a password.
 
 **Download from a Web Server:**
-
-{% highlight r %}
+{% highlight bash %}
 curl -o online_file_name
 wget --no-check-certificate -q -O output_name website
 {% endhighlight %}
 
 **Download/Upload to a Server:**
 
-
-{% highlight r %}
+{% highlight bash %}
 # using rsync
 rsync -a filename username@place:file_directory
 
@@ -222,8 +216,7 @@ scp -rp file location.to.transfer
 
 **Run on Background in Server:**
 
-
-{% highlight r %}
+{% highlight bash %}
 # add an & at the end of command
 sh filename.sh >> output.txt 2> err.txt &
 sh filename.sh &>> console.txt &
@@ -248,8 +241,7 @@ watch -n secs cmd
 
 **Communicate Results via Email**
 
-
-{% highlight r %}
+{% highlight bash %}
 echo script | mail -s "subject line" email_address
 {% endhighlight %}
 
@@ -259,8 +251,7 @@ echo script | mail -s "subject line" email_address
 
 **Setting Variables:**
 
-
-{% highlight r %}
+{% highlight bash %}
 # set variable, note no spaces
 VAR="value"
 VAR2=25
@@ -277,8 +268,7 @@ export VAR2="value2"
 
 **Call Variables:**
 
-
-{% highlight r %}
+{% highlight bash %}
 # call a variable (brackets are not required but convention)
 cmd ${VAR}
 
@@ -294,8 +284,7 @@ cmd ${#VAR[@]}
 
 If the variable is not set:
 
-
-{% highlight r %}
+{% highlight bash %}
 # return another value
 echo "${TMP:-value}"
 
@@ -307,8 +296,7 @@ echo "${TMP:?value}"
 {% endhighlight %}
 
 Obtaining substrings
-
-{% highlight r %}
+{% highlight bash %}
 # obtain everything after 4th char
 echo ${STR:4}
 
@@ -320,8 +308,7 @@ echo ${STR%name}
 {% endhighlight %}
 
 ## Doing Math
-
-{% highlight r %}
+{% highlight bash %}
 # using double parenthesis
 a=$((4 + 5))
 c=$(($a + 2))
@@ -333,8 +320,7 @@ echo $((5+3))
 
 ## Conditions
 
-
-{% highlight r %}
+{% highlight bash %}
 # returns 0 for true; 1 for false
 
 # test for equality with strings
@@ -385,8 +371,7 @@ Sed is a command line tool to conduct regular expressions commands.
   * `p`: print only the lines where replacement occurs
   * `w`: write to a file
 
-
-{% highlight r %}
+{% highlight bash %}
 # example: addresses
 sed '1,2s/heart/love/' test.txt
 
@@ -420,14 +405,12 @@ sed '/^$/d' test.txt
 {% endhighlight %}
 
 * Edit the document in place using sed
-
-{% highlight r %}
+{% highlight bash %}
 sed -i 's/old/new/' test.txt
 {% endhighlight %}
 
 * Apply a sequence of commands using a sed script
-
-{% highlight r %}
+{% highlight bash %}
 # sed script
 s/blue/black/g
 s/windows/mac/g
@@ -440,8 +423,7 @@ sed -f sed_script test.txt
 # Awk
 Awk is a scripting language used for text extraction and processing. 
 
-
-{% highlight r %}
+{% highlight bash %}
 # form strings
 ls -l | awk '{print "my username is " $3}'
 
@@ -469,8 +451,7 @@ awk -v var=$t '($2==var){print}'
 
 Additional operations:
 
-
-{% highlight r %}
+{% highlight bash %}
 # print sum of col 2
 awk '{x+=$2}END{print x}' input.txt
 
@@ -501,14 +482,12 @@ awk '{for(i=1;i!=NF;++i)c[$i]++}END{for (x in c) print x,c[x]}' input.txt
 
 # match multiple values on col 2
 POSes="1 2 3"
-awk -v POSes="$POSes" 'BEGIN{ split(POSes,tmp); for (i in tmp) poses[tmp[i]] } $2 in poses{ print $0 }' input.txt
-{% endhighlight %}
+awk -v POSes="$POSes" 'BEGIN{ split(POSes,tmp); for (i in tmp) poses[tmp[i]] } $2 in poses{ print $0 }' {% endhighlight %}
 
 
 **Format of .awk File:**
 
-
-{% highlight r %}
+{% highlight bash %}
 BEGIN{
   // initialize variables: executes only once
 }
@@ -521,8 +500,7 @@ END{
 }
 {% endhighlight %}
 
-
-{% highlight r %}
+{% highlight bash %}
 # example
 BEGIN{
   printf "Just getting started\n";

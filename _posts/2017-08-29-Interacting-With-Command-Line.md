@@ -28,17 +28,23 @@ import datetime
 datetime.now()
 datetime.today()
 
+# calls to shell, locks main program until complete
 import subprocess
 subprocess.check_output(CMD, shell = True) # gets command line output; CalledProcessError if code is non-zero
 subprocess.call(CMD, shell = True) # runs code, get return code
 subprocess.check_call(['CMD', 'ARG1']) # runs code, CalledProcessError if code is non-zero
 
+# calls to shell, does not lock main program 
 from subprocess import Popen, PIPE
 proc = Popen(CMD, stdout = PIPE, stderr = PIPE)
-proc.wait() # wait for completion
-stdout, stderr = process.communicate()
+proc.pid
 proc.returncode
+stdout, stderr = process.communicate()
+proc.wait() # wait until completion
 proc.kill()
+proc.terminate()
+
+# the functions check_output, check_call, call, wait all have a timeout parameter to limit how long the program can run
 {% endhighlight %}
 
 
