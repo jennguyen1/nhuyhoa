@@ -97,13 +97,15 @@ n = mp.cpu_count()
 # generate clusters
 pool = mp.Pool(processes = n)
 
-# option 1: lock main program until all processes are finished; map = 1 arg, startmap = multiple args
+# option 1: lock main program until all processes are finished; map = 1 arg, starmap = multiple args
 pool.map(f, range(1,7))
-pool.starmap(f, zip(range(1, 7), range(1,7)))
-pool.starmap(f, zip(range(1,7), repeat(10)))
+pool.starmap(f2, zip(range(1, 7), range(1,7)))
+pool.starmap(f2, zip(range(1,7), repeat(10)))
 
 # option 2: submits all processes at once and retrieve results as they finish
 results = pool.map_async(f, range(1,7))
+results = pool.starmap(f2, zip(range(1, 7), range(1,7)))
+results = pool.starmap(f2, zip(range(1,7), repeat(10)))
 # DO OTHER STUFF
 results.wait() # block program starting here
 output = results.get()
