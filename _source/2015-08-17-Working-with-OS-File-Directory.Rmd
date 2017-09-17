@@ -15,7 +15,7 @@ R | Python | Bash
 | **import os** | 
 **getwd()** | **os.getcwd()** | **pwd**
 **setwd()** | **os.chdir()** | **cd**
-**dir.create()** | **os.mkdir()** | **mkdir** 
+**dir.create()** | **os.makedirs()** | **mkdir** 
 **dir.exists()** | **os.path.exists()** | 
 **file.exists()** | |
 **list.files()** | **os.listdir()** | **ls**
