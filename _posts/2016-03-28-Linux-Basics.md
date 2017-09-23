@@ -247,6 +247,16 @@ echo script | mail -s "subject line" email_address
 
 # Shell Scripting
 
+Start scripts out with the following statements (depending on programming language), so that it can be run as an executable. Don't forget to change the permissions of the file to make it executable.
+
+{% highlight r %} 
+#!/usr/bin/env bash
+#!/usr/bin/env sh
+#!/usr/bin/env Rscript
+#!/usr/bin/env python3
+{% endhighlight %}
+
+
 ## Variables
 
 **Setting Variables:**
