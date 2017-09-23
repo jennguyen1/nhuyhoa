@@ -39,7 +39,7 @@ from subprocess import Popen, PIPE
 proc = Popen(CMD, stdout = PIPE, stderr = PIPE)
 proc.pid
 proc.returncode
-stdout, stderr = process.communicate()
+stdout, stderr = proc.communicate()
 proc.wait() # wait until completion
 proc.kill()
 proc.terminate()
