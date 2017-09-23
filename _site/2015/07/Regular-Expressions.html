@@ -442,69 +442,27 @@
 
 <h2 id="in-python">In Python</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Function</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">len(s)</code></td>
-      <td>length of string</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">s.upper()</code>, <code class="highlighter-rouge">s.lower()</code>, <code class="highlighter-rouge">s.capitalize()</code>, <code class="highlighter-rouge">s.capwords()</code></td>
-      <td>change string case</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">s.isalpha()</code>, <code class="highlighter-rouge">s.isdigit()</code>, <code class="highlighter-rouge">s.isspace()</code></td>
-      <td>tests string for type</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">s.startswith()</code>, <code class="highlighter-rouge">s.endswith()</code></td>
-      <td>checks string locations</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">s.split(dlm)</code></td>
-      <td>splits string into list by delimiter</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">dlm.join(l)</code></td>
-      <td>joins list into string by delimiter</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">s.count()</code></td>
-      <td>counts occurances of specified string</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">s.find()</code>, <code class="highlighter-rouge">s.index()</code></td>
-      <td>finds index of substring</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">re.search(pattern, str)</code></td>
-      <td>searches for a pattern inside string</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">re.findall()</code></td>
-      <td>finds all matches in string</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">s.replace(old, new, n)</code></td>
-      <td>replaces a substring up to n times</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">re.sub(pattern, replacement, str)</code></td>
-      <td>replaces substrings</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">s.strip()</code></td>
-      <td>remove trailing white space</td>
-    </tr>
-  </tbody>
-</table>
+<p>Function | Description
+———|————–
+<code class="highlighter-rouge">len()</code> | length of strings
+<code class="highlighter-rouge">strip()</code>, <code class="highlighter-rouge">rstrip()</code>, <code class="highlighter-rouge">lstrip()</code> | remove trailing white space
+<code class="highlighter-rouge">lower()</code>, <code class="highlighter-rouge">upper()</code>, <code class="highlighter-rouge">capitalize()</code> | change string case
+<code class="highlighter-rouge">translate()</code> | map from one thing to another
+<code class="highlighter-rouge">startswith()</code>, <code class="highlighter-rouge">endswith()</code> | checks for string at location
+<code class="highlighter-rouge">isalpha()</code>, <code class="highlighter-rouge">isdigit()</code>, <code class="highlighter-rouge">isalnum()</code>, <code class="highlighter-rouge">isspace()</code> | tests string for type
+<code class="highlighter-rouge">split()</code> | splits a string
+<code class="highlighter-rouge">match()</code> | whether there is a match
+<code class="highlighter-rouge">extract()</code> | extracts match
+<code class="highlighter-rouge">findall()</code> | finds all matches in string
+<code class="highlighter-rouge">replace()</code> replace occurance of specificed string
+<code class="highlighter-rouge">contains()</code> | searchs for pattern inside string
+<code class="highlighter-rouge">count()</code> | counts occurances of specified string
+<code class="highlighter-rouge">pad()</code> | adds white space
+<code class="highlighter-rouge">join()</code>, <code class="highlighter-rouge">cat()</code> | combines strings
+<code class="highlighter-rouge">cat()</code> | concatenates strings
+<code class="highlighter-rouge">repeat()</code> | repeats values</p>
 
+<p>The class <code class="highlighter-rouge">pd.Series.str</code> allows for vectorized string operations.</p>
 
   </article>
 

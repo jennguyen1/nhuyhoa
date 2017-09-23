@@ -185,17 +185,22 @@ The metacharacters that can be used with SQL are a little different than those l
 
 Function | Description
 ---------|--------------
-`len(s)` | length of string
-`s.upper()`, `s.lower()`, `s.capitalize()`, `s.capwords()` | change string case
-`s.isalpha()`, `s.isdigit()`, `s.isspace()` | tests string for type
-`s.startswith()`, `s.endswith()` | checks string locations
-`s.split(dlm)` | splits string into list by delimiter
-`dlm.join(l)` | joins list into string by delimiter
-`s.count()` | counts occurances of specified string
-`s.find()`, `s.index()` | finds index of substring
-`re.search(pattern, str)` | searches for a pattern inside string
-`re.findall()` | finds all matches in string
-`s.replace(old, new, n)` | replaces a substring up to n times
-`re.sub(pattern, replacement, str)` | replaces substrings
-`s.strip()` | remove trailing white space
+`len()` | length of strings
+`strip()`, `rstrip()`, `lstrip()` | remove trailing white space
+`lower()`, `upper()`, `capitalize()` | change string case
+`translate()` | map from one thing to another
+`startswith()`, `endswith()` | checks for string at location
+`isalpha()`, `isdigit()`, `isalnum()`, `isspace()` | tests string for type
+`split()` | splits a string
+`match()` | whether there is a match
+`extract()` | extracts match
+`findall()` | finds all matches in string
+`replace()` replace occurance of specificed string
+`contains()` | searchs for pattern inside string
+`count()` | counts occurances of specified string
+`pad()` | adds white space
+`join()`, `cat()` | combines strings
+`cat()` | concatenates strings
+`repeat()` | repeats values
 
+The class `pd.Series.str` allows for vectorized string operations.
