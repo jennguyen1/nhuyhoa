@@ -6,7 +6,62 @@
 recipes = list()
 
 
-
+#----------------------------------------------------------------------------------------------------------
+# teriyaki chicken
+ingredients = list(
+  Other = c("soy sauce", "sake", "mirin", "sugar"),
+  Meat = c("chicken thighs"),
+  Veggies = c("yellow onion", "green onions", "shallots", "garlic"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Debone skin-on chicken thighs",
+  "Prick both sides of chicken with fork",
+  "On medium high heat, cook chicken skin-side down for ~10 min",
+  "Make teriyaki sauce with the ratio 2 soy sauce : 2 sake : 2 mirin : 1 sugar",
+  "Add minced onion, shallots, or garlic to sauce (any)",
+  "Flip chicken & cook until fully cooked ~5 min",
+  "Remove chicken and remove excess oil",
+  "Add teriyaki sauce and simmer on medium heat until the sauce becomes thick",
+  "Add chicken (coat with sauce) and lower to medium low heat",
+  "Cut chicken into bite-sized pieces and pour extra sauce on top"
+))
+recipes[["Teriyaki Chicken"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")
+#----------------------------------------------------------------------------------------------------------
+# miso soup
+ingredients = list(
+  Other = c("dashi", "miso"),
+  Meat = c("tofu"),
+  Veggies = c("seaweed paper", "green onions"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Hydrate seaweed paper in warm water",
+  "Boil 4 cups water & 2 tsp of dashi granules",
+  "Reduce heat to medium and add tofu & hydrated seaweed", 
+  "Remove from heat and mix in 3 tbsp miso", 
+  "Garnish with green onions"
+))
+recipes[["Miso Soup"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")
+#----------------------------------------------------------------------------------------------------------
+# chao
+ingredients = list(
+  Other = c("jasmine rice", "gio chao quay", "salt", "pepper", "wonton soup base"),
+  Meat = c("chicken", "ground pork"),
+  Veggies = c("shallots"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Make rice", 
+  "Marinate chicken or pork with salt, pepper & shallots",
+  "If using pork, stir fry it",
+  "Boil water and add chicken/pork",
+  "If using chicken, remove after boiling and shred into strips when cooled",
+  "Add rice and boil until it has expanded (~1 hr)",
+  "Add wonton soup base",
+  "Spoon into bowl and adjust with pepper, gio chao quay"
+))
+recipes[["Chao"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")
 #----------------------------------------------------------------------------------------------------------
 # canh muop mong toi
 ingredients = list(
@@ -318,9 +373,9 @@ recipes[["Ca Chien (Fried Fish)"]] = list(ingredients = ingredients, instruction
 #----------------------------------------------------------------------------------------------------------
 # sushi
 ingredients = list(
-  Other = c("seaweed paper", "rice", "eel sauce", "rolling mat"),
+  Other = c("rice", "eel sauce", "rolling mat"),
   Meat = c("crab", "shrimp", "pork belly", "eggs"),
-  Veggies = c("cucumber", "carrot", "spinach", "asparagus", "shallots", "yellow onion"),
+  Veggies = c("seaweed paper", "cucumber", "carrot", "spinach", "asparagus", "shallots", "yellow onion"),
   Fruit = c("avocado")
 )
 instructions = data.frame(Instructions = c(

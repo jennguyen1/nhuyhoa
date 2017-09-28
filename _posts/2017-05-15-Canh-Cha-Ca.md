@@ -78,7 +78,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Add green onions and dill </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add 2 packs of wonton soup base and nuoc mam pha </td>
+   <td style="text-align:left;"> Add wonton soup base and nuoc mam pha, adjust to taste </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Simmer for 15 minutes </td>

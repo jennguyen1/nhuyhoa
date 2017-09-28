@@ -83,7 +83,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Add wonton soup base </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add spinach (chinese spinach) prior to boiling </td>
+   <td style="text-align:left;"> Add spinach (asian spinach) prior to boiling </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Adjust to taste as necessary </td>
