@@ -53,12 +53,6 @@ For more information on string functions see [the post on regular expressions][r
 
 For printing, strings may be formatted: `"{} is {} years old".format(name, age)`.
 
-The following are examples of formats
-
-* string: `%s`
-* integers: `%d`
-* floating point numbers: `%<nchar>.<ndecimals>f`
-
 A number of variables may be concatenated to a template using a dictionary
 
 {% highlight python %}
