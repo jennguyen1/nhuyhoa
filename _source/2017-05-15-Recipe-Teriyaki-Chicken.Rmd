@@ -15,7 +15,7 @@ load('data/recipes.Rdata')
 current <- recipes[['Teriyaki Chicken']]
 ```
 
-
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Teriyaki_Chicken.JPG)
 
 
 
