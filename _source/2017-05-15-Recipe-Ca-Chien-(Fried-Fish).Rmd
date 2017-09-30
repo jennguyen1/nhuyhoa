@@ -1,0 +1,36 @@
+---
+layout: post
+title: "Ca Chien (Fried Fish)"
+date: "May 15, 2017"
+categories: ['recipes', 'meal']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, warning = FALSE}
+library(jn.general)
+lib(data)
+load('data/recipes.Rdata')
+current <- recipes[['Ca Chien (Fried Fish)']]
+```
+
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Ca_Chien.JPG)
+
+
+
+
+**Ingredients**
+
+```{r, echo = FALSE}
+current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttab\"")
+```
+
+<br>
+
+**Instructions**
+
+```{r, echo = FALSE}
+current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttabnoh\"")
+```
+

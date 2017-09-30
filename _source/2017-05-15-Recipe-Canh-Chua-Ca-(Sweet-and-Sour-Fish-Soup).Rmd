@@ -1,0 +1,36 @@
+---
+layout: post
+title: "Canh Chua Ca (Sweet and Sour Fish Soup)"
+date: "May 15, 2017"
+categories: ['recipes', 'meal']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, warning = FALSE}
+library(jn.general)
+lib(data)
+load('data/recipes.Rdata')
+current <- recipes[['Canh Chua Ca (Sweet and Sour Fish Soup)']]
+```
+
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh_Chua_Ca.JPG)
+
+[![youtube](http://img.youtube.com/vi/hrJyKrzsjNs/0.jpg)](http://www.youtube.com/watch?v=hrJyKrzsjNs)
+
+
+**Ingredients**
+
+```{r, echo = FALSE}
+current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttab\"")
+```
+
+<br>
+
+**Instructions**
+
+```{r, echo = FALSE}
+current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttabnoh\"")
+```
+
