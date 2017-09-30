@@ -37,11 +37,11 @@ R | Python | Bash
 | | **do**
 | | **done**
 ..............................................|..............................................|..............................................
-**purrr::map()** | **map()** | 
+**purrr::map()** | **map(), starmap()** | 
 **purrr::pmap()** | **zip(), zip(*l)**
-| **[f(x,y) for x,y in seq if cond]** |
+**purrr::keep(), purrr::discard()** | **itertools.filterfalse()** |
 | **enumerate()** |
-
+**rep()** | **itertools.repeat()** |
 
 **Bash List Examples**
 
@@ -49,6 +49,7 @@ R | Python | Bash
 * `'a' 'b' 'c'`
 * `$@`
 * `./*`
+
 
 # Functions
 
@@ -63,6 +64,10 @@ R | Python | Bash
 **f(a)** | **f(a)** | **f a**
 ..............................................|..............................................|..............................................
 **Vectorize()** | **lambda x,y:** |
+| **functools.partial(), functools.partialmethod()** |
+| **functools.reduce()** |
+| **functools.wrap()** | 
+
 
 # Classes and Modules
 
@@ -74,7 +79,6 @@ Python can split up code into separate files.
 # load files with an import statement
 import Pack
 {% endhighlight %}
-
 
 {% highlight python %}
 class myClass:

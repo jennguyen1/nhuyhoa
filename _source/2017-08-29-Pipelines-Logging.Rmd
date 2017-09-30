@@ -10,20 +10,22 @@ categories: ['pipelines']
 
 # Initiation and General Logging
 
+If a message passes the log's level, it will pass it on to one of the handlers. The handlers will only log the message if the same message passes the handlers' level.
+
 **R**
 
 Logging in R can be done with the `logging` package. 
 
 {% highlight r %}
-import logging
+library(logging)
 
 # set logger
-logReset()
 level <- "DEBUG"
+logReset()
+basicConfig(level = log_level)
 log <- getLogger()
-log$addHandler(writeToConsole, level = level)
 log$addHandler(writeToFile, file = "test.log", level = level)
-setLevel(level)
+setLevel(level, getHandler("writeToFile"))
 
 # start logging
 log$handlers
@@ -36,6 +38,7 @@ logerror("Kill code")
 **Python**
 
 The `logging` module is also available in Python.
+
 {% highlight python %}
 import logging
 import sys

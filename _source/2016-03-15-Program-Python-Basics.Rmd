@@ -150,20 +150,14 @@ Sets operations include:
 
 Collections provides alternatives to the base list structures.
 
-Load the module like so
-{% highlight python %}
-from collections import *
-{% endhighlight %}
-
 A few functions include
 
-* `namedtuple()`
+* `deque()`
 * `Counter()` is a dictionary subclass for counting hashable objects
 * `OrderedDict()` is a dictionary subclass that remembers the order entries were added
 
 # Useful Modules
 
-* Create iterators: [Itertools][itertools_link]{:target = "_blank"}
 * Statistical models: [Scikit Learn][scikitlearn_link]{:target = "_blank"}
 
 ## Pandas
