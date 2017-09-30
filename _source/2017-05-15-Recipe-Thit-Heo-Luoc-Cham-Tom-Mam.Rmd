@@ -15,7 +15,7 @@ load('data/recipes.Rdata')
 current <- recipes[['Thit Heo Luoc Cham Tom Mam']]
 ```
 
-
+![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Thit_Heo_Luoc_Cham_Tom_Mam.JPG)
 
 
 
