@@ -39,9 +39,8 @@ R | Python | Bash
 ..............................................|..............................................|..............................................
 **purrr::map()** | **map(), starmap()** | 
 **purrr::pmap()** | **zip(), zip(*l)**
-**purrr::keep(), purrr::discard()** | **itertools.filterfalse()** |
-| **enumerate()** |
 **rep()** | **itertools.repeat()** |
+| **enumerate()** |
 
 **Bash List Examples**
 
