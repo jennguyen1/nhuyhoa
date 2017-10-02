@@ -53,7 +53,7 @@ handler = logging.StreamHandler(sys.stderr)
 handler.setLevel(level)
 
 # make formatter
-formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s", "%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s %(funcName)s %(levelname)s %(message)s", "%Y-%m-%d %H:%M:%S")
 handler.setFormatter(formatter)
 
 # make formatter for file
