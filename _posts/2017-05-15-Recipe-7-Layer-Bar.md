@@ -87,7 +87,7 @@ categories: ['recipes', 'dessert']
    <td style="text-align:left;"> Preheat oven to 350 degrees F </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Melt butter and coat pan </td>
+   <td style="text-align:left;"> Melt margarine and coat pan </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix in graham cracker crumbs and press mixture into pan </td>

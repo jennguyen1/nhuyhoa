@@ -5,7 +5,25 @@
 
 recipes = list()
 
-
+#----------------------------------------------------------------------------------------------------------
+# lobster roll
+ingredients = list(
+  Other = c("japanese mayo", "salt", "pepper", "margarine", "hotdog buns"),
+  Meat = c("lobster tail"),
+  Veggies = c("green onions", "lettuce"),
+  Fruit = ""
+)
+instructions = data.frame(Instructions = c(
+  "Mince green onions & lettuce",
+  "Add lobster tails to pot of boiling hot water with salt added and stir occasionally",
+  "Boil for 10-15 min until the shell is bright red", 
+  "Once lobster has cooled, cut the tail down the middle to remove lobster meat",
+  "Mix lobster meat, green onions, lettuce, japanese mayo, salt & pepper",
+  "Refridgerate mixture", 
+  "Brush buns with margarine and toast until golden brown",
+  "Add lobster mix to buns (1.5-2 lobsters = 1 bun)"
+))
+recipes[["Lobster Roll"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")
 #----------------------------------------------------------------------------------------------------------
 # teriyaki chicken
 ingredients = list(
@@ -156,7 +174,7 @@ ingredients = list(
 )
 instructions = data.frame(Instructions = c(
   "Preheat oven to 350 degrees F",
-  "Melt butter and coat pan",
+  "Melt margarine and coat pan",
   "Mix in graham cracker crumbs and press mixture into pan",
   "Evely pour on sweetened condensed milk over graham cracker layer",
   "Layer with coconut flakes, chocolate chips, butterscotch chips, and nuts",

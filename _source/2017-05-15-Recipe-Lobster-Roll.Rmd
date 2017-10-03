@@ -1,0 +1,36 @@
+---
+layout: post
+title: "Lobster Roll"
+date: "May 15, 2017"
+categories: ['recipes', 'meal']
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, warning = FALSE}
+library(jn.general)
+lib(data)
+load('data/recipes.Rdata')
+current <- recipes[['Lobster Roll']]
+```
+
+
+
+
+
+
+**Ingredients**
+
+```{r, echo = FALSE}
+current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttab\"")
+```
+
+<br>
+
+**Instructions**
+
+```{r, echo = FALSE}
+current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttabnoh\"")
+```
+
