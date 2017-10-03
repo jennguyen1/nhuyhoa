@@ -51,6 +51,7 @@ tail -n +${start} file | head -n ${end - start + 1}
   * `grep -w` matches the word
   * `grep pattern --color=auto` highlight the match
   * `grep -ABC n` returns n lines (A) after, (B) before, (C) A+B match
+  * `grep --color -E "$1|$" "${@:2}"` (function) highlights match in text
 * `uniq -c` for unique values and counts
 * `wc -l` word counts, counts each line
 * `diff -u` compare files line by line
