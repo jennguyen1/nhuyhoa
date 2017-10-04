@@ -5,9 +5,6 @@ date: "May 15, 2017"
 categories: ['recipes', 'dessert']
 ---
 
-* TOC
-{:toc}
-
 
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/7_Layer_Bar.JPG)
@@ -15,7 +12,7 @@ categories: ['recipes', 'dessert']
 
 
 
-**Ingredients**
+#### Ingredients
 
 <table class = "presenttab">
  <thead>
@@ -74,7 +71,7 @@ categories: ['recipes', 'dessert']
 
 <br>
 
-**Instructions**
+#### Instructions
 
 <table class = "presenttabnoh">
  <thead>

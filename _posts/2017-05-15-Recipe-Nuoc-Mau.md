@@ -5,9 +5,6 @@ date: "May 15, 2017"
 categories: ['recipes', 'other']
 ---
 
-* TOC
-{:toc}
-
 
 
 
@@ -15,7 +12,7 @@ categories: ['recipes', 'other']
 [![youtube](http://img.youtube.com/vi/ZGQHPZQSH_s/0.jpg)](http://www.youtube.com/watch?v=ZGQHPZQSH_s)
 
 
-**Ingredients**
+#### Ingredients
 
 <table class = "presenttab">
  <thead>
@@ -38,7 +35,7 @@ categories: ['recipes', 'other']
 
 <br>
 
-**Instructions**
+#### Instructions
 
 <table class = "presenttabnoh">
  <thead>

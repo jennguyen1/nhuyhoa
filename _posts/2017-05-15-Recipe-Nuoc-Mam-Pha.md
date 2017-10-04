@@ -5,8 +5,6 @@ date: "May 15, 2017"
 categories: ['recipes', 'other']
 ---
 
-* TOC
-{:toc}
 
 
 
@@ -14,8 +12,7 @@ categories: ['recipes', 'other']
 
 
 
-
-**Ingredients**
+#### Ingredients
 
 <table class = "presenttab">
  <thead>
@@ -56,7 +53,7 @@ categories: ['recipes', 'other']
 
 <br>
 
-**Instructions**
+#### Instructions
 
 <table class = "presenttabnoh">
  <thead>

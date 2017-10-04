@@ -5,9 +5,6 @@ date: "May 15, 2017"
 categories: ['recipes', 'meal']
 ---
 
-* TOC
-{:toc}
-
 
 
 ![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Chao.JPG)
@@ -15,7 +12,7 @@ categories: ['recipes', 'meal']
 
 
 
-**Ingredients**
+#### Ingredients
 
 <table class = "presenttab">
  <thead>
@@ -62,7 +59,7 @@ categories: ['recipes', 'meal']
 
 <br>
 
-**Instructions**
+#### Instructions
 
 <table class = "presenttabnoh">
  <thead>

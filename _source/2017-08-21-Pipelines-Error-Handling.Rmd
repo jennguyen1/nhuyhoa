@@ -103,6 +103,7 @@ Possible excepions
 # Debugging
 
 **R**
+
 When placed inside of a function, `browser()` will trigger a debugging session in interactive mode. 
 
 

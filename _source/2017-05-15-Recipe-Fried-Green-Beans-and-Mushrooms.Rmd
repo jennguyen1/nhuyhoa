@@ -5,9 +5,6 @@ date: "May 15, 2017"
 categories: ['recipes', 'meal']
 ---
 
-* TOC
-{:toc}
-
 ```{r, echo = FALSE, warning = FALSE}
 library(jn.general)
 lib(data)
@@ -20,7 +17,7 @@ current <- recipes[['Fried Green Beans and Mushrooms']]
 
 
 
-**Ingredients**
+#### Ingredients
 
 ```{r, echo = FALSE}
 current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttab\"")
@@ -28,7 +25,7 @@ current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attri
 
 <br>
 
-**Instructions**
+#### Instructions
 
 ```{r, echo = FALSE}
 current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = "class = \"presenttabnoh\"")
