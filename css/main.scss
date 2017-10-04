@@ -6,20 +6,21 @@
 
 
 // Our variables
-$base-font-family: Helvetica, Arial, sans-serif;
+$base-font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 $base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 
 $spacing-unit:     30px;
 
-$text-color:       #111;
-$background-color: #fdfdfd;
-$brand-color:      #2a7ae2;
+$text-color:       #eaeaea;
+$background-color: #151515;
+$brand-color:      #63c0f5;
 
-$background-code-color: #eef;
+$background-code-color: rgba(0, 0, 0, 0.9);
 $code-font-size: 15px;
 
+$green-color:      #b5e853;
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);

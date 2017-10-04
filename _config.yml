@@ -19,4 +19,3 @@ kramdown:
   input: GFM
 permalink: /:year/:month/:title.html
 
-theme: jekyll-theme-hacker
