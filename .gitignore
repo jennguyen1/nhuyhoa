@@ -1,9 +1,6 @@
 _site
 .sass-cache
 .Rproj.user
-
-_posts/2015-12-20-test.md
-
-_site/2015/12/test.html
+_site/*
 
 .Rhistory
