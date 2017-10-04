@@ -55,18 +55,44 @@ R | Python | Bash
 R | Python | Bash
 --------|--------|--------
 **f <- function(p, ...){** | **def f(p, \*\*kwargs):** | **function f{**
-..**list(...)** | ..**kwarg['a']** | ..**echo $1**
-..**f2(p, ...)** | ..**f2(kwarg['a'], kwarg['b'])** | 
+..**list(...)** | ..**kwargs['a']** | ..**echo $1**
+..**f2(p, ...)** | ..**f2(kwargs['a'], kwargs['b'])** | 
 ..**return(list(x,y))** | ..**return x,y** | ..**return x**
 **}** | | **}**
 ..............................................|..............................................|..............................................
 **f(a)** | **f(a)** | **f a**
+**f(a, b = 1, c = 2)** | **f(a, b = 1)** |
 ..............................................|..............................................|..............................................
 **Vectorize()** | **lambda x,y:** |
 | **functools.partial(), functools.partialmethod()** |
 | **functools.reduce()** |
 | **functools.wrap()** | 
 
+
+
+**Python**
+
+Python has parameter options for positional args `*args` and keyword args `**kwargs`. Positional args are not named, keyword args are named. It may be used in both defining and calling the function.
+
+{% highlight python %}
+def test_args(a, *args):
+  print(a)
+  for arg in args:
+    print(arg)
+    
+def test_kwargs(a, **kwargs):
+  print(a)
+  for k in kwargs:
+    print("{}: {}".format(k, kwargs[k]))
+    
+def test_args(a1, a2, a3):
+  print([a1, a2, a3])
+  
+args = ("hi", "me", "!")
+test_args(*args)
+kwargs = {'a1':"hi", 'a2':"me", 'a3':"!"}
+test_args(**kwargs)
+{% endhighlight %}
 
 # Classes and Modules
 
