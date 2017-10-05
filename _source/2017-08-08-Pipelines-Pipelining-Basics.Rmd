@@ -13,60 +13,53 @@ categories: ['pipelines']
 
 R | Python | Bash
 --------|--------|--------
-**if(){}** | **if :** | **if ; then**
-**else if(){}** | **elif :** | **elif ; then**
-**else{}** | **else:** | **else**
- | | **fi**
+`if(){}` | `if :` | `if ; then`
+`else if(){}` | `elif :` | `elif ; then`
+`else{}` | `else:` | `else`
+ | | `fi`
 ..............................................|..............................................|..............................................
- **ifelse()** | **filter()** |
- **dplyr::case_when()** | 
- **dplyr::recode()** | 
- **plyr::mapvalues()** | 
- **purrr::keep()** | 
- **purrr::discard()** |
+ `ifelse()` | `filter()` |
+ `dplyr::case_when()` | 
+ `dplyr::recode()` | 
+ `plyr::mapvalues()` | 
+ `purrr::keep()` | 
+ `purrr::discard()` |
 
 # Looping
 
 R | Python | Bash
 --------|--------|--------
-**for( in ){}** | **for in :** | **for in**
-| | **do**
-| | **done**
+`for( in ){}` | `for in :` | `for in`
+| | `do`
+| | `done`
 | | |
-**while(){}** | **while :** | **while [ ]**
-| | **do**
-| | **done**
+`while(){}` | `while :` | `while [ ]`
+| | `do`
+| | `done`
+| `[f(x) for x in mylist]` | 
 ..............................................|..............................................|..............................................
-**purrr::map()** | **map(), starmap()** | 
-**purrr::pmap()** | **zip(), zip(*l)**
-**rep()** | **itertools.repeat()** |
-| **enumerate()** |
-
-**Bash List Examples**
-
-* `$(seq start end by)`
-* `'a' 'b' 'c'`
-* `$@`
-* `./*`
-
+`purrr::map()` | `map(), starmap()` | 
+`purrr::pmap()` | `zip(), zip(*l)`
+`rep()` | `itertools.repeat()` |
+| `enumerate()` |
 
 # Functions
 
 R | Python | Bash
 --------|--------|--------
-**f <- function(p, ...){** | **def f(p, \*\*kwargs):** | **function f{**
-..**list(...)** | ..**kwargs['a']** | ..**echo $1**
-..**f2(p, ...)** | ..**f2(kwargs['a'], kwargs['b'])** | 
-..**return(list(x,y))** | ..**return x,y** | ..**return x**
-**}** | | **}**
+`f <- function(p, ...){` | `def f(p, \*\*kwargs):` | `function f{`
+..`list(...)` | ..`kwargs['a']` | ..`echo $1`
+..`f2(p, ...)` | ..`f2(kwargs['a'], kwargs['b'])` | 
+..`return(list(x,y))` | ..`return x,y` | ..`return x`
+`}` | | `}`
+| `lambda x,y:` |
 ..............................................|..............................................|..............................................
-**f(a)** | **f(a)** | **f a**
-**f(a, b = 1, c = 2)** | **f(a, b = 1)** |
+`f(a)` | `f(a)` | `f a`
+`f(a, b = 1, c = 2)` | `f(a, b = 1)` |
 ..............................................|..............................................|..............................................
-**Vectorize()** | **lambda x,y:** |
-| **functools.partial(), functools.partialmethod()** |
-| **functools.reduce()** |
-| **functools.wrap()** | 
+`Vectorize()` | `functools.partial()` | 
+| `functools.partialmethod()` |
+| `functools.wrap()` | 
 
 
 

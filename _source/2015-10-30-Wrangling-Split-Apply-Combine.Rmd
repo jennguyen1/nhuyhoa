@@ -35,6 +35,8 @@ data %>%
 
 The `dplyr::group_by()` function can be used to group by any column in the data frame. 
 
+* `tidyr::nest()` can be used to bin split groups into a column list
+
 **Applying**
 
 * `dplyr::slice()` obtains records by row index, useful with functions like `which.max()` or `which.min()`

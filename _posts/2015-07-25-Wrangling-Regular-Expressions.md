@@ -26,27 +26,26 @@ Rather than searching for a specific character, the regex engine can search for 
 
 pattern | matches
 --------|---------
-\d      | digit character
-\w      | word character (letter, digit, '_')
-\s      | space character (space, tab, new line)
+`\d`      | digit character
+`\w`      | word character (letter, digit, '_')
+`\s`      | space character (space, tab, new line)
 
 ## Metacharacters
 
 To allow for greater flexibility, there are a number of metacharacters that convey special meaning in regex pattern matching.
 
-
-|pattern |matches                                    |
-|:-------|:------------------------------------------|
-|.       |any single character                       |
-|&#124;  |or (matches preceding or succeding string) |
-|(...)   |used for backreference                     |
-|[...]   |customized group of characters             |
-|{...}   |repetition quantifier                      |
-|*       |matches previous character 0 or more times |
-|+       |matches previous character 1 or more times |
-|?       |matches previous character 0 or 1 times    |
-|^       |matches at the beginning of a string       |
-|$       |matches at the end of a string             |
+pattern | matches
+--------|-------------
+`.`       | any single character
+`\|`       | or (matches preceding or succeding string)
+`(...)`   | used for backreference
+`[...]`   | customized group of characters
+`{...}`   | repetition quantifier
+`*`      | matches previous character 0 or more times
+`+`       | matches previous character 1 or more times
+`?`     | matches previous character 0 or 1 times
+`^`      | matches at the beginning of a string
+`$`       | matches at the end of a string
 
 Here are further specifications on several of the characters listed above.
 
@@ -62,12 +61,12 @@ To match a character (or a group of characters) multiple times, repetition quant
 
 pattern | matches
 --------|---------
-{n}     | matches previous character exactly n times
-{n,}    | matches previous character n or more times
-{n, m}  | matches previous character n to m times
-*       | matches previous character 0 or more times
-+       | matches previous character 1 or more times
-?       | matches previous character 0 or 1 times
+`{n}`     | matches previous character exactly n times
+`{n,}`    | matches previous character n or more times
+`{n, m}`  | matches previous character n to m times
+`*`       | matches previous character 0 or more times
+`+`       | matches previous character 1 or more times
+`?`       | matches previous character 0 or 1 times
 
 **(...)**
 
