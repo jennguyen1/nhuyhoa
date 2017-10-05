@@ -207,46 +207,49 @@
     
     table{
         padding-bottom: 5px;
+        font-size: 14px;
+        width: 98%;
     }
     
     th {
-        text-align: center;
+        text-align: left;
     }
+    
     
     .presenttab {
         border-collapse:collapse;
         margin:auto;
         border: 1px solid darken($green-color, 35%);
-        width: 98%;
         table-layout: fixed;
-    }
-
-    .presenttab th{
-        background-color: darken($green-color, 35%) ;
-        border-bottom:1px solid darken($green-color, 35%);
-        padding: 5px;
-    }
+        
+        
+        th{
+          background-color: darken($green-color, 35%) ;
+          border-bottom:1px solid darken($green-color, 35%);
+          padding: 5px;
+        }
   
-    .presenttab td{
-        border:1px solid darken($green-color, 35%);
-        padding: 5px;
-        font-size: 14px; 
+        td{
+          border:1px solid darken($green-color, 35%);
+          padding: 5px;
+          font-size: 14px; 
+        }
     }
     
     .presenttabnoh {
         border-collapse:collapse;
         margin:auto;
         border: none;
-        width: 98%;
-    }
+        font-size: $base-font-size;
+        
+        th{
+          display: none;
+        }
     
-    .presenttabnoh th{
-        display: none;
-    }
-    
-    .presenttabnoh td{
-        border:none;
-        padding: 5px;
+        td{
+          border:none;
+          padding: 5px;
+        }
     }
 
     .dftab {
