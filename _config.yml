@@ -10,7 +10,6 @@ github_username:  jnguyen92
 # Build settings
 markdown: kramdown
 kramdown:
-  syntax_highlighter: rouge
   auto_ids:       true
   footnote_nr:    1
   entity_output:  as_char
@@ -18,6 +17,5 @@ kramdown:
   smart_quotes:   lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
   input: GFM
-highlighter: rouge
 permalink: /:year/:month/:title.html
 
