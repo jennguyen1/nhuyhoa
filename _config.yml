@@ -9,6 +9,7 @@ github_username:  jnguyen92
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 kramdown:
   auto_ids:       true
   footnote_nr:    1
