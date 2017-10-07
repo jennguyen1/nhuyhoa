@@ -1,6 +1,6 @@
 _site
 .sass-cache
-.Rproj.user
+*.Rproj
 _site/*
 
 .Rhistory
