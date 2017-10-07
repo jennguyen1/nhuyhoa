@@ -36,7 +36,7 @@ R | Python | Bash
 `while(){}` | `while :` | `while [ ]`
 | | `do`
 | | `done`
-| `[f(x) for x in mylist]` | 
+| `[f(x) for x in mylist if condition]` | 
 ..............................................|..............................................|..............................................
 `purrr::map()` | `map(), starmap()` | 
 `purrr::pmap()` | `zip(), zip(*l)`
@@ -62,7 +62,6 @@ R | Python | Bash
 | `functools.wrap()` | 
 
 
-
 **Python**
 
 Python has parameter options for positional args `*args` and keyword args `**kwargs`. Positional args are not named, keyword args are named. It may be used in both defining and calling the function.
@@ -86,6 +85,62 @@ test_args(*args)
 kwargs = {'a1':"hi", 'a2':"me", 'a3':"!"}
 test_args(**kwargs)
 {% endhighlight %}
+
+
+**Decorators**
+
+Decorators are functions that takes another function, and extends the behavior without modifying it.
+
+{% highlight python %}
+from functools import wraps
+
+# make a decorator function
+def my_decorator(some_function):
+  @wraps(some_function)
+  def wrapper(*args, **kwargs):
+    do_something_before()
+    out = some_function(*args, **kwargs) # my original function
+    do_something_after()
+    return out
+  return wrapper
+  
+# apply my decorator
+@my_decorator
+def f_original():
+  print("hi")
+  return 5
+{% endhighlight %}
+
+Decorators can also be written to take arguments.
+
+{% highlight python %}
+# decorator can take in functions, just wrap another function around it
+def overhead(decorator_args):
+  def my_decorator(some_function):
+    @wraps(some_function)
+    def wrapper(*args, **kwargs):
+      do_something_before(decorator_args)
+      out = some_function(*args, **kwargs) # my original function
+      do_something_after(decorator_args)
+      return out
+    return wrapper
+  return my_decorator
+  
+  
+@overhead(arg1)
+def f_original():
+  print("hi")
+  return 5
+{% endhighlight %}
+
+Here are some useful decorators:
+
+* Time how long a function takes to execute
+* Memoization (storing cached results)
+* Dump arguments passed into function before calling
+* Force conditions on inputs/outputs of function
+* Count function calls
+* Deprecation warnings
 
 # Classes and Modules
 
@@ -134,11 +189,28 @@ Classes have a set of unique methods and functions. There are also a number of p
 * `def __add__(self, other)` to allow adding `myobj + yourobj`
 * other operations available on the [Python manual][class_operators]{:target = "_blank"}
 
-To create an iterator for the class
+Generators are memory efficienct because they generate values rather than iterating through a list saved in memory. Generators returns values with the `yield` statement and remembers the current state so that it can resume where it left off. A `StopIteration` exception is raised at the end of the generator's definition. To create a generator for the class
 
-* `def __iter__(self)` to iterate through a sequence
-* `def __next__(self)` to get the next value from an iterator; if a class defines `__next__()` then `__iter__()` can just return `self`
+* `def __iter__(self)` initializes sequence to be iterated through; if `__next__()` exists, just returns `self`
+* `def __next__(self)` to get the next value from a generator, with a `yield` statement
 * `def __reversed__(self)` to create an iterator in reverse order
+
+Context managers manage resources. They are used in place of `try` and `finally` statements. To create context managers for the class (implemented with `with ... as` statements)
+
+* `def __enter__(self)` set up and returns object
+* `def __exit__(self)` cleanup executed upon close, regardless of what happens; returns nothing
+
+There is a standard library devoted to context managers called `contexlib`. It can turn a function into a context manager with a few simple steps. Everything before `yield` is considered the code for `__enter__()` and everything after is the code for `__exit__()`.
+
+{% highlight python %}
+from contexlib import contextmanager
+
+@contextmanager
+def open_file(path. mode)
+  f = open(path, mode)
+  yield f
+  f.close()
+{% endhighlight %}
 
 [class_operators]: https://docs.python.org/3.5/library/operator.html
 

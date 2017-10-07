@@ -8,7 +8,10 @@ categories: ['pipelines']
 * TOC
 {:toc}
 
-
+```{r, echo = FALSE}
+library(jn.general) 
+lib(data)
+```
 
 # Exception Handling 
 
@@ -20,73 +23,15 @@ The package `purrr` has 3 functions to deal with error handling. These functions
 * `quietly()` returns a list with 4 elements: result, output, warnings, and messages
 * `possibly()` replaces errors in 1 object with a default value
 
-
-{% highlight r %}
+```{r}
 map(list(1, 2, "hi"), safely(log))
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [[1]]
-## [[1]]$result
-## [1] 0
-## 
-## [[1]]$error
-## NULL
-## 
-## 
-## [[2]]
-## [[2]]$result
-## [1] 0.6931472
-## 
-## [[2]]$error
-## NULL
-## 
-## 
-## [[3]]
-## [[3]]$result
-## NULL
-## 
-## [[3]]$error
-## <simpleError in log(x = x, base = base): non-numeric argument to mathematical function>
-{% endhighlight %}
-
-
-
-{% highlight r %}
 map(list(1, 2, "hi"), quietly(log))
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in log(x = x, base = base): non-numeric argument to mathematical function
-{% endhighlight %}
-
-
-
-{% highlight r %}
 map(list(1, 2, "hi"), possibly(log, NA_real_))
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [[1]]
-## [1] 0
-## 
-## [[2]]
-## [1] 0.6931472
-## 
-## [[3]]
-## [1] NA
-{% endhighlight %}
+```
 
 
 Similar to other languages `tryCatch()` can be used to deal with how error, warning, and messages are dealt with. 
-
-{% highlight r %}
+```{r}
 error_handling <- function(code){
   tryCatch(
     code, 
@@ -97,43 +42,8 @@ error_handling <- function(code){
 }
 
 error_handling(stop("!"))
-{% endhighlight %}
+```
 
-
-
-{% highlight text %}
-## [1] "error"
-{% endhighlight %}
-
-
-The function `dplyr::failwith()` can control how errors within a function are dealt with. 
-
-{% highlight r %}
-# arbitrary function
-f <- function(x) if( is.character(x) ) stop("There is an error")
-
-# add the failwith option to the function
-f2 <- dplyr::failwith(default = NULL, f, quiet = TRUE)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Warning: Deprecated: please use `purrr::possibly()` instead
-{% endhighlight %}
-
-
-
-{% highlight r %}
-# run option
-f2("testing")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## NULL
-{% endhighlight %}
 
 **Python**
 
@@ -168,7 +78,7 @@ except (Exception1, Exception2) as e:
 except:
   # ALL OTHER ERRORS
 else:
-  # OPERATIONS
+  # RUNS IF NO EXCEPTIONS IN TRY
 finally:
   # OPERATIONS
 {% endhighlight %}
@@ -177,6 +87,59 @@ Possible excepions
 
 * IOError
 * IndexError
+
+# Unit Testing
+
+
+**Python**
+
+{% highlight python %}
+import unittest
+import my_functions # import your own code
+
+class TestName(unittest.TestCase):
+
+  # setup any objects needed for testing
+  def setUp(self):
+    pass
+
+  # any series of tests
+  def test_name(self):
+    self.assertBlah(my_functions.f(), ...)
+    
+  # cleanup any objects needed for testing
+  def tearDown(self)
+  
+  
+# call tests  
+if __name__ == '__main__':
+  unittest.main()
+{% endhighlight %}
+
+{% highlight bash %}
+# run tests
+python test_unittest.py -v
+{% endhighlight %}
+
+
+Here are a list of common assertions
+
+* `assertEqual(a,b)`, `assertNotEqual()`
+* `assertTrue(x)`, `assertFalse()`
+* `assertIs(a,b)`, `assertIsNot()`
+* `assertNone(x)`, `assertIsNotNone()`
+* `assertIn(a,b)`, `assertNotIn()`
+* `assertIsInstance(a,b)`, `assertNotIsInstance()`
+* `assertAlmostEqual(a,b,places,delta)`, `assertNotAlmostEqual()`
+* `assertGreater(a,b)`, `assertGreaterEqual()`
+* `assertLess(a,b)`, `assertLessEqual()`
+* `assertRegex(t,regexp)`, `assertNotRegex()`
+* `assertCountEqual(a,b)`
+* `assertListEqual(a,b)`, `assertTupleEqual()`, `assertSetEqual()`, `assertDictEqual()`
+* `assertRaises()`, `assertRaisesRegex()`
+
+These methods have a parameter `msg` in which you can provide additional messages upon fail.
+
 
 # Debugging
 

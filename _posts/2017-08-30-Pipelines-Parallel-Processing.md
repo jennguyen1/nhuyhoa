@@ -28,7 +28,6 @@ mclapply(list, function, mc.cores = n)
 mcMap(f, x, y, mc.cores = n)
 
 # run in parallel - for windows
-
 # generate clusters - n = # of clusters
 cl <- makeCluster(n)
 
@@ -42,38 +41,10 @@ parLapply(cl = cl, X, fun)
 stopCluster(cl)
 {% endhighlight %}
 
-The function `mclapply()` copies the current environemnt into each worker environment and can be run from Linux/Mac. The function `parLapply()` requires you to tell the cluster what to load and can be run from Linux/Mac/Windows. 
+The function `mclapply()` copies the current environemnt into each worker environment and can be run from Linux/Mac. The function `parLapply()` requires you to tell the cluster what to load from the current environment and can be run from Linux/Mac/Windows. 
 
 It is important to note that if you are saving big objects in memory, `mclapply()` worker environments will multiply this by copying the object into their environment. Take care to either actively remove objects with `rm()` and clear memory with `gc()`, or just use `parLapply()`
 
-
-Another option is to use the `plyr` and `doParallel` packages.
-
-{% highlight r %}
-# load library
-library(plyr)
-library(doParallel)
-
-# total number of cores
-detectCores()
-
-# generate clusters - n = # of clusters
-cl <- makeCluster(n)
-registerDoParallel(cl)
-
-# use plyr to run in parallel
-llply(.data, .fun, ...,
-      .parallel = TRUE, 
-      .paropts = list(.packages = c("dplyr", "magrittr"))
-      )
-
-# close clusters
-stopCluster(cl)
-{% endhighlight %}
-
-Think of each core as its own separate "R session", in that it will only have information passed to it from the function. The cores will not have access to variables and packages that have been loaded in the current environment. Thus it is best to provide the function with all necessary objects (as parameters) and provide all necessary packages in the `.paropts` argument. 
-
-Note that these are two of many ways to run parallel processing in R. 
 
 **Python**
 
@@ -93,24 +64,24 @@ def f2(x,y):
   
 # total number of cores
 n = mp.cpu_count()
-  
-# generate clusters
-pool = mp.Pool(processes = n)
 
-# option 1: lock main program until all processes are finished; map = 1 arg, starmap = multiple args
-pool.map(f, range(1,7))
-pool.starmap(f2, zip(range(1, 7), range(1,7)))
-pool.starmap(f2, zip(range(1,7), repeat(10)))
+# generate clusters, with closes pool automatically
+with mp.Pool(processes = n) as pool:
 
-# option 2: submits all processes at once and retrieve results as they finish
-results = pool.map_async(f, range(1,7))
-results = pool.starmap(f2, zip(range(1, 7), range(1,7)))
-results = pool.starmap(f2, zip(range(1,7), repeat(10)))
-# DO OTHER STUFF
-results.wait() # block program starting here
-output = results.get()
+  # option 1: lock main program until all processes are finished; map = 1 arg, starmap = multiple args
+  pool.map(f, range(1,7))
+  pool.starmap(f2, zip(range(1, 7), range(1,7)))
+  pool.starmap(f2, zip(range(1,7), repeat(10)))
 
-# close 
+  # option 2: submits all processes at once and retrieve   results as they finish
+  results = pool.map_async(f, range(1,7))
+  results = pool.starmap(f2, zip(range(1, 7), range(1,7)))
+  results = pool.starmap(f2, zip(range(1,7), repeat(10)))
+  # DO OTHER STUFF
+  results.wait() # block program starting here
+  output = results.get()
+
+# if do not use with statement, then required to close the pool
 pool.close()
 pool.join()
 {% endhighlight %}
