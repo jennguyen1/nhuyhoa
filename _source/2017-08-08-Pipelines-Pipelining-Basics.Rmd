@@ -144,6 +144,7 @@ class my_decorator(object):
 
   def __init__(self, some_function):
     self.__f = some_function
+    self.__tracker = 0
     
   def __call__(self, *args, **kwargs):
     do_something_before()
@@ -161,6 +162,7 @@ class overhead(object):
   
   def __init__(self, decorator_args):
     # DO STUFF
+    self.__tracker = 0
     
   def __call__(self, func, *args, **kwargs):
     def wrapper(*args, **kwargs):
