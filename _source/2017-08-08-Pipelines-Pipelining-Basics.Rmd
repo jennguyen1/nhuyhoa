@@ -104,6 +104,7 @@ def my_decorator(some_function):
     return out
   return wrapper
   
+  
 # apply my decorator
 @my_decorator
 def f_original():
@@ -126,11 +127,54 @@ def overhead(decorator_args):
     return wrapper
   return my_decorator
   
-  
+
+# apply my decorator
 @overhead(arg1)
 def f_original():
   print("hi")
   return 5
+{% endhighlight %}
+
+
+It can also be declared as a class. This can be used if you want to maintain some sort of state.
+
+{% highlight python %}
+# class version w/o arguments
+class my_decorator(object):
+
+  def __init__(self, some_function):
+    self.__f = some_function
+    
+  def __call__(self, *args, **kwargs):
+    do_something_before()
+    out = self.__f(*args, **kwargs)
+    do_something_after()
+    return out
+  
+@my_decorator
+def f_original():
+  print("hi")
+  return 5
+  
+# class version with arguments
+class overhead(object):
+  
+  def __init__(self, decorator_args):
+    # DO STUFF
+    
+  def __call__(self, func, *args, **kwargs):
+    def wrapper(*args, **kwargs):
+      do_something_before()
+      out = func(*args, *kwargs)
+      do_something_after()
+      return out
+    return wrapper
+    
+
+@overhead(arg1)
+def f_original():
+  print("hi")
+  return 5    
 {% endhighlight %}
 
 Here are some useful decorators:
@@ -141,6 +185,8 @@ Here are some useful decorators:
 * Force conditions on inputs/outputs of function
 * Count function calls
 * Deprecation warnings
+
+Check out this [page][decorator_link]{:target = "_blank"} for implementations of some common decorators.
 
 # Classes and Modules
 
@@ -213,4 +259,4 @@ def open_file(path. mode)
 {% endhighlight %}
 
 [class_operators]: https://docs.python.org/3.5/library/operator.html
-
+[decorator_link]:https://wiki.python.org/moin/PythonDecoratorLibrary
