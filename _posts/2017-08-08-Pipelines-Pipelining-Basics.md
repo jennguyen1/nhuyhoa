@@ -237,11 +237,17 @@ Classes have a set of unique methods and functions. There are also a number of p
 * `def __add__(self, other)` to allow adding `myobj + yourobj`
 * other operations available on the [Python manual][class_operators]{:target = "_blank"}
 
+
+**Generators**
+
 Generators are memory efficienct because they generate values rather than iterating through a list saved in memory. Generators returns values with the `yield` statement and remembers the current state so that it can resume where it left off. A `StopIteration` exception is raised at the end of the generator's definition. To create a generator for the class
 
 * `def __iter__(self)` initializes sequence to be iterated through; if `__next__()` exists, just returns `self`
 * `def __next__(self)` to get the next value from a generator, with a `yield` statement
 * `def __reversed__(self)` to create an iterator in reverse order
+
+
+**Context Managers**
 
 Context managers manage resources. They are used in place of `try` and `finally` statements. To create context managers for the class (implemented with `with ... as` statements)
 

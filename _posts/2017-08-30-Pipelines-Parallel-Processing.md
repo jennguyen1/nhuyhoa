@@ -8,9 +8,28 @@ categories: ['pipelines']
 * TOC
 {:toc}
 
-Parallel processing allows independent tasks to be dispatched to different cores. These cores compute them in parallel and combine the results. Running tasks in parallel can reduce the runtime by half or more. Each core is a new environemnt, so it is required to export your current environment so that the worker cores have objects to work with.
 
-However, parallel processing is only recommended for time-consuming tasks. With shorter tasks, it may take more time to set up the cores than to run the analysis iteratively. 
+There are a variety of ways to parallelize tasks. The following table has a summary of them. 
+
+Processes | Threads | Synchronization
+----------|---------|-----------------
+independent sequences of execution | independent sequences of execution | presence of race conditions
+separate memory spaces | shared memory space | file locks for processes
+variables are copied when processes fork | globally accessible variables shared between threads | mutexes for threads 
+
+
+# Parallelism via Processes
+
+Parallel processing allows independent tasks to be dispatched to different processes. 
+
+Running tasks in parallel can greatly reduce the runtime. Amdahl's law provides a way to estimate the best attainable performance gain when you convert code from serial to parallel execution. 
+
+$$S(n) = \frac{1}{P/n + (1-P)}$$
+
+where $$P$$ is the proportion of time that the task is strictly parallel, $$n$$ is the number of processes used for parallel execution, and $$S(n)$$ is the theoretical best possible speedup of the task. 
+
+Parallel processing requires data transmission between the master and worker processes. Therefore it is only recommended for time-consuming tasks because unecessary transmission may take longer than running the task serially. 
+
 
 **R**
 
@@ -20,7 +39,7 @@ For parallel processing in R, the `parallel`.
 # load library
 library(parallel)
 
-# total number of cores
+# total number of cpus available
 detectCores()
 
 # run in parallel - for linux/mac
@@ -62,7 +81,7 @@ def f(x):
 def f2(x,y):
   return(x*y)
   
-# total number of cores
+# total number of cpus available
 n = mp.cpu_count()
 
 # generate clusters, with closes pool automatically
@@ -73,10 +92,10 @@ with mp.Pool(processes = n) as pool:
   pool.starmap(f2, zip(range(1, 7), range(1,7)))
   pool.starmap(f2, zip(range(1,7), repeat(10)))
 
-  # option 2: submits all processes at once and retrieve   results as they finish
+  # option 2: does not lock main program, submit processes and do other stuff while waiting for them to finish
   results = pool.map_async(f, range(1,7))
-  results = pool.starmap(f2, zip(range(1, 7), range(1,7)))
-  results = pool.starmap(f2, zip(range(1,7), repeat(10)))
+  results = pool.starmap_async(f2, zip(range(1, 7), range(1,7)))
+  results = pool.starmap_async(f2, zip(range(1,7), repeat(10)))
   # DO OTHER STUFF
   results.wait() # block program starting here
   output = results.get()
@@ -85,4 +104,24 @@ with mp.Pool(processes = n) as pool:
 pool.close()
 pool.join()
 {% endhighlight %}
+
+
+# Other Ways to Improve Performance 
+
+When brainstorming ways to improve performance, you can look at a few things
+
+* Reformalize code that has high CPU usage
+* Reformalize code that has low free memory and high swap size (system running out of memory and swapping memory onto the disk)
+* Reformalize code with high disk I/O
+
+It is useful to profile your code to find where these bottlenecks may be occurring. 
+
+The following are a few suggestions on how to relieve performance issues
+
+* Using special data structures and packages
+* Parallelize embarassingly parallel tasks 
+* Remove intermediate data when no longer needed 
+* Calculating values on the fly 
+* Swapping active/inactive data 
+* Scale horizontally (buy more CPU/RAM) or vertically (use more computers)
 
