@@ -7,7 +7,7 @@ categories: ['recipes', 'dessert']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Che_Thai.JPG)
+![pic1]( {{"/figure/food/Che_Thai.JPG" | absolute_url }})
 
 
 

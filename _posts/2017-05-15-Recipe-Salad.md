@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Salad.JPG)
+![pic1]( {{"/figure/food/Salad.JPG" | absolute_url }})
 
 
 

@@ -7,9 +7,9 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh_Muop_Mong_Toi.JPG)
+![pic1]( {{"/figure/food/Canh_Muop_Mong_Toi.JPG" | absolute_url }})
 
-![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh_Muop_Mong_Toi2.JPG)
+![pic2]( {{"/figure/food/Canh_Muop_Mong_Toi2.JPG" | absolute_url }})
 
 
 

@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Bo_Bia.JPG)
+![pic1]( {{"/figure/food/Bo_Bia.JPG" | absolute_url }})
 
 
 

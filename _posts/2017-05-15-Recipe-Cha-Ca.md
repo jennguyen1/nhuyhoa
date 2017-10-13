@@ -7,9 +7,9 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh_Cha_Ca.JPG)
+![pic1]( {{"/figure/food/Canh_Cha_Ca.JPG" | absolute_url }})
 
-![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Cha_Ca.JPG)
+![pic2]( {{"/figure/food/Cha_Ca.JPG" | absolute_url }})
 
 
 

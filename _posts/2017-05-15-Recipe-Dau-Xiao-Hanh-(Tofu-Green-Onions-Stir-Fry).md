@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Dau_Xiao_Hanh.JPG)
+![pic1]( {{"/figure/food/Dau_Xiao_Hanh.JPG" | absolute_url }})
 
 
 

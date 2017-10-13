@@ -12,7 +12,7 @@ load('data/recipes.Rdata')
 current <- recipes[['Alfredo']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Alfredo.JPG)
+![pic1]( {{"/figure/food/Alfredo.JPG" | absolute_url }})
 
 
 

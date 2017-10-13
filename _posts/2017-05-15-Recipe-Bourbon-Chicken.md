@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Bourbon_Chicken.JPG)
+![pic1]( {{"/figure/food/Bourbon_Chicken.JPG" | absolute_url }})
 
 
 

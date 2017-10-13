@@ -7,9 +7,9 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh_Khoai_Tay_Suon.JPG)
+![pic1]( {{"/figure/food/Canh_Khoai_Tay_Suon.JPG" | absolute_url }})
 
-![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Canh_Khoai_Tay_Suon2.JPG)
+![pic2]( {{"/figure/food/Canh_Khoai_Tay_Suon2.JPG" | absolute_url }})
 
 
 

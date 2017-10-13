@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Rau_Muong_Xao_Toi.JPG)
+![pic1]( {{"/figure/food/Rau_Muong_Xao_Toi.JPG" | absolute_url }})
 
 
 

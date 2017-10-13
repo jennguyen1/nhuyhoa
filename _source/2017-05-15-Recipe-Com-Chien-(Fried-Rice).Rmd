@@ -12,7 +12,7 @@ load('data/recipes.Rdata')
 current <- recipes[['Com Chien (Fried Rice)']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Com_Chien.JPG)
+![pic1]( {{"/figure/food/Com_Chien.JPG" | absolute_url }})
 
 
 

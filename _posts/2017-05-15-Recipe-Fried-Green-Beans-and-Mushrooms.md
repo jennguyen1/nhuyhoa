@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Fried_Green_Beans_and_Mushrooms.JPG)
+![pic1]( {{"/figure/food/Fried_Green_Beans_and_Mushrooms.JPG" | absolute_url }})
 
 
 

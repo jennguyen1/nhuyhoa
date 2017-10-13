@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Thit_Heo_Luoc_Cham_Tom_Mam.JPG)
+![pic1]( {{"/figure/food/Thit_Heo_Luoc_Cham_Tom_Mam.JPG" | absolute_url }})
 
 
 

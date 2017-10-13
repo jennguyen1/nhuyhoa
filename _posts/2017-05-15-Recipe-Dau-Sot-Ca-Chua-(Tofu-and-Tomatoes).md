@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Dau_Sot_Ca_Chua.JPG)
+![pic1]( {{"/figure/food/Dau_Sot_Ca_Chua.JPG" | absolute_url }})
 
 
 

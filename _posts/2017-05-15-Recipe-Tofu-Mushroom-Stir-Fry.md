@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Tofu_Mushroom_Stir_Fry.JPG)
+![pic1]( {{"/figure/food/Tofu_Mushroom_Stir_Fry.JPG" | absolute_url }})
 
 
 

@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Bap_Cai_Luoc.JPG)
+![pic1]( {{"/figure/food/Bap_Cai_Luoc.JPG" | absolute_url }})
 
 
 

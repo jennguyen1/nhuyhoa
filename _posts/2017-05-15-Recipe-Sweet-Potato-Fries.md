@@ -7,7 +7,7 @@ categories: ['recipes', 'dessert']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Sweet_Potato_Fries.JPG)
+![pic1]( {{"/figure/food/Sweet_Potato_Fries.JPG" | absolute_url }})
 
 
 

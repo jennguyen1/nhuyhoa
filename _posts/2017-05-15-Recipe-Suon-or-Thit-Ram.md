@@ -7,9 +7,9 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Suon_or_Thit_Ram.JPG)
+![pic1]( {{"/figure/food/Suon_or_Thit_Ram.JPG" | absolute_url }})
 
-![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Suon_or_Thit_Ram2.JPG)
+![pic2]( {{"/figure/food/Suon_or_Thit_Ram2.JPG" | absolute_url }})
 
 
 

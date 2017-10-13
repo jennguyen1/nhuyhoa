@@ -7,11 +7,11 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Crab_Cake.JPG)
+![pic1]( {{"/figure/food/Crab_Cake.JPG" | absolute_url }})
 
-![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Crab_Cake2.JPG)
+![pic2]( {{"/figure/food/Crab_Cake2.JPG" | absolute_url }})
 
-![pic3](http://jnguyen92.github.io/nhuyhoa/figure/food/Crab_Cake3.JPG)
+![pic3]( {{"/figure/food/Crab_Cake3.JPG" | absolute_url }})
 
 
 

@@ -12,7 +12,7 @@ load('data/recipes.Rdata')
 current <- recipes[['7 Layer Bar']]
 ```
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/7_Layer_Bar.JPG)
+![pic1]( {{"/figure/food/7_Layer_Bar.JPG" | absolute_url }})
 
 
 

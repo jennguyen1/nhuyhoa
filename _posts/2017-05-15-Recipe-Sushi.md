@@ -7,11 +7,11 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Sushi.JPG)
+![pic1]( {{"/figure/food/Sushi.JPG" | absolute_url }})
 
-![pic2](http://jnguyen92.github.io/nhuyhoa/figure/food/Sushi2.JPG)
+![pic2]( {{"/figure/food/Sushi2.JPG" | absolute_url }})
 
-![pic3](http://jnguyen92.github.io/nhuyhoa/figure/food/Sushi3.JPG)
+![pic3]( {{"/figure/food/Sushi3.JPG" | absolute_url }})
 
 
 

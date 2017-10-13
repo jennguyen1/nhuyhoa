@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Teriyaki_Chicken.JPG)
+![pic1]( {{"/figure/food/Teriyaki_Chicken.JPG" | absolute_url }})
 
 
 

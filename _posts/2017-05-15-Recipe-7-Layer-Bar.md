@@ -7,7 +7,7 @@ categories: ['recipes', 'dessert']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/7_Layer_Bar.JPG)
+![pic1]( {{"/figure/food/7_Layer_Bar.JPG" | absolute_url }})
 
 
 

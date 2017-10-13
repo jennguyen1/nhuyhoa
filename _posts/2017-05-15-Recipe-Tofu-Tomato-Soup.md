@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1](http://jnguyen92.github.io/nhuyhoa/figure/food/Tofu_Tomato_Soup.JPG)
+![pic1]( {{"/figure/food/Tofu_Tomato_Soup.JPG" | absolute_url }})
 
 
 
