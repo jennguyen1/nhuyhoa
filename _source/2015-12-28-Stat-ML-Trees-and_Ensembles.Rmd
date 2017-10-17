@@ -16,7 +16,7 @@ library(MASS)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center', warning = FALSE, message = FALSE)
 ```
 
-![tree](http://jnguyen92.github.io/nhuyhoa/figure/images/tree.png)
+![tree](http://jennguyen1.github.io/nhuyhoa/figure/images/tree.png)
 
 A sample tree and how it cuts up the feature space. 
 

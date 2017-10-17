@@ -86,5 +86,5 @@ Model ensemble procedure
 * Compute weights (may be based of CV, information criteria, linear model to predict on hold-out set, etc)
 * Combine predictions using model weights
 
-[glm_basics_post]: http://jnguyen92.github.io/nhuyhoa//2015/11/GLM-Basics.html#fitting-glm
+[glm_basics_post]: http://jennguyen1.github.io/nhuyhoa//2015/11/GLM-Basics.html#fitting-glm
 

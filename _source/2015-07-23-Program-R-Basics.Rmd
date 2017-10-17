@@ -95,7 +95,7 @@ See the [parallel processing post][parallel_processing_post]{: target = "_blank"
 
 [dplyr]: https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf
 [tidyr]: https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-import-cheatsheet.pdf
-[parallel_processing_post]: http://jnguyen92.github.io/nhuyhoa//2017/03/Parallel-Processing.html#in-r
+[parallel_processing_post]: http://jennguyen1.github.io/nhuyhoa//2017/03/Parallel-Processing.html#in-r
 
 
 

@@ -128,7 +128,7 @@ If aggregation is not desired, achieving the correct format will require a littl
 
 ## Visual Diagram of Reshaping in R
 
-![reshaping in R](http://jnguyen92.github.io/nhuyhoa/figure/images/transpose.png)
+![reshaping in R](http://jennguyen1.github.io/nhuyhoa/figure/images/transpose.png)
 (By r-statistics)
 
 # In SAS

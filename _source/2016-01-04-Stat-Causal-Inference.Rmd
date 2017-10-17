@@ -57,7 +57,7 @@ Essentially randomization ensures the responses are independent of the treatment
 ## Confounding
 Failure to randomize experiments may lead to confounding. Confounding occurs when additional (observed or unobserved) factors ($$Z$$) that are associated with both $$X$$ and $$Y$$ and induce misalignment between the observed association and the true causal relationship. 
 
-![Confounding](http://jnguyen92.github.io/nhuyhoa/figure/images/confounding.png)
+![Confounding](http://jennguyen1.github.io/nhuyhoa/figure/images/confounding.png)
 
 Specifically, if $$X$$ has a causal effect on $$Y$$, but $$Z$$  has causal effects on both $$X$$ and $$Y$$, then the observed assiciation between $$X$$ and $$Y$$ wil reflect the net effect of $$X$$ and the effect of $$Z$$ on $$X$$ and $$Y$$. In some cases $$X$$ may not have a causal effect on $$Y$$, but the confounding variable may make it seem like there is. 
 

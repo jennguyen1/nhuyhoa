@@ -59,7 +59,7 @@ The principal component scores can be used in place of the original features.
 ## Geometric Interpretation
 The first principal component loading vector defines the line in $$p$$-dimensional space that is closest to the $$n$$ observations (Euclidean distance). The first 2 principal components of a dataset span the plane that is closest to the $$n$$ observations. 
 
-![PCA Geometric Interpretation](http://jnguyen92.github.io/nhuyhoa/figure/images/principal_components.png)
+![PCA Geometric Interpretation](http://jennguyen1.github.io/nhuyhoa/figure/images/principal_components.png)
 
 Green line is the $$1^{st}$$ principal component and the blue dashed line is the $$2^{nd}$$ principal component. (Hastie, et.al)
 

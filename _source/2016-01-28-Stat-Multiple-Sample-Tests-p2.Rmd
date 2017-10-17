@@ -201,4 +201,4 @@ Procedure:
 2. Perform a one-way ANOVA on the $$d_{ij}$$
 3. Reject $$H_0: \sigma^2_1 = ... = \sigma^2_k$$ if the $$F$$-test is significant
 
-[multiple_comp_link]: http://jnguyen92.github.io/nhuyhoa//2016/02/Multiple-Comparisons.html
+[multiple_comp_link]: http://jennguyen1.github.io/nhuyhoa//2016/02/Multiple-Comparisons.html
