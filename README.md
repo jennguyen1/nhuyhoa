@@ -1,2 +1,3 @@
 # nhuyhoa
-My notebook for school stuff
+
+My notebook on statistics, computing, and life
