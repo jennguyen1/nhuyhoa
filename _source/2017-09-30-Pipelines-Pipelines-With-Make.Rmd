@@ -28,7 +28,8 @@ lib = {'a':4, 'b': "data2.txt"}
 rule rule_name:
   message: "Summary message"
   params: 
-    p1 = "FJIW837"
+    p1 = "FJIW837",
+    p2 = lambda wildcards: "a" if wildcards.v1 == "1" else "b"
   input: 
     script = os.path.join(SCRIPTS, "1_run_this.py"),
     in1 = "data{v1}.txt",
@@ -88,6 +89,9 @@ snakemake -p
 # outputs a dry run (does not execute)
 snakemake -np
 
+# add a timestamp
+snakemake -T
+
 # prints out reason for rerun
 snakemake -r
 
@@ -101,9 +105,6 @@ snakemake -Fnp
 
 # running in parallel (jobs that don't rely on each other)
 snakemake --cores n
-
-# add a timestamp
-snakemake -T
 
 # prints summary
 snakemake -S
