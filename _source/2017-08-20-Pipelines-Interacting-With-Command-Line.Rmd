@@ -48,9 +48,9 @@ proc.terminate()
 {% endhighlight %}
 
 
-# Scripting
+# Command Line Arguments
 
-### Creation
+### In Scripts
 It is good practice to print out a time stamp for start/end of script and the command line arguments that were passed in.
 
 **R**
