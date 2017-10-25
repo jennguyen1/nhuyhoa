@@ -90,6 +90,9 @@ Possible excepions
 
 # Unit Testing
 
+**R**
+
+Unit tests in R can be done with the package `testthat`.
 
 **Python**
 
@@ -140,6 +143,7 @@ Here are a list of common assertions
 
 These methods have a parameter `msg` in which you can provide additional messages upon fail.
 
+It is a good idea to unit test modules and packages that you use repetitively. For one-off scripts (cleaning/transforming data, etc), unit testing is unecessary but you can sprinkle asserts throughout the code. 
 
 # Debugging
 

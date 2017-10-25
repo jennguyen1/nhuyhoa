@@ -126,5 +126,7 @@ R has several functions to calculate desired power and sample sizes
 * `power.anova.test()`
 * `power.prop.test()`
 
+There are also a number of functions in the package `pwr()`.
+
 
 [sample_size_calculators]: http://powerandsamplesize.com/

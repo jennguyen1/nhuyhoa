@@ -217,12 +217,17 @@ class myClass:
 # create an instance of myClass
 myinstance = myClass(x, y)
 myinstance.method()
+isinstance(myinstane, myClass)
 {% endhighlight %}
 
 Classes can inherit from other classes like so
 {% highlight python %}
 class myClass2(baseClass):
-  # STUFF
+  
+  def __init__(self):
+    super(baseClass, self).__init__()
+    
+  # SPECIALIZED STUFF
 {% endhighlight %}
 
 Classes have a set of unique methods and functions. There are also a number of pre-defined methods that would be useful to use
@@ -237,10 +242,18 @@ Classes have a set of unique methods and functions. There are also a number of p
 * `def __add__(self, other)` to allow adding `myobj + yourobj`
 * other operations available on the [Python manual][class_operators]{:target = "_blank"}
 
+There are a number of decorator functions for classes to extend its methods
+
+* `classmethod` shared among all instances, called with the class 1st arg
+* `staticmethod` called without a class or instance reference
+* property
+* `property` a getter that also turns the method into a read only atribute with the same name, can be accessed as `instance.propname`
+* `[property].setter` and `[property].deleter` methods to set and delete a property, the *[property]* value is just the name of the method from `property`
+
 
 **Generators**
 
-Generators are memory efficienct because they generate values rather than iterating through a list saved in memory. Generators returns values with the `yield` statement and remembers the current state so that it can resume where it left off. A `StopIteration` exception is raised at the end of the generator's definition. To create a generator for the class
+Generators are memory efficienct because they generate values rather than iterating through a list saved in memory. Generators returns values with the `yield` statement (usually placed within a `while` loop) and remembers the current state so that it can resume where it left off. A `StopIteration` exception is raised at the end of the generator's definition. To create a generator for the class
 
 * `def __iter__(self)` initializes sequence to be iterated through; if `__next__()` exists, just returns `self`
 * `def __next__(self)` to get the next value from a generator, with a `yield` statement

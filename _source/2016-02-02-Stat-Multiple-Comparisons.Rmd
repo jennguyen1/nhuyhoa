@@ -220,12 +220,12 @@ If the number of true $$H_0$$ tests were known, one could adjust for that ($$r_0
 Consider the histogram of p-values testing samples with a combination of the same means and different means. Under the null hypothesis, p-values are expected to be uniformly distributed between $$0$$ and $$1$$. Under the alternative hypothesis, p-values are skewed towards $$0$$. So combined
 
 ```{r, echo = FALSE}
-set.seed(5)
-null <- plyr::raply(500, t.test(rnorm(100), rnorm(100))$p.value)
-non_null <- plyr::raply(500, t.test(rnorm(100), rnorm(100, 0.4))$p.value)
+set.seed(3)
+null <- plyr::raply(800, t.test(rnorm(150), rnorm(150))$p.value)
+non_null <- plyr::raply(800, t.test(rnorm(150), rnorm(150, 0.4))$p.value)
 
 plot_data <- data.frame(p.vals = c(null, non_null), type = c(rep("null", length(null)), rep("non-null", length(non_null))))
-plot_data$type <- reorder(plot_data$type, ifelse(plot_data$type == "null", 1, 2))
+plot_data$type <- reorder(plot_data$type, ifelse(plot_data$type == "non-null", 1, 2))
 
 ggplot(data = plot_data, aes(x = p.vals, fill = type)) + 
   geom_histogram(binwidth = .05, alpha = 0.75, color = "black") +
