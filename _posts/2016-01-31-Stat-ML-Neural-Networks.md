@@ -11,7 +11,7 @@ categories: ['statistics', 'machine learning']
 
 
 # Schematic Model
-![Neural Network Model](http://jnguyen92.github.io/nhuyhoa/figure/images/neural_network_model.png)
+![Neural Network Model](http://jennguyen1.github.io/nhuyhoa/figure/images/neural_network_model.png)
 
 One of many potential neural network models.
 

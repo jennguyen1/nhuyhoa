@@ -26,11 +26,11 @@ Reject $$H_0: \mu = 0$$ if $$\bar{Y} > C_n$$ for some $$C_n$$. <br>
 In standardized form, reject $$H_0$$ if $$Z = \sqrt{\frac{n}{\sigma^2}} \bar{Y} \ge Z_{1 - \alpha/2}$$. <br>
 Therefore $$C_n = \sqrt{\frac{\sigma^2}{n}} Z_{1 - \alpha /2}$$. 
 
-![Null and Alternative Distributions](http://jnguyen92.github.io/nhuyhoa/figure/images/null_and_alternative_dist.png)
+![Null and Alternative Distributions](http://jennguyen1.github.io/nhuyhoa/figure/images/null_and_alternative_dist.png)
 
 Diagrams of the null (left) and alternative (right) distributions.
 
-![Distribution for Sample Size](http://jnguyen92.github.io/nhuyhoa/figure/images/sample_size_calc_diagram.png)
+![Distribution for Sample Size](http://jennguyen1.github.io/nhuyhoa/figure/images/sample_size_calc_diagram.png)
 
 Distribution of null & alternative distribution for sample size calculations.
 
@@ -120,6 +120,8 @@ R has several functions to calculate desired power and sample sizes
 * `power.t.test()`
 * `power.anova.test()`
 * `power.prop.test()`
+
+There are also a number of functions in the package `pwr()`.
 
 
 [sample_size_calculators]: http://powerandsamplesize.com/

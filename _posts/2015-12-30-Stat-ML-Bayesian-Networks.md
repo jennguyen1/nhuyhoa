@@ -12,7 +12,7 @@ categories: ['statistics', 'machine learning']
 
 Bayesian networks are a type of probabilistic graphical model that represents a set of random variables and their conditional dependencies using a directed acyclic graph (DAG). (See below)
 
-![sample bayesian network](http://jnguyen92.github.io/nhuyhoa/figure/images/bayes_net.png)
+![sample bayesian network](http://jennguyen1.github.io/nhuyhoa/figure/images/bayes_net.png)
 
 Each node is associated with a probability function that takes a particular set of values from the node's parent variables as inputs and gives the probability of the node's random variable as outputs.
 
@@ -26,7 +26,7 @@ Independence is nice property because variables can be analyzed without regard t
   * A node is conditionally independent of its non-descendants, given its parents. 
   * A node is conditionally independent of all other nodes, given its Markov blanket. A Markov blanket is a node's parents, children, and children's parent. $$P(X \vert MB(X), Y) = P(X \vert MB(X))$$
 
-![Markov blanket](http://jnguyen92.github.io/nhuyhoa/figure/images/markov_blanket.png)
+![Markov blanket](http://jennguyen1.github.io/nhuyhoa/figure/images/markov_blanket.png)
 
 The markov blanket of $$X$$. 
 

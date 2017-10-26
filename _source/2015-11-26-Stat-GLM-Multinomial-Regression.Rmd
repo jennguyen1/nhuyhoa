@@ -12,10 +12,10 @@ categories: ['statistics', 'regression analysis']
 library(jn.general)
 lib(data, viz)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center', message = FALSE)
-gator <- fread("data/gator.csv")
+gator <- fread("../_data/gator.csv")
 setnames(gator, c("length", "choice"))
 library(faraway)
-cheese <- fread("data/cheese.dat")
+cheese <- fread("../_data/cheese.dat")
 setnames(cheese, c("cheese", "response", "N"))
 cheese$response <- factor(cheese$response, ordered = TRUE)
 ```

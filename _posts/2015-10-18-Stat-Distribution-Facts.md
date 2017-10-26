@@ -112,4 +112,4 @@ Then:
 * $$\bar{X}$$ and $$S^2$$ are independent
 * .$$\frac{(n-1)S^2}{\sigma^2} = \frac{\Sigma_i^n (X_i - \bar{X})^2}{\sigma^2}  \sim  X^2_{n - 1} $$
 
-[prob_overview_post]: http://jnguyen92.github.io/nhuyhoa//2015/10/Probability-Overview.html
+[prob_overview_post]: http://jennguyen1.github.io/nhuyhoa//2015/10/Probability-Overview.html

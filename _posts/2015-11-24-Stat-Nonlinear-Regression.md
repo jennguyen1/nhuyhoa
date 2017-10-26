@@ -28,14 +28,14 @@ Often these types of functions provide more stable estimates and better results 
 ## Splines
 Splines are piecewise polynomial functions that add constraints of continuity at the knots. Cubic splines are popular.
 
-![Piecewise Polynomials](http://jnguyen92.github.io/nhuyhoa/figure/images/piecewise_and_splines.png)
+![Piecewise Polynomials](http://jennguyen1.github.io/nhuyhoa/figure/images/piecewise_and_splines.png)
 
 Various piecewise polynomials. (Hastie et. al)
 
 ## Natural Splines 
 Splines have the disadvantage of having high variance at the outer range of predictors. The natural spline adds additional boundary constraints, requiring that the function be linear at the outer ranges. Doing so generally produces more stable estimates at the boundaries. 
 
-![Natural Spline](http://jnguyen92.github.io/nhuyhoa/figure/images/natural_spline.png)
+![Natural Spline](http://jennguyen1.github.io/nhuyhoa/figure/images/natural_spline.png)
 
 Comparisons of a cubic spline to a natural spline. The main differences are at the endpoints. (Hastie et. al)
 

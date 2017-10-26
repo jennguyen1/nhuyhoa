@@ -17,7 +17,7 @@ Python allows simultaneous declarations, so `a = b = c = 0` is possible.
 To check the type of an object use the following functions
 
 * `type(obj)`
-* `isinstance(OBJ, type)`
+* `isinstance(obj, Class)`
 
 ## Math Types
 
@@ -59,7 +59,8 @@ dt = {'apple': 'test1', 'banana': 'test2', 'orange': 'test3'}
 template.format_map(dt)
 
 # using variables (apple, banana, orange) in the local environment
-template.format_map(local())
+template.format_map(locals())
+template.format(**locals()) # unpack the dictionary
 {% endhighlight %}
 
 ## Lists
@@ -72,7 +73,7 @@ Lists can be declared like so
 range(i, j) # generates a sequence from i to j-1; if i omitted from 0 to j-1
 {% endhighlight %}
 
-Objects in Python on indexed starting from 0, for example `l[0:4]`. To obtain elements from a nested list, do multiple indexes, `l[i][j]`.
+Objects in Python on indexed starting from 0, for example `l[0:4]`. Negative indices go in reverse. To obtain elements from a nested list, do multiple indexes, `l[i][j]`.
 
 The following are methods that can be used with lists (for example `l`)
 
@@ -107,7 +108,8 @@ d.has_key("KEY")
 d.key()
 d.values()
 d.items() # returns (key, value tuples)
-d.setdefault('KEY', default_value) # returns default if key not present
+d.get(key, default) # gets key, returns default if key not available
+d.setdefault('KEY', default_value) # gets key, sets key to default if key not available
 {% endhighlight %}
 
 If both keys and values are unique, key/value pairs can be inverted using list comprehensions
@@ -261,7 +263,7 @@ x.ppf(p)
 The module also has functions for moments, expectations, and MLE.
 
 
-[regex_post]: http://jnguyen92.github.io/nhuyhoa//2015/07/Regular-Expressions.html
+[regex_post]: http://jennguyen1.github.io/nhuyhoa//2015/07/Regular-Expressions.html
 [itertools_link]: https://docs.python.org/2/library/itertools.html
 [scipy_link]: http://docs.scipy.org/doc/scipy/reference/stats.html
 [pandas_link]: http://pandas.pydata.org/

@@ -64,4 +64,4 @@ The canonical link has $$g$$ such that $$\eta = g(\mu) = \theta$$
 # Fitting GLM
 The parameters $$\beta$$ of a GLM are computed via maximum likelihood using a method called the [Newton-Raphson method][newton_raphson_post]{:target = "_blank"}. The procedure is equivalent to iteratively weighted least squares (IRWLS). (This method works just as it sounds). The weights are inversely proportional to the variance of the response (which depends on the mean and thus the parameters).
 
-[newton_raphson_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/ML-Generic-Algorithms.html#newton-raphson-method
+[newton_raphson_post]: http://jennguyen1.github.io/nhuyhoa//2015/12/ML-Generic-Algorithms.html#newton-raphson-method

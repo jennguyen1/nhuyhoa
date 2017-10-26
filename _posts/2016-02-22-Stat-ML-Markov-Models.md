@@ -26,7 +26,7 @@ With first order Markov chains, the probability of each $$X_i$$ depends only on 
 $$P(X) = P(X_1) \prod^L_{i = 2} P(X_i \vert X_{i - 1})$$
 
 The following model is an example of a first order Markov chain.
-![Markov Model](http://jnguyen92.github.io/nhuyhoa/figure/images/markov_model.png)
+![Markov Model](http://jennguyen1.github.io/nhuyhoa/figure/images/markov_model.png)
 
 As higher order Markov chains are utilized, additional history is incorporated. For example, a second order Markov chain will have <br>
 $$P(X) = P(X_1 X_2) \prod^L_{i = 3} P(X_i \vert X_{i - 1} X_{i - 2})$$
@@ -50,7 +50,7 @@ An HMM is defined by
 
 In the example below consider an HMM for a dishonest casino, the observed state is the number on the die and the hidden state is which die is rolled. 
 
-![HMM Schematic](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_example.png)
+![HMM Schematic](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_example.png)
 
 Define the following parameters for an HMM
 
@@ -105,7 +105,7 @@ $$f_l(i) = \sum_k f_k(i)a_{kl}$$
 ### Example
 Consider the following model.
 
-![HMM Forward Algorithm Example](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_forward.png)
+![HMM Forward Algorithm Example](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_forward.png)
 
 Initialization: <br>
 $$f_0(0) = 1$$ <br>
@@ -164,11 +164,11 @@ To obtain the most probable state, follow the traceback starting at $$\pi^*_L$$.
 ### Example
 Consider the following model.
 
-![HMM Viterbi Algorithm Example](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_viterbi_1.png)
+![HMM Viterbi Algorithm Example](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_viterbi_1.png)
 
 Use $$\log2$$ rather than the actual numbers to prevent underflow. 
 
-![HMM Viterbi Algorithm Example with Logs](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_viterbi_2.png)
+![HMM Viterbi Algorithm Example with Logs](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_viterbi_2.png)
 
 Intialization: <br>
 $$p_H(G, 1) = -1 - 1.737 = -2.737$$ <br>
@@ -188,7 +188,7 @@ $$p_L(G, 2)$$ | $$= -2.322 + max(p_H(G, 1) + p_{HL}, p_L(G, 1) + p_{LL})$$
 
 This results in the following matrix
 
-![HMM Viterbi Algorithm Example Calculations](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_viterbi_3.png)
+![HMM Viterbi Algorithm Example Calculations](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_viterbi_3.png)
 
 Use the pointers to backtrace and obtain the sequence of states. The most probable path is **HHHLLLLLL**.
 
@@ -273,19 +273,19 @@ $$a_{kl} = \frac{n_{k \rightarrow l}}{\sum_m n_{k \rightarrow m}}$$
 
 Consider the following model. Consider one iteration of the algorithm
 
-![HMM Baum-Welch Algorithm Example](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_1.png)
+![HMM Baum-Welch Algorithm Example](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_bw_1.png)
 
 **Expectation Step:**
 
-![HMM Baum-Welch Expectation Calc 1](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_2.png)
+![HMM Baum-Welch Expectation Calc 1](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_bw_2.png)
 
-![HMM Baum-Welch Expectation Calc 2](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_3.png)
+![HMM Baum-Welch Expectation Calc 2](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_bw_3.png)
 
 Then calculate the expected emission counts for state 1 <br>
-![HMM Baum-Welch Expectation Calc 3](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_4.png)
+![HMM Baum-Welch Expectation Calc 3](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_bw_4.png)
 
 and the expected transition counts for state 1 <br>
-![HMM Baum-Welch Expectation Calc 4](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_5.png)
+![HMM Baum-Welch Expectation Calc 4](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_bw_5.png)
 
 Similarly, compute these counts for state 2.
 
@@ -294,6 +294,6 @@ Similarly, compute these counts for state 2.
 Using the expected values from the previous step, determine the probabilities for the states.
 
 For state 1 <br>
-![HMM Baum-Welch Maximization Calc](http://jnguyen92.github.io/nhuyhoa/figure/images/hmm_bw_6.png)
+![HMM Baum-Welch Maximization Calc](http://jennguyen1.github.io/nhuyhoa/figure/images/hmm_bw_6.png)
 
 Similarly, do these computations for state 2. 

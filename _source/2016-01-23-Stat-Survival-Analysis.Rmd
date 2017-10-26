@@ -230,7 +230,7 @@ The hazard ratio is not dependent on t. This naturally leads to proportional haz
 
 ## In R
 ```{r, echo = FALSE}
-data <- fread("data/survival.csv") %>% 
+data <- fread("../_data/survival.csv") %>% 
   mutate(sex = plyr::mapvalues(sex, 1:2, c("m", "f")))
 
 setnames(data, "trt", "treatment")

@@ -301,4 +301,4 @@ predict(nB.fit, iris[4:5,])
 * Can make the assumption that features are independent (conditional on response)
 * Despite strong assumptions, works well on many problems
 
-[em_post]: http://jnguyen92.github.io/nhuyhoa//2015/12/Generic-Algorithms.html#expectation-maximization
+[em_post]: http://jennguyen1.github.io/nhuyhoa//2015/12/Generic-Algorithms.html#expectation-maximization
