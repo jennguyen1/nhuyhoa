@@ -19,7 +19,7 @@ categories: ['recipes', 'dessert']
   <tr>
    <th style="text-align:left;"> Other </th>
    <th style="text-align:left;"> Meat </th>
-   <th style="text-align:left;"> Veggies </th>
+   <th style="text-align:left;"> Veggie </th>
    <th style="text-align:left;"> Fruit </th>
   </tr>
  </thead>
@@ -94,12 +94,12 @@ categories: ['recipes', 'dessert']
 <table class = "presenttabnoh">
  <thead>
   <tr>
-   <th style="text-align:left;"> Instructions </th>
+   <th style="text-align:left;"> instructions </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Crust </td>
+   <td style="text-align:left;"> Crust: </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Finely crush about graham crackers </td>
@@ -123,7 +123,7 @@ categories: ['recipes', 'dessert']
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Pastry Cream </td>
+   <td style="text-align:left;"> Pastry Cream: </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix together 1 tbsp + 1 tsp of sugar and 1 egg </td>
@@ -162,7 +162,7 @@ categories: ['recipes', 'dessert']
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Assembly </td>
+   <td style="text-align:left;"> Assembly: </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Place custard on crust then add fruit </td>

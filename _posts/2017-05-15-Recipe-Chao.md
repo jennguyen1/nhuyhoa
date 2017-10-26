@@ -19,7 +19,7 @@ categories: ['recipes', 'meal']
   <tr>
    <th style="text-align:left;"> Other </th>
    <th style="text-align:left;"> Meat </th>
-   <th style="text-align:left;"> Veggies </th>
+   <th style="text-align:left;"> Veggie </th>
    <th style="text-align:left;"> Fruit </th>
   </tr>
  </thead>
@@ -64,7 +64,7 @@ categories: ['recipes', 'meal']
 <table class = "presenttabnoh">
  <thead>
   <tr>
-   <th style="text-align:left;"> Instructions </th>
+   <th style="text-align:left;"> instructions </th>
   </tr>
  </thead>
 <tbody>
