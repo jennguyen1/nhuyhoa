@@ -1,10 +1,3 @@
-# Recipes - database
-# Date: July 2017
-# Author: Jenny Nguyen
-# Email: jennifernguyen1992@gmail.com
-
-recipes = list()
-
 #----------------------------------------------------------------------------------------------------------
 # lobster roll
 ingredients = list(
@@ -16,10 +9,10 @@ ingredients = list(
 instructions = data.frame(Instructions = c(
   "Mince green onions & lettuce",
   "Add lobster tails to pot of boiling hot water with salt added and stir occasionally",
-  "Boil for 10-15 min until the shell is bright red", 
+  "Boil for 10-15 min until the shell is bright red",
   "Once lobster has cooled, cut the tail down the middle to remove lobster meat",
   "Mix lobster meat, green onions, lettuce, japanese mayo, salt & pepper",
-  "Refridgerate mixture", 
+  "Refridgerate mixture",
   "Brush buns with margarine and toast until golden brown",
   "Add lobster mix to buns (1.5-2 lobsters = 1 bun)"
 ))
@@ -56,8 +49,8 @@ ingredients = list(
 instructions = data.frame(Instructions = c(
   "Hydrate seaweed paper in warm water",
   "Boil 4 cups water & 2 tsp of dashi granules",
-  "Reduce heat to medium and add tofu & hydrated seaweed", 
-  "Remove from heat and mix in 3 tbsp miso", 
+  "Reduce heat to medium and add tofu & hydrated seaweed",
+  "Remove from heat and mix in 3 tbsp miso",
   "Garnish with green onions"
 ))
 recipes[["Miso Soup"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")
@@ -70,7 +63,7 @@ ingredients = list(
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-  "Make rice", 
+  "Make rice",
   "Marinate chicken or pork with salt, pepper & shallots",
   "If using pork, stir fry it",
   "Boil water and add chicken/pork",
@@ -89,14 +82,14 @@ ingredients = list(
   Fruit = ""
 )
 instructions = data.frame(Instructions = c(
-  "Soak fried shrimp in hot water and mash fried shrimp", 
-  "Wash and cut the luffa (chinese/taiwanese okra), spinach, shallots", 
-  "Stir fry luffa & shallots with salt & pepper", 
+  "Soak fried shrimp in hot water and mash fried shrimp",
+  "Wash and cut the luffa (chinese/taiwanese okra), spinach, shallots",
+  "Stir fry luffa & shallots with salt & pepper",
   "Add bowl of fried shrimp & additional water",
   "Add wonton soup base",
   "Add spinach (asian spinach) prior to boiling",
-  "Adjust to taste as necessary", 
-  "", 
+  "Adjust to taste as necessary",
+  "",
   "Canh spoils easily, so refridgerate when cool"
 ))
 recipes[["Canh Muop Mong Toi"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")
@@ -111,7 +104,7 @@ ingredients = list(
 instructions = data.frame(Instructions = c(
   "Marinate pork belly with salt and pepper",
   "Boil pork belly on medium high heat for 60 min, move to ice bath when done",
-  "Slice pork belly", 
+  "Slice pork belly",
   "Serve with tom mam sauce"
 ))
 recipes[["Thit Heo Luoc Cham Tom Mam"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")
@@ -125,7 +118,7 @@ ingredients = list(
 )
 instructions = data.frame(Instructions = c(
   "Cut the jackfruit into strips, water chestnuts into small cubes",
-  "Combine longan, lychee, jackfruit, water chestnuts, and nata de coco in a big container", 
+  "Combine longan, lychee, jackfruit, water chestnuts, and nata de coco in a big container",
   "Add half of the syrup form the (fruit) cans and 2 cups of half & half",
   "Mix well and serve with crushed ice"
 ))
@@ -273,15 +266,15 @@ ingredients = list(
   Fruit = c("any")
 )
 instructions = data.frame(Instructions = c(
-  "Crust",
+  "Crust:",
   "Finely crush about graham crackers",
   "Stir 1 pack of graham cracker crumbs, 0.25 cup sugar, 0.5 tsp cinnamon and pinch of salt in large bowl",
   "Slowly stir in 5 tbsp of melted margarine",
   "Ensure that the mixture has consistency of cookie dough (not too dry or wet)",
   "Press mixture to bottom of muffin pan with hands",
   "Freeze for 1 hour or bake at 325 degrees for 10 min then cool before filling",
-  "", 
-  "Pastry Cream",
+  "",
+  "Pastry Cream:",
   "Mix together 1 tbsp + 1 tsp of sugar and 1 egg",
   "Add 2 tsp flour and 2 tsp cornstarch",
   "Mix to you get a smooth paste",
@@ -293,8 +286,8 @@ instructions = data.frame(Instructions = c(
   "Pour into clean bowl and immediately cover with plastic wrap, with a few holes poked through",
   "Refridgerate for 2 hours before using",
   "Beat or whisk custard before using to remove any lumps",
-  "", 
-  "Assembly",
+  "",
+  "Assembly:",
   "Place custard on crust then add fruit"
 ))
 recipes[["Fruit Tart"]] = list(ingredients = ingredients, instructions = instructions, meal = "dessert", youtube = "")
@@ -691,7 +684,7 @@ recipes[["Nuoc Mau"]] = list(ingredients = ingredients, instructions = instructi
 #----------------------------------------------------------------------------------------------------------
 # taro soup
 ingredients = list(
-  Other = c("wonton soup base", "salt", "pepper"),
+  Other = c("wonton soup base", "chicken broth", "salt", "pepper"),
   Meat = c("pork rib tips"),
   Veggies = c("taro", "yam", "rice paddy herbs"),
   Fruit = ""
@@ -702,9 +695,9 @@ instructions = data.frame(Instructions = c(
 	"Add pork rib tips",
 	"When foam starts to form, lower heat and remove foam",
 	"When foam all clear, turn to medium high heat and cover loosely with lid",
-	"Add 2 packs of wonton soup base",
+	"Add chicken broth and wonton soup base",
 	"Boil taro or yam in a separate pot",
-	"Add taro or yam to pork broth",
+	"Add taro or yam to soup",
 	"Add rice paddy herbs"
 ))
 recipes[["Canh Khoai Tay Suon (Taro and Pork Rib Soup)"]] = list(ingredients = ingredients, instructions = instructions, meal = "meal", youtube = "")
