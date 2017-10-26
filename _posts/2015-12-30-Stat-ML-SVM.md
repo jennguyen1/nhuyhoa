@@ -36,7 +36,7 @@ Code the points as $$Y_i = 1$$ or $$Y_i = -1$$, so that $$Y_i * f(X_i) > 0 \fora
 # Maximal Margin Classifier
 The best separating hyperplane is found via the maximal margin classifier. This methods finds the biggest gap or margin between the two classes. 
 
-![maximal margin classifier](http://jnguyen92.github.io/nhuyhoa/figure/images/maximal_margin_classifier2.png)
+![maximal margin classifier](http://jennguyen1.github.io/nhuyhoa/figure/images/maximal_margin_classifier2.png)
 
 Schematic diagram of maximal margin classifier. The margin is defined as $$M = \frac{2}{\| \overrightarrow{\beta} \|}$$.
 
@@ -51,7 +51,7 @@ This is equivalent to minimizing $$\| \overrightarrow{\beta} \|$$ or $$\| \overr
 
 In the figure below, there are 3 training observations are are equidistant from the separating hyperplane. These three observations are called support vectors. The maximal margin classifier depends directly on the support vectors (and not on other observations far away from it).
 
-![maximal margin classifier 2](http://jnguyen92.github.io/nhuyhoa/figure/images/maximal_margin_classifier.png)
+![maximal margin classifier 2](http://jennguyen1.github.io/nhuyhoa/figure/images/maximal_margin_classifier.png)
 
 A schematic diagram of maximum margin classifier (Hastie, et. al).
 
@@ -64,7 +64,7 @@ Slack variables,  $$\epsilon_i$$, are values that indicate where the $$i^{th}$$ 
 * $$\epsilon_i > 0$$ on the wrong side of the margin
 * $$\epsilon_i > 1$$ on the wrong side of the hyperplane
 
-![slack variables](http://jnguyen92.github.io/nhuyhoa/figure/images/svm_slack_variables.png)
+![slack variables](http://jennguyen1.github.io/nhuyhoa/figure/images/svm_slack_variables.png)
 
 The new optimization problem becomes <br>
 $$maximize_{\beta_0, \beta_1, ..., \beta_p, \epsilon_1, ..., \epsilon_n} M > 0$$ <br>
@@ -84,7 +84,7 @@ The variable $$C$$ is a penalty boundary chosen via cross-validation. It determi
 * Small $$C$$ allows for wider margins and is more tolerant of violations
 * Large $$C$$ forces narrower margins that are rarely violated
 
-![C penalty](http://jnguyen92.github.io/nhuyhoa/figure/images/svm_C_parameter.png)
+![C penalty](http://jennguyen1.github.io/nhuyhoa/figure/images/svm_C_parameter.png)
 
 A schematic diagram of the effects of $$C$$ penalty from small $$C$$ (upper left) to big $$C$$ (lower right) (Hastie, et. al).
 
@@ -98,7 +98,7 @@ Kernals are used to map to a higher dimensional space. Kernals have the form $$K
 * Radial basis function: $$K(x_i, x_j) = exp(-\gamma \| x_i - x_j \|^2)$$, $$\gamma > 0$$
 * Sigmoid: $$K(x_i, x_j) = tanh(\gamma x_i^T x_j + r)$$
 
-![polynomial kernal](http://jnguyen92.github.io/nhuyhoa/figure/images/svm_nonlinear_kernal1.png)![radial kernal](http://jnguyen92.github.io/nhuyhoa/figure/images/svm_nonlinear_kernal2.png)
+![polynomial kernal](http://jennguyen1.github.io/nhuyhoa/figure/images/svm_nonlinear_kernal1.png)![radial kernal](http://jennguyen1.github.io/nhuyhoa/figure/images/svm_nonlinear_kernal2.png)
 Polynomial kernal (left) and radial kernal (right) (Hastie, et. al).
 
 The hyperplane equation becomes <br>

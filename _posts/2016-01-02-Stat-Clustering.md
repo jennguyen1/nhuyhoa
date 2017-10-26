@@ -68,7 +68,7 @@ $$ min_{C_1 ... C_K} \sum^K_{k = 1} \sum_{i \in C_k} \sum^p_{j = 1} (x_{ij} - \b
   * For each of the $$K$$ clusters, compute the cluster centroid, the vector of the $$p$$ feature means for the observations in the $$k^{th}$$ cluster
   * Assign each observation to the cluster whose centroid is closest (based on the defined distance metric)
 
-![K-means algorithm](http://jnguyen92.github.io/nhuyhoa/figure/images/cluster_kmeans_algorithm.png)
+![K-means algorithm](http://jennguyen1.github.io/nhuyhoa/figure/images/cluster_kmeans_algorithm.png)
 
 (Hastie, et.al)
 
@@ -76,7 +76,7 @@ This algorithm will find the local minimum for cluster assignments, but it is no
 
 To alleviate this problem, run the algorithm many times with random cluster assignments each time. In doing this, the replication that best minimizes the optimization problem is the global minimum.
 
-![K-means with random starts](http://jnguyen92.github.io/nhuyhoa/figure/images/cluster_kmeans_random_starts.png)
+![K-means with random starts](http://jennguyen1.github.io/nhuyhoa/figure/images/cluster_kmeans_random_starts.png)
 
 (Hastie, et.al)
 
@@ -183,7 +183,7 @@ Hierarchical clustering uses a bottom-up clustering method to generate a dendrog
   * The dissimilarity b/n two clusters indicate the height of dendrogram at which fusion is placed
   * Compute new pairwise intercluster dissimilarities among the $$i - 1$$ remaining clusters
 
-![hierarchical clustering algorithm](http://jnguyen92.github.io/nhuyhoa/figure/images/cluster_hierarchical_algorithm.png)
+![hierarchical clustering algorithm](http://jennguyen1.github.io/nhuyhoa/figure/images/cluster_hierarchical_algorithm.png)
 
 ## Dissimilarity Metrics
 
@@ -199,7 +199,7 @@ $$dist(c_u, c_v) = max[dist(a, b) \vert a \in c_u, b \in c_v] $$
 
 $$dist(c_u, c_v) = avg[dist(a, b) \vert a \in c_u, b \in c_v] $$
 
-![complete vs single linkages](http://jnguyen92.github.io/nhuyhoa/figure/images/cluster_complete_vs_single_link.png)
+![complete vs single linkages](http://jennguyen1.github.io/nhuyhoa/figure/images/cluster_complete_vs_single_link.png)
 
 The type of linkage will affect the clustering results.
 
@@ -207,7 +207,7 @@ The type of linkage will affect the clustering results.
 * Complete linkage are sensitive to outliers
 * Average linkage try to find a compromise between the two options
 
-![Comparisons of Linkages](http://jnguyen92.github.io/nhuyhoa/figure/images/cluster_hierarchical_link_disadvantages.png)
+![Comparisons of Linkages](http://jennguyen1.github.io/nhuyhoa/figure/images/cluster_hierarchical_link_disadvantages.png)
 
 (Hastie, et.al)
 
@@ -216,11 +216,11 @@ The type of linkage will affect the clustering results.
 * Height of the fusion (vertical axis) indicates how different the observations (lower is more similar)
 * Horizontal axis has no meaning
 
-![dendrogram](http://jnguyen92.github.io/nhuyhoa/figure/images/cluster_hierarchical_dendrogram.png)
+![dendrogram](http://jennguyen1.github.io/nhuyhoa/figure/images/cluster_hierarchical_dendrogram.png)
 
 * Draw a horizontal line across a dendrogram to identify the clusters
 
-![dendrogram cutting for clusters](http://jnguyen92.github.io/nhuyhoa/figure/images/cluster_hierarchical_cutting.png)
+![dendrogram cutting for clusters](http://jennguyen1.github.io/nhuyhoa/figure/images/cluster_hierarchical_cutting.png)
 
 ## Example
 

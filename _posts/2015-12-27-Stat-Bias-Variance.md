@@ -58,7 +58,7 @@ The cross-validation procedure can be used to select the model parameters which 
 * Compare the cross-validated metric across different models to find the best model parameters
 * Refit the model based on the best model parameters using all of the data
 
-![5-fold_CV](http://jnguyen92.github.io/nhuyhoa/figure/images/cross_validation.png)
+![5-fold_CV](http://jennguyen1.github.io/nhuyhoa/figure/images/cross_validation.png)
 
 The figure above is a schematic display of 5-fold CV. A set of $$N$$ observations is randomly split into 5 non-overlapping groups. Each of the groups acts as a validation set (red) and the remainder as a training set. The 5-fold CV error is an average of the 5 resulting MSE estimates.
 

@@ -54,7 +54,7 @@ The principal component scores can be used in place of the original features.
 ## Geometric Interpretation
 The first principal component loading vector defines the line in $$p$$-dimensional space that is closest to the $$n$$ observations (Euclidean distance). The first 2 principal components of a dataset span the plane that is closest to the $$n$$ observations. 
 
-![PCA Geometric Interpretation](http://jnguyen92.github.io/nhuyhoa/figure/images/principal_components.png)
+![PCA Geometric Interpretation](http://jennguyen1.github.io/nhuyhoa/figure/images/principal_components.png)
 
 Green line is the $$1^{st}$$ principal component and the blue dashed line is the $$2^{nd}$$ principal component. (Hastie, et.al)
 
@@ -175,11 +175,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.605    2.637    2.469    2.493    2.540
-## adjCV        6.123    2.598    2.628    2.458    2.481    2.525
+## CV           6.123    2.619    2.671    2.464    2.518    2.517
+## adjCV        6.123    2.608    2.659    2.452    2.504    2.502
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.633    2.780    2.978    3.448     3.470
-## adjCV    2.611    2.751    2.935    3.373     3.385
+## CV       2.698    2.818    3.322    3.670     3.765
+## adjCV    2.675    2.790    3.256    3.583     3.664
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
