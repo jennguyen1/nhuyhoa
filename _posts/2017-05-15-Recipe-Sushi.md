@@ -61,13 +61,7 @@ categories: ['recipes', 'meal']
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallots </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> yellow onion </td>
+   <td style="text-align:left;"> hanh kho </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -94,16 +88,19 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Using rolling mat, tightly roll </td>
   </tr>
   <tr>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> Filling options: </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> avocado, carrot, cucumber, crab, shrimp, eel sauce, topped with fried shallots </td>
+   <td style="text-align:left;"> avocado, carrot, cucumber, crab, shrimp, eel sauce, topped with hanh kho </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> avocado, carrot, cucumber, crab, eel sauce, topped with fried shallots/onions </td>
+   <td style="text-align:left;"> avocado, carrot, cucumber, crab, eel sauce, topped with hanh kho </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> avocado, carrot, cucumber, shrimp, eel sauce, topped with fried shallots/onions </td>
+   <td style="text-align:left;"> avocado, carrot, cucumber, shrimp, eel sauce, topped with hanh kho </td>
   </tr>
   <tr>
    <td style="text-align:left;"> carrots, spinach, thin egg omelette, crab </td>

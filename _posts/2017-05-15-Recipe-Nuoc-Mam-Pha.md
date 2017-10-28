@@ -63,16 +63,19 @@ categories: ['recipes', 'other']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Mix nuoc mam, sugar and water at a 1:1:4 ratio </td>
+   <td style="text-align:left;"> Add sugar to a large bowl and level out </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a tiny amount of vinegar </td>
+   <td style="text-align:left;"> Pour vinegar into the bowl, slightly over the surface of the sugar </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Adjust taste as necessary </td>
+   <td style="text-align:left;"> Add nuoc mam, about 1/3 of current level </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix in minced garlic </td>
+   <td style="text-align:left;"> Mix in water to dilute </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Adjust to taste, should be sweet and sour, not salty </td>
   </tr>
 </tbody>
 </table>
