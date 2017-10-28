@@ -138,9 +138,6 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Cover for 1-2 min; flip onto an oiled metal surface when it turns a clear color </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Steam another crepe </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Spread out a spoonful of pork mixture onto crepe and roll </td>
   </tr>
   <tr>

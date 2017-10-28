@@ -34,12 +34,6 @@ categories: ['recipes', 'dessert']
    <td style="text-align:left;"> half &amp; half </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> lychee </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
    <td style="text-align:left;"> jackfruit </td>
   </tr>
 </tbody>
@@ -60,7 +54,7 @@ categories: ['recipes', 'dessert']
    <td style="text-align:left;"> Cut the jackfruit into strips, water chestnuts into small cubes </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Combine longan, lychee, jackfruit, water chestnuts, and nata de coco in a big container </td>
+   <td style="text-align:left;"> Combine longan, jackfruit, water chestnuts, and nata de coco in a big container </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add half of the syrup form the (fruit) cans and 2 cups of half &amp; half </td>

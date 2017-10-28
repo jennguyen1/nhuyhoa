@@ -32,7 +32,7 @@ categories: ['recipes', 'meal']
   </tr>
   <tr>
    <td style="text-align:left;"> noodles </td>
-   <td style="text-align:left;"> jumbo shrimp </td>
+   <td style="text-align:left;"> shrimp </td>
    <td style="text-align:left;"> lettuce </td>
    <td style="text-align:left;">  </td>
   </tr>
