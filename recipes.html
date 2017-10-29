@@ -19,20 +19,6 @@ permalink: /recipes/
 
 <br />
 
-<h1 style = "padding-top:0;">Other</h1>
-<section>
-    <table>
-        {% for post in site.posts reversed %}
-            {% if post.categories contains 'recipes' and post.categories contains 'other' %}
-                <tr>
-                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-                </tr>
-            {% endif %}
-       {% endfor %}
-    </table>
-</section>
-<br />
-
 <h1 style = "padding-top:0;">Desserts</h1>
 <section>
     <table>
@@ -45,4 +31,17 @@ permalink: /recipes/
        {% endfor %}
     </table>
 </section>
+<br />
 
+<h1 style = "padding-top:0;">Other</h1>
+<section>
+    <table>
+        {% for post in site.posts reversed %}
+            {% if post.categories contains 'recipes' and post.categories contains 'other' %}
+                <tr>
+                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+                </tr>
+            {% endif %}
+       {% endfor %}
+    </table>
+</section>
