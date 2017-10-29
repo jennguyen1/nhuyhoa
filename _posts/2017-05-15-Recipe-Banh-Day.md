@@ -2,7 +2,7 @@
 layout: post
 title: "Banh Day"
 date: "May 15, 2017"
-categories: ['recipes', 'meal']
+categories: ['recipes', 'dessert']
 ---
 
 
@@ -26,7 +26,7 @@ categories: ['recipes', 'meal']
 <tbody>
   <tr>
    <td style="text-align:left;"> bot nep </td>
-   <td style="text-align:left;"> cha </td>
+   <td style="text-align:left;"> cha lua </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>

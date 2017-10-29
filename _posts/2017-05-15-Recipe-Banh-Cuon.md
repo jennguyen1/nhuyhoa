@@ -7,7 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-
+![pic1]( {{"/figure/food/Banh_Cuon.JPG" | absolute_url }})
 
 
 
@@ -32,7 +32,7 @@ categories: ['recipes', 'meal']
   </tr>
   <tr>
    <td style="text-align:left;"> tapioca starch </td>
-   <td style="text-align:left;"> cha </td>
+   <td style="text-align:left;"> cha lua </td>
    <td style="text-align:left;"> dried mushrooms </td>
    <td style="text-align:left;">  </td>
   </tr>

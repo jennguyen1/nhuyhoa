@@ -2,7 +2,7 @@
 layout: post
 title: "Banh Day"
 date: "May 15, 2017"
-categories: ['recipes', 'meal']
+categories: ['recipes', 'dessert']
 ---
 
 ```{r, echo = FALSE, warning = FALSE}

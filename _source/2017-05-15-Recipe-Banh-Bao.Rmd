@@ -2,7 +2,7 @@
 layout: post
 title: "Banh Bao"
 date: "May 15, 2017"
-categories: ['recipes', 'meal']
+categories: ['recipes', 'dessert']
 ---
 
 ```{r, echo = FALSE, warning = FALSE}
@@ -34,7 +34,11 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
+![pic1]( {{"/figure/food/Banh_Bao.JPG" | absolute_url }})
 
+![pic2]( {{"/figure/food/Banh_Bao2.JPG" | absolute_url }})
+
+![pic3]( {{"/figure/food/Banh_Bao3.JPG" | absolute_url }})
 
 
 
