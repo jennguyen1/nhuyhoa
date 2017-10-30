@@ -186,7 +186,7 @@ Function | Description
 `match()` | whether there is a match
 `extract()` | extracts match
 `findall()` | finds all matches in string
-`replace()` replace occurance of specificed string
+`replace()` | replace occurance of specificed string
 `contains()` | searchs for pattern inside string
 `count()` | counts occurances of specified string
 `pad()` | adds white space

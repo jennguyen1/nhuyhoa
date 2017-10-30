@@ -64,6 +64,12 @@ categories: ['recipes', 'dessert']
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> oil </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -91,7 +97,7 @@ categories: ['recipes', 'dessert']
    <td style="text-align:left;"> Mix a 7.5:1 ratio of banh bao flour to sugar </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Slowly add milk and a little bit of oil </td>
+   <td style="text-align:left;"> Slowly add milk and about 1/3 cup oil </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Knead batter, add more flour to ensure it is not to sticky </td>

@@ -7,9 +7,7 @@ categories: ['recipes', 'meal']
 
 
 
-![pic1]( {{"/figure/food/Canh_Cha_Ca.JPG" | absolute_url }})
-
-![pic2]( {{"/figure/food/Cha_Ca.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Cha_Ca.JPG" | absolute_url }})
 
 
 

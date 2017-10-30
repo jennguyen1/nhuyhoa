@@ -26,7 +26,13 @@ categories: ['recipes', 'dessert']
 <tbody>
   <tr>
    <td style="text-align:left;"> bot nep </td>
-   <td style="text-align:left;"> cha lua </td>
+   <td style="text-align:left;"> cha </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> oil </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
@@ -45,7 +51,7 @@ categories: ['recipes', 'dessert']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Combine bot nep (glutinous rice flour) slowly with about 400 ml of water and a small squirt of oil </td>
+   <td style="text-align:left;"> Combine bot nep (glutinous rice flour) slowly with about 400 ml of water and about 1/3 cup of oil </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix dough; should be hard, not too soft </td>

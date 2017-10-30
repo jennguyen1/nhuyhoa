@@ -32,7 +32,7 @@ categories: ['recipes', 'meal']
   </tr>
   <tr>
    <td style="text-align:left;"> tapioca starch </td>
-   <td style="text-align:left;"> cha lua </td>
+   <td style="text-align:left;"> cha </td>
    <td style="text-align:left;"> dried mushrooms </td>
    <td style="text-align:left;">  </td>
   </tr>
@@ -43,7 +43,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> oil </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> mint </td>
    <td style="text-align:left;">  </td>
@@ -126,7 +126,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Mix in ground pork and green onions </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix the banh cuon flour package with 1L of water, few spoons of tapioca starch, and a few squirts of oil </td>
+   <td style="text-align:left;"> Mix the banh cuon flour package with 1L of water, few spoons of tapioca starch, and about 1/3 cup of oil </td>
   </tr>
   <tr>
    <td style="text-align:left;"> On high heat, coat the pan with some oil </td>
