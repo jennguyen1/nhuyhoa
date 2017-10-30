@@ -43,7 +43,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> noodles </td>
+   <td style="text-align:left;"> bun </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -63,7 +63,7 @@ categories: ['recipes', 'meal']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Soak the noodles in warm water </td>
+   <td style="text-align:left;"> Soak the bun in warm water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Make the sauce by nearly boiling 3:1:1 ratio of sugar, nuoc mam, tamarind concentrate </td>
@@ -81,7 +81,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Fry the second half of the shallots and garlic </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add the noodles to the pan and stir around with a little water </td>
+   <td style="text-align:left;"> Add the bun to the pan and stir around with a little water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir in a bit of the sauce </td>
@@ -90,7 +90,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Make some room in the pan, sprinkle oil and eggs </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Scramble the eggs and mix in with the noodles </td>
+   <td style="text-align:left;"> Scramble the eggs and mix in with the bun </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir in the rest of the sauce </td>

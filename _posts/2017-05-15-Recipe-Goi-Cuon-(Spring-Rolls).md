@@ -31,7 +31,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> noodles </td>
+   <td style="text-align:left;"> bun </td>
    <td style="text-align:left;"> shrimp </td>
    <td style="text-align:left;"> lettuce </td>
    <td style="text-align:left;">  </td>
@@ -78,7 +78,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Slice pork belly and shrimp </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Prepare the noodles </td>
+   <td style="text-align:left;"> Prepare the bun </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Clean and prepare the veggies </td>

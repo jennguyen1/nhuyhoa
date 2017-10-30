@@ -7,7 +7,7 @@ categories: ['recipes', 'dessert']
 
 
 
-
+![pic1]( {{"/figure/food/Banh_Day.JPG" | absolute_url }})
 
 
 

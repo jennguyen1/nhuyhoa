@@ -33,7 +33,7 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> egg noodles </td>
+   <td style="text-align:left;"> mi </td>
    <td style="text-align:left;"> ground pork </td>
    <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
@@ -83,10 +83,10 @@ categories: ['recipes', 'meal']
    <td style="text-align:left;"> Add wontons to pot of boiling water, once it has floated to the surface cook for 2-3 more min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cook egg noodle soup per instructions (boil for 2-3 min) </td>
+   <td style="text-align:left;"> Boil mi for 2-3 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Assemble bowl with noodles, veggies, wontons and xa xiu </td>
+   <td style="text-align:left;"> Assemble bowl with mi, veggies, wontons and xa xiu </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Pour boiling broth into bowl </td>
