@@ -27,7 +27,7 @@ categories: ['recipes', 'dessert']
   <tr>
    <td style="text-align:left;"> nata de coco </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> water chestnuts </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;"> longan </td>
   </tr>
   <tr>
@@ -35,6 +35,12 @@ categories: ['recipes', 'dessert']
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> jackfruit </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> amyl acetate flavoring essence </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
   </tr>
 </tbody>
 </table>
@@ -51,13 +57,16 @@ categories: ['recipes', 'dessert']
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Cut the jackfruit into strips, water chestnuts into small cubes </td>
+   <td style="text-align:left;"> Cut the jackfruit into strips </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Combine longan, jackfruit, water chestnuts, and nata de coco in a big container </td>
+   <td style="text-align:left;"> Combine longan, jackfruit, and nata de coco in a big container </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add half of the syrup form the (fruit) cans and 2 cups of half &amp; half </td>
+   <td style="text-align:left;"> Add all of syrup from fruit cans (all of longan and some of jackfruit as needed) and 2 cups of half &amp; half </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add 1 drop of amyl acetate flavoring essence </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix well and serve with crushed ice </td>
