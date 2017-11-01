@@ -4,12 +4,16 @@ title: Statistics
 permalink: /statistics/
 ---
 
+{% for tag in site.tags %}
+<p>{{ tag }}</p>
+{% endfor %}
+
 <h1 style = "padding-top:0;">Probability and Inference</h1>
 <section>
   <table>
     {% for post in site.tags.Probability_and_Inference %}
       <tr>
-        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-date"><span>{{ post.date | date_to_string }}</span></td>
         <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
       </tr>
     {% endfor %}
@@ -23,7 +27,7 @@ permalink: /statistics/
   <table>
     {% for post in site.tags.Experimental_Design %}
       <tr>
-        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-date"><span>{{ post.date | date_to_string }}</span></td>
         <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
       </tr>
     {% endfor %}
@@ -37,7 +41,7 @@ permalink: /statistics/
   <table>
     {% for post in site.tags.Regression %}
       <tr>
-        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-date"><span>{{ post.date | date_to_string }}</span></td>
         <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
       </tr>
     {% endfor %}
@@ -51,7 +55,7 @@ permalink: /statistics/
   <table>
     {% for post in site.tags.Multivariate_Analysis %}
       <tr>
-        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-date"><span>{{ post.date | date_to_string }}</span></td>
         <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
       </tr>
     {% endfor %}
@@ -65,7 +69,7 @@ permalink: /statistics/
   <table>
     {% for post in site.tags.Machine_Learning %}
       <tr>
-        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-date"><span>{{ post.date | date_to_string }}</span></td>
         <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
       </tr>
     {% endfor %}
