@@ -4,76 +4,72 @@ title: Statistics
 permalink: /statistics/
 ---
 
-{% for post in site.categories.Statistics %}
-  
-  <h1 style = "padding-top:0;">Probability and Inference</h1>
-  <section>
-    <table>
-      {% if post.tags contains 'Probability_and_Inference' %}
-        <tr>
-          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        </tr>
-      {% endif %}
-    </table>
-  </section>
-  
-  <br />
-  
-  <h1 style = "padding-top:0;">Experimental Design</h1>
-  <section>
-    <table>
-      {% if post.tags contains 'Experimental_Design' %}
-        <tr>
-          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        </tr>
-      {% endif %}
-    </table>
-  </section>
-  
-  <br />
-  
-  <h1 style = "padding-top:0;">Regression Analysis</h1>
-  <section>
-    <table>
-      {% if post.tags contains 'Regression' %}
-        <tr>
-          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        </tr>
-      {% endif %}
-    </table>
-  </section>
-  
-  <br />
-  
-  <h1 style = "padding-top:0;">Multivariate Analysis</h1>
-  <section>
-    <table>
-      {% if post.tags contains 'Multivariate_Analysis' %}
-        <tr>
-          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        </tr>
-      {% endif %}
-    </table>
-  </section>
-  
-  <br />
-  
-  <h1 style = "padding-top:0;">Machine Learning</h1>
-  <section>
-    <table>
-      {% if post.tags contains 'Machine_Learning' %}
-        <tr>
-          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        </tr>
-      {% endif %}
-    </table>
-  </section>
-  
-  <br />
+<h1 style = "padding-top:0;">Probability and Inference</h1>
+<section>
+  <table>
+    {% for post in site.tags.Probability_and_Inference %}
+      <tr>
+        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+</section>
 
-{% endfor %}
+<br />
+
+<h1 style = "padding-top:0;">Experimental Design</h1>
+<section>
+  <table>
+    {% for post in site.tags.Experimental_Design %}
+      <tr>
+        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+</section>
+
+<br />
+
+<h1 style = "padding-top:0;">Regression Analysis</h1>
+<section>
+  <table>
+    {% for post in site.tags.Regression %}
+      <tr>
+        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+</section>
+
+<br />
+
+<h1 style = "padding-top:0;">Multivariate Analysis</h1>
+<section>
+  <table>
+    {% for post in site.tags.Multivariate_Analysis %}
+      <tr>
+        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+</section>
+
+<br />
+
+<h1 style = "padding-top:0;">Machine Learning</h1>
+<section>
+  <table>
+    {% for post in site.tags.Machine_Learning %}
+      <tr>
+        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+</section>
+
+<br />

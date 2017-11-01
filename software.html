@@ -4,46 +4,44 @@ title: Software
 permalink: /software/
 ---
 
-{% for post in site.categories.Software %}
-
-  <h1 style = "padding-top:0;">Pipelines</h1>
-  <section>
-    <table>
-      {% if post.tags contains 'Pipelines' %}
-        <tr>
-          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        </tr>
-      {% endif %}
-    </table>
-  </section>
-
-  <br />
-
-  <h1 style = "padding-top:0;">Data Wrangling</h1>
-  <section>
-    <table>
-      {% if post.tags contains 'Wrangling' %}
+<h1 style = "padding-top:0;">Pipelines</h1>
+<section>
+  <table>
+    {% for post in site.tags.Pipelines %}
       <tr>
-        <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+        <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
         <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
       </tr>
-    {% endif %}
-    </table>
-  </section>
+    {% endfor %}
+  </table>
+</section>
 
-  <br />
+<br />
 
-  <h1 style = "padding-top:0;">Basics</h1>
-  <section>
-    <table>
-      {% if post.tags contains 'Basics' %}
-      <tr>
-        <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-      </tr>
-    {% endif %}
-    </table>
-  </section>
+<h1 style = "padding-top:0;">Data Wrangling</h1>
+<section>
+  <table>
+    {% or post in site.tags.Wrangling %}
+    <tr>
+      <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+      <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+    </tr>
+  {% endfor %}
+  </table>
+</section>
 
-{% endfor %}
+<br />
+
+<h1 style = "padding-top:0;">Basics</h1>
+<section>
+  <table>
+    {% for post in site.tags.Basics %}
+    <tr>
+      <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
+      <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+    </tr>
+  {% endfor %}
+  </table>
+</section>
+
+<br />
