@@ -21,7 +21,7 @@ permalink: /software/
 <h1 style = "padding-top:0;">Data Wrangling</h1>
 <section>
   <table>
-    {% or post in site.tags.Wrangling %}
+    {% for post in site.tags.Wrangling %}
     <tr>
       <td class = "tbl-date"><span>{{ post.date | date_to_long_string }}</span></td>
       <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
