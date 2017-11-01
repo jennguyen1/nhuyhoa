@@ -1,52 +1,49 @@
 ---
 layout: page
 title: Software
-permalink: /software_notes/
+permalink: /software/
 ---
 
+{% for post in site.categories.Software %}
 
-<h1 style = "padding-top:0;">Pipelines</h1>
-<section>
+  <h1 style = "padding-top:0;">Pipelines</h1>
+  <section>
     <table>
-        {% for post in site.posts %}
-        	{% if post.categories[0] contains 'pipelines' %}
-        		<tr>
-        			<td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-        			<td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        		</tr>
-        	{% endif %}
-	   {% endfor %}
+      {% if post.tags contains 'Pipelines' %}
+        <tr>
+          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        </tr>
+      {% endif %}
     </table>
-</section>
+  </section>
 
-<br />
+  <br />
 
-<h1 style = "padding-top:0;">Data Wrangling</h1>
-<section>
+  <h1 style = "padding-top:0;">Data Wrangling</h1>
+  <section>
     <table>
-        {% for post in site.posts %}
-            {% if post.categories contains 'data wrangling' %}
-                <tr>
-                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-                </tr>
-            {% endif %}
-       {% endfor %}
+      {% if post.tags contains 'Wrangling' %}
+      <tr>
+        <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      </tr>
+    {% endif %}
     </table>
-</section>
+  </section>
 
-<br />
+  <br />
 
-<h1 style = "padding-top:0;">Basics</h1>
-<section>
+  <h1 style = "padding-top:0;">Basics</h1>
+  <section>
     <table>
-        {% for post in site.posts %}
-        	{% if post.categories contains 'basics' %}
-        		<tr>
-        			<td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-        			<td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        		</tr>
-        	{% endif %}
-	   {% endfor %}
+      {% if post.tags contains 'Basics' %}
+      <tr>
+        <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      </tr>
+    {% endif %}
     </table>
-</section>
+  </section>
+
+{% endfor %}
