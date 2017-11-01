@@ -3,7 +3,7 @@ layout: post
 title: "Bayesian Estimation"
 date: "February 27, 2016"
 categories: Statistics
-tags: Probability_and_Inference
+tags: ProbabilityandInference
 ---
 
 * TOC

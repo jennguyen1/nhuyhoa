@@ -3,7 +3,7 @@ layout: post
 title: "Methods of Moments Estimation"
 date: "January 2, 2016"
 categories: Statistics
-tags: Probability_and_Inference
+tags: ProbabilityandInference
 ---
 
 * TOC

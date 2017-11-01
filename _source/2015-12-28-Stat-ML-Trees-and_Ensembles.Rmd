@@ -3,7 +3,7 @@ layout: post
 title: "Trees and Ensembles"
 date: "December 28, 2015"
 categories: Statistics
-tags: Machine_Learning
+tags: MachineLearning
 ---
 
 * TOC

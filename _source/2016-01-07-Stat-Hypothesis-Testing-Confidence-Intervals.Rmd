@@ -3,7 +3,7 @@ layout: post
 title: "Hypothesis Testing and Confidence Intervals"
 date: "January 7, 2016"
 categories: Statistics
-tags: Experimental_Design
+tags: ExperimentalDesign
 ---
 
 * TOC
