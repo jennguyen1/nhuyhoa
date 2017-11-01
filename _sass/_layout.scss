@@ -41,6 +41,10 @@
         color: $brand-color;
         line-height: $base-line-height;
         margin-left: 15px;
+        
+      &:hover {
+        color: $text-color;
+      }
     }
 
     @include media-query($on-palm) {
@@ -105,13 +109,16 @@
     font-weight: 500;
     text-align:center;
     color:$text-color;
-    font-size: 90%;
-}
+    font-size: 85%;
+    
+    a{
+        color:$text-color;
 
-.foot-text a{
-    color:$text-color;
+        &:hover {
+            color: $brand-color;
+        }
+    }
 }
-
 
 /**
  * Page content
@@ -151,16 +158,37 @@
     letter-spacing: -1px;
     line-height: 1;
     margin-top:25px;
-
-    @include media-query($on-laptop) {
-        font-size: 36px;
-    }
+    
 }
 
 .post-meta{
-    font-size: 90%;
+    padding-top:1%;
+    font-weight: 500;
+    color:$text-color;
+    font-size: 85%;
 }
 
+.post-tag:before {
+    content: "\f02b";
+    font-family: FontAwesome;
+    padding-right: .5em;
+}
+
+.post-category{
+
+    color: $text-color;
+    
+    &:hover{
+        color: $brand-color;
+    }
+    
+    &:before{
+        content: "\f02d";
+        font-family: FontAwesome;
+        padding-right: .5em;
+    }
+    
+}
 
 .post-content {
     margin-top: $spacing-unit;
@@ -168,40 +196,28 @@
     height:100%;
 
     h1 {
-        font-size: 32px;
+        font-size: 30px;
         padding-top: 50px;
 
-        @include media-query($on-laptop) {
-            font-size: 26px;
-        }
     }
 
     h2 {
-        font-size: 28px;
+        font-size: 26px;
         padding-top: 50px;
 
-        @include media-query($on-laptop) {
-            font-size: 22px;
-        }
     }
 
     h3 {
-        font-size: 24px;
+        font-size: 22px;
         padding-top:50px;
 
-        @include media-query($on-laptop) {
-            font-size: 18px;
-        }
     }
     
     h4 {
-        font-size: 24px;
+        font-size: 18px;
         padding-top:6px;
         padding-bottom:3px;
 
-        @include media-query($on-laptop) {
-            font-size: 18px;
-        }
     }
     
     table{
