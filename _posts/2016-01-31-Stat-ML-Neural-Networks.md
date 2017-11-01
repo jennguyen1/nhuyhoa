@@ -1,0 +1,60 @@
+---
+layout: post
+title: "Neural Networks"
+date: "January 31, 2016"
+categories: Statistics
+tags: Machine_Learning
+---
+
+* TOC
+{:toc}
+
+
+
+# Schematic Model
+![Neural Network Model](http://jennguyen1.github.io/nhuyhoa/figure/images/neural_network_model.png)
+
+One of many potential neural network models.
+
+The $$x$$s refer to input variables. Each layer has a bias or intercept term. Every node has an outgoing weight/arrow, called $$\theta_{ii}$$. These weight determine the effect of the previous node to the target node. The output node gives the final function estimate. 
+
+The internal nodes are computed using the previous nodes. For instance <br>
+$$a_1^{(1)} = g(x^T\theta_1^{(1)})$$ <br>
+$$a_2^{(1)} = g(x^T\theta_2^{(1)})$$ <br>
+$$h(x) = a_1^{(2)} = g((a^{(1)})^T\theta_1^{(2)})$$
+
+The matrix $$\theta^{(i)}$$ represent the weights controlling the function mapping for a given layer. The function $$g$$ here can vary (identity, sigmoid/logistic, etc).
+
+Models can also have multiple output units. One situation in which this is useful is with multinomial responses. 
+
+In R, neural networks can be fit with the function `neuralnet::neuralnet()`.
+
+# Forward Propagation
+Forward propagation starts at the input layer and proceeds through the layers to obtain the final result. 
+
+For the example in the model above, calculate <br>
+$$a_1^{(1)} = g(x^T\theta_1^{(1)})$$ <br>
+$$a_2^{(1)} = g(x^T\theta_2^{(1)})$$<br>
+$$h(x) = a_1^{(2)} = g((a^{(1)})^T\theta_1^{(2)})$$
+
+# Backward Propagation
+The weights $$\theta_{ii}$$ can be learned via the backpropagation algorithm. 
+
+The error of each layer is expressed as <br>
+$$\delta_j^{(L)} = a_j^{(L)} - y_j$$ <br>
+$$\delta^{(l)} = (\theta^{(l)})^T \delta^{(l + 1)} *  g'((a^{(l-1)})^T\theta^{(l-1)})$$
+
+
+The backwards propagation is 
+
+1. Randomly intialize $$\theta^{(l)}$$
+2. Set $$\Delta_{ij}^{(l)} = 0$$
+3. For $$i = 1$$ to $$n$$
+  * Conduct forward propagation
+  * Compute $$\delta^{(l)}$$ for $$l = 2, ..., L$$
+  * Set $$\Delta^{(l)} := \Delta^{(l)} + \delta^{(l + 1)} (a^{(l)})^T$$
+4. Obtain the gradient for the neural network cost function by dividing the accumulated gradients by $$\frac{1}{n}$$ (Note that there is no regularization term for the intercept)
+  $$\frac{\partial}{\partial \theta_{ij}^{(l)}} J(\theta) = D^{(l)}_{ij} = \frac{1}{n} \Delta^{(l)}_{ij} + \frac{\lambda}{n} \theta^{(l)}_ij$$
+5. Use above to adjust $$\theta$$ using gradient descent
+
+

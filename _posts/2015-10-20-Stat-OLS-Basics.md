@@ -1,0 +1,159 @@
+---
+layout: post
+title: "OLS: Basics"
+date: "October 20, 2015"
+categories: Statistics
+tags: Regression
+---
+
+* TOC
+{:toc}
+
+The linear probability model:
+
+$$ Y \sim iidN(X\beta, \sigma^2 I)$$
+
+The regression equation:
+
+$$ Y = X\beta + \epsilon $$
+
+# Estimating Beta Coefficients
+In least squares regression, the objective is to minimize the sum squared errors ($$SSE$$). 
+
+Let $$Y$$ = observed responses and $$\hat{Y}$$ = fitted responses. $$\hat{Y}$$ lies on the column space of $$X$$, the design matrix. The idea is that there may not be a solution to $$Y = X\beta$$, so project $$Y$$ onto the $$col(X)$$ in which there is a solution. 
+
+In order to minimize the $$SSE$$s, there is $$Y-\hat{Y}$$ is perpendicular to $$col(X)$$:
+
+$$ X^T(Y-\hat{Y}) = 0 $$ <br>
+$$ X^TY = X^T\hat{Y} = X^TX\hat{\beta}$$
+
+$$ \hat{\beta} = (X^TX)^{-1}X^TY $$
+
+This method is equivalent to maximizing the likelihood.
+
+--------------|------------------------
+$$l(\theta)$$ | $$ = \log(L(\theta))$$
+              | $$ = \Sigma^n_{i = 1} \log \left( \frac{1}{\sigma \sqrt{2\pi}} exp(- \frac{(y_i - \hat{y}_i^2}{2 \sigma^2}) \right)$$
+              | $$ = m \log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \Sigma_i (y_i - \hat{y}_i)^2$$
+              | $$ = m \log \left( \frac{1}{\sigma \sqrt{2\pi}} \right) - \frac{1}{2\sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$
+
+Drop the constant to get
+$$max \frac{-1}{2 \sigma^2} \Sigma_i (y_i - \theta^T x_i)^2$$
+
+which is equivalent to minimizing the $$SSE$$ (proportional)
+$$min \Sigma_i (y_i - \theta^T x_i)^2$$
+
+**Over-Parametrized Model Fitting**
+
+In some cases, the $$X$$ matrix may be overparametrized. This leads to non-invertible $$X'X$$ matrix. There are a number of ways to deal with this
+
+* Reparametrize: drop column like in R
+* Generalized inverse: generate a matrix that has similar properties to the invertible matrix and can thus be used in fitting the model; used in SAS
+
+# Estimating Variance: Sum Square Errors
+The residual is $$r = Y - \hat{Y} = Y - X\hat{\beta}$$.
+
+In least squares, the sum of the squared residuals are minimized. 
+
+----------|------------------------
+$$ SSE $$ | $$ = r^Tr$$
+          | $$ = (Y - X\hat{\beta})^T(Y - X\hat{\beta}) $$
+          | $$ = Y^TY - 2\hat{\beta}^TX^TY + \hat{\beta}^TX^TX\hat{\beta} $$
+          | $$ = Y^TY - \hat{\beta}^TX^TY + \hat{\beta}^T[X^TX\hat{\beta} - X^TY] $$
+
+and since $$ X^TX\hat{\beta} = X^TY $$
+
+----------|------------------------
+$$ SSE $$ | $$ = Y^TY - \hat{\beta}X^TY $$
+
+So...
+
+$$ SSE = (Y - X\hat{\beta})^T(Y - X\hat{\beta}) = Y^TY - \hat{\beta}^TX^TX\hat{\beta} $$
+
+From this derive an unbiased estimate of $$\sigma^2$$, the mean square error:
+
+$$ MSE = \frac{SSE}{n - p - 1} $$
+
+where $$p$$ is the number of parameters (not including the intercept).
+
+Note that since the $$SSE$$ is minimized, the sum of the residuals is always equal to 0.
+
+$$ min( \Sigma (y - \hat{y})^2 ) = \overrightarrow 2 \Sigma (y - \hat{y}) = 0 $$
+
+# Distribution of Beta Estimates
+
+$$ E[Y] = X\beta $$ <br>
+$$ Var[Y] = \sigma^2 $$
+
+The beta parameters are unbiased:
+
+--------------|------------------------
+$$ E[\beta] $$| $$ = (X^TX)^{-1}X^TE[Y] $$
+              | $$ = (X^TX)^{-1}X^TX\beta $$
+
+$$ E[\hat{\beta}] = \beta $$
+
+The variance of the beta parameters:
+
+----------------------|------------------------
+$$ Var[\hat{\beta}] $$| $$ = (X^TX)^{-1}X^TVar[Y]X(X^TX)^{-1} $$
+                      | $$ = \sigma^2 (X^TX)^{-1}X^TX(X^TX)^{-1} $$
+
+$$ Var[\hat{\beta}] = \sigma^2 (X^TX)^{-1} $$
+
+Thus $$ \hat{\beta}  \sim  N(\beta, \sigma^2(X^TX)^{-1}) $$, and since $$\sigma^2$$ is estimated with $$MSE$$, use a t-distribution to determine the sigificance of the $$\hat{\beta}$$ parameter.
+ 
+# Regression Assumptions
+Assumptions for OLS require $$ e_i  \sim  N(0, \sigma^2I) $$, in other words:
+
+* Linear relationship
+* Independent, uncorrelated errors
+* Constant variance of the errors 
+* Normal distribution of errors
+
+These assumptions fullfill the requirement of the Gauss-Markov theorem.
+
+The Gauss-Markov theorem states that if
+
+* $$ E[e_i] = 0 $$.
+* $$ Var[e_i] = \sigma^2I $$ - homoskedasticity
+* $$ cov[e_i, e_j] \forall i \ne j $$ - uncorrelated errors
+
+then the $$\hat{\beta}$$ derived above is the best linear unbiased estimator (BLUE) in that it has the lowest variance of all unbiased linear estimators.
+
+# Example
+
+{% highlight r %}
+# generate random data
+y <- rnorm(100)
+x1 <- runif(100, 3, 7)
+x2 <- rexp(100, 2.2)
+x3 <- rpois(100, 1)
+X <- as.matrix(data.frame(1, x1, x2, x3))
+
+# Solve by hand
+B <- solve(t(X) %*% X) %*% t(X) %*% y
+c(B)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1]  0.19251974  0.02971679 -0.43396684 -0.09122589
+{% endhighlight %}
+
+
+
+{% highlight r %}
+# Solve with lm
+coef <- coef(lm(y ~ x1 + x2 + x3))
+c(coef)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## (Intercept)          x1          x2          x3 
+##  0.19251974  0.02971679 -0.43396684 -0.09122589
+{% endhighlight %}
+
