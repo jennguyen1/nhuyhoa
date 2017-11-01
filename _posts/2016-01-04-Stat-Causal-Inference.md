@@ -3,7 +3,7 @@ layout: post
 title: "Causal Inference"
 date: "January 04, 2016"
 categories: Statistics
-tags: Experimental Design
+tags: Experimental_Design
 ---
 
 * TOC

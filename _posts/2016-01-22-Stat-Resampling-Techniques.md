@@ -3,7 +3,7 @@ layout: post
 title: "Resampling Techniques"
 date: "January 22, 2016"
 categories: Statistics
-tags: Experimental Design
+tags: Experimental_Design
 ---
 
 * TOC

@@ -3,7 +3,7 @@ layout: post
 title: "Distribution Facts"
 date: "October 18, 2015"
 categories: Statistics
-tags: Probability and Inference
+tags: Probability_and_Inference
 ---
 
 * TOC

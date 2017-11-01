@@ -3,7 +3,7 @@ layout: post
 title: "Trees and Ensembles"
 date: "December 28, 2015"
 categories: Statistics
-tags: Machine Learning
+tags: Machine_Learning
 ---
 
 * TOC
@@ -243,11 +243,11 @@ printcp(c_tree)
 ## 1 0.286585      0   1.00000 1.00000 0.059980
 ## 2 0.109756      1   0.71341 0.71341 0.055477
 ## 3 0.045732      2   0.60366 0.60366 0.052629
-## 4 0.036585      4   0.51220 0.57927 0.051896
-## 5 0.027439      5   0.47561 0.54268 0.050723
-## 6 0.024390      7   0.42073 0.53049 0.050310
-## 7 0.012195      8   0.39634 0.49390 0.049008
-## 8 0.010000     10   0.37195 0.49390 0.049008
+## 4 0.036585      4   0.51220 0.63415 0.053492
+## 5 0.027439      5   0.47561 0.65854 0.054141
+## 6 0.024390      7   0.42073 0.58537 0.052083
+## 7 0.012195      8   0.39634 0.56098 0.051321
+## 8 0.010000     10   0.37195 0.56098 0.051321
 {% endhighlight %}
 
 
@@ -287,14 +287,14 @@ rsq.rpart(r_tree)
 ## n= 506 
 ## 
 ##         CP nsplit rel error  xerror     xstd
-## 1 0.452744      0   1.00000 1.00140 0.082902
-## 2 0.171172      1   0.54726 0.59874 0.054256
-## 3 0.071658      2   0.37608 0.41102 0.042841
-## 4 0.036164      3   0.30443 0.32617 0.040780
-## 5 0.033369      4   0.26826 0.31056 0.042010
-## 6 0.026613      5   0.23489 0.30038 0.041010
-## 7 0.015851      6   0.20828 0.27222 0.039037
-## 8 0.010000      7   0.19243 0.28136 0.040517
+## 1 0.452744      0   1.00000 1.00383 0.083050
+## 2 0.171172      1   0.54726 0.61907 0.058057
+## 3 0.071658      2   0.37608 0.45495 0.052542
+## 4 0.036164      3   0.30443 0.35391 0.044569
+## 5 0.033369      4   0.26826 0.33740 0.046077
+## 6 0.026613      5   0.23489 0.32945 0.045924
+## 7 0.015851      6   0.20828 0.29348 0.041822
+## 8 0.010000      7   0.19243 0.27591 0.042002
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-12-28-Stat-ML-Trees-and_Ensembles/unnamed-chunk-3-4.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /><img src="/nhuyhoa/figure/source/2015-12-28-Stat-ML-Trees-and_Ensembles/unnamed-chunk-3-5.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
@@ -352,8 +352,8 @@ forest
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 5
 ## 
-##           Mean of squared residuals: 9.543762
-##                     % Var explained: 88.69
+##           Mean of squared residuals: 9.495369
+##                     % Var explained: 88.75
 {% endhighlight %}
 
 
@@ -367,19 +367,19 @@ importance(forest)
 
 {% highlight text %}
 ##           %IncMSE IncNodePurity
-## crim    17.458015     2441.5551
-## zn       3.061326      154.3906
-## indus   12.689232     2313.0530
-## chas     4.047052      172.5451
-## nox     19.070208     2308.1592
-## rm      39.628963    13500.4140
-## age     15.560345     1010.0531
-## dis     20.112326     2422.5059
-## rad      5.927524      277.4265
-## tax     12.884155      965.5602
-## ptratio 15.255107     2422.2660
-## black   10.227082      642.5702
-## lstat   32.781079    13354.1555
+## crim    15.974748     2392.0055
+## zn       2.756191      143.9063
+## indus   12.161517     2372.9766
+## chas     3.720200      173.3356
+## nox     18.837742     2509.9090
+## rm      40.122970    13659.7131
+## age     13.226443     1031.2746
+## dis     18.210487     2288.1319
+## rad      6.181493      232.4578
+## tax     12.646569     1222.1263
+## ptratio 15.106719     2377.3451
+## black   11.287393      653.2467
+## lstat   34.550308    13183.3632
 {% endhighlight %}
 
 **Boosting**
@@ -400,18 +400,18 @@ summary(boost)
 
 {% highlight text %}
 ##             var    rel.inf
-## lstat     lstat 36.4517391
-## rm           rm 31.4521599
-## dis         dis  9.2471819
-## crim       crim  4.7616062
-## nox         nox  4.6424311
-## age         age  3.4883197
-## ptratio ptratio  3.2788433
-## black     black  2.8309577
-## tax         tax  1.6829473
-## indus     indus  0.7689600
-## rad         rad  0.6536335
-## chas       chas  0.6140143
-## zn           zn  0.1272060
+## lstat     lstat 37.5611986
+## rm           rm 30.3270994
+## dis         dis  8.8212787
+## crim       crim  5.0076196
+## nox         nox  4.8437762
+## age         age  3.4396816
+## ptratio ptratio  3.3098091
+## black     black  2.8305180
+## tax         tax  1.7206249
+## rad         rad  0.7230941
+## indus     indus  0.7160043
+## chas       chas  0.5641231
+## zn           zn  0.1351723
 {% endhighlight %}
 

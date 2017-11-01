@@ -3,7 +3,7 @@ layout: post
 title: "Discriminant Analysis & Naive Bayes"
 date: "December 29, 2015"
 categories: Statistics
-tags: Multivariate Analysis
+tags: Multivariate_Analysis
 ---
 
 * TOC

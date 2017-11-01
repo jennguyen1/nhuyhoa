@@ -3,7 +3,7 @@ layout: post
 title: "Neural Networks"
 date: "January 31, 2016"
 categories: Statistics
-tags: Machine Learning
+tags: Machine_Learning
 ---
 
 * TOC
