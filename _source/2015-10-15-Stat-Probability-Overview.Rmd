@@ -3,7 +3,7 @@ layout: post
 title: "Probability Overview"
 date: "October 15, 2015"
 categories: Statistcs
-tags: Probability and Inference
+tags: Probability_and_Inference
 ---
 
 * [Probability Cheatsheet][prob_cheatsheet]{:target="_blank"} by William Chen, et al.

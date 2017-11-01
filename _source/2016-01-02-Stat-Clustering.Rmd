@@ -3,7 +3,7 @@ layout: post
 title: "Clustering Methods"
 date: "January 2, 2016"
 categories: Statistics
-tags: Multivariate Analysis
+tags: Multivariate_Analysis
 ---
 
 * TOC
