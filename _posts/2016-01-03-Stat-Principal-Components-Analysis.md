@@ -2,7 +2,8 @@
 layout: post
 title: "Principal Components Analysis"
 date: "January 3, 2016"
-categories: ['statistics', 'multivariate analysis']
+categories: Statistics
+tags: Multivariate Analysis
 ---
 
 * TOC
@@ -175,11 +176,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.654    2.693    2.589    2.608    2.641
-## adjCV        6.123    2.642    2.680    2.571    2.591    2.621
+## CV           6.123    2.835    2.863    2.737    2.793    2.953
+## adjCV        6.123    2.813    2.840    2.710    2.764    2.918
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.911    3.103    3.184    3.512     3.441
-## adjCV    2.875    3.056    3.131    3.439     3.364
+## CV       3.022    3.312    3.338    3.801     4.107
+## adjCV    2.979    3.254    3.276    3.717     3.998
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps

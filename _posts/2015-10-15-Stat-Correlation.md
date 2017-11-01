@@ -2,7 +2,8 @@
 layout: post
 title: "Correlation"
 date: "October 15, 2015"
-categories: ['statistics', 'regression analysis']
+categories: Statistics
+tags: Regression
 ---
 
 * TOC

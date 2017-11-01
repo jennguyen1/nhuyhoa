@@ -2,7 +2,8 @@
 layout: post
 title: "Web Scraping with Python"
 date: "October 17, 2017"
-categories: ['basics']
+categories: Software
+tags: Pipelines
 ---
 
 * TOC

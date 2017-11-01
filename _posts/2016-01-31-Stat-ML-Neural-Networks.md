@@ -2,7 +2,8 @@
 layout: post
 title: "Neural Networks"
 date: "January 31, 2016"
-categories: ['statistics', 'machine learning']
+categories: Statistics
+tags: Machine Learning
 ---
 
 * TOC

@@ -2,7 +2,8 @@
 layout: post
 title: "GLM: Multinomial Regression"
 date: "November 26, 2015"
-categories: ['statistics', 'regression analysis']
+categories: Statistics
+tags: Regression
 ---
 
 * TOC

@@ -2,7 +2,8 @@
 layout: post
 title: "Merges & Joins"
 date: "December 18, 2015"
-categories: ['data wrangling']
+categories: Software
+tags: Wrangling
 ---
 
 * TOC

@@ -2,7 +2,8 @@
 layout: post
 title: "SAS Basics"
 date: "July 26, 2015"
-categories: ['basics']
+categories: Software
+tags: Basics
 ---
 
 * TOC

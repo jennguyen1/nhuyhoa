@@ -2,7 +2,8 @@
 layout: post
 title: "Multiple Comparisons"
 date: "February 2, 2016"
-categories: ['statistics', 'experimental design']
+categories: Statistics
+tags: Experimental Design
 ---
 
 * TOC

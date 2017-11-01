@@ -2,7 +2,8 @@
 layout: post
 title: "K Nearest Neighbors"
 date: "December 28, 2015"
-categories: ['statistics', 'machine learning']
+categories: Statistics
+tags: Machine Learning
 ---
 
 * TOC

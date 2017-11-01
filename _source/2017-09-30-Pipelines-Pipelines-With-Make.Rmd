@@ -2,7 +2,8 @@
 layout: post
 title: "Pipelines with Make"
 date: "September 30, 2017"
-categories: ['pipelines']
+categories: Software
+tags: Pipelines
 ---
 
 * TOC

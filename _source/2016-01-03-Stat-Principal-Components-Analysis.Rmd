@@ -2,7 +2,8 @@
 layout: post
 title: "Principal Components Analysis"
 date: "January 3, 2016"
-categories: ['statistics', 'multivariate analysis']
+categories: Statistics
+tags: Multivariate Analysis
 ---
 
 * TOC

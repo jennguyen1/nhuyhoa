@@ -2,7 +2,8 @@
 layout: post
 title: "Split Apply Combine"
 date: "October 30, 2015"
-categories: ['data wrangling']
+categories: Software
+tags: Wrangling
 ---
 
 * TOC

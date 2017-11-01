@@ -2,7 +2,8 @@
 layout: post
 title: "Working with OS File Directory"
 date: "August 17, 2017"
-categories: ['pipelines']
+categories: Software
+tags: Pipelines
 ---
 
 * TOC

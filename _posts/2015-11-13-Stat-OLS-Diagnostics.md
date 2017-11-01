@@ -2,7 +2,8 @@
 layout: post
 title: "OLS: Diagnostics"
 date: "November 13, 2015"
-categories: ['statistics', 'regression analysis']
+categories: Statistics
+tags: Regression
 ---
 
 * TOC

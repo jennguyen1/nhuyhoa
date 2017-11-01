@@ -2,7 +2,8 @@
 layout: post
 title: "Markov Models"
 date: "February 22, 2016"
-categories: ['statistics', 'machine learning']
+categories: Statistics
+tags: Machine Learning
 ---
 
 * TOC

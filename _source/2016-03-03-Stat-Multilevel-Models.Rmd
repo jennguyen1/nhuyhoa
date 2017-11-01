@@ -2,7 +2,8 @@
 layout: post
 title: "Multilevel Models"
 date: "March 3, 2016"
-categories: ['statistics', 'regression analysis']
+categories: Statistics
+tags: Regression
 ---
 
 * TOC

@@ -2,7 +2,8 @@
 layout: post
 title: "Likelihood Estimation"
 date: "January 3, 2016"
-categories: ['statistics', 'probability and inference']
+categories: Statistics
+tags: Probability and Inference
 ---
 
 * TOC

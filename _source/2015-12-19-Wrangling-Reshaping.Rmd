@@ -2,7 +2,8 @@
 layout: post
 title: "Reshaping & Transposes"
 date: "December 19, 2015"
-categories: ['data wrangling']
+categories: Software
+tags: Wrangling
 ---
 
 * TOC

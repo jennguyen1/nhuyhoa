@@ -2,7 +2,8 @@
 layout: post
 title: "Bayesian Networks"
 date: "December 30, 2015"
-categories: ['statistics', 'machine learning']
+categories: Statistics
+tags: Machine Learning
 ---
 
 * TOC

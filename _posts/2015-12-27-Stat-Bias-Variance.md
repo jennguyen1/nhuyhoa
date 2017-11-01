@@ -2,7 +2,8 @@
 layout: post
 title: "Bias Variance Tradeoff"
 date: "December 27, 2015"
-categories: ['statistics', 'probability and inference']
+categories: Statistics
+tags: Probability and Inference
 ---
 
 * TOC

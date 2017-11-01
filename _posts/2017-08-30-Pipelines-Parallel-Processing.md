@@ -2,7 +2,8 @@
 layout: post
 title: "Parallel Processing"
 date: "August 30, 2017"
-categories: ['pipelines']
+categories: Software
+tags: Pipelines
 ---
 
 * TOC

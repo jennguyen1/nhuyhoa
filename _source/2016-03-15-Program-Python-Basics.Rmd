@@ -2,7 +2,8 @@
 layout: post
 title: "Python Basics"
 date: "March 15, 2016"
-categories: ['basics']
+categories: Software
+tags: Basics
 ---
 
 * TOC

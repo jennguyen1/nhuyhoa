@@ -2,7 +2,8 @@
 layout: post
 title: "Exception Handling"
 date: "August 21, 2017"
-categories: ['pipelines']
+categories: Software
+tags: Pipelines
 ---
 
 * TOC

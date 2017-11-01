@@ -2,7 +2,8 @@
 layout: post
 title: "Generic Algorithms For Fitting Models"
 date: "December 28, 2015"
-categories: ['statistics', 'probability and inference']
+categories: Statistics
+tags: Probability and Inference
 ---
 
 * TOC

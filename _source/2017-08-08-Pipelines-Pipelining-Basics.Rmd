@@ -2,7 +2,8 @@
 layout: post
 title: "Pipelining Basics"
 date: "August 08, 2017"
-categories: ['pipelines']
+categories: Software
+tags: Pipelines
 ---
 
 * TOC

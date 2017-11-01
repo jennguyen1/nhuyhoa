@@ -2,7 +2,8 @@
 layout: post
 title: "Logging"
 date: "August 29, 2017"
-categories: ['pipelines']
+categories: Software
+tags: Pipelines
 ---
 
 * TOC

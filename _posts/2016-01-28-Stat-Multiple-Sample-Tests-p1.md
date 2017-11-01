@@ -2,7 +2,8 @@
 layout: post
 title: "Multiple Sample Tests part 1"
 date: "January 28, 2016"
-categories: ['statistics', 'experimental design']
+categories: Statistics
+tags: Experimental Design
 ---
 
 * TOC

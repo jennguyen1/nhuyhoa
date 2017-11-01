@@ -2,7 +2,8 @@
 layout: post
 title: "OLS: Basics"
 date: "October 20, 2015"
-categories: ['statistics', 'regression analysis']
+categories: Statistics
+tags: Regression
 ---
 
 * TOC
@@ -138,7 +139,7 @@ c(B)
 
 
 {% highlight text %}
-## [1]  0.32919804 -0.06335748 -0.39994717 -0.02983453
+## [1]  0.19251974  0.02971679 -0.43396684 -0.09122589
 {% endhighlight %}
 
 
@@ -153,6 +154,6 @@ c(coef)
 
 {% highlight text %}
 ## (Intercept)          x1          x2          x3 
-##  0.32919804 -0.06335748 -0.39994717 -0.02983453
+##  0.19251974  0.02971679 -0.43396684 -0.09122589
 {% endhighlight %}
 

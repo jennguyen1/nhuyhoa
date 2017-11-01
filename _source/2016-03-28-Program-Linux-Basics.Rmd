@@ -2,7 +2,8 @@
 layout: post
 title: "Linux Basics"
 date: "March 28, 2016"
-categories: ['basics']
+categories: Software
+tags: Basics
 ---
 
 * TOC

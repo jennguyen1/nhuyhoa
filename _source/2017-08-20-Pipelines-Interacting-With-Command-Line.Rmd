@@ -2,7 +2,8 @@
 layout: post
 title: "Interacting with Command Line"
 date: "August 20, 2017"
-categories: ['pipelines']
+categories: Software
+tags: Pipelines
 ---
 
 * TOC

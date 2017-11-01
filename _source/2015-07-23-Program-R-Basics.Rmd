@@ -2,7 +2,8 @@
 layout: post
 title: "R Basics"
 date: "July 23, 2015"
-categories: ['basics']
+categories: Software
+tags: Basics
 ---
 
 * TOC

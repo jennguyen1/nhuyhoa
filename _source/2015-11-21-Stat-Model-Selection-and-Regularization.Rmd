@@ -2,7 +2,8 @@
 layout: post
 title: "Model Selection & Regularization"
 date: "November 21, 2015"
-categories: ['statistics', 'regression analysis']
+categories: Statistics
+tags: Regression
 ---
 
 * TOC

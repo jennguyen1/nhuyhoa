@@ -2,7 +2,8 @@
 layout: post
 title: "Nonlinear Regression"
 date: "November 24, 2015"
-categories: ['statistics', 'regression analysis']
+categories: Statistics
+tags: Regression
 ---
 
 * TOC

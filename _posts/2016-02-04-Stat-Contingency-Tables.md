@@ -2,7 +2,8 @@
 layout: post
 title: "Contingency Tables"
 date: "February 4, 2016"
-categories: ['statistics', 'experimental design']
+categories: Statistics
+tags: Experimental Design
 ---
 
 * TOC

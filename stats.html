@@ -1,85 +1,79 @@
 ---
 layout: page
 title: Statistics
-permalink: /stat_notes/
+permalink: /statistics/
 ---
-<h1 style = "padding-top:0;">Probability and Inference</h1>
-<section>
+
+{% for post in site.categories.Statistics %}
+  
+  <h1 style = "padding-top:0;">Probability and Inference</h1>
+  <section>
     <table>
-        {% for post in site.posts %}
-            {% if post.categories contains 'statistics' and post.categories contains 'probability and inference' %}
-                <tr>
-                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-                </tr>
-            {% endif %}
-       {% endfor %}
+      {% if post.tags contains 'Probability and Inference' %}
+        <tr>
+          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        </tr>
+      {% endif %}
     </table>
-</section>
-
-<br />
-
-<h1 style = "padding-top:0;">Experimental Design</h1>
-<section>
+  </section>
+  
+  <br />
+  
+  <h1 style = "padding-top:0;">Experimental Design</h1>
+  <section>
     <table>
-        {% for post in site.posts %}
-            {% if post.categories contains 'statistics' and post.categories contains 'experimental design' %}
-                <tr>
-                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-                </tr>
-            {% endif %}
-       {% endfor %}
+      {% if post.tags contains 'Experimental Design' %}
+        <tr>
+          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        </tr>
+      {% endif %}
     </table>
-</section>
-
-<br />
-
-<h1 style = "padding-top:0;">Regression Analysis</h1>
-<section>
+  </section>
+  
+  <br />
+  
+  <h1 style = "padding-top:0;">Regression Analysis</h1>
+  <section>
     <table>
-        {% for post in site.posts %}
-            {% if post.categories contains 'statistics' and post.categories contains 'regression analysis' %}
-                <tr>
-                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-                </tr>
-            {% endif %}
-       {% endfor %}
+      {% if post.tags contains 'Regression' %}
+        <tr>
+          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        </tr>
+      {% endif %}
     </table>
-</section>
-
-<br />
-
-<h1 style = "padding-top:0;">Multivariate Analysis</h1>
-<section>
+  </section>
+  
+  <br />
+  
+  <h1 style = "padding-top:0;">Multivariate Analysis</h1>
+  <section>
     <table>
-        {% for post in site.posts %}
-            {% if post.categories contains 'statistics' and post.categories contains 'multivariate analysis' %}
-                <tr>
-                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-                </tr>
-            {% endif %}
-       {% endfor %}
+      {% if post.tags contains 'multivariate analysis' %}
+        <tr>
+          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        </tr>
+      {% endif %}
     </table>
-</section>
-
-<br />
-
-<h1 style = "padding-top:0;">Machine Learning</h1>
-<section>
+  </section>
+  
+  <br />
+  
+  <h1 style = "padding-top:0;">Machine Learning</h1>
+  <section>
     <table>
-        {% for post in site.posts %}
-            {% if post.categories contains 'statistics' and post.categories contains 'machine learning' %}
-                <tr>
-                    <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
-                    <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-                </tr>
-            {% endif %}
-       {% endfor %}
+      {% if post.tags contains 'machine learning' %}
+        <tr>
+          <td class = "tbl-date"><span>{{post.date|date:"%b %d, %Y"}}</span></td>
+          <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        </tr>
+      {% endif %}
     </table>
-</section>
+  </section>
+  
+  <br />
 
-<br />
-
+{% endfor %}

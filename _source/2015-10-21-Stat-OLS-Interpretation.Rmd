@@ -2,7 +2,8 @@
 layout: post
 title: "OLS: Interpretation of Model Results"
 date: "October 21, 2015"
-categories: ['statistics', 'regression analysis']
+categories: Statistics
+tags: Regression
 ---
 
 * TOC

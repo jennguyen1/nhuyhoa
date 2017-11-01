@@ -2,7 +2,8 @@
 layout: post
 title: "Functions of Random Variables"
 date: "October 18, 2015"
-categories: ['statistics', 'probability and inference']
+categories: Statistics
+tags: Probability and Inference
 ---
 
 * TOC
