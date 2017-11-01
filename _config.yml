@@ -18,5 +18,5 @@ kramdown:
   smart_quotes:   lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
   input: GFM
-permalink: /:year/:month/:title.html
+permalink: :categories/:title.html
 
