@@ -3,7 +3,7 @@ layout: post
 title: "K Nearest Neighbors"
 date: "December 28, 2015"
 categories: Statistics
-tags: MachineLearning
+tags: Machine_Learning
 ---
 
 * TOC

@@ -3,7 +3,7 @@ layout: post
 title: "Sample Size Calculations"
 date: "January 12, 2016"
 categories: Statistics
-tags: ExperimentalDesign
+tags: Experimental_Design
 ---
 
 * TOC

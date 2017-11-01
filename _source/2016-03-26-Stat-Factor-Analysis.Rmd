@@ -3,7 +3,7 @@ layout: post
 title: "Factor Analysis"
 date: "March 26, 2016"
 categories: Statistics
-tags: MultivariateAnalysis
+tags: Multivariate_Analysis
 ---
 
 * TOC

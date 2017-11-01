@@ -3,7 +3,7 @@ layout: post
 title: "One and Two Sample Tests"
 date: "January 27, 2016"
 categories: Statistics
-tags: ExperimentalDesign
+tags: Experimental_Design
 ---
 
 * TOC

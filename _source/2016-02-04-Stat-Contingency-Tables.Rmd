@@ -3,7 +3,7 @@ layout: post
 title: "Contingency Tables"
 date: "February 4, 2016"
 categories: Statistics
-tags: ExperimentalDesign
+tags: Experimental_Design
 ---
 
 * TOC
