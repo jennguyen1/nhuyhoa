@@ -9,7 +9,10 @@ layout: default
       {{ page.date | date_to_string }}
       {% if page.author %} • {{ page.author }}{% endif %}
       {% if page.meta %} • {{ page.meta }}{% endif %} 
-      {% if page.categories %}<a href = "{{site.baseurl}}/{{page.categories | slugize}}" class='post-category'>{{ page.categories }}</a>{% endif %}
+      {% if page.categories %}
+        {% assign cat = page.categories[0] | downcase %}
+        <a href = "{{site.baseurl}}/{{cat | slugize}}" class='post-category'>{{ page.categories }}</a>
+      {% endif %}
       {% if page.tags %}<span class='post-tag'>{{ page.tags }}</span>{% endif %}
     </p>
   </header>
