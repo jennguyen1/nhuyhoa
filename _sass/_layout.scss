@@ -38,7 +38,7 @@
     }
 
     .page-link {
-        color: $brand-color;
+        color: $a-link-color;
         line-height: $base-line-height;
         margin-left: 15px;
         
@@ -115,10 +115,12 @@
         color:$text-color;
 
         &:hover {
-            color: $brand-color;
+            color: $a-link-color;
         }
     }
 }
+
+
 
 /**
  * Page content
@@ -144,6 +146,8 @@
     width:800px;
     font-size: 20px;
 }
+
+
 
 /**
  * Posts
@@ -178,14 +182,6 @@
     content: "\f02d";
     font-family: FontAwesome;
     padding-right: .5em;
-}
-
-.post-category, .post-tag {
-    color: $text-color;
-    
-    &:hover{
-        color: $brand-color;
-    }
 }
 
 .post-content {

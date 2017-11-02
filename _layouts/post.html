@@ -11,10 +11,10 @@ layout: default
       {% if page.meta %} • {{ page.meta }}{% endif %} 
       {% if page.categories %}
         {% assign cat = page.categories[0] | downcase | slugize %}
-        <a href = "{{site.baseurl}}/{{cat}}" class='post-category'>{{ page.categories }}</a>
+        <a href = "{{site.baseurl}}/{{cat}}" class='post-category reverse-link'>{{ page.categories }}</a>
         {% if page.tags %}
           {% assign tag = page.tags[0] | downcase | slugize %}
-          <a href = "{{site.baseurl}}/{{cat}}#{{tag}}" class='post-tag'>{{ page.tags }}</a>
+          <a href = "{{site.baseurl}}/{{cat}}#{{tag}}" class='post-tag reverse-link'>{{ page.tags }}</a>
         {% endif %}
       {% endif %}
     </p>

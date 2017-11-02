@@ -13,6 +13,7 @@ b, strong{
 }
 
 
+
 /**
  * Basic styling
  */
@@ -108,7 +109,7 @@ li {
  * Links
  */
 a {
-    color: $brand-color;
+    color: $a-link-color;
     text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);
     text-decoration: none;
 
@@ -117,6 +118,13 @@ a {
     }
 }
 
+.reverse-link {
+    color: $text-color;
+    
+    &:hover {
+        color: $a-link-color;
+    }
+}
 
 
 /**
@@ -127,19 +135,7 @@ blockquote {
   padding-left: 10px;
   border-left: 1px dotted #666;
 }
-/*blockquote {
-*    color: $grey-color;
-*    border-left: 4px solid $grey-color-light;
-*    padding-left: $spacing-unit / 2;
-*    font-size: 18px;
-*    letter-spacing: -1px;
-*    font-style: italic;
-*
-*    > :last-child {
-*        margin-bottom: 0;
-*    }
-*}
-*/
+
 
 
 /**
