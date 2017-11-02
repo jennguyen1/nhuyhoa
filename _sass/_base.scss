@@ -144,8 +144,8 @@ blockquote {
 pre, code {
   background: $background-code-color;
   font-size: $code-font-size;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
+  border: $code-border;
+  border-radius: $code-border-radius;
 }
 
 code {
@@ -192,7 +192,6 @@ pre {
  * Clearfix
  */
 %clearfix {
-
     &:after {
         content: "";
         display: table;
@@ -206,7 +205,6 @@ pre {
  * Icons
  */
 .icon {
-
     > svg {
         display: inline-block;
         width: 16px;

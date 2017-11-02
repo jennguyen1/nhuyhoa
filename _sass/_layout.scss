@@ -110,14 +110,6 @@
     text-align:center;
     color:$text-color;
     font-size: 85%;
-    
-    a{
-        color:$text-color;
-
-        &:hover {
-            color: $a-link-color;
-        }
-    }
 }
 
 
@@ -162,7 +154,6 @@
     letter-spacing: -1px;
     line-height: 1;
     margin-top:25px;
-    
 }
 
 .post-meta{
@@ -228,7 +219,6 @@
         border: 1px solid darken($green-color, 35%);
         table-layout: fixed;
         
-        
         th{
           background-color: darken($green-color, 35%) ;
           border-bottom:1px solid darken($green-color, 35%);
@@ -261,8 +251,8 @@
     .dftab {
         background-color: $background-code-color;
         font-size: $code-font-size;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 3px;
+        border: $code-border;
+        border-radius: $code-border-radius;
         
         width: 100%;
         overflow-x: auto;
