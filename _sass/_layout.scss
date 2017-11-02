@@ -174,53 +174,48 @@
     padding-right: .5em;
 }
 
-.post-category {
+.post-category:before{
+    content: "\f02d";
+    font-family: FontAwesome;
+    padding-right: .5em;
+}
 
+.post-category, .post-tag {
     color: $text-color;
     
     &:hover{
         color: $brand-color;
     }
-    
-    &:before{
-        content: "\f02d";
-        font-family: FontAwesome;
-        padding-right: .5em;
-    }
-    
 }
 
 .post-content {
     margin-top: $spacing-unit;
     margin-bottom: $spacing-unit;
     height:100%;
+    
+    h1, h2, h3, h4 {
+        padding-top: 50px;
+    }
 
     h1 {
         font-size: 30px;
-        padding-top: 50px;
-
     }
 
     h2 {
         font-size: 26px;
-        padding-top: 50px;
-
     }
 
     h3 {
         font-size: 22px;
-        padding-top:50px;
-
     }
     
     h4 {
         font-size: 18px;
         padding-top:6px;
         padding-bottom:3px;
-
     }
     
-    table{
+    table {
         padding-bottom: 5px;
         font-size: 14px;
         width: 98%;
