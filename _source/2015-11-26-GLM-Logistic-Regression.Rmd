@@ -217,6 +217,6 @@ $$\frac{\partial}{\partial \theta_j} l(\theta)$$ | $$ = \left( y \frac{1}{g(\the
 So the gradient ascent rule is 
 $$ \theta_j := \theta_j + \alpha (y - h(x))x_j $$
 
-[glm_diagnostics_post]: http://jennguyen1.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html#overdispersion
-[func_RV_delta_method_post]: http://jennguyen1.github.io/nhuyhoa//2015/10/Func-of-RV.html#delta-method
-[gradient_descent_post]: http://jennguyen1.github.io/nhuyhoa//2015/12/Generic-Algorithms.html#gradient-descent
+[glm_diagnostics_post]: http://jennguyen1.github.io/nhuyhoa/statistics/GLM-Testing-and-Diagnostics.html#overdispersion
+[func_RV_delta_method_post]: http://jennguyen1.github.io/nhuyhoa/statistics/Func-of-RV.html#delta-method
+[gradient_descent_post]: http://jennguyen1.github.io/nhuyhoa/statistics/Generic-Algorithms.html#gradient-descent

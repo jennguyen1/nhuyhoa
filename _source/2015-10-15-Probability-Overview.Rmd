@@ -2,7 +2,7 @@
 layout: post
 title: "Probability Overview"
 date: "October 15, 2015"
-categories: Statistcs
+categories: Statistics
 tags: Probability_and_Inference
 ---
 
