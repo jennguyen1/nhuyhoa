@@ -201,4 +201,4 @@ run;
 {% endhighlight %}
 
 
-[glm_diagnostics_post]: http://jennguyen1.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html#overdispersion
+[glm_diagnostics_post]: http://jennguyen1.github.io/nhuyhoa/statistics/GLM-Testing-and-Diagnostics.html#overdispersion

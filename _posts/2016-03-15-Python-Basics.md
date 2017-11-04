@@ -264,7 +264,7 @@ x.ppf(p)
 The module also has functions for moments, expectations, and MLE.
 
 
-[regex_post]: http://jennguyen1.github.io/nhuyhoa//2015/07/Regular-Expressions.html
+[regex_post]: http://jennguyen1.github.io/nhuyhoa/software/Regular-Expressions.html
 [itertools_link]: https://docs.python.org/2/library/itertools.html
 [scipy_link]: http://docs.scipy.org/doc/scipy/reference/stats.html
 [pandas_link]: http://pandas.pydata.org/

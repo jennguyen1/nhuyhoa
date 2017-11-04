@@ -355,4 +355,4 @@ plot(transmod$residuals ~ transmod$fitted.values)
 After the transformation, the prior heterskedaskticity has been alleviated. 
 
 
-[qq_link]: http://jennguyen1.github.io/nhuyhoa//2015/10/qqplots.html
+[qq_link]: http://jennguyen1.github.io/nhuyhoa/statistics/QQplots.html

@@ -297,4 +297,4 @@ The `VGAM` package is an additional resource that has functions for fitting mult
 # Model Testing and Diagnostics
 Testing and diagnostics is similar to other GLMs See [GLM Testing and Diagnostics][glm_diagnostics_post]{:target = "blank"}
 
-[glm_diagnostics_post]: http://jennguyen1.github.io/nhuyhoa//2015/11/GLM-Testing-and-Diagnostics.html
+[glm_diagnostics_post]: http://jennguyen1.github.io/nhuyhoa/statistics/GLM-Testing-and-Diagnostics.html
