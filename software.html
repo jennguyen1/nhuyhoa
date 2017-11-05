@@ -9,8 +9,7 @@ permalink: /software/
   <table>
     {% for post in site.tags.Pipelines %}
       <tr>
-        <td class = "tbl-date"><span>{{ post.date | date_to_string }}</span></td>
-        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}" class="code-link">{{ post.title }}</a></td>
       </tr>
     {% endfor %}
   </table>
@@ -23,8 +22,7 @@ permalink: /software/
   <table>
     {% for post in site.tags.Wrangling %}
     <tr>
-      <td class = "tbl-date"><span>{{ post.date | date_to_string }}</span></td>
-      <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}" class="code-link">{{ post.title }}</a></td>
     </tr>
   {% endfor %}
   </table>
@@ -37,8 +35,7 @@ permalink: /software/
   <table>
     {% for post in site.tags.Basics %}
     <tr>
-      <td class = "tbl-date"><span>{{ post.date | date_to_string }}</span></td>
-      <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}" class="code-link">{{ post.title }}</a></td>
     </tr>
   {% endfor %}
   </table>

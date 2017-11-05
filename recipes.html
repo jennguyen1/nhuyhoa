@@ -9,7 +9,7 @@ permalink: /recipes/
   <table>
     {% for post in site.tags.Entree reversed %}
       <tr>
-        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}" class="recipe-link">{{ post.title }}</a></td>
       </tr>
     {% endfor %}
   </table>
@@ -22,7 +22,7 @@ permalink: /recipes/
   <table>
     {% for post in site.tags.Dessert reversed %}
     <tr>
-      <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+      <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}" class="recipe-link">{{ post.title }}</a></td>
     </tr>
   {% endfor %}
   </table>
@@ -35,7 +35,7 @@ permalink: /recipes/
   <table>
     {% for post in site.tags.Other reversed %}
       <tr>
-        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        <td class = "tbl-post"><a href="{{site.baseurl}}{{ post.url }}" class="recipe-link">{{ post.title }}</a></td>
       </tr>
     {% endfor %}
   </table>

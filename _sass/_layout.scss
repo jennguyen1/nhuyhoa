@@ -136,8 +136,29 @@
 
 .tbl-post{
     width:800px;
-    font-size: 20px;
+    font-size: $base-font-size;
+    
+    .recipe-link:before{
+        content: "\f006";
+        font-family: FontAwesome;
+        padding-right: 1em;
+    }
+    
+    .code-link:before{
+        content: "\f121";
+        font-family: FontAwesome;
+        padding-right: 1em;
+    }
+    
+    .stat-link:before{
+        content: "\f080";
+        font-family: FontAwesome;
+        padding-right: 1em;
+    }    
+    
 }
+
+
 
 
 
