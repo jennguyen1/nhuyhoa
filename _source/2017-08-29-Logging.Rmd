@@ -64,8 +64,11 @@ file_handler.setFormatter(formatter)
 # add handlers to logger
 log.addHandler(handler)
 log.addHandler(file_handler)
+{% endhighlight %}
 
-# log messages
+Once you have configured everthing, you can start logging.
+
+{% highlight python %}
 log.debug("Need to fix")
 log.info("You are late")
 log.warning("This is outdated")
@@ -73,6 +76,66 @@ log.error("Kill code")
 log.log(level, "Here's another way")
 {% endhighlight %}
 
+You can save time setting up configurations by creating an external config file and loading it in with every script.
+
+{% highlight python %}
+config = {
+  "version": 1,
+  "disable_existing_loggers": True,
+
+  "root": {
+  	"level": "NOTSET",
+	  "handlers": ["console", "log_file"]
+  },
+
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "formatter": "brief",
+	    "stream": "ext://sys.stdout",
+	    "level": "NOTSET"
+    },
+    "log_file": {
+      "class": "logging.FileHandler",
+      "formatter": "brief",
+	    "mode": "w",
+	    "level": "INFO",
+      "filename": "logs/file.log"
+    },
+    "minimal_file": {
+      "class": "logging.FileHandler",
+      "formatter": "minimal",
+	    "mode": "w",
+	    "level": "INFO",
+      "filename": "logs/minimal.log"
+    },
+	  "debug_file": {
+	    "class": "logging.FileHandler",
+	    "formatter": "detailed",
+	    "mode": "a",
+	    "level": "DEBUG",
+	    "filename": "logs/debug_file.log"
+	  }
+  },
+
+  "formatters": {
+  	"detailed": {
+	    "format": "%(asctime)s %(funcName)s [%(levelname)s] %(message)s",
+	    "datefmt": "%Y-%m-%d %H:%M:%S"
+	  },
+    "brief": {
+      "format": "%(asctime)s [%(levelname)s] %(message)s",
+      "datefmt": "%Y-%m-%d %H:%M:%S"
+    },
+    "minimal": {
+      "format": "%(message)s"
+    }
+  }
+}
+
+import logging.config
+logging.config.dictConfig(config)
+{% endhighlight %}
 
 # Progress Bar
 
