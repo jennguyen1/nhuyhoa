@@ -247,7 +247,6 @@ There are a number of decorator functions for classes to extend its methods
 
 * `classmethod` shared among all instances, called with the class 1st arg
 * `staticmethod` called without a class or instance reference
-* property
 * `property` a getter that also turns the method into a read only atribute with the same name, can be accessed as `instance.propname`
 * `[property].setter` and `[property].deleter` methods to set and delete a property, the *[property]* value is just the name of the method from `property`
 
