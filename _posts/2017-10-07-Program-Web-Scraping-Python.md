@@ -3,7 +3,7 @@ layout: post
 title: "Web Scraping with Python"
 date: "October 17, 2017"
 categories: Software
-tags: Pipelines
+tags: x
 ---
 
 * TOC

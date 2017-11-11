@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "Ground Pork"
+title: "Chao (Porridge)"
 date: "May 15, 2017"
 categories: Recipes
-tags: Other
+tags: Entree
 ---
 
 ```{r, echo = FALSE, warning = FALSE}
 library(jn.general)
 lib(data)
 
-recipe_name <- 'Ground Pork'
+recipe_name <- 'Chao (Porridge)'
 connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
 ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = "${recipe_name}"')
 instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = "${recipe_name}"')
@@ -35,7 +35,7 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
-
+![pic1]( {{"/figure/food/Chao.JPG" | absolute_url }})
 
 
 

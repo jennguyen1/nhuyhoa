@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Chao (Congee)"
+title: "Chao (Porridge)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
