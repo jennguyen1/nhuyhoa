@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Interacting with Command Line"
-date: "August 20, 2017"
+date: "August 18, 2017"
 categories: Software
 tags: Pipelines
 ---
