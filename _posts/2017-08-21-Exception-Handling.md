@@ -109,14 +109,7 @@ error_handling(stop("!"))
 
 **Python**
 
-Within functions, assertions can be used to detect errors. The syntax is below
-
-{% highlight python %}
-def f():
-  assert condition, error_msg
-{% endhighlight %}
-
-Exceptions can be raised by doing this
+Exceptions can be raised by doing 
 {% highlight python %}
 raise Exception("")
 {% endhighlight %}
@@ -150,11 +143,47 @@ Possible excepions
 * IOError
 * IndexError
 
+# Assertions
+
+Within functions, assertions can be used to detect errors.
+
+**R**
+
+
+{% highlight r %}
+f <- function(){
+  assertthat::assert_that(condition, msg = "Error message")
+}
+{% endhighlight %}
+
+**Python**
+
+{% highlight python %}
+def f():
+  assert condition, error_msg
+{% endhighlight %}
+
 # Unit Testing
 
 **R**
 
-Unit tests in R can be done with the package `testthat`.
+Unit tests in R can be done with the package `testthat`. 
+
+
+{% highlight r %}
+context("Script Purpose")
+
+testthat::test_that("Testing set 1", {
+  testthat::expect_Blah(...)
+})
+
+testthat::test_that("Testing set 2", {
+  testthat::expect_Blah(...)
+})
+{% endhighlight %}
+
+
+To initiate, run the function `devtools::use_testthat()`. It will create all the necessary files. Test scripts can be placed in the folder *tests/testthat*. 
 
 **Python**
 
