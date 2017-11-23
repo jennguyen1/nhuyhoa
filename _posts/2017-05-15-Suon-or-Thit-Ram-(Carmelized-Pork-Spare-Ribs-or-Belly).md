@@ -29,7 +29,7 @@ tags: Entree
 <tbody>
   <tr>
    <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;"> pork spare ribs </td>
+   <td style="text-align:left;"> pork rib tips </td>
    <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>

@@ -55,25 +55,22 @@ tags: Entree
    <td style="text-align:left;"> Cut shallots and green onions </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Make a mixture of water and nuoc mam in a small bowl </td>
+   <td style="text-align:left;"> Make a 1:1 mixture of water and nuoc mam in a small bowl </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Fry tofu </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> In saucer, golden the shallots </td>
+   <td style="text-align:left;"> Stir fry the shallots until golden </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add green onions and stir until they soften </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add tofu and stir </td>
+   <td style="text-align:left;"> Add tofu and sauce mixture </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add sauce mixture and stir </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Heat for approximately 5 min </td>
+   <td style="text-align:left;"> Stir and adjust to taste, remove from heat after a few minutes </td>
   </tr>
 </tbody>
 </table>

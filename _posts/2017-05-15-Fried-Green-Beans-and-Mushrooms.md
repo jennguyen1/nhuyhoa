@@ -38,15 +38,9 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> mushroom seasoning </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> garlic </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> hoisin sauce </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -73,7 +67,7 @@ tags: Entree
    <td style="text-align:left;"> Add small bowl of water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Sprinkle in salt, pepper, mushroom seasoning or hoisin sauce </td>
+   <td style="text-align:left;"> Sprinkle in salt, pepper, or hoisin sauce </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Let cook until beans and mushrooms have softened </td>

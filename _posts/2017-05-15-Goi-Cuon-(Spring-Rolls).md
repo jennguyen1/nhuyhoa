@@ -26,7 +26,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Go Gai rice paper </td>
+   <td style="text-align:left;"> rice paper </td>
    <td style="text-align:left;"> pork belly </td>
    <td style="text-align:left;"> cucumber </td>
    <td style="text-align:left;">  </td>

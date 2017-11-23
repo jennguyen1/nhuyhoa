@@ -31,12 +31,12 @@ tags: Dessert
 <tbody>
   <tr>
    <td style="text-align:left;"> bot banh bao </td>
-   <td style="text-align:left;"> chinese pork sausages </td>
+   <td style="text-align:left;"> lap xuong (chinese pork sausages) </td>
    <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> skim milk </td>
+   <td style="text-align:left;"> milk </td>
    <td style="text-align:left;"> ground pork </td>
    <td style="text-align:left;"> dried mushrooms </td>
    <td style="text-align:left;">  </td>
@@ -89,7 +89,7 @@ tags: Dessert
    <td style="text-align:left;"> Marinate ground pork with shallots, salt, pepper, soy sauce, and optionally sliced mushrooms </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cut chinese sausages into slices </td>
+   <td style="text-align:left;"> Cut lap xuong into slices </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Hard boil egg and cut into 4 pieces </td>
@@ -113,7 +113,7 @@ tags: Dessert
    <td style="text-align:left;"> Flatten the ball, about the size of your hand </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fill with the meat, chinese sausage, and a quarter egg </td>
+   <td style="text-align:left;"> Fill with the meat, lap xuong, and a quarter egg </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Fold up the edges and pinch while twisting in the middle, take care not to expose any holes </td>

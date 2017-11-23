@@ -54,7 +54,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> mints </td>
+   <td style="text-align:left;"> mint </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

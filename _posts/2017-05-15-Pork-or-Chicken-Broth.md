@@ -27,7 +27,7 @@ tags: Other
 <tbody>
   <tr>
    <td style="text-align:left;"> wonton soup base </td>
-   <td style="text-align:left;"> pork ribs tips </td>
+   <td style="text-align:left;"> pork rib tips </td>
    <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>

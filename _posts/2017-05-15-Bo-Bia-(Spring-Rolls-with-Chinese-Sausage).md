@@ -26,8 +26,8 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Go Gai rice paper </td>
-   <td style="text-align:left;"> chinese pork sausages </td>
+   <td style="text-align:left;"> rice paper </td>
+   <td style="text-align:left;"> lap xuong (chinese pork sausages) </td>
    <td style="text-align:left;"> cucumber </td>
    <td style="text-align:left;">  </td>
   </tr>
@@ -64,7 +64,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Boil chinese sausages for 15 min, move to ice bath when done </td>
+   <td style="text-align:left;"> Boil lap xuong for 15 min, move to ice bath when done </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Make thin egg omeletes, one egg at a time </td>

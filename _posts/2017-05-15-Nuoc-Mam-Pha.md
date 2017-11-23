@@ -38,12 +38,6 @@ tags: Other
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> water </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> vinegar </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>

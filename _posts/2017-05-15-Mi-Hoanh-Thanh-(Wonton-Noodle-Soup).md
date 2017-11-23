@@ -54,7 +54,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> hanh kho </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -93,7 +93,7 @@ tags: Entree
    <td style="text-align:left;"> Pour boiling broth into bowl </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Sprinkle with fried shallots </td>
+   <td style="text-align:left;"> Sprinkle with hanh kho </td>
   </tr>
 </tbody>
 </table>

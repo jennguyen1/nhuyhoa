@@ -27,7 +27,7 @@ tags: Entree
 <tbody>
   <tr>
    <td style="text-align:left;"> macaroni </td>
-   <td style="text-align:left;"> pork ribs tips </td>
+   <td style="text-align:left;"> pork rib tips </td>
    <td style="text-align:left;"> mustard greens </td>
    <td style="text-align:left;">  </td>
   </tr>

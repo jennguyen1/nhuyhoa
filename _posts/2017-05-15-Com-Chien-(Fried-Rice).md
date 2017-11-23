@@ -70,7 +70,7 @@ tags: Entree
    <td style="text-align:left;"> Prepare the meat and veggies, thoroughly dry </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cook shallots, garlic, onions in pan with oil until golden </td>
+   <td style="text-align:left;"> Stir fry shallots, garlic, onions with oil until golden </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add eggs on low power </td>
