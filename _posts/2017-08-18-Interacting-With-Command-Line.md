@@ -62,8 +62,9 @@ library(argparse)
 parser <- ArgumentParser(description = "Apple Game")
 
 # declare the arguments
-parser$add_argument('-a', '--apple', help = 'Type of apple [%(default)s]', dest = 'apple', default = "red")
-parser$add_argument('-c', '--count', help = 'How many apples [%(default)s]', dest = 'count', default = 5)
+parser$add_argument('-a', '--apple', help = 'Color of apple [%(default)s]', dest = 'apple', default = "red", required = TRUE)
+parser$add_argument('-c', '--count', help = 'How many apples [%(default)s]', dest = 'count', default = 5, type = 'double')
+parser$add_argument('--types', nargs = '*', help = 'Type of apple', dest = 'types')
 parser$add_argument('--eat', help = 'Boolean flag, should I eat the apple(s)? [%(default)s]', dest = 'eat', action = 'store_true', default = FALSE)
   
 # parse arguments
@@ -78,8 +79,9 @@ import argparse
 parser = argparse.ArgumentParser(description='''Apple Game''')
   
 # declare the arguments
-parser.add_argument('-a', '--apple', help = 'Type of apple [%(default)s]', dest = 'apple', default = "red")
-parser.add_argument('-c', '--count', help = 'How many apples [%(default)s]', dest = 'count', default = 5)
+parser.add_argument('-a', '--apple', help = 'Color of apple [%(default)s]', dest = 'apple', default = "red", required = True)
+parser.add_argument('-c', '--count', help = 'How many apples [%(default)s]', dest = 'count', default = 5, type = float)
+parser.add_argument('--types', nargs = '*', help = 'Type of apple', dest = 'types')
 parser.add_argument('--eat', help = 'Boolean flag, should I eat the apple(s)? [%(default)s]', dest = 'eat', action = 'store_true', default = False)
   
 # parse arguments
