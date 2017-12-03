@@ -49,6 +49,12 @@ tags: Entree
    <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> ginger </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -76,7 +82,7 @@ tags: Entree
    <td style="text-align:left;"> Make teriyaki sauce with the ratio 2 soy sauce : 2 sake : 2 mirin : 1 sugar </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add minced onion, shallots, or garlic to sauce (any) </td>
+   <td style="text-align:left;"> Add any combo of minced onion, shallots, garlic or ginger to sauce </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Flip chicken &amp; cook until fully cooked ~5 min </td>

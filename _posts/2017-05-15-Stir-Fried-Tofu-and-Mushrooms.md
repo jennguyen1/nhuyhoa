@@ -55,6 +55,12 @@ tags: Entree
    <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> chives </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -85,7 +91,7 @@ tags: Entree
    <td style="text-align:left;"> Stir in fried tofu </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in bean sprouts &amp; green onions </td>
+   <td style="text-align:left;"> Stir in bean sprouts, chives &amp; green onions </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Adjust to taste with soy sauce &amp; sugar </td>
