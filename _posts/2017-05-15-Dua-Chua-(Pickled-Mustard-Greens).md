@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dua Chua"
+title: "Dua Chua (Pickled Mustard Greens)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
