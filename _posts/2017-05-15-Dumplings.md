@@ -103,7 +103,7 @@ tags: Entree
    <td style="text-align:left;"> Ensure the meats inside are fully cooked before removing from pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> To make the sauce, mix diluted soy sauce, bit of vinegar, pinch of sugar, bit of stir </td>
+   <td style="text-align:left;"> Sauce: stir fry shallots, lower from heat and add soy sauce, water, vinegar, sugar, and adjust to taste </td>
   </tr>
 </tbody>
 </table>
