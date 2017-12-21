@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fried Wontons"
+title: "Dumplings"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Fried_Wontons.JPG" | absolute_url }})
+
 
 
 
@@ -91,16 +91,19 @@ tags: Entree
    <td style="text-align:left;"> Wrap small spoonful of mix into circular wonton wrappers (Twin Marquis brand) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fry both sides of potstickers in a pan with some oil </td>
+   <td style="text-align:left;"> Fry: fry both sides of potstickers, add a small bowl of water and cover to steam </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a small bowl of water and cover to steam potstickers </td>
+   <td style="text-align:left;"> Boil: add to a pot of boiling water, once it has floated to the surface, cook for 2-3 more min </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Steam: steam for 10 min </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Ensure the meats inside are fully cooked before removing from pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> To make the sauce, mix diluted soy sauce, bit of vinegar, pinch of sugar, bit of stir fried green onions </td>
+   <td style="text-align:left;"> To make the sauce, mix diluted soy sauce, bit of vinegar, pinch of sugar, bit of stir </td>
   </tr>
 </tbody>
 </table>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fried Wontons"
+title: "Dumplings"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -10,7 +10,7 @@ tags: Entree
 library(jn.general)
 lib(data)
 
-recipe_name <- 'Fried Wontons'
+recipe_name <- 'Dumplings'
 connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
 ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = "${recipe_name}"')
 instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = "${recipe_name}"')
@@ -35,7 +35,7 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
-![pic1]( {{"/figure/food/Fried_Wontons.JPG" | absolute_url }})
+
 
 
 
