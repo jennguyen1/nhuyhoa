@@ -85,7 +85,7 @@ tags: Entree
    <td style="text-align:left;"> Boil the lettuce and mustard greens </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Boil mi for 2-3 min </td>
+   <td style="text-align:left;"> Stir fry defrosted/washed/dried mi until it is a little crunchy, sprinkle with some soy sauce and chives </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Assemble town with mi, veggies, roast duck </td>
