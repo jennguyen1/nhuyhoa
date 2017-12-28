@@ -79,7 +79,7 @@ tags: Entree
    <td style="text-align:left;"> Add salt, pepper, soy sauce </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix in rice </td>
+   <td style="text-align:left;"> Scramble eggs, and while eggs still wet mix in rice </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add seasonings to liking </td>

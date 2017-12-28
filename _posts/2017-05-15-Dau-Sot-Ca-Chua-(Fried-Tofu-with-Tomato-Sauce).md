@@ -64,13 +64,13 @@ tags: Entree
    <td style="text-align:left;"> Add fried tofu </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add green onions </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Add with nuoc mam and water for flavor </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Simmer for 15 minutes </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add green onions </td>
   </tr>
 </tbody>
 </table>

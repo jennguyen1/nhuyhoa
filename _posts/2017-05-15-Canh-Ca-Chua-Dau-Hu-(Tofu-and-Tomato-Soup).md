@@ -70,9 +70,6 @@ tags: Entree
    <td style="text-align:left;"> When tomatoes have softened, add 1 bowl of water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add cilantro, green onions, etc </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Add tofu (fried if desired), pork chops, or cha ca </td>
   </tr>
   <tr>
@@ -80,6 +77,9 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> Simmer for 15 minutes </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add cilantro, green onions, etc in last few minutes </td>
   </tr>
 </tbody>
 </table>

@@ -76,6 +76,9 @@ Selenium allows you to disguise your webscraping as activity similar to a human.
 {% highlight python %}
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import *
 
 # open/ close webdriver
@@ -96,7 +99,7 @@ driver.close()
 driver.quit()
 {% endhighlight %}
 
-You can venture to a page and extract the html source into BeautifulSoup.
+You can go to a page and extract the html source into BeautifulSoup.
 
 {% highlight python %}
 driver.get(url)
@@ -104,18 +107,9 @@ page = driver.page_source
 soup = BeautifulSoup(page, 'html.parser')
 {% endhighlight %}
 
-You may need to switch frames to find your element
-
-{% highlight python %}
-driver.switch_to_frame('name')
-{% endhighlight %}
-
 You can also perform actions. Here is an example of performing a google search. 
 
 {% highlight python %}
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-
 driver.get("http://www.google.com")
 try:
   box = driver.wait.until(EC.presence_of_element_located((By.NAME, "q")))
@@ -127,7 +121,7 @@ except:
   print("Something went wrong")
 {% endhighlight %}
 
-Here are a few things to do
+Here are a few options
 
 {% highlight python %}
 # public version
@@ -157,6 +151,19 @@ And these are things on the website to look for
 * `By.XPATH`
 
 A `NoSuchElementException` is raised if the element doesn't exist.
+
+You can navigate dropdown bars with the following code
+
+{% highlight python %}
+select = Select(driver.find_element_by_id("sortSelection"))
+select.select_by_visible_text("option 1")
+{% endhighlight %}
+
+You may need to switch frames to find your element
+
+{% highlight python %}
+driver.switch_to_frame('name')
+{% endhighlight %}
 
 You can switch windows with the following code
 
