@@ -70,10 +70,13 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Boil pork belly with salt on medium high heat for 60 min (no pink juices when pierce), move to ice bath when done </td>
+   <td style="text-align:left;"> Boil pork belly for a few minutes and then dump liquid </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Boil shrimp on medium heat for 1-3 minutes until it turns pink, move to ice bath when done </td>
+   <td style="text-align:left;"> Boil pork belly with salt on medium high heat for 60 min (no pink juices when pierce) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Boil shrimp (skin-on) on medium heat for 1-3 minutes until it turns pink, remove and de-skin </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Slice pork belly and shrimp </td>

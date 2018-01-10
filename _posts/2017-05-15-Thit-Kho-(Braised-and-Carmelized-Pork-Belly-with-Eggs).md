@@ -64,16 +64,10 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Clean pork belly with water and salt, trim excess fat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cut pork belly into cubes </td>
+   <td style="text-align:left;"> Clean pork belly with water and salt, trim excess fat, and cut into cubes </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Marinate pork belly with salt, pepper, and shallots </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Hard boil eggs </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Cook pork belly in pan on low heat </td>
@@ -88,7 +82,10 @@ tags: Entree
    <td style="text-align:left;"> Cook on low for 1.5 - 2 hours, removing meat foam </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add eggs </td>
+   <td style="text-align:left;"> Hard boil eggs </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add eggs to pot </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add nuoc mam for flavor </td>

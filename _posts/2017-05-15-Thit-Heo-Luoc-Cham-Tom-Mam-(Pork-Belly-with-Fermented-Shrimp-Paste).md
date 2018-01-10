@@ -61,7 +61,10 @@ tags: Entree
    <td style="text-align:left;"> Marinate pork belly with salt and pepper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Boil pork belly on medium high heat for 60 min, move to ice bath when done </td>
+   <td style="text-align:left;"> Boil for a few minutes and then dump liquid </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Boil pork belly with more marinade on medium high heat for 60 min, move to ice bath when done </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Slice pork belly </td>

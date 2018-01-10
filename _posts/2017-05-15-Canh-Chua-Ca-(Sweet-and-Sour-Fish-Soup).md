@@ -52,7 +52,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -79,7 +79,7 @@ tags: Entree
    <td style="text-align:left;"> Marinate catfish with salt and pepper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fry some garlic until golden then remove and save for later </td>
+   <td style="text-align:left;"> Fry some garlic until golden </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add some water to a pot </td>
@@ -88,13 +88,10 @@ tags: Entree
    <td style="text-align:left;"> Drain liquid from tamarind into pot, discard excess pulp </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add 4 spoons of sugar </td>
+   <td style="text-align:left;"> Add a ratio of 1 sugar : 1 nuoc mam </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add 4 spoons of nuoc mam </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add catfish and boil for 10ish min </td>
+   <td style="text-align:left;"> Add catfish and boil for 15ish min </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Remove catfish from stew </td>
@@ -107,9 +104,6 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> Adjust tastes as necessary </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add the garlic </td>
   </tr>
 </tbody>
 </table>

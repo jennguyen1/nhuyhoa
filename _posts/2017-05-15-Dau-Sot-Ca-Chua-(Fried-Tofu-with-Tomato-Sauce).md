@@ -70,7 +70,7 @@ tags: Entree
    <td style="text-align:left;"> Simmer for 15 minutes </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add green onions </td>
+   <td style="text-align:left;"> Add green onions in last few minutes </td>
   </tr>
 </tbody>
 </table>

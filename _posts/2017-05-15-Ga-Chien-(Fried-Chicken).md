@@ -61,10 +61,7 @@ tags: Entree
    <td style="text-align:left;"> Marinate chieck with salt, pepper, shallots, and soy sauce </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fry chicken on medium low heat with thin layer of oil </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Let sit for a few minutes to fully cook </td>
+   <td style="text-align:left;"> Fry chicken on medium low heat </td>
   </tr>
 </tbody>
 </table>

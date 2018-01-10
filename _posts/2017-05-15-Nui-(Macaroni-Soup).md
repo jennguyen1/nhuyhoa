@@ -67,10 +67,10 @@ tags: Entree
    <td style="text-align:left;"> Marinate the pork in salt, pepper, shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Boil water on medium heat </td>
+   <td style="text-align:left;"> Boil for a few minutes and then dump liquid </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add pork rib tips </td>
+   <td style="text-align:left;"> Boil pork rib tips with extra marinade on medium heat </td>
   </tr>
   <tr>
    <td style="text-align:left;"> When foam starts to form, lower heat and remove foam </td>
