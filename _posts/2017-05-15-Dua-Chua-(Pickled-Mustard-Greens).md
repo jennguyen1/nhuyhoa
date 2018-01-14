@@ -58,7 +58,7 @@ tags: Entree
    <td style="text-align:left;"> Using the white parts of the green onions, cut into quarter circles </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a 1.75:1 ratio of brown sugar and salt and 1L of warm water </td>
+   <td style="text-align:left;"> Mix 1.75 tbsp brown sugar, 1 tbsp salt, and 1L of warm water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Before adding the salt and water, squeeze the brown sugar and green onions </td>

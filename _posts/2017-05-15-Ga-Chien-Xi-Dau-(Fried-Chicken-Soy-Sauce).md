@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ga Chien (Fried Chicken)"
+title: "Ga Chien Xi Dau (Fried Chicken Soy Sauce)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Ga_Chien.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Ga_Chien_Xi_Dau.JPG" | absolute_url }})
 
 
 

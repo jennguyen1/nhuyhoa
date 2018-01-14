@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-
+![pic1]( {{"/figure/food/Mackerel_Steamed.JPG" | absolute_url }})
 
 
 
