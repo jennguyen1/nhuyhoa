@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ca Chien (Fried Fish)"
+title: "Ga Bourbon (Bourbon Chicken)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Ca_Chien.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Ga_Bourbon.JPG" | absolute_url }})
 
 
 
@@ -26,19 +26,19 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;"> catfish </td>
+   <td style="text-align:left;"> soy sauce </td>
+   <td style="text-align:left;"> chicken thighs </td>
    <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> pepper </td>
+   <td style="text-align:left;"> brown sugar </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> nuoc mam pha </td>
+   <td style="text-align:left;"> cornstarch </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -58,28 +58,19 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Mince shallots and garlic </td>
+   <td style="text-align:left;"> Heat minced shallots &amp; garlic in oil on medium heat </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cut catfish approximately 3 in long </td>
+   <td style="text-align:left;"> Add chicken and cook until brown </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Marinate fish in salt, pepper, shallots, and garlic </td>
+   <td style="text-align:left;"> Stir in a 2:2:1 mixture of soy sauce, brown sugar and water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Let fish sit for half hour </td>
+   <td style="text-align:left;"> Add some cornstarch to thicken sauce </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fry fish on medium high heat with thin layer of oil </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Flip fish and fry other side on medium low heat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Let sit for a few minutes to fully cook </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Eat with nuoc mam pha </td>
+   <td style="text-align:left;"> Add green onions </td>
   </tr>
 </tbody>
 </table>

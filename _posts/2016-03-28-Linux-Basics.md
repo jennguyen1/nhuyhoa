@@ -74,6 +74,9 @@ cut -f1-3,5,7 input.txt
 
 # cut 3rd column w/ columns separated by a single space
 cut -d "," -f 3 input.txt
+
+# opposite: all but columns 1-3
+cut -f1-3 --complement input.txt
 {% endhighlight %}
 
 * `paste` column binds two files

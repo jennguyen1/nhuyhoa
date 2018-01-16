@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-
+![pic1]( {{"/figure/food/Dumplings.JPG" | absolute_url }})
 
 
 
@@ -88,7 +88,7 @@ tags: Entree
    <td style="text-align:left;"> Sprinkle a bit of salt and pepper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Wrap small spoonful of mix into circular wonton wrappers (Twin Marquis brand) </td>
+   <td style="text-align:left;"> Wrap small spoonful of mix into circular wrappers (Twin Marquis brand), dumpling or siu mai style </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Fry: fry both sides of potstickers, add a small bowl of water and cover to steam </td>
@@ -98,9 +98,6 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> Steam: steam for 10 min </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ensure the meats inside are fully cooked before removing from pan </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Sauce: stir fry shallots, lower from heat and add soy sauce, water, vinegar, sugar, and adjust to taste </td>

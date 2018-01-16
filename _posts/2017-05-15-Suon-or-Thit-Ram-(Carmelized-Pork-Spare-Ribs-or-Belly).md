@@ -72,7 +72,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Cut pork spare ribs (suon) into squares or pork belly into slices </td>
+   <td style="text-align:left;"> Cut pork rib tips (suon) into squares or pork belly into slices </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Marinate meat with salt, pepper, and minced shallots </td>
@@ -87,7 +87,7 @@ tags: Entree
    <td style="text-align:left;"> Add 2.5 spoons of sugar </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a solution of 3:4 ratio of soy sauce to water </td>
+   <td style="text-align:left;"> Add a mixture of 3:4 ratio of soy sauce to water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Sprinkle in a little bit of cornstarch </td>
@@ -99,7 +99,7 @@ tags: Entree
    <td style="text-align:left;"> Add in sliced yellow onion and chopped green onions </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Wait a few minutes to fully cook </td>
+   <td style="text-align:left;"> Cover and wait a few minutes to fully cook </td>
   </tr>
 </tbody>
 </table>

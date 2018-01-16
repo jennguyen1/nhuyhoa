@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Teriyaki Chicken"
+title: "Ga Teriyaki (Teriyaki Chicken)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Teriyaki_Chicken.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Ga_Teriyaki.JPG" | absolute_url }})
 
 
 
