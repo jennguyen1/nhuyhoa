@@ -34,7 +34,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> tapioca starch </td>
    <td style="text-align:left;"> cha </td>
-   <td style="text-align:left;"> dried mushrooms </td>
+   <td style="text-align:left;"> dried fungus mushrooms </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
@@ -148,7 +148,7 @@ tags: Entree
    <td style="text-align:left;"> If mixture is not clear, add oil; if breaking, add water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Eat with cha, mint, thai basil, lettuce, cucumber, bean sprouts, hanh kho, and nuoc mam </td>
+   <td style="text-align:left;"> Eat cuon with cha, mint, thai basil, lettuce, cucumber, bean sprouts, hanh kho, and nuoc mam pha </td>
   </tr>
 </tbody>
 </table>

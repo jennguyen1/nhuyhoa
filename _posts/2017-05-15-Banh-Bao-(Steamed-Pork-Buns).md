@@ -36,9 +36,9 @@ tags: Dessert
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> milk </td>
+   <td style="text-align:left;"> whole milk </td>
    <td style="text-align:left;"> ground pork </td>
-   <td style="text-align:left;"> dried mushrooms </td>
+   <td style="text-align:left;"> dried fungus mushrooms </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

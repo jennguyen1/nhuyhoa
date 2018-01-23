@@ -115,16 +115,7 @@ tags: Entree
    <td style="text-align:left;"> Add bamboo into broth </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Prepare the bun </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Cut up duck and refrigerate </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mince some ginger and add to nuoc mam pha </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mince green onions and cilantro </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Serve bun with duck, green onions, cilantro, broth, and nuoc mam pha with ginger </td>

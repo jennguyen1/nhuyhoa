@@ -72,6 +72,9 @@ tags: Other
   <tr>
    <td style="text-align:left;"> Adjust to taste, should be sweet and sour, not salty </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> Mix in minced garlic </td>
+  </tr>
 </tbody>
 </table>
 

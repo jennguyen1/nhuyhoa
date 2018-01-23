@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Dau_Xao_Hanh.JPG" | absolute_url }})
+
 
 
 
