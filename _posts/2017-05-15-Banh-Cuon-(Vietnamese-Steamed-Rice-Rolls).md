@@ -100,13 +100,7 @@ tags: Entree
    <td style="text-align:left;"> Clean mushrooms similar to rice; rinse and repeat </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cut up mushrooms into thin strips </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cut green onions </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Marinate ground pork with minced shallots, salt, and pepper </td>
+   <td style="text-align:left;"> Mince mushrooms and green onions </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Clean and blanche bean sprouts </td>
@@ -115,16 +109,16 @@ tags: Entree
    <td style="text-align:left;"> Clean and cut veggies and cha into slices </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> Marinate ground pork with minced shallots, salt, and pepper </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> Stir fry the pork </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Put meat through meat processor again to break up chunks </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir fry mushrooms </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mix in ground pork and green onions </td>
+   <td style="text-align:left;"> Stir fry mushrooms and mix in ground pork, green onions </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix the banh cuon flour package with 1L of water, few spoons of tapioca starch, and about 1/3 cup of oil </td>

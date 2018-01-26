@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fried Green Beans and Mushrooms"
+title: "Bo Xao Dau Xanh (Beef and Green Bean Stir Fry)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Fried_Green_Beans_and_Mushrooms.JPG" | absolute_url }})
+
 
 
 
@@ -38,9 +38,15 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> hoisin sauce </td>
+   <td style="text-align:left;"> oyster sauce </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> garlic </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -58,19 +64,16 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Heat minced garlic in pan with oil </td>
+   <td style="text-align:left;"> Marinate sliced beef with salt, pepper, minced shallots and garlic </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add green beans and mushrooms </td>
+   <td style="text-align:left;"> Stir fry beef for a few minutes </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add small bowl of water </td>
+   <td style="text-align:left;"> Stir in and cook mushrooms and green beans until soft </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Sprinkle in salt, pepper, or hoisin sauce </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Let cook until beans and mushrooms have softened </td>
+   <td style="text-align:left;"> Drizzle in diluted oyster sauce </td>
   </tr>
 </tbody>
 </table>

@@ -78,19 +78,13 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Thinly slice pork belly </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peel and slice shrimp in half </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lightly marinate both shrimp and pork belly separately with salt, pepper, and shallots </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Clean bean sprouts </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Prepare batter by adding 1 bag bot banh xeo (including the tumeric add-on), 3 cups water, 1 can beer, 1/3 cup oil </td>
+   <td style="text-align:left;"> Lightly marinate halved shrimp and thinly sliced pork belly separately with salt, pepper, and shallots </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prepare batter by adding 1 bag bot banh xeo (including the tumeric add-on), 3 c water, 1 can beer, 1/3 c oil </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add minced green onions and sliced yellow onion to batter </td>
@@ -102,10 +96,7 @@ tags: Entree
    <td style="text-align:left;"> On medium high heat, coat the pan with some oil </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir fry pork belly until no longer red </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Stir fry shrimp until no longer clear </td>
+   <td style="text-align:left;"> Stir fry pork belly until no longer red, shrimp until no longer clear </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Spread out meats on pan </td>
@@ -117,13 +108,10 @@ tags: Entree
    <td style="text-align:left;"> Tilt the pan so that there is batter on the walls of the pan, want very high walls </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add bean sprouts </td>
+   <td style="text-align:left;"> Add bean sprouts and cover for 3 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cover for 3 min </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> May want to move the pan around so that the pancake is evenly golden </td>
+   <td style="text-align:left;"> Ensure the pancake is evenly cooked by moving pan around </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Uncover and cook for few more minutes </td>

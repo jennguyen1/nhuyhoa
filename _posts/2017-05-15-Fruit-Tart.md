@@ -100,43 +100,31 @@ tags: Dessert
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Crust: </td>
+   <td style="text-align:left;"> To make crust, mix 1 pack of graham cracker crumbs, 0.25 c sugar, 0.5 tsp cinnamon, and pinch of salt </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Finely crush about graham crackers </td>
+   <td style="text-align:left;"> Slowly stir in 3 tbsp of melted margarine </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir 1 pack of graham cracker crumbs, 0.25 cup sugar, 0.5 tsp cinnamon and pinch of salt in large bowl </td>
+   <td style="text-align:left;"> Ensure mixture has consistency of cookie dough (not too dry or wet) by adding more margarine or cracker </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Slowly stir in 5 tbsp of melted margarine </td>
+   <td style="text-align:left;"> Press mixture into pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Ensure that the mixture has consistency of cookie dough (not too dry or wet) </td>
+   <td style="text-align:left;"> Freeze for 1 hr or bake at 325F for 10 min, cool and refridgerate before filling </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Press mixture to bottom of muffin pan with hands </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Freeze for 1 hour or bake at 325 degrees for 10 min then cool before filling </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Pastry Cream: </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mix together 1 tbsp + 1 tsp of sugar and 1 egg </td>
+   <td style="text-align:left;"> To make the cream, mix 1 tbsp + 1 tsp sugar and 1 egg </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add 2 tsp flour and 2 tsp cornstarch </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix to you get a smooth paste </td>
+   <td style="text-align:left;"> Mix to get a smooth paste </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> In a saucepan, add 6 tbsp + 2 tsp whole milk and 0.33 tsp vanilla extract and bring to just boiling </td>
+   <td style="text-align:left;"> In a saucepan, add 6 tbsp + 2 tsp milk and 0.33 tsp vanilla extract and bring to just boil </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Remove milk mixture and slowly add to egg mixture, whisking constantly to prevent curdling </td>
@@ -145,28 +133,22 @@ tags: Dessert
    <td style="text-align:left;"> Pour egg mixture into saucepan and cook over medium heat until boiling, whisking constantly </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> When it boils, whisk mixture constantly for a minute until it becomes thick </td>
+   <td style="text-align:left;"> When it boils, whisk mixture until it is thick </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Remove from heat and whisk in 2 tsp of margarine </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Pour into clean bowl and immediately cover with plastic wrap, with a few holes poked through </td>
+   <td style="text-align:left;"> Pour into clean bowl, cover with plastic wrap, and poke a few holes through </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Refridgerate for 2 hours before using </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Beat or whisk custard before using to remove any lumps </td>
+   <td style="text-align:left;"> Whisk custard before using to remove any lumps </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Assembly: </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Place custard on crust then add fruit </td>
+   <td style="text-align:left;"> Assemble with crust, custard, and fruit </td>
   </tr>
 </tbody>
 </table>

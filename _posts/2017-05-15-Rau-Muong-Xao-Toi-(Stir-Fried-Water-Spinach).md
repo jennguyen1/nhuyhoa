@@ -64,7 +64,7 @@ tags: Entree
    <td style="text-align:left;"> Add a lot of spinach </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> If using watch spinach (ong choy, rau muong), blanch (boil and ice bath) before frying </td>
+   <td style="text-align:left;"> If using watch spinach (ong choy, rau muong), blanche before frying </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir in diluted mam tom </td>

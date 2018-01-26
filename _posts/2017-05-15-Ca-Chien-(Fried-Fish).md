@@ -58,13 +58,10 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Mince shallots and garlic </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Cut catfish approximately 3 in long </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Marinate fish in salt, pepper, shallots, and garlic </td>
+   <td style="text-align:left;"> Marinate fish in salt, pepper, minced shallots and garlic </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Let fish sit for half hour </td>

@@ -76,13 +76,13 @@ tags: Entree
    <td style="text-align:left;"> Prick both sides of chicken with fork </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Make teriyaki sauce with the ratio 2 soy sauce : 2 sake : 2 mirin : 1 sugar </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> On medium high heat, cook chicken skin-side down for ~10 min </td>
+   <td style="text-align:left;"> Make teriyaki sauce: ratio 2 soy sauce : 2 sake : 2 mirin : 1 sugar </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add any combo of minced onion, shallots, garlic or ginger to sauce </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> On medium high heat, cook chicken skin-side down for ~10 min </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Flip chicken &amp; cook until fully cooked ~5 min </td>

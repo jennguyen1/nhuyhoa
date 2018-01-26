@@ -64,22 +64,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Marinate the pork in salt, pepper, shallots </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Boil for a few minutes and then dump liquid </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Boil pork rib tips with extra marinade on medium heat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> When foam starts to form, lower heat and remove foam </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> When foam all clear, turn to medium high heat and cover loosely with lid </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add 2 packs of wonton soup base </td>
+   <td style="text-align:left;"> Make pork broth </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Boil mustard greens separately </td>
@@ -88,7 +73,7 @@ tags: Entree
    <td style="text-align:left;"> Make noodles separately </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Combine noodles, mustard greens, and soup broth with pork in a bowl </td>
+   <td style="text-align:left;"> Eat with broth, noodles, and mustard greens </td>
   </tr>
 </tbody>
 </table>

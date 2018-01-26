@@ -87,9 +87,6 @@ tags: Entree
    <td style="text-align:left;"> Adjust to taste as necessary </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Canh spoils easily, so refridgerate when cool </td>
   </tr>
 </tbody>
