@@ -85,16 +85,10 @@ tags: Entree
    <td style="text-align:left;"> Boil the lettuce and mustard greens </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir fry defrosted/washed/dried mi until it is a little crunchy, sprinkle with some soy sauce and chives </td>
+   <td style="text-align:left;"> Stir fry washed/dried mi until it is a little crunchy, sprinkle with some soy sauce and chives </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Assemble town with mi, veggies, roast duck </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Pour broth into bowl </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sprinkle with hanh kho </td>
+   <td style="text-align:left;"> Eat with mi, veggies, roast duck, broth, and hanh kho </td>
   </tr>
 </tbody>
 </table>

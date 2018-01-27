@@ -95,10 +95,10 @@ tags: Dessert
    <td style="text-align:left;"> Hard boil egg and cut into 4 pieces </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix a 7.5:1 ratio of banh bao flour to sugar </td>
+   <td style="text-align:left;"> Mix 1.75 c banh bao flour to 0.25 c sugar </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Slowly add milk and about 1/3 cup oil </td>
+   <td style="text-align:left;"> Slowly add 1 c milk and 1 tbsp oil </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Knead batter, add more flour to ensure it is not to sticky </td>

@@ -76,16 +76,10 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Put raw shrimp into a food processor, pulse a few times, do not grind to a paste form </td>
+   <td style="text-align:left;"> Mix ground pork and loosely ground shrimp at a 1:2 ratio </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix 2 parts shrimp 1 part ground pork into a bowl </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add minced water chestnuts and shallots </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sprinkle a bit of salt and pepper </td>
+   <td style="text-align:left;"> Mix in minched shallots, water chestnuts, salt, and pepper </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Wrap small spoonful of mix into circular wrappers (Twin Marquis brand), dumpling or siu mai style </td>

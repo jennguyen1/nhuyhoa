@@ -73,7 +73,7 @@ tags: Entree
    <td style="text-align:left;"> Make noodles separately </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Eat with broth, noodles, and mustard greens </td>
+   <td style="text-align:left;"> Eat with noodles, mustard greens, and broth </td>
   </tr>
 </tbody>
 </table>

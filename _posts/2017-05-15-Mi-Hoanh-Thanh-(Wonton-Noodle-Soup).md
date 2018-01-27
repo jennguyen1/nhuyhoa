@@ -87,7 +87,7 @@ tags: Entree
    <td style="text-align:left;"> Boil mi for 2-3 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Eat with broth, mi, veggies, wontons, xa xiu, and hanh kho </td>
+   <td style="text-align:left;"> Eat with mi, veggies, wontons, xa xiu, broth, and hanh kho </td>
   </tr>
 </tbody>
 </table>
