@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Web Scraping with Python"
+title: "Web Interactions with Python"
 date: "December 21, 2017"
 categories: Software
 tags: Pipelines
@@ -16,7 +16,9 @@ knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
 
-# Requests
+# Web Scraping
+
+## Requests
 
 {% highlight python %}
 import requests
@@ -44,7 +46,7 @@ r = requests.get('http://google.com/search', param = ('q': 'how long does a walr
 requests.get(url, timeout = secs)
 {% endhighlight %}
 
-# BeautifulSoup
+## BeautifulSoup
 
 This module is used for web scraping static sites.
 
@@ -73,7 +75,7 @@ links = soup.find_all('a', href = True)
 article_link = [x.get('href') for x in links if x.parent.name = 'article']
 {% endhighlight %}
 
-# Selenium
+## Selenium
 
 Selenium allows you to disguise your webscraping as activity similar to a human.
 
@@ -174,3 +176,38 @@ You can switch windows with the following code
 {% highlight python %}
 driver.switch_to_window(driver.window_handles[i])
 {% endhighlight %}
+
+# Sending Emails
+
+You can automate Python to send emails with the modules `smtplib` and `email`.
+
+{% highlight python %}
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+{% endhighlight %}
+
+{% highlight python %}
+# email contents
+sender = 'automatique.sender@gmail.com'
+receivers = 'your_email@email.com'
+message = MIMEMultipart()
+message['From'] = sender
+message['To'] = receivers
+message['Subject'] = 'Message Subject'
+body = 'Message Body'
+message.attach(MIMEText(body, 'plain'))
+
+# send email: login and send
+try:
+  password = 'autoGMAIL'
+  with smtplib.SMTP('smtp.gmail.com', 587) as server:
+    server.ehlo()
+    server.starttls()
+    server.login(sender, password)
+    server.sendmail(sender, [receivers], message.as_string())
+  logging.info('Email sent successfully')
+except:
+  logging.info('Error: email failed')
+{% endhighlight %}
+
