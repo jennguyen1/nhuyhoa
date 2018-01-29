@@ -86,7 +86,7 @@ tags: Dessert
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Marinate ground pork with shallots, salt, pepper, soy sauce, and optionally sliced mushrooms </td>
+   <td style="text-align:left;"> Marinate ground pork (66% lean) with shallots, salt, pepper, soy sauce, and optionally sliced mushrooms </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Cut lap xuong into slices </td>

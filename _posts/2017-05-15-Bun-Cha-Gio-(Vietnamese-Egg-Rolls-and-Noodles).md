@@ -8,7 +8,9 @@ tags: Entree
 
 
 
+![pic1]( {{"/figure/food/Bun_Cha_Gio.JPG" | absolute_url }})
 
+![pic2]( {{"/figure/food/Bun_Cha_Gio2.JPG" | absolute_url }})
 
 
 
