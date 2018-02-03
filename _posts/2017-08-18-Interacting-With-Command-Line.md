@@ -9,7 +9,7 @@ tags: Pipelines
 * TOC
 {:toc}
 
-# Output
+# Implementing Commands from Programs
 
 **R**
 {% highlight r %}
@@ -49,9 +49,10 @@ proc.terminate()
 {% endhighlight %}
 
 
-# Command Line Arguments
+# Sending Commands to Programs
 
-### In Scripts
+## From the Script
+
 It is good practice to print out a time stamp for start/end of script and the command line arguments that were passed in.
 
 **R**
@@ -101,7 +102,7 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 echo 'dir of script:'${DIR}
 {% endhighlight %}
 
-## Calling Scripts
+## From the Command Line
 
 **R**
 {% highlight r %}

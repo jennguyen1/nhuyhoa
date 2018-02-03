@@ -50,6 +50,7 @@ tail -n +${start} file | head -n ${end - start + 1}
   * `grep -i` ignores case
   * `grep -e` expanded regular expression (special characters such as )
   * `grep -w` matches the word
+  * `grep -v` removes all matches
   * `grep pattern --color=auto` highlight the match
   * `grep -ABC n` returns n lines (A) after, (B) before, (C) A+B match
   * `grep --color -E "$1|$" "${@:2}"` (function) highlights match in text
