@@ -56,6 +56,7 @@ tail -n +${start} file | head -n ${end - start + 1}
   * `grep --color -E "$1|$" "${@:2}"` (function) highlights match in text
 * `uniq -c` for unique values and counts
 * `wc -l` word counts, counts each line
+* `ln -s` creates link to folder/file
 * `diff -u` compare files line by line
 * `column -s ',' -t` formats tables nicely based on delimiter
 

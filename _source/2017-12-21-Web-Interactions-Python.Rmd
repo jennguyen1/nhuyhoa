@@ -189,7 +189,7 @@ from email.mime.text import MIMEText
 
 {% highlight python %}
 # email contents
-sender = 'automatique.sender@gmail.com'
+sender = 'mail.autobot1@gmail.com'
 receivers = 'your_email@email.com'
 message = MIMEMultipart()
 message['From'] = sender
