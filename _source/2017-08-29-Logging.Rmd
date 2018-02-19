@@ -32,7 +32,7 @@ logging.log(level, "Here's another way")
 tryCatch({
   1/0
 }, error = function(e){
-  logging.exception("message")
+  logging.exception("message", e)
   stop()
 })
 {% endhighlight %}
