@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bo Xao Dau Xanh (Beef and Green Bean Stir Fry)"
+title: "Bo Xao Khoai Tay Chien (Beef and French Fries Stir Fry)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,9 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Bo_Xao_Dau_Xanh.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Bo_Xao_Khoai_Tay_Chien.JPG" | absolute_url }})
+
+![pic2]( {{"/figure/food/Bo_Xao_Khoai_Tay_Chien2.JPG" | absolute_url }})
 
 
 
@@ -28,25 +30,19 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> salt </td>
    <td style="text-align:left;"> beef </td>
-   <td style="text-align:left;"> green beans </td>
+   <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> mushrooms </td>
+   <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> oyster sauce </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> garlic </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -64,13 +60,16 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Marinate sliced beef with shallots, garlic, salt, pepper, and a pinch of oil </td>
+   <td style="text-align:left;"> Marinate sliced beef with salt, pepper, minced shallots, garlic, and a pinch of oil </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fry potatoes </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir fry beef until cooked but moist (remove excess liquid) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in and cook mushrooms and green beans until soft </td>
+   <td style="text-align:left;"> Add potatoes and sliced onions </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Drizzle in diluted oyster sauce (1:1 ratio) </td>

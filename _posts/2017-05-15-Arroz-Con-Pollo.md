@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bo Xao Dau Xanh (Beef and Green Bean Stir Fry)"
+title: "Arroz Con Pollo"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Bo_Xao_Dau_Xanh.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Arroz_Con_Pollo.JPG" | absolute_url }})
 
 
 
@@ -27,26 +27,32 @@ tags: Entree
 <tbody>
   <tr>
    <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;"> beef </td>
-   <td style="text-align:left;"> green beans </td>
+   <td style="text-align:left;"> chicken </td>
+   <td style="text-align:left;"> cilantro </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> mushrooms </td>
+   <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> oyster sauce </td>
+   <td style="text-align:left;"> rice </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> beer </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> peas </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> carrots </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -64,16 +70,22 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Marinate sliced beef with shallots, garlic, salt, pepper, and a pinch of oil </td>
+   <td style="text-align:left;"> Blend cilantro, onion, garlic, oil and beer to make marinade </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir fry beef until cooked but moist (remove excess liquid) </td>
+   <td style="text-align:left;"> Marinate chicken with salt, pepper, and marinade </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in and cook mushrooms and green beans until soft </td>
+   <td style="text-align:left;"> Clean rice and mix in some salt, marinade, and beer </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Drizzle in diluted oyster sauce (1:1 ratio) </td>
+   <td style="text-align:left;"> Cook rice, stir it when done to distribute the greens </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fry the chicken </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Eat rice with chicken and steamed peas and carrots </td>
   </tr>
 </tbody>
 </table>

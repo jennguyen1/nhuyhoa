@@ -10,6 +10,8 @@ tags: Entree
 
 ![pic1]( {{"/figure/food/Banh_Cuon.JPG" | absolute_url }})
 
+![pic2]( {{"/figure/food/Banh_Cuon2.JPG" | absolute_url }})
+
 
 
 
@@ -50,7 +52,7 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> shandong noodles </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> thai basil </td>
    <td style="text-align:left;">  </td>
@@ -109,7 +111,7 @@ tags: Entree
    <td style="text-align:left;"> Clean and cut veggies and cha into slices </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Marinate ground pork with minced shallots, salt, and pepper </td>
+   <td style="text-align:left;"> Marinate ground pork (100% lean) with minced shallots, salt, and pepper </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir fry the pork </td>
@@ -140,6 +142,9 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> If mixture is not clear, add oil; if breaking, add water </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Alternatively use shandong noodles </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Eat cuon with cha, mint, thai basil, lettuce, cucumber, bean sprouts, hanh kho, and nuoc mam pha </td>

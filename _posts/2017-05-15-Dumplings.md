@@ -76,7 +76,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Mix ground pork and loosely ground shrimp at a 1:2 ratio </td>
+   <td style="text-align:left;"> MiMix ground pork (66% lean) and loosely ground shrimp at a 1:2 ratio </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix in minched shallots, water chestnuts, salt, and pepper </td>
