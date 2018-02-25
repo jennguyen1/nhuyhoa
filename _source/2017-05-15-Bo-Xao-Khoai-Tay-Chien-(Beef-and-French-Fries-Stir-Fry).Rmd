@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Banh Cuon (Vietnamese Steamed Rice Rolls)"
+title: "Bo Xao Khoai Tay Chien (Beef and French Fries Stir Fry)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -10,7 +10,7 @@ tags: Entree
 library(jn.general)
 lib(data)
 
-recipe_name <- 'Banh Cuon (Vietnamese Steamed Rice Rolls)'
+recipe_name <- 'Bo Xao Khoai Tay Chien (Beef and French Fries Stir Fry)'
 connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
 ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = "${recipe_name}"')
 instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = "${recipe_name}"')
@@ -35,9 +35,9 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
-![pic1]( {{"/figure/food/Banh_Cuon.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Bo_Xao_Khoai_Tay_Chien.JPG" | absolute_url }})
 
-![pic2]( {{"/figure/food/Banh_Cuon2.JPG" | absolute_url }})
+![pic2]( {{"/figure/food/Bo_Xao_Khoai_Tay_Chien2.JPG" | absolute_url }})
 
 
 

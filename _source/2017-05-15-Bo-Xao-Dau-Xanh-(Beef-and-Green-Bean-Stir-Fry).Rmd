@@ -35,7 +35,7 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
-
+![pic1]( {{"/figure/food/Bo_Xao_Dau_Xanh.JPG" | absolute_url }})
 
 
 
