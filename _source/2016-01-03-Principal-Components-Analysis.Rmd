@@ -123,9 +123,32 @@ autoplot(prcomp(dat, center = TRUE, scale. = TRUE), data = iris, colour = "Speci
          loadings.label.size = 3)
 ```
 
-From this plot, the first principal components has large loadings for $$Petal.Length$$ and $$Petal.Width$$. This indicates that $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
+```{r, fig.width = 7, echo = FALSE}
+loadings <- prcomp(dat)$rotation %>% 
+  as.data.frame() %>% 
+  rownames_to_column() %>% 
+  gather(key = "var", value = "val", -rowname)
 
-Each point on the plot refers to a single data point. For example, points with high values on the first principal component will have high values for $$Petal.Width$$ and $$Petal.Length$$. A point with low values of the second principal component will have high values of $$Sepal.Width$$ and $$Sepal.Length$$. 
+g1 <- loadings %>% 
+  subset(var == "PC1") %>% 
+  ggplot(aes(reorder(rowname, abs(val)), val)) +
+    geom_bar(stat = "identity") +
+    coord_flip() +
+    labs(y = "PC1", x = "")
+
+g2 <- loadings %>% 
+  subset(var == "PC2") %>% 
+  ggplot(aes(reorder(rowname, abs(val)), val)) +
+    geom_bar(stat = "identity") +
+    coord_flip() +
+    labs(y = "PC2", x = "")
+
+grid.arrange(g1,g2, nrow = 2)
+```
+
+From this plot, the first principal components has large loadings for $$Petal.Length$$, $$Sepal.Length$$, and $$Petal.Width$$. This indicates that $$Length$$ and $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
+
+Each point on the plot refers to a single data point. For example, points with high values on the first principal component will have high values for $$Petal.Width$$, $$Petal.Length$$, and $$Sepal.Length$$. A point with low values of the second principal component will have high values of $$Sepal.Width$$ and $$Sepal.Length$$. 
 
 ## Choosing How Many Principal Components
 There is no best method to choose the number of components. However, one thing that could be done is to look at the "scree plot" and look for the point at which the trend converges. 
