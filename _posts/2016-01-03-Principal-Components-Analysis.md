@@ -123,11 +123,19 @@ autoplot(prcomp(dat, center = TRUE, scale. = TRUE), data = iris, colour = "Speci
 
 <img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
-<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
-
-From this plot, the first principal components has large loadings for $$Petal.Length$$, $$Sepal.Length$$, and $$Petal.Width$$. This indicates that $$Length$$ and $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
+From this plot, the first principal components has large loadings for $$Petal.Length$$, $$Petal.Width$$, and $$Sepal.Length$$, . This indicates that $$Length$$ and $$Petal$$ attributes vary together (are correlated) and make up a large part of the first principal component. The second principal component has large loadings for $$Sepal.Length$$ and $$Sepal.Width$$. The $$Sepal$$ attributes are correlated and make up a large part of the second principal component. 
 
 Each point on the plot refers to a single data point. For example, points with high values on the first principal component will have high values for $$Petal.Width$$, $$Petal.Length$$, and $$Sepal.Length$$. A point with low values of the second principal component will have high values of $$Sepal.Width$$ and $$Sepal.Length$$. 
+
+Here's another way to visualize the loadings. 
+
+<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+
+Often you have an external label that can be used to identify how the PCs performed. Here we plot the PCs for each data point with the external label. The plot shows that PC1 does a good job of separating the observations by $$Species$$, even when $$Species$$ wasn't used in the principal components analysis. 
+
+<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+
+This type of plot is common in genetic analyses to determine the ancestry of study participants based on genotype information. 
 
 ## Choosing How Many Principal Components
 There is no best method to choose the number of components. However, one thing that could be done is to look at the "scree plot" and look for the point at which the trend converges. 
@@ -143,7 +151,7 @@ ggplot(data = NULL, aes(x = x, y = y)) +
   xlab("Principal Component") + ylab("Prop. Variance Explained")
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 In this plot, using 5-7 principal components would be adequate. 
 
@@ -178,11 +186,11 @@ summary(pcr.fit)
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
-## CV           6.123    2.871    2.919    2.690    2.740    2.779
-## adjCV        6.123    2.851    2.897    2.668    2.716    2.754
+## CV           6.123    2.699    2.718    2.501    2.530    2.584
+## adjCV        6.123    2.687    2.705    2.487    2.515    2.565
 ##        6 comps  7 comps  8 comps  9 comps  10 comps
-## CV       2.891    2.989    3.026    3.506     3.679
-## adjCV    2.857    2.951    2.983    3.425     3.586
+## CV       2.691    2.860    2.971    3.528     3.578
+## adjCV    2.667    2.827    2.928    3.454     3.497
 ## 
 ## TRAINING: % variance explained
 ##      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
@@ -199,7 +207,7 @@ summary(pcr.fit)
 pls::validationplot(pcr.fit, val.type = "MSEP")
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-01-03-Principal-Components-Analysis/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 So here using 3 principal components is preferred. To specify a a number of components, pass the argument `ncomps = n` instead of the `validation` argument. 
 
 # Partial Least Squares
