@@ -69,7 +69,7 @@ tags: Entree
    <td style="text-align:left;"> Marinate the pork in salt, pepper, shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Boil for a few minutes and then dump liquid </td>
+   <td style="text-align:left;"> Boil for a few minutes and then dump liquid and thoroughly rinse meat to remove impurities </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Boil pork rib tips with extra marinade on medium heat </td>

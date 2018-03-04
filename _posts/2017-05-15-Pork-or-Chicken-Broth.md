@@ -61,7 +61,7 @@ tags: Other
    <td style="text-align:left;"> Marinate the meat in salt, pepper, shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Boil for a few minutes and then dump liquid </td>
+   <td style="text-align:left;"> Boil for a few minutes and then dump liquid and thoroughly rinse meat to remove impurities </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Boil meat on medium heat with more marinade </td>
