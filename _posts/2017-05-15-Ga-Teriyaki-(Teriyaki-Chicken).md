@@ -49,6 +49,18 @@ tags: Entree
    <td style="text-align:left;"> ginger </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> pepper </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -71,6 +83,9 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> Debone skin-on chicken thighs and prick both sides of chicken with fork </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Marinate chicken thighs with salt and black pepper </td>
   </tr>
   <tr>
    <td style="text-align:left;"> On medium high heat, cook chicken skin-side down for ~10 min </td>

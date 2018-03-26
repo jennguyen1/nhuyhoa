@@ -87,7 +87,7 @@ tags: Entree
    <td style="text-align:left;"> For cha gio, want a mixture of 65% meats, 20% carrots, 10% mushrooms, 5% mien </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Soak mien and a few fungus separately in boiling water for a couple minutes then drain, rinse and repeat </td>
+   <td style="text-align:left;"> Soak mien and a few fungus separately in boiling water for a couple minutes, drain, rinse and repeat </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix ground pork (66% lean) and loosely ground shrimp at a 2:3 ratio </td>

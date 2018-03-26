@@ -61,7 +61,7 @@ tags: Entree
    <td style="text-align:left;"> Marinate pork belly with salt and pepper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Boil for a few minutes and then dump liquid and thoroughly rinse meat to remove impurities </td>
+   <td style="text-align:left;"> Blanche meat, then dump liquid and thoroughly rinse to remove impurities </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Boil pork belly with more marinade on medium high heat for 60 min, move to ice bath when done </td>

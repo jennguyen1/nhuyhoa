@@ -64,13 +64,16 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Clean pork belly with water and salt, trim excess fat, and cut into cubes </td>
+   <td style="text-align:left;"> Cut pork belly into cubes </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Marinate pork belly with salt, pepper, and shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cook pork belly in pan on low heat </td>
+   <td style="text-align:left;"> Blanche meat, then dump liquid and thoroughly rinse to remove impurities </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add more marinade and stir fry pork belly on low heat </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Drizzle 3-4 spoons of nuoc mau </td>
@@ -79,19 +82,16 @@ tags: Entree
    <td style="text-align:left;"> After pork belly done sizzling, add water up to top level of pork </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cook on low for 1.5 - 2 hours, removing meat foam </td>
+   <td style="text-align:left;"> Cook on low for 2 hours, removing meat foam </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Hard boil eggs </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add eggs to pot </td>
+   <td style="text-align:left;"> Hard boil eggs and add to pot </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add nuoc mam for flavor </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cook on low heat for 0.5 hour to reduce 50% of liquid </td>
+   <td style="text-align:left;"> Cook on low heat until reduce 50% of liquid </td>
   </tr>
 </tbody>
 </table>
