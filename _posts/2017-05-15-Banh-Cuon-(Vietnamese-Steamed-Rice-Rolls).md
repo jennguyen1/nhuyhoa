@@ -28,7 +28,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> bot banh cuon </td>
+   <td style="text-align:left;"> rice flour </td>
    <td style="text-align:left;"> ground pork </td>
    <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
@@ -40,7 +40,7 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> nuoc mam pha </td>
+   <td style="text-align:left;"> salt </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
@@ -58,7 +58,7 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> nuoc mam pha </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> lettuce </td>
    <td style="text-align:left;">  </td>
@@ -117,10 +117,7 @@ tags: Entree
    <td style="text-align:left;"> Make the batter: 1 c rice flour, 0.25 c tapioca starch, pinch of salt, 1.5 c water, 0.5 tsp oil </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> On medium high heat, coat the pan with some oil </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Spread one ladle of batter onto pan into a thin layer </td>
+   <td style="text-align:left;"> On medium high heat, coat pan with oil and spread one layer of batter onto pan into a thin layer </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Cover for 1-2 min; flip onto an oiled metal surface when it turns a clear color </td>

@@ -76,7 +76,7 @@ tags: Entree
    <td style="text-align:left;"> Boil pork belly with salt on medium high heat for ~60 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Boil shell-on shrimp on medium heat for couple  minutes until it turns pink, remove and de-skin </td>
+   <td style="text-align:left;"> Boil shell-on shrimp on medium heat until pink, then remove shell </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Slice pork belly and shrimp </td>

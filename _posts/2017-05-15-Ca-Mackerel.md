@@ -10,6 +10,8 @@ tags: Entree
 
 ![pic1]( {{"/figure/food/Ca_Mackerel.JPG" | absolute_url }})
 
+![pic2]( {{"/figure/food/Ca_Mackerel2.JPG" | absolute_url }})
+
 
 
 
