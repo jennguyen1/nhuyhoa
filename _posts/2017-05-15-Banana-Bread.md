@@ -44,6 +44,12 @@ tags: Dessert
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> baking powder </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> salt </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -62,13 +68,13 @@ tags: Dessert
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> pecans </td>
+   <td style="text-align:left;"> vanilla </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> vanilla </td>
+   <td style="text-align:left;"> pecans </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -94,7 +100,7 @@ tags: Dessert
    <td style="text-align:left;"> Butter bread pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix 2 c flour, 0.75 c sugar, 0.75 tsp baking soda, 0.5 tsp salt </td>
+   <td style="text-align:left;"> Mix 2 c flour, 0.75 c sugar, 1 tsp baking soda, 1 tsp baking powder, 0.5 tsp salt </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix 2 eggs, 6 tbsp melted margarine, 0.25 c yogurt, 3 mashed bananas, 2 tsp vanilla </td>

@@ -75,7 +75,7 @@ tags: Entree
    <td style="text-align:left;"> Make chicken broth according to chicken broth recipe (as an alternative mix 4 parts chicken broth to 1.5 part water and wonton soup base) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Clean &amp; cut up bok choy, green onions, xa xiu </td>
+   <td style="text-align:left;"> Cut up bok choy, green onions, xa xiu </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Make wontons according to fried wonton recipe </td>

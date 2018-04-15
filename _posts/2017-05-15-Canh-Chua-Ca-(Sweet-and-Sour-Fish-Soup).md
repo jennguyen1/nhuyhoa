@@ -26,7 +26,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> tamarind pulp </td>
+   <td style="text-align:left;"> tamarind </td>
    <td style="text-align:left;"> catfish </td>
    <td style="text-align:left;"> elephant ear stem </td>
    <td style="text-align:left;"> tomato </td>

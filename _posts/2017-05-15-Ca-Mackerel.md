@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mackerel Steamed"
+title: "Ca Mackerel"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Mackerel_Steamed.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Ca_Mackerel.JPG" | absolute_url }})
 
 
 
@@ -52,37 +52,22 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Cut lemongrass about one hand’s width and then in half circles </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Slice yellow onion </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Heat pan, add oil, and layer with some onion slices and lemongrass </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Cut fish from butt to head, remove fins, tail, gills, gut, head, etc </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Wash fish by rubbing softly with vinegar and salt </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cut fish so that it can fit in pan </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Marinate with conservative amounts of salt and pepper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stuff fish with a lot of lemongrass </td>
+   <td style="text-align:left;"> If wanted, stuff with lemongrass and onions </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Place fish in pan and cover with the rest of lemongrass and onions </td>
+   <td style="text-align:left;"> Steaming: steam fish for 20-25 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Drizzle with a thin layer of oil </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Steam for 45 min, start at high heat and reduce every 10 min to medium low </td>
+   <td style="text-align:left;"> Grilling: broil on high heat, skin down, for 15-20 min </td>
   </tr>
 </tbody>
 </table>

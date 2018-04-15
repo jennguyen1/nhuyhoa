@@ -70,9 +70,6 @@ tags: Entree
    <td style="text-align:left;"> Layer the pan bottom with yellow onion strips and sprinkle in pepper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Clean catfish with water and salt </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Marinate catfish with salt, pepper, and shallots </td>
   </tr>
   <tr>

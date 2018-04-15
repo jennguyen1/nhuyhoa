@@ -96,37 +96,28 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Soak dried mushrooms in warm water </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Clean mushrooms similar to rice; rinse and repeat </td>
+   <td style="text-align:left;"> Soak dried mushrooms in warm water; clean similar to rice </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mince mushrooms and green onions </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Clean and blanche bean sprouts </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Clean and cut veggies and cha into slices </td>
+   <td style="text-align:left;"> Blanche bean sprouts </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Marinate ground pork (100% lean) with minced shallots, salt, and pepper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir fry the pork </td>
+   <td style="text-align:left;"> Stir fry the pork and put through meat processor again to break up chunks </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Put meat through meat processor again to break up chunks </td>
+   <td style="text-align:left;"> Stir fry mushrooms and then mix in ground pork and green onions </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir fry mushrooms and mix in ground pork, green onions </td>
+   <td style="text-align:left;"> Make the batter: 1 c rice flour, 0.25 c tapioca starch, pinch of salt, 1.5 c water, 0.5 tsp oil </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix the banh cuon flour package with 1L of water, few spoons of tapioca starch, and about 1/3 cup of oil </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> On high heat, coat the pan with some oil </td>
+   <td style="text-align:left;"> On medium high heat, coat the pan with some oil </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Spread one ladle of batter onto pan into a thin layer </td>
@@ -147,7 +138,7 @@ tags: Entree
    <td style="text-align:left;"> Alternatively use shandong noodles </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Eat cuon with cha, mint, thai basil, lettuce, cucumber, bean sprouts, hanh kho, and nuoc mam pha </td>
+   <td style="text-align:left;"> Eat cuon/noodles with cha, mint, thai basil, lettuce, cucumber, bean sprouts, hanh kho, and nuoc mam pha </td>
   </tr>
 </tbody>
 </table>

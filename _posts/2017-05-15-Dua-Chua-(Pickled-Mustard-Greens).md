@@ -52,7 +52,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Clean and cut mustard greens </td>
+   <td style="text-align:left;"> Cut mustard greens </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Using the white parts of the green onions, cut into quarter circles </td>

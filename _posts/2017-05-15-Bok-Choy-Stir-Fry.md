@@ -58,7 +58,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Clean and blanche bok choy </td>
+   <td style="text-align:left;"> Blanche bok choy </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix 3 tbsp oyster sauce, 1 tsp soy sauce, 1 tsp sugar, and 1 tbsp water </td>

@@ -78,16 +78,16 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Clean bean sprouts </td>
+   <td style="text-align:left;"> Prepare the veggies </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Lightly marinate halved shrimp and thinly sliced pork belly separately with salt, pepper, and shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Prepare batter by adding 1 bag bot banh xeo (including the tumeric add-on), 3 c water, 1 can beer, 1/3 c oil </td>
+   <td style="text-align:left;"> Make the batter: 1 bag bot banh xeo (including the tumeric add-on), 3 c water, 1 can beer, 1/3 c oil </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add minced green onions and sliced yellow onion to batter </td>
+   <td style="text-align:left;"> Add minced green onions and thinly sliced yellow onion to batter </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Let batter sit for 30 min </td>

@@ -91,7 +91,7 @@ tags: Entree
    <td style="text-align:left;"> On medium high heat, cook chicken skin-side down for ~10 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Flip chicken &amp; cook until fully cooked ~5 min </td>
+   <td style="text-align:left;"> Flip chicken &amp; cook until fully cooked </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Remove chicken and remove excess oil </td>

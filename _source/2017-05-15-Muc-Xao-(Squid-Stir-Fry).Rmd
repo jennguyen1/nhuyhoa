@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mackerel Steamed"
+title: "Muc Xao (Squid Stir Fry)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -10,7 +10,7 @@ tags: Entree
 library(jn.general)
 lib(data)
 
-recipe_name <- 'Mackerel Steamed'
+recipe_name <- 'Muc Xao (Squid Stir Fry)'
 connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
 ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = "${recipe_name}"')
 instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = "${recipe_name}"')
@@ -35,7 +35,7 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
-![pic1]( {{"/figure/food/Mackerel_Steamed.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Muc_Xao.JPG" | absolute_url }})
 
 
 

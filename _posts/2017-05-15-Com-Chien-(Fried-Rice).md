@@ -49,6 +49,12 @@ tags: Entree
    <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> chicken powder </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -67,7 +73,7 @@ tags: Entree
    <td style="text-align:left;"> Make rice day before with less water, refrigerate for 1 day </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Prepare the meat and veggies, thoroughly dry </td>
+   <td style="text-align:left;"> Prepare and cook the meat and veggies, drying thoroughly </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir fry shallots, garlic, onions with oil until golden </td>
@@ -79,13 +85,13 @@ tags: Entree
    <td style="text-align:left;"> Add salt, pepper, soy sauce </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Scramble eggs, and while eggs still wet mix in rice </td>
+   <td style="text-align:left;"> Scramble eggs and add moderate amount of rice </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add seasonings to liking </td>
+   <td style="text-align:left;"> Stir fry rice and add seasonings (salt, pepper, soy sauce, chicken powder) to liking </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in meat and veggies </td>
+   <td style="text-align:left;"> Once rice is done (fried and toasty), stir in meat and veggies </td>
   </tr>
 </tbody>
 </table>

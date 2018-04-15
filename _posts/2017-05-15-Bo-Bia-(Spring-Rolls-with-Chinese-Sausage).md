@@ -76,7 +76,7 @@ tags: Entree
    <td style="text-align:left;"> Prepare the bun </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Clean and prepare the veggies </td>
+   <td style="text-align:left;"> Prepare the veggies </td>
   </tr>
   <tr>
    <td style="text-align:left;"> To make sauce, dilute hoisin sauce &amp; peanut butter with broth until the taste is right </td>
