@@ -115,31 +115,28 @@ tags: Dessert
    <td style="text-align:left;"> Freeze for 1 hr or bake at 325F for 10 min, cool and refridgerate before filling </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> To make the cream, mix 1 tbsp + 1 tsp sugar and 1 egg </td>
+   <td style="text-align:left;"> To make creme, mix to a smooth paste 4 tsp sugar and 1 egg with 2 tsp flour and 2 tsp cornstarch </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add 2 tsp flour and 2 tsp cornstarch </td>
+   <td style="text-align:left;"> Bring 0.4 c milk to just a boil </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix to get a smooth paste </td>
+   <td style="text-align:left;"> Slowly add heated milk to egg mixture, whisking constantly to prevent curdling </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> In a saucepan, add 6 tbsp + 2 tsp milk and 0.33 tsp vanilla extract and bring to just boil </td>
+   <td style="text-align:left;"> Pour mixture into saucepan and cook over medium heat until boiling, whisking constantly </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Remove milk mixture and slowly add to egg mixture, whisking constantly to prevent curdling </td>
+   <td style="text-align:left;"> When it boils, whisk until thick </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Pour egg mixture into saucepan and cook over medium heat until boiling, whisking constantly </td>
+   <td style="text-align:left;"> Remove from heat and whisk in 2 tsp of margarine and 0.33 tsp vanilla </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> When it boils, whisk mixture until it is thick </td>
+   <td style="text-align:left;"> For a flavored creme, replace vanilla with pureed flavor </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Remove from heat and whisk in 2 tsp of margarine </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Pour into clean bowl, cover with plastic wrap, and poke a few holes through </td>
+   <td style="text-align:left;"> Pour into clean bowl, cover with plastic wrap with a few holes poked in </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Refridgerate for 2 hours before using </td>

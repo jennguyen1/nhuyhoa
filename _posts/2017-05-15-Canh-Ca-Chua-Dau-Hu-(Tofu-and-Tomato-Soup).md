@@ -28,18 +28,12 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> wonton soup base </td>
    <td style="text-align:left;"> tofu </td>
-   <td style="text-align:left;"> green onions </td>
+   <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;"> tomato </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> nuoc mam pha </td>
+   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;"> pork rib tips </td>
-   <td style="text-align:left;"> yellow onion </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
    <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
@@ -47,6 +41,12 @@ tags: Entree
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> cilantro </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -70,10 +70,10 @@ tags: Entree
    <td style="text-align:left;"> When tomatoes have softened, add 1 bowl of water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add tofu (fried if desired), pork chops, or cha ca </td>
+   <td style="text-align:left;"> Add tofu (fried if desired), soy puffs, or pork chops </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add 2 packs of wonton soup base and nuoc mam pha </td>
+   <td style="text-align:left;"> Add wonton soup base and nuoc mam, adjust to taste </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Simmer for 15 minutes </td>

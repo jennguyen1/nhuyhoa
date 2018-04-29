@@ -28,17 +28,11 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> wonton soup base </td>
    <td style="text-align:left;"> Lee's Seafood Co cha ca dac biet fish paste </td>
-   <td style="text-align:left;"> green onions </td>
+   <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;"> tomato </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> nuoc mam pha </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> yellow onion </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
@@ -47,6 +41,12 @@ tags: Entree
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> dill </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> green onion </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -73,13 +73,13 @@ tags: Entree
    <td style="text-align:left;"> Add cha ca </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add green onions and dill </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add wonton soup base and nuoc mam pha, adjust to taste </td>
+   <td style="text-align:left;"> Add wonton soup base and nuoc mam, adjust to taste </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Simmer for 15 minutes </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add dill and green onions in the last few minutes </td>
   </tr>
 </tbody>
 </table>

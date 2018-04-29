@@ -39,6 +39,12 @@ tags: Entree
    <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> nuoc mam pha </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -70,6 +76,9 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> Grilling: broil on high heat, skin down, for 15-20 min </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Eat with nuoc mam pha </td>
   </tr>
 </tbody>
 </table>
