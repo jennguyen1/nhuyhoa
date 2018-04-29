@@ -91,7 +91,7 @@ $$ D_i = \sum \frac{(\hat{y}_j - \hat{y}_{j(i)})^2}{ps^2} $$
 
 where $$ \hat{y}_{j(i)} $$ represents the fitted value for the $$j^{th}$$ observation when the $$i^{th}$$ observation is left out. 
 
-For a general rule of thumb Cook's distance of $$D_i > 5$$ warrants further review, while $$D_i > 1$$ is more serious.
+For a general rule of thumb Cook's distance of $$D_i > 0.5$$ warrants further review, while $$D_i > 1$$ is more serious.
 
 DFFITS is a measure of how much the $$i^{th}$$ fitted value changes when the $$i^{th}$$ observation is deleted. 
 
