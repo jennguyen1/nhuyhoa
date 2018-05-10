@@ -73,6 +73,12 @@ tags: Dessert
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> cinnamon </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -94,7 +100,7 @@ tags: Dessert
    <td style="text-align:left;"> Butter bread pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix 2 c flour, 0.75 c sugar, 0.75 tsp baking powder, 0.5 tsp salt, 1 c chopped pecans </td>
+   <td style="text-align:left;"> Mix 2 c flour, 0.75 c sugar, 0.75 tsp baking powder, 0.5 tsp salt, 0.5 tsp cinnamon, 1 c chopped pecans </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix 2 eggs, 6 tbsp melted margarine, 3 mashed bananas, 0.25 c yogurt, 1 tsp vanilla </td>
@@ -103,7 +109,7 @@ tags: Dessert
    <td style="text-align:left;"> Combine and mix </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Bake bread for 60 min, muffins for ~25 min </td>
+   <td style="text-align:left;"> Bake bread for 60 min, muffins for 15 min </td>
   </tr>
 </tbody>
 </table>
