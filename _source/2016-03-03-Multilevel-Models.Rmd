@@ -15,6 +15,7 @@ lib(data, viz)
 library(broom)
 library(HLMdiag)
 library(arm)
+library(nlme)
 knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
 ```
 
@@ -383,6 +384,7 @@ Use the following commands to view results and estimates.
 ```{r, eval = FALSE}
 # view summary of data
 display(mod)
+summary(mod)
 
 # view group coefficients
 coef(mod)
@@ -398,6 +400,9 @@ ranef(mod)
 
 # view random effects standard error
 se.ranef(mod)
+
+# confidence intervals
+confint(mod, method = 'boot')
 ```
 
 Use the following estimates to obtain confidence intervals for the estimates. 

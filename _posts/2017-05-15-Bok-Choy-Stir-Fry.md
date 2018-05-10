@@ -34,13 +34,13 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> soy sauce </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> garlic </td>
+   <td style="text-align:left;"> chinese broccoli </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>

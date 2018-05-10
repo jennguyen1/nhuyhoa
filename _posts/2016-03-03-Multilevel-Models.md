@@ -286,7 +286,7 @@ lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t))
 
 
 {% highlight text %}
-## Error in lme(y ~ x, random = ~1 | group, weights = varIdent(form = ~1 | : could not find function "lme"
+## Error in eval(predvars, data, env): object 'y' not found
 {% endhighlight %}
 
 **Repeated Measures, compound symmetry:**
@@ -298,7 +298,7 @@ lme(y ~ x, random = ~ 1 | group, correlation = corCompSymm(form = ~ 1 | group))
 
 
 {% highlight text %}
-## Error in lme(y ~ x, random = ~1 | group, correlation = corCompSymm(form = ~1 | : could not find function "lme"
+## Error in eval(predvars, data, env): object 'group' not found
 {% endhighlight %}
 
 
@@ -312,7 +312,7 @@ lme(y ~ x, random = ~ 1 | group, correlation = corAR1())
 
 
 {% highlight text %}
-## Error in lme(y ~ x, random = ~1 | group, correlation = corAR1()): could not find function "lme"
+## Error in eval(predvars, data, env): object 'group' not found
 {% endhighlight %}
 
 **Repeated Measures, heterogeneous AR(1):**
@@ -325,7 +325,7 @@ lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t), correlation
 
 
 {% highlight text %}
-## Error in lme(y ~ x, random = ~1 | group, weights = varIdent(form = ~1 | : could not find function "lme"
+## Error in eval(predvars, data, env): object 'group' not found
 {% endhighlight %}
 
 
@@ -370,6 +370,7 @@ Use the following commands to view results and estimates.
 {% highlight r %}
 # view summary of data
 display(mod)
+summary(mod)
 
 # view group coefficients
 coef(mod)
@@ -385,6 +386,9 @@ ranef(mod)
 
 # view random effects standard error
 se.ranef(mod)
+
+# confidence intervals
+confint(mod, method = 'boot')
 {% endhighlight %}
 
 Use the following estimates to obtain confidence intervals for the estimates. 

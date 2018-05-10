@@ -83,7 +83,7 @@ tags: Dessert
    <td style="text-align:left;"> Rinse, soak, steam a few spoons of mung bean (as with xoi vo) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Dissolve 0.75 c sugar, 0.5 c tapioca starch, pinch of salt, 1 L water </td>
+   <td style="text-align:left;"> Dissolve 0.375 c sugar, 0.25 c tapioca starch, pinch of salt, 0.5 L water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Cook on medium high heat while constantly whisking </td>
@@ -95,7 +95,7 @@ tags: Dessert
    <td style="text-align:left;"> Turn off heat and gently stir in cooked mung bean </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a couple drops of vanilla extract </td>
+   <td style="text-align:left;"> Add a drop of vanilla extract </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Eat with xoi vo </td>

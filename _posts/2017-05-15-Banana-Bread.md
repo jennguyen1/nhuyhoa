@@ -94,7 +94,7 @@ tags: Dessert
    <td style="text-align:left;"> Butter bread pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix 2 c flour, 0.75 c sugar, 0.75 tsp baking soda, 0.5 tsp salt, 1 c chopped pecans </td>
+   <td style="text-align:left;"> Mix 2 c flour, 0.75 c sugar, 0.75 tsp baking powder, 0.5 tsp salt, 1 c chopped pecans </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mix 2 eggs, 6 tbsp melted margarine, 3 mashed bananas, 0.25 c yogurt, 1 tsp vanilla </td>

@@ -70,7 +70,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Want a 2 tilapia : 1 shrimp ratio, cut into small pieces </td>
+   <td style="text-align:left;"> Want a 2 fish : 1 shrimp ratio, cut into small pieces </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Process garlic, shallots, dill in a food processor </td>
@@ -79,7 +79,7 @@ tags: Entree
    <td style="text-align:left;"> Add the fish/shrimp mixture and processes until smooth </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix in 1 tsp of salt, pepper, sugar, fish sauce, and 1 tbsp of tapioca starch </td>
+   <td style="text-align:left;"> Mix in 1 tsp of salt, pepper, sugar, fish sauce, 4 tbsp of tapioca starch, and 1 egg white </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Fry on medium low heat with thin layer of oil, flipping when golden </td>

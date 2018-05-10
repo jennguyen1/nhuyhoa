@@ -48,13 +48,37 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> salt </td>
    <td style="text-align:left;"> pork xa xiu </td>
-   <td style="text-align:left;"> bok choy </td>
+   <td style="text-align:left;"> cilantro </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> bok choy </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> soy sauce </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;"> hanh kho </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> oyster sauce </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sugar </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sesame oil </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -75,7 +99,7 @@ tags: Entree
    <td style="text-align:left;"> Make chicken broth according to chicken broth recipe (as an alternative mix 4 parts chicken broth to 1.5 part water and wonton soup base) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cut up bok choy, green onions, xa xiu </td>
+   <td style="text-align:left;"> Mince green onions and cilantro, cut bok choy and xa xiu </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Make wontons according to fried wonton recipe </td>
@@ -88,6 +112,9 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> Eat with mi, veggies, wontons, xa xiu, broth, and hanh kho </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Alternatively, make mi hoanh thanh kho by replacing broth with sauce of ratios 1 soy sauce : 1 oyster sauce : 1 sugar with a pinch of sesame oil adjusted to taste </td>
   </tr>
 </tbody>
 </table>

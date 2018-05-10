@@ -69,10 +69,7 @@ tags: Entree
    <td style="text-align:left;"> Soak fried shrimp in hot water and mash fried shrimp </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Wash and cut the luffa (chinese/taiwanese okra), spinach, shallots </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Stir fry luffa &amp; shallots with salt &amp; pepper </td>
+   <td style="text-align:left;"> Stir fry luffa (chinese/taiwanese okra) &amp; shallots with salt &amp; pepper </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add bowl of fried shrimp &amp; additional water </td>
@@ -81,7 +78,7 @@ tags: Entree
    <td style="text-align:left;"> Add wonton soup base </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add spinach (asian spinach) prior to boiling </td>
+   <td style="text-align:left;"> Add spinach (malabar/asian spinach) prior to boiling </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Adjust to taste as necessary </td>
