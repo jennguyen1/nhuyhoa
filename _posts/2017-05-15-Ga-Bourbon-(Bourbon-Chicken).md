@@ -26,19 +26,43 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> soy sauce </td>
-   <td style="text-align:left;"> chicken thighs </td>
-   <td style="text-align:left;"> shallots </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> brown sugar </td>
+   <td style="text-align:left;"> chicken thighs </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> cornstarch </td>
+   <td style="text-align:left;"> sugar </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> soy sauce </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> hoisin </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> bourbon </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> five spice powder </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> corn starch </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -58,19 +82,25 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Heat minced shallots &amp; garlic in oil on medium heat </td>
+   <td style="text-align:left;"> Make bourbon sauce: ratio of 4 brown sugar : 4 sugar : 4 soy sauce : 1 hoisin : 1 bourbon : 0.5 five spice : 16 water with some cornstarch to thicken </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add chicken and cook until brown </td>
+   <td style="text-align:left;"> Debone skin-on chicken thighs, may cook whole or cut into chunks </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in a 2:2:1 mixture of soy sauce, brown sugar and water </td>
+   <td style="text-align:left;"> Marinate chicken with ratio of 4 sugar : 4 soy sauce : 1 hoisin : 1 bourbon with a pinch of five spice </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add some cornstarch to thicken sauce </td>
+   <td style="text-align:left;"> On medium high heat, cook chicken </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add green onions </td>
+   <td style="text-align:left;"> Remove chicken and excess oil </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add bourbon sauce and simmer on medium until thick </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add chicken and coat with sauce </td>
   </tr>
 </tbody>
 </table>

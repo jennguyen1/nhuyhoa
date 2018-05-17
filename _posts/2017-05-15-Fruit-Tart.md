@@ -38,7 +38,7 @@ tags: Dessert
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> margarine </td>
+   <td style="text-align:left;"> butter </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -103,16 +103,16 @@ tags: Dessert
    <td style="text-align:left;"> To make crust, mix 1 pack of graham cracker crumbs, 0.25 c sugar, 0.5 tsp cinnamon, and pinch of salt </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Slowly stir in 3 tbsp of melted margarine </td>
+   <td style="text-align:left;"> Slowly stir in 4 tbsp of melted butter </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Ensure mixture has consistency of cookie dough (not too dry or wet) by adding more margarine or cracker </td>
+   <td style="text-align:left;"> Ensure mixture has consistency of cookie dough (not too dry or wet) by adding more butter or cracker </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Press mixture into pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Freeze for 1 hr or bake at 325F for 10 min, cool and refridgerate before filling </td>
+   <td style="text-align:left;"> Freeze for 1 hr or bake at 325F for 7 min, cool and refridgerate before filling </td>
   </tr>
   <tr>
    <td style="text-align:left;"> To make creme, mix to a smooth paste 4 tsp sugar and 1 egg with 2 tsp flour and 2 tsp cornstarch </td>
@@ -130,7 +130,7 @@ tags: Dessert
    <td style="text-align:left;"> When it boils, whisk until thick </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Remove from heat and whisk in 2 tsp of margarine and 0.33 tsp vanilla </td>
+   <td style="text-align:left;"> Remove from heat and whisk in 2 tsp of butter and 0.33 tsp vanilla </td>
   </tr>
   <tr>
    <td style="text-align:left;"> For a flavored creme, replace vanilla with pureed flavor </td>

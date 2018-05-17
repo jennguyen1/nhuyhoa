@@ -44,7 +44,7 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> margarine </td>
+   <td style="text-align:left;"> butter </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -88,7 +88,7 @@ tags: Entree
    <td style="text-align:left;"> Refridgerate mixture </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Brush buns with margarine and toast until golden brown </td>
+   <td style="text-align:left;"> Brush buns with butter and toast until golden brown </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add lobster mix to buns (1.5-2 lobsters = 1 bun) </td>

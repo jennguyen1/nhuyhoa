@@ -46,7 +46,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> green onion </td>
+   <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cha Ca (Fish Cake)"
+title: "Thit Tom Rang (Pork and Shrimp Stir Fry)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Cha_Ca.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Thit_Tom_Rang.JPG" | absolute_url }})
 
 
 
@@ -27,20 +27,14 @@ tags: Entree
 <tbody>
   <tr>
    <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;"> tilapia fish </td>
-   <td style="text-align:left;"> dill </td>
+   <td style="text-align:left;"> pork belly </td>
+   <td style="text-align:left;"> shallots </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;"> shrimp </td>
-   <td style="text-align:left;"> garlic </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sugar </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
@@ -50,7 +44,7 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> tapioca starch </td>
+   <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -70,22 +64,28 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Want a 1 fish : 0.5 shrimp ratio, cut into small pieces </td>
+   <td style="text-align:left;"> Want a ratio of 2 shrimp : 1 pork belly sliced </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Process garlic and shallots in a food processor </td>
+   <td style="text-align:left;"> Season both lightly with salt, pepper, and shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add meat mixture, 1 tbsp of salt, pepper, sugar, fish sauce, 4 tbsp tapioca starch, and 1 egg white </td>
+   <td style="text-align:left;"> Golden minced shallots and garlic </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Process until smooth, then mix in chopped dill </td>
+   <td style="text-align:left;"> Stir fry pork until no longer pink </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Form patties and fry on medium low heat, flipping when golden </td>
+   <td style="text-align:left;"> Stir in shrimp </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Serve cha ca with rice and fish sauce </td>
+   <td style="text-align:left;"> Add a ratio of 1 sugar : 1 fish sauce, with some water </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Simmer for 10 min </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add in minced green onions in the last few minutes </td>
   </tr>
 </tbody>
 </table>
