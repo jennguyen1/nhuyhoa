@@ -44,13 +44,19 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> fish sauce </td>
+   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> tapioca starch </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> nuoc mam pha </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -73,10 +79,10 @@ tags: Entree
    <td style="text-align:left;"> Want a 1 fish : 0.5 shrimp ratio, cut into small pieces </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Process garlic and shallots in a food processor </td>
+   <td style="text-align:left;"> Process shallots and garlic in a food processor </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add meat mixture, 1 tbsp of salt, pepper, sugar, fish sauce, 4 tbsp tapioca starch, and 1 egg white </td>
+   <td style="text-align:left;"> Add meat mixture, 1 tbsp of salt, pepper, sugar, nuoc mam, 4 tbsp tapioca starch, and 2 egg whites </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Process until smooth, then mix in chopped dill </td>
@@ -85,7 +91,7 @@ tags: Entree
    <td style="text-align:left;"> Form patties and fry on medium low heat, flipping when golden </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Serve cha ca with rice and fish sauce </td>
+   <td style="text-align:left;"> Serve cha ca with rice and nuoc mam pha </td>
   </tr>
 </tbody>
 </table>

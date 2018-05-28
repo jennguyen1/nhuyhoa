@@ -78,7 +78,7 @@ tags: Entree
    <td style="text-align:left;"> Marinate meat with salt, pepper, and minced shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fry meat on medium high heat with thin layer of oil until brown </td>
+   <td style="text-align:left;"> Fry meat on medium high heat until brown </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Once meat is mostly cooked, turn heat down to medium low </td>

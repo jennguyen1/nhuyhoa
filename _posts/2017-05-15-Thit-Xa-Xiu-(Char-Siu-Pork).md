@@ -100,7 +100,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Marinade: 0.25 tsp pepper, 0.5 tsp five spice, 1 tsp sweet paprika, 2 tbsp sugar, 2 tbsp honey, 1 tsp sesame oil, 1 tbsp oyster sauce, 1 tbsp shaoxing wine, 2 tbsp soy sauce, 2 tbsp fermented bean curd, 3 garlic cloves </td>
+   <td style="text-align:left;"> Marinade: 0.25 tsp pepper, 0.5 tsp five spice, 2 tbsp sugar, 2 tbsp honey, 1 tsp sesame oil, 1 tbsp oyster sauce, 1 tbsp shaoxing wine, 2 tbsp soy sauce, 2 tbsp fermented bean curd, 3 garlic cloves </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Cut pork shoulder couple inches wide and 1 inch thick, pork with fork </td>
@@ -112,7 +112,7 @@ tags: Entree
    <td style="text-align:left;"> Marinate pork overnight </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Basting liquid: marinade + honey </td>
+   <td style="text-align:left;"> Basting liquid: honey + water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Roast at 400F until internal temperature of 150F (~45 min) basting midway through </td>

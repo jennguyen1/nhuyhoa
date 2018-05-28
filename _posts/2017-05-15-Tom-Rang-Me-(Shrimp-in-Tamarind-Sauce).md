@@ -38,7 +38,7 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> fish sauce </td>
+   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> ginger </td>
    <td style="text-align:left;">  </td>
@@ -76,7 +76,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Make sauce using ratio of 2 sugar : 2 tamarind concentrate : 1 fish sauce; should taste sweet and sour </td>
+   <td style="text-align:left;"> Make sauce using ratio of 2 sugar : 2 tamarind concentrate : 1 nuoc mam; should taste sweet and sour </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Marinate shrimp with salt, pepper, shallots and cornstarch </td>

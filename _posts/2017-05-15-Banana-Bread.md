@@ -109,7 +109,7 @@ tags: Dessert
    <td style="text-align:left;"> Combine and mix </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Bake bread for 60 min, muffins for 15 min </td>
+   <td style="text-align:left;"> Bake bread for 60 min </td>
   </tr>
 </tbody>
 </table>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stir Fried Tofu and Mushrooms"
+title: "Bun Thit Nuong (Vietnamese Grilled Pork and Noodles)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Stir_Fried_Tofu_and_Mushrooms.JPG" | absolute_url }})
+
 
 
 
@@ -26,9 +26,9 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> soy sauce </td>
-   <td style="text-align:left;"> tofu </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> nuoc mam </td>
+   <td style="text-align:left;"> pork shoulder butt </td>
+   <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
@@ -38,27 +38,27 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> honey </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> mushrooms </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> bean sprouts </td>
+   <td style="text-align:left;"> lettuce </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> green onions </td>
+   <td style="text-align:left;"> cucumber </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> bun </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> mint </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> chives </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> nuoc mam pha </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> perilla </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -76,25 +76,22 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Fry tofu </td>
+   <td style="text-align:left;"> Make marinade: want mashed white end of green onion, garlic with ratio of 4 fish sauce : 2 sugar : 1 honey, sprinkled with pepper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Golden minced shallots and garlic </td>
+   <td style="text-align:left;"> Adjust marinade to taste, want salty and lightly sweet </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in sliced mushrooms </td>
+   <td style="text-align:left;"> Cut pork shoulder into thin strips, against the grain </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in soy sauce &amp; sugar </td>
+   <td style="text-align:left;"> Marinate overnight </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in fried tofu </td>
+   <td style="text-align:left;"> Put meat onto skewers and grill </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in bean sprouts, chives &amp; green onions </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Adjust to taste with soy sauce &amp; sugar </td>
+   <td style="text-align:left;"> Eat with bun, thit nuong, lettuce, cucumbers, mint, perilla, and nuoc mam pha </td>
   </tr>
 </tbody>
 </table>

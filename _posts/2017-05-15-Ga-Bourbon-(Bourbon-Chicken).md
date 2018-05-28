@@ -91,7 +91,7 @@ tags: Entree
    <td style="text-align:left;"> Marinate chicken with ratio of 4 sugar : 4 soy sauce : 1 hoisin : 1 bourbon with a pinch of five spice </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> On medium high heat, cook chicken </td>
+   <td style="text-align:left;"> On medium high heat, cook chicken skin-side down (no oil) until crispy then flip and cook until fully cooked </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Remove chicken and excess oil </td>

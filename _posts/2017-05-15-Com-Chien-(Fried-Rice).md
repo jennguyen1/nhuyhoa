@@ -70,13 +70,13 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Make rice day before with less water, refrigerate for 1 day </td>
+   <td style="text-align:left;"> Make rice with less rice or use day-old rice that is dry </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Prepare and cook the meat and veggies, drying thoroughly </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir fry shallots, garlic, onions with oil until golden </td>
+   <td style="text-align:left;"> Golden shallots, garlic, onions </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add eggs on low power </td>

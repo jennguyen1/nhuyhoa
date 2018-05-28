@@ -38,7 +38,7 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> fish sauce </td>
+   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -79,7 +79,7 @@ tags: Entree
    <td style="text-align:left;"> Stir in shrimp </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a ratio of 1 sugar : 1 fish sauce, with some water </td>
+   <td style="text-align:left;"> Add a ratio of 1 sugar : 1 nuoc mam, with some water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Simmer for 10 min </td>

@@ -49,6 +49,9 @@ tags: Other
    <td style="text-align:left;"> Cut pork up into chunks </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> Partially freeze meat for 15 min </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> Blend up meat in the food processor </td>
   </tr>
 </tbody>

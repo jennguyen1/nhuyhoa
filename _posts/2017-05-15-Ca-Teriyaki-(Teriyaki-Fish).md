@@ -82,7 +82,7 @@ tags: Entree
    <td style="text-align:left;"> Marinate fish in salt, pepper, minced shallots and garlic </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Place in fridge for at least half hour </td>
+   <td style="text-align:left;"> Place in fridge for a half hour </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Fry both sides of fish on medium heat </td>

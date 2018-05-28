@@ -55,7 +55,7 @@ tags: Entree
    <td style="text-align:left;"> Fry tofu </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Heat yellow onion and tomatoes in pot on medium heat with sprinkle of oil </td>
+   <td style="text-align:left;"> Heat yellow onion and tomatoes in pot on medium heat </td>
   </tr>
   <tr>
    <td style="text-align:left;"> When tomatoes have softened, add very small bowl of water </td>

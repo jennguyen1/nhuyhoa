@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rau Muong Xao Toi (Stir Fried Water Spinach)"
+title: "Ca Mackerel in Miso Sauce"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Rau_Muong_Xao_Toi.JPG" | absolute_url }})
+
 
 
 
@@ -26,21 +26,27 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> mam tom </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> spinach </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> garlic </td>
+   <td style="text-align:left;"> miso </td>
+   <td style="text-align:left;"> mackerel fish </td>
+   <td style="text-align:left;"> ginger </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sake </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> soy sauce </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -58,19 +64,22 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Golden minced shallots and garlic </td>
+   <td style="text-align:left;"> Cut 1 mackerel into 4 piece filets and cut cross incision on the skin </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a lot of spinach </td>
+   <td style="text-align:left;"> Bring to a boil 1 c water, 0.25 c miso, 0.25 c sugar, 0.25 c sake, ginger slices, stirring well </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> If using watch spinach (ong choy, rau muong), blanche before frying </td>
+   <td style="text-align:left;"> Add mackerel, skin side up, at medium heat </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in diluted mam tom </td>
+   <td style="text-align:left;"> Cover slightly and simmer for 10 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir for a few minutes </td>
+   <td style="text-align:left;"> Stir in 0.5 tsp soy sauce </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Eat with rice and sauce </td>
   </tr>
 </tbody>
 </table>

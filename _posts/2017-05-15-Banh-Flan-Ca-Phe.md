@@ -102,6 +102,9 @@ tags: Dessert
   <tr>
    <td style="text-align:left;"> Set out to cool and then refrigerate </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> If more coffee desired, pour it onto cake after it has cooled </td>
+  </tr>
 </tbody>
 </table>
 

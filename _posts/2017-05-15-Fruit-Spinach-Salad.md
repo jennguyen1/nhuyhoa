@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ga Chien Xi Dau (Fried Chicken Soy Sauce)"
+title: "Fruit Spinach Salad"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Ga_Chien_Xi_Dau.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Fruit_Spinach_Salad.JPG" | absolute_url }})
 
 
 
@@ -26,19 +26,25 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;"> chicken </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> pecans </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> spinach </td>
+   <td style="text-align:left;"> strawberry </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> pepper </td>
+   <td style="text-align:left;"> pita chips </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> mandarin orange </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> soy sauce </td>
+   <td style="text-align:left;"> vinaigrette </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> any </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> brown sugar </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -58,10 +64,10 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Marinate chicken with salt, pepper, shallots, and soy sauce </td>
+   <td style="text-align:left;"> Make candied pecans by boiling 0.5 c brown sugar, 2 tbsp water, and 1 c pecans </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fry chicken on medium low heat </td>
+   <td style="text-align:left;"> Mix all ingredients with couple tbsp of vinaigrette, then add pita chips last </td>
   </tr>
 </tbody>
 </table>

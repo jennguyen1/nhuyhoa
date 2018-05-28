@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bap Cai Luoc (Cabbage and Egg Sauce)"
+title: "Ga Luoc Cham Nuoc Mam Gung (Boiled Chicken with Ginger Fish Sauce)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Bap_Cai_Luoc.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Ga_Luoc_Cham_Nuoc_Mam_Gung.JPG" | absolute_url }})
 
 
 
@@ -26,9 +26,9 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> nuoc mam </td>
-   <td style="text-align:left;"> eggs </td>
-   <td style="text-align:left;"> cabbage </td>
+   <td style="text-align:left;"> nuoc mam pha </td>
+   <td style="text-align:left;"> chicken </td>
+   <td style="text-align:left;"> ginger </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -46,13 +46,13 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Hard boil egg </td>
+   <td style="text-align:left;"> Boil deboned chicken thighs under a light boil until internal temperature hits 165F </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cut up and boil cabbage </td>
+   <td style="text-align:left;"> Refrigerate chicken </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mash up egg and add nuoc mam &amp; water </td>
+   <td style="text-align:left;"> Eat with nuoc mam cha mixed with ginger </td>
   </tr>
 </tbody>
 </table>

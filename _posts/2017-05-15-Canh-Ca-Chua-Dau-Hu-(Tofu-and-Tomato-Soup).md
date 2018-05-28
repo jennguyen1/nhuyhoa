@@ -64,7 +64,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Heat yellow onion, shallots, and tomatoes in pot on medium heat with sprinkle of oil </td>
+   <td style="text-align:left;"> Heat yellow onion, shallots, and tomatoes in pot on medium heat </td>
   </tr>
   <tr>
    <td style="text-align:left;"> When tomatoes have softened, add 1 bowl of water </td>
