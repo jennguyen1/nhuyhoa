@@ -124,6 +124,9 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> Garlic Mashed Potatoes </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> Boil potatoes </td>
   </tr>
   <tr>
@@ -136,13 +139,16 @@ tags: Entree
    <td style="text-align:left;"> Adjust to taste </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> For gravy, heat 3 tbsp butter and minced shallots until soft </td>
+   <td style="text-align:left;"> Gravy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Heat 3 tbsp butter and shallots until soft </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Slowly stir in 2 tbsp of flour </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Slow stir in 6 c chicken broth and 3 tbsp bourbon </td>
+   <td style="text-align:left;"> Slowly stir in 6 c chicken broth and 3 tbsp bourbon </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Simmer and reduce by half </td>
@@ -155,6 +161,9 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> Season with salt and pepper </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hot Honey Sauce </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Make spice mix ratio of 2 tomato powder : 2 paprika : 1 mustard powder : 1 cumin : 1 sugar : 1 salt </td>
