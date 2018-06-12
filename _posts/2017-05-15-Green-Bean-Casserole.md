@@ -85,7 +85,7 @@ tags: Entree
    <td style="text-align:left;"> Preheat oven to 450F </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Combine 2 tsp soy sauce, 2 tsp lemon juice, 2 c chicken stock, 1.5 c cream in a bowl </td>
+   <td style="text-align:left;"> Combine 2 tsp soy sauce, 2 tsp lemon juice, 2 c chicken broth, 1.5 c cream in a bowl </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir fry sliced mushrooms and onions with minced garlic </td>

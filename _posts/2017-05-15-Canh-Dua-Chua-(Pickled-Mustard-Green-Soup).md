@@ -26,7 +26,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> chicken stock </td>
+   <td style="text-align:left;"> chicken broth </td>
    <td style="text-align:left;"> pork belly </td>
    <td style="text-align:left;"> dua chua </td>
    <td style="text-align:left;">  </td>
@@ -73,7 +73,7 @@ tags: Entree
    <td style="text-align:left;"> Stir well for a few minutes </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Put in 2:1 ratio of chicken stock and water, may also add dua chua liquid of desired </td>
+   <td style="text-align:left;"> Put in 2:1 ratio of chicken broth and water, may also add dua chua liquid of desired </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add wonton soup base </td>

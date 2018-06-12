@@ -227,6 +227,7 @@ sh filename.sh &>> console.txt &
 # check on currently running background commands; lists program in a file
 top
 top -b -n 1 -c -u username
+jobs
 
 # push to background after starting
 sh filename.sh >> output.txt

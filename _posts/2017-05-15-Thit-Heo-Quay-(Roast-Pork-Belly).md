@@ -8,7 +8,9 @@ tags: Entree
 
 
 
+![pic1]( {{"/figure/food/Thit_Heo_Quay.JPG" | absolute_url }})
 
+![pic2]( {{"/figure/food/Thit_Heo_Quay2.JPG" | absolute_url }})
 
 
 

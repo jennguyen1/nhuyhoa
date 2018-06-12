@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Thit Heo Quay (Roast Pork Belly)"
+title: "Canh Cai Cuc (Chrysanthemum Soup)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -10,7 +10,7 @@ tags: Entree
 library(jn.general)
 lib(data)
 
-recipe_name <- 'Thit Heo Quay (Roast Pork Belly)'
+recipe_name <- 'Canh Cai Cuc (Chrysanthemum Soup)'
 connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
 ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = "${recipe_name}"')
 instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = "${recipe_name}"')
@@ -35,9 +35,7 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
-![pic1]( {{"/figure/food/Thit_Heo_Quay.JPG" | absolute_url }})
-
-![pic2]( {{"/figure/food/Thit_Heo_Quay2.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Canh_Cai_Cuc.JPG" | absolute_url }})
 
 
 

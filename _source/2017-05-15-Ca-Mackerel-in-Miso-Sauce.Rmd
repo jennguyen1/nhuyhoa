@@ -35,7 +35,7 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
-
+![pic1]( {{"/figure/food/Ca_Mackerel_in_Miso_Sauce.JPG" | absolute_url }})
 
 
 

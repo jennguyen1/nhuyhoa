@@ -60,7 +60,7 @@ tags: Dessert
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> vanilla </td>
+   <td style="text-align:left;"> flavoring extract </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -95,7 +95,7 @@ tags: Dessert
    <td style="text-align:left;"> Turn off heat and gently stir in cooked mung bean </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a drop of vanilla extract </td>
+   <td style="text-align:left;"> Add a drop of flavoring extract </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Eat with xoi vo </td>

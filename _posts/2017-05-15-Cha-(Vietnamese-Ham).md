@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Smoothie"
+title: "Cha (Vietnamese Ham)"
 date: "May 15, 2017"
 categories: Recipes
-tags: Dessert
+tags: Entree
 ---
 
 
 
-
+![pic1]( {{"/figure/food/Cha.JPG" | absolute_url }})
 
 
 
@@ -26,34 +26,34 @@ tags: Dessert
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> yogurt </td>
+   <td style="text-align:left;"> sugar </td>
+   <td style="text-align:left;"> pork shoulder </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> banana </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> orange juice </td>
+   <td style="text-align:left;"> tapioca starch </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> mango </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> baking powder </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> pineapple </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> msg </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> strawberry </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> fish sauce </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> peach </td>
   </tr>
 </tbody>
 </table>
@@ -70,22 +70,22 @@ tags: Dessert
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Blend banana, mango, peach yogurt, orange juice </td>
+   <td style="text-align:left;"> Process 1 lb pork shoulder (partially frozen), shallots and garlic </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Blend banana, strawberries, strawberry yogurt, orange juice </td>
+   <td style="text-align:left;"> Add a mixture of 1 tbsp sugar, 2 tbsp tapioca starch, 0.5 tsp baking powder, 0.5 tsp msg, 2 tbsp fish sauce, 6 tbsp ice water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Blend banana, mango, pineapple, peach yogurt, orange juice </td>
+   <td style="text-align:left;"> Freeze for 10-15 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Blend banana, mango, strawberries, pineapple, yogurt, orange juice </td>
+   <td style="text-align:left;"> Process mixture again </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Blend banana, mango, strawberries, peaches, yogurt, orange juice </td>
+   <td style="text-align:left;"> Wrap tightly into a roll using parchment paper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Blend banana, strawberries, pineapple, yogurt, orange or pineapple juice </td>
+   <td style="text-align:left;"> Steam until internal temperature 165F (~25 min) </td>
   </tr>
 </tbody>
 </table>

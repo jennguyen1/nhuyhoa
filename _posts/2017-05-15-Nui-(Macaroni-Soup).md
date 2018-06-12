@@ -26,7 +26,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> macaroni </td>
+   <td style="text-align:left;"> macaroni noodles </td>
    <td style="text-align:left;"> pork rib tips </td>
    <td style="text-align:left;"> mustard greens </td>
    <td style="text-align:left;">  </td>
@@ -64,16 +64,16 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Make pork broth </td>
+   <td style="text-align:left;"> Make pork broth with pork rib tips </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Boil mustard greens separately </td>
+   <td style="text-align:left;"> Boil mustard greens in pork broth </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Make noodles separately </td>
+   <td style="text-align:left;"> Make macaroni noodles separately </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Eat with noodles, mustard greens, and broth </td>
+   <td style="text-align:left;"> Eat noodles with pork, greens, and broth </td>
   </tr>
 </tbody>
 </table>

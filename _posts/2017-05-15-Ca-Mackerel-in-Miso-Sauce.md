@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-
+![pic1]( {{"/figure/food/Ca_Mackerel_in_Miso_Sauce.JPG" | absolute_url }})
 
 
 
@@ -73,7 +73,7 @@ tags: Entree
    <td style="text-align:left;"> Add mackerel, skin side up, at medium heat </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cover slightly and simmer for 10 min </td>
+   <td style="text-align:left;"> Simmer for 10 min </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir in 0.5 tsp soy sauce </td>

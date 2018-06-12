@@ -84,10 +84,7 @@ tags: Entree
    <td style="text-align:left;"> Once meat is mostly cooked, turn heat down to medium low </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add 2.5 spoons of sugar </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add a mixture of 3:4 ratio of soy sauce to water </td>
+   <td style="text-align:left;"> Add 2.5 spoons of sugar and mixture of 3 soy sauce : 4 water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Sprinkle in a little bit of cornstarch </td>
