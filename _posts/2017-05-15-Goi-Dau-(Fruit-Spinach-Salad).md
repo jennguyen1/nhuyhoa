@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fruit Spinach Salad"
+title: "Goi Dau (Fruit Spinach Salad)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Fruit_Spinach_Salad.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Goi_Dau.JPG" | absolute_url }})
 
 
 

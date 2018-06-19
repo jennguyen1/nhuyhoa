@@ -85,7 +85,7 @@ tags: Entree
    <td style="text-align:left;"> Wrap tightly into a roll using parchment paper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Steam until internal temperature 165F (~25 min) </td>
+   <td style="text-align:left;"> Steam over medium heat until internal temperature 165F (~25 min) </td>
   </tr>
 </tbody>
 </table>
