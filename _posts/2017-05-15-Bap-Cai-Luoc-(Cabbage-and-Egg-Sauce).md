@@ -54,6 +54,9 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> Mash up egg and add nuoc mam &amp; water </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> Save the veggie broth and eat/drink as a canh </td>
+  </tr>
 </tbody>
 </table>
 

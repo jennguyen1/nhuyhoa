@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Suon or Thit Ram (Carmelized Pork Spare Ribs or Belly)"
+title: "Thit Ram or Suon (Carmelized Pork Spare Ribs or Belly)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,9 +8,9 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Suon_or_Thit_Ram.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Thit_Ram_or_Suon.JPG" | absolute_url }})
 
-![pic2]( {{"/figure/food/Suon_or_Thit_Ram2.JPG" | absolute_url }})
+![pic2]( {{"/figure/food/Thit_Ram_or_Suon2.JPG" | absolute_url }})
 
 
 

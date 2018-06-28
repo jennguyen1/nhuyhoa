@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-
+![pic1]( {{"/figure/food/Goi_Ga.JPG" | absolute_url }})
 
 
 

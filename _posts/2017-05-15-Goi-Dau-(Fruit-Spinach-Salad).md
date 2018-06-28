@@ -38,7 +38,7 @@ tags: Entree
    <td style="text-align:left;"> mandarin orange </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> vinaigrette </td>
+   <td style="text-align:left;"> honey apple vinaigrette </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> any </td>
