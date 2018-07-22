@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bok Choy Stir Fry"
+title: "Stir Fried Bok Choy or Chinese Broccoli"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Bok_Choy_Stir_Fry.JPG" | absolute_url }})
+![pic1]( {{"/figure/food/Stir_Fried_Bok_Choy_or_Chinese_Broccoli.JPG" | absolute_url }})
 
 
 

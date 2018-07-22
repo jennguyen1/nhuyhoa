@@ -43,12 +43,6 @@ tags: Entree
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
-  <tr>
-   <td style="text-align:left;"> nuoc mau </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
 </tbody>
 </table>
 
@@ -64,34 +58,40 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Cut pork belly into cubes </td>
+   <td style="text-align:left;"> Marinate pork belly cubes with salt, pepper, and shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Marinate pork belly with salt, pepper, and shallots </td>
+   <td style="text-align:left;"> Warm up pot with oil enough to cover the bottom of the pot </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Blanche meat, then dump liquid and thoroughly rinse to remove impurities </td>
+   <td style="text-align:left;"> Add a couple spoons of sugar and heat on medium heat, stirring until light brown </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add more marinade and stir fry pork belly on low heat </td>
+   <td style="text-align:left;"> Take off heat and stir in minced shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Drizzle 3-4 spoons of nuoc mau </td>
+   <td style="text-align:left;"> Put pot back on burner and stir for few more minutes </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> After pork belly done sizzling, add water up to top level of pork </td>
+   <td style="text-align:left;"> Pour in some nuoc mam </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cook on low for 2 hours, removing meat foam </td>
+   <td style="text-align:left;"> Stir fry in pork belly </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Hard boil eggs and add to pot </td>
+   <td style="text-align:left;"> Add water up to top level of pork </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cook on medium for 2 hours, removing meat foam </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hard boil eggs and add that to pot </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add nuoc mam for flavor </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cook on low heat until reduce 50% of liquid </td>
+   <td style="text-align:left;"> Cook on low heat for 30 min until reduce 50% of liquid </td>
   </tr>
 </tbody>
 </table>

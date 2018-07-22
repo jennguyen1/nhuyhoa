@@ -58,7 +58,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Blanche water spinach (ong choy, rau muong) </td>
+   <td style="text-align:left;"> Blanche water spinach (rau muong, ong choy) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Golden minced shallots and garlic </td>

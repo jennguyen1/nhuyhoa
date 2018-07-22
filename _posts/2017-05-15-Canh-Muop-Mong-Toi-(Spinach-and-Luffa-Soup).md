@@ -30,13 +30,13 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> salt </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> luffa </td>
+   <td style="text-align:left;"> taiwanese okra </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> spinach </td>
+   <td style="text-align:left;"> malabar spinach </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
@@ -69,7 +69,7 @@ tags: Entree
    <td style="text-align:left;"> Soak fried shrimp in hot water and mash fried shrimp </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir fry luffa (chinese/taiwanese okra) &amp; shallots with salt &amp; pepper </td>
+   <td style="text-align:left;"> Stir fry taiwanese okra (luffa) &amp; shallots with salt &amp; pepper </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add bowl of fried shrimp &amp; additional water </td>
@@ -78,7 +78,7 @@ tags: Entree
    <td style="text-align:left;"> Add wonton soup base </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add spinach (malabar/asian spinach) prior to boiling </td>
+   <td style="text-align:left;"> Add malabar spinach prior to boiling </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Adjust to taste as necessary </td>

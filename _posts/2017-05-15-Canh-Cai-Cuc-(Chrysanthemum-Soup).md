@@ -67,7 +67,7 @@ tags: Entree
    <td style="text-align:left;"> Adjust broth to taste, want it light </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cut chrysanthemums into 3 in lengths, use the stems if they are tender enough </td>
+   <td style="text-align:left;"> Cut chrysanthemums (cai cuc, tung ho) into 3 in lengths, use the stems if they are tender enough </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add steams first then leaves </td>

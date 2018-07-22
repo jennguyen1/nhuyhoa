@@ -38,6 +38,12 @@ tags: Dessert
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> baking soda </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> baking powder </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -68,7 +74,7 @@ tags: Dessert
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> pecans </td>
+   <td style="text-align:left;"> pecaans </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -100,16 +106,16 @@ tags: Dessert
    <td style="text-align:left;"> Butter bread pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix 2 c flour, 0.75 c sugar, 0.75 tsp baking powder, 0.5 tsp salt, 0.5 tsp cinnamon, 1 c chopped pecans </td>
+   <td style="text-align:left;"> Mix 2 c flour, 0.75 c sugar, 1 tsp baking soda, 1 tsp baking powder, 0.75 tsp salt, 0.75 tsp cinnamon, 1 c chopped pecans </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix 2 eggs, 6 tbsp melted butter, 4 mashed ripe bananas, 0.33 c yogurt, 1 tsp vanilla </td>
+   <td style="text-align:left;"> Mix 2 eggs, 6 tbsp melted butter, 4 mashed ripe bananas, 0.5 c yogurt, 1 tbsp vanilla </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Combine and mix </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Bake bread for 60 min </td>
+   <td style="text-align:left;"> Bake bread for 60 min or internal temperature is 206F </td>
   </tr>
 </tbody>
 </table>

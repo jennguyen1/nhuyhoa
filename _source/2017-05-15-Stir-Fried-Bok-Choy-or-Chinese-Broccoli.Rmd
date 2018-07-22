@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "Nuoc Mau"
+title: "Stir Fried Bok Choy or Chinese Broccoli"
 date: "May 15, 2017"
 categories: Recipes
-tags: Other
+tags: Entree
 ---
 
 ```{r, echo = FALSE, warning = FALSE}
 library(jn.general)
 lib(data)
 
-recipe_name <- 'Nuoc Mau'
+recipe_name <- 'Stir Fried Bok Choy or Chinese Broccoli'
 connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
 ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = "${recipe_name}"')
 instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = "${recipe_name}"')
@@ -35,9 +35,9 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
+![pic1]( {{"/figure/food/Stir_Fried_Bok_Choy_or_Chinese_Broccoli.JPG" | absolute_url }})
 
 
-[![youtube](http://img.youtube.com/vi/ZGQHPZQSH_s/0.jpg)](http://www.youtube.com/watch?v=ZGQHPZQSH_s)
 
 
 #### Ingredients

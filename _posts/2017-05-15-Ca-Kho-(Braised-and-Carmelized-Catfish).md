@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ca Kho (Carmelized Catfish)"
+title: "Ca Kho (Braised and Carmelized Catfish)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -43,12 +43,6 @@ tags: Entree
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
-  <tr>
-   <td style="text-align:left;"> nuoc mau </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
 </tbody>
 </table>
 
@@ -64,34 +58,40 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Coat pan with oil </td>
+   <td style="text-align:left;"> Marinate catfish chunks with salt, pepper, and shallots </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Warm up pot with oil enough to cover the bottom of the pot </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add a couple spoons of sugar and heat on medium heat, stirring until light brown </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Take off heat and stir in minced shallots </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Put pot back on burner and stir for few more minutes </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pour in some nuoc mam </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Layer the pan bottom with yellow onion strips and sprinkle in pepper </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Marinate catfish with salt, pepper, and shallots </td>
+   <td style="text-align:left;"> Place fish on top of onions and flip after few moments </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Place fish on top of onions </td>
+   <td style="text-align:left;"> Add water up to top level of fish </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Drizzle 3-4 spoons of nuoc mau </td>
+   <td style="text-align:left;"> Cook on medium for 30 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Heat on low for a little bit </td>
+   <td style="text-align:left;"> Add nuoc mam for flavor </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Pour in just enough water to cover fish </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Boil on medium heat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> After 30 min add nuoc mam for flavoring </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cook for another 30 min </td>
+   <td style="text-align:left;"> Cook on low heat for 30 min until reduce 50% of liquid </td>
   </tr>
 </tbody>
 </table>

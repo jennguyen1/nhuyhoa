@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Stir_Fried_Tofu_and_Mushrooms.JPG" | absolute_url }})
+
 
 
 
