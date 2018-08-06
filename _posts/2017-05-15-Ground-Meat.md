@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ground Pork"
+title: "Ground Meat"
 date: "May 15, 2017"
 categories: Recipes
 tags: Other
@@ -31,6 +31,12 @@ tags: Other
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> chicken thigh </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -46,7 +52,7 @@ tags: Other
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Cut pork up into chunks </td>
+   <td style="text-align:left;"> Cut meat up into chunks </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Partially freeze meat for 15 min </td>

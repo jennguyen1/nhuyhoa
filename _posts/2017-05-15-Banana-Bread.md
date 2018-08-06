@@ -74,7 +74,7 @@ tags: Dessert
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> pecaans </td>
+   <td style="text-align:left;"> pecans </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>

@@ -27,7 +27,7 @@ tags: Entree
 <tbody>
   <tr>
    <td style="text-align:left;"> brown sugar </td>
-   <td style="text-align:left;"> chicken thighs </td>
+   <td style="text-align:left;"> chicken thigh </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
