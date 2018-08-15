@@ -10,6 +10,8 @@ tags: Entree
 
 ![pic1]( {{"/figure/food/Stir_Fried_Bok_Choy_or_Chinese_Broccoli.JPG" | absolute_url }})
 
+![pic2]( {{"/figure/food/Stir_Fried_Bok_Choy_or_Chinese_Broccoli2.JPG" | absolute_url }})
+
 
 
 

@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-
+![pic1]( {{"/figure/food/Ga_Chicken_Tikka_Masala.JPG" | absolute_url }})
 
 
 

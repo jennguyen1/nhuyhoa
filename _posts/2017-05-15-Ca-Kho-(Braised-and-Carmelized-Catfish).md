@@ -64,7 +64,7 @@ tags: Entree
    <td style="text-align:left;"> Warm up pot with oil enough to cover the bottom of the pot </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add a couple spoons of sugar and heat on medium heat, stirring until light brown </td>
+   <td style="text-align:left;"> Add a few spoons of sugar and heat on medium heat, stirring until light brown </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Take off heat and stir in minced shallots </td>
