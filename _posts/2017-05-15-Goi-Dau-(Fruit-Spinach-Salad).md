@@ -47,7 +47,13 @@ tags: Entree
    <td style="text-align:left;"> brown sugar </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> watermelon </td>
+  </tr>
+  <tr>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> almonds </td>
   </tr>
 </tbody>
 </table>

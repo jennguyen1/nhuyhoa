@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "Ca Kho (Braised and Carmelized Catfish)"
+title: "Teriyaki Sauce"
 date: "May 15, 2017"
 categories: Recipes
-tags: Entree
+tags: Other
 ---
 
 ```{r, echo = FALSE, warning = FALSE}
 library(jn.general)
 lib(data)
 
-recipe_name <- 'Ca Kho (Braised and Carmelized Catfish)'
+recipe_name <- 'Teriyaki Sauce'
 connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
 ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = "${recipe_name}"')
 instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = "${recipe_name}"')
@@ -35,9 +35,9 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
-![pic1]( {{"/figure/food/Ca_Kho.JPG" | absolute_url }})
 
-[![youtube](http://img.youtube.com/vi/hrJyKrzsjNs/0.jpg)](http://www.youtube.com/watch?v=hrJyKrzsjNs)
+
+
 
 
 #### Ingredients

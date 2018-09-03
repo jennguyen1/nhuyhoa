@@ -41,7 +41,7 @@ where $$Z \sim N(0, 1)$$ under the null hypothesis. From here, compute the p-val
 
 Suppose the population variance is not known. Estimate it with the sample variance $$s^2$$. 
 
-Let $$Z \sim N(0, 1)$$ and $$\frac{(n - 1)s^2}{\sigma^2} \sim X^2_{n-1}$$
+Let $$Z \sim N(0, 1)$$ and $$X^2_{n-1} \sim \frac{(n - 1)s^2}{\sigma^2}$$
 
 $$T = \frac{\frac{\bar{X} - \mu_0}{\sqrt{\sigma^2/n}}}{\sqrt{\frac{(n - 1)s^2}{\sigma^2}/(n-1)}} = \frac{\bar{X} - \mu_0}{\sqrt{s/n}}$$
 
@@ -99,7 +99,7 @@ Suppose treatments are randomly assigned to subjects.
 
 Compute the test statistic
 
-$$T = \frac{\bar{Y}_1 - \bar{Y}_2}{\sqrt{\hat{Var}(\hat{Y}_1 - \hat{Y}_2)}}$$
+$$T = \frac{\bar{Y}_1 - \bar{Y}_2}{\sqrt{\hat{Var}(\bar{Y}_1 - \bar{Y}_2)}}$$
 
 where $$\hat{Var}(\hat{Y}_1 - \hat{Y}_2)$$ depends on the estimated variances of the two treatment groups.
 
@@ -107,7 +107,7 @@ where $$\hat{Var}(\hat{Y}_1 - \hat{Y}_2)$$ depends on the estimated variances of
 
 Suppose independence between $$Y_1$$ and $$Y_2$$. If the variances are equal
 
-$$\hat{Var}(\hat{Y}_1 - \hat{Y}_2) = s^2_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)$$
+$$\hat{Var}(\bar{Y}_1 - \bar{Y}_2) = s^2_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)$$
  
 where
 
@@ -121,7 +121,7 @@ The statistic $$T \sim t_{n_1 + n_2 - 2}$$.
 
 If the variances are not equal
 
-$$\hat{Var}(\hat{Y}_1 - \hat{Y}_2) = \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2}$$
+$$\hat{Var}(\bar{Y}_1 - \bar{Y}_2) = \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2}$$
 
 The statistic $$T \sim t_{r}$$ where
 

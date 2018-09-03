@@ -10,7 +10,7 @@ tags: Entree
 
 ![pic1]( {{"/figure/food/Canh_Chua_Ca.JPG" | absolute_url }})
 
-[![youtube](http://img.youtube.com/vi/hrJyKrzsjNs/0.jpg)](http://www.youtube.com/watch?v=hrJyKrzsjNs)
+
 
 
 #### Ingredients

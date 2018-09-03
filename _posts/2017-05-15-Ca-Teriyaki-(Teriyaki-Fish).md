@@ -26,37 +26,19 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;"> teriyaki sauce </td>
    <td style="text-align:left;"> catfish </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;"> salmon </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pepper </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> garlic </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> soy sauce </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sake </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> mirin </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -76,13 +58,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Make teriyaki sauce: ratio 2 soy sauce : 2 sake : 2 mirin : 1 sugar </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Marinate fish in salt, pepper, minced shallots and garlic </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Place in fridge for a half hour </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Fry both sides of fish on medium heat </td>

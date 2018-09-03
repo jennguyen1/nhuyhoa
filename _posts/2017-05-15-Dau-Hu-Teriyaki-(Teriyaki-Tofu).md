@@ -26,27 +26,9 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> soy sauce </td>
+   <td style="text-align:left;"> teriyaki sauce </td>
    <td style="text-align:left;"> tofu </td>
-   <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sake </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallots </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> mirin </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> garlic </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sugar </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> ginger </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -68,9 +50,6 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> Set tofu aside and allow oil to drain </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Make teriyaki sauce: ratio 2 soy sauce : 2 sake : 2 mirin : 1 sugar </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Simmer teriyaki sauce on medium heat until the sauce becomes thick </td>

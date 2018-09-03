@@ -76,7 +76,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Make marinade: want mashed white end of green onion, garlic with ratio of 4 fish sauce : 2 sugar : 1 honey, sprinkled with pepper </td>
+   <td style="text-align:left;"> Make marinade: want mashed white end of green onion, garlic with ratio of 4 fish sauce : 2 sugar : 2 honey, sprinkled with pepper </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Adjust marinade to taste, want salty and lightly sweet </td>
@@ -85,10 +85,13 @@ tags: Entree
    <td style="text-align:left;"> Cut pork shoulder into thin strips, against the grain </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Marinate overnight </td>
+   <td style="text-align:left;"> Marinate with a little oil mixed in overnight </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Put meat onto skewers and grill </td>
+   <td style="text-align:left;"> Place meat loosely on skewers, alternating between lean and fat </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Grill skewers until brown </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Eat with bun, thit nuong, lettuce, cucumbers, mint, perilla, and nuoc mam pha </td>
