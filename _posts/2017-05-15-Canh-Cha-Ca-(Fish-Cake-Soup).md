@@ -27,7 +27,7 @@ tags: Entree
 <tbody>
   <tr>
    <td style="text-align:left;"> wonton soup base </td>
-   <td style="text-align:left;"> cha ca </td>
+   <td style="text-align:left;"> cha ca (fish paste) </td>
    <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;"> tomato </td>
   </tr>

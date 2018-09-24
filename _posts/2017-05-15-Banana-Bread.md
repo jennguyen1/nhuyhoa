@@ -106,13 +106,13 @@ tags: Dessert
    <td style="text-align:left;"> Butter bread pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix 2 c flour, 0.75 c sugar, 1 tsp baking soda, 1 tsp baking powder, 0.75 tsp salt, 0.75 tsp cinnamon, 1 c chopped pecans </td>
+   <td style="text-align:left;"> Mix 2 c flour, 1 tsp baking soda, 1 tsp baking powder, 0.5 tsp salt, 2 tsp cinnamon </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix 2 eggs, 6 tbsp melted butter, 4 mashed ripe bananas, 0.5 c yogurt, 1 tbsp vanilla </td>
+   <td style="text-align:left;"> Mix 3 mashed overripe bananas, 0.75 c sugar, 2 eggs, 5 tbsp melted butter, 0.33 c yogurt, 1 tsp vanilla </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Combine and mix </td>
+   <td style="text-align:left;"> Combine and stir until just incorporated ~10 sec </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Bake bread for 60 min or internal temperature is 206F </td>

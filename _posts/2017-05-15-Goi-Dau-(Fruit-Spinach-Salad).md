@@ -10,6 +10,8 @@ tags: Entree
 
 ![pic1]( {{"/figure/food/Goi_Dau.JPG" | absolute_url }})
 
+![pic2]( {{"/figure/food/Goi_Dau2.JPG" | absolute_url }})
+
 
 
 
