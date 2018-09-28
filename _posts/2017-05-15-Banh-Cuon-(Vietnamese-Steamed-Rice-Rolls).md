@@ -30,7 +30,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> rice flour </td>
    <td style="text-align:left;"> ground pork </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

@@ -29,7 +29,7 @@ tags: Entree
 <tbody>
   <tr>
    <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> fried shrimp </td>
    <td style="text-align:left;"> taiwanese okra </td>
    <td style="text-align:left;">  </td>
   </tr>
@@ -40,15 +40,9 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> fried shrimp </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallots </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> wonton soup base </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>

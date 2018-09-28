@@ -28,7 +28,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> bun </td>
    <td style="text-align:left;"> duck </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

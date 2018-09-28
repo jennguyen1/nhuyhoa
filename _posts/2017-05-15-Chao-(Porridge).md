@@ -28,7 +28,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> jasmine rice </td>
    <td style="text-align:left;"> chicken </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

@@ -36,7 +36,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> mi </td>
    <td style="text-align:left;"> shrimp </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

@@ -52,7 +52,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> carrots </td>
+   <td style="text-align:left;"> carrot </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>

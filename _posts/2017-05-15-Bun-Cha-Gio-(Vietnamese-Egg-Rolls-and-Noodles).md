@@ -42,7 +42,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> nuoc mam pha </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

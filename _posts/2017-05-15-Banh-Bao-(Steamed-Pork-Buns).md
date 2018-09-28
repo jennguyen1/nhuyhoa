@@ -32,7 +32,7 @@ tags: Dessert
   <tr>
    <td style="text-align:left;"> bot banh bao </td>
    <td style="text-align:left;"> lap xuong (chinese pork sausages) </td>
-   <td style="text-align:left;"> shallots </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
