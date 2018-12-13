@@ -90,7 +90,7 @@ tags: Entree
    <td style="text-align:left;"> Add taro or yam to soup </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add rice paddy herbs </td>
+   <td style="text-align:left;"> Add rice paddy herbs (ngo om) in the last few minutes </td>
   </tr>
 </tbody>
 </table>
