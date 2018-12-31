@@ -55,7 +55,7 @@ Define the following terms
 
 Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS] | F 
 ------|----------------|--------------------|-------------|-------|---
-Trt   | $$\sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$\frac{SSTrt}{dfTrt}$$ | $$\sigma^2_{\epsilon} + \frac{n}{k - 1} \sum^k_i \alpha_i^2$$ | $$\frac{MSTrt}{MSE}$$ 
+Trt   | $$\sum^k_{i = 1} n_i(\bar{y}_{i.} - \bar{y}_{..})^2$$ | $$k-1$$ | $$\frac{SSTrt}{dfTrt}$$ | $$\sigma^2_{\epsilon} + n\sigma_^2_A$$ | $$\frac{MSTrt}{MSE}$$ 
 Error | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{i.})^2$$ | $$k(n-1)$$ | $$\frac{SSE}{dfE}$$ | $$\sigma^2_{\epsilon}$$ |
 **Total** | $$\sum^k_{i = 1} \sum^{n_i}_{j = 1} (y_{ij} - \bar{y}_{..})^2$$ | $$kn-1$$ | | 
 
@@ -94,9 +94,9 @@ If $$H_0$$ is true, then $$\sum \alpha_i = 0$$, $$\sum \beta_j = 0$$, $$\sum_i (
 
 Source| Sum of Squares | Degrees of Freedom | MS | E[MS]
 ------|----------------|--------------------|----|-------
-A     | $$bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ | $$MSA$$ | $$\sigma^2_{\epsilon} + \frac{bn}{a - 1} \sum \alpha^2_i$$
-B     | $$an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$MSB$$ | $$\sigma^2_{\epsilon} + \frac{an}{b - 1} \sum \beta^2_j$$
-AB    | $$n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$ | $$(a-1)(b-1)$$ | $$MSAB$$ | $$\sigma^2_{\epsilon} + \frac{n}{(a - 1)(b - 1)} \sum (\alpha \beta)^2_{ij}$$
+A     | $$bn\sum^a_{i = 1} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ | $$MSA$$ | $$\sigma^2_{\epsilon} + bn\sigma^2_A$$
+B     | $$an\sum^b_{j = 1} (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$MSB$$ | $$\sigma^2_{\epsilon} + an\sigma^2_B$$
+AB    | $$n \sum^a_{i = 1} \sum^b_{j = 1} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} + \bar{y}_{...})^2$$ | $$(a-1)(b-1)$$ | $$MSAB$$ | $$\sigma^2_{\epsilon} + n\sigma^2_{AB}$$
 Error | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$ab(n - 1)$$ | $$MSE$$ | $$\sigma^2_{\epsilon}$$
 **Total** | $$\sum^a_{i = 1} \sum^b_{j = 1} \sum^n_{l = 1} (y_{ijl} - \bar{y}_{...})^2$$ | $$abn - 1$$ 
 
@@ -369,14 +369,14 @@ where
 
 Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
 ------|----------------|--------------------|-------------|---------
-Trt   | $$sn \sum^k_{i} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + ns \sum^k_i \frac{\alpha_i^2}{k - 1}$$ 
+Trt   | $$sn \sum^k_{i} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + ns\sigma^2_A$$
 Plot Error | $$s \sum^k_{i} \sum^{n}_{j} (\bar{y}_{ij.} - \bar{y}_{i..})^2$$ | $$k(n-1)$$ | $$MSPE$$ | $$\sigma^2_{\delta} + s\sigma^2_{\epsilon}$$
 Subsample Error | $$\sum_{ijl} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$kn(s-1)$$ | $$MSSSE$$ | $$\sigma^2_{\delta}$$
 **Total** | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kns-1$$ | | 
 
 <p></p>
 
-Notice that the expected MS are a little different. To conduct our $$F$$ test for treatment, compute $$F = \frac{MSTrt}{MSPE}$$, where $$E[F] = 1 + 1 + ns \sum^k_i \alpha^2_i / (k - 1)$$. 
+Notice that the expected MS are a little different. To conduct our $$F$$ test for treatment, compute $$F = \frac{MSTrt}{MSPE}$$, where $$E[F] = \frac{\sigma^2_{\delta} + s \sigma^2_{\epsilon} + ns\sigma^2_A}{\sigma^2_{\delta} + s\sigma^2_{\epsilon}}$$. 
 
 The guideline here is that when testing any source of variability for significance, look for a denominator for the $$F$$ test that contains all the elements of the $$E[MS]$$ except the source of interest.
 
@@ -402,8 +402,8 @@ where
 
 Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
 ------|----------------|--------------------|-------------|---------
-Blocks| $$ks \sum_j (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$MSBlk$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + ks \sum^b_j \frac{\beta_j^2}{b - 1}$$ 
-Trt   | $$bs \sum^k_{i} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + bs \sum^k_i \frac{\alpha_i^2}{k - 1}$$ 
+Blocks| $$ks \sum_j (\bar{y}_{.j.} - \bar{y}_{...})^2$$ | $$b-1$$ | $$MSBlk$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + ks\sigma^2_B$$ 
+Trt   | $$bs \sum^k_{i} (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$k-1$$ | $$MSTrt$$ | $$\sigma^2_{\delta} + s \sigma^2_{\epsilon} + bs\sigma^2_A$$ 
 Plot Error | $$s \sum_{ij} (\bar{y}_{ij.} - \bar{y}_{i..} - \bar{y}_{.j.} +\bar{y}_{...})^2$$ | $$(k-1)(b-1)$$ | $$MSPE$$ | $$\sigma^2_{\delta} + s\sigma^2_{\epsilon}$$
 Subsample Error | $$\sum_{ijl} (y_{ijl} - \bar{y}_{ij.})^2$$ | $$kb(s-1)$$ | $$MSSSE$$ | $$\sigma^2_{\delta}$$
 **Total** | $$\sum_{ijl} (y_{ijl} - \bar{y}_{...})^2$$ | $$kbs-1$$ | | 
@@ -435,10 +435,10 @@ where
 
 Source| Sum of Squares | Degrees of Freedom | Mean Square | E[MS]
 ------|----------------|--------------------|-------------|---------
-A     | $$bc \sum_i (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ | $$MSA$$ | $$\sigma^2_{\delta} + c\sigma^2_{\epsilon} + \frac{bc\sum_i \alpha_i^2}{a - 1}$$ 
+A     | $$bc \sum_i (\bar{y}_{i..} - \bar{y}_{...})^2$$ | $$a-1$$ | $$MSA$$ | $$\sigma^2_{\delta} + c\sigma^2_{\epsilon} + bc\sigma^2_A$$ 
 WP Error  | $$c \sum_{ij} (\bar{y}_{ij.} - \bar{y}_{i..})^2$$ | $$a(b-1)$$ | $$MSWP$$ | $$\sigma^2_{\delta} + c\sigma^2_{\epsilon}$$
-C     | $$ab\sum_k (\bar{y}_{..k} - \bar{y}_{...})^2$$ | $$c - 1$$ | $$MSC$$ | $$\sigma^2_{\delta} + \frac{ab\sum_k \gamma_k^2}{c - 1}$$
-AC    | $$b \sum_{ik} (\bar{y}_{i.k} - \bar{y}_{i..} - \bar{y}_{..k} + \bar{y}_{...})^2$$ | $$(a-1)(c-1)$$ | $$MSAC$$ | $$\sigma^2_{\delta} + \frac{b \sum_{ik} (\alpha \gamma)_{ik}^2}{(a - 1)(c - 1)}$$
+C     | $$ab\sum_k (\bar{y}_{..k} - \bar{y}_{...})^2$$ | $$c - 1$$ | $$MSC$$ | $$\sigma^2_{\delta} + ab\sigma^2_C$$
+AC    | $$b \sum_{ik} (\bar{y}_{i.k} - \bar{y}_{i..} - \bar{y}_{..k} + \bar{y}_{...})^2$$ | $$(a-1)(c-1)$$ | $$MSAC$$ | $$\sigma^2_{\delta} + b\sigma^2_{AC}$$
 SP Error  | $$\sum_{ijk} (y_{ijk} - \bar{y}_{i..} - \bar{y}_{..k} + \bar{y}_{...})^2$$ | $$a(b-1)(c-1)$$ | $$MSSP$$ | $$\sigma^2_{\delta}$$
 **Total** | $$\sum_{ijk} (y_{ijk} - \bar{y}_{...})^2$$ | $$abc-1$$ | | 
 
@@ -472,13 +472,13 @@ where
 
 **ANOVA Table**
 
-Source | Degrees of Fredom | E[MS]
+Source | Degrees of Freedom | E[MS]
 -------|-------------------|------
-Block  | $$b-1$$ | $$\sigma^2_{\delta} + c \sigma^2_{\epsilon} + \frac{ab \sum_j \beta^2_j}{b - 1}$$
-A      | $$a-1$$ | $$\sigma^2_{\delta} + c \sigma^2_{\epsilon} + \frac{bc \sum_i \alpha^2_i}{a - 1}$$
+Block  | $$b-1$$ | $$\sigma^2_{\delta} + c \sigma^2_{\epsilon} + ab\sigma^2_B$$
+A      | $$a-1$$ | $$\sigma^2_{\delta} + c \sigma^2_{\epsilon} + bc\sigma^2_A$$
 WP Error | $$(a-1)(b-1)$$ | $$\sigma^2_{\delta} + c \sigma^2_{\epsilon}$$
-C      | $$c-1$$ | $$\sigma^2_{\delta} + \frac{ab \sum_k \gamma^2_k}{c - 1}$$
-AC     | $$(a-1)(c-1)$$ | $$\sigma^2_{\delta} + \frac{b \sum_{ik} (\alpha \gamma)_{ik}}{(a-1)(c-1)}$$
+C      | $$c-1$$ | $$\sigma^2_{\delta} + ab\sigma^2_C$$
+AC     | $$(a-1)(c-1)$$ | $$\sigma^2_{\delta} + b\sigma^2_{AC}$$
 SP Error | $$a(b-1)(c-1)$$ | $$\sigma^2_{\delta}$$
 **Total**  | $$abc-1$$ |
 

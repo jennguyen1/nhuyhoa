@@ -176,7 +176,10 @@ There are no observations beyond a Cook's Distance of 0.5 or 1, so there is no c
 ## Assess Individual X Variables: Added Variable Plots
 Also known as partial regression plots, added-variable plots are refined residual plots that provide graphic information about the marginal importance of predictor $$X_j$$, given that other variables are already in the model. 
 
-To generate these plots, graph the residual from the model $$Y \sim X$$ (excluding $$X_j$$) vs. the residuals from the model $$X_j \sim X$$. The y-axis is the y-variable after removing the effect of the x-variables (except $$X_j$$). The x-axis is $$X_j$$ after removing the effect of the other x-variables. Plotting these two residuals against each other gives the effect of $$X_j$$ after other variables have been adjusted for, in other words, the coefficient of $$X_j$$ in the full model. 
+To generate these plots, graph the residuals from the model $$Y \sim X$$ (excluding $$X_j$$) vs. the residuals from the model $$X_j \sim X$$. The y-axis is the y-variable after removing the effect all the x-variables, except $$X_j$$. The x-axis is $$X_j$$ after removing the effect of the other x-variables. Plotting these two residuals against each other gives the effect of $$X_j$$ after other variables have been adjusted for, in other words, the coefficient of $$X_j$$ in the full model. 
+
+* Points on far left/right of x-axis are unusual points given other variables
+* Spread of y-axis helps visualize precision of the the slope estimate
 
 These plots can be used to determine whether $$X_j$$ should be included in the model and whether a transformation of $$X_j$$ is necessary.
 
@@ -227,7 +230,11 @@ There is also a function in R: `car::avPlots()` or `av.Plots()`
 car::avPlots(m1)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-13-OLS-Diagnostics/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+
+
+{% highlight text %}
+## Error in loadNamespace(name): there is no package called 'car'
+{% endhighlight %}
 
 # Solutions to Violation of Assumptions
 

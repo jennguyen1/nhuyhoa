@@ -25,7 +25,7 @@ If $$p$$ number of tests are conducted, the probability that no error is made on
 Number of Tests | P(Type 1 Error) = 1 - P(rejection)
 ----------------|-----------------------------------
     $$1$$       |   $$1 - (1 - \alpha)^1$$
-    $$2$$       |   $$1 - (1 - \alpha)^1$$
+    $$2$$       |   $$1 - (1 - \alpha)^2$$
     ...         |   ...
     $$p$$       |   $$1 - (1 - \alpha)^p$$
 
@@ -33,7 +33,10 @@ Number of Tests | P(Type 1 Error) = 1 - P(rejection)
 
 <img src="/nhuyhoa/figure/source/2016-02-02-Multiple-Comparisons/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
 
-The error rates rapidly increases. The type 1 error rate is approximately $$50$$% when $$13$$ tests are conducted. Thus it is important have a way to correct for these multiple tests to ensure that the Type 1 error rate remains low.
+The error rates rapidly increases. The family-wise or overall type 1 error rate is approximately $$50$$% when $$13$$ tests are conducted. Thus it is important have a way to correct for these multiple tests to ensure that the Type 1 error rate remains low.
+
+* Comparison-wise error rate: probability of rejecting a particular $$H_{0i}$$ in a single test when that $$H_{0i}$$ is true
+* Experiment-wise or family-wise error rate: probability of rejecting one or more of the $$H_{0i}$$ in a series of tests when all of the $$H_{0i}$$ are true
 
 # Multiple Comparisons for Continuous Data
 Note that what number and what specific comparisons should be determined in advance (prior to receiving results) to eliminate bias.
@@ -41,7 +44,7 @@ Note that what number and what specific comparisons should be determined in adva
 Also note that the assumptions of the overall test (ex: ANOVA) also apply to these tests. 
 
 ## Fischer's Least Significant Difference (LSD)
-Fischer's LSD method first performs the ANOVA $$F$$ test and proceeds with pairwise comparisons if the $$F$$ test is significant. 
+Fischer's LSD method controls the comparison-wise error rate. It first performs the ANOVA $$F$$ test and proceeds with pairwise comparisons if the $$F$$ test is significant. 
 
 For balanced groups, the groups are significantly different if $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge T_{dfE, \alpha / 2} s_{\epsilon} \sqrt{2 / n}$$. 
 
@@ -55,6 +58,8 @@ In the non-parametric Kruskal-Wallis test, reject if $$\vert \bar{R}_i - \bar{R}
 
 When comparing treatment levels to a control, Dunnett's mean comparsion method can be used. There is a special table to obtain the critical values for the $$k-1$$ pairwise tests. This test provides more power compared to a test using the full set of all pairwise comparisons.
 
+The Dunnett significant difference is $$d_{(k-1, dfE)}s_{\epsilon}\sqrt{1/n_i + 1/n_c}$$
+
 ## Bonferroni Correction
 
 Say there are $$r$$ tests (don't have to compare all groups). Let $$A^c$$ be a type I error event. Then, <br>
@@ -66,7 +71,7 @@ $$\alpha = FWER = P(reject any H_0 | H_0)$$
 
 by setting $$P(A^c_i) = \alpha / r$$.
 
-So Bonferroni's method for correcting for multiple tests states that if an overall type I error rate of $$\alpha$$ is desired, set 
+So Bonferroni's method for correcting for multiple tests states that if a family-wise type I error rate of $$\alpha$$ is desired, set 
 
 $$\alpha_i = \alpha / r$$ 
 
@@ -76,21 +81,23 @@ The bonferroni p-value is
 
 $$p_{bonf} = min(n * p, 1)$$
 
-Using bonferroni's correction, it is guaranteed an overall type 1 error rate of $$0.05$$. Unfortunately, the bonferroni method is very conservative, in which the type 2 error rate is very high and power is very low for each individual test.
+Using bonferroni's correction, it is guaranteed a family-wise type 1 error rate of $$0.05$$. Unfortunately, the bonferroni method is very conservative, in which the type 2 error rate is very high and power is very low for each individual test.
 
 Note that Bonferroni's correction is valid for equal and unequal sample sizes.
 
 **Example**
 
-* Want an overall error rate of $$ \alpha = 0.05 $$ with $$20$$ tests. 
+* Want a family-wise error rate of $$ \alpha = 0.05 $$ with $$20$$ tests. 
 * For each individual test use $$ \alpha_i = 0.05 / 20 = 0.0025 $$.
-* With bonferroni correction, overall type 1 error rate is just under $$0.05$$
+* With bonferroni correction, family-wise type 1 error rate is just under $$0.05$$
 
-$$P($$overall type 1 error$$) = 1 - (1 - 0.0025)^{20} = 0.0488$$
+$$P($$family-wise type 1 error$$) = 1 - (1 - 0.0025)^{20} = 0.0488$$
 
-* Without bonferroni correction, overall type 1 error rate is $$0.64$$
+* Without bonferroni correction, family-wise type 1 error rate is $$0.64$$
 
-$$P($$overall type 1 error$$) = 1 - (1 - 0.05)^{20} = 0.64$$
+$$P($$family-wise type 1 error$$) = 1 - (1 - 0.05)^{20} = 0.64$$
+
+Bonferroni confidence intervals are simultaneous confidence intervals. Compare $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert$$ to $$t_{\alpha/(2r)} s_{\epsilon} \sqrt{1/n_i + 1/n_{i'}}$$.
 
 ## Holm-Bonferroni
 
@@ -108,7 +115,7 @@ The Holm-Bonferroni p-value is
 $$p_{H(i)} = min((r - i + 1)p_{(i)}, 1)$$
 
 ## Tukey Method
-Tukey's method is done post-ANOVA. It must be used to examine all pairwise comparisons, where each group must have equal sample sizes. With Tukey's method, the overall type 1 error is equal to $$\alpha$$.
+Tukey's method is done post-ANOVA. It must be used to examine all pairwise comparisons, where each group must have equal sample sizes. With Tukey's method, the family-wise type 1 error is equal to $$\alpha$$.
 
 Tukey's method is uses the studentized range distribution. The studentized range is defined as 
 
@@ -138,7 +145,7 @@ This method is similar to Fischer's LSD. Hayter's method first performs the ANOV
 For balanced groups, the groups are significantly different if $$\vert \bar{y}_{i.} - \bar{y}_{i'.} \vert \ge Q_{\alpha, k - 1, dfE} s_{\epsilon} \sqrt{1 / n}$$. 
 
 ## Scheffe's Method
-Scheffe's method applies to all possible contrasts (not just pairwise comparisons) and is the preferred method when many or all contrasts are of interest. A contrast is a linear function of the group means. Thus with Scheffe's test, one can measure whether a group of means is significantly different from another group of means.
+Scheffe's method applies to all possible contrasts (not just pairwise comparisons) and is the preferred method when many or all contrasts are of interest. A contrast is a linear function of the group means. Thus with Scheffe's test, one can measure whether a group of means is significantly different from another group of means. It controls the family-wise error rate.
 
 Procedure:
 
@@ -212,7 +219,7 @@ Generally one picks a cut-off q-value and reject the null hypothesis for all tes
 ## Summary
 In terms of ranking methods from most liberal to most conservative
 
-$$LSD < Dunnett < Tukey < Scheffe < Bonferroni$$
+$$LSD < Dunnett < FDR < Tukey < Bonferroni < Scheffe$$
 
 The right method depends on the application. It's best to use conservative tests when the consequences are severe. A liberal test is more appropriate when it is ok if Type 1 errors occur. When there are a large number of tests, FDR and q-values are best. 
 
