@@ -91,7 +91,7 @@ tags: Entree
    <td style="text-align:left;"> Add a ratio of 1 sugar : 1 nuoc mam </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add catfish and boil for 15ish min, remove from stew </td>
+   <td style="text-align:left;"> Add catfish and boil for 10ish min, remove from stew </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add in veggies and cook </td>

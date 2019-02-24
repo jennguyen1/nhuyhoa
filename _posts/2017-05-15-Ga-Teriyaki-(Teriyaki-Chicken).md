@@ -61,7 +61,10 @@ tags: Entree
    <td style="text-align:left;"> Debone skin-on chicken thighs and prick both sides of chicken with fork </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Marinate chicken thighs with salt and black pepper </td>
+   <td style="text-align:left;"> Salt chicken and let sit for a while to drain water </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Marinate chicken with salt and pepper </td>
   </tr>
   <tr>
    <td style="text-align:left;"> On medium high heat, cook chicken skin-side down (no oil) until crispy then flip and cook until fully cooked </td>

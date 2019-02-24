@@ -39,13 +39,13 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> tofu puffs </td>
    <td style="text-align:left;"> cilantro </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> fish tofu </td>
    <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
   </tr>
@@ -70,7 +70,7 @@ tags: Entree
    <td style="text-align:left;"> When tomatoes have softened, add 1 bowl of water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add tofu (fried if desired), soy puffs, or pork chops </td>
+   <td style="text-align:left;"> Add tofu (fried if desired), soy puffs, pork chops, or fish tofu </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add wonton soup base and nuoc mam, adjust to taste </td>

@@ -33,7 +33,7 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> pepper </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> any </td>
    <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
   </tr>

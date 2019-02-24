@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-
+![pic1]( {{"/figure/food/Canh_Khoai_Mo.JPG" | absolute_url }})
 
 
 

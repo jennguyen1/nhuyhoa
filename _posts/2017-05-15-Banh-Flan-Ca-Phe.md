@@ -82,7 +82,7 @@ tags: Dessert
    <td style="text-align:left;"> Crack and beat 8 eggs at room temperature </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir in 3-4 spoons of sugar </td>
+   <td style="text-align:left;"> Stir in 2-3 spoons of sugar </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir in 1 can of longevity sweetened condensed milk </td>

@@ -12,8 +12,8 @@ lib(data)
 
 recipe_name <- 'Ga Bourbon (Bourbon Chicken)'
 connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
-ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = "${recipe_name}"')
-instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = "${recipe_name}"')
+ingredients_query <- glue::glue('SELECT * FROM ingredients WHERE recipe = "{recipe_name}"')
+instructions_query <- glue::glue('SELECT * FROM instructions WHERE recipe = "{recipe_name}"')
 ingredients <- RSQLite::dbGetQuery(conn = connect, statement = ingredients_query)
 instructions <- RSQLite::dbGetQuery(conn = connect, statement = instructions_query)
 RSQLite::dbDisconnect(conn = connect)
@@ -26,7 +26,7 @@ display_ingredients <- ingredients %>%
 add_cols <- purrr::discard(c('other', 'meat', 'veggie', 'fruit'), ~ .x %in% colnames(display_ingredients))
 for(c in add_cols) display_ingredients[,c] <- NA
 display_ingredients <- display_ingredients %>%
-  dplyr::select(other, meat, veggie, fruit) %>% 
+  dplyr::select(other, meat, veggie, fruit) %>%
   dplyr::mutate_all(~ ifelse(is.na(.x), '', .x)) %>%
   dplyr::rename(Other = other, Meat = meat, Veggie = veggie, Fruit = fruit)
 

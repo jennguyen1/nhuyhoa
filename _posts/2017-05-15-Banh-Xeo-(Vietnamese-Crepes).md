@@ -28,39 +28,51 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> bot banh xeo </td>
+   <td style="text-align:left;"> rice flour </td>
    <td style="text-align:left;"> pork belly </td>
    <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> beer </td>
+   <td style="text-align:left;"> tapioca starch </td>
    <td style="text-align:left;"> shrimp </td>
    <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> oil </td>
+   <td style="text-align:left;"> turmeric </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> yellow onion </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;"> beer </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> bean sprouts </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> pepper </td>
+   <td style="text-align:left;"> oil </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> mint </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> nuoc mam pha </td>
+   <td style="text-align:left;"> salt </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> lettuce </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> pepper </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> nuoc mam pha </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -84,7 +96,7 @@ tags: Entree
    <td style="text-align:left;"> Lightly marinate halved shrimp and thinly sliced pork belly separately with salt, pepper, and shallots </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Make the batter: 1 bag bot banh xeo (including the tumeric add-on), 3 c water, 1 can beer, 1/3 c oil </td>
+   <td style="text-align:left;"> Make the batter in a 1:1 ratio of dry to wet: 60% rice flour, 40% tapioca starch, 1 tbsp turmeric, pinch salt; water, oil, small can beer </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add minced green onions and thinly sliced yellow onion to batter </td>
