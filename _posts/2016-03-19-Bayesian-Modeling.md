@@ -162,11 +162,11 @@ monitor(stan.mod)
 extract(stan.mod)
 {% endhighlight %}
 
-### Examples of Model Code
+**Examples of Model Code**
 
 When priors are not specified for parameters, the assumed prior is a noninformative uniform prior.
 
-#### Linear Regression
+**Linear Regression**
 
 {% highlight r %}
 # Linear Model 1: individual notation
@@ -252,7 +252,7 @@ generated quantities {
 }
 {% endhighlight %}
 
-#### Logistic Regression
+**Logistic Regression**
 
 {% highlight r %}
 # Logistic Model 1: passing in eta on the logit scale
@@ -349,7 +349,7 @@ model{
 {% endhighlight %}
 
 
-#### Poisson Regression
+**Poisson Regression**
 
 {% highlight r %}
 # Poisson Model
@@ -401,7 +401,7 @@ model {
 }
 {% endhighlight %}
 
-#### Multilevel Models
+**Multilevel Models**
 
 {% highlight r %}
 # Mutlilevel Model: varying intercept and nested effects
@@ -560,12 +560,12 @@ Examine traceplots for chains that do not seem to mix in well with others. This 
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=0):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  1956    1
-## beta[2]  1.0       0 0.2  0.7  0.9  1.0  1.1   1.3  1107    1
-## beta[3]  1.7       0 0.2  1.3  1.6  1.7  1.8   2.1  1184    1
-## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.8  1158    1
-## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2763    1
-## lp__    69.5       0 1.6 65.6 68.7 69.8 70.7  71.6  1362    1
+## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  2201    1
+## beta[2]  1.0       0 0.2  0.7  0.9  1.0  1.1   1.3  1195    1
+## beta[3]  1.7       0 0.2  1.3  1.6  1.7  1.8   2.0  1306    1
+## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.8  1239    1
+## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2619    1
+## lp__    69.5       0 1.6 65.5 68.7 69.8 70.7  71.6  1547    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 

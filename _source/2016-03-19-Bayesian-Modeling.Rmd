@@ -165,11 +165,11 @@ monitor(stan.mod)
 extract(stan.mod)
 ```
 
-### Examples of Model Code
+**Examples of Model Code**
 
 When priors are not specified for parameters, the assumed prior is a noninformative uniform prior.
 
-#### Linear Regression
+**Linear Regression**
 ```{r, eval = FALSE}
 # Linear Model 1: individual notation
 data{ 
@@ -253,7 +253,7 @@ generated quantities {
 }
 ```
 
-#### Logistic Regression
+**Logistic Regression**
 ```{r, eval = FALSE}
 # Logistic Model 1: passing in eta on the logit scale
 data {
@@ -346,7 +346,7 @@ model{
 ```
 
 
-#### Poisson Regression
+**Poisson Regression**
 ```{r, eval = FALSE}
 # Poisson Model
 data {
@@ -396,7 +396,7 @@ model {
 }
 ```
 
-#### Multilevel Models
+**Multilevel Models**
 ```{r, eval = FALSE}
 # Mutlilevel Model: varying intercept and nested effects
 data {
