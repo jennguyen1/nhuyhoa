@@ -106,6 +106,13 @@ For example rather than setting the priors to $$\beta \sim N(0, 100)$$, set them
 
 # Stan for Fitting Bayesian Models
 
+## rstanarm
+
+Bayesian modeling can be done in R with the same modeling syntax as R with the package `rstanarm`. See the [tutorial][rstanarm_link]{:target = "_blank"}
+tutorial for more information. 
+
+## stan
+
 In R fit models using Stan through the function `stan()`. This function takes a few arguments:
 
 * `model_code`: this is a string of the model code. Examples of model codes are listed below
@@ -155,11 +162,11 @@ monitor(stan.mod)
 extract(stan.mod)
 {% endhighlight %}
 
-## Examples of Model Code
+### Examples of Model Code
 
 When priors are not specified for parameters, the assumed prior is a noninformative uniform prior.
 
-### Linear Regression
+#### Linear Regression
 
 {% highlight r %}
 # Linear Model 1: individual notation
@@ -245,7 +252,7 @@ generated quantities {
 }
 {% endhighlight %}
 
-### Logistic Regression
+#### Logistic Regression
 
 {% highlight r %}
 # Logistic Model 1: passing in eta on the logit scale
@@ -342,7 +349,7 @@ model{
 {% endhighlight %}
 
 
-### Poisson Regression
+#### Poisson Regression
 
 {% highlight r %}
 # Poisson Model
@@ -394,7 +401,7 @@ model {
 }
 {% endhighlight %}
 
-### Multilevel Models
+#### Multilevel Models
 
 {% highlight r %}
 # Mutlilevel Model: varying intercept and nested effects
@@ -553,12 +560,12 @@ Examine traceplots for chains that do not seem to mix in well with others. This 
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=0):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  2239    1
-## beta[2]  1.0       0 0.2  0.7  0.9  1.0  1.1   1.3  1232    1
-## beta[3]  1.7       0 0.2  1.3  1.6  1.7  1.8   2.1  1286    1
-## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.8  1231    1
-## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2697    1
-## lp__    69.6       0 1.6 65.6 68.8 69.9 70.7  71.6  1497    1
+## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  2090    1
+## beta[2]  1.0       0 0.2  0.7  0.9  1.0  1.1   1.3  1084    1
+## beta[3]  1.7       0 0.2  1.4  1.6  1.7  1.8   2.1  1196    1
+## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.9  1107    1
+## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2614    1
+## lp__    69.5       0 1.6 65.5 68.7 69.8 70.6  71.6  1658    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
@@ -584,3 +591,5 @@ Compare models with
 * Simulate model and generate 95% credible regions for $$\hat{y}$$, compare to $$y_{obs}$$
 * Deviance statistics such as AIC, DIC, WAIC (smaller is better)
 
+
+[rstanarm_link]: https://mc-stan.org/users/documentation/case-studies/tutorial_rstanarm.html

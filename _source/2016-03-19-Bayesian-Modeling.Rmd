@@ -111,6 +111,13 @@ For example rather than setting the priors to $$\beta \sim N(0, 100)$$, set them
 
 # Stan for Fitting Bayesian Models
 
+## rstanarm
+
+Bayesian modeling can be done in R with the same modeling syntax as R with the package `rstanarm`. See the [tutorial][rstanarm_link]{:target = "_blank"}
+tutorial for more information. 
+
+## stan
+
 In R fit models using Stan through the function `stan()`. This function takes a few arguments:
 
 * `model_code`: this is a string of the model code. Examples of model codes are listed below
@@ -158,11 +165,11 @@ monitor(stan.mod)
 extract(stan.mod)
 ```
 
-## Examples of Model Code
+### Examples of Model Code
 
 When priors are not specified for parameters, the assumed prior is a noninformative uniform prior.
 
-### Linear Regression
+#### Linear Regression
 ```{r, eval = FALSE}
 # Linear Model 1: individual notation
 data{ 
@@ -246,7 +253,7 @@ generated quantities {
 }
 ```
 
-### Logistic Regression
+#### Logistic Regression
 ```{r, eval = FALSE}
 # Logistic Model 1: passing in eta on the logit scale
 data {
@@ -339,7 +346,7 @@ model{
 ```
 
 
-### Poisson Regression
+#### Poisson Regression
 ```{r, eval = FALSE}
 # Poisson Model
 data {
@@ -389,7 +396,7 @@ model {
 }
 ```
 
-### Multilevel Models
+#### Multilevel Models
 ```{r, eval = FALSE}
 # Mutlilevel Model: varying intercept and nested effects
 data {
@@ -588,3 +595,5 @@ Compare models with
 * Simulate model and generate 95% credible regions for $$\hat{y}$$, compare to $$y_{obs}$$
 * Deviance statistics such as AIC, DIC, WAIC (smaller is better)
 
+
+[rstanarm_link]: https://mc-stan.org/users/documentation/case-studies/tutorial_rstanarm.html

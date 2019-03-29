@@ -395,13 +395,18 @@ Use the following estimates to obtain confidence intervals for the estimates.
 
 ## Prediction
 
-Obtain prediction estimates and its confidence intervals (from quantiles) by using simulation. How this is done depends on what is being predicted.
+Obtain prediction estimates and its confidence intervals (from quantiles) by using simulation. There are three sources of uncertainty that need to be accounted for:
 
-To predict a data point for a given group, use the estimated group coefficient to calculate the fitted value for $$y$$. Add an error term (specified by $$\sigma_y$$) to the equation. The variance for these predictions are $$\sigma^2_y$$.
+* residual variance
+* uncertainty of the fixed coefficients
+* uncertainty of the variance parameters of the grouping factors
 
-To predict a data point for a new group, conduct a two-step simulation. First, simulate the group estimate using its predictors and the error term $$\sigma^2_a$$. Then use these estimates to predict $$y$$ along with its own error terms $$\sigma^2_y$$. The variance of these predictions are $$\sigma^2_a + \sigma^2_y$$. The ability to obtain predictions for new groups is a great advantage for multilevel models.
+Predictions can be computed via a simulation procedure. 
 
-The simulation procedure detailed above is done on a Bayesian approach. Simulations may also be done via a bootstrapping approach. 
+Using a Bayesian approach: fit a Bayesian model in which the estimates will have posterior distributions. With many iterations, compute the fitted value for $$y$$ by sampling from the posterior distributions of the estimates. Be sure to include all sources of uncertainty listed above. With the results of the simulation, compute the credible intervals of interest. 
+
+Using a bootstrap approach: with many iterations, bootstrap sample from the original population and fit the model. With the results of the simulation, generate predictions and compute the confidence interval. 
+Predictions can be done on a given group (obtain the group coefficient already fitted from the model) or a new group (predict a new coefficient by sampling from the grouping population). The ability to obtain predictions for new groups is a great advantage for multilevel models.
 
 Simulations are useful to obtain predictions, standard error estimates, etc.
 
