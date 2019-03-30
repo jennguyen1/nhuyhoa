@@ -56,12 +56,6 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> milk </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> chicken broth </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -106,7 +100,7 @@ tags: Entree
    <td style="text-align:left;"> Stir in carrots, potatoes, yam, sweet potato </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add ratio of 1 milk : 3 chicken broth : 3 water to just cover chicken </td>
+   <td style="text-align:left;"> Add a ratio of 1 chicken broth : 1 water to just cover chicken </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Simmer on med low for at least 30 min, adjust to taste </td>

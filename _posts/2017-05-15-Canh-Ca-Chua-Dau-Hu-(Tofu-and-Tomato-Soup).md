@@ -28,7 +28,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> wonton soup base </td>
    <td style="text-align:left;"> tofu </td>
-   <td style="text-align:left;"> yellow onion </td>
+   <td style="text-align:left;"> onion </td>
    <td style="text-align:left;"> tomato </td>
   </tr>
   <tr>

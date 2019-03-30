@@ -42,7 +42,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> oyster sauce </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> yellow onion </td>
+   <td style="text-align:left;"> onion </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>

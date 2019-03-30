@@ -28,13 +28,13 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> brown sugar </td>
    <td style="text-align:left;"> chicken thigh </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> onion </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
@@ -85,22 +85,16 @@ tags: Entree
    <td style="text-align:left;"> Make bourbon sauce: ratio of 4 brown sugar : 4 sugar : 4 soy sauce : 1 hoisin : 1 bourbon : 0.5 five spice : 16 water with some cornstarch to thicken </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Debone skin-on chicken thighs, may cook whole or cut into chunks </td>
+   <td style="text-align:left;"> Debone skin-on chicken thighs, slice thinly </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Marinate chicken with ratio of 4 sugar : 4 soy sauce : 1 hoisin : 1 bourbon with a pinch of five spice </td>
+   <td style="text-align:left;"> Marinate chicken with onions or shallots and some of the bourbon sauce </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> On medium high heat, cook chicken skin-side down (no oil) until crispy then flip and cook until fully cooked </td>
+   <td style="text-align:left;"> Put chicken slices on skewers </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Remove chicken and excess oil </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add bourbon sauce and simmer on medium until thick </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add chicken and coat with sauce </td>
+   <td style="text-align:left;"> Grill under broiler, occasionally coating both sides with sauce </td>
   </tr>
 </tbody>
 </table>
