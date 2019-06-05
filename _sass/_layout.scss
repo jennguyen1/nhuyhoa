@@ -41,7 +41,7 @@
         color: $a-link-color;
         line-height: $base-line-height;
         margin-left: 15px;
-        
+
       &:hover {
         color: $text-color;
       }
@@ -137,25 +137,25 @@
 .tbl-post{
     width:800px;
     font-size: $base-font-size;
-    
+
     .recipe-link:before{
-        content: "\f006";
+        content: "\f2e7";
         font-family: FontAwesome;
         padding-right: 1em;
     }
-    
+
     .code-link:before{
-        content: "\f121";
+        content: "\f120";
         font-family: FontAwesome;
         padding-right: 1em;
     }
-    
+
     .stat-link:before{
         content: "\f080";
         font-family: FontAwesome;
         padding-right: 1em;
-    }    
-    
+    }
+
 }
 
 
@@ -200,7 +200,7 @@
     margin-top: $spacing-unit;
     margin-bottom: $spacing-unit;
     height:100%;
-    
+
     h1, h2, h3, h4 {
         padding-top: 50px;
     }
@@ -216,53 +216,53 @@
     h3 {
         font-size: 22px;
     }
-    
+
     h4 {
         font-size: 18px;
         padding-top:6px;
         padding-bottom:3px;
     }
-    
+
     table {
         padding-bottom: 5px;
         font-size: 14px;
         width: 98%;
     }
-    
+
     th {
         text-align: left;
     }
-    
-    
+
+
     .presenttab {
         border-collapse:collapse;
         margin:auto;
         border: 1px solid darken($green-color, 35%);
         table-layout: fixed;
-        
+
         th{
           background-color: darken($green-color, 35%) ;
           border-bottom:1px solid darken($green-color, 35%);
           padding: 5px;
         }
-  
+
         td{
           border:1px solid darken($green-color, 35%);
           padding: 5px;
-          font-size: 14px; 
+          font-size: 14px;
         }
     }
-    
+
     .presenttabnoh {
         border-collapse:collapse;
         margin:auto;
         border: none;
         font-size: $base-font-size;
-        
+
         th{
           display: none;
         }
-    
+
         td{
           border:none;
           padding: 5px;
@@ -274,7 +274,7 @@
         font-size: $code-font-size;
         border: $code-border;
         border-radius: $code-border-radius;
-        
+
         width: 100%;
         overflow-x: auto;
     }
