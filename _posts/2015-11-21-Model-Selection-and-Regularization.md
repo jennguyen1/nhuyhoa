@@ -88,7 +88,7 @@ The term $$\lambda \Sigma_j \beta^2_j$$ is a shrinkage penalty; it is small when
 **Example:**
 
 {% highlight r %}
-sim_ridge_cv <- cv.glmnet(X, Y, alpha = 0)
+sim_ridge_cv <- cv.glmnet(X, Y, standardize = TRUE, alpha = 0)
 
 # MSE vs log(lambda)
 plot(sim_ridge_cv)
@@ -98,32 +98,32 @@ plot(sim_ridge_cv)
 
 {% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
-m <- glmnet(X, Y, alpha = 0, lambda = sim_ridge_cv$lambda.min)
-m$beta
+coef(sim_ridge_cv, s = "lambda.min")
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## 10 x 1 sparse Matrix of class "dgCMatrix"
-##              s0
-## V1   1.80990964
-## V2  -3.67613266
-## V3  -0.05713566
-## V4   0.02331129
-## V5  -0.00649756
-## V6  -0.03693205
-## V7   0.11064738
-## V8   0.05256531
-## V9   0.03613080
-## V10 -0.05908619
+## 11 x 1 sparse Matrix of class "dgCMatrix"
+##                        1
+## (Intercept)  3.031468826
+## V1           1.809885228
+## V2          -3.676121911
+## V3          -0.057138020
+## V4           0.023319148
+## V5          -0.006509858
+## V6          -0.036943200
+## V7           0.110662996
+## V8           0.052571059
+## V9           0.036132588
+## V10         -0.059091233
 {% endhighlight %}
 
 
 
 {% highlight r %}
 # coefficient plot
-plot(glmnet(X,Y,alpha=0),xvar="lambda",label=T)
+plot(glmnet(X, Y, standardize = TRUE, alpha = 0), xvar = "lambda", label = TRUE)
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
@@ -143,7 +143,7 @@ The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tu
 
 **Important Notes:**
 
-* Ridge regression uses the $$l_1$$ norm, otherwise defined as $$\Sigma_{j = 1}^p \vert \beta_j \vert$$ (manhattan distance)
+* Lasso regression uses the $$l_1$$ norm, otherwise defined as $$\Sigma_{j = 1}^p \vert \beta_j \vert$$ (manhattan distance)
 * Shrink the $$\beta$$ coefficients, not the intercept parameter
 * Lasso regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \vert \beta_j \vert$$ term), so standardize the covariates prior to applying lasso regression (good to standardize y responses too)
 
@@ -160,7 +160,7 @@ The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tu
 **Example:**
 
 {% highlight r %}
-sim_lasso_cv <- cv.glmnet(X, Y, alpha = 1)
+sim_lasso_cv <- cv.glmnet(X, Y, standardize = TRUE, alpha = 1)
 
 # MSE vs log(lambda)
 plot(sim_lasso_cv)
@@ -170,32 +170,32 @@ plot(sim_lasso_cv)
 
 {% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
-m <- glmnet(X, Y, alpha = 1, lambda = sim_lasso_cv$lambda.min)
-m$beta
+coef(sim_lasso_cv, s = "lambda.min")
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## 10 x 1 sparse Matrix of class "dgCMatrix"
-##               s0
-## V1   1.967695383
-## V2  -4.009847561
-## V3   .          
-## V4   .          
-## V5   .          
-## V6   .          
-## V7   0.050922575
-## V8   0.001028827
-## V9   .          
-## V10  .
+## 11 x 1 sparse Matrix of class "dgCMatrix"
+##                        1
+## (Intercept)  2.984089396
+## V1           1.967741702
+## V2          -4.009854441
+## V3           .          
+## V4           .          
+## V5           .          
+## V6           .          
+## V7           0.050892889
+## V8           0.001025787
+## V9           .          
+## V10          .
 {% endhighlight %}
 
 
 
 {% highlight r %}
 # coefficient plot
-plot(glmnet(X,Y,alpha=1),xvar="lambda",label=T)
+plot(glmnet(X, Y, standardize = TRUE, alpha = 1), xvar = "lambda", label = TRUE)
 {% endhighlight %}
 
 <img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-4-2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />

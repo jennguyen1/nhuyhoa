@@ -97,17 +97,16 @@ The term $$\lambda \Sigma_j \beta^2_j$$ is a shrinkage penalty; it is small when
 
 **Example:**
 ```{r}
-sim_ridge_cv <- cv.glmnet(X, Y, alpha = 0)
+sim_ridge_cv <- cv.glmnet(X, Y, standardize = TRUE, alpha = 0)
 
 # MSE vs log(lambda)
 plot(sim_ridge_cv)
 
 # coefficients for lambda with the smallest cross-validated MSE
-m <- glmnet(X, Y, alpha = 0, lambda = sim_ridge_cv$lambda.min)
-m$beta
+coef(sim_ridge_cv, s = "lambda.min")
 
 # coefficient plot
-plot(glmnet(X,Y,alpha=0),xvar="lambda",label=T)
+plot(glmnet(X, Y, standardize = TRUE, alpha = 0), xvar = "lambda", label = TRUE)
 ```
 Notice how as $$\lambda$$ increases, the coefficients are shrunk towards 0 (but not necessarily equal to 0).
 
@@ -125,7 +124,7 @@ The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tu
 
 **Important Notes:**
 
-* Ridge regression uses the $$l_1$$ norm, otherwise defined as $$\Sigma_{j = 1}^p \vert \beta_j \vert$$ (manhattan distance)
+* Lasso regression uses the $$l_1$$ norm, otherwise defined as $$\Sigma_{j = 1}^p \vert \beta_j \vert$$ (manhattan distance)
 * Shrink the $$\beta$$ coefficients, not the intercept parameter
 * Lasso regression coefficients are sensitive to scale (the $$\lambda \Sigma_j \vert \beta_j \vert$$ term), so standardize the covariates prior to applying lasso regression (good to standardize y responses too)
 
@@ -141,17 +140,16 @@ The term $$\lambda \Sigma_j \vert \beta_j \vert$$ is a shrinkage penalty. The tu
 
 **Example:**
 ```{r}
-sim_lasso_cv <- cv.glmnet(X, Y, alpha = 1)
+sim_lasso_cv <- cv.glmnet(X, Y, standardize = TRUE, alpha = 1)
 
 # MSE vs log(lambda)
 plot(sim_lasso_cv)
 
 # coefficients for lambda with the smallest cross-validated MSE
-m <- glmnet(X, Y, alpha = 1, lambda = sim_lasso_cv$lambda.min)
-m$beta
+coef(sim_lasso_cv, s = "lambda.min")
 
 # coefficient plot
-plot(glmnet(X,Y,alpha=1),xvar="lambda",label=T)
+plot(glmnet(X, Y, standardize = TRUE, alpha = 1), xvar = "lambda", label = TRUE)
 ```
 Notice how as $$\lambda$$ increases, the coefficients are shrunk directly towards 0.
 
