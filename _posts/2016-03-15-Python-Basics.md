@@ -48,7 +48,7 @@ These modules provide functions such as `math.abs()` `math.exp()`, `math.pow()`,
 
 For more information on string functions see [the post on regular expressions][regex_post]{:target = "_blank"}.
 
-For printing, strings may be formatted: `"{} is {} years old".format(name, age)`.
+For printing, strings may be formatted: `"{} is {} years old".format(name, age)`. With python 3.6 and greater, it can be simplified: `f'{name} is {age} years old'`
 
 A number of variables may be concatenated to a template using a dictionary
 
@@ -62,6 +62,9 @@ template.format_map(dt)
 # using variables (apple, banana, orange) in the local environment
 template.format_map(locals())
 template.format(**locals()) # unpack the dictionary
+
+# simplified version with python 3.6 or greater
+f'blah blah {apple} blah blah {banana} blah {orange}'
 {% endhighlight %}
 
 ## Lists
