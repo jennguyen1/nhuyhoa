@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Smoothie"
+title: "Eggplant Stir Fry"
 date: "May 15, 2017"
 categories: Recipes
-tags: Dessert
+tags: Entree
 ---
 
 
@@ -26,40 +26,28 @@ tags: Dessert
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> vanilla honey yogurt </td>
+   <td style="text-align:left;"> soy sauce </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> eggplant </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> banana </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> orange juice </td>
+   <td style="text-align:left;"> fish sauce </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> mango </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> apple juice </td>
+   <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> pineapple </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> sesame oil </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> green onion </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> strawberry </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> peach </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> mandarin orange </td>
   </tr>
 </tbody>
 </table>
@@ -76,7 +64,16 @@ tags: Dessert
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Blend banana and fruit with yogurt and juice </td>
+   <td style="text-align:left;"> Golden minced shallot and garlic </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Stir in sliced eggplant </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add mixture of 1 soy sauce : 1 fish sauce, some sugar and some sesame oil </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add chopped green onion in last few minutes </td>
   </tr>
 </tbody>
 </table>

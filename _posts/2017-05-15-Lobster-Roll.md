@@ -7,6 +7,27 @@ tags: Entree
 ---
 
 
+{% highlight text %}
+## Error: Column `n` must be length 0 (the number of rows) or one, not 2
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in is.data.frame(x): object 'display_ingredients' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(expr, envir, enclos): object 'add_cols' not found
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in eval(lhs, parent, parent): object 'display_ingredients' not found
+{% endhighlight %}
 
 
 
@@ -15,48 +36,10 @@ tags: Entree
 
 #### Ingredients
 
-<table class = "presenttab">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Other </th>
-   <th style="text-align:left;"> Meat </th>
-   <th style="text-align:left;"> Veggie </th>
-   <th style="text-align:left;"> Fruit </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> japanese mayo </td>
-   <td style="text-align:left;"> lobster tail </td>
-   <td style="text-align:left;"> green onions </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> lettuce </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> pepper </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> butter </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hotdog buns </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-</tbody>
-</table>
+
+{% highlight text %}
+## Error in eval(lhs, parent, parent): object 'display_ingredients' not found
+{% endhighlight %}
 
 <br>
 
@@ -70,28 +53,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Mince green onions &amp; lettuce </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add lobster tails to pot of boiling hot water with salt added and stir occasionally </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Boil for 10-15 min until the shell is bright red </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Once lobster has cooled, cut the tail down the middle to remove lobster meat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mix lobster meat, green onions, lettuce, japanese mayo, salt &amp; pepper </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Refridgerate mixture </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brush buns with butter and toast until golden brown </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add lobster mix to buns (1.5-2 lobsters = 1 bun) </td>
+
   </tr>
 </tbody>
 </table>

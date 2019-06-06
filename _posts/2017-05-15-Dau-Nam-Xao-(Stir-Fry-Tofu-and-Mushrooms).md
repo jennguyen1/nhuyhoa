@@ -32,25 +32,25 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> sugar </td>
+   <td style="text-align:left;"> soy sauce </td>
    <td style="text-align:left;"> king mushroom </td>
    <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> msg </td>
+   <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;"> oyster mushroom </td>
    <td style="text-align:left;"> green onions </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;"> shitake mushroom </td>
    <td style="text-align:left;"> chives </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> msg </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> bean sprouts </td>
    <td style="text-align:left;">  </td>
@@ -79,7 +79,7 @@ tags: Entree
    <td style="text-align:left;"> Stir in mushrooms </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add diluted oyster sauce with sugar and msg, adjust to taste </td>
+   <td style="text-align:left;"> Add diluted oyster sauce with sugar and msg or mix of soy sauce, fish sauce, and sugar; adjust to taste </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add green onions, chives, bean sprouts in last few minutes </td>
