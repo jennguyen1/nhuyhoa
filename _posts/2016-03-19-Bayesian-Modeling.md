@@ -11,6 +11,8 @@ tags: Regression
 
 
 
+Bayesian regression allows users to incorporate prior information and gives better uncertainty estimates over REML random effects modeling.
+
 # Bayesian Regression
 
 Recall that Bayes Theorem:
@@ -68,10 +70,13 @@ In general, priors on all parameters and hyperparameters in the model.
 
 When setting the parameters of prior distributions, take care to consider the scale of the data and set parameters to be in the appropriate range. 
 
-## Noninformative Uniform Priors
-Noninformative priors are intended to allow Bayesian inference for parameters about which not much is known beyond the data included in the analysis at hand. These noninformative uniform priors cover a wide range of values and places no structure on the parameters. For example, in classical regression can be seen as having the following priors $$\beta \sim Unif(-\infty, \infty)$$ and $$\sigma^2 \sim Unif(0, \infty)$$. 
+## Weakly Informative Priors
 
-For a prior distribution to be noninformative, the range of uncertainty should be wider than the range of reasonable values of the parameters. For example, a Gaussian prior with large variances may be used for the $$\beta$$ coefficients, since these values are tend to be biased towards $$0$$. Another option could be to use an gamma distribution for values biased towards $$0$$ but are strictly negative. 
+Noninformative uniform priors cover a wide range of values and places no structure on the parameters. For example, in classical regression can be seen as having the following priors $$\beta \sim Unif(-\infty, \infty)$$ and $$\sigma^2 \sim Unif(0, \infty)$$. However, noninformative priors are  unrealistic.
+
+Weakly informative priors provide moderate regularization and helps stabilize computation. These priors avoid placing unwarranted prior weight on nonsensical parameter values and provide some regularization to avoid overfitting, but also do allow for extreme values if warranted by the data. 
+
+For example, a Gaussian prior with large variances may be used for the $$\beta$$ coefficients, since these values are tend to be biased towards $$0$$. Another option could be to use an gamma distribution for values biased towards $$0$$ but are strictly negative. 
 
 Below are potential options for priors and good scenarios to use them:
 
@@ -80,7 +85,7 @@ Below are potential options for priors and good scenarios to use them:
 * Beta: values $$[0, 1]$$, parameters allow for flexibility
 * Wishart: distribution over all positive semi-definite matrices, like covariance matrices
 
-Models should be assessed after fitting with uninformative priors. If the posterior distribution does not make sense, this implies that additional prior information should be included from external knowledge.
+Variables should be standardized prior to fitting to stabilize computation. Models should be assessed after fitting. If the posterior distribution does not make sense, this implies that additional prior information should be included from external knowledge.
 
 ## Empirical Bayes
 
@@ -108,8 +113,49 @@ For example rather than setting the priors to $$\beta \sim N(0, 100)$$, set them
 
 ## rstanarm
 
-Bayesian modeling can be done in R with the same modeling syntax as R with the package `rstanarm`. See the [tutorial][rstanarm_link]{:target = "_blank"}
-tutorial for more information. 
+Bayesian modeling can be done in R with the same modeling syntax as R with the package `rstanarm`. 
+
+
+{% highlight r %}
+library(rstanarm)
+
+# fit model
+mod <- stan_lmer(y ~ x + (1 | grp), data = mod, iter, chain, warmup, refresh)
+
+# model summary
+prior_summary(mod)
+summary(mod, pars, regex_pars, probs, digits)
+
+# plot model; multiple plotting options available
+plot(mod)
+
+# posterior sample; can do additional estimates 
+as.data.frame(mod) 
+
+# posterior credible intervals
+posterior_interval(mod, pars, prob)
+
+# prediction
+posterior_predict(mod)
+
+# posterior predictive checks; multiple plotting options available
+pp_check(mod)
+
+# compare models
+compare_models(m1, m2, m3)
+
+# model fit from stan
+mod_stan <- mod$stanfit
+
+# assess convergence: converging obs with each chain
+purrr::map(1:nchains, get_sampler_params(mod_stan, inc_warmup = FALSE), ~ .x[,'divergent__'])
+{% endhighlight %}
+
+The following links have tutorials to the package
+
+* [LMM tutorial][rstanarm_link]{:target = "_blank"}
+* [rstanarm vignettes][rstanarm_vignettes]{:target = "_blank"}
+* [divergence][divergence_link]{:target = "_blank"}
 
 ## stan
 
@@ -549,7 +595,7 @@ The gist of the algorithm is this. Several Markov chains are run in parallel. Ea
 Obtain diagnostics of the MCMC convergence from the stan models.
 
 
-<img src="/nhuyhoa/figure/source/2016-03-19-Bayesian-Modeling/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-03-19-Bayesian-Modeling/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
 
 The plot above indicates that the four chains have converged well despite starting from different random points. 
 
@@ -560,12 +606,12 @@ Examine traceplots for chains that do not seem to mix in well with others. This 
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=0):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  2201    1
-## beta[2]  1.0       0 0.2  0.7  0.9  1.0  1.1   1.3  1195    1
-## beta[3]  1.7       0 0.2  1.3  1.6  1.7  1.8   2.0  1306    1
-## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.8  1239    1
-## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2619    1
-## lp__    69.5       0 1.6 65.5 68.7 69.8 70.7  71.6  1547    1
+## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  2192    1
+## beta[2]  1.0       0 0.1  0.7  0.9  1.0  1.1   1.3  1333    1
+## beta[3]  1.7       0 0.2  1.3  1.6  1.7  1.8   2.0  1426    1
+## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.8  1357    1
+## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2770    1
+## lp__    69.6       0 1.6 65.7 68.7 69.9 70.8  71.6  1438    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
@@ -593,3 +639,5 @@ Compare models with
 
 
 [rstanarm_link]: https://mc-stan.org/users/documentation/case-studies/tutorial_rstanarm.html
+[rstanarm_vignettes]: http://mc-stan.org/rstanarm/articles/
+[divergence_link]: https://mc-stan.org/users/documentation/case-studies/divergences_and_bias.html
