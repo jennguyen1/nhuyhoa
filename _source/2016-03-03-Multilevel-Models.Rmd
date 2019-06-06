@@ -321,25 +321,25 @@ $$y_i | t = 0 \sim N(x, \sigma^2_0)$$
 
 $$y_i | t = 1 \sim N(x, \sigma^2_1)$$
 
-```{r}
+```{r, eval = FALSE}
 lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t))
 ```
 
 **Repeated Measures, compound symmetry:**
-```{r}
+```{r, eval = FALSE}
 lme(y ~ x, random = ~ 1 | group, correlation = corCompSymm(form = ~ 1 | group))
 ```
 
 
 **Repeated Measures, first order autoregressive AR(1):**
 
-```{r}
+```{r, eval = FALSE}
 lme(y ~ x, random = ~ 1 | group, correlation = corAR1())
 ```
 
 **Repeated Measures, heterogeneous AR(1):**
 
-```{r}
+```{r, eval = FALSE}
 lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t), correlation = corAR1())
 ```
 
@@ -402,7 +402,7 @@ ranef(mod)
 se.ranef(mod)
 
 # confidence intervals
-confint(mod, method = 'boot')
+confint(mod, method = 'boot', oldNames = FALSE)
 ```
 
 Use the following estimates to obtain confidence intervals for the estimates. 

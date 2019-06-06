@@ -283,22 +283,10 @@ $$y_i | t = 1 \sim N(x, \sigma^2_1)$$
 lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t))
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in eval(predvars, data, env): object 'y' not found
-{% endhighlight %}
-
 **Repeated Measures, compound symmetry:**
 
 {% highlight r %}
 lme(y ~ x, random = ~ 1 | group, correlation = corCompSymm(form = ~ 1 | group))
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(predvars, data, env): object 'group' not found
 {% endhighlight %}
 
 
@@ -309,23 +297,11 @@ lme(y ~ x, random = ~ 1 | group, correlation = corCompSymm(form = ~ 1 | group))
 lme(y ~ x, random = ~ 1 | group, correlation = corAR1())
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in eval(predvars, data, env): object 'group' not found
-{% endhighlight %}
-
 **Repeated Measures, heterogeneous AR(1):**
 
 
 {% highlight r %}
 lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t), correlation = corAR1())
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(predvars, data, env): object 'group' not found
 {% endhighlight %}
 
 
@@ -388,7 +364,7 @@ ranef(mod)
 se.ranef(mod)
 
 # confidence intervals
-confint(mod, method = 'boot')
+confint(mod, method = 'boot', oldNames = FALSE)
 {% endhighlight %}
 
 Use the following estimates to obtain confidence intervals for the estimates. 
