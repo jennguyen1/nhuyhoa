@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Model Selection & Regularization"
-date: "November 21, 2015"
+date: "March 14, 2016"
 categories: Statistics
 tags: Regression
 ---
@@ -94,7 +94,7 @@ sim_ridge_cv <- cv.glmnet(X, Y, standardize = TRUE, alpha = 0)
 plot(sim_ridge_cv)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-03-14-Model-Selection-and-Regularization/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 {% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
@@ -126,7 +126,7 @@ coef(sim_ridge_cv, s = "lambda.min")
 plot(glmnet(X, Y, standardize = TRUE, alpha = 0), xvar = "lambda", label = TRUE)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-03-14-Model-Selection-and-Regularization/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 Notice how as $$\lambda$$ increases, the coefficients are shrunk towards 0 (but not necessarily equal to 0).
 
 ## Lasso Regression
@@ -166,7 +166,7 @@ sim_lasso_cv <- cv.glmnet(X, Y, standardize = TRUE, alpha = 1)
 plot(sim_lasso_cv)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-03-14-Model-Selection-and-Regularization/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 {% highlight r %}
 # coefficients for lambda with the smallest cross-validated MSE
@@ -198,7 +198,7 @@ coef(sim_lasso_cv, s = "lambda.min")
 plot(glmnet(X, Y, standardize = TRUE, alpha = 1), xvar = "lambda", label = TRUE)
 {% endhighlight %}
 
-<img src="/nhuyhoa/figure/source/2015-11-21-Model-Selection-and-Regularization/unnamed-chunk-4-2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="/nhuyhoa/figure/source/2016-03-14-Model-Selection-and-Regularization/unnamed-chunk-4-2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 Notice how as $$\lambda$$ increases, the coefficients are shrunk directly towards 0.
 
 ## Elastic Net

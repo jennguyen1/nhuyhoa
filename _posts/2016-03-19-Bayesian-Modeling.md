@@ -122,9 +122,16 @@ library(rstanarm)
 # fit model
 mod <- stan_lmer(y ~ x + (1 | grp), data = mod, iter, chain, warmup, refresh)
 
-# model summary
+# priors
+priors()
 prior_summary(mod)
+
+# model summary
+posterior_vs_prior(mod)
 summary(mod, pars, regex_pars, probs, digits)
+
+# can be used with broom
+broom::tidy(mod, parameters, intervals, prob)
 
 # plot model; multiple plotting options available
 plot(mod)
@@ -132,11 +139,13 @@ plot(mod)
 # posterior sample; can do additional estimates 
 as.data.frame(mod) 
 
-# posterior credible intervals
+# posterior credible intervals; similar outputs are in summary
 posterior_interval(mod, pars, prob)
 
-# prediction
-posterior_predict(mod)
+# prediction & intervals
+posterior_predict(mod, seed = 1)
+prediction_interval(mod, seed = 1)
+prediction_interval(posterior_predict(mod, seed = 1))
 
 # posterior predictive checks; multiple plotting options available
 pp_check(mod)
@@ -153,6 +162,7 @@ purrr::map(1:nchains, get_sampler_params(mod_stan, inc_warmup = FALSE), ~ .x[,'d
 
 The following links have tutorials to the package
 
+* [rstanarm paper][rstanarm_paper]{:target = "_blank}
 * [LMM tutorial][rstanarm_link]{:target = "_blank"}
 * [rstanarm vignettes][rstanarm_vignettes]{:target = "_blank"}
 * [divergence][divergence_link]{:target = "_blank"}
@@ -606,12 +616,12 @@ Examine traceplots for chains that do not seem to mix in well with others. This 
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=0):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  2192    1
-## beta[2]  1.0       0 0.1  0.7  0.9  1.0  1.1   1.3  1333    1
-## beta[3]  1.7       0 0.2  1.3  1.6  1.7  1.8   2.0  1426    1
-## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.8  1357    1
-## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2770    1
-## lp__    69.6       0 1.6 65.7 68.7 69.9 70.8  71.6  1438    1
+## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  2027    1
+## beta[2]  1.0       0 0.2  0.7  0.9  1.0  1.1   1.3  1074    1
+## beta[3]  1.7       0 0.2  1.3  1.6  1.7  1.8   2.1  1135    1
+## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.8  1082    1
+## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2699    1
+## lp__    69.5       0 1.6 65.5 68.6 69.8 70.7  71.7  1433    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
@@ -638,6 +648,7 @@ Compare models with
 * Deviance statistics such as AIC, DIC, WAIC (smaller is better)
 
 
+[rstanarm_paper]: http://www.tqmp.org/RegularArticles/vol14-2/p099/p099.pdf
 [rstanarm_link]: https://mc-stan.org/users/documentation/case-studies/tutorial_rstanarm.html
 [rstanarm_vignettes]: http://mc-stan.org/rstanarm/articles/
 [divergence_link]: https://mc-stan.org/users/documentation/case-studies/divergences_and_bias.html

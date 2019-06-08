@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Model Selection & Regularization"
-date: "November 21, 2015"
+date: "March 14, 2016"
 categories: Statistics
 tags: Regression
 ---
