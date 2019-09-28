@@ -70,7 +70,7 @@ tags: Entree
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> msg </td>
+   <td style="text-align:left;"> wonton soup base </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> bean sprouts </td>
    <td style="text-align:left;">  </td>
@@ -132,7 +132,7 @@ tags: Entree
    <td style="text-align:left;"> If mixture is not clear, add oil; if breaking, add water </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Alternatively fill with shrimp or green onions/fried shallots and use sauce 1 soy sauce : 3 water with sugar and pinch of msg </td>
+   <td style="text-align:left;"> Alternatively fill with shrimp or green onions/fried shallots and use 3 oyster sauce : 1soy sauce : 1 sugar and add wonton soup base and water, adjust to taste </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Alternatively use shandong noodles </td>

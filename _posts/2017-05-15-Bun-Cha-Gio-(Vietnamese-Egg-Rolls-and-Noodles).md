@@ -99,7 +99,7 @@ tags: Entree
    <td style="text-align:left;"> Then add in shredded carrots and minced mien </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Pan fry egg rolls for about 20 min, want the oil to be at least halfway to the surface of the roll </td>
+   <td style="text-align:left;"> Pan fry egg rolls until internal temperature sufficient, want the oil to be at least halfway to the surface of the roll </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Eat with bun, cha gio, lettuce, cucumbers, mint, perilla, and nuoc mam pha </td>

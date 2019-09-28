@@ -35,7 +35,7 @@ display_instructions <- instructions %>%
   dplyr::select(instructions)
 ```
 
-
+![pic1]( {{"/figure/food/Eggplant_Stir_Fry.JPG" | absolute_url }})
 
 
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stir Fried Bok Choy or Chinese Broccoli"
+title: "Bok Choy or Chinese Broccoli"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -8,9 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Stir_Fried_Bok_Choy_or_Chinese_Broccoli.JPG" | absolute_url }})
 
-![pic2]( {{"/figure/food/Stir_Fried_Bok_Choy_or_Chinese_Broccoli2.JPG" | absolute_url }})
 
 
 
@@ -45,6 +43,12 @@ tags: Entree
    <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> wonton soup base </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -63,7 +67,7 @@ tags: Entree
    <td style="text-align:left;"> Blanche bok choy </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix 3 tbsp oyster sauce, 1 tsp soy sauce, 1 tsp sugar, and 1 tbsp water </td>
+   <td style="text-align:left;"> Mix 3 oyster sauce : 1 soy sauce : 2 sugar, and some wonton soup base or water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Stir fry garlic until golden </td>

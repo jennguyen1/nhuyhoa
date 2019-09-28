@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-
+![pic1]( {{"/figure/food/Eggplant_Stir_Fry.JPG" | absolute_url }})
 
 
 
