@@ -8,7 +8,9 @@ tags: Entree
 
 
 
+![pic1]( {{"/figure/food/Bok_Choy_or_Chinese_Broccoli.JPG" | absolute_url }})
 
+![pic2]( {{"/figure/food/Bok_Choy_or_Chinese_Broccoli2.JPG" | absolute_url }})
 
 
 

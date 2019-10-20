@@ -29,18 +29,18 @@ tags: Entree
    <td style="text-align:left;"> chicken broth </td>
    <td style="text-align:left;"> pork belly </td>
    <td style="text-align:left;"> dua chua </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> tomato </td>
   </tr>
   <tr>
    <td style="text-align:left;"> wonton soup base </td>
    <td style="text-align:left;"> beef rough flank </td>
-   <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> nuoc mam pha </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> shallot </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>

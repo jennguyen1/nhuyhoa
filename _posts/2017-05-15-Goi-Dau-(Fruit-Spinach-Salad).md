@@ -52,7 +52,7 @@ tags: Entree
    <td style="text-align:left;"> watermelon </td>
   </tr>
   <tr>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> banana chips </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> almonds </td>
@@ -75,7 +75,7 @@ tags: Entree
    <td style="text-align:left;"> Make candied pecans by boiling 0.5 c brown sugar, 2 tbsp water, and 1 c pecans </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mix all ingredients with couple tbsp of vinaigrette, then add pita chips last </td>
+   <td style="text-align:left;"> Mix all ingredients with couple tbsp of vinaigrette, then add chips last </td>
   </tr>
 </tbody>
 </table>

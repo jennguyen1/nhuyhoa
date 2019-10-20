@@ -133,7 +133,7 @@ summary(mod, pars, regex_pars, probs, digits)
 # can be used with broom
 broom::tidy(mod, parameters, intervals, prob)
 
-# plot model; multiple plotting options available
+# plot model; multiple plotting options available (intervals, rhat, neff, trace)
 plot(mod)
 
 # posterior sample; can do additional estimates 
@@ -144,10 +144,10 @@ posterior_interval(mod, pars, prob)
 
 # prediction & intervals
 posterior_predict(mod, seed = 1)
-prediction_interval(mod, seed = 1)
-prediction_interval(posterior_predict(mod, seed = 1))
+predictive_interval(mod, seed = 1)
+predictive_interval(posterior_predict(mod, seed = 1))
 
-# posterior predictive checks; multiple plotting options available
+# posterior predictive checks; multiple plotting options available (dens_overlay, scatter_avg, intervals)
 pp_check(mod)
 
 # compare models
@@ -616,12 +616,12 @@ Examine traceplots for chains that do not seem to mix in well with others. This 
 ## Inference for the input samples (4 chains: each with iter=1000; warmup=0):
 ## 
 ##         mean se_mean  sd 2.5%  25%  50%  75% 97.5% n_eff Rhat
-## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  2027    1
-## beta[2]  1.0       0 0.2  0.7  0.9  1.0  1.1   1.3  1074    1
-## beta[3]  1.7       0 0.2  1.3  1.6  1.7  1.8   2.1  1135    1
-## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.8  1082    1
-## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2699    1
-## lp__    69.5       0 1.6 65.5 68.6 69.8 70.7  71.7  1433    1
+## beta[1]  1.2       0 0.1  1.1  1.2  1.2  1.3   1.3  2211    1
+## beta[2]  1.0       0 0.2  0.7  0.9  1.0  1.1   1.3  1245    1
+## beta[3]  1.7       0 0.2  1.3  1.6  1.7  1.8   2.0  1365    1
+## beta[4]  2.3       0 0.3  1.7  2.1  2.3  2.5   2.8  1269    1
+## sigma    0.4       0 0.0  0.3  0.4  0.4  0.4   0.4  2845    1
+## lp__    69.5       0 1.6 65.6 68.7 69.9 70.7  71.6  1475    1
 ## 
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 

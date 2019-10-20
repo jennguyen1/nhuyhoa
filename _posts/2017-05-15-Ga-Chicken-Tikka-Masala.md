@@ -29,7 +29,7 @@ tags: Entree
    <td style="text-align:left;"> yogurt </td>
    <td style="text-align:left;"> chicken </td>
    <td style="text-align:left;"> garlic </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> tomato </td>
   </tr>
   <tr>
    <td style="text-align:left;"> turmeric </td>
@@ -46,13 +46,13 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> salt </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;"> cilantro </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> mustard powder </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> cilantro </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
