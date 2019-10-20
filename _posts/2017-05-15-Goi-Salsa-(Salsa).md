@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Goi Salsa"
+title: "Goi Salsa (Salsa)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree

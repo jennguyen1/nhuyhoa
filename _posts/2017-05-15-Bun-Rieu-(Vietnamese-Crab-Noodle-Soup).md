@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bun Rieu"
+title: "Bun Rieu (Vietnamese Crab Noodle Soup)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
@@ -41,7 +41,7 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> chicken broth </td>
-   <td style="text-align:left;"> egg </td>
+   <td style="text-align:left;"> eggs </td>
    <td style="text-align:left;"> tomato </td>
    <td style="text-align:left;">  </td>
   </tr>
