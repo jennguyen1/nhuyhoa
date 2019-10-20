@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bun Mang Vit (Duck Noodle Soup with Bamboo Shoot)"
+title: "Bun Mang Vit (Vietnamese Duck Noodle Soup with Bamboo Shoot)"
 date: "May 15, 2017"
 categories: Recipes
 tags: Entree
