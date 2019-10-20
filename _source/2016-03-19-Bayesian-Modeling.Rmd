@@ -137,7 +137,7 @@ summary(mod, pars, regex_pars, probs, digits)
 # can be used with broom
 broom::tidy(mod, parameters, intervals, prob)
 
-# plot model; multiple plotting options available
+# plot model; multiple plotting options available (intervals, rhat, neff, trace)
 plot(mod)
 
 # posterior sample; can do additional estimates 
@@ -148,10 +148,10 @@ posterior_interval(mod, pars, prob)
 
 # prediction & intervals
 posterior_predict(mod, seed = 1)
-prediction_interval(mod, seed = 1)
-prediction_interval(posterior_predict(mod, seed = 1))
+predictive_interval(mod, seed = 1)
+predictive_interval(posterior_predict(mod, seed = 1))
 
-# posterior predictive checks; multiple plotting options available
+# posterior predictive checks; multiple plotting options available (dens_overlay, scatter_avg, intervals)
 pp_check(mod)
 
 # compare models
