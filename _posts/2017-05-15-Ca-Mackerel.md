@@ -42,7 +42,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> nuoc mam pha </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -76,6 +76,9 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> Grilling: broil on high heat, skin down, for 15-20 min </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Frying: pan fry on medium heat with shallots, skin down &amp; flip midway until internal temperature sufficient </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Eat with nuoc mam pha </td>

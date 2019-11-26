@@ -29,7 +29,7 @@ tags: Entree
 <tbody>
   <tr>
    <td style="text-align:left;"> salt </td>
-   <td style="text-align:left;"> fried shrimp </td>
+   <td style="text-align:left;"> dried shrimp </td>
    <td style="text-align:left;"> taiwanese okra </td>
    <td style="text-align:left;">  </td>
   </tr>

@@ -102,7 +102,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Make chicken broth according to chicken broth recipe (as an alternative mix 4 parts chicken broth to 1.5 part water and wonton soup base) </td>
+   <td style="text-align:left;"> Make broth according to broth recipe (as an alternative mix 4 parts chicken broth to 1.5 part water and wonton soup base) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Mince green onions and cilantro, cut bok choy and xa xiu </td>
@@ -120,7 +120,7 @@ tags: Entree
    <td style="text-align:left;"> Eat with mi, veggies, wontons, xa xiu, broth, and hanh kho </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Alternatively, make mi hoanh thanh kho by replacing broth with sauce of ratios 3 oyster sauce: 1 soy sauce : 2 sugar with a pinch of sesame oil adjusted to taste </td>
+   <td style="text-align:left;"> Alternatively, make mi hoanh thanh kho by replacing broth with sauce of ratios 2 hoisin sauce : 2 soy sauce : 1 oyster sauce : 1 sugar with a pinch of sesame oil adjusted to taste </td>
   </tr>
 </tbody>
 </table>
