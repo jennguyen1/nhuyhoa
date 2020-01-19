@@ -51,24 +51,24 @@ tags: Entree
    <td style="text-align:left;"> pita chips </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> cilantro </td>
-   <td style="text-align:left;"> lime </td>
+   <td style="text-align:left;"> mandarin orange </td>
   </tr>
   <tr>
    <td style="text-align:left;"> banana chips </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> mint </td>
+   <td style="text-align:left;"> lime </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> edamame </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> spaghetti </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> basil pesto </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> cabbage </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>

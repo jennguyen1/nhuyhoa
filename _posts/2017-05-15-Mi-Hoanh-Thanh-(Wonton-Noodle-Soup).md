@@ -120,7 +120,7 @@ tags: Entree
    <td style="text-align:left;"> Eat with mi, veggies, wontons, xa xiu, broth, and hanh kho </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Alternatively, make mi hoanh thanh kho by replacing broth with sauce of ratios 2 hoisin sauce : 2 soy sauce : 1 oyster sauce : 1 sugar with a pinch of sesame oil adjusted to taste </td>
+   <td style="text-align:left;"> Alternatively, make mi hoanh thanh kho by replacing broth with sauce of ratios 2 hoisin sauce : 1 soy sauce : 1 oyster sauce : 2 sugar with a dash of sesame oil adjusted to taste with water </td>
   </tr>
 </tbody>
 </table>

@@ -61,7 +61,7 @@ tags: Entree
    <td style="text-align:left;"> Stir minced shallots until golden in a pot on medium heat </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Put in thinly sliced meat and stir for about 5 min, want it mostly cooked </td>
+   <td style="text-align:left;"> Put in thinly sliced meat (leave beef flanks in large strips) and stir for about 5 min, want it mostly cooked </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Add in a little bit of water and simmer for 5-10 min on low </td>

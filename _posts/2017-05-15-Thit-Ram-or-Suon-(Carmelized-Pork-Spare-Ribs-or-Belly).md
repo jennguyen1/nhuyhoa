@@ -57,6 +57,12 @@ tags: Entree
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> vinegar </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
 
@@ -84,7 +90,7 @@ tags: Entree
    <td style="text-align:left;"> Once meat is mostly cooked, turn heat down to medium low </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add 2.5 spoons of sugar and mixture of 3 soy sauce : 4 water </td>
+   <td style="text-align:left;"> Add ratio of 3 sugar : 3 soy sauce, some vinegar and adjust to taste with water </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Sprinkle in a little bit of cornstarch </td>

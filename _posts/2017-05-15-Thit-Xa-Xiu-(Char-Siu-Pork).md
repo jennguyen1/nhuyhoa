@@ -118,7 +118,7 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Marinade: 0.5 tsp pepper, 1 tsp five spice, 3 tbsp sugar, 2 tbsp honey, 1 tsp sesame oil, 1 tbsp oyster sauce, 1 tbsp hoisin sauce, 1 tbsp shaoxing wine, 2 tbsp soy sauce, 2 tbsp fermented bean curd, 3 garlic cloves or garlic powder, pinch of msg </td>
+   <td style="text-align:left;"> Marinade: 0.5 tsp pepper, 2 tsp five spice, 2 tbsp sugar, 2 tbsp honey, 1 tsp sesame oil, 1 tbsp oyster sauce, 2 tbsp hoisin sauce, 1 tbsp shaoxing wine, 1.5 tbsp soy sauce, 2 tbsp fermented bean curd, 3 garlic cloves or garlic powder, pinch of msg </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Cut pork shoulder couple inches wide and 1 inch thick, pork with fork </td>

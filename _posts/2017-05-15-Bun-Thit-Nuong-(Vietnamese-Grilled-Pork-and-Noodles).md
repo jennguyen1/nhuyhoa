@@ -76,13 +76,13 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Make marinade: want mashed white end of green onion, garlic with ratio of 4 fish sauce : 2 sugar : 2 honey, sprinkled with pepper </td>
+   <td style="text-align:left;"> Make marinade: want mashed white end of green onion, garlic with ratio of 2 fish sauce : 3 sweet (sugar &amp; honey), sprinkled with pepper </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Adjust marinade to taste, want salty and lightly sweet </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Cut pork shoulder into thin strips, against the grain </td>
+   <td style="text-align:left;"> Cut pork shoulder into thin 1cm strips, against the grain </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Marinate with a little oil mixed in overnight </td>
