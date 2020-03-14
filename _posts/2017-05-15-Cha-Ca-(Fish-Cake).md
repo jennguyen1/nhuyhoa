@@ -82,7 +82,7 @@ tags: Entree
    <td style="text-align:left;"> Process shallots and garlic in a food processor </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add meat mixture, 1 tbsp of salt, pepper, sugar, nuoc mam, 4 tbsp tapioca starch, and 2 egg whites </td>
+   <td style="text-align:left;"> Add meat mixture, 1 tbsp of salt, pepper, sugar, nuoc mam, 5 tbsp tapioca starch, and 2 egg whites </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Process until smooth, then mix in chopped dill </td>

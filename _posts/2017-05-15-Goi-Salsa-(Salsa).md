@@ -32,32 +32,38 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> salt </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> corn </td>
+   <td style="text-align:left;"> tomato </td>
    <td style="text-align:left;"> mango </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pepper </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> red onion </td>
+   <td style="text-align:left;"> corn </td>
    <td style="text-align:left;"> avocado </td>
   </tr>
   <tr>
    <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> cucumber </td>
-   <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;"> red onion </td>
+   <td style="text-align:left;"> mandarin orange </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pita chips </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> cilantro </td>
-   <td style="text-align:left;"> mandarin orange </td>
+   <td style="text-align:left;"> cucumber </td>
+   <td style="text-align:left;"> lime </td>
   </tr>
   <tr>
    <td style="text-align:left;"> banana chips </td>
    <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> cilantro </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;"> mint </td>
-   <td style="text-align:left;"> lime </td>
+   <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>

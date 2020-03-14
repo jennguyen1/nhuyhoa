@@ -28,11 +28,17 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> wonton soup base </td>
    <td style="text-align:left;"> cha ca (fish paste) </td>
-   <td style="text-align:left;"> onion </td>
    <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> nuoc mam </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> onion </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> shallot </td>
    <td style="text-align:left;">  </td>

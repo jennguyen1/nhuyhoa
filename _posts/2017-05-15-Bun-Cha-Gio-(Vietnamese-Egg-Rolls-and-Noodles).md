@@ -48,7 +48,7 @@ tags: Entree
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> cucumbers </td>
+   <td style="text-align:left;"> cucumber </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>

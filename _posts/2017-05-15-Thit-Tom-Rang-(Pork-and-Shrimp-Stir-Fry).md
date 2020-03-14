@@ -40,13 +40,13 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> onion </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> sugar </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>
@@ -85,7 +85,10 @@ tags: Entree
    <td style="text-align:left;"> Simmer for 10 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add in minced green onions in the last few minutes </td>
+   <td style="text-align:left;"> Add in sliced yellow onion and minced green onions </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cover and wait a few minutes to fully cook </td>
   </tr>
 </tbody>
 </table>

@@ -90,9 +90,6 @@ tags: Entree
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Prepare the veggies </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Lightly marinate halved shrimp and thinly sliced pork belly separately with salt, pepper, and shallots </td>
   </tr>
   <tr>
@@ -105,28 +102,19 @@ tags: Entree
    <td style="text-align:left;"> Let batter sit for 30 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> On medium high heat, coat the pan with some oil </td>
+   <td style="text-align:left;"> With some oil on medium high heat, stir fry pork belly until no longer red, shrimp until no longer clear </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Stir fry pork belly until no longer red, shrimp until no longer clear </td>
+   <td style="text-align:left;"> Spread out meats on pan, leaving the flip zone clear </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Spread out meats on pan </td>
+   <td style="text-align:left;"> Spread few ladles of batter onto pan in a thin layer, tilting pan so batter spreads to the high walls of the pan </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Spread a few ladles of batter onto pan into a thin layer </td>
+   <td style="text-align:left;"> Add bean sprouts to one side and cover for 3 min </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Tilt the pan so that there is batter on the walls of the pan, want very high walls </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Add bean sprouts and cover for 3 min </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ensure the pancake is evenly cooked by moving pan around </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uncover and cook for few more minutes </td>
+   <td style="text-align:left;"> Uncover and cook for a few more minutes </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Want the edges to be golden and crispy, cake to evenly cook and golden </td>

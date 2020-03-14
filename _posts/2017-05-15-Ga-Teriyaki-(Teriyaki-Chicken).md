@@ -8,7 +8,7 @@ tags: Entree
 
 
 
-![pic1]( {{"/figure/food/Ga_Teriyaki.JPG" | absolute_url }})
+
 
 
 

@@ -29,12 +29,18 @@ tags: Entree
    <td style="text-align:left;"> nuoc mam </td>
    <td style="text-align:left;"> tofu </td>
    <td style="text-align:left;"> green onions </td>
-   <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> onion </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> tomato </td>
    <td style="text-align:left;">  </td>
   </tr>
 </tbody>

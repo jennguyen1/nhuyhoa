@@ -29,7 +29,7 @@ tags: Entree
    <td style="text-align:left;"> yogurt </td>
    <td style="text-align:left;"> chicken </td>
    <td style="text-align:left;"> garlic </td>
-   <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> turmeric </td>
@@ -46,13 +46,13 @@ tags: Entree
   <tr>
    <td style="text-align:left;"> salt </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> cilantro </td>
+   <td style="text-align:left;"> tomato </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> mustard powder </td>
    <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> cilantro </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
@@ -106,7 +106,7 @@ tags: Entree
    <td style="text-align:left;"> Add 4 tbsp tomato puree and a handful of chopped cilantro </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Add in spice mix: 1 tsp coriander powder, 0.5 tsp paprika, 1 tsp garam masala, 0.5 tsp tumeric, 1.5 tbsp sugar </td>
+   <td style="text-align:left;"> Add in spice mix: 2 tsp garam masala, 2 tsp coriander powder, 0.5 tsp paprika, 0.5 tsp tumeric, 1 tsp salt, 1.5 tbsp sugar </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Adjust to taste with salt and sugar </td>

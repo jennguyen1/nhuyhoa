@@ -29,13 +29,13 @@ tags: Entree
    <td style="text-align:left;"> tamarind </td>
    <td style="text-align:left;"> catfish </td>
    <td style="text-align:left;"> elephant ear stem </td>
-   <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;"> pineapple </td>
   </tr>
   <tr>
    <td style="text-align:left;"> salt </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> rice paddy herbs </td>
-   <td style="text-align:left;"> pineapple </td>
+   <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pepper </td>
@@ -51,6 +51,12 @@ tags: Entree
   </tr>
   <tr>
    <td style="text-align:left;"> nuoc mam </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;"> garlic </td>
    <td style="text-align:left;">  </td>
