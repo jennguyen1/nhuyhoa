@@ -1,0 +1,131 @@
+---
+layout: post
+title: "Ga Chicken Tikka Masala"
+date: "May 15, 2017"
+categories: Recipes
+tags: Entree
+---
+
+
+
+![pic1]( {{"/figure/food/Ga_Chicken_Tikka_Masala.JPG" | absolute_url }})
+
+
+
+
+#### Ingredients
+
+<table class = "presenttab">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Other </th>
+   <th style="text-align:left;"> Meat </th>
+   <th style="text-align:left;"> Veggie </th>
+   <th style="text-align:left;"> Fruit </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> coriander powder </td>
+   <td style="text-align:left;"> chicken </td>
+   <td style="text-align:left;"> cilantro </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> garam masala </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> garlic </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> mustard powder </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> ginger </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> naan bread </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> onion </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> paprika </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> tomato </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sugar </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> turmeric </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> yogurt </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
+
+<br>
+
+#### Instructions
+
+<table class = "presenttabnoh">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> instructions </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Make chicken marinade: 0.33 c yogurt, 0.5 tsp turmeric, 0.5 tsp garam masala, 1.5 tsp salt, 0.5 tsp mustard powder, 5 cloves minced garlic, a small piece minced ginger, minced onion, 1 tbsp oil </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Marinate 4 piece chicken thighs overnight </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Saute 2 onions, 5 cloves garlic, chunk of ginger, 5 tomatoes all minced </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add 4 tbsp tomato puree and a handful of chopped cilantro </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add in spice mix: 2 tsp garam masala, 2 tsp coriander powder, 0.5 tsp paprika, 0.5 tsp tumeric, 1 tsp salt, 1.5 tbsp sugar </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Adjust to taste with salt and sugar </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cook for 5-10 min </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Blend gravy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cook chicken in pan </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mixed gravy and chopped cilantro </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Eat with rice or naan bread </td>
+  </tr>
+</tbody>
+</table>
+
