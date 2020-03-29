@@ -1,0 +1,214 @@
+---
+layout: post
+title: "Reshaping & Transposes"
+date: "December 19, 2015"
+categories: Software
+tags: Wrangling
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data)
+```
+
+
+Data be formatted long or wide. Often formats will need to switch to obtain the needed metrics. 
+
+* Long-format: contains a column for possible variable types and a column with the values for those variables; extremely useful for grouping and running separate operations on by groups
+* Wide-format: each variable contains its own columns, populated by values
+
+To switch between the two formats, transpose operations can be used. This is similar to using pivot tables in Excel. 
+
+# In R
+There are a few packages in R that can do transposing. The function names are different, but the idea is the same. 
+
+## Wide to Long
+
+Functions:
+
+* `tidyr::gather()`
+* `reshape2::melt()`
+
+Take a look at the `airquality` data. 
+
+<div class = "dftab">
+```{r, echo = FALSE}
+airquality %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+Convert it to long format:
+```{r, eval = FALSE}
+gather(airquality)
+```
+
+<div class = "dftab">
+```{r, echo = FALSE, message = FALSE}
+gather(airquality) %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+The function also allows for the omission of several columns from being gathered, so that they are kept as id columns. This tells the function to provide the values of the variables for each unique combination of the specified columns.
+
+```{r, eval = FALSE}
+gather(airquality, key = "variable", value = "value", -Month, -Day)
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+ex <- gather(airquality, key = "variable", value = "value", -Month, -Day)
+ex %>% nhuyhoa_df_print()
+```
+</div><p></p>
+
+## Long to Wide
+
+Functions:
+
+* `tidyr::spread()`
+* `reshape2::dcast()`
+
+To specify the format of the data, three terms are needed 
+
+1. The $$id$$ variables (similar to those used in the melt column)
+2. The name of the $$variable$$ column that will contain the new column names (swing it into the column names)
+3. The name of the $$value$$ column in which the data spaces are filled in
+
+With these three terms, the casting formula is
+
+`id.vars ~ variable, value.var = "value"`
+
+Use the melted data from above to shift it back into wide mode.
+```{r, eval = FALSE}
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  spread(variable, value)
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  spread(variable, value) %>% 
+  nhuyhoa_df_print()
+```
+</div><p></p>
+
+If there are duplicated entries of the $$id$$ and $$variable$$, then the function will throw an error.
+
+```{r, eval = FALSE}
+# try this: error
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  dplyr::select(-Day) %>% 
+  spread(variable, value)
+```
+
+If aggregation is desired, it can be specified as the aggregate function (such as $$mean$$, $$median$$, $$sum$$, etc). 
+
+```{r, eval = FALSE}
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  dplyr::select(-Day) %>% 
+  group_by(Month, variable) %>% 
+  summarise(value = sum(value, na.rm = TRUE)) %>% 
+  spread(variable, value)
+```
+
+<div class = "dftab">
+```{r, echo = FALSE}
+gather(airquality, key = "variable", value = "value", -Month, -Day) %>% 
+  dplyr::select(-Day) %>% 
+  group_by(Month, variable) %>% 
+  summarise(value = sum(value, na.rm = TRUE)) %>% 
+  spread(variable, value) %>% 
+  nhuyhoa_df_print()
+```
+</div><p></p>
+
+If aggregation is not desired, achieving the correct format will require a little creativity. One way to do this is to edit the variable values to make it unique across combinations.
+
+## Visual Diagram of Reshaping in R
+
+![reshaping in R](http://jennguyen1.github.io/nhuyhoa/figure/images/transpose.png)
+(By r-statistics)
+
+# In SAS
+
+## Wide to Long
+
+```{r, eval = FALSE}
+data WIDEDATA;
+set LONGDATA;
+array ARR(DIM) WIDEVARS;
+do VARIABLE_VAR = VAL1 ... VALN; # of array dimensions
+  VALUE_VAR = ARR(VARIABLE_VAR);
+  output;
+end;
+drop WIDEVARS;
+run;
+```
+
+## Long to Wide
+
+```{r, eval = FALSE}
+proc transpose data = WIDEDATA out = LONGDATA prefix = COLPREFIX;
+by LONGID;
+id WIDEID;
+var VALUE.VAR;
+```
+
+This formula runs the equivalent of `"LONGID ~ WIDEID", value.var = VALUE.VAR` in R.
+
+# In SQL
+
+Reshaping in SQL can be done with the `pivot` command. 
+
+## Wide to Long
+
+{% highlight sql %}
+select COLNAMES
+from TABLE
+unpivot (
+  VALUE_VAR 
+  for VARIABLE_VAR 
+  in(VARIABLE_VAR_VAL)
+) as NEWTABLE;
+{% endhighlight %}
+
+The following is an example that unpivots the $$MONTH$$ variable wide while putting the value into a $$AMNT$$ variable.
+
+{% highlight sql %}
+select ID, MONTH, AMNT
+from CALTAB
+unpivot ( 
+  AMNT 
+  for MONTH 
+  in(JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)
+) as UNPVT;
+{% endhighlight %}
+
+## Long to Wide
+
+{% highlight sql %}
+select COLNAMES
+from TABLE
+pivot ( 
+  AGG_FUNC(VALUE_VAR) 
+  for VARIABLE_VAR 
+  in(VARIABLE_VAR_VALS)
+) as NEWTABLE;
+{% endhighlight %}
+
+The following is an example that pivots the $$MONTH$$ variable wide while taking the sum of $$AMNT$$.
+
+{% highlight sql %}
+select *
+from CALTAB
+) as S
+pivot (
+  sum(AMNT)
+  for MONTH 
+  in (JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)
+) as PVT;
+{% endhighlight %}
+

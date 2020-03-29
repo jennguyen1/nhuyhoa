@@ -1,0 +1,423 @@
+---
+layout: post
+title: "Multilevel Models"
+date: "March 3, 2016"
+categories: Statistics
+tags: Regression
+---
+
+* TOC
+{:toc}
+
+
+
+Multilevel models can be written as
+
+$$Y = X\beta + Zb + \epsilon$$
+
+where $$X\beta$$ represents the fixed effects variables and $$Zb$$ represents the random effects variables and $$b \sim N(0, G)$$, $$\epsilon \sim N(0, R)$$. 
+
+$$E[Y] = X\beta$$
+
+$$Var(Y) = ZGZ' + R = V$$
+
+Multi-level models should be used when the experimental units may have dependence. In experimental design, this is referred to as cluster-randomized. One example of this is value-added models that evaluate the effect of student characteristics on a posttest score. Students who have the same teacher are dependent data points. Thus it is important to incorporate teachers as a random effect. 
+
+# Fitting Models
+
+Models containing multiple variance components can be estimated using REML (restricted maximum likelihood). It has the advantage of obtaining unbiased estimates of the variance components (MLE estimates tend to be biased down). The process goes like this
+
+1. Fit a model with fixed effects, ignoring any variance components
+2. Obtain the regression residuals for observations modeled above (residuals only contain aspects of random effects and error)
+3. MLE on residuals to get estimates of variance components $$\hat{\Sigma}$$, using $$N - p$$ as the denominator (ie taking into account FE parameters and unbiasing error variance)
+4. Using REML variance estimates, fixed effects estimated using generalized least squares $$\beta = (X'\hat{\Sigma}^{-1}X)^{-1} X' \hat{\Sigma}^{-1} Y$$
+
+Notice that REML uses a different likelihood function than simple likelihood. When comparing models, it is important to consider what likelihood a statistic is using. 
+
+* Compare models with different fixed effects only when random effects are all the same
+* Compare models with different random effects only if the fixed effects are all the same
+* When comparing random effects, if testing near a boundary point $$\sigma^2 = 0$$ vs. $$\sigma^2 \ne 0$$ the likelihood ratio statistic is not approximately $$X^2$$ so must compare models via simulations
+
+One issue that comes up in this two-step method is that $$\hat{\Sigma}$$ is assumed to be the true covariance matrix when in fact it is not. The additional variability in estimating $$\hat{\Sigma}$$ is not accounted for. (Note this is the reason that R does not provide p-values for the ANOVA table of mixed models). 
+
+There are two ways to relieve this issue and obtain estimates for the p-value
+
+* Bootstrap
+* Bayesian/MCMC
+
+# Variants of Multilevel Models
+
+Multilevel models are a compromise between two extremes
+
+* Models that pool the effects of multiple groups; group indicators are not included in the model
+* Models that fit separate fits for each group
+
+Consider three variants of models: 
+
+<img src="/nhuyhoa/figure/source/2016-03-03-Multilevel-Models/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+
+In the left plot, two separate models are fit. One model is fit with no group variables, the intercept estimate is represented by dashed horizontal line. Another model is fit with separate intercepts for each group. These intercept estimates and standard error bars are represented by the individual points. Notice that the sample variability is larger at small $$n$$ sizes and smaller at higher $$n$$ sizes. The complete pooling model ignores group variability while the no-pooling model overstates it (as groups with small $$n$$ sizes are inaccurately estimated). 
+
+The right plot has a multilevel model (with the same complete pooling estimate). Multilevel models attempt to compromise between the complete pooling and the no-pooling model. Essentially, the estimates in multilevel models are a weighted averages (based on the group $$n$$ size) of the complete pooling and the no-pooling estimates (variances). The weights are based on the group $$n$$ size. The smaller the group $$n$$ the closer the multilevel estimate is to overall average (pooling estimate). The larger the group $$n$$ the closer the multilevel estimate is to the group average (no-pooling estimate). This is called shrinkage towards the mean (of varying degrees).
+
+With multilevel models of varying intercepts, the intercept terms are $$\alpha_i \sim N(\mu_a, \sigma^2_a)$$. When $$\sigma^2_a \rightarrow 0$$, it is considered a no-pooling model that may be underfitting. When $$\sigma^2_a \rightarrow \infty$$, it is considered a complete pooling model that may be overfitting. The multilevel model is essentially a compromise between the two models. It is an adaptive regularization technique.  
+
+The group and individual level variation are assessed using intraclass correlation. 
+
+$$\frac{\sigma^2_a}{\sigma^2_a + \sigma^2_y}$$
+
+This value ranges from $$0$$ (for no information conveyed by group) and $$1$$ (for consolidated groupings). 
+
+The variance ratio is
+
+$$r = \frac{\sigma^2_y}{\sigma^2_a}$$
+
+The variance ratio is a measure of how many observations are needed in a group for there to be a balance between the completely-pooled and non-pooled estimates. The standard deviation of the mean between groups is the same as the standard deviation within a group with $$r$$ observations.
+
+* If $$n_j < r$$ then $$\hat{a}_j$$ is closer to $$\mu_a$$
+* If $$n_j = r$$ then $$\hat{a}_j$$ is an average of $$\mu_a$$ and $$\bar{y}_j$$
+* If $$n_j > r$$ then $$\hat{a}_j$$ is closer to $$\bar{y}_j$$
+
+This value means that the standard deviation of average $$y$$ between groups is the same as the standard deviation of the average of $$1/r$$ measurements within a group. For a group with more than $$1/r$$ observations, within-group measurements are more informative. Otherwise, the across group measurements are more informative. 
+
+## Model Formulas
+
+Variants of the varying intercept models may be fit in R with the following `lme4::lmer()` and `nlme::lme` commands.
+
+**Varying intercept; no predictors:**
+
+$$y_i \sim N(\alpha_{j}, \sigma^2_y)$$ 
+
+$$\alpha_j \sim N(\mu_a, \sigma^2_a)$$
+
+
+{% highlight r %}
+lmer(y ~ 1 + (1 | group))
+lme(y ~ 1, random = ~ 1 | group)
+{% endhighlight %}
+
+**Varying intercept; individual level predictors:**
+
+$$y_i \sim N(\alpha_{j} + \beta x_i, \sigma^2_y)$$ 
+
+$$\alpha_j \sim N(\mu_a, \sigma^2_a)$$
+
+
+{% highlight r %}
+lmer(y ~ x + (1 | group))
+lme(y ~ x, random = ~ 1 | group)
+{% endhighlight %}
+
+**Varying intercept; individual and group level predictors:**
+
+$$y_i \sim N(\alpha_{j} + \beta x_i, \sigma^2_y)$$ 
+
+$$\alpha_j \sim N(\mu_a + \tau grp.x, \sigma^2_a)$$
+
+
+{% highlight r %}
+lmer(y ~ x + grp.x + (1 | group))
+lme(y ~ x + grp.x, random = ~ 1 | group)
+{% endhighlight %}
+
+**Varying intercept, varying slope:**
+
+$$y_i \sim N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
+
+$$ \left(\begin{array}
+{rrr}
+\alpha_j \\
+\beta_j
+\end{array}\right)
+ \sim N\left( \left(\begin{array}
+{rrr}
+\mu_a \\
+\mu_b
+\end{array}\right) , 
+\left(\begin{array}
+{rrr}
+\sigma^2_a & p \sigma^2_a \sigma^2_b \\
+p \sigma^2_a \sigma^2_b & \sigma^2_b
+\end{array}\right)
+\right)$$
+
+
+{% highlight r %}
+lmer(y ~ x + (x | group))
+lme(y ~ x, random = ~ x | group)
+{% endhighlight %}
+
+**Varying intercept, varying slope; group level predictors:**
+
+$$y_i \sim N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
+
+$$ \left(\begin{array}
+{rrr}
+\alpha_j \\
+\beta_j
+\end{array}\right)
+ \sim N\left( \left(\begin{array}
+{rrr}
+\mu_a + \tau grp.x\\
+\mu_b + \gamma grp.x
+\end{array}\right) , 
+\left(\begin{array}
+{rrr}
+\sigma^2_a & p \sigma^2_a \sigma^2_b \\
+p \sigma^2_a \sigma^2_b & \sigma^2_b
+\end{array}\right)
+\right)$$
+
+
+{% highlight r %}
+lmer(y ~ x + grp.x + x:grp.x + (x | group))
+lme(y ~ x + grp.x + x:grp.x, random = ~ x | group)
+{% endhighlight %}
+
+**Varying intercept, varying slope; individual level predictors:**
+
+$$y_i \sim N(\alpha_{j} + \beta_{j} x_i + \beta_z z_i + \beta_{j, z} (x_i z_i), \sigma^2_y)$$
+
+$$ \left(\begin{array}
+{rrr}
+\alpha_j \\
+\beta_j \\
+\beta_{j, z}
+\end{array}\right)
+ \sim N\left( \left(\begin{array}
+{rrr}
+\mu_a \\
+\mu_b \\
+\mu_{bz}
+\end{array}\right) , 
+\left(\begin{array}
+{rrr}
+\sigma^2_a & p_1 \sigma^2_a \sigma^2_b & p_2 \sigma^2_a \sigma^2_{bz} \\
+p_1 \sigma^2_a \sigma^2_b & \sigma^2_b & p_3 \sigma^2_b \sigma^2_{bz} \\
+p_2 \sigma^2_a \sigma^2_{bz} & p_3 \sigma^2_b \sigma^2_{bz} & \sigma^2_{bz} \\
+\end{array}\right)
+\right)$$
+
+
+{% highlight r %}
+lmer(y ~ z + x + (x + x:z | group))
+lme(y ~ z + x, random = ~ x + x:z | group)
+{% endhighlight %}
+
+**Varying intercept, varying slope, no intercept/slope covariance:**
+
+$$y_i \sim N(\alpha_{j} + \beta_{j} x_i, \sigma^2_y)$$
+
+$$ \left(\begin{array}
+{rrr}
+\alpha_j \\
+\beta_j
+\end{array}\right)
+ \sim N\left( \left(\begin{array}
+{rrr}
+\mu_a \\
+\mu_b
+\end{array}\right) , 
+\left(\begin{array}
+{rrr}
+\sigma^2_a & 0 \\
+0 & \sigma^2_b
+\end{array}\right)
+\right)$$
+
+
+{% highlight r %}
+lmer(y ~ x + (x || group))
+lme(y ~ x, random = list(group = pdDiag(~ x)))
+{% endhighlight %}
+
+**Varying slope:**
+
+$$y_i \sim N(\alpha + \beta_{j} x_i, \sigma^2_y)$$ 
+
+$$\beta_j \sim N(\mu_b, \sigma^2_b)$$
+
+
+{% highlight r %}
+lmer(y ~ x + (0 + x  | group))
+lme(y ~ x, random = ~ 0 + x | group)
+{% endhighlight %}
+
+**Nested Models:**
+
+A is nested inside B. 
+
+$$y_i \sim N(\mu + \alpha_j + \beta_{k[j]}, \sigma^2_y)$$
+
+$$\alpha_j \sim N(0, \sigma^2_a)$$
+
+$$\beta_k \sim N(0, \sigma^2_b)$$
+
+
+{% highlight r %}
+lmer(y ~ 1 + (1 | group.b / group.a))
+lme(y ~ 1, random = ~ 1 | group.b / group.a)
+{% endhighlight %}
+
+**Non-Nested Models:**
+
+$$y_i \sim N(\mu + \alpha_j + \beta_k, \sigma^2_y)$$
+
+$$\alpha_j \sim N(0, \sigma^2_a)$$
+
+$$\beta_k \sim N(0, \sigma^2_b)$$
+
+
+{% highlight r %}
+lmer(y ~ 1 + (1 | group.a) + (1 | group.b))
+{% endhighlight %}
+
+**Heteroscedasticity by groups:**
+
+$$y_i | t = 0 \sim N(x, \sigma^2_0)$$
+
+$$y_i | t = 1 \sim N(x, \sigma^2_1)$$
+
+
+{% highlight r %}
+lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t))
+{% endhighlight %}
+
+**Repeated Measures, compound symmetry:**
+
+{% highlight r %}
+lme(y ~ x, random = ~ 1 | group, correlation = corCompSymm(form = ~ 1 | group))
+{% endhighlight %}
+
+
+**Repeated Measures, first order autoregressive AR(1):**
+
+
+{% highlight r %}
+lme(y ~ x, random = ~ 1 | group, correlation = corAR1())
+{% endhighlight %}
+
+**Repeated Measures, heterogeneous AR(1):**
+
+
+{% highlight r %}
+lme(y ~ x, random = ~ 1 | group, weights = varIdent(form = ~ 1 | t), correlation = corAR1())
+{% endhighlight %}
+
+
+**Transformations:**
+
+As with regular regression, transformations may be done for more effective fitting and interpretation. For example, centering and scaling may allow for easier interpretation of coefficients, especially when they are correlated (as with varying intercept, varying slope type models). 
+
+Multilevel models may also be used creatively to assess a variety of effects. For example, consider a scenario where there are a number of variables that mostly measure the same thing. All of the variables may be used by combining them into a weighted average. The weighted average term would be something along the lines of $$\frac{1}{n} \sum^n_i \beta_{ij} * x_{j}$$. 
+
+## Generalized Linear Multilevel Models
+
+The fitting of multilevel models may be extended to GLMs. For logistic and poisson models, adding a random effect term may be considered as modeling overdispersion.
+
+The generic function is written as
+
+$$\eta = X \beta + Z b$$
+
+**Linear Regression**
+
+$$Y_i \sim N(\mu_i, \sigma^2_y)$$ <br>
+$$Y = X \beta + Z b + \epsilon$$
+
+**Logistic Regression**
+
+$$Y_i \sim Binomial(n_i, p_i)$$ <br>
+$$inv.logit(p) = X \beta + Z b$$
+
+**Poisson Regression**
+
+$$Y_i \sim Poisson(\lambda_i)$$ <br>
+$$\log(\lambda) = X \beta + Zb$$
+
+# Statistical Software
+
+## Viewing Results in R
+
+In R, fit these models with `lmer()` or `glmer()`. 
+
+Use the following commands to view results and estimates.
+
+
+{% highlight r %}
+# view summary of data
+display(mod)
+summary(mod)
+
+# view group coefficients
+coef(mod)
+
+# view fixed effects
+fixef(mod)
+
+# view fixed effects standard error
+se.fixef(mod)
+
+# view random effects (these are the deviations from FE)
+ranef(mod)
+
+# view random effects standard error
+se.ranef(mod)
+
+# confidence intervals
+confint(mod, method = 'boot', oldNames = FALSE)
+{% endhighlight %}
+
+Use the following estimates to obtain confidence intervals for the estimates. 
+
+## Prediction
+
+Obtain prediction estimates and its confidence intervals (from quantiles) by using simulation. There are three sources of uncertainty that need to be accounted for:
+
+* residual variance
+* uncertainty of the fixed coefficients
+* uncertainty of the variance parameters of the grouping factors
+
+Predictions can be computed via a simulation procedure. 
+
+Using a Bayesian approach: fit a Bayesian model in which the estimates will have posterior distributions. With many iterations, compute the fitted value for $$y$$ by sampling from the posterior distributions of the estimates. Be sure to include all sources of uncertainty listed above. With the results of the simulation, compute the credible intervals of interest. 
+
+Using a bootstrap approach: with many iterations, bootstrap sample from the original population and fit the model. With the results of the simulation, generate predictions and compute the confidence interval. 
+Predictions can be done on a given group (obtain the group coefficient already fitted from the model) or a new group (predict a new coefficient by sampling from the grouping population). The ability to obtain predictions for new groups is a great advantage for multilevel models.
+
+Simulations are useful to obtain predictions, standard error estimates, etc.
+
+## Plotting Random Effects in R
+
+
+{% highlight r %}
+library(lattice)
+qqmath(ranef(mod, condVar = TRUE), strip = FALSE)
+{% endhighlight %}
+
+This is like a qqplot for the random effects. 
+
+## Fitting in SAS and Residuals
+
+In SAS, mixed models can be fit with the `proc mixed` procedure. 
+
+
+{% highlight r %}
+# mixed model with random effect a
+proc mixed;
+  class a;
+  model y = / outp = cond_resids outpm = marginal_resids;
+  random a;
+run;
+
+# random intercept model
+proc mixed; 
+  class Person Gender;
+  model y = Person Gender / ddfm = betwithin; # denominator degrees of freedom - try options and make sure its correct
+  random intercept Age / type=un subject=Person g;
+run;
+{% endhighlight %}
+
+The model above fits a simple random effect model $$Y_{ij} = \mu + A_i + \epsilon_{ij}$$ where $$A_i \sim N(0, \sigma^2_a)$$ and $$\epsilon \sim N(0, \sigma^2_e)$$. It outputs two sets of residuals
+
+* `outp`: $$Y - X\hat{\beta} - Z\hat{b}$$
+* `outpm`: $$Y - X\hat{\beta}$$

@@ -1,0 +1,77 @@
+---
+layout: post
+title: "Dau Xao Hanh (Stir Fried Tofu and Green Onions)"
+date: "May 15, 2017"
+categories: Recipes
+tags: Entree
+---
+
+
+
+![pic1]( {{"/figure/food/Dau_Xao_Hanh.JPG" | absolute_url }})
+
+
+
+
+#### Ingredients
+
+<table class = "presenttab">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Other </th>
+   <th style="text-align:left;"> Meat </th>
+   <th style="text-align:left;"> Veggie </th>
+   <th style="text-align:left;"> Fruit </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> nuoc mam </td>
+   <td style="text-align:left;"> tofu </td>
+   <td style="text-align:left;"> green onions </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> shallot </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
+
+<br>
+
+#### Instructions
+
+<table class = "presenttabnoh">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> instructions </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Cut shallots and green onions </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Make a 1:1 mixture of water and nuoc mam in a small bowl </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fry tofu </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Stir fry the shallots until golden </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add green onions and stir until they soften </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Add tofu and sauce mixture </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Stir and adjust to taste, remove from heat after a few minutes </td>
+  </tr>
+</tbody>
+</table>
+

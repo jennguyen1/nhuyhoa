@@ -1,0 +1,270 @@
+---
+layout: post
+title: "One and Two Sample Tests"
+date: "January 27, 2016"
+categories: Statistics
+tags: Experimental_Design
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE}
+library(jn.general)
+lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center')
+```
+
+
+# One Sample Tests
+
+## Z-Test and T-Test
+Consider a sample randomly drawn from a normally distributed population. The objective is to test the population mean against a known standard (say $$\mu_0$$). So the null hypothesis is
+
+$$H_0: \mu_1 = \mu_0$$
+
+$$H_1: \mu_1 \ne \mu_0$$
+
+There's two ways to do this. 
+
+**Assume $$\sigma^2$$ Known**
+
+By the CLT, $$\bar{X} \sim N(\mu, \sigma^2)$$.  
+
+Calculate the test statistic 
+
+$$Z = \frac{\bar{X} - \mu_0}{\sqrt{\sigma^2/n}}$$
+
+where $$Z \sim N(0, 1)$$ under the null hypothesis. From here, compute the p-value to test $$H_0$$.
+
+**Assume $$\sigma^2$$ Unknown**
+
+Suppose the population variance is not known. Estimate it with the sample variance $$s^2$$. 
+
+Let $$Z \sim N(0, 1)$$ and $$X^2_{n-1} \sim \frac{(n - 1)s^2}{\sigma^2}$$
+
+$$T = \frac{\frac{\bar{X} - \mu_0}{\sqrt{\sigma^2/n}}}{\sqrt{\frac{(n - 1)s^2}{\sigma^2}/(n-1)}} = \frac{\bar{X} - \mu_0}{\sqrt{s/n}}$$
+
+where $$T \sim t_{n - 1}$$ under the null hypothesis. From here compute the p-value to test $$H_0$$. 
+
+## Nonparametric Test
+
+### Wilcoxon Signed Rank Test
+Parametric tests are not ideal when there are outliers or non-normality. Nonparametric tests are more robust to violations of these assumptions. 
+
+The **wilcoxon signed rank test** is a test that makes 2 assumptions. 
+
+1. RV $$X$$ is continuous
+2. The pdf of X is symmetric
+
+Test the median
+
+$$H_0: m = m_0$$
+
+against the potential alternative hypotheses
+
+$$ H_1: m > m_0$$ or $$H_1: m < m_0$$ or $$H_1: m \ne m_0$$
+
+This test is as follows:
+
+1. Calculate $$X_i - m_0$$
+2. Calculate $$\vert X_i - m_0 \vert$$
+3. Determine rank, $$R_i$$ of the absolute values in ascending order according to magnitude
+4. Determine the value of $$W = \sum^n_i Z_i R_i$$ where $$Z_i = sign(X_i - m_0)$$
+5. Determine if the observed $$W$$ is extreme under $$H_0$$
+
+The distribution is available in software and in tables. Another option is to look at the exact distribution or the distribution of permutations (for $$>1$$ samples). 
+
+For small sample sizes, the distribution of $$W$$ can be derived from the sample size. In large sample sizes, 
+
+$$W' = \frac{\sum^n_{i = 1} Z_iR_i - \frac{n(n + 1)}{4}}{\sqrt{\frac{n(n + 1)(2n + 1)}{24}}} \sim N(0, 1)$$ 
+
+where $$W \sim N(0, 1)$$ under the null hypothesis.
+
+In R, this test is fit with `wilcox.test()`.
+
+# Two Sample Tests
+
+Suppose the objective is to test two population means where both populations are normally distributed. Let $$\mu_1$$ and $$\mu_2$$ represent population mean responses for $$trt.1$$ and $$trt.2$$. 
+
+
+$$H_0: \mu_1 = \mu_2$$
+
+$$H_1: \mu_1 \ne \mu_2$$
+
+In R, t-tests can be fit with the `t.test()` function. 
+
+## Unpaired T-Test
+Suppose treatments are randomly assigned to subjects.
+
+Compute the test statistic
+
+$$T = \frac{\bar{Y}_1 - \bar{Y}_2}{\sqrt{\hat{Var}(\bar{Y}_1 - \bar{Y}_2)}}$$
+
+where $$\hat{Var}(\hat{Y}_1 - \hat{Y}_2)$$ depends on the estimated variances of the two treatment groups.
+
+**Equal Variance**
+
+Suppose independence between $$Y_1$$ and $$Y_2$$. If the variances are equal
+
+$$\hat{Var}(\bar{Y}_1 - \bar{Y}_2) = s^2_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)$$
+ 
+where
+
+$$s^2_p = \frac{(n_1 - 1)s^2_1 + (n_2 - 1) s^2_2}{n_1 - 1 + n_2 - 1}$$
+
+which is a weighted average of the sample variances.
+
+The statistic $$T \sim t_{n_1 + n_2 - 2}$$.
+
+**Unequal Variance**
+
+If the variances are not equal
+
+$$\hat{Var}(\bar{Y}_1 - \bar{Y}_2) = \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2}$$
+
+The statistic $$T \sim t_{r}$$ where
+
+$$r = \frac{\left( \frac{s^2_x}{n_1} + \frac{s^2_y}{n_2} \right)^2}{\frac{(s^2_x/n_1)^2}{n_1 - 1} + \frac{(s^2_y/n_2)^2}{n_2 - 1}}$$
+
+## Paired T-Test
+Suppose that instead of randomly assigning treatments to each subject, there is some sort of pairing. (A "pair" can refer to one or two subjects). While pairs are independent, there is dependency or correlation within pairs. The more dependency there is within a pair, the more noise reduction.
+
+For example, consider comparing two shoe types. A paired experiment would involve one subject receiving $$trt.1$$ on their left foot and $$trt.2$$ on their right foot. This is preferred over an unpaired study because a person's activity can vary widely across the population and unpaired designs would introduce unecessary noise to the data. 
+
+This is a more restrictive randomization scheme than for the unpaired experiment.
+
+Compute the test statistic
+
+$$T = \frac{\bar{D}}{\sqrt{\hat{Var}(\bar{D})}} = \frac{\bar{D}}{s^2_D / n}$$
+
+where 
+
+$$s^2_D = \sum (D_i - \bar{D})^2/(n - 1)$$ the sample variance of the differences and $$D$$ is the differences between the paired treatments.
+
+The statistic $$T \sim t_{n - 1}$$.
+
+## Experimental Design vs Analysis
+Suppose two scenarios assuming equal variance
+
+1. Design an unpaired experiment
+2. Design a paired experiment
+
+For both these scenarios, suppose the data was analyzed using a paired analysis.
+
+For the unpaired design, the "pairs" are independent (this is built in). So
+
+$$Var(D_i) = Var(Y_1) + Var(Y_2) = 2\sigma^2$$ <br>
+$$Var(\bar{D}) = \frac{2\sigma^2}{n}$$
+
+For the paired design, it is uncertain whether the "pairs" are independent. So
+
+$$Var(D_i) = Var(Y_1) + Var(Y_2) - 2cov(Y_1, Y_2) = 2\sigma^2(1 - p)$$ <br>
+$$Var(\bar{D}) = \frac{2\sigma^2(1 - p)}{n}$$
+
+If the groups were positively correlated, the paired design will have smaller variance and greater power in a paired analysis. This difference may have lead to differing results when it comes to the p-value.
+
+This stresses the importance of analyzing the data based off the experimental design.
+
+## Nonparametric Tests
+With nonparametric tests, there is no assumption of normality. In addition to permutations, there are several tests to compare two samples. 
+
+### Mann Whitney Wilcoxon Test
+This test has the following assumptions
+
+* Independent samples
+* Continuous variable
+* Equal variances
+* Identical (but non-normal) distributions
+
+The object is to determine whether one distribution is shifted relative to the other.
+
+$$H_0: F_1(x) = F_2(x)$$
+
+$$H_1: F_1(x) \ge F_2(x) or F_1(x) \le F_2(x)$$
+
+The procedure for the **wilcoxon rank sum test** is
+
+1. Combine the $$m+n$$ observations into one group and rank the observations from smallest to largest. Compute rank sum $$W$$ of treatment 1
+2. Find all possible permutation of the ranks. For each permutation find $$W'$$
+3. Determine the p-value
+
+$$p.val = \frac{no. rank sums \le W_{obs}}{\binom{m + n}{n}}$$
+
+Permutation tests or exact distribution tables may be used to evaluate the test statistic.
+
+An equivalent test is called the **Mann-Whitney U test**. 
+
+Let $$T_B = \sum^{n_b}_{i = 1} R_{iB}$$. 
+
+Under $$H_0$$
+
+* .$$E[T_B] = n_B \frac{n_A + n_B + 1}{2}$$
+* .$$Var(T_B) = \frac{n_A n_B}{n_A + n_B - 1} \left( \frac{1}{n_A + n_B} \sum_{i, j} R^2_{ij} - \frac{(n_A + n_B + 1)^2}{4} \right)$$
+* $$Var(T_B) = \frac{n_A n_B(n_A+n_B+1)}{12}$$ when there are no ties
+* .$$U = T_B - E[T_B]$$
+
+The statistic
+
+$$\frac{(T_B - E[T_B])^2}{Var(T_B)}$$
+
+is approximately distributed $$\chi^2_1$$. 
+
+To conduct this test, use `wilcox.test()` in R. 
+
+Define
+
+$$U =$$ # of pairs of $$(X_i, Y_j)$$ for which $$X_i < Y_j$$.
+
+Use this to computes a confidence interval based on the shift of the two distributions. This value is the difference between two means or medians. 
+
+The difference in the two distributions can be written as
+
+$$F_1(x) = F_2(x - \Delta)$$
+
+The confidence interval is computed as interval where
+
+$$pwd(k_a) < \Delta \le pwd(k_b)$$
+
+where $$k$$ is the pair between group 1 and group 2 and
+$$pwd$$ is a function denoting the pairwise distance between a point in group 1 and a point in group 2. 
+
+Derive the confidence interval from
+
+$$P(k_a < U < k_b) = 1 - \alpha$$
+
+where under large samples, $$U$$ is distributed $$N(0, 1)$$.
+
+### Kologorov Smirnov Test
+The assumptions of this test are
+
+* Independent samples
+* Identical (but non-normal) distributions
+
+Note that there is no assumption of equal variance. Essentially this test compares two identically distributed populations that have both different means and variances. 
+
+$$H_0:$$ the distributions are the same <br>
+$$H_1:$$ the distributions are not the same
+
+The Kolmogorov-Smirnov statistic is
+
+$$KS = max_x \vert \hat{F}_1(x) - \hat{F}_2(x) \vert$$
+
+This test is upper-tailed. The idea is to rank the combined data, compute the CDF for each treatment, and then find the absolute difference. The maximum of those differences can be compared to permutations or known tables to obtain a p-value. 
+
+In R, run this test using `ks.test()` or fit emprical cdfs with `ecdf()`.
+
+### Wilcoxon Signed Ranks Test
+This test can be used to analyze paired two-sample tests.
+
+This test has the following assumptions
+
+* Differences are continuous
+* Distribution of differences is symmetric
+* Differences are mutually independent
+* Differences all have the same median
+
+For paired samples, compute the differences and run the procedure defined above.
+
+In R, this test is implemented with `wilcox.test()`.
+

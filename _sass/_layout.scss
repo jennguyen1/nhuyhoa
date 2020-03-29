@@ -1,0 +1,287 @@
+/**
+ * Site header
+ */
+
+.site-header {
+    //border-top: 5px solid $background-color;
+    border-bottom: 1px solid $green-color;
+    min-height: 30px;
+    background-color:$background-code-color;
+
+    // Positioning context for the mobile navigation icon
+    position: fixed;
+    top:0;
+    width: 100%;
+}
+
+.site-title {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 45px;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    float: left;
+    color: $green-color;
+
+    &,
+    &:visited {
+        color: $green-color;
+    }
+}
+
+.site-nav {
+    float: right;
+    line-height: 45px;
+
+    .menu-icon {
+        display: none;
+    }
+
+    .page-link {
+        color: $a-link-color;
+        line-height: $base-line-height;
+        margin-left: 15px;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+
+    @include media-query($on-palm) {
+        position: absolute;
+        top: 9px;
+        right: 30px;
+        background-color: $background-code-color;
+        border: 1px solid $green-color;
+        border-radius: 5px;
+
+        .menu-icon {
+            display: block;
+            float: right;
+            width: 36px;
+            height: 20px;
+            line-height: 0;
+            padding-top: 10px;
+            text-align: center;
+
+
+            > svg {
+                width: 18px;
+                height: 12px;
+
+                path {
+                    fill: $green-color;
+                }
+            }
+        }
+
+        .trigger {
+            clear: both;
+            display: none;
+        }
+
+        &:hover .trigger {
+            display: block;
+            padding-bottom: 5px;
+        }
+
+        .page-link {
+            display: block;
+            padding: 5px 10px;
+        }
+    }
+}
+
+
+
+/**
+ * Site footer
+ */
+
+.site-footer {
+    border-top: 1.5px dashed $green-color;
+    padding: $spacing-unit/3 0;
+    background-color:$background-color;
+}
+
+.foot-text{
+    padding-top:1%;
+    font-weight: 500;
+    text-align:center;
+    color:$text-color;
+    font-size: 85%;
+}
+
+
+
+/**
+ * Page content
+ */
+
+.page.title{
+    margin-top:25px;
+}
+
+.page-content {
+    margin-top: $spacing-unit;
+    padding: $spacing-unit 0;
+    height:100%;
+}
+
+.tbl-date{
+    width:200px;
+    font-size: $small-font-size;
+    color: $grey-color;
+}
+
+.tbl-post{
+    width:800px;
+    font-size: $base-font-size;
+
+    .recipe-link:before{
+        content: "\f2e7";
+        font-family: "Font Awesome 5 Free";
+        font-weight:900;
+        padding-right: 1em;
+    }
+
+    .code-link:before{
+        content: "\f120";
+        font-family: "Font Awesome 5 Free";
+        font-weight:900;
+        padding-right: 1em;
+    }
+
+    .stat-link:before{
+        content: "\f080";
+        font-family: "Font Awesome 5 Free";
+        font-weight:900;
+        padding-right: 1em;
+    }
+
+}
+
+
+
+
+
+/**
+ * Posts
+ */
+
+.post-header {
+    margin-bottom: $spacing-unit;
+}
+
+.post-title {
+    font-size: 36px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-top:25px;
+}
+
+.post-meta{
+    padding-top:1%;
+    font-weight: 500;
+    color:$text-color;
+    font-size: 85%;
+}
+
+.post-tag:before {
+    content: "\f02b";
+    font-family: "Font Awesome 5 Free";
+    font-weight:900;
+    padding-right: .5em;
+}
+
+.post-category:before{
+    content: "\f02d";
+    font-family: "Font Awesome 5 Free";
+    font-weight:900;
+    padding-right: .5em;
+}
+
+.post-content {
+    margin-top: $spacing-unit;
+    margin-bottom: $spacing-unit;
+    height:100%;
+
+    h1, h2, h3, h4 {
+        padding-top: 50px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    h4 {
+        font-size: 18px;
+        padding-top:6px;
+        padding-bottom:3px;
+    }
+
+    table {
+        padding-bottom: 5px;
+        font-size: 14px;
+        width: 98%;
+    }
+
+    th {
+        text-align: left;
+    }
+
+
+    .presenttab {
+        border-collapse:collapse;
+        margin:auto;
+        border: 1px solid darken($green-color, 35%);
+        table-layout: fixed;
+
+        th{
+          background-color: darken($green-color, 35%) ;
+          border-bottom:1px solid darken($green-color, 35%);
+          padding: 5px;
+        }
+
+        td{
+          border:1px solid darken($green-color, 35%);
+          padding: 5px;
+          font-size: 14px;
+        }
+    }
+
+    .presenttabnoh {
+        border-collapse:collapse;
+        margin:auto;
+        border: none;
+        font-size: $base-font-size;
+
+        th{
+          display: none;
+        }
+
+        td{
+          border:none;
+          padding: 5px;
+        }
+    }
+
+    .dftab {
+        background-color: $background-code-color;
+        font-size: $code-font-size;
+        border: $code-border;
+        border-radius: $code-border-radius;
+
+        width: 100%;
+        overflow-x: auto;
+    }
+
+}

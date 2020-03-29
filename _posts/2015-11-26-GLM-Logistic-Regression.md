@@ -1,0 +1,206 @@
+---
+layout: post
+title: "GLM: Logistic Regression"
+date: "November 26, 2015"
+categories: Statistics
+tags: Regression
+---
+
+* TOC
+{:toc}
+
+
+
+# Binomial Response
+Suppose the response $$Y_i \sim Bin(n_i, p_i)$$ and the $$Y_i$$ are independent.
+
+$$ P(Y_i = y_i) = \left(\begin{array}
+{rrr}
+  n \\
+  y_i
+\end{array}\right) p_i^{y_i} (1-p_i)^{n_i - y_i} $$
+
+Then
+
+$$E(Y_i) = n_i p_i$$
+
+$$Var(Y_i) = n_i p_i (1-p_i)$$
+
+The deviance is
+
+$$ D = 2 \sum^n_{i = 1} \big[ y_i \log \left( \frac{y_i}{\hat{y}_i} \right) + (n_i - y_i) \log \left( \frac{n_i - y_i}{n_i - \hat{y}_i} \right) \big] $$
+
+There few problems when the response variable has a binomial distribution. 
+
+* $$Var(Y) = n \mu (1 - \mu)$$, which is not constant
+* $$\mu = p$$ is bounded: $$0 \le p \le 1$$ but OLS may predict probabilities beyond this
+
+There are a number of common link functions for binomial data. The link function should have $$\eta_i = g(p_i)$$ such that $$0 \le g^{-1}(\eta) \le 1 \forall \eta$$. 
+
+* Logit: $$\eta = \log \left( \frac{p}{1 - p} \right)$$
+* Probit: $$\eta = \Phi^{-1}(p)$$
+* Complementary log-log: $$\eta = \log(-\log(1 - p))$$
+
+All of these link functions differ mostly at the tails. Use the logit because it is easier to intepret using odds.
+
+# Logistic Regression Model
+
+Fit the model
+
+$$\log \left( \frac{p}{1 - p} \right) = \beta_0 + \beta_1 x_1 + ... \beta_k x_k$$
+
+In R, fit this model like so
+
+{% highlight r %}
+mod <- glm(cbind(damage, 6 - damage) ~ temp, data = orings, family = binomial)
+{% endhighlight %}
+
+There are two pieces of information regarding the response. The first column of the matrix is the number of successes, $$y$$. The second column is the number of failures, $$n - y$$. 
+
+Below is a graphical representation of the data and how it fits the data. 
+<img src="/nhuyhoa/figure/source/2015-11-26-GLM-Logistic-Regression/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+
+In SAS, fit a logistic model as such
+
+{% highlight r %}
+proc logistic;
+  # specify the category; dummy coding
+  class grp / param = ref;
+  # model definition
+  model y = x1 x2 grp;
+  # contrasts on logit scale
+  contrast 'rank 2 vs 3' grp 0 1 -1 / estimate=parm;
+  # contrasts for probability
+  contrast 'x1=200' intercept 1 x1 200 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=300' intercept 1 x1 300 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=400' intercept 1 x1 400 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=500' intercept 1 x1 500 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=600' intercept 1 x1 600 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=700' intercept 1 x1 700 x2 3.3899 grp 0 1 0  / estimate=prob;
+  contrast 'x1=800' intercept 1 x1 800 x2 3.3899 grp 0 1 0  / estimate=prob;
+run;
+
+proc genmod;
+  model y = x / type3 dist = bin link = logit;
+run;
+{% endhighlight %}
+
+
+# Beta Coefficients
+
+## Odds
+The logit link function is otherwise known as log odds. Odds are often used to express the payoff for bets; it is a ratio of the probability for success vs the probability of failure. 
+
+There are the following relationships:
+
+$$ o = \frac{p}{1 - p} $$
+
+$$ p = \frac{o}{1 + o} $$
+
+where $$p$$ is the probability of success and $$o$$ is the odds. 
+
+## Interpretation of Coefficients
+Odds provide a simple interpretation of the $$\hat{\beta}$$ coefficients in logistic regression. 
+
+-----------------------------------|---------------------
+$$\log(odds \vert x_1 = x + 1)$$   | $$ = \beta_0 + \beta_1 (x + 1) + ... + \beta_k x_k$$
+$$\log(odds \vert x_1 = x)$$       | $$ = \beta_0 + \beta_1 x + ... + \beta_k x_k$$
+
+Then 
+
+-------------------------------------------------------------|---------------------
+$$ \log(odds \vert x_1 = x + 1) - \log(odds \vert x_1 = x)$$ | $$= \beta_1 $$
+$$ \log \left( \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} \right) $$ | $$= \beta_1 $$
+$$ \frac{odds \vert x_1 = x + 1}{odds \vert x_1 = x} $$ | $$= e^{\beta_1} $$
+$$ (odds \vert x_1 = x + 1) $$ | $$= e^{\beta_1} * (odds \vert x_1 = x)$$
+
+The value $$exp(\hat{\beta}_i)$$ is the odds ratio for a unit increase of $$x_i$$. Interpret the $$\hat{\beta}_i$$ coefficient as follows: holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$. 
+
+### Continuous Variables
+The interpretation of coefficients for continuous variables are same as listed above. Holding all other predictors constant, a unit increase in $$x_i$$ increases the odds of success by a factor of $$exp(\hat{\beta}_i)$$
+
+### Categorical Variables
+The interpretation of coefficients for categorical variables are similar to the definition above. 
+
+Say there is a categorical variable with the labels "A", "B", "C". The baseline category is set to be "A". Then $$\beta_1$$ corresponds to the relative comparison of "B" to "A" and $$\beta_2$$ corresponds to the relative comparison of "C" to "A".
+
+Then $$\hat{\beta}_1$$ is the log-odds difference comparing those of category "B" to "A" and $$\hat{\beta}_2$$ is the log-odds difference comparing those of category "C" to "A".
+
+Logistic regression models with only categorical variables are another way to model contingency tables. For example, consider the model <br>
+$$logit(Y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 (x_1*x_2) + \beta_5 (x_1*x_3)$$
+
+where there are two categorical variables $$J$$ and $$N$$, <br>
+$$ x_1 = 1$$ if $$J = yes$$ <br>
+$$ x_1 = 0$$ otherwise
+
+$$ x_2 = 1$$ if $$N = medium$$ <br>
+$$ x_2 = 0$$ otherwise
+
+$$ x_3 = 1$$ if $$N = high$$ <br>
+$$ x_3 = 0$$ otherwise
+
+If all of the $$\hat{\beta}$$s were significantly different from 0, then there would be three-way table where all tables had different odds ratios.
+
+If $$\hat{\beta}_4$$, $$\hat{\beta}_5$$ were equal to 0, then this results in a model of three-way tables with homogeneous association (across $$N$$).
+
+If $$\hat{\beta}_2$$, $$\hat{\beta}_3$$, $$\hat{\beta}_4$$, $$\hat{\beta}_5$$ were all equal to 0, then ths results in a two-way table between the response and $$J$$. 
+
+### Continuous and Categorical Variables
+Similar to OLS, when there are a combination of continuous and categorical variables the model can be broken down to the overall model into smaller equations. Then tests are done to determine whether there are significant differences between the categories and whether the effect of the continuous variable is the same for all categories. 
+
+# Response Probabilities
+To estimate response probabilities from the $$x$$s, 
+
+$$ \hat{\pi}_i = \frac{exp(\eta_{i})}{1 + exp(\eta_{i})}$$
+
+## Effective Dose 
+Find the $$x$$ value in which there is a $$50$$% chance of success. 
+
+One variable case:
+
+--------------------------------------------|-------------------------
+$$\log \left( \frac{0.5}{1 - 0.5} \right)$$ | $$ = \beta_0 + \beta_1 x_1 $$
+$$ 0 $$                                     | $$ = \beta_0 + \beta_1 x_1 $$
+$$ x_1 $$                                   | $$ = -\frac{\beta_0}{\beta_1} $$
+
+Multiple variables:
+
+--------------------------------------------|-------------------------
+$$\log \left( \frac{0.5}{1 - 0.5} \right) $$| $$= \beta_0 + \beta_1 x_1 + ... + \beta_k x_k$$
+$$ 0$$                                      | $$ = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
+$$ x_1 $$                                   | $$= -\frac{\beta_0 + \beta_2 x_2 + ... + \beta_k x_k}{\beta_1} $$
+
+To determine the standard error of this estimate, use the [delta method][func_RV_delta_method_post]{:target = "_blank"}. 
+
+In R, this can be done with `MASS::dose.p()`.
+
+# Overdispersion
+Overdispersion occurs in logistic regression when $$Var(Y_i)$$ is greater than the assumed $$Var(Y_i) = \mu_i (n_i - \mu_i) / n_i$$. Usually this occurs when the $$n_i$$ Bernuolli trials are not identically distributed or not independent. (Note that if $$n_i = 1$$, overdispersion is not possible - data is Bernuolli). 
+
+The method to adjust for overdispersion involves multiplying the variance by a factor $$\sigma^2$$ to obtain 
+$$Var(Y_i)^* = \sigma^2 \mu_i (n_i - \mu_i) / n_i$$
+
+The steps for assessing overdispersion are listed in the [GLM Testing and Diagnostics: Overdispersion][glm_diagnostics_post]{:target = "blank"}.
+
+# Logistic Regression with Gradient Descent
+Another way to fit a logistic regression is to use [gradient descent][gradient_descent_post]{:target = "blank"}.
+
+Let $$h(x) = g(\theta^T x) = \frac{1}{1 + e^{-\theta^T x}}$$ be the function to model $$\hat{y}$$. 
+
+Then the log likelihood be
+$$l(\theta) = \sum^n_{i = 1} y_i \log{h(x_i)} + (1 - y_i) \log(1 - h(x_i))$$
+
+The partial derivative of $$l(\theta)$$ wrt $$\theta_j$$ is then
+
+-------------------------------------------------|-------------------------
+$$\frac{\partial}{\partial \theta_j} l(\theta)$$ | $$ = \left( y \frac{1}{g(\theta^T x)} - (1 - y) \frac{1}{1 - g(\theta^T x)} \right) \frac{\partial}{\partial \theta_j} g(\theta^T x)$$
+                                                 | $$ = \left( y * \frac{1}{g(\theta^T x)} - (1 - y) * \frac{1}{1 - g(\theta^T x)} \right) g(\theta^T x) (1 - g(\theta^T x)) \frac{\partial}{\partial \theta_j} \theta^T x$$
+                                                 | $$ = \left( y* (1 - g(\theta^T x)) - (1 - y)* g(\theta^Tx) \right) x_j$$
+                                                 | $$ = (y - h(x)) x_j$$
+
+So the gradient ascent rule is 
+$$ \theta_j := \theta_j + \alpha (y - h(x))x_j $$
+
+[glm_diagnostics_post]: http://jennguyen1.github.io/nhuyhoa/statistics/GLM-Testing-and-Diagnostics.html#overdispersion
+[func_RV_delta_method_post]: http://jennguyen1.github.io/nhuyhoa/statistics/Func-of-RV.html#delta-method
+[gradient_descent_post]: http://jennguyen1.github.io/nhuyhoa/statistics/Generic-Algorithms.html#gradient-descent

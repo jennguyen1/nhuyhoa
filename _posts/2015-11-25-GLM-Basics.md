@@ -1,0 +1,68 @@
+---
+layout: post
+title: "GLM: Basics"
+date: "November 25, 2015"
+categories: Statistics
+tags: Regression
+---
+
+* TOC
+{:toc}
+
+
+
+# Introduction
+With linear models (regression), the responses are continuous. When the responses are not continuous, generalized linear models should be used.
+
+With generalized linear model, the responses are transformed with a link function. The model of the link function to the predictors resemble a linear function.
+
+# Exponential Families
+The response variable should be a member of the exponential family distribution, which takes the general form
+
+$$ f(y \vert \theta, \phi) = exp \big[ \frac{y \theta - b(\theta)}{a(\phi)} + c(y, \phi) \big] $$
+
+* Normal or Gaussian
+
+------------------------------|-------------------
+$$ f(y \vert \theta, \phi) $$ | $$ = \frac{1}{\sigma \sqrt{2\pi}} exp \big[ \frac{(y - \mu)^2}{2\sigma^2} \big]$$
+                              | $$ = exp \big[ \frac{y\mu - \mu^2/2}{\sigma^2} - \frac{1}{2}(\frac{y^2}{\sigma^2} + \log(2\pi\sigma^2)) \big]$$ 
+
+where $$\theta = \mu$$ and $$\phi = \sigma^2$$
+
+* Binomial
+
+------------------------------|-------------------
+$$ f(y \vert \theta, \phi) $$ | $$ = \binom{n}{y} \mu^y (1-\mu)^{n - y} $$
+                              | $$ = exp \big[ y \log(\frac{\mu}{1 - \mu}) + n \log(1 - \mu) + \log \binom{n}{y} $$
+
+where $$\theta = \log \left( \frac{\mu}{1 - \mu} \right)$$ and $$\phi = 1$$
+
+* Poisson
+
+------------------------------|-------------------
+$$ f(y \vert \theta, \phi) $$ | $$ = e^{- \mu} \mu^y / y! $$
+                              | $$ = exp \big[ ylog(\mu) - \mu - \log(y!) \big] $$
+                              
+where $$\theta = \log(\mu)$$ and $$\phi = 1$$
+
+* Gamma
+
+The mean and variance of exponential family distributions are $$E[Y] = \mu = b'(\theta)$$ and $$Var[Y] = b''(\theta) a(\phi)$$.
+
+# Link Function
+The link function $$g$$ is one such that $$\eta = g(\mu)$$ is unconstrained. The function $$g$$ is invertible, such that $$\mu = g^{-1}(\eta)$$ for $$ -\infty < \eta < \infty $$. The linear model is fit to the transformed response: $$ g(\mu) = X\beta$$.
+
+The canonical link has $$g$$ such that $$\eta = g(\mu) = \theta$$ 
+
+* Normal: $$\eta = \mu$$, $$var.func = 1 $$
+
+* Binomial: $$\eta = \log(\mu / (1 - \mu))$$, $$var.func = \mu(1 - \mu)$$
+
+* Poisson: $$\eta = \log(\mu)$$, $$var.func = \mu$$
+
+* Gamma: $$\eta = 1/\mu$$, $$var.func = \mu^2$$
+
+# Fitting GLM
+The parameters $$\beta$$ of a GLM are computed via maximum likelihood using a method called the [Newton-Raphson method][newton_raphson_post]{:target = "_blank"}. The procedure is equivalent to iteratively weighted least squares (IRWLS). (This method works just as it sounds). The weights are inversely proportional to the variance of the response (which depends on the mean and thus the parameters).
+
+[newton_raphson_post]: http://jennguyen1.github.io/nhuyhoa/statistics/Generic-Algorithms.html#newton-raphson-method

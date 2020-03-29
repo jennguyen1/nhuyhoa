@@ -1,0 +1,127 @@
+---
+layout: post
+title: "Quantile Quantile (QQ) Plots"
+date: "October 18, 2015"
+categories: Statistics
+tags: Probability_and_Inference
+---
+
+* TOC
+{:toc}
+
+```{r, echo = FALSE, warning=FALSE}
+library(jn.general)
+lib(data, viz)
+knitr::opts_chunk$set(fig.width = 5, fig.height = 5, fig.align = 'center', warning = FALSE)
+```
+
+# QQ Plot Generation
+QQ plots plot the quantiles of one distribution to the quantiles of another distribution. It can be used to assess exactly how the two data sets differ. When quantiles from a data set are compared with theoretical quantiles, QQplots can conclude whether a data set follows a certain set of distributions. 
+
+The steps for generating a QQ plot comparing theoretical quantiles to empircal data is as follows:
+
+1. Generate theoretical quantiles for the data: let `n = len(data), 1:n/(n+1)`
+2. Sort empirical data from decreasing to increasing
+3. Plot empirical data vs theoretical quantiles: if the two distributions match, the plotted points should fall along the identity line (y = x)
+
+To compare two empirical data sets, just replace step 2 with step 3.
+
+Note that with small sample sizes, slight deviations from the reference line is to be expected.
+
+# Examples 
+Let's generate data under the uniform distribution and see whether it follows a normal distribution (it shouldn't).
+```{r}
+# random data
+set.seed(1)
+x <- runif(500)
+# theoretical quantiles
+quantiles <- qnorm(1:length(x) / (length(x) + 1))
+# order our values
+data <- sort(x)
+# generate qqplot
+qplot(x = quantiles, y = data, geom = "point", main = "Is Our Data Normally Distributed?") + geom_abline(slope = 1)
+```
+
+The curved trend that is very far off from the identity line. Thus the data does not follow the normal distribution.
+
+Now let's generate a QQ plot, with theoretical quantiles that are uniformly distributed.
+
+```{r}
+# theoretical quantiles
+quantiles <- qunif(1:length(x) / (length(x) + 1))
+# generate qqplot
+qplot(x = quantiles, y = data, geom = "point", main = "Is Our Data Uniformly Distributed?") + geom_abline(slope = 1)
+```
+
+Here there is a linear trend that falls along the reference line, so the data is uniformly distributed.
+
+Since normal data is so common, most statistical packages will have QQ-Normal plots built in. For example, in ggplot2 (R):
+
+```{r}
+qplot(sample = data, stat = "qq", main = "QQ-Normal Plot") + geom_abline(slope = 1)
+```
+
+# Deriving More Information With QQ Plots
+QQ plots and the corresponding reference line can be used to assess the shape of the data. 
+
+## Similar Distributions, Different Location
+```{r}
+# generate random data, centered at 2
+set.seed(1)
+x <- rnorm(100, 2)
+# generate quantiles (centered at 0)
+quantiles <- qnorm(1:length(x) / (length(x) + 1), 0)
+# sort data
+data <- sort(x)
+# plot quantiles
+qplot(x = quantiles, y = data, geom = "point", main = "QQ Normal") + geom_abline(slope = 1)
+```
+
+The linear trend of the points indicate that the data follows a normal distribution. The position of the points relative to the reference line indicates that the data is generally greater than standard normal, ie the location has been shifted.
+
+## Similar Distributions, Different Spread
+```{r}
+# generate random data, centered at 2
+set.seed(1)
+x <- rnorm(100, 0, 2)
+# generate quantiles (centered at 0)
+quantiles <- qnorm(1:length(x) / (length(x) + 1), 0, 1)
+# sort data
+data <- sort(x)
+# plot quantiles
+qplot(x = quantiles, y = data, geom = "point", main = "QQ Normal") + geom_abline(slope = 1)
+```
+
+The linear trend of the points indicate that the data follows a normal distribution. For theoretical normal quantiles less than 0, the points fall below the reference line. Vice versa for quantiles greater than 0. This indicates that the distribution of the data are stretched out more at the ends, ie greater spread/variance.
+
+## Right Skew
+```{r}
+# generate random data, centered at 2
+set.seed(1)
+x <- rchisq(100, 1)
+# generate quantiles (centered at 0)
+quantiles <- qnorm(1:length(x) / (length(x) + 1), 0, 1)
+# sort data
+data <- sort(x)
+# plot actual data
+qplot(x = data, alpha = I(0.9), geom = "histogram", binwidth = 0.5)
+# plot quantiles
+qplot(x = quantiles, y = data, geom = "point", main = "QQ Normal") + geom_abline(slope = 1)
+```
+
+The non-linear trend indicates the data is not normally distributed. For all points, the empirical data is larger than the corresponding normal quantiles.
+
+## Bigger Tails
+```{r}
+# generate random data, centered at 2
+set.seed(1)
+x <- rt(100, 3)
+# generate quantiles (centered at 0)
+quantiles <- qnorm(1:length(x) / (length(x) + 1), 0, 1)
+# sort data
+data <- sort(x)
+# plot quantiles
+qplot(x = quantiles, y = data, geom = "point", main = "QQ Normal") + geom_abline(slope = 1)
+```
+
+Deviation from the reference line at the ends indicate deviation from the normally-distributed tails. At the left tail (left side of graph), the data is much smaller than the normal quantiles, vice versa for the right tail. This indicates that distribution of the data has bigger tails. 
