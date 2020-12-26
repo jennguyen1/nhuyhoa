@@ -124,10 +124,9 @@ Bayesian modeling can be done in R with the same modeling syntax as R with the p
 library(rstanarm)
 
 # fit model
-mod <- stan_lmer(y ~ x + (1 | grp), data = mod, iter, chain, warmup, refresh)
+mod <- stan_lmer(y ~ x + (1 | grp), data = mod, prior, prior_intercept, iter, chain, warmup, refresh)
 
 # priors
-priors()
 prior_summary(mod)
 
 # model summary
